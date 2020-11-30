@@ -1,0 +1,19 @@
+{
+    "extends": [
+      "airbnb-typescript/base", 
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "object-curly-newline": "off",
+      "@typescript-eslint/indent": "off",
+      "@typescript-eslint/semi": "warn"
+    }
+  }
