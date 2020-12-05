@@ -2,12 +2,13 @@
   "name": "rocketmeet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/app.js",
+  "type": "module",
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts",
+    "start": "node build/app.js",
+    "dev": "npm run build && npm run start",
     "lint": "eslint . --ext .ts",
-    "build": "tsc -p ."
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,6 @@
   },
   "homepage": "https://github.com/RocketMeet/RocketMeet#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.18"
@@ -39,8 +39,6 @@
     "eslint-config-node": "^4.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "nodemon": "^2.0.6",
-    "ts-node": "^9.0.0",
     "typescript": "^4.1.2"
   }
 }

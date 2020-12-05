@@ -1,12 +1,14 @@
-import bodyParser from 'body-parser';
 import cors from 'cors';
-import express, { Application, Request, Response, NextFunction } from 'express';
-import mongoose from 'mongoose'
+import express, { Application } from 'express';
+import { corsUrl, port } from './config.js';
+import routesV1 from './routes/v1/index.js';
 
 const app: Application = express();
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello');
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200 }));
 
-app.listen(5000, () => console.log('Server is running!'));
+app.use('/v1', routesV1);
+
+app.listen(port);
