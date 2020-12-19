@@ -1,13 +1,9 @@
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
 build/
 
 node_modules/
 
 .env
-.env.test

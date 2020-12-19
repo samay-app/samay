@@ -9,10 +9,11 @@
       "@typescript-eslint"
     ],
     "parserOptions": {
-      "project": "./tsconfig.json"
+      "project": "./tsconfig.eslint.json"
     },
     "rules": {
       "object-curly-newline": "off",
+      "arrow-body-style": "off",
       "@typescript-eslint/indent": "off",
       "@typescript-eslint/semi": "warn"
     }

@@ -2,7 +2,6 @@
   "compilerOptions": {
       "module": "esnext",
       "target": "esnext",
-      "rootDir": "./src",
       "outDir": "./build",
       "moduleResolution": "node",
       "strict": true,
@@ -14,8 +13,10 @@
           "scripthost"
       ],
   },
-  "include": [
-      "src/**/*.ts"
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "./tests/",
+    "./node_modules/",
+    "./build/"
   ],
-  "compileOnSave": true
 }

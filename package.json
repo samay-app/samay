@@ -2,11 +2,12 @@
   "name": "rocketmeet",
   "version": "1.0.0",
   "description": "",
-  "main": "build/app.js",
+  "main": "build/server.js",
   "type": "module",
   "scripts": {
-    "start": "node build/app.js",
+    "start": "node build/server.js",
     "dev": "npm run build && npm run start",
+    "test": "ts-mocha -p tests/tsconfig.json tests/**/*.ts",
     "lint": "eslint . --ext .ts",
     "build": "tsc"
   },
@@ -23,22 +24,36 @@
   "homepage": "https://github.com/RocketMeet/RocketMeet#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.18"
+    "express-pino-logger": "^5.0.0",
+    "mongoose": "^5.10.18",
+    "pino": "^6.8.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
+    "@types/chai": "^4.2.14",
     "@types/cors": "^2.8.8",
+    "@types/expect": "^24.3.0",
     "@types/express": "^4.17.9",
+    "@types/express-pino-logger": "^4.0.2",
+    "@types/mocha": "^8.2.0",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^14.14.10",
+    "@types/pino": "^6.3.4",
+    "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
+    "chai": "^4.2.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-node": "^4.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "mocha": "^8.2.1",
+    "mockgoose": "^8.0.4",
+    "supertest": "^6.0.1",
+    "ts-mocha": "^8.0.0",
     "typescript": "^4.1.2"
   }
 }
