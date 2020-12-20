@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
+      "module": "esnext",
       "target": "esnext",
       "outDir": "./build",
       "moduleResolution": "node",
@@ -13,5 +13,10 @@
           "dom.iterable",
           "scripthost"
       ],
-  }
+  },
+  "exclude": [
+    "./tests/",
+    "./node_modules/",
+    "./build/"
+  ],
 }
