@@ -2,9 +2,9 @@ import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';
 import pino, { Logger } from 'pino';
-import { corsUrl, logLevel } from './config.js';
-import './db/index.js'; // initialize database
-import routesV1 from './routes/v1/index.js';
+import { corsUrl, logLevel } from './config';
+import './db/index'; // initialize database
+import routesV1 from './routes/v1/index';
 
 const logger: Logger = pino({ level: logLevel });
 const expressLogger: HttpLogger = expressPino({ logger });

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/server.js",
-  "type": "module",
   "scripts": {
     "start": "node build/server.js",
     "dev": "npm run build && npm run start",

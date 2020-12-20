@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-      "module": "esnext",
-      "target": "esnext",
+      "module": "CommonJS",
+      "target": "ES2019",
       "outDir": "./build",
       "moduleResolution": "node",
       "strict": true,

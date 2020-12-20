@@ -1,6 +1,6 @@
 import mongoose, { ConnectionOptions } from 'mongoose';
 import pino, { Logger } from 'pino';
-import { connectionURL, logLevel } from '../config.js';
+import { connectionURL, logLevel } from '../config';
 
 const logger: Logger = pino({ level: logLevel });
 
