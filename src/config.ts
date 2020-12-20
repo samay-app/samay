@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const environment: string = process.env.NODE_ENV || 'development';
-export const port: string = process.env.PORT || '5000';
+export const port: number = parseInt(<string>process.env.PORT, 10) || 5000;
 export const logLevel: string = process.env.LOG_LEVEL || 'info';
 
 export const db = {

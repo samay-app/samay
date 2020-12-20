@@ -2,6 +2,7 @@
   "compilerOptions": {
       "module": "esnext",
       "target": "esnext",
+      "rootDir": "./src",
       "outDir": "./build",
       "moduleResolution": "node",
       "strict": true,
@@ -12,11 +13,5 @@
           "dom.iterable",
           "scripthost"
       ],
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": [
-    "./tests/",
-    "./node_modules/",
-    "./build/"
-  ],
+  }
 }

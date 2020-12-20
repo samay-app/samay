@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node build/server.js",
     "dev": "npm run build && npm run start",
-    "test": "ts-mocha -p tests/tsconfig.json tests/**/*.ts",
+    "test": "NODE_ENV=test mocha --check-leaks -r ts-node/register -r tsconfig-paths/register \"test/**/*.test.ts\"",
     "lint": "eslint . --ext .ts",
     "build": "tsc"
   },
@@ -53,7 +53,8 @@
     "mocha": "^8.2.1",
     "mockgoose": "^8.0.4",
     "supertest": "^6.0.1",
-    "ts-mocha": "^8.0.0",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.2"
   }
 }
