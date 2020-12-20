@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/server.js",
     "dev": "npm run build && npm run start",
-    "test": "NODE_ENV=test TS_NODE_PROJECT='./tests/tsconfig.test.json' mocha --check-leaks -r ts-node/register -r tsconfig-paths/register \"tests/**/*.test.ts\"",
+    "test": "NODE_ENV=test mocha --check-leaks -r ts-node/register -r tsconfig-paths/register \"tests/**/*.test.ts\"",
     "lint": "eslint . --ext .ts",
     "build": "tsc"
   },
