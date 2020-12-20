@@ -44,19 +44,24 @@ router.post('/', async (req: Request, res: Response) => {
 // mark choice on a poll
 
 router.put('/:id', async (req: Request, res: Response) => {
-    const marked: MarkedProps = req.body;
+    const toMark: MarkedProps = req.body;
 
     try {
         const poll: PollProps | null = await Poll.findOne({ _id: req.params.id });
         if (poll) {
             delete poll._id;
             if (poll.marked) {
-                const newMarked: PollProps['marked'] = poll.marked.map((obj) => {
-                    return obj.userID === marked.userID ? { ...obj, choices: marked.choices } : obj;
-                });
-                poll.marked = newMarked;
+                const idx = poll.marked.findIndex((mark) => mark.userID === toMark.userID);
+                if (idx !== -1) {
+                    poll.marked[idx].choices = toMark.choices;
+                } else {
+                    poll.marked.push(toMark);
+                }
             } else {
-                poll.marked.push(marked);
+                const newMarked: MarkedProps[] = [{
+                    userID: toMark.userID, choices: toMark.choices,
+                }];
+                poll.marked = newMarked;
             }
             await Poll.updateOne({ _id: req.params.id }, poll);
             res.status(201).json(poll);
