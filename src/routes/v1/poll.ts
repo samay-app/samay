@@ -49,22 +49,26 @@ router.put('/:id', async (req: Request, res: Response) => {
     try {
         const poll: PollProps | null = await Poll.findOne({ _id: req.params.id });
         if (poll) {
-            delete poll._id;
-            if (poll.marked) {
-                const idx = poll.marked.findIndex((mark) => mark.userID === toMark.userID);
-                if (idx !== -1) {
-                    poll.marked[idx].choices = toMark.choices;
-                } else {
-                    poll.marked.push(toMark);
-                }
+            if (!toMark.choices.every((v) => poll.choices.includes(v))) {
+                res.status(404).json({ message: 'Invalid choices' });
             } else {
-                const newMarked: MarkedProps[] = [{
-                    userID: toMark.userID, choices: toMark.choices,
-                }];
-                poll.marked = newMarked;
-            }
-            await Poll.updateOne({ _id: req.params.id }, poll);
-            res.status(201).json(poll);
+                delete poll._id;
+                if (poll.marked) {
+                    const idx = poll.marked.findIndex((mark) => mark.userID === toMark.userID);
+                    if (idx !== -1) {
+                        poll.marked[idx].choices = toMark.choices;
+                    } else {
+                        poll.marked.push(toMark);
+                    }
+                } else {
+                    const newMarked: MarkedProps[] = [{
+                        userID: toMark.userID, choices: toMark.choices,
+                    }];
+                    poll.marked = newMarked;
+                }
+                await Poll.updateOne({ _id: req.params.id }, poll);
+                res.status(201).json(poll);
+                }
         } else {
             res.status(404).json({ message: 'Poll does not exist' });
         }

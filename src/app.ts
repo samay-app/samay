@@ -11,7 +11,9 @@ const expressLogger: HttpLogger = expressPino({ logger });
 
 const app: Application = express();
 
-app.use(expressLogger);
+if (process.env.NODE_ENV !== 'test') {
+    app.use(expressLogger);
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

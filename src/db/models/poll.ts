@@ -8,7 +8,7 @@ export interface MarkedProps {
 export interface PollProps extends Document {
     pollName: string;
     userID: string;
-    interval: string;
+    interval: number;
     choices: number[],
     marked?: MarkedProps[]
   }
