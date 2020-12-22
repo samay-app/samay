@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run build && npm run serve",
     "serve": "node build/server.js",
-    "test": "jest --runInBand --detectOpenHandles ./tests",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles ./tests",
     "lint": "eslint . --ext .ts",
-    "build": "tsc",
+    "build": "tsc --project tsconfig-build.json",
     "upgrade": "npm update --save-dev && npm update --save"
   },
   "repository": {

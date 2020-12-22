@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import express, { Request, Response, Router } from 'express';
 import Poll, { MarkedProps, PollProps } from '../../db/models/poll';
 

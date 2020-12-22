@@ -1,14 +1,14 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import mongoose from 'mongoose';
+import mongoose, { ConnectionOptions } from 'mongoose';
 
 const mongod = new MongoMemoryServer();
 
 // Connect to the in-memory database
 
-const connect = async () => {
-    const uri = await mongod.getUri();
+const connect = async (): Promise<void> => {
+    const uri: string = await mongod.getUri();
 
-    const mongooseOpts = {
+    const mongooseOpts: ConnectionOptions = {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
@@ -21,18 +21,18 @@ const connect = async () => {
 
 // Remove all the data for all db collections
 
-const clearDatabase = async () => {
-    const collections = mongoose.connection.collections;
+const clearDatabase = async (): Promise<void> => {
+    const collections: string[] = Object.keys(mongoose.connection.collections);
 
-    for (const key in collections) {
-        const collection = collections[key];
+    collections.forEach(async (key) => {
+        const collection = mongoose.connection.collections[key];
         await collection.deleteMany({});
-    }
+    });
 };
 
 // Drop database, close the connection and stop mongod
 
-const closeDatabase = async () => {
+const closeDatabase = async (): Promise<void> => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
     await mongod.stop();
