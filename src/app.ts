@@ -11,7 +11,7 @@ const expressLogger: HttpLogger = expressPino({ logger });
 
 const app: Application = express();
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV === 'development') {
     app.use(expressLogger);
 }
 
