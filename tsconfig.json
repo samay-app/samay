@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-      "module": "esnext",
-      "target": "esnext",
-      "rootDir": "./src",
+      "module": "CommonJS",
+      "target": "ES2019",
       "outDir": "./build",
       "moduleResolution": "node",
       "strict": true,
+      "baseUrl": "./src",
       "esModuleInterop": true,
       "lib": [
           "dom",
@@ -15,7 +15,11 @@
       ],
   },
   "include": [
-      "src/**/*.ts"
+    "./src",
+    "./tests"
   ],
-  "compileOnSave": true
+  "exclude": [
+    "./node_modules/",
+    "./build/",
+  ],
 }

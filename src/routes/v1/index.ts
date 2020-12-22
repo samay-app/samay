@@ -1,12 +1,14 @@
-import express from 'express';
-import poll from './poll.js';
-import signup from './access/signup.js';
-import login from './access/login.js';
-import logout from './access/logout.js';
+import express, { Router } from 'express';
+import poll from './poll';
+import user from './user';
+import signup from './access/signup';
+import login from './access/login';
+import logout from './access/logout';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.use('/poll', poll);
+router.use('/user', user);
 router.use('/login', login);
 router.use('/logout', logout);
 router.use('/signup', signup);

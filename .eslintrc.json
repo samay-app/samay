@@ -13,7 +13,10 @@
     },
     "rules": {
       "object-curly-newline": "off",
+      "arrow-body-style": "off",
+      "no-underscore-dangle": "off",
       "@typescript-eslint/indent": "off",
-      "@typescript-eslint/semi": "warn"
+      "@typescript-eslint/semi": "warn",
+      "@typescript-eslint/no-non-null-assertion": "off"
     }
   }
