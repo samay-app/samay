@@ -2,7 +2,7 @@ import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';
 import pino, { Logger } from 'pino';
-import { corsUrl, logLevel } from './config';
+import { corsURL, logLevel } from './config';
 import './db/index'; // initialize database
 import routesV1 from './routes/v1/index';
 
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200 }));
+app.use(cors({ origin: corsURL, optionsSuccessStatus: 200 }));
 
 app.use('/v1', routesV1);
 
