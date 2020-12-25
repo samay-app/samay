@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container, Row, Col } from "react-bootstrap";
 import Layout from "../components/layout";
 
-const Help = () => {
+const Help = (): JSX.Element => {
   return (
     <Layout>
       <Container fluid>

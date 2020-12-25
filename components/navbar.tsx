@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Nav, Navbar } from "react-bootstrap";
 
-const NavBar = () => {
+const NavBar = (): JSX.Element => {
   return (
     <Navbar expand="lg" fixed="top">
       <Navbar.Brand href="#home">

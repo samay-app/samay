@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Layout from "../components/layout";
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
     <Layout>
       <div className="hero">

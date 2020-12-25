@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Container } from "react-bootstrap";
 import NavBar from "./navbar";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
     <Container>
       <Head>
