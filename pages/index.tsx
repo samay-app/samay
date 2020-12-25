@@ -1,45 +1,31 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import { Container, Row, Col, Button } from "react-bootstrap";
+import Layout from "../components/layout";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="container">
-      <Head>
-        <title>RocketMeet</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
+      <div className="hero">
+        <Container fluid>
+          <Row>
+            <Col className="hero-quote">
+              <h2>
+                It shouldn’t take 30 emails to schedule a 30-minute meeting
+              </h2>
+              <h3>Launch polls, schedule smart</h3>
+              <Button
+                className="custom-button"
+                variant="outline-primary"
+                size="lg"
+                href="/poll/create"
+              >
+                Create a poll
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </Layout>
+  );
+};
 
-      <main>
-        <h1 className="title">
-          <Link href="/"><a>RocketMeet</a></Link>
-        </h1>
-
-        <div className="grid">
-          <Link href="/poll/create">
-            <a className="card">
-              <h3>Create a poll &rarr;</h3>
-            </a>
-          </Link>
-
-          <Link href="/help">
-            <a className="card">
-              <h3>How it works &rarr;</h3>
-            </a>
-          </Link>
-
-          <Link href="/dashboard">
-            <a className="card">
-              <h3>Dashboard &rarr;</h3>
-            </a>
-          </Link>
-
-        </div>
-      </main>
-
-      <footer>
-        Footer
-      </footer>
-
-    </div>
-  )
-}
+export default Home;

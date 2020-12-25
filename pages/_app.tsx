@@ -1,7 +1,10 @@
-import '../styles/global.css'
-import '../styles/index.css'
-import { AppProps } from 'next/app'
+import "../styles/global.css";
+import "../styles/index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { AppProps } from "next/app";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const App = ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />;
+};
+
+export default App;

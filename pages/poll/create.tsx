@@ -1,8 +1,24 @@
-import Link from 'next/link'
+import Link from "next/link";
+import { Container, Row, Col } from "react-bootstrap";
+import Layout from "../../components/layout";
 
-export default function create() {
-  return <div>
-    <h1>Create a poll</h1>
-    <h3><Link href="/"><a>Landing page</a></Link></h3>
-  </div>
-}
+const Create = () => {
+  return (
+    <Layout>
+      <Container fluid>
+        <Row>
+          <Col>
+            <h1>Create a poll</h1>
+            <h3>
+              <Link href="/">
+                <a>Landing page</a>
+              </Link>
+            </h3>
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
+  );
+};
+
+export default Create;
