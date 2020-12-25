@@ -11,10 +11,11 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    project: './tsconfig.json',
   },
   plugins: ["@typescript-eslint", "react", "prettier"],
   extends: [
-    "airbnb",
+    "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
@@ -27,6 +28,7 @@ module.exports = {
   ],
   rules: {
     "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }],
+    "react/react-in-jsx-scope": "off",
     "import/extensions": "off",
     "react/prop-types": "off",
     "jsx-a11y/anchor-is-valid": "off",
@@ -41,6 +43,9 @@ module.exports = {
       "error",
       { functions: false, classes: false, variables: true },
     ],
+  },
+  globals: {
+    "React": "writable"
   },
   settings: {
     "import/resolver": {
