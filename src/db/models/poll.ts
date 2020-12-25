@@ -6,20 +6,26 @@ export interface MarkedProps {
 }
 
 export interface PollProps extends Document {
-    pollName: string;
-    userID: string;
-    interval: number;
-    choices: number[],
-    marked?: MarkedProps[]
-  }
+  name: string;
+  description?: string,
+  open?: boolean,
+  userID: string;
+  interval: number;
+  choices: number[],
+  finalChoice?: number,
+  marked?: MarkedProps[]
+}
 
 const PollSchema: mongoose.Schema = new mongoose.Schema({
-    pollName: { type: String, required: true },
-    userID: { type: String, required: true },
-    interval: { type: Number, required: true },
-    choices: { type: [Number], required: true },
-    marked: [{ userID: String, choices: [Number] }],
-});
+  name: { type: String, required: true },
+  description: { type: String },
+  open: { type: Boolean, default: true },
+  userID: { type: String, required: true },
+  interval: { type: Number, required: true },
+  choices: { type: [Number], required: true },
+  finalChoice: { type: Number },
+  marked: [{ userID: String, choices: [Number] }],
+}, { timestamps: true });
 
 const Poll: Model<PollProps> = mongoose.model('Poll', PollSchema);
 

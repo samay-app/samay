@@ -1,9 +1,11 @@
 import express, { Request, Response, Router } from 'express';
+import isEqual from 'lodash.isequal';
 import Poll, { PollProps } from '../../db/models/poll';
 
 const router: Router = express.Router();
 
 // All the APIs below are private APIs protected for user's role
+// @Aravind: make sure users are authorized properly and can't imitate other users
 
 // get all polls created by an user id
 
@@ -38,7 +40,13 @@ router.put('/poll/:id', async (req: Request, res: Response) => {
         const poll: PollProps | null = await Poll.findOne({ _id: req.params.id });
         if (poll) {
             delete poll._id;
-            poll.pollName = newPoll.pollName;
+            poll.name = newPoll.name;
+            poll.description = newPoll.description;
+            if (poll.interval !== newPoll.interval || !isEqual(poll.choices, newPoll.choices)) {
+                poll.marked = [];
+                poll.finalChoice = undefined;
+                poll.open = true;
+            }
             poll.interval = newPoll.interval;
             poll.choices = newPoll.choices;
             await Poll.updateOne({ _id: req.params.id }, poll);
@@ -47,7 +55,7 @@ router.put('/poll/:id', async (req: Request, res: Response) => {
             res.status(404).json({ message: 'Poll does not exist' });
         }
     } catch (err) {
-        res.status(404).json({ message: err.message });
+        res.status(409).json({ message: err.message });
     }
 });
 
@@ -62,7 +70,7 @@ router.delete('/poll/:id', async (req: Request, res: Response) => {
             res.status(404).json({ message: 'Poll does not exist' });
         }
     } catch (err) {
-        res.status(404).json({ message: err.message });
+        res.status(409).json({ message: err.message });
     }
 });
 
