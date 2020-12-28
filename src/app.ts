@@ -1,17 +1,24 @@
 import cors from 'cors';
-import express, {Application} from 'express';
+import express, { Application } from 'express';
+import expressPino, { HttpLogger } from 'express-pino-logger';
+import pino, { Logger } from 'pino';
+import { loggerLevel } from './config';
+import router from './routes/index';
 
-import { port } from './config.js';
-import { router } from './routes/index.js';
+const logger: Logger = pino({ level: loggerLevel });
+const expressLogger: HttpLogger = expressPino({ logger });
 
 const app: Application = express();
-app.use(express.json());
 
+if (process.env.NODE_ENV === 'development') {
+    app.use(expressLogger);
+}
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({optionsSuccessStatus: 200 }));
+
+app.use(cors({ optionsSuccessStatus: 200 }));
 
 app.use('/', router);
- 
-app.listen(port, () => {
-    console.log(port);
-});
+
+export default app;
