@@ -1,6 +1,9 @@
 {
   "name": "rocketmeet",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.15.1"
+  },
   "description": "",
   "main": "build/server.js",
   "scripts": {
@@ -28,6 +31,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
+    "helmet": "^4.2.0",
     "lodash.isequal": "^4.5.0",
     "mongoose": "^5.10.18",
     "pino": "^6.8.0"
