@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.12.10",
     "bootstrap": "^4.5.3",
+    "dayjs": "^1.9.7",
     "next": "^10.0.0",
     "react": "16.13.1",
     "react-bootstrap": "^1.4.0",
