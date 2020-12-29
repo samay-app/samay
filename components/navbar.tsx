@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, Button } from "react-bootstrap";
 
 const NavBar = (): JSX.Element => {
   return (
@@ -23,6 +23,11 @@ const NavBar = (): JSX.Element => {
           <Link href="/help" passHref>
             <Nav.Link>help</Nav.Link>
           </Link>
+        </Nav>
+        <Nav className="justify-content-end">
+          <Button variant="outline-dark">
+            Signin {/* aravinds code  will be pasted here */}
+          </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Container, Row, Col } from "react-bootstrap";
 import Layout from "../../components/layout";
+import Forms from "../../components/forms";
 
 const Create = (): JSX.Element => {
   return (
@@ -9,11 +9,7 @@ const Create = (): JSX.Element => {
         <Row>
           <Col>
             <h1>Create a poll</h1>
-            <h3>
-              <Link href="/">
-                <a>Landing page</a>
-              </Link>
-            </h3>
+            <Forms />
           </Col>
         </Row>
       </Container>

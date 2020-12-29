@@ -1,15 +1,16 @@
 import Head from "next/head";
 import { Container } from "react-bootstrap";
 import NavBar from "./navbar";
+import Footer from "./footer";
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
-    <Container>
+    <Container className="p-0" fluid>
       <Head>
         <NavBar />
       </Head>
-      <main>{children}</main>
-      <footer>Footer</footer>
+      <main style={{ flex: "1 1 auto", paddingLeft: "4vw" }}>{children}</main>
+      <Footer />
     </Container>
   );
 };
