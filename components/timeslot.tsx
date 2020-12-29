@@ -8,7 +8,9 @@ const TimeSlot = (props: {
   const { timeFactor } = props;
   let today = dayjs().startOf("d"); // start of today as the initial time
 
-  function handleChange(): void {
+  function handleChange(event: {
+    target: { value: number; checked: boolean };
+  }): void {
     const { value, checked } = event.target;
     if (checked) {
       props.timeSlotArray.push(value);
@@ -23,7 +25,7 @@ const TimeSlot = (props: {
         <tr>
           <th>Time Range</th>
           {Array.from({ length: 7 }).map((_, index) => (
-            <th key={index}>
+            <th key={today.add(index, "day")}>
               {today.add(index, "day").format("MMM [\n] DD [\n] ddd")}
             </th>
           ))}
@@ -31,18 +33,17 @@ const TimeSlot = (props: {
       </thead>
       <tbody>
         {Array.from({ length: 24 / timeFactor }).map((_, i) => (
-          <tr key={i}>
+          <tr key={today.add(i * timeFactor, "h")}>
             <td>{`${today
               .add(i * timeFactor, "h")
               .format("hh:mm a")} - ${today
               .add((i + 1) * timeFactor, "h")
               .format("hh:mm a")}`}</td>
             {Array.from({ length: 7 }).map((__, index) => (
-              <td key={index}>
+              <td key={today.add(i * timeFactor, "h").add(index, "day")}>
                 <InputGroup>
                   <InputGroup.Checkbox
                     onChange={handleChange}
-                    className="chks"
                     value={today
                       .add(i * timeFactor, "h")
                       .add(index, "day")

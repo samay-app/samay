@@ -17,16 +17,16 @@ const TimeRangeDropdown = (props: {
   function handleDropdownClick(
     event: React.SyntheticEvent<unknown, Event>
   ): void {
-    const { value } = event.currentTarget;
+    const { value } = event.target;
     props.onDropNSelect(value);
   }
 
   return (
     <DropdownButton title="Time Range">
-      {timeRange.map((timeDuration, i) => (
+      {timeRange.map((timeDuration) => (
         <Dropdown.Item
           as="button"
-          key={i}
+          key={timeDuration.timeFact}
           onSelect={(_, event): void => handleDropdownClick(event)}
           value={timeDuration.timeFact}
         >
