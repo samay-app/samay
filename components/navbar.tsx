@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Nav, Navbar, Button } from "react-bootstrap";
+import Login from "./Login";
 
 const NavBar = (): JSX.Element => {
   return (
@@ -25,9 +26,7 @@ const NavBar = (): JSX.Element => {
           </Link>
         </Nav>
         <Nav className="justify-content-end">
-          <Button variant="outline-dark">
-            Signin {/* aravinds code  will be pasted here */}
-          </Button>
+          <Login />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

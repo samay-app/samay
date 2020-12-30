@@ -6,7 +6,6 @@ import TimeSlot from "../../components/timeslot";
 import TimeRangeDropdown from "../../components/timerangedropdown";
 import Forms from "../../components/forms";
 
-
 const Create = (): JSX.Element => {
   let timeSlotArray: number[] = [];
   const [timeVal, setTimeVal] = useState({ timeFactor: 1, option: false });
@@ -34,27 +33,23 @@ const Create = (): JSX.Element => {
             <h1>Create a poll</h1>
 
             <Forms />
-            <h3>
-              <Link href="/">
-                <a>Landing page</a>
-              </Link>
-              <TimeRangeDropdown
-                onDropNSelect={(value: number): void =>
-                  setTimeVal({ timeFactor: value, option: true })
-                }
+
+            <TimeRangeDropdown
+              onDropNSelect={(value: number): void =>
+                setTimeVal({ timeFactor: value, option: true })
+              }
+            />
+            {timeVal.option && (
+              <TimeSlot
+                timeFactor={timeVal.timeFactor}
+                timeSlotArray={timeSlotArray}
               />
-              {timeVal.option && (
-                <TimeSlot
-                  timeFactor={timeVal.timeFactor}
-                  timeSlotArray={timeSlotArray}
-                />
-              )}
-              {timeVal.option && (
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                  Continue
-                </Button>
-              )}
-            </h3>
+            )}
+            {timeVal.option && (
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Continue
+              </Button>
+            )}
           </Col>
         </Row>
       </Container>

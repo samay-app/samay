@@ -2,7 +2,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 
 const Forms = (): JSX.Element => {
   return (
-    <Form>
+    <Form className="p-3">
       <Form.Group as={Row} controlId="formPlaintextTitle">
         <Form.Label column sm="2">
           Title
@@ -35,9 +35,6 @@ const Forms = (): JSX.Element => {
           <Form.Control type="email" placeholder="Your mail id" required />
         </Col>
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Create
-      </Button>
     </Form>
   );
 };
