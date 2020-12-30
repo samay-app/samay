@@ -4,6 +4,7 @@ import { useState } from "react";
 import Layout from "../../components/layout";
 import TimeSlot from "../../components/timeslot";
 import TimeRangeDropdown from "../../components/timerangedropdown";
+import Forms from "../../components/forms";
 
 const Create = (): JSX.Element => {
   let timeSlotArray: number[] = [];
@@ -30,27 +31,25 @@ const Create = (): JSX.Element => {
         <Row>
           <Col>
             <h1>Create a poll</h1>
-            <h3>
-              <Link href="/">
-                <a>Landing page</a>
-              </Link>
-              <TimeRangeDropdown
-                onDropNSelect={(value: number): void =>
-                  setTimeVal({ timeFactor: value, option: true })
-                }
+
+            <Forms />
+
+            <TimeRangeDropdown
+              onDropNSelect={(value: number): void =>
+                setTimeVal({ timeFactor: value, option: true })
+              }
+            />
+            {timeVal.option && (
+              <TimeSlot
+                timeFactor={timeVal.timeFactor}
+                timeSlotArray={timeSlotArray}
               />
-              {timeVal.option && (
-                <TimeSlot
-                  timeFactor={timeVal.timeFactor}
-                  timeSlotArray={timeSlotArray}
-                />
-              )}
-              {timeVal.option && (
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                  Continue
-                </Button>
-              )}
-            </h3>
+            )}
+            {timeVal.option && (
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Continue
+              </Button>
+            )}
           </Col>
         </Row>
       </Container>

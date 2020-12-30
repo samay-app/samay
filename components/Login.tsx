@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { Button } from "react-bootstrap";
 
 interface COFIG {
   apiKey: string;
@@ -34,18 +35,18 @@ const Login: React.FC = () => {
     <div>
       {isSignedIn ? (
         <div>
-          <button
-            type="button"
+          <Button
+            variant="outline-dark"
             onClick={(): object => firebase.auth().signOut()}
           >
             Sign-out
-          </button>
+          </Button>
         </div>
       ) : (
         // add sign funtions here
         <div>
-          <p>Please sign-in:</p>
           {/* Google sign in button */}
+
           <StyledFirebaseAuth
             uiConfig={uiConfig}
             firebaseAuth={firebase.auth()}

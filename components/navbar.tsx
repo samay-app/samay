@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, Button } from "react-bootstrap";
+import Login from "./Login";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar expand="lg" fixed="top">
+    <Navbar bg="light" expand="lg" fixed="top">
       <Navbar.Brand href="#home">
         <img
           alt=""
@@ -23,6 +24,9 @@ const NavBar = (): JSX.Element => {
           <Link href="/help" passHref>
             <Nav.Link>help</Nav.Link>
           </Link>
+        </Nav>
+        <Nav className="justify-content-end">
+          <Login />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
