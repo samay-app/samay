@@ -3,7 +3,7 @@ import { Nav, Navbar, Button } from "react-bootstrap";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar expand="lg" fixed="top">
+    <Navbar bg="light" expand="lg" fixed="top">
       <Navbar.Brand href="#home">
         <img
           alt=""

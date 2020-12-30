@@ -5,7 +5,7 @@ import Footer from "./footer";
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
-    <Container className="p-0" fluid>
+    <Container className="p-0" fluid style={{ height: "100vh" }}>
       <Head>
         <title>RocketMeet</title>
       </Head>
