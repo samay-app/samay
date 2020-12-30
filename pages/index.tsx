@@ -1,5 +1,6 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Layout from "../components/layout";
+import Login from "../components/Login";
 
 const Home = (): JSX.Element => {
   return (
@@ -20,6 +21,7 @@ const Home = (): JSX.Element => {
               >
                 Create a poll
               </Button>
+              <Login />
             </Col>
           </Row>
         </Container>
