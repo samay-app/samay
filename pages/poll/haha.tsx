@@ -1,27 +1,23 @@
-import {
-  Alert,
-  Button,
-  Container,
-  Form,
-  Row,
-  Col,
-  Table,
-} from "react-bootstrap";
+import { Alert, Container, Row, Col, Table } from "react-bootstrap";
+import { useState } from "react";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { useState } from "react";
 import Layout from "../../components/layout";
+import MarkChoices from "../../components/MarkChoices";
+import SubmitChoices from "../../components/SubmitChoices";
 import { PollFromDBProps, MarkedProps } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
-const Dashboard = (): JSX.Element => {
+const currentLoggedInUserID = "starman"; // get the correct user
+
+const Poll = (): JSX.Element => {
   const pollFromDB: PollFromDBProps = {
     _id: "5fecb40047984b4c55764b5e",
     name: "testPoll",
     description: "testPollDescription",
     open: true,
-    userID: "vipinsuserid",
+    userID: "starman",
     interval: 3600000,
     choices: [
       1700562600000,
@@ -60,28 +56,6 @@ const Dashboard = (): JSX.Element => {
     userID: "",
     choices: [],
   });
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setNewUserMarked({ ...newUserMarked, userID: value });
-  };
-
-  const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value, checked } = e.target;
-    if (checked) {
-      const newChoices = newUserMarked.choices;
-      newChoices.push(parseInt(value, 10));
-      setNewUserMarked({ ...newUserMarked, choices: newChoices });
-    } else {
-      const newChoices = newUserMarked.choices;
-      newChoices.splice(newChoices.indexOf(parseInt(value, 10)), 1); // remove the unchecked element from array
-      setNewUserMarked({ ...newUserMarked, choices: newChoices });
-    }
-  };
-
-  const handleSubmit = (): void => {
-    // send newUserMarked to server
-  };
 
   return (
     <Layout>
@@ -125,41 +99,23 @@ const Dashboard = (): JSX.Element => {
                     ))}
                   </tr>
                 ))}
-                <tr>
-                  <td>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your name"
-                      required
-                      onChange={handleNameChange}
-                    />
-                  </td>
-                  {sortedChoices.map((idx) => (
-                    <td key={idx} className="slot-checkbox-cell">
-                      <Form.Check
-                        value={idx}
-                        className="slot-checkbox"
-                        onChange={handleChoiceChange}
-                      />
-                    </td>
-                  ))}
-                </tr>
+                {currentLoggedInUserID !== pollFromDB.userID && (
+                  <MarkChoices
+                    pollFromDB={pollFromDB}
+                    newUserMarked={newUserMarked}
+                    setNewUserMarked={setNewUserMarked}
+                  />
+                )}
               </tbody>
             </Table>
-            <Button
-              variant="primary"
-              type="submit"
-              disabled={
-                !newUserMarked.userID || newUserMarked.choices.length === 0
-              }
-              onClick={handleSubmit}
-            >
-              Mark your choice
-            </Button>
+            {currentLoggedInUserID !== pollFromDB.userID && (
+              <SubmitChoices newUserMarked={newUserMarked} />
+            )}
           </Col>
         </Row>
       </Container>
     </Layout>
   );
 };
-export default Dashboard;
+
+export default Poll;
