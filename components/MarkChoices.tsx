@@ -1,14 +1,13 @@
 import { Form } from "react-bootstrap";
 import { Dispatch } from "react";
-import { PollFromDBProps, MarkedProps } from "../models/poll";
+import { MarkedProps } from "../models/poll";
 
 const MarkChoices = (props: {
-  pollFromDB: PollFromDBProps;
+  sortedChoices: number[];
   newUserMarked: MarkedProps;
   setNewUserMarked: Dispatch<MarkedProps>;
 }): JSX.Element => {
-  const { pollFromDB, newUserMarked, setNewUserMarked } = props;
-  const sortedChoices = pollFromDB.choices.sort((a, b) => a - b);
+  const { sortedChoices, newUserMarked, setNewUserMarked } = props;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;

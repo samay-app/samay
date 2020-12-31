@@ -1,10 +1,13 @@
-import { Alert, Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import { useState } from "react";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import Layout from "../../components/layout";
+import PollInfo from "../../components/PollInfo";
 import MarkChoices from "../../components/MarkChoices";
+import MarkFinalChoice from "../../components/MarkFinalChoice";
 import SubmitChoices from "../../components/SubmitChoices";
+import SubmitFinalChoice from "../../components/SubmitFinalChoice";
 import { PollFromDBProps, MarkedProps } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
@@ -12,6 +15,7 @@ dayjs.extend(localizedFormat);
 const currentLoggedInUserID = "starman"; // get the correct user
 
 const Poll = (): JSX.Element => {
+  // get poll from DB
   const pollFromDB: PollFromDBProps = {
     _id: "5fecb40047984b4c55764b5e",
     name: "testPoll",
@@ -57,18 +61,14 @@ const Poll = (): JSX.Element => {
     choices: [],
   });
 
+  const [finalChoice, setFinalChoice] = useState<number | undefined>();
+
   return (
     <Layout>
       <Container fluid>
         <Row>
           <Col>
-            <h1>{pollFromDB.name}</h1>
-            {pollFromDB.description}
-            <Alert variant={pollFromDB.open ? "success" : "secondary"}>
-              {pollFromDB.open ? "OPEN" : "CLOSED"}
-            </Alert>
-            By {pollFromDB.userID} | Created on{" "}
-            {dayjs(pollFromDB.createdAt).format("DD/MM/YYYY")}
+            <PollInfo pollFromDB={pollFromDB} />
             <Table bordered>
               <thead>
                 <tr>
@@ -99,17 +99,28 @@ const Poll = (): JSX.Element => {
                     ))}
                   </tr>
                 ))}
-                {currentLoggedInUserID !== pollFromDB.userID && (
-                  <MarkChoices
-                    pollFromDB={pollFromDB}
-                    newUserMarked={newUserMarked}
-                    setNewUserMarked={setNewUserMarked}
-                  />
-                )}
+                {pollFromDB.open &&
+                  currentLoggedInUserID !== pollFromDB.userID && (
+                    <MarkChoices
+                      sortedChoices={sortedChoices}
+                      newUserMarked={newUserMarked}
+                      setNewUserMarked={setNewUserMarked}
+                    />
+                  )}
+                {pollFromDB.open &&
+                  currentLoggedInUserID === pollFromDB.userID && (
+                    <MarkFinalChoice
+                      sortedChoices={sortedChoices}
+                      setFinalChoice={setFinalChoice}
+                    />
+                  )}
               </tbody>
             </Table>
-            {currentLoggedInUserID !== pollFromDB.userID && (
+            {pollFromDB.open && currentLoggedInUserID !== pollFromDB.userID && (
               <SubmitChoices newUserMarked={newUserMarked} />
+            )}
+            {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
+              <SubmitFinalChoice finalChoice={finalChoice} />
             )}
           </Col>
         </Row>

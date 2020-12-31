@@ -5,7 +5,7 @@ const SubmitChoices = (props: { newUserMarked: MarkedProps }): JSX.Element => {
   const { newUserMarked } = props;
 
   const handleSubmit = (): void => {
-    // send newUserMarked to server
+    // PUT newUserMarked at v1/poll/{pollID}
   };
 
   return (
