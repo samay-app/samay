@@ -5,14 +5,24 @@ import Footer from "./footer";
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
-    <Container className="p-0" fluid style={{ height: "100vh" }}>
+    <>
       <Head>
         <title>RocketMeet</title>
       </Head>
-      <NavBar />
-      <main style={{ flex: "1 1 auto", paddingLeft: "4vw" }}>{children}</main>
-      <Footer />
-    </Container>
+      <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+        <NavBar />
+        <main
+          style={{
+            flex: "1 1 auto",
+            paddingLeft: "4vw",
+            paddingRight: "4vw",
+          }}
+        >
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
