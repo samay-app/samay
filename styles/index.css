@@ -63,3 +63,22 @@ h3 {
 .container-fluid {
   padding: 5rem 0;
 }
+
+.slot-checked {
+  background-color: #CDEAA1;
+  text-align: center;
+}
+
+.slot-unchecked {
+  background-color: #FEF9F9;
+}
+
+.slot-checkbox-cell {
+  background-color: #5da8fd;
+  text-align: center;
+}
+
+.slot-checkbox input[type="checkbox"] {
+  width: 1.8em;
+  height: 1.8em;
+}
