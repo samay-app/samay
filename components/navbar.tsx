@@ -12,7 +12,7 @@ const NavBar = (): JSX.Element => {
           width="35"
           height="35"
           className="d-inline-block align-top"
-        />
+        />{" "}
         Rocketmeet
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

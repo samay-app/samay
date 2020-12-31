@@ -1,4 +1,5 @@
-import { Container, Row, Col } from "react-bootstrap";
+import Greetings from "../components/greeting";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Layout from "../components/layout";
 
 const Dashboard = (): JSX.Element => {
@@ -9,6 +10,9 @@ const Dashboard = (): JSX.Element => {
           <Col>
             <h1>Dashboard</h1>
           </Col>
+        </Row>
+        <Row>
+          <Greetings />
         </Row>
       </Container>
     </Layout>
