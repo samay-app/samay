@@ -11,7 +11,15 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
       </Head>
       <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
         <NavBar />
-        <main style={{ flex: "1 1 auto", paddingLeft: "4vw" }}>{children}</main>
+        <main
+          style={{
+            flex: "1 1 auto",
+            paddingLeft: "4vw",
+            paddingRight: "4vw",
+          }}
+        >
+          {children}
+        </main>
         <Footer />
       </div>
     </>

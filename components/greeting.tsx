@@ -1,17 +1,30 @@
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row, Col, Card } from "react-bootstrap";
 
 const Greetings = (): JSX.Element => {
   return (
-    <div>
-      <div id="maingreeting" className="py-3 my-1">
-        <h3>Welcome back, Mr X (replaced by name from auth)</h3>
+    <div className="d-flex flex-column w-100">
+      <div id="maingreeting" className="py-3 my-1 ">
+        <Card border="dark">
+          <Card.Body>
+            <Card.Text>
+              <Row>
+                <Col xs={9}>
+                  <h3>Find best time for everyone to meet. Launch a poll.</h3>
+                </Col>
+                <Col className="d-flex justify-content-center align-items-center">
+                  <Button href="/poll/create" style={{ height: "40px" }}>
+                    Create Poll
+                  </Button>
+                </Col>
+              </Row>
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </div>
+
       <Row>
         <Col xs={10}>
-          <h5>Your Polls </h5>
-        </Col>
-        <Col xs={2}>
-          <Button size="sm">New </Button>
+          <h4>Your Polls </h4>
         </Col>
       </Row>
 
