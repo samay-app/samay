@@ -19,40 +19,33 @@ router.get('/:id', async (req: Request, res: Response) => {
 // mark choices on a poll
 
 router.put('/:id', async (req: Request, res: Response) => {
-    const toMark: MarkedProps = req.body;
-
     try {
         const poll: PollProps | null = await Poll.findOne({ _id: req.params.id });
         if (poll) {
-            if (!poll.open && poll.userID !== toMark.userID) {
+            const valuesToMark: MarkedProps = req.body;
+            if (!poll.open) {
                 res.status(400).json({ message: 'Poll closed' });
-            } else if (!toMark.choices.every((v) => poll.choices.includes(v))) {
+            } else if (!valuesToMark.choices.every((v) => poll.choices.includes(v))) {
                 res.status(400).json({ message: 'Invalid choices' });
             } else {
-                delete poll._id;
-                if (poll.userID === toMark.userID) {
-                    if (toMark.choices.length !== 1) {
-                        res.status(400).json({ message: 'There must be a single final choice' });
-                    } else {
-                        poll.finalChoice = toMark.choices[0];
-                        poll.open = false;
-                    }
-                } else if (poll.marked) {
-                    const idx = poll.marked.findIndex((mark) => mark.userID === toMark.userID);
-                    if (idx !== -1) {
-                        poll.marked[idx].choices = toMark.choices;
-                    } else {
-                        poll.marked.push(toMark);
-                    }
+                const currentlyMarked: MarkedProps[] | undefined = poll.marked;
+                let toMarkOnPoll: MarkedProps[] | undefined;
+
+                if (currentlyMarked) {
+                    toMarkOnPoll = currentlyMarked;
+                    toMarkOnPoll.push(valuesToMark);
                 } else {
-                    const newMarked: MarkedProps[] = [{
-                        userID: toMark.userID, choices: toMark.choices,
+                    toMarkOnPoll = [{
+                        userID: valuesToMark.userID, choices: valuesToMark.choices,
                     }];
-                    poll.marked = newMarked;
                 }
-                await Poll.updateOne({ _id: req.params.id }, poll);
-                res.status(201).json(poll);
-                }
+                const markedPoll: PollProps | null = await Poll.findOneAndUpdate(
+                    { _id: req.params.id },
+                    { marked: toMarkOnPoll },
+                    { new: true },
+                );
+                res.status(201).json(markedPoll);
+            }
         } else {
             res.status(404).json({ message: 'Poll does not exist' });
         }

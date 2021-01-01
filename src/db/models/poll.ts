@@ -1,19 +1,19 @@
 import mongoose, { Model, Document } from 'mongoose';
 
 export interface MarkedProps {
-  userID: string,
-  choices: number[]
+  userID: string;
+  choices: number[];
 }
 
 export interface PollProps extends Document {
   name: string;
-  description?: string,
-  open?: boolean,
+  description?: string;
+  open?: boolean;
   userID: string;
   interval: number;
-  choices: number[],
-  finalChoice?: number,
-  marked?: MarkedProps[]
+  choices: number[];
+  finalChoice?: number;
+  marked?: MarkedProps[];
 }
 
 const PollSchema: mongoose.Schema = new mongoose.Schema({

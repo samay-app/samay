@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';
+import helmet from 'helmet';
 import pino, { Logger } from 'pino';
 import { corsURL, logLevel } from './config';
 import './db/index'; // initialize database
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(expressLogger);
 }
 
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
