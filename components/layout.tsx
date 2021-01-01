@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Container } from "react-bootstrap";
 import NavBar from "./navbar";
 import Footer from "./footer";
 

@@ -1,7 +1,6 @@
 import {
   Form,
   InputGroup,
-  FormControl,
   Button,
   Popover,
   OverlayTrigger,
@@ -10,13 +9,11 @@ import copy from "copy-to-clipboard";
 
 const Invitation = (): JSX.Element => {
   const val = "http://xyz.xz";
-  {
-    /*This should be replaced */
-  }
+  /* This should be replaced */
 
-  function handleCopy() {
+  const handleCopy = (): void => {
     copy(val);
-  }
+  };
   const popover = (
     <Popover id="popover-basic">
       <Popover.Content>Copied</Popover.Content>

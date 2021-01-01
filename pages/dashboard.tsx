@@ -1,5 +1,5 @@
+import { Container, Row, Col } from "react-bootstrap";
 import Greetings from "../components/greeting";
-import { Container, Row, Col, Button } from "react-bootstrap";
 import Layout from "../components/layout";
 
 const Dashboard = (): JSX.Element => {
