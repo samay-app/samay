@@ -56,7 +56,7 @@ const Poll = (): JSX.Element => {
 
   const sortedChoices = pollFromDB.choices.sort((a, b) => a - b);
 
-  const [newUserMarked, setNewUserMarked] = useState<MarkedProps>({
+  const [newMarked, setNewMarked] = useState<MarkedProps>({
     userID: "",
     choices: [],
   });
@@ -103,8 +103,8 @@ const Poll = (): JSX.Element => {
                   currentLoggedInUserID !== pollFromDB.userID && (
                     <MarkChoices
                       sortedChoices={sortedChoices}
-                      newUserMarked={newUserMarked}
-                      setNewUserMarked={setNewUserMarked}
+                      newMarked={newMarked}
+                      setNewMarked={setNewMarked}
                     />
                   )}
                 {pollFromDB.open &&
@@ -117,7 +117,7 @@ const Poll = (): JSX.Element => {
               </tbody>
             </Table>
             {pollFromDB.open && currentLoggedInUserID !== pollFromDB.userID && (
-              <SubmitChoices newUserMarked={newUserMarked} />
+              <SubmitChoices newMarked={newMarked} />
             )}
             {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
               <SubmitFinalChoice finalChoice={finalChoice} />

@@ -4,26 +4,26 @@ import { MarkedProps } from "../models/poll";
 
 const MarkChoices = (props: {
   sortedChoices: number[];
-  newUserMarked: MarkedProps;
-  setNewUserMarked: Dispatch<MarkedProps>;
+  newMarked: MarkedProps;
+  setNewMarked: Dispatch<MarkedProps>;
 }): JSX.Element => {
-  const { sortedChoices, newUserMarked, setNewUserMarked } = props;
+  const { sortedChoices, newMarked, setNewMarked } = props;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setNewUserMarked({ ...newUserMarked, userID: value });
+    setNewMarked({ ...newMarked, userID: value });
   };
 
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value, checked } = e.target;
     if (checked) {
-      const newChoices = newUserMarked.choices;
+      const newChoices = newMarked.choices;
       newChoices.push(parseInt(value, 10));
-      setNewUserMarked({ ...newUserMarked, choices: newChoices });
+      setNewMarked({ ...newMarked, choices: newChoices });
     } else {
-      const newChoices = newUserMarked.choices;
+      const newChoices = newMarked.choices;
       newChoices.splice(newChoices.indexOf(parseInt(value, 10)), 1); // remove the unchecked element from array
-      setNewUserMarked({ ...newUserMarked, choices: newChoices });
+      setNewMarked({ ...newMarked, choices: newChoices });
     }
   };
 
