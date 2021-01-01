@@ -4,7 +4,7 @@ import Login from "./Login";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar bg="light" expand="lg" fixed="top">
+    <Navbar bg="light" expand="lg" sticky="top">
       <Navbar.Brand href="#home">
         <img
           alt=""
