@@ -56,7 +56,7 @@ const Poll = (): JSX.Element => {
 
   const sortedChoices = pollFromDB.choices.sort((a, b) => a - b);
 
-  const [newUserMarked, setNewUserMarked] = useState<MarkedProps>({
+  const [newMarked, setNewMarked] = useState<MarkedProps>({
     userID: "",
     choices: [],
   });
@@ -77,7 +77,17 @@ const Poll = (): JSX.Element => {
                     participants
                   </th>
                   {sortedChoices.map((idx) => (
-                    <th key={idx}>{dayjs(idx).format("llll")}</th>
+                    <th
+                      key={idx}
+                      className={
+                        idx === pollFromDB.finalChoice
+                          ? "slot-final-chosen-cell"
+                          : ""
+                      }
+                    >
+                      {dayjs(idx).format("llll")} -{" "}
+                      {dayjs(idx + pollFromDB.interval).format("LT")}
+                    </th>
                   ))}
                 </tr>
               </thead>
@@ -103,8 +113,8 @@ const Poll = (): JSX.Element => {
                   currentLoggedInUserID !== pollFromDB.userID && (
                     <MarkChoices
                       sortedChoices={sortedChoices}
-                      newUserMarked={newUserMarked}
-                      setNewUserMarked={setNewUserMarked}
+                      newMarked={newMarked}
+                      setNewMarked={setNewMarked}
                     />
                   )}
                 {pollFromDB.open &&
@@ -117,7 +127,7 @@ const Poll = (): JSX.Element => {
               </tbody>
             </Table>
             {pollFromDB.open && currentLoggedInUserID !== pollFromDB.userID && (
-              <SubmitChoices newUserMarked={newUserMarked} />
+              <SubmitChoices newMarked={newMarked} />
             )}
             {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
               <SubmitFinalChoice finalChoice={finalChoice} />

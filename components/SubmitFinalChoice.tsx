@@ -6,7 +6,11 @@ const SubmitFinalChoice = (props: {
   const { finalChoice } = props;
 
   const handleSubmit = (): void => {
-    // PUT finalChoice at v1/user/poll/{pollID}
+    const markFinalChoice = {
+      finalChoice,
+      open: false,
+    };
+    // PUT markFinalChoice at v1/user/poll/:pollid
   };
 
   return (

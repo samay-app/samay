@@ -92,3 +92,7 @@ h3 {
   width: 1.8em;
   height: 1.8em;
 }
+
+.slot-final-chosen-cell {
+  background-color: #FFBB12;
+}
