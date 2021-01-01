@@ -20,7 +20,7 @@ const Poll = (): JSX.Element => {
     _id: "5fecb40047984b4c55764b5e",
     name: "testPoll",
     description: "testPollDescription",
-    open: false,
+    open: true,
     userID: "starman",
     interval: 3600000,
     choices: [
@@ -49,7 +49,6 @@ const Poll = (): JSX.Element => {
         choices: [2200268206000],
       },
     ],
-    finalChoice: 1609855679000,
     createdAt: "2020-12-30T17:08:16.765Z",
     updatedAt: "2020-12-30T17:08:16.765Z",
     __v: 0,
