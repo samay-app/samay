@@ -1,15 +1,15 @@
-import supertest from 'supertest';
+import supertest, { SuperTest, Test } from 'supertest';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
 import Poll, { PollProps } from '../../../src/db/models/poll';
 
-const request = supertest(app);
+const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
   name: 'testPoll',
   userID: 'starman',
-  interval: 3600,
-  choices: [1700559000, 1700562600, 1700566200],
+  interval: 3600000,
+  choices: [1700559000000, 1700562600000, 1700566200000],
 };
 
 let pollID: string;
@@ -42,30 +42,29 @@ describe('create poll', () => {
       const res = await request.post('/v1/user/poll').send({
         name: 'OccupyMars',
         userID: 'elon',
-        interval: 3600,
-        choices: [1703151000, 1703154600, 1703158200],
+        interval: 3600000,
+        choices: [1703151000000, 1703154600000, 1703158200000],
       });
       expect(res.body.name).toEqual('OccupyMars');
       expect(res.body.userID).toEqual('elon');
-      expect(res.body.interval).toEqual(3600);
-      expect(res.body.choices).toEqual([1703151000, 1703154600, 1703158200]);
+      expect(res.body.interval).toEqual(3600000);
+      expect(res.body.choices).toEqual([1703151000000, 1703154600000, 1703158200000]);
 
       const poll: PollProps | null = await Poll.findOne({ _id: res.body._id }).lean();
-      expect(poll!.interval).toEqual(3600);
+      expect(poll!.interval).toEqual(3600000);
       done();
     });
 
     it('Should allow poll to be edited', async (done) => {
       const editPollRes = await request.put(`/v1/user/poll/${pollID}`).send({
-        interval: 3600,
-        choices: [1703152800, 1703156400],
+        choices: [1703152800000, 1703156400000],
       });
-      expect(editPollRes.body.interval).toEqual(3600);
-      expect(editPollRes.body.choices).toEqual([1703152800, 1703156400]);
+      expect(editPollRes.body.interval).toEqual(3600000);
+      expect(editPollRes.body.choices).toEqual([1703152800000, 1703156400000]);
 
       const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-      expect(getPollFirstTime!.interval).toEqual(3600);
-      expect(getPollFirstTime!.choices).toEqual([1703152800, 1703156400]);
+      expect(getPollFirstTime!.interval).toEqual(3600000);
+      expect(getPollFirstTime!.choices).toEqual([1703152800000, 1703156400000]);
 
       done();
     });
@@ -74,7 +73,7 @@ describe('create poll', () => {
 describe('get poll', () => {
   it('Should return poll by userID', async (done) => {
     const getPollRes = await request.get(`/v1/user/${testPoll.userID}`);
-    expect(getPollRes.body[0].interval).toEqual(3600);
+    expect(getPollRes.body[0].interval).toEqual(3600000);
 
     done();
   });

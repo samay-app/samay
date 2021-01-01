@@ -1,15 +1,15 @@
-import supertest from 'supertest';
+import supertest, { SuperTest, Test } from 'supertest';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
 import Poll, { PollProps } from '../../../src/db/models/poll';
 
-const request = supertest(app);
+const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
   name: 'testPoll',
   userID: 'starman',
-  interval: 3600,
-  choices: [1700559000, 1700562600, 1700566200],
+  interval: 3600000,
+  choices: [1700559000000, 1700562600000, 1700566200000],
 };
 
 let pollID: string;
@@ -40,7 +40,7 @@ afterAll(async () => dbHandler.closeDatabase());
 describe('get poll', () => {
     it('Should return poll by poll _id', async (done) => {
       const getPollRes = await request.get(`/v1/poll/${pollID}`);
-      expect(getPollRes.body.interval).toEqual(3600);
+      expect(getPollRes.body.interval).toEqual(3600000);
 
       done();
     });
@@ -58,86 +58,40 @@ describe('mark poll', () => {
   it('Should allow users to mark on a poll', async (done) => {
     const markFirstTimeRes = await request.put(`/v1/poll/${pollID}`).send({
       userID: 'dbowie',
-      choices: [1700559000, 1700562600],
+      choices: [1700559000000, 1700562600000],
     });
-    expect(markFirstTimeRes.body.marked[0].choices).toEqual([1700559000, 1700562600]);
+    expect(markFirstTimeRes.body.marked[0].choices).toEqual([1700559000000, 1700562600000]);
 
     const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollFirstTime!.marked![0].choices).toEqual([1700559000, 1700562600]);
+    expect(getPollFirstTime!.marked![0].choices).toEqual([1700559000000, 1700562600000]);
 
     const markSecondTimeRes = await request.put(`/v1/poll/${pollID}`).send({
       userID: 'elon',
-      choices: [1700562600, 1700566200],
+      choices: [1700562600000, 1700566200000],
     });
-    expect(markSecondTimeRes.body.marked[1].choices).toEqual([1700562600, 1700566200]);
+    expect(markSecondTimeRes.body.marked[1].choices).toEqual([1700562600000, 1700566200000]);
 
     const getPollSecondTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollSecondTime!.marked![1].choices).toEqual([1700562600, 1700566200]);
-
-    done();
-  });
-
-  it('Should allow a user to mark on a poll and edit any number of times', async (done) => {
-    const markFirstTimeRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'dbowie',
-      choices: [1700559000, 1700562600],
-    });
-    expect(markFirstTimeRes.body.marked[0].choices).toEqual([1700559000, 1700562600]);
-
-    const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollFirstTime!.marked![0].choices).toEqual([1700559000, 1700562600]);
-
-    const markSecondTimeRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'dbowie',
-      choices: [1700562600, 1700566200],
-    });
-    expect(markSecondTimeRes.body.marked[0].choices).toEqual([1700562600, 1700566200]);
-
-    const getPollSecondTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollSecondTime!.marked![0].choices).toEqual([1700562600, 1700566200]);
+    expect(getPollSecondTime!.marked![1].choices).toEqual([1700562600000, 1700566200000]);
 
     done();
   });
 
   it('Should not allow users to mark on a closed poll', async (done) => {
-    const markFirstTimeRes = await request.put(`/v1/poll/${pollID}`).send({
+    const closedPoll = await Poll.create({
+      name: 'testPoll',
       userID: 'starman',
-      choices: [1700559000],
+      interval: 3600000,
+      choices: [1700559000000, 1700562600000, 1700566200000],
+      finalChoice: 1700562600000,
+      open: false,
     });
-    expect(markFirstTimeRes.body.finalChoice).toEqual(1700559000);
 
-    const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollFirstTime!.finalChoice).toEqual(1700559000);
-    expect(getPollFirstTime!.open).toEqual(false);
-
-    const markSecondTimeRes = await request.put(`/v1/poll/${pollID}`).send({
+    const markSecondTimeRes = await request.put(`/v1/poll/${closedPoll._id}`).send({
       userID: 'dbowie',
-      choices: [1700562600, 1700566200],
+      choices: [1700562600000, 1700566200000],
     });
     expect(markSecondTimeRes.body.message).toEqual('Poll closed');
-    done();
-  });
-
-  it('Should allow poll creator to mark again on a closed poll', async (done) => {
-    const markFirstTimeRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'starman',
-      choices: [1700559000],
-    });
-    expect(markFirstTimeRes.body.finalChoice).toEqual(1700559000);
-
-    const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollFirstTime!.finalChoice).toEqual(1700559000);
-    expect(getPollFirstTime!.open).toEqual(false);
-
-    const markSecondTimeRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'starman',
-      choices: [1700562600],
-    });
-    expect(markSecondTimeRes.body.finalChoice).toEqual(1700562600);
-
-    const getPollSecondTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollSecondTime!.finalChoice).toEqual(1700562600);
-    expect(getPollSecondTime!.open).toEqual(false);
     done();
   });
 

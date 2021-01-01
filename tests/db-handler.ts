@@ -1,7 +1,7 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose, { ConnectionOptions } from 'mongoose';
 
-const mongod = new MongoMemoryServer();
+const mongod: MongoMemoryServer = new MongoMemoryServer();
 
 // Connect to the in-memory database
 
