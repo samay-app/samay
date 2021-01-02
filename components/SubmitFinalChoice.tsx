@@ -1,7 +1,8 @@
 import { Button } from "react-bootstrap";
+import { Choice } from "../models/poll";
 
 const SubmitFinalChoice = (props: {
-  finalChoice: number | undefined;
+  finalChoice: Choice | undefined;
 }): JSX.Element => {
   const { finalChoice } = props;
 

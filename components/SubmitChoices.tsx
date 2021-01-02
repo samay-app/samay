@@ -1,18 +1,18 @@
 import { Button } from "react-bootstrap";
-import { MarkedProps } from "../models/poll";
+import { Vote } from "../models/poll";
 
-const SubmitChoices = (props: { newMarked: MarkedProps }): JSX.Element => {
-  const { newMarked } = props;
+const SubmitChoices = (props: { newVote: Vote }): JSX.Element => {
+  const { newVote } = props;
 
   const handleSubmit = (): void => {
-    // PUT newMarked at v1/poll/:pollID
+    // PUT newVote at v1/poll/:pollID
   };
 
   return (
     <Button
       variant="primary"
       type="submit"
-      disabled={!newMarked.userID || newMarked.choices.length === 0}
+      disabled={!newVote.userID || newVote.choices.length === 0}
       onClick={handleSubmit}
     >
       Mark your choice
