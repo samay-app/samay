@@ -1,14 +1,18 @@
-import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { useState } from "react";
+// import { useState } from "react";
 import Layout from "../../components/layout";
-import TimeSlot from "../../components/timeslot";
-import TimeRangeDropdown from "../../components/timerangedropdown";
 import Forms from "../../components/forms";
 
+// typings aren't available for react-available-times :(
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AvailableTimes: any = dynamic(() => import("react-available-times"), {
+  ssr: false,
+});
+
 const Create = (): JSX.Element => {
-  let timeSlotArray: number[] = [];
-  const [timeVal, setTimeVal] = useState({ timeFactor: 1, option: false });
+  // let timeSlotArray: number[] = [];
 
   function handleSubmit(): void {
     // handling the data for the backend here
@@ -33,23 +37,18 @@ const Create = (): JSX.Element => {
             <h1>Create a poll</h1>
 
             <Forms />
-
-            <TimeRangeDropdown
-              onDropNSelect={(value: number): void =>
-                setTimeVal({ timeFactor: value, option: true })
-              }
+            <AvailableTimes
+              weekStartsOn="monday"
+              onChange={(selections: { start: Date; end: Date }[]): void => {
+                selections.forEach(({ start, end }) => {
+                  console.log("Start:", start, "End:", end);
+                });
+              }}
+              height={500}
             />
-            {timeVal.option && (
-              <TimeSlot
-                timeFactor={timeVal.timeFactor}
-                timeSlotArray={timeSlotArray}
-              />
-            )}
-            {timeVal.option && (
-              <Button variant="primary" type="submit" onClick={handleSubmit}>
-                Continue
-              </Button>
-            )}
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Create Poll
+            </Button>
           </Col>
         </Row>
       </Container>
