@@ -1,16 +1,18 @@
 import { Form } from "react-bootstrap";
 import { Dispatch } from "react";
+import { Choice } from "../models/poll";
 
 const MarkFinalChoice = (props: {
-  sortedChoices: number[];
-  setFinalChoice: Dispatch<number | undefined>;
+  choices: Choice[];
+  setFinalChoice: Dispatch<Choice | undefined>;
 }): JSX.Element => {
-  const { sortedChoices, setFinalChoice } = props;
+  const { choices, setFinalChoice } = props;
 
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value, checked } = e.target;
+    const { dataset, checked } = e.target;
+    const choice: Choice = dataset.value ? JSON.parse(dataset.value) : {};
     if (checked) {
-      setFinalChoice(parseInt(value, 10));
+      setFinalChoice(choice);
     }
   };
 
@@ -19,10 +21,10 @@ const MarkFinalChoice = (props: {
       <td>
         <h5>Final option</h5>
       </td>
-      {sortedChoices.map((idx) => (
-        <td key={idx} className="slot-checkbox-final-cell">
+      {choices.map((choice) => (
+        <td key={choice.start} className="slot-checkbox-final-cell">
           <Form.Check
-            value={idx}
+            data-value={JSON.stringify(choice)}
             type="radio"
             className="slot-checkbox"
             name="finalChoice"

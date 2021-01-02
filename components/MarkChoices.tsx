@@ -1,29 +1,30 @@
 import { Form } from "react-bootstrap";
 import { Dispatch } from "react";
-import { MarkedProps } from "../models/poll";
+import { Choice, Vote } from "../models/poll";
 
 const MarkChoices = (props: {
-  sortedChoices: number[];
-  newMarked: MarkedProps;
-  setNewMarked: Dispatch<MarkedProps>;
+  choices: Choice[];
+  newVote: Vote;
+  setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { sortedChoices, newMarked, setNewMarked } = props;
+  const { choices, newVote, setNewVote } = props;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setNewMarked({ ...newMarked, userID: value });
+    setNewVote({ ...newVote, userID: value });
   };
 
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value, checked } = e.target;
+    const { dataset, checked } = e.target;
+    const choice: Choice = dataset.value ? JSON.parse(dataset.value) : {};
     if (checked) {
-      const newChoices = newMarked.choices;
-      newChoices.push(parseInt(value, 10));
-      setNewMarked({ ...newMarked, choices: newChoices });
+      const newChoices = newVote.choices;
+      newChoices.push(choice);
+      setNewVote({ ...newVote, choices: newChoices });
     } else {
-      const newChoices = newMarked.choices;
-      newChoices.splice(newChoices.indexOf(parseInt(value, 10)), 1); // remove the unchecked element from array
-      setNewMarked({ ...newMarked, choices: newChoices });
+      const newChoices = newVote.choices;
+      newChoices.splice(newChoices.indexOf(choice), 1); // remove the unchecked element from array
+      setNewVote({ ...newVote, choices: newChoices });
     }
   };
 
@@ -37,10 +38,10 @@ const MarkChoices = (props: {
           onChange={handleNameChange}
         />
       </td>
-      {sortedChoices.map((idx) => (
-        <td key={idx} className="slot-checkbox-cell">
+      {choices.map((choice) => (
+        <td key={choice.start} className="slot-checkbox-cell">
           <Form.Check
-            value={idx}
+            data-value={JSON.stringify(choice)}
             className="slot-checkbox"
             onChange={handleChoiceChange}
           />
