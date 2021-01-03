@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
-import Layout from "../../components/layout";
-import { Choice, Poll } from "../../models/poll";
+import Layout from "../../src/components/layout";
+import { Choice, Poll } from "../../src/models/poll";
 
 // typings aren't available for react-available-times :(
 

@@ -2,14 +2,14 @@ import { Container, Row, Col, Table } from "react-bootstrap";
 import { useState } from "react";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import Layout from "../../components/layout";
-import PollInfo from "../../components/PollInfo";
-import MarkChoices from "../../components/MarkChoices";
-import MarkFinalChoice from "../../components/MarkFinalChoice";
-import SubmitChoices from "../../components/SubmitChoices";
-import SubmitFinalChoice from "../../components/SubmitFinalChoice";
-import { Choice, PollFromDB, Vote } from "../../models/poll";
-import isPollChoicePresent from "../../helpers/helpers";
+import Layout from "../../src/components/layout";
+import PollInfo from "../../src/components/PollInfo";
+import MarkChoices from "../../src/components/MarkChoices";
+import MarkFinalChoice from "../../src/components/MarkFinalChoice";
+import SubmitChoices from "../../src/components/SubmitChoices";
+import SubmitFinalChoice from "../../src/components/SubmitFinalChoice";
+import { Choice, PollFromDB, Vote } from "../../src/models/poll";
+import isPollChoicePresent from "../../src/helpers/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -84,7 +84,7 @@ const Poll = (): JSX.Element => {
                       key={choice.start}
                       className={
                         choice.start === pollFromDB.finalChoice?.start &&
-                        choice.end === pollFromDB.finalChoice?.end
+                          choice.end === pollFromDB.finalChoice?.end
                           ? "slot-final-chosen-cell"
                           : ""
                       }
