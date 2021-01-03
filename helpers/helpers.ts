@@ -1,10 +1,13 @@
-import { Choice, Vote } from "../models/poll";
+import { Choice } from "../models/poll";
 
-const isPollChoicePresent = (choiceToSearch: Choice, vote: Vote): boolean => {
-  return vote.choices.some(
+const isChoicePresentInPollChoices = (
+  choiceToSearch: Choice,
+  choices: Choice[]
+): boolean => {
+  return choices.some(
     (choice) =>
       choice.start === choiceToSearch.start && choice.end === choiceToSearch.end
   );
 };
 
-export default isPollChoicePresent;
+export default isChoicePresentInPollChoices;

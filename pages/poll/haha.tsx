@@ -9,7 +9,7 @@ import MarkFinalChoice from "../../components/MarkFinalChoice";
 import SubmitChoices from "../../components/SubmitChoices";
 import SubmitFinalChoice from "../../components/SubmitFinalChoice";
 import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
-import isPollChoicePresent from "../../helpers/helpers";
+import isChoicePresentInPollChoices from "../../helpers/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -149,12 +149,14 @@ const Poll = (): JSX.Element => {
                       <td
                         key={choice.start}
                         className={
-                          isPollChoicePresent(choice, vote)
+                          isChoicePresentInPollChoices(choice, vote.choices)
                             ? "slot-checked"
                             : "slot-unchecked"
                         }
                       >
-                        {isPollChoicePresent(choice, vote) ? "✔" : ""}
+                        {isChoicePresentInPollChoices(choice, vote.choices)
+                          ? "✔"
+                          : ""}
                       </td>
                     ))}
                   </tr>

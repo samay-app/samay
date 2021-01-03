@@ -45,7 +45,6 @@ const Create = (): JSX.Element => {
       const poll: RocketMeetPoll = {
         title,
         description,
-        open: true,
         userID: currentLoggedInUserID,
         choices,
       };
