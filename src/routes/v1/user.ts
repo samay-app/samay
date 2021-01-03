@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import Poll, { PollProps } from '../../db/models/poll';
+import Poll, { RocketMeetPoll } from '../../db/models/poll';
 
 const router: Router = express.Router();
 
@@ -10,7 +10,7 @@ const router: Router = express.Router();
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
-        const polls: PollProps[] | null = await Poll.find({ userID: req.params.id });
+        const polls: RocketMeetPoll[] | null = await Poll.find({ userID: req.params.id });
         res.status(200).json(polls);
     } catch (err) {
         res.status(404).json({ message: err.message });
@@ -20,7 +20,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 // create a new poll
 
 router.post('/poll', async (req: Request, res: Response) => {
-    const newPoll: PollProps = new Poll(req.body);
+    const newPoll: RocketMeetPoll = new Poll(req.body);
 
     try {
         await newPoll.save();
@@ -34,7 +34,7 @@ router.post('/poll', async (req: Request, res: Response) => {
 
 router.put('/poll/:id', async (req: Request, res: Response) => {
     try {
-        const updatedPoll: PollProps | null = await Poll.findOneAndUpdate(
+        const updatedPoll: RocketMeetPoll | null = await Poll.findOneAndUpdate(
             { _id: req.params.id },
             req.body,
             { new: true },

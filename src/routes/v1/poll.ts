@@ -1,5 +1,6 @@
 import express, { Request, Response, Router } from 'express';
-import Poll, { MarkedProps, PollProps } from '../../db/models/poll';
+import isChoicePresentInPollChoices from '../../helpers';
+import Poll, { Vote, RocketMeetPoll } from '../../db/models/poll';
 
 const router: Router = express.Router();
 
@@ -9,7 +10,7 @@ const router: Router = express.Router();
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
-        const poll: PollProps | null = await Poll.findOne({ _id: req.params.id });
+        const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id });
         res.status(200).json(poll);
     } catch (err) {
         res.status(404).json({ message: err.message });
@@ -20,31 +21,33 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
     try {
-        const poll: PollProps | null = await Poll.findOne({ _id: req.params.id });
+        const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id });
         if (poll) {
-            const valuesToMark: MarkedProps = req.body;
+            const vote: Vote = req.body;
             if (!poll.open) {
                 res.status(400).json({ message: 'Poll closed' });
-            } else if (!valuesToMark.choices.every((v) => poll.choices.includes(v))) {
+            } else if (
+                !vote.choices.every((choice) => isChoicePresentInPollChoices(choice, poll.choices))
+                ) {
                 res.status(400).json({ message: 'Invalid choices' });
             } else {
-                const currentlyMarked: MarkedProps[] | undefined = poll.marked;
-                let toMarkOnPoll: MarkedProps[] | undefined;
+                const currentVotes: Vote[] | undefined = poll.votes;
+                let newVotes: Vote[] | undefined;
 
-                if (currentlyMarked) {
-                    toMarkOnPoll = currentlyMarked;
-                    toMarkOnPoll.push(valuesToMark);
+                if (currentVotes && currentVotes?.length > 0) {
+                    newVotes = currentVotes;
+                    newVotes.push(vote);
                 } else {
-                    toMarkOnPoll = [{
-                        userID: valuesToMark.userID, choices: valuesToMark.choices,
+                    newVotes = [{
+                        userID: vote.userID, choices: vote.choices,
                     }];
                 }
-                const markedPoll: PollProps | null = await Poll.findOneAndUpdate(
+                const updatedPoll: RocketMeetPoll | null = await Poll.findOneAndUpdate(
                     { _id: req.params.id },
-                    { marked: toMarkOnPoll },
+                    { votes: newVotes },
                     { new: true },
                 );
-                res.status(201).json(markedPoll);
+                res.status(201).json(updatedPoll);
             }
         } else {
             res.status(404).json({ message: 'Poll does not exist' });

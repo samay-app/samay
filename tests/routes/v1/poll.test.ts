@@ -1,15 +1,20 @@
 import supertest, { SuperTest, Test } from 'supertest';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
-import Poll, { PollProps } from '../../../src/db/models/poll';
+import isChoicePresentInPollChoices from '../../../src/helpers';
+import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
 
 const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
-  name: 'testPoll',
+  title: 'testPoll',
   userID: 'starman',
-  interval: 3600000,
-  choices: [1700559000000, 1700562600000, 1700566200000],
+  choices: [
+    { start: 1633577400000, end: 1633581000000 },
+    { start: 1633588200000, end: 1633591800000 },
+    { start: 1633667400000, end: 1633671000000 },
+    { start: 1633671000000, end: 1633674600000 },
+  ],
 };
 
 let pollID: string;
@@ -40,7 +45,7 @@ afterAll(async () => dbHandler.closeDatabase());
 describe('get poll', () => {
     it('Should return poll by poll _id', async (done) => {
       const getPollRes = await request.get(`/v1/poll/${pollID}`);
-      expect(getPollRes.body.interval).toEqual(3600000);
+      expect(getPollRes.body.title).toEqual('testPoll');
 
       done();
     });
@@ -54,53 +59,67 @@ describe('get poll', () => {
     });
 });
 
-describe('mark poll', () => {
+describe('vote on poll', () => {
   it('Should allow users to mark on a poll', async (done) => {
-    const markFirstTimeRes = await request.put(`/v1/poll/${pollID}`).send({
+    const voterOneVotesRes = await request.put(`/v1/poll/${pollID}`).send({
       userID: 'dbowie',
-      choices: [1700559000000, 1700562600000],
+      choices: [{ start: 1633667400000, end: 1633671000000 }],
     });
-    expect(markFirstTimeRes.body.marked[0].choices).toEqual([1700559000000, 1700562600000]);
+    expect(isChoicePresentInPollChoices(
+      { start: 1633667400000, end: 1633671000000 },
+      voterOneVotesRes.body.votes[0].choices,
+    )).toEqual(true);
 
-    const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollFirstTime!.marked![0].choices).toEqual([1700559000000, 1700562600000]);
+    const getPollFirstTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
+    expect(isChoicePresentInPollChoices(
+      { start: 1633667400000, end: 1633671000000 },
+      getPollFirstTime!.votes![0].choices,
+    )).toEqual(true);
 
-    const markSecondTimeRes = await request.put(`/v1/poll/${pollID}`).send({
+    const voterTwoVotesRes = await request.put(`/v1/poll/${pollID}`).send({
       userID: 'elon',
-      choices: [1700562600000, 1700566200000],
+      choices: [{ start: 1633671000000, end: 1633674600000 }],
     });
-    expect(markSecondTimeRes.body.marked[1].choices).toEqual([1700562600000, 1700566200000]);
+    expect(isChoicePresentInPollChoices(
+      { start: 1633671000000, end: 1633674600000 },
+      voterTwoVotesRes.body.votes[1].choices,
+    )).toEqual(true);
 
-    const getPollSecondTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-    expect(getPollSecondTime!.marked![1].choices).toEqual([1700562600000, 1700566200000]);
+    const getPollSecondTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
+    expect(isChoicePresentInPollChoices(
+      { start: 1633671000000, end: 1633674600000 },
+      getPollSecondTime!.votes![1].choices,
+    )).toEqual(true);
 
     done();
   });
 
-  it('Should not allow users to mark on a closed poll', async (done) => {
+  it('Should not allow users to vote on a closed poll', async (done) => {
     const closedPoll = await Poll.create({
-      name: 'testPoll',
+      title: 'testPoll',
       userID: 'starman',
-      interval: 3600000,
-      choices: [1700559000000, 1700562600000, 1700566200000],
-      finalChoice: 1700562600000,
+      choices: [
+        { start: 1633667400000, end: 1633671000000 },
+        { start: 1633671000000, end: 1633674600000 },
+      ],
+      finalChoice: { start: 1633671000000, end: 1633674600000 },
       open: false,
     });
 
-    const markSecondTimeRes = await request.put(`/v1/poll/${closedPoll._id}`).send({
+    const voterOneVotesRes = await request.put(`/v1/poll/${closedPoll._id}`).send({
       userID: 'dbowie',
-      choices: [1700562600000, 1700566200000],
+      choices: [{ start: 1633671000000, end: 1633674600000 }],
     });
-    expect(markSecondTimeRes.body.message).toEqual('Poll closed');
+    expect(voterOneVotesRes.body.message).toEqual('Poll closed');
     done();
   });
 
   it('Should not allow invalid slot choices', async (done) => {
-    const markRes = await request.put(`/v1/poll/${pollID}`).send({
+    const voterOneVotesRes = await request.put(`/v1/poll/${pollID}`).send({
       userID: 'dbowie',
-      choices: [1700559006, 1700562609],
+      choices: [{ start: 1633671000042, end: 1633674600042 }],
     });
-    expect(markRes.body.message).toEqual('Invalid choices');
+    expect(voterOneVotesRes.body.message).toEqual('Invalid choices');
     done();
   });
 });
