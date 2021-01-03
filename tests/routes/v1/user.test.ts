@@ -1,15 +1,20 @@
 import supertest, { SuperTest, Test } from 'supertest';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
-import Poll, { PollProps } from '../../../src/db/models/poll';
+import isChoicePresentInPollChoices from '../../../src/helpers';
+import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
 
 const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
-  name: 'testPoll',
+  title: 'testPoll',
   userID: 'starman',
-  interval: 3600000,
-  choices: [1700559000000, 1700562600000, 1700566200000],
+  choices: [
+    { start: 1633577400000, end: 1633581000000 },
+    { start: 1633588200000, end: 1633591800000 },
+    { start: 1633667400000, end: 1633671000000 },
+    { start: 1633671000000, end: 1633674600000 },
+  ],
 };
 
 let pollID: string;
@@ -40,31 +45,50 @@ afterAll(async () => dbHandler.closeDatabase());
 describe('create poll', () => {
     it('Should save poll to db', async (done) => {
       const res = await request.post('/v1/user/poll').send({
-        name: 'OccupyMars',
+        title: 'OccupyMarsMeet',
         userID: 'elon',
-        interval: 3600000,
-        choices: [1703151000000, 1703154600000, 1703158200000],
+        choices: [
+          { start: 1633577400000, end: 1633581000000 },
+          { start: 1633588200000, end: 1633591800000 },
+        ],
       });
-      expect(res.body.name).toEqual('OccupyMars');
-      expect(res.body.userID).toEqual('elon');
-      expect(res.body.interval).toEqual(3600000);
-      expect(res.body.choices).toEqual([1703151000000, 1703154600000, 1703158200000]);
+      expect(res.body.title).toEqual('OccupyMarsMeet');
+      expect(isChoicePresentInPollChoices(
+        { start: 1633577400000, end: 1633581000000 },
+        res.body.choices,
+      )).toEqual(true);
+      expect(isChoicePresentInPollChoices(
+        { start: 1633588200000, end: 1633591800000 },
+        res.body.choices,
+      )).toEqual(true);
 
-      const poll: PollProps | null = await Poll.findOne({ _id: res.body._id }).lean();
-      expect(poll!.interval).toEqual(3600000);
+      const poll: RocketMeetPoll | null = await Poll.findOne({ _id: res.body._id }).lean();
+      expect(poll!.title).toEqual('OccupyMarsMeet');
+      expect(isChoicePresentInPollChoices(
+        { start: 1633577400000, end: 1633581000000 },
+        poll!.choices,
+      )).toEqual(true);
+      expect(isChoicePresentInPollChoices(
+        { start: 1633588200000, end: 1633591800000 },
+        poll!.choices,
+      )).toEqual(true);
       done();
     });
 
     it('Should allow poll to be edited', async (done) => {
       const editPollRes = await request.put(`/v1/user/poll/${pollID}`).send({
-        choices: [1703152800000, 1703156400000],
+        choices: [{ start: 1633671000042, end: 1633674600042 }],
       });
-      expect(editPollRes.body.interval).toEqual(3600000);
-      expect(editPollRes.body.choices).toEqual([1703152800000, 1703156400000]);
+      expect(isChoicePresentInPollChoices(
+        { start: 1633671000042, end: 1633674600042 },
+        editPollRes.body.choices,
+      )).toEqual(true);
 
-      const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
-      expect(getPollFirstTime!.interval).toEqual(3600000);
-      expect(getPollFirstTime!.choices).toEqual([1703152800000, 1703156400000]);
+      const getPollFirstTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
+      expect(isChoicePresentInPollChoices(
+        { start: 1633671000042, end: 1633674600042 },
+        getPollFirstTime!.choices,
+      )).toEqual(true);
 
       done();
     });
@@ -73,12 +97,12 @@ describe('create poll', () => {
 describe('get poll', () => {
   it('Should return poll by userID', async (done) => {
     const getPollRes = await request.get(`/v1/user/${testPoll.userID}`);
-    expect(getPollRes.body[0].interval).toEqual(3600000);
+    expect(getPollRes.body[0].title).toEqual('testPoll');
 
     done();
   });
 
-  it('Should return [] if user does not exist', async (done) => {
+  it('Should return nothing if user does not exist', async (done) => {
     const someUserWhichDoesntExist = 'grimes';
     const getPollRes = await request.get(`/v1/poll/user/${someUserWhichDoesntExist}`);
 
@@ -90,9 +114,9 @@ describe('get poll', () => {
 describe('delete poll', () => {
   it('Should delete poll from db', async (done) => {
     const deletePollRes = await request.delete(`/v1/user/poll/${pollID}`);
-    expect(deletePollRes.body.name).toEqual(testPoll.name);
+    expect(deletePollRes.body.title).toEqual(testPoll.title);
 
-    const getPollFirstTime: PollProps | null = await Poll.findOne({ _id: pollID }).lean();
+    const getPollFirstTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
     expect(getPollFirstTime).toEqual(null);
     done();
   });

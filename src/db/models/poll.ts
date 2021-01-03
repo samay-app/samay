@@ -1,32 +1,35 @@
 import mongoose, { Model, Document } from 'mongoose';
 
-export interface MarkedProps {
+export interface Vote {
   userID: string;
-  choices: number[];
+  choices: Choice[];
 }
 
-export interface PollProps extends Document {
-  name: string;
+export interface Choice {
+  start: number;
+  end: number;
+}
+
+export interface RocketMeetPoll extends Document {
+  title: string;
   description?: string;
   open?: boolean;
   userID: string;
-  interval: number;
-  choices: number[];
-  finalChoice?: number;
-  marked?: MarkedProps[];
+  choices: Choice[];
+  finalChoice?: Choice;
+  votes?: Vote[];
 }
 
 const PollSchema: mongoose.Schema = new mongoose.Schema({
-  name: { type: String, required: true },
+  title: { type: String, required: true },
   description: { type: String },
   open: { type: Boolean, default: true },
   userID: { type: String, required: true },
-  interval: { type: Number, required: true },
-  choices: { type: [Number], required: true },
-  finalChoice: { type: Number },
-  marked: [{ userID: String, choices: [Number] }],
+  choices: { type: [{ start: Number, end: Number }], required: true },
+  finalChoice: { type: { start: Number, end: Number } },
+  votes: [{ userID: String, choices: [{ start: Number, end: Number }] }],
 }, { timestamps: true });
 
-const Poll: Model<PollProps> = mongoose.model('Poll', PollSchema);
+const Poll: Model<RocketMeetPoll> = mongoose.model('Poll', PollSchema);
 
 export default Poll;
