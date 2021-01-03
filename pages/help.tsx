@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Row, Col } from "react-bootstrap";
-import Layout from "../components/layout";
+import Layout from "../src/components/layout";
 
 const Help = (): JSX.Element => {
   return (

@@ -1,6 +1,6 @@
-import Greetings from "../components/greeting";
+import Greetings from "../src/components/greeting";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Layout from "../components/layout";
+import Layout from "../src/components/layout";
 
 const Dashboard = (): JSX.Element => {
   return (

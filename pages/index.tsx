@@ -1,6 +1,6 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Layout from "../components/layout";
-import Login from "../components/Login";
+import Layout from "../src/components/layout";
+import Login from "../src/components/Login";
 
 const Home = (): JSX.Element => {
   return (
