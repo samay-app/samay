@@ -8,45 +8,46 @@ import MarkChoices from "../../components/MarkChoices";
 import MarkFinalChoice from "../../components/MarkFinalChoice";
 import SubmitChoices from "../../components/SubmitChoices";
 import SubmitFinalChoice from "../../components/SubmitFinalChoice";
-import { PollFromDBProps, MarkedProps } from "../../models/poll";
+import { Choice, PollFromDB, Vote } from "../../models/poll";
+import isPollChoicePresent from "../../helpers/helpers";
 
 dayjs.extend(localizedFormat);
 
-const currentLoggedInUserID = "starman"; // get the correct user
+const currentLoggedInUserID = "haha"; // get the correct user
 
 const Poll = (): JSX.Element => {
   // get poll from DB
-  const pollFromDB: PollFromDBProps = {
+  const pollFromDB: PollFromDB = {
     _id: "5fecb40047984b4c55764b5e",
-    name: "testPoll",
+    title: "testPoll",
     description: "testPollDescription",
     open: true,
     userID: "starman",
-    interval: 3600000,
     choices: [
-      1700562600000,
-      1700566200000,
-      1609855679000,
-      2200268206000,
-      1900532600000,
-      1604353655000,
+      { start: 1633577400000, end: 1633581000000 },
+      { start: 1633588200000, end: 1633591800000 },
+      { start: 1633667400000, end: 1633671000000 },
+      { start: 1633671000000, end: 1633674600000 },
     ],
     marked: [
       {
         userID: "aryansuserid",
-        choices: [1609855679000, 2200268206000],
+        choices: [
+          { start: 1633667400000, end: 1633671000000 },
+          { start: 1633577400000, end: 1633581000000 },
+        ],
       },
       {
         userID: "suhailsuserid",
-        choices: [1609855679000, 1700566200000],
+        choices: [{ start: 1633577400000, end: 1633581000000 }],
       },
       {
         userID: "anandsuserid",
-        choices: [1700562600000, 1900532600000],
+        choices: [{ start: 1633588200000, end: 1633591800000 }],
       },
       {
         userID: "anaswarasuserid",
-        choices: [2200268206000],
+        choices: [{ start: 1633577400000, end: 1633581000000 }],
       },
     ],
     createdAt: "2020-12-30T17:08:16.765Z",
@@ -54,21 +55,23 @@ const Poll = (): JSX.Element => {
     __v: 0,
   };
 
-  const sortedChoices = pollFromDB.choices.sort((a, b) => a - b);
+  const sortedChoices: Choice[] = pollFromDB.choices.sort(
+    (a, b) => a.start - b.start
+  );
 
-  const [newMarked, setNewMarked] = useState<MarkedProps>({
+  const [newVote, setNewVote] = useState<Vote>({
     userID: "",
     choices: [],
   });
 
-  const [finalChoice, setFinalChoice] = useState<number | undefined>();
+  const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
 
   return (
     <Layout>
       <Container fluid>
         <Row>
           <Col>
-            <PollInfo pollFromDB={pollFromDB} />
+            <PollInfo poll={pollFromDB} />
             <Table bordered>
               <thead>
                 <tr>
@@ -76,35 +79,36 @@ const Poll = (): JSX.Element => {
                     {pollFromDB.marked ? pollFromDB.marked.length : 0}{" "}
                     participants
                   </th>
-                  {sortedChoices.map((idx) => (
+                  {sortedChoices.map((choice) => (
                     <th
-                      key={idx}
+                      key={choice.start}
                       className={
-                        idx === pollFromDB.finalChoice
+                        choice.start === pollFromDB.finalChoice?.start &&
+                        choice.end === pollFromDB.finalChoice?.end
                           ? "slot-final-chosen-cell"
                           : ""
                       }
                     >
-                      {dayjs(idx).format("llll")} -{" "}
-                      {dayjs(idx + pollFromDB.interval).format("LT")}
+                      {dayjs(choice.start).format("llll")} -{" "}
+                      {dayjs(choice.end).format("LT")}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {pollFromDB.marked?.map((idx) => (
-                  <tr key={idx.userID}>
-                    <td>{idx.userID}</td>
-                    {sortedChoices.map((choiceIdx) => (
+                {pollFromDB.marked?.map((vote) => (
+                  <tr key={vote.userID}>
+                    <td>{vote.userID}</td>
+                    {sortedChoices.map((choice) => (
                       <td
-                        key={choiceIdx}
+                        key={choice.start}
                         className={
-                          idx.choices.includes(choiceIdx)
+                          isPollChoicePresent(choice, vote)
                             ? "slot-checked"
                             : "slot-unchecked"
                         }
                       >
-                        {idx.choices.includes(choiceIdx) ? "✔" : ""}
+                        {isPollChoicePresent(choice, vote) ? "✔" : ""}
                       </td>
                     ))}
                   </tr>
@@ -112,22 +116,22 @@ const Poll = (): JSX.Element => {
                 {pollFromDB.open &&
                   currentLoggedInUserID !== pollFromDB.userID && (
                     <MarkChoices
-                      sortedChoices={sortedChoices}
-                      newMarked={newMarked}
-                      setNewMarked={setNewMarked}
+                      choices={sortedChoices}
+                      newVote={newVote}
+                      setNewVote={setNewVote}
                     />
                   )}
                 {pollFromDB.open &&
                   currentLoggedInUserID === pollFromDB.userID && (
                     <MarkFinalChoice
-                      sortedChoices={sortedChoices}
+                      choices={sortedChoices}
                       setFinalChoice={setFinalChoice}
                     />
                   )}
               </tbody>
             </Table>
             {pollFromDB.open && currentLoggedInUserID !== pollFromDB.userID && (
-              <SubmitChoices newMarked={newMarked} />
+              <SubmitChoices newVote={newVote} />
             )}
             {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
               <SubmitFinalChoice finalChoice={finalChoice} />
