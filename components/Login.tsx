@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { auth, firebase } from "./FIreBase";
+import { auth, firebase } from "./Firebase";
 
 export default function Login(): JSX.Element {
   async function googleLogin(): Promise<void> {
@@ -11,13 +11,12 @@ export default function Login(): JSX.Element {
       const user = auth.currentUser;
       // token generated
       const token = user && (await user.getIdToken());
-      // need to pass to server
     });
   }
   return (
     <div>
       <Button onClick={googleLogin} className="login-button">
-        Sign in with Google
+        Log in with Google
       </Button>
     </div>
   );
