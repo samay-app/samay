@@ -42,10 +42,9 @@ const Create = (): JSX.Element => {
 
   const handleSubmit = (): void => {
     if (title && choices && choices?.length > 0) {
-      const poll: Poll = {
+      const poll: RocketMeetPoll = {
         title,
         description,
-        open: true,
         userID: currentLoggedInUserID,
         choices,
       };
@@ -63,7 +62,7 @@ const Create = (): JSX.Element => {
             <Form className="p-3">
               <Form.Group as={Row} controlId="formPlainTextTitle">
                 <Form.Label column sm="2">
-                  Title
+                  Title<span className="imp-star">{" *"}</span>
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
@@ -86,20 +85,21 @@ const Create = (): JSX.Element => {
                   />
                 </Col>
               </Form.Group>
+              <AvailableTimes
+                weekStartsOn="monday"
+                onChange={onChoicesChange}
+                height={500}
+              />
+              <Button
+                className="mt-2"
+                variant="primary"
+                type="submit"
+                onClick={handleSubmit}
+                disabled={!title || !choices || choices?.length === 0}
+              >
+                Create Poll
+              </Button>
             </Form>
-            <AvailableTimes
-              weekStartsOn="monday"
-              onChange={onChoicesChange}
-              height={500}
-            />
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={!title || !choices || choices?.length === 0}
-            >
-              Create Poll
-            </Button>
           </Col>
         </Row>
       </Container>
