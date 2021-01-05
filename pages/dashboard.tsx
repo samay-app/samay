@@ -2,6 +2,7 @@ import Greetings from "../src/components/greeting";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Layout from "../src/components/layout";
 
+import withprivateAuth from "../src/utils/privateAuth"
 
 const Dashboard = (): JSX.Element => {
   return (
@@ -19,4 +20,4 @@ const Dashboard = (): JSX.Element => {
     </Layout>
   );
 };
-export default Dashboard;
+export default withprivateAuth(Dashboard);

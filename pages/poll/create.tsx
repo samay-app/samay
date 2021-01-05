@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import Layout from "../../src/components/layout";
 import { Choice, Poll } from "../../src/models/poll";
+import withprivateAuth from "../../src/utils/privateAuth";
 
 // typings aren't available for react-available-times :(
 
@@ -107,4 +108,4 @@ const Create = (): JSX.Element => {
   );
 };
 
-export default Create;
+export default withprivateAuth(Create);
