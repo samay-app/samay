@@ -37,7 +37,7 @@ a {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right; 
+  background-position: right;
   background-size: contain;
 }
 
@@ -61,16 +61,16 @@ h3 {
 }
 
 .container-fluid {
-  padding: 5rem 0;
+  padding: 2rem 0;
 }
 
 .slot-checked {
-  background-color: #CDEAA1;
+  background-color: #cdeaa1;
   text-align: center;
 }
 
 .slot-unchecked {
-  background-color: #FEF9F9;
+  background-color: #fef9f9;
 }
 
 .slot-checkbox-cell {
@@ -84,7 +84,7 @@ h3 {
 }
 
 .slot-checkbox-final-cell {
-  background-color: #FFBB12;
+  background-color: #ffbb12;
   text-align: center;
 }
 
@@ -94,5 +94,8 @@ h3 {
 }
 
 .slot-final-chosen-cell {
-  background-color: #FFBB12;
+  background-color: #ffbb12;
+}
+.imp-star {
+  color: #ff0000;
 }

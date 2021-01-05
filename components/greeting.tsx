@@ -6,24 +6,22 @@ const Greetings = (): JSX.Element => {
       <div id="maingreeting" className="py-3 my-1 ">
         <Card border="dark">
           <Card.Body>
-            <Card.Text>
-              <Row>
-                <Col xs={9}>
-                  <h3>Find best time for everyone to meet. Launch a poll.</h3>
-                </Col>
-                <Col className="d-flex justify-content-center align-items-center">
-                  <Button href="/poll/create" style={{ height: "40px" }}>
-                    Create Poll
-                  </Button>
-                </Col>
-              </Row>
-            </Card.Text>
+            <Row>
+              <Col xs={9}>
+                <h3>Find best time for everyone to meet. Launch a poll.</h3>
+              </Col>
+              <Col className="d-flex justify-content-center align-items-center">
+                <Button href="/poll/create" style={{ height: "40px" }}>
+                  Create Poll
+                </Button>
+              </Col>
+            </Row>
           </Card.Body>
         </Card>
       </div>
 
       <Row>
-        <Col xs={10}>
+        <Col>
           <h4>Your Polls </h4>
         </Col>
       </Row>
