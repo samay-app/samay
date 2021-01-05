@@ -62,7 +62,7 @@ const Create = (): JSX.Element => {
             <Form className="p-3">
               <Form.Group as={Row} controlId="formPlainTextTitle">
                 <Form.Label column sm="2">
-                  Title
+                  Title<span className="imp-star">{" *"}</span>
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
