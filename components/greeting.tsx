@@ -23,7 +23,7 @@ const Greetings = (): JSX.Element => {
       </div>
 
       <Row>
-        <Col xs={10}>
+        <Col>
           <h4>Your Polls </h4>
         </Col>
       </Row>
