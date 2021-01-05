@@ -21,7 +21,6 @@ const Home = (): JSX.Element => {
               >
                 Create a poll
               </Button>
-              <Login />
             </Col>
           </Row>
         </Container>

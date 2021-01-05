@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { Nav, Navbar, Button } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import Login from "./Login";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar bg="light" expand="lg" fixed="top">
+    <Navbar bg="light" expand="lg" sticky="top">
       <Navbar.Brand href="#home">
         <img
           alt=""
-          src="static/rocket.svg"
+          src="../static/rocket.svg"
           width="35"
           height="35"
           className="d-inline-block align-top"
