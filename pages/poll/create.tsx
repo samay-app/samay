@@ -4,6 +4,8 @@ import { useState } from "react";
 import Layout from "../../src/components/layout";
 import { Choice, Poll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
+import { useSelector } from "react-redux";
+import Router from "next/router";
 
 // typings aren't available for react-available-times :(
 
@@ -12,12 +14,11 @@ const AvailableTimes: any = dynamic(() => import("react-available-times"), {
   ssr: false,
 });
 
-const currentLoggedInUserID = "haha"; // get the correct user
-
 const Create = (): JSX.Element => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [choices, setChoices] = useState<Choice[]>();
+  const currentLoggedInUserID = useSelector((state) => state.authReducer.username);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -44,13 +45,42 @@ const Create = (): JSX.Element => {
   const handleSubmit = (): void => {
     if (title && choices && choices?.length > 0) {
       const poll: RocketMeetPoll = {
-        title,
-        description,
+        title: title,
+        description: description,
         userID: currentLoggedInUserID,
-        choices,
+        choices: choices,
       };
+      const headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      }
+      // TODO : Add authorisation header 
+      // headers["Authorization"] = "Bearer " + getIdToken();
 
       // POST poll at v1/user/poll
+      const payload = JSON.stringify(poll);
+
+      const requestOptions = {
+        method: "POST",
+        headers: headers,
+        body: payload
+      };
+
+      console.log(poll)
+      console.log(payload)
+      fetch(`http://localhost:5000/v1/user/poll`, requestOptions)
+        .then((res) => {
+          if (res.status === 201) {
+            res.json()
+              .then((data) => {
+                console.log(data)
+                Router.push("/poll/" + data._id)
+              })
+          } else {
+            alert("Poll creation failed! Please try again")
+          }
+        })
+        .catch((err) => console.log(err))
     }
   };
 
@@ -60,7 +90,7 @@ const Create = (): JSX.Element => {
         <Row>
           <Col>
             <h1>Create a poll</h1>
-            <Form className="p-3">
+            <Form className="p-3" onSubmit={(e) => { e.preventDefault() && false }}>
               <Form.Group as={Row} controlId="formPlainTextTitle">
                 <Form.Label column sm="2">
                   Title<span className="imp-star">{" *"}</span>
@@ -94,7 +124,6 @@ const Create = (): JSX.Element => {
               <Button
                 className="mt-2"
                 variant="primary"
-                type="submit"
                 onClick={handleSubmit}
                 disabled={!title || !choices || choices?.length === 0}
               >
