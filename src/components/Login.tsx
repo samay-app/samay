@@ -31,11 +31,22 @@ export default function Login(): JSX.Element {
 
   return (
     <div>
-      { !isLoggedIn ? (<Button onClick={googleLogin} className="login-button">
-        Log in with Google
-      </Button>) : (<Button onClick={googleLogout} className="login-button">
-        Logout
-      </Button>)}
+      { !isLoggedIn ? (
+        <Button
+          variant="outline-primary"
+          className="login-button"
+          onClick={googleLogin}
+        >
+          Log in with Google
+        </Button>
+      ) : (
+          <Button
+            variant="outline-primary"
+            className="login-button"
+            onClick={googleLogout}
+          >
+            Logout
+          </Button>)}
 
     </div>
   );

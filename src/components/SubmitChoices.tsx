@@ -46,6 +46,7 @@ const SubmitChoices = (props: { newVote: Vote, pollid: string }): JSX.Element =>
     <div>
       <Button
         variant="primary"
+        className="mt-4 float-right"
         type="submit"
         disabled={!newVote.userID || newVote.choices.length === 0}
         onClick={handleSubmit}

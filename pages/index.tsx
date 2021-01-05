@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
               </h2>
               <h3>Launch polls, schedule smart</h3>
               <Button
-                className="custom-button"
+                className="ctl-button"
                 variant="outline-primary"
                 size="lg"
                 href="/poll/create"

@@ -4,15 +4,21 @@ const Greetings = (): JSX.Element => {
   return (
     <div className="d-flex flex-column w-100">
       <div id="maingreeting" className="py-3 my-1 ">
-        <Card border="dark">
+        <Card className="ctl">
           <Card.Body>
             <Row>
               <Col xs={9}>
                 <h3>Find best time for everyone to meet. Launch a poll.</h3>
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
-                <Button href="/poll/create" style={{ height: "40px" }}>
-                  Create Poll
+                <Button
+                  className="ctl-button"
+                  href="/poll/create"
+                  style={{ height: "40px" }}
+                >
+                  <h4>
+                    Create Poll
+                  </h4>
                 </Button>
               </Col>
             </Row>

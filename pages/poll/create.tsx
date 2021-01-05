@@ -86,7 +86,7 @@ const Create = (): JSX.Element => {
 
   return (
     <Layout>
-      <Container fluid>
+      <Container className="outer-container" fluid>
         <Row>
           <Col>
             <h1>Create a poll</h1>
@@ -122,7 +122,7 @@ const Create = (): JSX.Element => {
                 height={500}
               />
               <Button
-                className="mt-2"
+                className="mt-4 float-right"
                 variant="primary"
                 onClick={handleSubmit}
                 disabled={!title || !choices || choices?.length === 0}

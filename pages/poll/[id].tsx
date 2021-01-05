@@ -36,8 +36,8 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
 
   return (
     <Layout>
-      <Container fluid>
-        <Row>
+      <Container className="outer-container" fluid>
+        <Row className="outer-container poll">
           <Col>
             <PollInfo poll={pollFromDB} />
             <Table bordered>
@@ -106,12 +106,12 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
             )}
           </Col>
         </Row>
-        <Row>
-          {pollFromDB.open &&
-            currentLoggedInUserID === pollFromDB.userID && (
+        {pollFromDB.open &&
+          currentLoggedInUserID === pollFromDB.userID && (
+            <Row className="outer-container share justify-content-center">
               <ShareInvite pollid={pollid} />
-            )}
-        </Row>
+            </Row>
+          )}
       </Container>
     </Layout>
   );

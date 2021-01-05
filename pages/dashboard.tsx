@@ -10,16 +10,9 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <Layout>
-      <Container fluid>
-        <Row>
-          <Col>
-            <h1>Dashboard</h1>
-            <h3> Welcome {displayName},</h3>
-          </Col>
-        </Row>
-        <Row>
-          <Greetings />
-        </Row>
+      <Container className="outer-container" fluid>
+        <h5> Welcome {displayName}</h5>
+        <Greetings />
       </Container>
     </Layout>
   );
