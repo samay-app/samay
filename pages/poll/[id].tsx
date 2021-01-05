@@ -18,46 +18,6 @@ dayjs.extend(localizedFormat);
 
 
 const Poll = ({ pollFromDB, pollid }): JSX.Element => {
-  // get poll from DB
-  /*
-  const pollFromDB: PollFromDB = {
-    _id: "5fecb40047984b4c55764b5e",
-    title: "testPoll",
-    description: "testPollDescription",
-    open: true,
-    userID: "starman",
-    choices: [
-      { start: 1633577400000, end: 1633581000000 },
-      { start: 1633588200000, end: 1633591800000 },
-      { start: 1633667400000, end: 1633671000000 },
-      { start: 1633671000000, end: 1633674600000 },
-    ],
-    marked: [
-      {
-        userID: "aryansuserid",
-        choices: [
-          { start: 1633667400000, end: 1633671000000 },
-          { start: 1633577400000, end: 1633581000000 },
-        ],
-      },
-      {
-        userID: "suhailsuserid",
-        choices: [{ start: 1633577400000, end: 1633581000000 }],
-      },
-      {
-        userID: "anandsuserid",
-        choices: [{ start: 1633588200000, end: 1633591800000 }],
-      },
-      {
-        userID: "anaswarasuserid",
-        choices: [{ start: 1633577400000, end: 1633581000000 }],
-      },
-    ],
-    createdAt: "2020-12-30T17:08:16.765Z",
-    updatedAt: "2020-12-30T17:08:16.765Z",
-    __v: 0,
-  };
-  */
 
   const currentLoggedInUserID = useSelector((state) => state.authReducer.username); // get stuff from store
   const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
@@ -149,7 +109,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
         <Row>
           {pollFromDB.open &&
             currentLoggedInUserID === pollFromDB.userID && (
-              <ShareInvite />
+              <ShareInvite pollid={pollid} />
             )}
         </Row>
       </Container>
