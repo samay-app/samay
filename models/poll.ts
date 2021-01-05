@@ -3,30 +3,42 @@ export interface Vote {
   choices: Choice[];
 }
 
+export interface VoteFromDB {
+  _id: string;
+  userID: string;
+  choices: ChoiceFromDB[];
+}
+
 export interface Choice {
   start: number;
   end: number;
 }
 
-export interface Poll {
+export interface ChoiceFromDB {
+  _id: string;
+  start: number;
+  end: number;
+}
+
+export interface RocketMeetPoll {
   title: string;
   description?: string;
   open?: boolean;
   userID: string;
   choices: Choice[];
   finalChoice?: Choice;
-  marked?: Vote[];
+  votes?: Vote[];
 }
 
-export interface PollFromDB {
+export interface RocketMeetPollFromDB {
   _id: string;
   title: string;
   description?: string;
   open?: boolean;
   userID: string;
-  choices: Choice[];
-  finalChoice?: Choice;
-  marked?: Vote[];
+  choices: ChoiceFromDB[];
+  finalChoice?: ChoiceFromDB;
+  votes?: VoteFromDB[];
   createdAt: string;
   updatedAt: string;
   __v: number;

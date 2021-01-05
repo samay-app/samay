@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import Layout from "../../components/layout";
-import { Choice, Poll } from "../../models/poll";
+import { Choice, RocketMeetPoll } from "../../models/poll";
 
 // typings aren't available for react-available-times :(
 
@@ -42,10 +42,9 @@ const Create = (): JSX.Element => {
 
   const handleSubmit = (): void => {
     if (title && choices && choices?.length > 0) {
-      const poll: Poll = {
+      const poll: RocketMeetPoll = {
         title,
         description,
-        open: true,
         userID: currentLoggedInUserID,
         choices,
       };
