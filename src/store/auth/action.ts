@@ -4,16 +4,21 @@ import { SET_LOGIN_STATE, RESET_LOGIN_STATE } from "./type";
 // Usage: - import to desired components
 // - `Usedispatch()` from "react-redux" to dispatch  :D
 
-export const login = () => (dispatch: any) => {
+export const login = (displayName: string, username: string, token: string) => (dispatch: any) => {
+
+  // take username and token from args after auth is setup
   return dispatch({
     type: SET_LOGIN_STATE,
-    payload: true,
+    payload: {
+      displayName: displayName,
+      username: username,
+      token: token
+    },
   });
 };
 
 export const logout = () => (dispatch: any) => {
   return dispatch({
-    type: RESET_LOGIN_STATE,
-    payload: false,
+    type: RESET_LOGIN_STATE
   });
 };
