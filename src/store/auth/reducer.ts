@@ -1,15 +1,6 @@
 import { AnyAction } from "redux";
 import { SET_LOGIN_STATE, RESET_LOGIN_STATE } from "./type";
-
-
-interface authState {
-  server: string;
-  client: string;
-  isLoggedIn: Boolean;
-  displayName: any;
-  username: string;
-  token: string;
-}
+import { authState } from "./state";
 
 const initialState: authState = {
   server: "",

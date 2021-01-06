@@ -8,11 +8,12 @@ import MarkChoices from "../../src/components/MarkChoices";
 import MarkFinalChoice from "../../src/components/MarkFinalChoice";
 import SubmitChoices from "../../src/components/SubmitChoices";
 import SubmitFinalChoice from "../../src/components/SubmitFinalChoice";
-import { Choice, PollFromDB, Vote } from "../../src/models/poll";
+import { Choice, RocketMeetPollFromDB, Vote } from "../../src/models/poll";
 import isPollChoicePresent from "../../src/helpers/helpers";
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import ShareInvite from "../../src/components/shareinvite";
+import { GetServerSideProps } from 'next'
 
 dayjs.extend(localizedFormat);
 
@@ -117,7 +118,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
   );
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const pollid = context.params.id;
   const res = await fetch(`http://localhost:5000/v1/poll/${pollid}`)
   const status = res.status;

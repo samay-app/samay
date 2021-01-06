@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import { createWrapper, HYDRATE } from "next-redux-wrapper";
+import { MakeStore, createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
 import authReducer from "./auth/reducer";
+import { authState } from "./auth/state";
 
 //COMBINING ALL REDUCERS
 const combinedReducer = combineReducers({
@@ -18,7 +19,7 @@ const bindMiddleware = (middleware: any) => {
   return applyMiddleware(...middleware);
 };
 
-const makeStore = ({ isServer }) => {
+const makeStore = ({ isServer }: any) => {
   if (isServer) {
     //If it's on server side, create a store
     return createStore(combinedReducer, bindMiddleware([thunkMiddleware]));

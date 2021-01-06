@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Router from "next/router";
+import { NextPage } from 'next'
 
 // private route for logged in users only
 
-const privateAuthWrapper = Component => {
-    const Auth = (props) => {
+const privateAuthWrapper = (Component: NextPage) => {
+    const Auth = (props: any) => {
         // Login data from redux-store 
         const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
 
