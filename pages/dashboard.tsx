@@ -1,21 +1,20 @@
-import { Container, Row, Col } from "react-bootstrap";
-import Greetings from "../components/greeting";
-import Layout from "../components/layout";
+import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import Greetings from "../src/components/greeting";
+import Layout from "../src/components/layout";
+import withprivateAuth from "../src/utils/privateAuth";
 
 const Dashboard = (): JSX.Element => {
+  const displayName = useSelector((state) => state.authReducer.displayName);
+
   return (
     <Layout>
-      <Container fluid>
-        <Row>
-          <Col>
-            <h1>Dashboard</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Greetings />
-        </Row>
+      <Container className="outer-container" fluid>
+        <h5> Welcome {displayName}</h5>
+        <Greetings />
       </Container>
     </Layout>
   );
 };
-export default Dashboard;
+
+export default withprivateAuth(Dashboard);

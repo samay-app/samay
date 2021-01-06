@@ -8,7 +8,7 @@ const NavBar = (): JSX.Element => {
       <Navbar.Brand href="#home">
         <img
           alt=""
-          src="../static/rocket.svg"
+          src="src/static/rocket.svg"
           width="35"
           height="35"
           className="d-inline-block align-top"

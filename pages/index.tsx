@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Layout from "../components/layout";
+import Layout from "../src/components/layout";
 
 const Home = (): JSX.Element => {
   return (
@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
               </h2>
               <h3>Launch polls, schedule smart</h3>
               <Button
-                className="custom-button"
+                className="ctl-button"
                 variant="outline-primary"
                 size="lg"
                 href="/poll/create"

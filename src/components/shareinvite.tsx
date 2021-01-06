@@ -7,12 +7,13 @@ import {
 } from "react-bootstrap";
 import copy from "copy-to-clipboard";
 
-const Invitation = (): JSX.Element => {
-  const val = "http://xyz.xz";
+const Invitation = (props: { pollid: string }): JSX.Element => {
+  const { pollid } = props;
+  const pollurl = `http://localhost:3000/poll/${pollid}`;
   /* This should be replaced */
 
   const handleCopy = (): void => {
-    copy(val);
+    copy(pollurl);
   };
   const popover = (
     <Popover id="popover-basic">
@@ -37,7 +38,7 @@ const Invitation = (): JSX.Element => {
         <Form.Group className="text-center">
           <Form.Label className="font-weight-bold">Share Link</Form.Label>
           <InputGroup className="mb-3">
-            <Form.Control type="text" readOnly defaultValue={val} />
+            <Form.Control type="text" readOnly defaultValue={pollurl} />
             <InputGroup.Append>
               <OverlayTrigger trigger="click" placement="top" overlay={popover}>
                 <Button variant="outline-secondary" onClick={handleCopy}>
