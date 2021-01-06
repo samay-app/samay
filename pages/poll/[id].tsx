@@ -1,5 +1,7 @@
+import React, { useState } from "react";
+import { GetServerSideProps } from "next";
 import { Container, Row, Col, Table } from "react-bootstrap";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import Layout from "../../src/components/layout";
@@ -8,32 +10,24 @@ import MarkChoices from "../../src/components/MarkChoices";
 import MarkFinalChoice from "../../src/components/MarkFinalChoice";
 import SubmitChoices from "../../src/components/SubmitChoices";
 import SubmitFinalChoice from "../../src/components/SubmitFinalChoice";
-import { Choice, RocketMeetPollFromDB, Vote } from "../../src/models/poll";
+import { Choice, Vote } from "../../src/models/poll";
 import isPollChoicePresent from "../../src/helpers/helpers";
-import React, { useEffect } from 'react';
-import { useSelector } from "react-redux";
 import ShareInvite from "../../src/components/shareinvite";
-import { GetServerSideProps } from 'next'
 
 dayjs.extend(localizedFormat);
 
-
 const Poll = ({ pollFromDB, pollid }): JSX.Element => {
-
-  const currentLoggedInUserID = useSelector((state) => state.authReducer.username); // get stuff from store
-  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
-
+  const currentLoggedInUserID = useSelector(
+    (state) => state.authReducer.username
+  );
   const sortedChoices: Choice[] = pollFromDB.choices.sort(
     (a, b) => a.start - b.start
   );
-
   const [newVote, setNewVote] = useState<Vote>({
     userID: "",
     choices: [],
   });
-
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
-
 
   return (
     <Layout>
@@ -53,7 +47,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                       key={choice.start}
                       className={
                         choice.start === pollFromDB.finalChoice?.start &&
-                          choice.end === pollFromDB.finalChoice?.end
+                        choice.end === pollFromDB.finalChoice?.end
                           ? "slot-final-chosen-cell"
                           : ""
                       }
@@ -107,12 +101,11 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
             )}
           </Col>
         </Row>
-        {pollFromDB.open &&
-          currentLoggedInUserID === pollFromDB.userID && (
-            <Row className="outer-container share justify-content-center">
-              <ShareInvite pollid={pollid} />
-            </Row>
-          )}
+        {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
+          <Row className="outer-container share justify-content-center">
+            <ShareInvite pollid={pollid} />
+          </Row>
+        )}
       </Container>
     </Layout>
   );
@@ -120,22 +113,21 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const pollid = context.params.id;
-  const res = await fetch(`http://localhost:5000/v1/poll/${pollid}`)
-  const status = res.status;
-  const pollFromDB = await res.json()
+  const res = await fetch(`http://localhost:5000/v1/poll/${pollid}`);
+  const { status } = res;
+  const pollFromDB = await res.json();
 
-  if (status == 404) {
+  if (status === 404) {
     return {
       redirect: {
-        destination: '/404',
+        destination: "/404",
         permanent: false,
       },
-    }
+    };
   }
   return {
     props: { pollFromDB, pollid }, // will be passed to the page component as props
-  }
-}
-
+  };
+};
 
 export default Poll;

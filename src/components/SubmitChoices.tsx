@@ -1,46 +1,38 @@
 import { Button } from "react-bootstrap";
+import Router from "next/router";
 import { Vote } from "../models/poll";
-import Router from 'next/router'
 
-const SubmitChoices = (props: { newVote: Vote, pollid: string }): JSX.Element => {
+const SubmitChoices = (props: {
+  newVote: Vote;
+  pollid: string;
+}): JSX.Element => {
   const { newVote, pollid } = props;
 
   const handleSubmit = (): void => {
     // PUT newVote at v1/poll/:pollID
-    console.log(newVote);
-    console.log(pollid)
 
-    const headers = {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    }
-    // TODO : Add authorisation header 
-    // headers["Authorization"] = "Bearer " + getIdToken();
     const payload = JSON.stringify(newVote);
-
     const requestOptions = {
       method: "PUT",
-      headers: headers,
-      body: payload
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: payload,
     };
-
-    console.log(payload)
-
-    fetch("http://localhost:5000/v1/poll/" + pollid, requestOptions)
+    fetch(`http://localhost:5000/v1/poll/${pollid}`, requestOptions)
       .then((res) => {
         if (res.status === 201) {
-          res.json()
-            .then((data) => {
-              console.log(data)
-              alert("Success!")
-              Router.reload(window.location.pathname);
-            })
+          alert("Success!");
+          Router.reload(window.location.pathname);
         } else {
-          console.log(res.status)
+          console.log(res.status);
         }
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -52,7 +44,7 @@ const SubmitChoices = (props: { newVote: Vote, pollid: string }): JSX.Element =>
         onClick={handleSubmit}
       >
         Mark your choice
-    </Button>
+      </Button>
     </div>
   );
 };

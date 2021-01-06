@@ -16,9 +16,7 @@ const Greetings = (): JSX.Element => {
                   href="/poll/create"
                   style={{ height: "40px" }}
                 >
-                  <h4>
-                    Create Poll
-                  </h4>
+                  <h4>Create Poll</h4>
                 </Button>
               </Col>
             </Row>

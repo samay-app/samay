@@ -10,6 +10,9 @@ const combinedReducer = combineReducers({
   // OTHER REDUCERS WILL BE ADDED HERE
 });
 
+export type RootState = ReturnType<typeof combinedReducer>
+
+
 // BINDING MIDDLEWARE
 const bindMiddleware = (middleware: any) => {
   if (process.env.NODE_ENV !== "production") {
