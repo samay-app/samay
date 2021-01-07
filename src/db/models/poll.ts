@@ -1,7 +1,7 @@
 import mongoose, { Model, Document } from 'mongoose';
 
 export interface Vote {
-  userID: string;
+  name: string;
   choices: Choice[];
 }
 
@@ -14,7 +14,7 @@ export interface RocketMeetPoll extends Document {
   title: string;
   description?: string;
   open?: boolean;
-  userID: string;
+  emailID: string;
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
@@ -24,10 +24,10 @@ const PollSchema: mongoose.Schema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
   open: { type: Boolean, default: true },
-  userID: { type: String, required: true },
+  emailID: { type: String, required: true }, // encrypted email ID
   choices: { type: [{ start: Number, end: Number }], required: true },
   finalChoice: { type: { start: Number, end: Number } },
-  votes: [{ userID: String, choices: [{ start: Number, end: Number }] }],
+  votes: [{ name: String, choices: [{ start: Number, end: Number }] }],
 }, { timestamps: true });
 
 const Poll: Model<RocketMeetPoll> = mongoose.model('Poll', PollSchema);
