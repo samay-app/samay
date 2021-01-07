@@ -14,7 +14,7 @@ export interface RocketMeetPoll extends Document {
   title: string;
   description?: string;
   open?: boolean;
-  emailID: string;
+  emailID: string; // encrypted email ID
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
