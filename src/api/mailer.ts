@@ -1,10 +1,11 @@
+import { STATUS_CODES } from "http";
 import { useSelector } from "react-redux";
 import { RootState } from "../../src/store/store";
 
 class mailerAPI {
     senderID: string;
     token: string;
-    headers: Object;
+    headers: Headers | string[][] | Record<string, string> | undefined;
     URL: string;
 
     constructor() {
@@ -19,16 +20,8 @@ class mailerAPI {
 
     }
 
-    sendInvite = async (voteArgs: {
-        pollid: string;
-        recieverIDs: [string]
-    }): Promise<{ statusCode: number; }> => {
-        const { pollid, recieverIDs } = voteArgs;
-        const payload = JSON.stringify({
-            pollid: pollid,
-            recieverIDs: recieverIDs
-        });
-        const requestOptions = {
+    httpPost = async (payload: any) => {
+        const requestOptions: RequestInit = {
             method: "POST",
             headers: this.headers,
             body: payload,
@@ -38,6 +31,19 @@ class mailerAPI {
         return {
             statusCode: status
         };
+    }
+
+    sendInvite = async (voteArgs: {
+        pollid: string;
+        recieverIDs: [string]
+    }) => {
+        const { pollid, recieverIDs } = voteArgs;
+        const payload = JSON.stringify({
+            pollid: pollid,
+            recieverIDs: recieverIDs
+        });
+        const { statusCode } = await this.httpPost(payload)
+        return statusCode;
     }
 }
 

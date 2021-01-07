@@ -1,10 +1,10 @@
-import { Choice, RocketMeetPoll, RocketMeetPollFromDB, Vote } from "@models/poll";
+import { Choice, RocketMeetPoll, Vote } from "@models/poll";
 
 class serverAPI {
     userID: string;
     token: string;
-    headers: Object;
-    authHeaders: Object;
+    headers: Headers | string[][] | Record<string, string> | undefined;
+    authHeaders: Headers | string[][] | Record<string, string> | undefined;
     localURL: string;
     productionURL: string;
     URL: string;
@@ -20,20 +20,18 @@ class serverAPI {
             "Authorisation": `Bearer ${this.token}`
         })
         // TODO: Move this to config / .env later
-        this.localURL = "http://localhost:5000";
-        this.productionURL = "https://rocketmeet.me";
+        this.localURL = "http://localhost:5000"; // local url
+        this.productionURL = "https://rocketmeet.me"; // production url
         this.URL = this.localURL;
     }
 
-
-    createPoll = async (poll: RocketMeetPoll): Promise<{ data: RocketMeetPollFromDB; statusCode: number; }> => {
-        const payload = JSON.stringify(poll);
-        const requestOptions = {
-            method: "POST",
-            headers: this.authHeaders,
+    httpMethod = async (payload: any, endpoint: string, reqMethod: string) => {
+        const requestOptions: RequestInit = {
+            method: reqMethod,
+            headers: this.headers,
             body: payload,
         };
-        const res = await fetch(`${this.URL}/v1/user/poll`, requestOptions)
+        const res = await fetch(endpoint, requestOptions);
         const { status } = res;
         const responseData = await res.json()
         return {
@@ -42,41 +40,30 @@ class serverAPI {
         };
     }
 
+    createPoll = async (poll: RocketMeetPoll) => {
+        const payload = JSON.stringify(poll);
+        const endpoint = `${this.URL}/v1/user/poll`;
+        return await this.httpMethod(payload, endpoint, "POST");
+    }
+
     markChoices = async (voteArgs: {
         newVote: Vote;
         pollid: string;
-    }): Promise<{ statusCode: number; }> => {
+    }) => {
         const { newVote, pollid } = voteArgs;
         const payload = JSON.stringify(newVote);
-        const requestOptions = {
-            method: "PUT",
-            headers: this.headers,
-            body: payload,
-        };
-        const res = await fetch(`${this.URL}/v1/poll/${pollid}`, requestOptions);
-        const { status } = res;
-        return {
-            statusCode: status
-        };
+        const endpoint = `${this.URL}/v1/poll/${pollid}`;
+        return await this.httpMethod(payload, endpoint, "PUT");
     }
 
     markFinalChoice = async (voteArgs: {
         finalChoice: Choice | undefined;
         pollid: string;
-    }): Promise<{ statusCode: number; }> => {
-
+    }) => {
         const { finalChoice, pollid } = voteArgs;
         const payload = JSON.stringify(finalChoice);
-        const requestOptions = {
-            method: "PUT",
-            headers: this.authHeaders,
-            body: payload,
-        };
-        const res = await fetch(`${this.URL}/v1/poll/${pollid}`, requestOptions);
-        const { status } = res;
-        return {
-            statusCode: status
-        };
+        const endpoint = `${this.URL}/v1/poll/${pollid}`;
+        return await this.httpMethod(payload, endpoint, "PUT");
     }
 }
 
