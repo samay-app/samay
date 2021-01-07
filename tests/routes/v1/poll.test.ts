@@ -8,7 +8,7 @@ const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
   title: 'testPoll',
-  userID: 'starman',
+  emailID: 'encryptedEmailID',
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -62,7 +62,7 @@ describe('get poll', () => {
 describe('vote on poll', () => {
   it('Should allow users to mark on a poll', async (done) => {
     const voterOneVotesRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'dbowie',
+      name: 'dbowie',
       choices: [{ start: 1633667400000, end: 1633671000000 }],
     });
     expect(isChoicePresentInPollChoices(
@@ -77,7 +77,7 @@ describe('vote on poll', () => {
     )).toEqual(true);
 
     const voterTwoVotesRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'elon',
+      name: 'elon',
       choices: [{ start: 1633671000000, end: 1633674600000 }],
     });
     expect(isChoicePresentInPollChoices(
@@ -97,7 +97,7 @@ describe('vote on poll', () => {
   it('Should not allow users to vote on a closed poll', async (done) => {
     const closedPoll = await Poll.create({
       title: 'testPoll',
-      userID: 'starman',
+      emailID: 'encryptedEmailID',
       choices: [
         { start: 1633667400000, end: 1633671000000 },
         { start: 1633671000000, end: 1633674600000 },
@@ -107,7 +107,7 @@ describe('vote on poll', () => {
     });
 
     const voterOneVotesRes = await request.put(`/v1/poll/${closedPoll._id}`).send({
-      userID: 'dbowie',
+      name: 'dbowie',
       choices: [{ start: 1633671000000, end: 1633674600000 }],
     });
     expect(voterOneVotesRes.body.message).toEqual('Poll closed');
@@ -116,7 +116,7 @@ describe('vote on poll', () => {
 
   it('Should not allow invalid slot choices', async (done) => {
     const voterOneVotesRes = await request.put(`/v1/poll/${pollID}`).send({
-      userID: 'dbowie',
+      name: 'dbowie',
       choices: [{ start: 1633671000042, end: 1633674600042 }],
     });
     expect(voterOneVotesRes.body.message).toEqual('Invalid choices');

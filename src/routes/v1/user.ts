@@ -6,11 +6,11 @@ const router: Router = express.Router();
 // All the APIs below are private APIs protected for user's role
 // @Aravind: make sure users are authorized properly and can't imitate other users
 
-// get all polls created by an user id
+// get all polls created by an emailID
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
-        const polls: RocketMeetPoll[] | null = await Poll.find({ userID: req.params.id });
+        const polls: RocketMeetPoll[] | null = await Poll.find({ emailID: req.params.id });
         res.status(200).json(polls);
     } catch (err) {
         res.status(404).json({ message: err.message });

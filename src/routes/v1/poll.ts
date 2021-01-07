@@ -39,7 +39,7 @@ router.put('/:id', async (req: Request, res: Response) => {
                     newVotes.push(vote);
                 } else {
                     newVotes = [{
-                        userID: vote.userID, choices: vote.choices,
+                        name: vote.name, choices: vote.choices,
                     }];
                 }
                 const updatedPoll: RocketMeetPoll | null = await Poll.findOneAndUpdate(
