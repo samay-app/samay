@@ -10,15 +10,17 @@ import MarkChoices from "../../src/components/MarkChoices";
 import MarkFinalChoice from "../../src/components/MarkFinalChoice";
 import SubmitChoices from "../../src/components/SubmitChoices";
 import SubmitFinalChoice from "../../src/components/SubmitFinalChoice";
-import { Choice, Vote } from "../../src/models/poll";
+import { Choice, Vote, RocketMeetPollFromDB } from "../../src/models/poll";
 import isPollChoicePresent from "../../src/helpers/helpers";
 import ShareInvite from "../../src/components/shareinvite";
+import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
 
 const Poll = ({ pollFromDB, pollid }): JSX.Element => {
+
   const currentLoggedInUserID = useSelector(
-    (state) => state.authReducer.username
+    (state: RootState) => state.authReducer.username
   );
   const sortedChoices: Choice[] = pollFromDB.choices.sort(
     (a, b) => a.start - b.start
@@ -39,7 +41,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
               <thead>
                 <tr>
                   <th>
-                    {pollFromDB.marked ? pollFromDB.marked.length : 0}{" "}
+                    {pollFromDB.votes ? pollFromDB.votes.length : 0}{" "}
                     participants
                   </th>
                   {sortedChoices.map((choice) => (
@@ -47,7 +49,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                       key={choice.start}
                       className={
                         choice.start === pollFromDB.finalChoice?.start &&
-                        choice.end === pollFromDB.finalChoice?.end
+                          choice.end === pollFromDB.finalChoice?.end
                           ? "slot-final-chosen-cell"
                           : ""
                       }
@@ -59,23 +61,24 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {pollFromDB.marked?.map((vote) => (
+                {pollFromDB.votes?.map((vote) => (
                   <tr key={vote.userID}>
                     <td>{vote.userID}</td>
                     {sortedChoices.map((choice) => (
                       <td
                         key={choice.start}
                         className={
-                          isPollChoicePresent(choice, vote)
+                          isPollChoicePresent(choice, vote.choices)
                             ? "slot-checked"
                             : "slot-unchecked"
                         }
                       >
-                        {isPollChoicePresent(choice, vote) ? "✔" : ""}
+                        {isPollChoicePresent(choice, vote.choices) ? "✔" : ""}
                       </td>
                     ))}
                   </tr>
                 ))}
+
                 {pollFromDB.open &&
                   currentLoggedInUserID !== pollFromDB.userID && (
                     <MarkChoices
