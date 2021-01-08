@@ -11,7 +11,7 @@ export const isChoicePresentInPollChoices = (
   );
 };
 
-const ENCRYPTION_KEY = "DB348D009200EF079180E558859488A2"; // process.env.ENCRYPTION_KEY;
+const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || "";
 
 export const encrypt = (text: string): string => {
   const iv = crypto.randomBytes(16);
