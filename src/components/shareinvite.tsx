@@ -7,10 +7,16 @@ import {
 } from "react-bootstrap";
 import copy from "copy-to-clipboard";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { MailerAPI } from "../api/mailer"
+import { MailerArgs } from "@models/poll";
 
 const Invitation = (props: { pollid: string }): JSX.Element => {
   const { pollid } = props;
   const pollurl = `http://localhost:3000/poll/${pollid}`; /* This should be replaced */
+  const loggedInUserEmailID = useSelector(
+    (state: RootState) => state.authReducer.username
+  );
   const [currentEmail, setCurrentEmail] = useState<string>("");
   const [emailList, setEmails] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
@@ -70,8 +76,19 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
   const isEmail = (email: string): Boolean => {
     return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
   }
-  const handleSubmit = () => {
-
+  const handleSubmit = async () => {
+    console.log(emailList)
+    const mailerArgs: MailerArgs = {
+      pollID: pollid,
+      receiverIDs: emailList,
+      senderID: loggedInUserEmailID,
+    }
+    const status = await MailerAPI.sendInvite(mailerArgs);
+    if (status) {
+      alert("Successfully send invites")
+    } else {
+      alert("Internal Server Error")
+    }
   }
 
   return (
@@ -109,7 +126,7 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
             onChange={handleChange}
             onPaste={handlePaste}
           />
-          <Button className="my-2">Invite</Button>
+          <Button className="my-2" onClick={handleSubmit}>Invite</Button>
         </Form.Group>
         {error && <p className="error">{error}</p>}
 

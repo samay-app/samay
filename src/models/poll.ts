@@ -43,3 +43,9 @@ export interface RocketMeetPollFromDB {
   updatedAt: string;
   __v: number;
 }
+
+export interface MailerArgs {
+  pollid: string;
+  recieverIDs: [string],
+  senderID: string
+}

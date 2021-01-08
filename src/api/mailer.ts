@@ -1,15 +1,13 @@
-import { STATUS_CODES } from "http";
-import { useSelector } from "react-redux";
-import { RootState } from "../../src/store/store";
+import { MailerArgs } from "@models/poll";
 
 class mailerAPI {
-    senderID: string;
+    //senderID: string;
     token: string;
     headers: Headers | string[][] | Record<string, string> | undefined;
     URL: string;
 
     constructor() {
-        this.senderID = "userIDfromStore"
+        //this.senderID = "userIDfromStore"
         this.token = "tokenfromStore"
         this.headers = {
             "Content-Type": "application/json",
@@ -33,15 +31,9 @@ class mailerAPI {
         };
     }
 
-    sendInvite = async (voteArgs: {
-        pollid: string;
-        recieverIDs: [string]
-    }) => {
-        const { pollid, recieverIDs } = voteArgs;
-        const payload = JSON.stringify({
-            pollid: pollid,
-            recieverIDs: recieverIDs
-        });
+    sendInvite = async (mailerArgs: MailerArgs) => {
+        const payload = JSON.stringify(mailerArgs);
+        console.log(payload)
         const { statusCode } = await this.httpPost(payload)
         return statusCode;
     }
