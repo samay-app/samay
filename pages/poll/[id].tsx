@@ -10,23 +10,35 @@ import MarkChoices from "../../src/components/MarkChoices";
 import MarkFinalChoice from "../../src/components/MarkFinalChoice";
 import SubmitChoices from "../../src/components/SubmitChoices";
 import SubmitFinalChoice from "../../src/components/SubmitFinalChoice";
-import { Choice, Vote, RocketMeetPollFromDB } from "../../src/models/poll";
-import isPollChoicePresent from "../../src/helpers/helpers";
+import {
+  Choice,
+  ChoiceFromDB,
+  Vote,
+  RocketMeetPollFromDB,
+} from "../../src/models/poll";
+import {
+  decrypt,
+  isChoicePresentInPollChoices,
+} from "../../src/helpers/helpers";
 import ShareInvite from "../../src/components/shareinvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
 
-const Poll = ({ pollFromDB, pollid }): JSX.Element => {
-
-  const currentLoggedInUserID = useSelector(
+const Poll = (props: {
+  pollFromDB: RocketMeetPollFromDB;
+  pollid: string;
+}): JSX.Element => {
+  const { pollFromDB, pollid } = props;
+  const pollCreatorEmailID = decrypt(pollFromDB.emailID);
+  const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
-  const sortedChoices: Choice[] = pollFromDB.choices.sort(
-    (a, b) => a.start - b.start
+  const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
+    (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );
   const [newVote, setNewVote] = useState<Vote>({
-    userID: "",
+    name: "",
     choices: [],
   });
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
@@ -49,7 +61,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                       key={choice.start}
                       className={
                         choice.start === pollFromDB.finalChoice?.start &&
-                          choice.end === pollFromDB.finalChoice?.end
+                        choice.end === pollFromDB.finalChoice?.end
                           ? "slot-final-chosen-cell"
                           : ""
                       }
@@ -61,26 +73,28 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {pollFromDB.votes?.map((vote) => (
-                  <tr key={vote.userID}>
-                    <td>{vote.userID}</td>
+                {pollFromDB.votes?.map((vote: Vote) => (
+                  <tr key={vote.name}>
+                    <td>{vote.name}</td>
                     {sortedChoices.map((choice) => (
                       <td
                         key={choice.start}
                         className={
-                          isPollChoicePresent(choice, vote.choices)
+                          isChoicePresentInPollChoices(choice, vote.choices)
                             ? "slot-checked"
                             : "slot-unchecked"
                         }
                       >
-                        {isPollChoicePresent(choice, vote.choices) ? "✔" : ""}
+                        {isChoicePresentInPollChoices(choice, vote.choices)
+                          ? "✔"
+                          : ""}
                       </td>
                     ))}
                   </tr>
                 ))}
 
                 {pollFromDB.open &&
-                  currentLoggedInUserID !== pollFromDB.userID && (
+                  loggedInUserEmailID !== pollCreatorEmailID && (
                     <MarkChoices
                       choices={sortedChoices}
                       newVote={newVote}
@@ -88,7 +102,7 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                     />
                   )}
                 {pollFromDB.open &&
-                  currentLoggedInUserID === pollFromDB.userID && (
+                  loggedInUserEmailID === pollCreatorEmailID && (
                     <MarkFinalChoice
                       choices={sortedChoices}
                       setFinalChoice={setFinalChoice}
@@ -96,15 +110,15 @@ const Poll = ({ pollFromDB, pollid }): JSX.Element => {
                   )}
               </tbody>
             </Table>
-            {pollFromDB.open && currentLoggedInUserID !== pollFromDB.userID && (
+            {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
               <SubmitChoices newVote={newVote} pollid={pollid} />
             )}
-            {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
+            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
               <SubmitFinalChoice finalChoice={finalChoice} pollid={pollid} />
             )}
           </Col>
         </Row>
-        {pollFromDB.open && currentLoggedInUserID === pollFromDB.userID && (
+        {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
           <Row className="outer-container share justify-content-center">
             <ShareInvite pollid={pollid} />
           </Row>

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import Layout from "../../src/components/layout";
+import { encrypt } from "../../src/helpers/helpers";
 import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
@@ -19,7 +20,7 @@ const Create = (): JSX.Element => {
   const [pollTitle, setTitle] = useState<string>("");
   const [pollDescription, setDescription] = useState<string>("");
   const [pollChoices, setChoices] = useState<Choice[]>();
-  const currentLoggedInUserID = useSelector(
+  const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
 
@@ -47,10 +48,11 @@ const Create = (): JSX.Element => {
 
   const handleSubmit = (): void => {
     if (pollTitle && pollChoices && pollChoices?.length > 0) {
+      const encryptedEmailID = encrypt(loggedInUserEmailID);
       const poll: RocketMeetPoll = {
         title: pollTitle,
         description: pollDescription,
-        userID: currentLoggedInUserID,
+        emailID: encryptedEmailID,
         choices: pollChoices,
       };
       const payload = JSON.stringify(poll);
@@ -69,7 +71,7 @@ const Create = (): JSX.Element => {
               Router.push(`/poll/${data._id}`);
             });
           } else {
-            alert("Poll creation failed! Please try again");
+            console.log("Poll creation failed! Please try again");
           }
         })
         .catch((err) => console.log(err));

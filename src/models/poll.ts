@@ -1,11 +1,11 @@
 export interface Vote {
-  userID: string;
+  name: string;
   choices: Choice[];
 }
 
 export interface VoteFromDB {
   _id: string;
-  userID: string;
+  name: string;
   choices: ChoiceFromDB[];
 }
 
@@ -24,7 +24,7 @@ export interface RocketMeetPoll {
   title: string;
   description?: string;
   open?: boolean;
-  userID: string;
+  emailID: string; // encrypted email ID
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
@@ -35,7 +35,7 @@ export interface RocketMeetPollFromDB {
   title: string;
   description?: string;
   open?: boolean;
-  userID: string;
+  emailID: string; // encrypted email ID
   choices: ChoiceFromDB[];
   finalChoice?: ChoiceFromDB;
   votes?: VoteFromDB[];
