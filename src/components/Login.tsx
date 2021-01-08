@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import { auth, firebase } from "./Firebase";
@@ -17,6 +18,7 @@ const Login = (): JSX.Element => {
       // token generated
       const token = user && (await user.getIdToken());
       dispatch(login(user.displayName, user.email, token));
+      Router.push(`/dashboard`);
     });
   };
 
@@ -36,14 +38,14 @@ const Login = (): JSX.Element => {
           Log in with Google
         </Button>
       ) : (
-        <Button
-          variant="outline-primary"
-          className="login-button"
-          onClick={googleLogout}
-        >
-          Logout
-        </Button>
-      )}
+          <Button
+            variant="outline-primary"
+            className="login-button"
+            onClick={googleLogout}
+          >
+            Logout
+          </Button>
+        )}
     </div>
   );
 };
