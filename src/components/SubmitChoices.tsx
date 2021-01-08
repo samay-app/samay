@@ -23,8 +23,7 @@ const SubmitChoices = (props: {
     fetch(`http://localhost:5000/v1/poll/${pollid}`, requestOptions)
       .then((res) => {
         if (res.status === 201) {
-          alert("Success!");
-          Router.reload(window.location.pathname);
+          Router.reload();
         } else {
           console.log(res.status);
         }
@@ -40,7 +39,7 @@ const SubmitChoices = (props: {
         variant="primary"
         className="mt-4 float-right"
         type="submit"
-        disabled={!newVote.userID || newVote.choices.length === 0}
+        disabled={!newVote.name || newVote.choices.length === 0}
         onClick={handleSubmit}
       >
         Mark your choice

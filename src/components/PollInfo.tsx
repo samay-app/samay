@@ -1,11 +1,12 @@
 import { Alert } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { PollFromDB } from "../models/poll";
+import { RocketMeetPollFromDB } from "../models/poll";
+import { decrypt } from "../helpers/helpers";
 
 dayjs.extend(localizedFormat);
 
-const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
+const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
   const { poll } = props;
 
   return (
@@ -15,7 +16,8 @@ const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
       <Alert variant={poll.open ? "success" : "secondary"}>
         {poll.open ? "OPEN" : "CLOSED"}
       </Alert>
-      By {poll.userID} | Created on {dayjs(poll.createdAt).format("DD/MM/YYYY")}
+      By {decrypt(poll.emailID)} | Created on{" "}
+      {dayjs(poll.createdAt).format("DD/MM/YYYY")}
     </div>
   );
 };

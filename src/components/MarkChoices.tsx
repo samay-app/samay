@@ -11,7 +11,7 @@ const MarkChoices = (props: {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setNewVote({ ...newVote, userID: value });
+    setNewVote({ ...newVote, name: value });
   };
 
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

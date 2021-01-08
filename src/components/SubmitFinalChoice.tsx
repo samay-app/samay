@@ -10,7 +10,7 @@ const SubmitFinalChoice = (props: {
 
   const handleSubmit = (): void => {
     const markFinalChoice = {
-      choices: finalChoice,
+      finalChoice,
       open: false,
     };
     const payload = JSON.stringify(markFinalChoice);
@@ -27,11 +27,9 @@ const SubmitFinalChoice = (props: {
     fetch(`http://localhost:5000/v1/user/poll/${pollid}`, requestOptions)
       .then((res) => {
         if (res.status === 201) {
-          res.json().then((data) => {
-            console.log(data);
-          });
+          Router.reload();
         } else {
-          Router.reload(window.location.pathname);
+          console.log(res.status);
         }
       })
       .catch((err) => {
