@@ -14,7 +14,7 @@ class mailerAPI {
             "Access-Control-Allow-Origin": "*",
             "Authorisation": `Bearer ${this.token}`
         }
-        this.URL = "https://rocketmeet-mailer.herokuapp.com/meetInfo"
+        this.URL = "https://rocketmeet-mailer.herokuapp.com/v1/meetInfo"
 
     }
 
