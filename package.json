@@ -5,7 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest — watch",
+    "test:coverage": "jest — coverage"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/__mocks__/fileMock.js"
+    }
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
@@ -28,13 +37,22 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.8",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^26.0.20",
     "@types/next-redux-wrapper": "^3.0.0",
     "@types/node": "^14.14.16",
     "@types/react": "^17.0.0",
     "@types/react-redux": "^7.1.14",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-config-prettier": "^6.15.0",
@@ -44,7 +62,9 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "typescript": "3.7.5"
+    "ts-jest": "^26.4.4",
+    "typescript": "^3.7.5"
   }
 }
