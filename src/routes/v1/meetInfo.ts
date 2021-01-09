@@ -15,22 +15,22 @@ router.post('/', async (req: Request, res: Response) => {
 
   interface Data {
     pollID: string;
-    senderID: string;
+    senderName: string;
     receiverIDs: string[];
   }
 
   const data: Data = {
     pollID: req.body.pollID,
-    senderID: req.body.senderID,
+    senderName: req.body.senderName,
     receiverIDs: req.body.receiverIDs,
   };
 
   data.receiverIDs.forEach(async (receiverID: string) => {
     const mailOptions = {
-      from: data.senderID,
+      from: data.senderName,
       to: receiverID,
       subject: 'RocketMeet',
-      html: `<p>Hey there, ${data.senderID} has invited you to a RocketMeet poll, <b> visit url.com/${data.pollID}</p>`,
+      html: `<p>Hey there, ${data.senderName} has invited you to a RocketMeet poll, <b> visit url.com/${data.pollID}</p>`,
     };
 
     transporter.sendMail(mailOptions, (err, info) => {

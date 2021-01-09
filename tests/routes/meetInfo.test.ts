@@ -8,7 +8,7 @@ describe('send email', () => {
     it('Should send emails', async (done) => {
         const emailRes = await request.post('/v1/meetInfo').send({
             pollID: 'k8255935hjloef0af154a68',
-            senderID: '9460593545ba3f0af154a68',
+            senderName: 'John Doe',
             receiverIDs: ['rocketmeet@gmail.com'],
         });
 
