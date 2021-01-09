@@ -8,9 +8,12 @@ const router: Router = express.Router();
 
 // get all polls created by an emailID
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:encryptedEmailIV/:encryptedEmailText', async (req: Request, res: Response) => {
     try {
-        const polls: RocketMeetPoll[] | null = await Poll.find({ emailID: req.params.id });
+        const polls: RocketMeetPoll[] | null = await Poll.find({
+            encryptedEmailIV: req.params.encryptedEmailIV,
+            encryptedEmailText: req.params.encryptedEmailText,
+        });
         res.status(200).json(polls);
     } catch (err) {
         res.status(404).json({ message: err.message });
