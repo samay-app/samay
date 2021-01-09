@@ -8,7 +8,8 @@ dayjs.extend(localizedFormat);
 
 const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
   const { poll } = props;
-
+  console.log("lol");
+  console.log(poll);
   return (
     <div className="justify-content-center">
       <h1>{poll.title}</h1>
@@ -16,7 +17,7 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
       <Alert variant={poll.open ? "success" : "secondary"}>
         {poll.open ? "OPEN" : "CLOSED"}
       </Alert>
-      By {decrypt(poll.emailID)} | Created on{" "}
+      By {decrypt(poll.encryptedEmailID)} | Created on{" "}
       {dayjs(poll.createdAt).format("DD/MM/YYYY")}
     </div>
   );

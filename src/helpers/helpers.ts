@@ -12,29 +12,25 @@ export const isChoicePresentInPollChoices = (
 };
 
 const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || "";
+const ENCRYPTION_IV = process.env.NEXT_PUBLIC_ENCRYPTION_IV || "";
 
 export const encrypt = (text: string): string => {
-  const iv = crypto.randomBytes(16);
   let cipher = crypto.createCipheriv(
     "aes-256-cbc",
     Buffer.from(ENCRYPTION_KEY),
-    iv
+    ENCRYPTION_IV
   );
   let encrypted = cipher.update(text);
   encrypted = Buffer.concat([encrypted, cipher.final()]);
-  return JSON.stringify({
-    iv: iv.toString("hex"),
-    encryptedText: encrypted.toString("hex"),
-  });
+  return encrypted.toString("hex");
 };
 
 export const decrypt = (text: string): string => {
-  const iv = Buffer.from(JSON.parse(text).iv, "hex");
-  const encryptedText = Buffer.from(JSON.parse(text).encryptedText, "hex");
+  const encryptedText = Buffer.from(text, "hex");
   const decipher = crypto.createDecipheriv(
     "aes-256-cbc",
     Buffer.from(ENCRYPTION_KEY),
-    iv
+    ENCRYPTION_IV
   );
   let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);

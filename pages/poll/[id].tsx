@@ -30,7 +30,7 @@ const Poll = (props: {
   pollid: string;
 }): JSX.Element => {
   const { pollFromDB, pollid } = props;
-  const pollCreatorEmailID = decrypt(pollFromDB.emailID);
+  const pollCreatorEmailID = decrypt(pollFromDB.encryptedEmailID);
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );

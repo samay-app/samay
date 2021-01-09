@@ -52,7 +52,7 @@ const Create = (): JSX.Element => {
       const poll: RocketMeetPoll = {
         title: pollTitle,
         description: pollDescription,
-        emailID: encryptedEmailID,
+        encryptedEmailID,
         choices: pollChoices,
       };
       const payload = JSON.stringify(poll);
