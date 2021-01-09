@@ -34,7 +34,7 @@ a {
 }
 
 .hero {
-  background-image: url("src/static/rocket-bg.svg");
+  background-image: url("/rocket-bg.svg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -56,7 +56,9 @@ h3 {
   font-size: 2rem !important;
 }
 
-h3.ctl, h4.ctl, h5.ctl {
+h3.ctl,
+h4.ctl,
+h5.ctl {
   font-weight: 300 !important;
   font-size: 2rem !important;
 }
@@ -106,10 +108,10 @@ h4 {
   color: #ff0000;
 }
 
-.card {
+/*.card {
   border-radius: 0 !important;
   border: 0 !important;
-}
+}*/
 
 a.ctl-button {
   margin: 10px;
@@ -122,10 +124,9 @@ a.ctl-button {
 .col-9 {
   padding: 25px;
   min-height: inherit !important;
-
 }
 .card-body {
-  padding: .5rem !important;
+  padding: 0.5rem !important;
   min-height: 80px !important;
 }
 
