@@ -24,7 +24,7 @@ export interface RocketMeetPoll {
   title: string;
   description?: string;
   open?: boolean;
-  emailID: string; // encrypted email ID
+  encryptedEmailID: string;
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
@@ -35,7 +35,7 @@ export interface RocketMeetPollFromDB {
   title: string;
   description?: string;
   open?: boolean;
-  emailID: string; // encrypted email ID
+  encryptedEmailID: string;
   choices: ChoiceFromDB[];
   finalChoice?: ChoiceFromDB;
   votes?: VoteFromDB[];
@@ -46,6 +46,6 @@ export interface RocketMeetPollFromDB {
 
 export interface MailerArgs {
   pollid: string;
-  receiverIDs: string[],
-  senderID: string
+  receiverIDs: string[];
+  senderID: string;
 }
