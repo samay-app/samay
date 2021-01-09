@@ -8,7 +8,8 @@ const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
   title: 'testPoll',
-  emailID: 'encryptedEmailID',
+  encryptedEmailIV: 'encryptedEmailIV',
+  encryptedEmailText: 'encryptedEmailText',
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -97,7 +98,8 @@ describe('vote on poll', () => {
   it('Should not allow users to vote on a closed poll', async (done) => {
     const closedPoll = await Poll.create({
       title: 'testPoll',
-      emailID: 'encryptedEmailID',
+      encryptedEmailIV: 'encryptedEmailIV',
+      encryptedEmailText: 'encryptedEmailText',
       choices: [
         { start: 1633667400000, end: 1633671000000 },
         { start: 1633671000000, end: 1633674600000 },
