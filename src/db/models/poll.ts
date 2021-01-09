@@ -14,8 +14,7 @@ export interface RocketMeetPoll extends Document {
   title: string;
   description?: string;
   open?: boolean;
-  encryptedEmailIV: string; // IV of the encrypted email
-  encryptedEmailText: string; // the encrypted email
+  encryptedEmailID: string;
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
@@ -25,8 +24,7 @@ const PollSchema: mongoose.Schema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
   open: { type: Boolean, default: true },
-  encryptedEmailIV: { type: String, required: true }, // IV of the encrypted email
-  encryptedEmailText: { type: String, required: true }, // the encrypted email
+  encryptedEmailID: { type: String, required: true },
   choices: { type: [{ start: Number, end: Number }], required: true },
   finalChoice: { type: { start: Number, end: Number } },
   votes: [{ name: String, choices: [{ start: Number, end: Number }] }],

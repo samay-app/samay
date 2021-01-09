@@ -10,7 +10,7 @@ const router: Router = express.Router();
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
-        const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id });
+        const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id }).lean();
         res.status(200).json(poll);
     } catch (err) {
         res.status(404).json({ message: err.message });

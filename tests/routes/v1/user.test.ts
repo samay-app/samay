@@ -8,8 +8,7 @@ const request: SuperTest<Test> = supertest(app);
 
 const testPoll = {
   title: 'testPoll',
-  encryptedEmailIV: 'encryptedEmailIV',
-  encryptedEmailText: 'encryptedEmailText',
+  encryptedEmailID: 'encryptedEmailID',
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -47,8 +46,7 @@ describe('create poll', () => {
     it('Should save poll to db', async (done) => {
       const res = await request.post('/v1/user/poll').send({
         title: 'OccupyMarsMeet',
-        encryptedEmailIV: 'encryptedEmailIV',
-        encryptedEmailText: 'encryptedEmailText',
+        encryptedEmailID: 'encryptedEmailID',
         choices: [
           { start: 1633577400000, end: 1633581000000 },
           { start: 1633588200000, end: 1633591800000 },
@@ -98,7 +96,7 @@ describe('create poll', () => {
 
 describe('get poll', () => {
   it('Should return poll by emailID', async (done) => {
-    const getPollRes = await request.get(`/v1/user/${testPoll.encryptedEmailIV}/${testPoll.encryptedEmailText}`);
+    const getPollRes = await request.get(`/v1/user/${testPoll.encryptedEmailID}`);
     expect(getPollRes.body[0].title).toEqual('testPoll');
 
     done();
