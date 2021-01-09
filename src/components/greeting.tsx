@@ -5,11 +5,7 @@ import { encrypt, decrypt } from "../helpers/helpers";
 
 const Greetings = (): JSX.Element => {
   const user = useSelector((state) => state.authReducer.username);
-  console.log(user);
   const userid = encrypt(user);
-  console.log(userid);
-  console.log(decrypt(userid));
-
   const [data, setData] = useState([]);
   const getData = () => {
     fetch(`http://localhost:5000/v1/user/${userid}`)
@@ -30,7 +26,7 @@ const Greetings = (): JSX.Element => {
   const Allpolls = (): any => {
     return data && data.length > 0 ? (
       data.map((item) => (
-        <Card border="dark" className="p-2">
+        <Card border="dark" className="p-2" key={item._id}>
           <Card.Title className="text-center">
             {item.title}
             <Badge variant={item.open ? "success" : "danger"} className="ml-1">
