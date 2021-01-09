@@ -8,8 +8,6 @@ dayjs.extend(localizedFormat);
 
 const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
   const { poll } = props;
-  console.log("lol");
-  console.log(poll);
   return (
     <div className="justify-content-center">
       <h1>{poll.title}</h1>
