@@ -9,8 +9,8 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <Layout>
-      <Container className="outer-container" fluid>
-        <h5> Welcome {displayName}</h5>
+      <Container className="" fluid>
+        <h2> Welcome {displayName}</h2>
         <Greetings />
       </Container>
     </Layout>

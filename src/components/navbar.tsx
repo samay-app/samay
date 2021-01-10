@@ -5,10 +5,10 @@ import Login from "./Login";
 const NavBar = (): JSX.Element => {
   return (
     <Navbar bg="light" expand="lg" sticky="top">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <img
           alt=""
-          src="src/static/rocket.svg"
+          src="/rocket.svg"
           width="35"
           height="35"
           className="d-inline-block align-top"

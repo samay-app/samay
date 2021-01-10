@@ -1,4 +1,6 @@
+import React from "react";
 import { Button, Row, Col, Card } from "react-bootstrap";
+import PollsList from "./pollsList";
 
 const Greetings = (): JSX.Element => {
   return (
@@ -6,8 +8,8 @@ const Greetings = (): JSX.Element => {
       <div id="maingreeting" className="py-3 my-1 ">
         <Card className="ctl">
           <Card.Body>
-            <Row>
-              <Col xs={9}>
+            <Row className="d-flex justify-content-center align-items-center py-1 pl-2">
+              <Col className="col-9 text-center">
                 <h3>Find best time for everyone to meet. Launch a poll.</h3>
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
@@ -23,20 +25,7 @@ const Greetings = (): JSX.Element => {
           </Card.Body>
         </Card>
       </div>
-
-      <Row>
-        <Col>
-          <h4>Your Polls </h4>
-        </Col>
-      </Row>
-
-      <div className="my-2">
-        {/* Show the poll titles (preferably in card layout ) here.If No polls created before, Show the next thing */}
-        <p>
-          You haven't created any polls yet. Start one by clicking the new poll
-          button above
-        </p>
-      </div>
+      <PollsList />
     </div>
   );
 };
