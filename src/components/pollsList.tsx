@@ -6,42 +6,36 @@ import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
 const PollsList = (): JSX.Element => {
   const user = useSelector((state) => state.authReducer.username);
   const userid = encrypt(user);
-  const [data, setData] = useState([]);
-  const getData = () => {
-    fetch(`http://localhost:5000/v1/user/${userid}`)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        setData(myJson);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const [pollList, setPollList] = useState([]);
+
+  const getData = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/v1/user/${userid}`);
+      const fetchedPolls = await response.json();
+      setPollList(fetchedPolls);
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     getData();
   }, []);
 
   const Allpolls = (): any => {
-    return data && data.length > 0 ? (
-      data.map((item) => (
-        <Card border="dark" className="p-2" key={item._id}>
-          <Card.Title className="text-center">
-            {item.title}
-            <Badge variant={item.open ? "success" : "danger"} className="ml-1">
-              {item.open ? "open" : "closed"}
-            </Badge>
-          </Card.Title>
-          <Card.Body className="text-center">
-            {item.description}
-            <a href={`/poll/${item._id}`} className="stretched-link"></a>
-          </Card.Body>
-        </Card>
-      ))
-    ) : (
-      <br />
-    );
+    return pollList.map((item) => (
+      <Card border="dark" className="p-2" key={item._id}>
+        <Card.Title className="text-center">
+          {item.title}
+          <Badge variant={item.open ? "success" : "danger"} className="ml-1">
+            {item.open ? "open" : "closed"}
+          </Badge>
+        </Card.Title>
+        <Card.Body className="text-center">
+          {item.description}
+          <a href={`/poll/${item._id}`} className="stretched-link"></a>
+        </Card.Body>
+      </Card>
+    ));
   };
   return (
     <>
@@ -52,7 +46,7 @@ const PollsList = (): JSX.Element => {
       </Row>
 
       <div className="my-2">
-        {data && data.length > 0 ? (
+        {pollList && pollList.length > 0 ? (
           <CardColumns>
             <Allpolls />
           </CardColumns>
