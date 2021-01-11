@@ -35,15 +35,19 @@ a {
 
 .hero {
   background-image: url("/rocket-bg.svg");
-  height: 100vh;
+  height: 80vh;
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right;
-  background-size: contain;
+  background-position: bottom;
 }
-
-.hero-quote {
-  margin-top: 120px;
+@media (max-width: 600px) {
+  .hero {
+    background-size: contain;
+    height: 380px;
+  }
 }
 
 h2 {
