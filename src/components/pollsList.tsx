@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { encrypt } from "../helpers/helpers";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
+import { RocketMeetPollFromDB } from "@models/poll";
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state) => state.authReducer.username);
@@ -22,7 +23,7 @@ const PollsList = (): JSX.Element => {
   }, []);
 
   const Allpolls = (): any => {
-    return pollList.map((item) => (
+    return pollList.map((item: RocketMeetPollFromDB) => (
       <Card border="dark" className="p-2" key={item._id}>
         <Card.Title className="text-center">
           {item.title}
