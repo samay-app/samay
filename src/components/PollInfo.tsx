@@ -23,18 +23,15 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
           <h1>{poll.title}</h1>
           <h5>{poll.description}</h5>
           <span className="poll-info-user">
-            <PersonCircle /> {decrypt(poll.encryptedEmailID)}
+            <PersonCircle /> <b>{decrypt(poll.encryptedEmailID)}</b>
           </span>
           <span className="poll-info-date">
-            <Calendar2Fill /> {dayjs(poll.createdAt).format("DD/MM/YYYY")}
+            <Calendar2Fill />{" "}
+            <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
           </span>
         </div>
         <div className="col-sm">
-          <CalendarRange
-            className="poll-info-cal-icon"
-            width="17rem"
-            height="17rem"
-          />
+          <CalendarRange className="poll-info-cal-icon" />
         </div>
       </div>
     </div>

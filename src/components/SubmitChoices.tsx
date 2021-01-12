@@ -42,7 +42,7 @@ const SubmitChoices = (props: {
         disabled={!newVote.name || newVote.choices.length === 0}
         onClick={handleSubmit}
       >
-        Mark your choice
+        Mark your option
       </Button>
     </div>
   );

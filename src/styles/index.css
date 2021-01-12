@@ -82,7 +82,7 @@ h4 {
 
 .poll-info {
   background-color: #F5F5F7;
-  color: #000000;
+  color: #272727;
   padding: 2rem;
   border-radius: 20px;
 }
@@ -107,41 +107,131 @@ h4 {
 .poll-info-cal-icon {
   top: -5rem;
   right: 1rem;
+  width: 17rem;
+  height: 17rem;
   position: absolute;
+  color: #272727;
+}
+
+.poll-table {
+  margin-top: 2rem;
+}
+
+.empty-cell {
+  background-color:#FDFDFD;
+}
+
+.poll-table-top-row {
+  background-color:#272727;
+  color: #f0f0f0;
+}
+
+.datetime-weekday {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: -0.2em;
+}
+
+.datetime-day {
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: -0.2em;
+}
+
+.datetime-mon {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+}
+
+.datetime-time-1 {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: -0.2em;
+}
+
+.datetime-time-2 {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.poll-table thead tr th:first-child,
+.poll-table tbody tr td:first-child {
+  width: 12em;
+  min-width: 12em;
+  max-width: 12em;
+  word-break: break-all;
+}
+
+.slot-final-choice {
+  text-align: center;
+  background-color:#364DEF;
+}
+
+.final-star {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: #FFBF00;
+  top: -1.5rem;
+  position: relative;
 }
 
 .slot-checked {
-  background-color: #cdeaa1;
+  background-color: #e2fabf;
   text-align: center;
 }
 
+.checked-option {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: green;
+}
+
 .slot-unchecked {
-  background-color: #fef9f9;
+  background-color: #fdfdfd;
+}
+
+.poll-table-choose-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #272727;
+}
+
+.poll-table-participants {
+  font-size: 1.1rem;
+  color: #272727;
 }
 
 .slot-checkbox-cell {
-  background-color: #5da8fd;
+  background-color: #364DEF;
   text-align: center;
 }
 
 .slot-checkbox input[type="checkbox"] {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .slot-checkbox-final-cell {
-  background-color: #ffbb12;
+  background-color: #364DEF;
   text-align: center;
 }
 
 .slot-checkbox input[type="radio"] {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-.slot-final-chosen-cell {
-  background-color: #ffbb12;
-}
 .imp-star {
   color: #ff0000;
 }

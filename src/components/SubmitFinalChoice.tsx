@@ -45,7 +45,7 @@ const SubmitFinalChoice = (props: {
       disabled={!finalChoice}
       onClick={handleSubmit}
     >
-      Mark your final choice
+      Mark final option
     </Button>
   );
 };

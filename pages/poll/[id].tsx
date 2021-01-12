@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Container, Row, Col, Table } from "react-bootstrap";
-import { Check } from "react-bootstrap-icons";
+import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import Layout from "../../src/components/layout";
 import PollInfo from "../../src/components/PollInfo";
-import MarkChoices from "../../src/components/MarkChoices";
-import MarkFinalChoice from "../../src/components/MarkFinalChoice";
-import SubmitChoices from "../../src/components/SubmitChoices";
-import SubmitFinalChoice from "../../src/components/SubmitFinalChoice";
+import PollTable from "../../src/components/PollTable";
 import {
   Choice,
   ChoiceFromDB,
   Vote,
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
-import {
-  decrypt,
-  isChoicePresentInPollChoices,
-} from "../../src/helpers/helpers";
+import { decrypt } from "../../src/helpers/helpers";
 import ShareInvite from "../../src/components/shareinvite";
 import { RootState } from "../../src/store/store";
 
@@ -50,75 +43,17 @@ const Poll = (props: {
         <Row className="inner-container">
           <Col>
             <PollInfo poll={pollFromDB} />
-            <Table bordered>
-              <thead>
-                <tr>
-                  <th>
-                    {pollFromDB.votes ? pollFromDB.votes.length : 0}{" "}
-                    participants
-                  </th>
-                  {sortedChoices.map((choice) => (
-                    <th
-                      key={choice.start}
-                      className={
-                        choice.start === pollFromDB.finalChoice?.start &&
-                        choice.end === pollFromDB.finalChoice?.end
-                          ? "slot-final-chosen-cell"
-                          : ""
-                      }
-                    >
-                      {dayjs(choice.start).format("llll")} -{" "}
-                      {dayjs(choice.end).format("LT")}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {pollFromDB.votes?.map((vote: Vote) => (
-                  <tr key={vote.name}>
-                    <td>{vote.name}</td>
-                    {sortedChoices.map((choice) => (
-                      <td
-                        key={choice.start}
-                        className={
-                          isChoicePresentInPollChoices(choice, vote.choices)
-                            ? "slot-checked"
-                            : "slot-unchecked"
-                        }
-                      >
-                        {isChoicePresentInPollChoices(choice, vote.choices) ? (
-                          <Check width="1.5rem" height="1.5rem" />
-                        ) : (
-                          ""
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-
-                {pollFromDB.open &&
-                  loggedInUserEmailID !== pollCreatorEmailID && (
-                    <MarkChoices
-                      choices={sortedChoices}
-                      newVote={newVote}
-                      setNewVote={setNewVote}
-                    />
-                  )}
-                {pollFromDB.open &&
-                  loggedInUserEmailID === pollCreatorEmailID && (
-                    <MarkFinalChoice
-                      choices={sortedChoices}
-                      setFinalChoice={setFinalChoice}
-                    />
-                  )}
-              </tbody>
-            </Table>
-            {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-              <SubmitChoices newVote={newVote} pollid={pollid} />
-            )}
-            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-              <SubmitFinalChoice finalChoice={finalChoice} pollid={pollid} />
-            )}
+            <PollTable
+              pollFromDB={pollFromDB}
+              pollid={pollid}
+              sortedChoices={sortedChoices}
+              newVote={newVote}
+              setNewVote={setNewVote}
+              finalChoice={finalChoice}
+              setFinalChoice={setFinalChoice}
+              pollCreatorEmailID={pollCreatorEmailID}
+              loggedInUserEmailID={loggedInUserEmailID}
+            />
           </Col>
         </Row>
         {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
