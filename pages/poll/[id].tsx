@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
 import { Container, Row, Col, Table } from "react-bootstrap";
+import { Check } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -45,8 +46,8 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Container className="outer-container" fluid>
-        <Row className="outer-container poll">
+      <Container className="outer-container-new" fluid>
+        <Row className="inner-container">
           <Col>
             <PollInfo poll={pollFromDB} />
             <Table bordered>
@@ -85,9 +86,11 @@ const Poll = (props: {
                             : "slot-unchecked"
                         }
                       >
-                        {isChoicePresentInPollChoices(choice, vote.choices)
-                          ? "✔"
-                          : ""}
+                        {isChoicePresentInPollChoices(choice, vote.choices) ? (
+                          <Check width="1.5rem" height="1.5rem" />
+                        ) : (
+                          ""
+                        )}
                       </td>
                     ))}
                   </tr>

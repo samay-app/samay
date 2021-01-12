@@ -72,6 +72,44 @@ h4 {
   padding: 2rem 0;
 }
 
+.outer-container-new {
+  margin-top: 2rem;
+}
+
+.inner-container {
+  padding: 1rem 2rem;
+}
+
+.poll-info {
+  background-color: #F5F5F7;
+  color: #000000;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.poll-info h1 {
+  font-weight: 700;
+}
+
+.poll-info h5 {
+  font-weight: 500;
+}
+
+.poll-info-user {
+  padding-top: 2rem;
+  display: block;
+}
+
+.poll-info-date {
+  display: block;
+}
+
+.poll-info-cal-icon {
+  top: -5rem;
+  right: 1rem;
+  position: absolute;
+}
+
 .slot-checked {
   background-color: #cdeaa1;
   text-align: center;
@@ -87,8 +125,8 @@ h4 {
 }
 
 .slot-checkbox input[type="checkbox"] {
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .slot-checkbox-final-cell {
@@ -97,8 +135,8 @@ h4 {
 }
 
 .slot-checkbox input[type="radio"] {
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .slot-final-chosen-cell {
@@ -146,11 +184,6 @@ a.ctl-button {
   margin-top: 30px;
 }
 
-.outer-container.poll.row {
-  margin: auto;
-  padding: inherit;
-  box-shadow: 1px 1px 20px 6px #f5f5f5;
-}
 .outer-container.share.row {
   margin: inherit;
   padding: inherit;
