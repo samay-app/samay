@@ -9,8 +9,6 @@ const SubmitChoices = (props: {
   const { newVote, pollid } = props;
 
   const handleSubmit = (): void => {
-    // PUT newVote at v1/poll/:pollID
-
     const payload = JSON.stringify(newVote);
     const requestOptions = {
       method: "PUT",
@@ -42,7 +40,7 @@ const SubmitChoices = (props: {
         disabled={!newVote.name || newVote.choices.length === 0}
         onClick={handleSubmit}
       >
-        Mark your choice
+        Mark your option
       </Button>
     </div>
   );
