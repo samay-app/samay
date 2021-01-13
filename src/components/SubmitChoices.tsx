@@ -9,8 +9,6 @@ const SubmitChoices = (props: {
   const { newVote, pollid } = props;
 
   const handleSubmit = (): void => {
-    // PUT newVote at v1/poll/:pollID
-
     const payload = JSON.stringify(newVote);
     const requestOptions = {
       method: "PUT",

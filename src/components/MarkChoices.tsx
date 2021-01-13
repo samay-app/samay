@@ -22,8 +22,8 @@ const MarkChoices = (props: {
       newChoices.push(choice);
       setNewVote({ ...newVote, choices: newChoices });
     } else {
-      const newChoices = newVote.choices;
-      newChoices.splice(newChoices.indexOf(choice), 1); // remove the unchecked element from array
+      let newChoices = newVote.choices;
+      newChoices = newChoices.filter((item) => item.start !== choice.start);
       setNewVote({ ...newVote, choices: newChoices });
     }
   };
@@ -41,6 +41,7 @@ const MarkChoices = (props: {
       {choices.map((choice) => (
         <td key={choice.start} className="slot-checkbox-cell">
           <Form.Check
+            name="choices"
             data-value={JSON.stringify(choice)}
             className="slot-checkbox"
             onChange={handleChoiceChange}

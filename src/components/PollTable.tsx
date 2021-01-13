@@ -76,8 +76,8 @@ const PollTable = (props: {
               setFinalChoice={setFinalChoice}
             />
           )}
-          {pollFromDB.votes?.map((vote: Vote) => (
-            <tr key={vote.name}>
+          {pollFromDB.votes?.map((vote: Vote, idx: number) => (
+            <tr key={idx}>
               <td className="poll-table-participants">{vote.name}</td>
               {sortedChoices.map((choice) => (
                 <td
