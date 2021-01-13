@@ -1,5 +1,10 @@
-import { Badge } from "react-bootstrap";
-import { Calendar2Fill, PersonCircle, StarFill } from "react-bootstrap-icons";
+import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Calendar2Fill,
+  InfoCircleFill,
+  PersonCircle,
+  StarFill,
+} from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { RocketMeetPollFromDB } from "../models/poll";
@@ -34,6 +39,16 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
             <Calendar2Fill />{" "}
             <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
           </span>
+
+          <OverlayTrigger
+            overlay={
+              <Tooltip id="timezone-info">
+                The times are displayed in your time zone.
+              </Tooltip>
+            }
+          >
+            <InfoCircleFill className="timezone-info-icon" />
+          </OverlayTrigger>
         </div>
         <div className="col-sm">
           <img

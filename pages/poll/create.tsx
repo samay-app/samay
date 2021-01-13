@@ -1,7 +1,16 @@
 import { useSelector } from "react-redux";
 import Router from "next/router";
 import dynamic from "next/dynamic";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Row,
+  Col,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
+import { InfoCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
 import Layout from "../../src/components/layout";
 import { encrypt } from "../../src/helpers/helpers";
@@ -121,6 +130,16 @@ const Create = (): JSX.Element => {
                         />
                       </Col>
                     </Form.Group>
+                    <OverlayTrigger
+                      overlay={
+                        <Tooltip id="timezone-info">
+                          The times are displayed in your time zone.
+                          Participants will see the times in their time zone.
+                        </Tooltip>
+                      }
+                    >
+                      <InfoCircleFill className="timezone-info-icon" />
+                    </OverlayTrigger>
                   </div>
                   <div className="col-sm">
                     <img

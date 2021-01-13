@@ -299,6 +299,13 @@ h4 {
   color: #ff0000;
 }
 
+.timezone-info-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+  color:#364DEF;
+  margin-top: 2rem;
+}
+
 /*.card {
   border-radius: 0 !important;
   border: 0 !important;
