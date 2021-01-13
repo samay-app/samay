@@ -40,7 +40,9 @@ const PollTable = (props: {
       <Table bordered responsive className="poll-table">
         <thead>
           <tr className="poll-table-top-row">
-            <th className="empty-cell"> </th>
+            <th className="participant-cell">
+              {pollFromDB.votes ? pollFromDB.votes.length : "No"} participants
+            </th>
             {sortedChoices.map((choice) => (
               <th
                 key={choice.start}

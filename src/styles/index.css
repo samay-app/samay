@@ -80,6 +80,36 @@ h4 {
   padding: 1rem 2rem;
 }
 
+.poll-create {
+  background-color: #F5F5F7;
+  color: #272727;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.poll-create-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.poll-create-form-title {
+  margin-top: 1rem;
+}
+
+.poll-create-pic {
+  position: absolute;
+  top: -3.5rem;
+  right: 5rem;
+  height: 16rem;
+}
+
+@media (min-width: 0) and (max-width: 992px) { 
+  .poll-create-pic {
+    display: none;
+  }
+ }
+
 .poll-info {
   background-color: #F5F5F7;
   color: #272727;
@@ -87,12 +117,16 @@ h4 {
   border-radius: 20px;
 }
 
-.poll-info h1 {
+.poll-info-title {
+  font-size: 3rem;
   font-weight: 700;
+  display: block;
 }
 
-.poll-info h5 {
+.poll-info-desc {
+  font-size: 1.2rem;
   font-weight: 500;
+  display: block;
 }
 
 .poll-info-user {
@@ -100,30 +134,63 @@ h4 {
   display: block;
 }
 
+.poll-info-final-date {
+  padding-top: 2rem;
+  display: block;
+}
+
+.poll-info-final-date-star {
+  color: #FFBF00;
+}
+
 .poll-info-date {
   display: block;
 }
 
-.poll-info-cal-icon {
-  top: -5rem;
-  right: 1rem;
-  width: 17rem;
-  height: 17rem;
+.poll-info-pic {
   position: absolute;
-  color: #272727;
+  top: -3.5rem;
+  right: 5rem;
+  height: 16rem;
 }
+
+@media (min-width: 0) and (max-width: 992px) { 
+  .poll-info-pic {
+    display: none;
+  }
+ }
 
 .poll-table {
   margin-top: 2rem;
 }
 
-.empty-cell {
-  background-color:#FDFDFD;
+
+.poll-table-participants {
+  font-size: 1.1rem;
+  background-color:#181818;
+  color: #f0f0f0
+}
+
+.participant-cell {
+  background-color:#181818;
+  color: #f0f0f0;
 }
 
 .poll-table-top-row {
-  background-color:#272727;
+  background-color:#353535;
   color: #f0f0f0;
+}
+
+.slot-final-choice {
+  text-align: center;
+}
+
+.final-star {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: #FFBF00;
+  top: -1.5rem;
+  position: relative;
 }
 
 .datetime-weekday {
@@ -167,23 +234,10 @@ h4 {
 
 .poll-table thead tr th:first-child,
 .poll-table tbody tr td:first-child {
-  width: 12em;
-  min-width: 12em;
-  max-width: 12em;
+  width: 8em;
+  min-width: 8em;
+  max-width: 8em;
   word-break: break-all;
-}
-
-.slot-final-choice {
-  text-align: center;
-  background-color:#364DEF;
-}
-
-.final-star {
-  width: 1.7rem;
-  height: 1.7rem;
-  color: #FFBF00;
-  top: -1.5rem;
-  position: relative;
 }
 
 .slot-checked {
@@ -204,12 +258,8 @@ h4 {
 .poll-table-choose-text {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #272727;
-}
-
-.poll-table-participants {
-  font-size: 1.1rem;
-  color: #272727;
+  background-color:#364DEF;
+  color: #f0f0f0
 }
 
 .slot-checkbox-cell {

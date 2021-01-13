@@ -30,10 +30,10 @@ const MarkChoices = (props: {
 
   return (
     <tr>
-      <td>
+      <td className="poll-table-choose-text">
         <Form.Control
           type="text"
-          placeholder="Enter your name"
+          placeholder="Your name"
           required
           onChange={handleNameChange}
         />

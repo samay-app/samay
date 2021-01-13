@@ -1,9 +1,5 @@
 import { Badge } from "react-bootstrap";
-import {
-  Calendar2Fill,
-  CalendarRange,
-  PersonCircle,
-} from "react-bootstrap-icons";
+import { Calendar2Fill, PersonCircle, StarFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { RocketMeetPollFromDB } from "../models/poll";
@@ -20,8 +16,17 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
           <Badge pill variant={poll.open ? "success" : "secondary"}>
             {poll.open ? "Open" : "Closed"}
           </Badge>
-          <h1>{poll.title}</h1>
-          <h5>{poll.description}</h5>
+          <span className="poll-info-title">{poll.title}</span>
+          <span className="poll-info-desc">{poll.description}</span>
+          {poll.finalChoice && (
+            <span className="poll-info-final-date">
+              <StarFill className="poll-info-final-date-star" />{" "}
+              <b>
+                {dayjs(poll.finalChoice.start).format("llll")} -{" "}
+                {dayjs(poll.finalChoice.end).format("LT")}
+              </b>
+            </span>
+          )}
           <span className="poll-info-user">
             <PersonCircle /> <b>{decrypt(poll.encryptedEmailID)}</b>
           </span>
@@ -31,7 +36,11 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
           </span>
         </div>
         <div className="col-sm">
-          <CalendarRange className="poll-info-cal-icon" />
+          <img
+            src="/undraw_calendar_dutt.svg"
+            className="poll-info-pic"
+            alt="illustration"
+          />
         </div>
       </div>
     </div>
