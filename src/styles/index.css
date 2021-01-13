@@ -110,6 +110,18 @@ h4 {
   }
  }
 
+ .rat-TimeSlot_component {
+   background-color: #364DEF !important;
+ }
+
+ .rat-TimeSlot_title {
+  padding-top: 0.1rem !important;
+  text-align: center !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: #f0f0f0 !important;
+ }
+
 .poll-info {
   background-color: #F5F5F7;
   color: #272727;
