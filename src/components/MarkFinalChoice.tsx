@@ -18,9 +18,7 @@ const MarkFinalChoice = (props: {
 
   return (
     <tr>
-      <td>
-        <h5>Final option</h5>
-      </td>
+      <td className="poll-table-choose-text">Final option</td>
       {choices.map((choice) => (
         <td key={choice.start} className="slot-checkbox-final-cell">
           <Form.Check

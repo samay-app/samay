@@ -4,7 +4,7 @@ import Login from "./Login";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar bg="light" expand="lg" sticky="top">
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Navbar.Brand href="/">
         <img
           alt=""
@@ -13,16 +13,13 @@ const NavBar = (): JSX.Element => {
           height="35"
           className="d-inline-block align-top"
         />{" "}
-        Rocketmeet
+        RocketMeet
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Link href="/dashboard" passHref>
-            <Nav.Link>dashboard</Nav.Link>
-          </Link>
-          <Link href="/help" passHref>
-            <Nav.Link>help</Nav.Link>
+            <Nav.Link>Dashboard</Nav.Link>
           </Link>
         </Nav>
         <Nav className="justify-content-end">

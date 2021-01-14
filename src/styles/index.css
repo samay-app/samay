@@ -76,40 +76,238 @@ h4 {
   padding: 2rem 0;
 }
 
-.slot-checked {
-  background-color: #cdeaa1;
+.outer-container-new {
+  margin-top: 2rem;
+}
+
+.inner-container {
+  padding: 1rem 2rem;
+}
+
+.poll-create {
+  background-color: #F5F5F7;
+  color: #272727;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.poll-create-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.poll-create-form-title {
+  margin-top: 1rem;
+}
+
+.poll-create-pic {
+  position: absolute;
+  top: -3.5rem;
+  right: 5rem;
+  height: 16rem;
+}
+
+@media (min-width: 0) and (max-width: 992px) { 
+  .poll-create-pic {
+    display: none;
+  }
+ }
+
+ .rat-TimeSlot_component {
+   background-color: #364DEF !important;
+ }
+
+ .rat-TimeSlot_title {
+  padding-top: 0.1rem !important;
+  text-align: center !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: #f0f0f0 !important;
+ }
+
+.poll-info {
+  background-color: #F5F5F7;
+  color: #272727;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.poll-info-title {
+  font-size: 3rem;
+  font-weight: 700;
+  display: block;
+}
+
+.poll-info-desc {
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: block;
+}
+
+.poll-info-user {
+  padding-top: 2rem;
+  display: block;
+}
+
+.poll-info-final-date {
+  padding-top: 2rem;
+  display: block;
+}
+
+.poll-info-final-date-star {
+  color: #FFBF00;
+}
+
+.poll-info-date {
+  display: block;
+}
+
+.poll-info-pic {
+  position: absolute;
+  top: -3.5rem;
+  right: 5rem;
+  height: 16rem;
+}
+
+@media (min-width: 0) and (max-width: 992px) { 
+  .poll-info-pic {
+    display: none;
+  }
+ }
+
+.poll-table {
+  margin-top: 2rem;
+}
+
+
+.poll-table-participants {
+  font-size: 1.1rem;
+  background-color:#181818;
+  color: #f0f0f0
+}
+
+.participant-cell {
+  background-color:#181818;
+  color: #f0f0f0;
+}
+
+.poll-table-top-row {
+  background-color:#353535;
+  color: #f0f0f0;
+}
+
+.slot-final-choice {
   text-align: center;
 }
 
+.final-star {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: #FFBF00;
+  top: -1.5rem;
+  position: relative;
+}
+
+.datetime-weekday {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: -0.2em;
+}
+
+.datetime-day {
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: -0.2em;
+}
+
+.datetime-mon {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+}
+
+.datetime-time-1 {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: -0.2em;
+}
+
+.datetime-time-2 {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.poll-table thead tr th:first-child,
+.poll-table tbody tr td:first-child {
+  width: 8em;
+  min-width: 8em;
+  max-width: 8em;
+  word-break: break-all;
+}
+
+.slot-checked {
+  background-color: #e2fabf;
+  text-align: center;
+}
+
+.checked-option {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: green;
+}
+
 .slot-unchecked {
-  background-color: #fef9f9;
+  background-color: #fdfdfd;
+}
+
+.poll-table-choose-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color:#364DEF;
+  color: #f0f0f0
 }
 
 .slot-checkbox-cell {
-  background-color: #5da8fd;
+  background-color: #364DEF;
   text-align: center;
 }
 
 .slot-checkbox input[type="checkbox"] {
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .slot-checkbox-final-cell {
-  background-color: #ffbb12;
+  background-color: #364DEF;
   text-align: center;
 }
 
 .slot-checkbox input[type="radio"] {
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-.slot-final-chosen-cell {
-  background-color: #ffbb12;
-}
 .imp-star {
+  font-weight: 600;
   color: #ff0000;
+}
+
+.timezone-info-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+  color:#364DEF;
+  margin-top: 2rem;
 }
 
 /*.card {
@@ -150,11 +348,6 @@ a.ctl-button {
   margin-top: 30px;
 }
 
-.outer-container.poll.row {
-  margin: auto;
-  padding: inherit;
-  box-shadow: 1px 1px 20px 6px #f5f5f5;
-}
 .outer-container.share.row {
   margin: inherit;
   padding: inherit;
