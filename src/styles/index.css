@@ -310,9 +310,6 @@ h4 {
 .dashcard {
   min-height: 150px;
 }
-.dashcardtext {
-  min-height: auto !important;
-}
 
 a.ctl-button {
   margin: 10px;

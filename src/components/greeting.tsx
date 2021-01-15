@@ -10,7 +10,7 @@ const Greetings = (): JSX.Element => {
         <Card className="ctl">
           <Card.Body>
             <Row className="d-flex justify-content-center align-items-center py-1 pl-2 dashcard">
-              <Col className="col-xl-9 text-center dashcardtext">
+              <Col className="col-xl-9 text-center">
                 <h3>Find best time for everyone to meet. Launch a poll.</h3>
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
