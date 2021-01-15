@@ -35,18 +35,16 @@ a {
 
 .hero {
   background-image: url("/rocket-bg.svg");
-  height: 80vh;
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
+  height: 83vh;
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
 }
-@media (max-width: 600px) {
+@media (max-width: 920px) {
   .hero {
     background-size: contain;
-    height: 380px;
+    height: 100vw;
   }
 }
 
@@ -85,7 +83,7 @@ h4 {
 }
 
 .poll-create {
-  background-color: #F5F5F7;
+  background-color: #f5f5f7;
   color: #272727;
   padding: 2rem;
   border-radius: 20px;
@@ -108,26 +106,26 @@ h4 {
   height: 16rem;
 }
 
-@media (min-width: 0) and (max-width: 992px) { 
+@media (min-width: 0) and (max-width: 992px) {
   .poll-create-pic {
     display: none;
   }
- }
+}
 
- .rat-TimeSlot_component {
-   background-color: #364DEF !important;
- }
+.rat-TimeSlot_component {
+  background-color: #364def !important;
+}
 
- .rat-TimeSlot_title {
+.rat-TimeSlot_title {
   padding-top: 0.1rem !important;
   text-align: center !important;
   font-size: 0.8rem !important;
   font-weight: 600 !important;
   color: #f0f0f0 !important;
- }
+}
 
 .poll-info {
-  background-color: #F5F5F7;
+  background-color: #f5f5f7;
   color: #272727;
   padding: 2rem;
   border-radius: 20px;
@@ -156,7 +154,7 @@ h4 {
 }
 
 .poll-info-final-date-star {
-  color: #FFBF00;
+  color: #ffbf00;
 }
 
 .poll-info-date {
@@ -170,30 +168,29 @@ h4 {
   height: 16rem;
 }
 
-@media (min-width: 0) and (max-width: 992px) { 
+@media (min-width: 0) and (max-width: 992px) {
   .poll-info-pic {
     display: none;
   }
- }
+}
 
 .poll-table {
   margin-top: 2rem;
 }
 
-
 .poll-table-participants {
   font-size: 1.1rem;
-  background-color:#181818;
-  color: #f0f0f0
+  background-color: #181818;
+  color: #f0f0f0;
 }
 
 .participant-cell {
-  background-color:#181818;
+  background-color: #181818;
   color: #f0f0f0;
 }
 
 .poll-table-top-row {
-  background-color:#353535;
+  background-color: #353535;
   color: #f0f0f0;
 }
 
@@ -204,7 +201,7 @@ h4 {
 .final-star {
   width: 1.7rem;
   height: 1.7rem;
-  color: #FFBF00;
+  color: #ffbf00;
   top: -1.5rem;
   position: relative;
 }
@@ -274,12 +271,12 @@ h4 {
 .poll-table-choose-text {
   font-size: 1.2rem;
   font-weight: 600;
-  background-color:#364DEF;
-  color: #f0f0f0
+  background-color: #364def;
+  color: #f0f0f0;
 }
 
 .slot-checkbox-cell {
-  background-color: #364DEF;
+  background-color: #364def;
   text-align: center;
 }
 
@@ -289,7 +286,7 @@ h4 {
 }
 
 .slot-checkbox-final-cell {
-  background-color: #364DEF;
+  background-color: #364def;
   text-align: center;
 }
 
@@ -306,14 +303,16 @@ h4 {
 .timezone-info-icon {
   width: 1.3rem;
   height: 1.3rem;
-  color:#364DEF;
+  color: #364def;
   margin-top: 2rem;
 }
 
-/*.card {
-  border-radius: 0 !important;
-  border: 0 !important;
-}*/
+.dashcard {
+  min-height: 150px;
+}
+.dashcardtext {
+  min-height: auto !important;
+}
 
 a.ctl-button {
   margin: 10px;

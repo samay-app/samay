@@ -1,3 +1,4 @@
+import { relative } from "path";
 import React from "react";
 import { Button, Row, Col, Card } from "react-bootstrap";
 import PollsList from "./pollsList";
@@ -8,8 +9,8 @@ const Greetings = (): JSX.Element => {
       <div id="maingreeting" className="py-3 my-1 ">
         <Card className="ctl">
           <Card.Body>
-            <Row className="d-flex justify-content-center align-items-center py-1 pl-2">
-              <Col className="col-9 text-center">
+            <Row className="d-flex justify-content-center align-items-center py-1 pl-2 dashcard">
+              <Col className="col-xl-9 text-center dashcardtext">
                 <h3>Find best time for everyone to meet. Launch a poll.</h3>
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
