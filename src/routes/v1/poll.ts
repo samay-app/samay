@@ -6,7 +6,7 @@ const router: Router = express.Router();
 
 // All the APIs below are public APIs
 
-// get a specific poll with the id
+// get a specific poll by id
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
