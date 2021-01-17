@@ -1,5 +1,3 @@
-## What is RocketMeet?
-
 RocketMeet is a free and open source meeting scheduling app for quickly finding the best time for team meetings and one-on-ones. The meeting host creates a poll marked with their favorite times and shares the invite link with participants. They mark their favorite times after which the host decides the final time which works for everyone. Check out [rocketmeet.me](https://rocketmeet.me/)!.
 
 ## Community
