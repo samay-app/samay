@@ -1,4 +1,7 @@
-RocketMeet is a free and open source meeting scheduling app for quickly finding the best time for team meetings and one-on-ones. The meeting host creates a poll marked with their favorite times and shares the invite link with participants. They mark their favorite times after which the host decides the final time which works for everyone. Check out [rocketmeet.me](https://rocketmeet.me/)!.
+## RocketMeet-banner-with-logo-here
+<h3 align="center">
+  Quickly find the best time for team meetings and one-on-ones with <a href="https://rocketmeet.me/">RocketMeet</a>!
+</h3>
 
 ## Community
 
@@ -35,7 +38,7 @@ Make a copy of the .env.example file to .env
 ### Run
 
 ```bash
-$ npm dev
+$ npm run dev
 ```
 
 You will be able to access the API from http://localhost:5000
@@ -43,7 +46,7 @@ You will be able to access the API from http://localhost:5000
 ### Testing
 
 ```bash
-$ npm test
+$ npm run test
 ```
 
 ### Deployment
