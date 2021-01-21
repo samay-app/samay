@@ -32,7 +32,7 @@ $ npm install
 
 ### Setup
 
-Make a copy of the .env.example file to .env
+Make a copy of the .env.example file to .env and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account.
 
 ### Run
 
