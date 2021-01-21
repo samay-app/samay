@@ -32,7 +32,7 @@ $ npm install
 
 ### Setup
 
-Make a copy of the .env.local.example file to .env.local
+Make a copy of the .env.local.example file to .env.local and set the encryption variables.
 
 ### Run
 
