@@ -57,7 +57,6 @@ In your .env, change the `NODE_ENV` to `production` and set the `DB_HOST`, `DB_U
 
 Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-server/blob/main/CONTRIBUTING.md)!
 
-
 ## License
 
 RocketMeet is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-server/blob/main/LICENSE).
