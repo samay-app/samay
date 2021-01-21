@@ -1,45 +1,66 @@
-# RocketMeet-frontend
+## RocketMeet-client-banner-with-logo-here
+### Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
-- [Description](#description)
-- [Setup](#setup)
-- [Contributors](#contributors)
+[badges here]
 
-<a name="description"></a>
+## Community
 
-## Description
+Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
 
----
+## API Documentation
 
-Nextjs client application for RocketMeet, a smart scheduling tool for online conference calls. 
+You can find the complete API documentation [here](#).
 
-![](static/rocketmeet-landing.png)
+## One-click Vercel deployment
 
-<a name="setup"></a>
+[button here]
 
-## Build Setup
+## Getting Started
 
----
+### Prerequisites
+* `NodeJS v14`
+
+### Installation
 
 ```bash
-# Enter cloned directory and install dependencies
-$ npm i
+$ git clone https://github.com/RocketMeet/RocketMeet-client.git
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+$ cd RocketMeet-client
 
-# linting
-$ npx eslint . --ext .tsx
-
-# build for production and launch server
-$ npm run build
-$ npm start
+$ npm install
 ```
 
-<a name="contributors"></a>
+### Setup
 
-## Contributers
+Make a copy of the .env.local.example file to .env.local
 
----
+### Run
+
+```bash
+$ npm run dev
+```
+
+### Testing
+
+```bash
+$ npm run test
+```
+
+### Deployment
+
+In your .env, change the `NODE_ENV` to `production` and set the encryption variables.
+
+## Contributing
+
+Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-client/blob/main/CONTRIBUTING.md)!
+
+## License
+
+RocketMeet-client is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE).
+
+
+## Todo
+
 - Setup testing using jest
 
 - Api interface
@@ -53,4 +74,3 @@ $ npm start
 - Optimisations
 
 - Deploy to vercel 
-
