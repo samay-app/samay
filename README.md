@@ -59,4 +59,4 @@ Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-serv
 
 ## License
 
-RocketMeet is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-server/blob/main/LICENSE).
+RocketMeet-server is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-server/blob/main/LICENSE).
