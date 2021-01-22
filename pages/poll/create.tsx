@@ -96,42 +96,44 @@ const Create = (): JSX.Element => {
         }}
       >
         <Jumbotron className="poll-create">
-          <Form.Group
-            as={Row}
-            controlId="formPlainTextTitle"
-            className="poll-create-form-title"
-          >
-            <Col sm="10">
-              <Form.Control
-                className="rm-form-text"
-                type="text"
-                placeholder="Enter the title *"
-                required
-                onChange={handleTitleChange}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} controlId="formPlainTextDescription">
-            <Col sm="10">
-              <Form.Control
-                className="rm-form-text"
-                type="text"
-                placeholder="Enter the description"
-                onChange={handleDescriptionChange}
-              />
-            </Col>
-          </Form.Group>
-          <OverlayTrigger
-            placement="right"
-            overlay={
-              <Tooltip id="timezone-info">
-                The times are displayed in your time zone. Participants will see
-                the times in their time zone.
-              </Tooltip>
-            }
-          >
-            <InfoCircleFill className="timezone-info-icon" />
-          </OverlayTrigger>
+          <div className="poll-create-content">
+            <Form.Group
+              as={Row}
+              controlId="formPlainTextTitle"
+              className="poll-create-form-title"
+            >
+              <Col>
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Enter the title *"
+                  required
+                  onChange={handleTitleChange}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} controlId="formPlainTextDescription">
+              <Col>
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Enter the description"
+                  onChange={handleDescriptionChange}
+                />
+              </Col>
+            </Form.Group>
+            <OverlayTrigger
+              placement="right"
+              overlay={
+                <Tooltip id="timezone-info">
+                  The times are displayed in your time zone. Participants will
+                  see the times in their time zone.
+                </Tooltip>
+              }
+            >
+              <InfoCircleFill className="timezone-info-icon" />
+            </OverlayTrigger>
+          </div>
         </Jumbotron>
         <Container className="outer-container" fluid>
           <Row className="inner-container">
@@ -142,8 +144,7 @@ const Create = (): JSX.Element => {
                 height={500}
               />
               <Button
-                className="mt-4 float-right"
-                variant="primary"
+                className="rm-primary-button create-poll-btn"
                 onClick={handleSubmit}
                 disabled={
                   !pollTitle || !pollChoices || pollChoices?.length === 0

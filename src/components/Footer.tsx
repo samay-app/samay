@@ -4,10 +4,10 @@ const Footer = (): JSX.Element => {
   return (
     <footer className="rm-footer">
       <GithubCorner
-        href="https://github.com/username/repo"
+        href="https://github.com/RocketMeet"
         direction="left"
         octoColor="#000000"
-        bannerColor="#ffffff"
+        bannerColor="transparent"
         className="octocat"
       />
     </footer>

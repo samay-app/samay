@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -14,7 +14,7 @@ import {
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers/helpers";
-import ShareInvite from "../../src/components/ShareInvite";
+import ShareInvite from "../../src/components/shareinvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
@@ -39,10 +39,12 @@ const Poll = (props: {
 
   return (
     <Layout>
+      <Jumbotron className="poll-info">
+        <PollInfo poll={pollFromDB} />
+      </Jumbotron>
       <Container className="outer-container" fluid>
         <Row className="inner-container">
           <Col>
-            <PollInfo poll={pollFromDB} />
             <PollTable
               pollFromDB={pollFromDB}
               pollid={pollid}

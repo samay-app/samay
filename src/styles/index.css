@@ -169,8 +169,15 @@ h4 {
 }
 
 .poll-create-content {
-  margin: auto;
-  width: 100%;
+  padding-left: 2rem;
+  padding-right: 3rem;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .poll-create-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .poll-create-form-title {
@@ -186,7 +193,7 @@ h4 {
 
 .rm-form-text {
   background-color: #101010 !important;
-  color: #d3d3d3 !important;
+  color: #e0e0e0 !important;
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;
@@ -205,7 +212,7 @@ h4 {
 }
 
 .rat-TimeSlot_component {
-  background-color: #364def !important;
+  background-color: #101010 !important;
 }
 
 .rat-TimeSlot_title {
@@ -216,21 +223,52 @@ h4 {
   color: #f0f0f0 !important;
 }
 
+@media (min-width: 0) and (max-width: 992px) {
+  .rat-TimeSlot_title {
+    padding-top: 0 !important;
+    font-size: 0.5rem !important;
+  }
+}
+
+.rat-DayHeader_day {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.rat-Ruler_inner {
+  font-size: 0.8rem;
+}
+
+.rat-AvailableTimes_home {
+  background-color: #101010 !important;
+}
+
+.create-poll-btn {
+  margin-top: 4rem;
+  float: right;
+}
+
 .poll-info {
-  background-color: #f5f5f7;
-  color: #272727;
-  padding: 2rem;
-  border-radius: 20px;
+  background-color: #101010 !important;
+  color: #e0e0e0;
+  padding: 3rem !important;
+  border-radius: 0 !important;
+}
+
+.poll-info-content {
+  padding-left: 2rem;
+  padding-right: 3rem;
+  max-width: 80%;
 }
 
 .poll-info-title {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   display: block;
 }
 
 .poll-info-desc {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   display: block;
 }
@@ -240,6 +278,25 @@ h4 {
   display: block;
 }
 
+.poll-info-date {
+  display: block;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .poll-info-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .poll-info-title {
+    font-size: 3rem;
+  }
+
+  .poll-info-desc {
+    font-size: 1.4rem;
+  }
+}
+
 .poll-info-final-date {
   padding-top: 2rem;
   display: block;
@@ -247,23 +304,6 @@ h4 {
 
 .poll-info-final-date-star {
   color: #ffbf00;
-}
-
-.poll-info-date {
-  display: block;
-}
-
-.poll-info-pic {
-  position: absolute;
-  top: -3.5rem;
-  right: 5rem;
-  height: 16rem;
-}
-
-@media (min-width: 0) and (max-width: 992px) {
-  .poll-info-pic {
-    display: none;
-  }
 }
 
 .poll-table {
