@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Cabin', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
+  height: 100%;
 }
 
 * {
@@ -19,5 +20,5 @@ body {
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #cccccc; 
+  background: #cccccc;
 }

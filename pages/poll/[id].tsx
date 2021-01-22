@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import Layout from "../../src/components/layout";
+import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/PollInfo";
 import PollTable from "../../src/components/PollTable";
 import {
@@ -14,7 +14,7 @@ import {
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers/helpers";
-import ShareInvite from "../../src/components/shareinvite";
+import ShareInvite from "../../src/components/ShareInvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
@@ -39,7 +39,7 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Container className="outer-container-new" fluid>
+      <Container className="outer-container" fluid>
         <Row className="inner-container">
           <Col>
             <PollInfo poll={pollFromDB} />

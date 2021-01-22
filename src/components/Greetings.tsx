@@ -1,4 +1,3 @@
-import { relative } from "path";
 import React from "react";
 import { Button, Row, Col, Card } from "react-bootstrap";
 import PollsList from "./pollsList";
