@@ -1,4 +1,4 @@
-## RocketMeet-server-banner-with-logo-here
+![RocketMeet](https://raw.githubusercontent.com/RocketMeet/RocketMeet-server/main/server.png?token=AAUS5NEJDWCZIMWSBYOVKSDABJ2QI)
 ### Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
 [badges here]
