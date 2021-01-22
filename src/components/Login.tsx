@@ -18,7 +18,7 @@ const Login = (): JSX.Element => {
       const user = auth.currentUser;
       // token generated
       const token = user && (await user.getIdToken());
-      dispatch(login(user.displayName, user.email, token));
+      user && dispatch(login(user.displayName, user.email, token));
       Router.push(`/dashboard`);
     });
   };
