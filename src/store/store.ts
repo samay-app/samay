@@ -4,10 +4,8 @@ import thunkMiddleware from "redux-thunk";
 import authReducer from "./auth/reducer";
 import { authState } from "./auth/state";
 
-//COMBINING ALL REDUCERS
 const combinedReducer = combineReducers({
   authReducer,
-  // OTHER REDUCERS WILL BE ADDED HERE
 });
 
 export type RootState = ReturnType<typeof combinedReducer>
@@ -46,7 +44,9 @@ const makeStore = ({ isServer }: any) => {
       bindMiddleware([thunkMiddleware])
     ); // Creating the store again
 
-    store.__persistor = persistStore(store);
+    // store.__persistor = persistStore(store); 
+    // Commenting this hack and creating persistor manually in _app.tsx
+    // Will use it case of SSR issues.
     // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
     // TODO : Add type to `__persistor`, if anyone has any idea, ;_; please try here.
 
