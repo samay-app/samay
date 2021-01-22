@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { MailerAPI } from "../api/mailer"
 import { MailerArgs } from "@models/poll";
+import { RootState } from "src/store/store";
 
 const Invitation = (props: { pollid: string }): JSX.Element => {
   const { pollid } = props;

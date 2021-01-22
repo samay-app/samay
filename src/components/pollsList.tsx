@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { encrypt } from "../helpers/helpers";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
 import { RocketMeetPollFromDB } from "@models/poll";
+import { RootState } from "src/store/store";
 
 const PollsList = (): JSX.Element => {
-  const user = useSelector((state) => state.authReducer.username);
+  const user = useSelector((state: RootState) => state.authReducer.username);
   const userid = encrypt(user);
   const [pollList, setPollList] = useState([]);
 
@@ -52,11 +53,11 @@ const PollsList = (): JSX.Element => {
             <Allpolls />
           </CardColumns>
         ) : (
-          <p>
-            You haven't created any polls yet. Start one by clicking the new
-            poll button above
-          </p>
-        )}
+            <p>
+              You haven't created any polls yet. Start one by clicking the new
+              poll button above
+            </p>
+          )}
       </div>
     </>
   );
