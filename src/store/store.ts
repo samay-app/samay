@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, Action, Store } from "redux";
 import { MakeStore, createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
 import authReducer from "./auth/reducer";
@@ -20,7 +20,7 @@ const bindMiddleware = (middleware: any) => {
   return applyMiddleware(...middleware);
 };
 
-const makeStore = ({ isServer }: any) => {
+const makeStore: MakeStore<{}, Action<any>> = ({ isServer }: any) => {
   if (isServer) {
     //If it's on server side, create a store
     return createStore(combinedReducer, bindMiddleware([thunkMiddleware]));
@@ -39,7 +39,7 @@ const makeStore = ({ isServer }: any) => {
 
     const persistedReducer = persistReducer(persistConfig, combinedReducer); // Create a new reducer with our existing reducer
 
-    const store = createStore(
+    const store: Store<{}, Action<any>> = createStore(
       persistedReducer,
       bindMiddleware([thunkMiddleware])
     ); // Creating the store again
