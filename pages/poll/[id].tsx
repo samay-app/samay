@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import Layout from "../../src/components/layout";
+import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/PollInfo";
 import PollTable from "../../src/components/PollTable";
 import {
@@ -39,10 +39,12 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Container className="outer-container-new" fluid>
+      <Jumbotron className="poll-info">
+        <PollInfo poll={pollFromDB} />
+      </Jumbotron>
+      <Container className="outer-container" fluid>
         <Row className="inner-container">
           <Col>
-            <PollInfo poll={pollFromDB} />
             <PollTable
               pollFromDB={pollFromDB}
               pollid={pollid}

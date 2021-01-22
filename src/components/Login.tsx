@@ -31,16 +31,14 @@ const Login = (): JSX.Element => {
     <div>
       {!isLoggedIn ? (
         <Button
-          variant="outline-light"
-          className="login-button"
+          className="rm-primary-button-outline-small"
           onClick={googleLogin}
         >
           Log in with Google
         </Button>
       ) : (
         <Button
-          variant="outline-light"
-          className="login-button"
+          className="rm-primary-button-outline-small"
           onClick={googleLogout}
         >
           Logout
