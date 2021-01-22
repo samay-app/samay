@@ -7,7 +7,7 @@ import { RootState } from "src/store/store";
 
 // private route for logged in users only
 const privateAuthWrapper = (Component: NextPage) => {
-  const Auth = (props) => {
+  const Auth = (props: any) => {
     const isLoggedIn = useSelector((state: RootState) => state.authReducer.isLoggedIn);
 
     useEffect(() => {
