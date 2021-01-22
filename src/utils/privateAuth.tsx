@@ -6,8 +6,8 @@ import Router from "next/router";
 import { RootState } from "src/store/store";
 
 // private route for logged in users only
-const privateAuthWrapper = (Component: NextPage): JSX.Element => {
-  const Auth = (props: JSX.Element): JSX.Element => {
+const privateAuthWrapper = (Component: NextPage) => {
+  const Auth = (props) => {
     const isLoggedIn = useSelector((state: RootState) => state.authReducer.isLoggedIn);
 
     useEffect(() => {
