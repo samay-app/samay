@@ -1,26 +1,44 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Layout from "../src/components/layout";
+import { useSelector } from "react-redux";
+import Login from "../src/components/Login";
+import Layout from "../src/components/Layout";
 
 const Home = (): JSX.Element => {
+  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+
   return (
     <Layout>
-      <Row>
-        <Col className="col-12 col-xl-6 d-flex flex-column justify-content-center">
-          <div className="text-left my-5 ">
-            <h2>It shouldn’t take 30 emails to schedule a 30-minute meeting</h2>
-            <h3>Launch polls, schedule smart</h3>
-            <Button
-              className="ctl-button"
-              variant="outline-primary"
-              size="lg"
-              href="/poll/create"
-            >
-              Create a poll
-            </Button>
-          </div>
-        </Col>
-        <Col className="hero col-12 col-xl-6" />
-      </Row>
+      <Container className="outer-container" fluid>
+        <Row className="inner-container">
+          <Col>
+            <div className="text-left my-5">
+              <h2 className="hero-title">
+                <span className="hero-line">
+                  Scheduling meetings{" "}
+                  <span className="hero-strikethrough">is boring</span>
+                </span>
+                <span className="hero-line">has never been faster</span>
+              </h2>
+              <h3 className="hero-desc">
+                <span className="hero-line">
+                  Quickly find the best time for team meetings and one-on-ones
+                  with
+                </span>
+                <span className="hero-line">
+                  RocketMeet — a free and open source meeting scheduling app
+                </span>
+              </h3>
+              {isLoggedIn ? (
+                <Button className="rm-primary-button" href="/poll/create">
+                  Create a Poll
+                </Button>
+              ) : (
+                <Login />
+              )}
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </Layout>
   );
 };

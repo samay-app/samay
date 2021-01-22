@@ -1,4 +1,4 @@
-import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Badge, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   Calendar2Fill,
   InfoCircleFill,
@@ -15,49 +15,37 @@ dayjs.extend(localizedFormat);
 const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
   const { poll } = props;
   return (
-    <div className="justify-content-center poll-info">
-      <div className="row">
-        <div className="col-sm">
-          <Badge pill variant={poll.open ? "success" : "secondary"}>
-            {poll.open ? "Open" : "Closed"}
-          </Badge>
-          <span className="poll-info-title">{poll.title}</span>
-          <span className="poll-info-desc">{poll.description}</span>
-          {poll.finalChoice && (
-            <span className="poll-info-final-date">
-              <StarFill className="poll-info-final-date-star" />{" "}
-              <b>
-                {dayjs(poll.finalChoice.start).format("llll")} -{" "}
-                {dayjs(poll.finalChoice.end).format("LT")}
-              </b>
-            </span>
-          )}
-          <span className="poll-info-user">
-            <PersonCircle /> <b>{decrypt(poll.encryptedEmailID)}</b>
-          </span>
-          <span className="poll-info-date">
-            <Calendar2Fill />{" "}
-            <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
-          </span>
+    <div className="poll-info-content">
+      <Badge pill variant={poll.open ? "success" : "secondary"}>
+        {poll.open ? "Open" : "Closed"}
+      </Badge>
+      <span className="poll-info-title">{poll.title}</span>
+      <span className="poll-info-desc">{poll.description}</span>
+      {poll.finalChoice && (
+        <span className="poll-info-final-date">
+          <StarFill className="poll-info-final-date-star" />{" "}
+          <b>
+            {dayjs(poll.finalChoice.start).format("llll")} -{" "}
+            {dayjs(poll.finalChoice.end).format("LT")}
+          </b>
+        </span>
+      )}
+      <span className="poll-info-user">
+        <PersonCircle /> <b>{decrypt(poll.encryptedEmailID)}</b>
+      </span>
+      <span className="poll-info-date">
+        <Calendar2Fill /> <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
+      </span>
 
-          <OverlayTrigger
-            overlay={
-              <Tooltip id="timezone-info">
-                The times are displayed in your time zone.
-              </Tooltip>
-            }
-          >
-            <InfoCircleFill className="timezone-info-icon" />
-          </OverlayTrigger>
-        </div>
-        <div className="col-sm">
-          <img
-            src="/undraw_calendar_dutt.svg"
-            className="poll-info-pic"
-            alt="illustration"
-          />
-        </div>
-      </div>
+      <OverlayTrigger
+        overlay={
+          <Tooltip id="timezone-info">
+            The times are displayed in your time zone.
+          </Tooltip>
+        }
+      >
+        <InfoCircleFill className="timezone-info-icon" />
+      </OverlayTrigger>
     </div>
   );
 };

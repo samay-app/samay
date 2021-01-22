@@ -6,13 +6,14 @@ import {
   Form,
   Row,
   Col,
+  Jumbotron,
   Button,
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
 import { InfoCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
-import Layout from "../../src/components/layout";
+import Layout from "../../src/components/Layout";
 import { encrypt } from "../../src/helpers/helpers";
 import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
@@ -89,75 +90,61 @@ const Create = (): JSX.Element => {
 
   return (
     <Layout>
-      <Container className="outer-container-new" fluid>
-        <Row className="inner-container">
-          <Col>
-            <Form
-              onSubmit={(e): void => {
-                e.preventDefault();
-              }}
+      <Form
+        onSubmit={(e): void => {
+          e.preventDefault();
+        }}
+      >
+        <Jumbotron className="poll-create">
+          <div className="poll-create-content">
+            <Form.Group
+              as={Row}
+              controlId="formPlainTextTitle"
+              className="poll-create-form-title"
             >
-              <div className="justify-content-center poll-create">
-                <div className="row">
-                  <div className="col-sm">
-                    <span className="poll-create-title">Create a poll</span>
-                    <Form.Group
-                      as={Row}
-                      controlId="formPlainTextTitle"
-                      className="poll-create-form-title"
-                    >
-                      <Form.Label column sm="2">
-                        Title<span className="imp-star">{" *"}</span>
-                      </Form.Label>
-                      <Col sm="10">
-                        <Form.Control
-                          type="text"
-                          placeholder="Enter the title"
-                          required
-                          onChange={handleTitleChange}
-                        />
-                      </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlainTextDescription">
-                      <Form.Label column sm="2">
-                        Description
-                      </Form.Label>
-                      <Col sm="10">
-                        <Form.Control
-                          type="text"
-                          placeholder="Enter the description"
-                          onChange={handleDescriptionChange}
-                        />
-                      </Col>
-                    </Form.Group>
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip id="timezone-info">
-                          The times are displayed in your time zone.
-                          Participants will see the times in their time zone.
-                        </Tooltip>
-                      }
-                    >
-                      <InfoCircleFill className="timezone-info-icon" />
-                    </OverlayTrigger>
-                  </div>
-                  <div className="col-sm">
-                    <img
-                      src="/undraw_schedule_pnbk.svg"
-                      className="poll-create-pic"
-                      alt="illustration"
-                    />
-                  </div>
-                </div>
-              </div>
+              <Col>
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Enter the title *"
+                  required
+                  onChange={handleTitleChange}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} controlId="formPlainTextDescription">
+              <Col>
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Enter the description"
+                  onChange={handleDescriptionChange}
+                />
+              </Col>
+            </Form.Group>
+            <OverlayTrigger
+              placement="right"
+              overlay={
+                <Tooltip id="timezone-info">
+                  The times are displayed in your time zone. Participants will
+                  see the times in their time zone.
+                </Tooltip>
+              }
+            >
+              <InfoCircleFill className="timezone-info-icon" />
+            </OverlayTrigger>
+          </div>
+        </Jumbotron>
+        <Container className="outer-container" fluid>
+          <Row className="inner-container">
+            <Col>
               <AvailableTimes
                 weekStartsOn="monday"
                 onChange={onChoicesChange}
                 height={500}
               />
               <Button
-                className="mt-4 float-right"
-                variant="primary"
+                className="rm-primary-button create-poll-btn"
                 onClick={handleSubmit}
                 disabled={
                   !pollTitle || !pollChoices || pollChoices?.length === 0
@@ -165,10 +152,10 @@ const Create = (): JSX.Element => {
               >
                 Create Poll
               </Button>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+      </Form>
     </Layout>
   );
 };
