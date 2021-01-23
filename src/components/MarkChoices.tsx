@@ -39,7 +39,7 @@ const MarkChoices = (props: {
         />
       </td>
       {choices.map((choice) => (
-        <td key={choice.start} className="slot-checkbox-cell">
+        <td key={choice.start} className="slot-checkbox-row">
           <Form.Check
             name="choices"
             data-value={JSON.stringify(choice)}

@@ -37,20 +37,18 @@ const PollTable = (props: {
   } = props;
   return (
     <>
-      <Table bordered responsive className="poll-table">
+      <Table responsive className="poll-table">
         <thead>
           <tr className="poll-table-top-row">
-            <th className="participant-cell">
-              {pollFromDB.votes ? pollFromDB.votes.length : "No"} participants
-            </th>
+            <th className="participant-cell"> </th>
             {sortedChoices.map((choice) => (
               <th
                 key={choice.start}
                 className={
                   choice.start === pollFromDB.finalChoice?.start &&
                   choice.end === pollFromDB.finalChoice?.end
-                    ? "slot-final-choice"
-                    : ""
+                    ? "slot-time slot-final-choice"
+                    : "slot-time"
                 }
               >
                 {choice.start === pollFromDB.finalChoice?.start &&

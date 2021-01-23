@@ -100,6 +100,11 @@ a {
   transition: 0.3s;
 }
 
+.rm-primary-button[disabled] {
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+}
+
 .rm-primary-button-outline-small {
   transition: 0.3s;
   background-color: #ffffff !important;
@@ -149,6 +154,8 @@ h4 {
 
 .inner-container {
   padding: 1rem 4rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -166,6 +173,7 @@ h4 {
   color: #ffffff;
   padding: 3rem !important;
   border-radius: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .poll-create-content {
@@ -174,21 +182,14 @@ h4 {
 }
 
 @media (min-width: 0) and (max-width: 992px) {
+  .poll-create {
+    padding: 1rem !important;
+  }
+
   .poll-create-content {
     padding-left: 0;
     padding-right: 0;
   }
-}
-
-.poll-create-form-title {
-  margin-top: 1rem;
-}
-
-.timezone-info-icon {
-  width: 1.3rem;
-  height: 1.3rem;
-  color: #e0e0e0;
-  margin-top: 2rem;
 }
 
 .rm-form-text {
@@ -205,9 +206,40 @@ h4 {
   border-bottom: 3px solid #d3d3d3 !important;
 }
 
+.rm-form-desc {
+  background-color: #101010 !important;
+  color: #e0e0e0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 3px solid #6c757d !important;
+  font-size: 1.5rem !important;
+}
+
+.rm-form-desc:focus {
+  border-bottom: 3px solid #d3d3d3 !important;
+}
+
+.timezone-info-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: #e0e0e0;
+  margin-top: 2rem;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
+  .rm-form-desc {
+    font-size: 1rem !important;
+  }
+
   .rm-form-text {
     font-size: 1.5rem !important;
+  }
+
+  .timezone-info-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0;
   }
 }
 
@@ -253,12 +285,12 @@ h4 {
   color: #e0e0e0;
   padding: 3rem !important;
   border-radius: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .poll-info-content {
   padding-left: 2rem;
   padding-right: 3rem;
-  max-width: 80%;
 }
 
 .poll-info-title {
@@ -283,17 +315,21 @@ h4 {
 }
 
 @media (min-width: 0) and (max-width: 992px) {
+  .poll-info {
+    padding: 2rem !important;
+  }
+
   .poll-info-content {
     padding-left: 0;
     padding-right: 0;
   }
 
   .poll-info-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .poll-info-desc {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -307,23 +343,28 @@ h4 {
 }
 
 .poll-table {
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 .poll-table-participants {
   font-size: 1.1rem;
-  background-color: #181818;
-  color: #f0f0f0;
+  font-weight: 600;
+  border-top: 0 !important;
 }
 
 .participant-cell {
-  background-color: #181818;
-  color: #f0f0f0;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
 }
 
 .poll-table-top-row {
-  background-color: #353535;
-  color: #f0f0f0;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.slot-time {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
 }
 
 .slot-final-choice {
@@ -377,6 +418,16 @@ h4 {
   font-weight: 500;
 }
 
+@media (min-width: 0) and (max-width: 992px) {
+  .datetime-time-1 {
+    font-size: 0.6rem;
+  }
+
+  .datetime-time-2 {
+    font-size: 0.6rem;
+  }
+}
+
 .poll-table thead tr th:first-child,
 .poll-table tbody tr td:first-child {
   width: 8em;
@@ -386,29 +437,40 @@ h4 {
 }
 
 .slot-checked {
-  background-color: #e2fabf;
+  border-top: 0 !important;
+  background-color: #000000;
   text-align: center;
 }
 
 .checked-option {
-  width: 1.7rem;
-  height: 1.7rem;
-  color: green;
+  width: 2rem;
+  height: 2rem;
+  color: #37f713;
 }
 
 .slot-unchecked {
-  background-color: #fdfdfd;
+  border-top: 0 !important;
+  background-image: linear-gradient(
+    135deg,
+    #000000 12.5%,
+    #ffffff 12.5%,
+    #ffffff 50%,
+    #000000 50%,
+    #000000 62.5%,
+    #ffffff 62.5%,
+    #ffffff 100%
+  );
+  background-size: 5.66px 5.66px;
 }
 
 .poll-table-choose-text {
   font-size: 1.2rem;
-  font-weight: 600;
-  background-color: #364def;
-  color: #f0f0f0;
+  font-weight: 600 !important;
+  border-top: 0 !important;
 }
 
-.slot-checkbox-cell {
-  background-color: #364def;
+.slot-checkbox-row {
+  border-top: 0 !important;
   text-align: center;
 }
 
@@ -418,7 +480,7 @@ h4 {
 }
 
 .slot-checkbox-final-cell {
-  background-color: #364def;
+  background-color: #424242;
   text-align: center;
 }
 

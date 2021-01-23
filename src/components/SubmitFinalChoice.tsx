@@ -39,8 +39,7 @@ const SubmitFinalChoice = (props: {
 
   return (
     <Button
-      variant="primary"
-      className="mt-4 float-right"
+      className="mt-4 float-right rm-primary-button"
       type="submit"
       disabled={!finalChoice}
       onClick={handleSubmit}

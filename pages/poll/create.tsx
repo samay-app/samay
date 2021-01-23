@@ -97,11 +97,7 @@ const Create = (): JSX.Element => {
       >
         <Jumbotron className="poll-create">
           <div className="poll-create-content">
-            <Form.Group
-              as={Row}
-              controlId="formPlainTextTitle"
-              className="poll-create-form-title"
-            >
+            <Form.Group as={Row} controlId="formPlainTextTitle">
               <Col>
                 <Form.Control
                   className="rm-form-text"
@@ -115,7 +111,7 @@ const Create = (): JSX.Element => {
             <Form.Group as={Row} controlId="formPlainTextDescription">
               <Col>
                 <Form.Control
-                  className="rm-form-text"
+                  className="rm-form-desc"
                   type="text"
                   placeholder="Enter the description"
                   onChange={handleDescriptionChange}
