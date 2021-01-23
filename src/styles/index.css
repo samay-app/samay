@@ -105,6 +105,26 @@ a {
   pointer-events: none !important;
 }
 
+.rm-primary-button-small {
+  background-color: #2b2b2b !important;
+  transition: 0.3s;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  border-radius: 1rem !important;
+  border-color: #2b2b2b !important;
+  padding: 0.6rem 1rem 0.6rem 1rem !important;
+}
+
+.rm-primary-button-small:hover {
+  background-color: #000000 !important;
+  transition: 0.3s;
+}
+
+.rm-primary-button-small[disabled] {
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+}
+
 .rm-primary-button-outline-small {
   transition: 0.3s;
   background-color: #ffffff !important;
@@ -176,14 +196,21 @@ h4 {
   margin-bottom: 0 !important;
 }
 
+.jumbo-col-create {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: #101010 !important;
+  height: 100vh !important;
+}
+
 .poll-create-content {
   padding-left: 2rem;
   padding-right: 3rem;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
-  .poll-create {
-    padding: 1rem !important;
+  .jumbo-col-create {
+    height: auto !important;
   }
 
   .poll-create-content {
@@ -199,6 +226,7 @@ h4 {
   border-left: none !important;
   border-right: none !important;
   border-bottom: 3px solid #6c757d !important;
+  border-radius: 0 !important;
   font-size: 3rem !important;
 }
 
@@ -213,6 +241,7 @@ h4 {
   border-left: none !important;
   border-right: none !important;
   border-bottom: 3px solid #6c757d !important;
+  border-radius: 0 !important;
   font-size: 1.5rem !important;
 }
 
@@ -239,7 +268,7 @@ h4 {
   .timezone-info-icon {
     width: 1rem;
     height: 1rem;
-    margin-top: 0;
+    margin-top: 1rem;
   }
 }
 
@@ -257,8 +286,29 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .rat-TimeSlot_title {
-    padding-top: 0 !important;
+    padding-top: 0.3rem !important;
     font-size: 0.5rem !important;
+    line-height: 0.4rem !important;
+  }
+
+  .create-col {
+    text-align: center !important;
+    justify-content: center !important;
+    align-content: center !important;
+  }
+
+  .poll-info-div {
+    text-align: center !important;
+    justify-content: center !important;
+    align-content: center !important;
+  }
+
+  .create-poll-btn {
+    float: none !important;
+  }
+
+  .mark-options-btn {
+    float: none !important;
   }
 }
 
@@ -276,13 +326,43 @@ h4 {
 }
 
 .create-poll-btn {
-  margin-top: 4rem;
+  margin-top: 3rem;
   float: right;
+}
+
+.mark-options-btn {
+  margin-top: 3rem;
+  float: right;
+}
+
+.jumbo-row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.jumbo-col-info {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: #101010 !important;
+  height: 100vh !important;
+}
+
+.jumbo-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .poll-info {
   background-color: #101010 !important;
   color: #e0e0e0;
+  padding: 3rem !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.poll-table-jumbo {
+  background-color: #ffffff !important;
+  color: #000000;
   padding: 3rem !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
@@ -294,7 +374,7 @@ h4 {
 }
 
 .poll-info-title {
-  font-size: 4rem;
+  font-size: 3.7rem;
   font-weight: 700;
   display: block;
 }
@@ -315,6 +395,10 @@ h4 {
 }
 
 @media (min-width: 0) and (max-width: 992px) {
+  .jumbo-col-info {
+    height: auto !important;
+  }
+
   .poll-info {
     padding: 2rem !important;
   }
@@ -350,11 +434,14 @@ h4 {
   font-size: 1.1rem;
   font-weight: 600;
   border-top: 0 !important;
+  vertical-align: middle !important;
+  width: 5rem !important;
 }
 
 .participant-cell {
   border-top: 0 !important;
   border-bottom: 0 !important;
+  width: 5rem !important;
 }
 
 .poll-table-top-row {
@@ -365,6 +452,7 @@ h4 {
 .slot-time {
   border-top: 0 !important;
   border-bottom: 0 !important;
+  min-width: 7rem !important;
 }
 
 .slot-final-choice {
@@ -375,8 +463,7 @@ h4 {
   width: 1.7rem;
   height: 1.7rem;
   color: #ffbf00;
-  top: -1.5rem;
-  position: relative;
+  margin-bottom: 1rem;
 }
 
 .datetime-weekday {
@@ -419,6 +506,10 @@ h4 {
 }
 
 @media (min-width: 0) and (max-width: 992px) {
+  .slot-time {
+    min-width: 4.5rem !important;
+  }
+
   .datetime-time-1 {
     font-size: 0.6rem;
   }
@@ -428,18 +519,19 @@ h4 {
   }
 }
 
-.poll-table thead tr th:first-child,
-.poll-table tbody tr td:first-child {
-  width: 8em;
-  min-width: 8em;
-  max-width: 8em;
-  word-break: break-all;
+.mark-choice-name {
+  color: #000000 !important;
+  border: 2px solid #6c757d !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem !important;
 }
 
 .slot-checked {
-  border-top: 0 !important;
   background-color: #000000;
   text-align: center;
+  border-top: 0.5rem solid #ffffff !important;
+  border-left: 0.5rem solid #ffffff !important;
+  width: 7rem !important;
 }
 
 .checked-option {
@@ -449,29 +541,41 @@ h4 {
 }
 
 .slot-unchecked {
-  border-top: 0 !important;
+  border-top: 0.5rem solid #ffffff !important;
+  border-left: 0.5rem solid #ffffff !important;
   background-image: linear-gradient(
     135deg,
-    #000000 12.5%,
-    #ffffff 12.5%,
+    #ffffff 30%,
+    #c7c7c7 30%,
+    #c7c7c7 50%,
     #ffffff 50%,
-    #000000 50%,
-    #000000 62.5%,
-    #ffffff 62.5%,
-    #ffffff 100%
+    #ffffff 80%,
+    #c7c7c7 80%,
+    #c7c7c7 100%
   );
-  background-size: 5.66px 5.66px;
+  background-size: 7.07px 7.07px;
+  width: 7rem !important;
 }
 
 .poll-table-choose-text {
   font-size: 1.2rem;
   font-weight: 600 !important;
+  text-decoration: underline;
   border-top: 0 !important;
+  min-width: 9rem !important;
 }
 
-.slot-checkbox-row {
+.poll-table-choose-textbox {
+  font-size: 1.2rem;
+  font-weight: 600 !important;
+  border-top: 0 !important;
+  min-width: 8rem !important;
+}
+
+.slot-checkbox-cell {
   border-top: 0 !important;
   text-align: center;
+  width: 7rem !important;
 }
 
 .slot-checkbox input[type="checkbox"] {
@@ -480,7 +584,8 @@ h4 {
 }
 
 .slot-checkbox-final-cell {
-  background-color: #424242;
+  background-color: #ffffff;
+  border-top: 0 !important;
   text-align: center;
 }
 

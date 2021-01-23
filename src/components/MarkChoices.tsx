@@ -30,16 +30,17 @@ const MarkChoices = (props: {
 
   return (
     <tr>
-      <td className="poll-table-choose-text">
+      <td className="poll-table-choose-textbox">
         <Form.Control
+          className="mark-choice-name"
           type="text"
-          placeholder="Your name"
+          placeholder="Name"
           required
           onChange={handleNameChange}
         />
       </td>
       {choices.map((choice) => (
-        <td key={choice.start} className="slot-checkbox-row">
+        <td key={choice.start} className="slot-checkbox-cell">
           <Form.Check
             name="choices"
             data-value={JSON.stringify(choice)}

@@ -36,7 +36,7 @@ const PollTable = (props: {
     loggedInUserEmailID,
   } = props;
   return (
-    <>
+    <div className="poll-info-div">
       <Table responsive className="poll-table">
         <thead>
           <tr className="poll-table-top-row">
@@ -103,7 +103,7 @@ const PollTable = (props: {
       {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
         <SubmitFinalChoice finalChoice={finalChoice} pollid={pollid} />
       )}
-    </>
+    </div>
   );
 };
 
