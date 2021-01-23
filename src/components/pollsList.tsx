@@ -25,13 +25,9 @@ const PollsList = (): JSX.Element => {
   const Allpolls = (): any => {
     return pollList.map((item: RocketMeetPollFromDB) => (
       <Card bg="dark" text="white" className="p-4" key={item._id}>
-        <Card.Title className="ml-2">
+        <Card.Title className="d-flex flex-row justify-content-between">
           <span className="card-title">{item.title}</span>
-          <Badge
-            className="d-inline"
-            variant={item.open ? "success" : "danger"}
-            className="ml-1"
-          >
+          <Badge variant={item.open ? "success" : "danger"}>
             {item.open ? "open" : "closed"}
           </Badge>
         </Card.Title>

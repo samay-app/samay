@@ -557,3 +557,13 @@ h4 {
   font-size: 1rem;
   font-weight: 400;
 }
+.badge {
+  height: 28px;
+}
+.bg-dark:hover {
+  background-color: #000000 !important;
+  transform: scale(101%);
+  transition: all 0.5s;
+  -webkit-box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
+}
