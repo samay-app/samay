@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
       <Head>
         <title>RocketMeet</title>
       </Head>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column root-container">
         <NavBar />
         <main>{children}</main>
         <Footer />

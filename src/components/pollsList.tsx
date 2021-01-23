@@ -24,15 +24,19 @@ const PollsList = (): JSX.Element => {
 
   const Allpolls = (): any => {
     return pollList.map((item: RocketMeetPollFromDB) => (
-      <Card border="dark" className="p-2" key={item._id}>
-        <Card.Title className="text-center">
-          {item.title}
-          <Badge variant={item.open ? "success" : "danger"} className="ml-1">
+      <Card bg="dark" text="white" className="p-4" key={item._id}>
+        <Card.Title className="ml-2">
+          <span className="card-title">{item.title}</span>
+          <Badge
+            className="d-inline"
+            variant={item.open ? "success" : "danger"}
+            className="ml-1"
+          >
             {item.open ? "open" : "closed"}
           </Badge>
         </Card.Title>
-        <Card.Body className="text-center">
-          {item.description}
+        <Card.Body className="text-justify">
+          <span className="card-bdy">{item.description}</span>
           <a href={`/poll/${item._id}`} className="stretched-link"></a>
         </Card.Body>
       </Card>
@@ -42,11 +46,11 @@ const PollsList = (): JSX.Element => {
     <>
       <Row className="mt-2">
         <Col>
-          <h4>Your Polls </h4>
+          <h3 class="y-polls"> Your Polls </h3>
         </Col>
       </Row>
 
-      <div className="my-2">
+      <div className="mb-2 mt-3">
         {pollList && pollList.length > 0 ? (
           <CardColumns>
             <Allpolls />
