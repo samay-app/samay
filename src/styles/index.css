@@ -1,3 +1,6 @@
+.root-container {
+  min-height: 100vh;
+}
 main {
   flex: 1;
   justify-content: center;
@@ -665,4 +668,69 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 2rem;
+  background-color: #000000;
+}
+.user-info {
+  text-align: left;
+}
+
+.profile-user {
+  font-weight: 500 !important;
+  font-size: 2rem;
+}
+
+.dash-container {
+  margin: 0 5px;
+}
+.yp {
+  margin: 0 10px;
+}
+
+@media (min-width: 600px) {
+  .dash-container {
+    margin: 30px 60px;
+  }
+}
+.y-polls {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+@media screen and (max-width: 601px) {
+  .show-dsk {
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .show-mob {
+    display: none;
+  }
+}
+
+.card-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+.card-bdy {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.badge {
+  height: 28px;
+}
+.bg-dark:hover {
+  background-color: #000000 !important;
+  transform: scale(101%);
+  transition: all 0.5s;
+  -webkit-box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
+  box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
 }

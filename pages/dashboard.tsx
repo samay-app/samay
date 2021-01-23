@@ -1,19 +1,17 @@
-import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import Greetings from "../src/components/Greetings";
 import Layout from "../src/components/Layout";
 import withprivateAuth from "../src/utils/privateAuth";
-import { RootState } from "src/store/store";
+import PollsList from "../src/components/pollsList";
 
 const Dashboard = (): JSX.Element => {
-  const displayName = useSelector((state: RootState) => state.authReducer.displayName);
-
   return (
     <Layout>
-      <Container className="" fluid>
-        <h2> Welcome {displayName}</h2>
+      <div className="dash-container">
         <Greetings />
-      </Container>
+      </div>
+      <div className="dash-container yp">
+        <PollsList />
+      </div>
     </Layout>
   );
 };
