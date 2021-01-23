@@ -34,13 +34,12 @@ const SubmitChoices = (props: {
   return (
     <div>
       <Button
-        variant="primary"
-        className="mt-4 float-right"
+        className="mt-4 mb-4 rm-primary-button-small mark-options-btn"
         type="submit"
         disabled={!newVote.name || newVote.choices.length === 0}
         onClick={handleSubmit}
       >
-        Mark your option
+        Mark your availability
       </Button>
     </div>
   );

@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import Router from "next/router";
 import dynamic from "next/dynamic";
 import {
-  Container,
   Form,
   Row,
   Col,
@@ -95,49 +94,45 @@ const Create = (): JSX.Element => {
           e.preventDefault();
         }}
       >
-        <Jumbotron className="poll-create">
-          <div className="poll-create-content">
-            <Form.Group
-              as={Row}
-              controlId="formPlainTextTitle"
-              className="poll-create-form-title"
-            >
-              <Col>
-                <Form.Control
-                  className="rm-form-text"
-                  type="text"
-                  placeholder="Enter the title *"
-                  required
-                  onChange={handleTitleChange}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formPlainTextDescription">
-              <Col>
-                <Form.Control
-                  className="rm-form-text"
-                  type="text"
-                  placeholder="Enter the description"
-                  onChange={handleDescriptionChange}
-                />
-              </Col>
-            </Form.Group>
-            <OverlayTrigger
-              placement="right"
-              overlay={
-                <Tooltip id="timezone-info">
-                  The times are displayed in your time zone. Participants will
-                  see the times in their time zone.
-                </Tooltip>
-              }
-            >
-              <InfoCircleFill className="timezone-info-icon" />
-            </OverlayTrigger>
-          </div>
-        </Jumbotron>
-        <Container className="outer-container" fluid>
-          <Row className="inner-container">
-            <Col>
+        <Row className="jumbo-row">
+          <Col className="jumbo-col-create col-lg-4">
+            <Jumbotron className="poll-create">
+              <Form.Group as={Row} controlId="formPlainTextTitle">
+                <Col>
+                  <Form.Control
+                    className="rm-form-text"
+                    type="text"
+                    placeholder="Enter the title *"
+                    required
+                    onChange={handleTitleChange}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlainTextDescription">
+                <Col>
+                  <Form.Control
+                    className="rm-form-desc"
+                    type="text"
+                    placeholder="Enter the description"
+                    onChange={handleDescriptionChange}
+                  />
+                </Col>
+              </Form.Group>
+              <OverlayTrigger
+                placement="right"
+                overlay={
+                  <Tooltip id="timezone-info">
+                    The times are displayed in your time zone. Participants will
+                    see the times in their time zone.
+                  </Tooltip>
+                }
+              >
+                <InfoCircleFill className="timezone-info-icon" />
+              </OverlayTrigger>
+            </Jumbotron>
+          </Col>
+          <Col className="jumbo-col create-col col-lg-8">
+            <Jumbotron className="poll-table-jumbo">
               <AvailableTimes
                 weekStartsOn="monday"
                 onChange={onChoicesChange}
@@ -152,9 +147,9 @@ const Create = (): JSX.Element => {
               >
                 Create Poll
               </Button>
-            </Col>
-          </Row>
-        </Container>
+            </Jumbotron>
+          </Col>
+        </Row>
       </Form>
     </Layout>
   );

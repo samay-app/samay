@@ -1,4 +1,4 @@
-import { Badge, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   Calendar2Fill,
   InfoCircleFill,
@@ -23,7 +23,7 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
       <span className="poll-info-desc">{poll.description}</span>
       {poll.finalChoice && (
         <span className="poll-info-final-date">
-          <StarFill className="poll-info-final-date-star" />{" "}
+          <StarFill className="poll-info-final-date-star mr-2" />{" "}
           <b>
             {dayjs(poll.finalChoice.start).format("llll")} -{" "}
             {dayjs(poll.finalChoice.end).format("LT")}
@@ -31,13 +31,16 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
         </span>
       )}
       <span className="poll-info-user">
-        <PersonCircle /> <b>{decrypt(poll.encryptedEmailID)}</b>
+        <PersonCircle className="mr-2" />{" "}
+        <b>{decrypt(poll.encryptedEmailID)}</b>
       </span>
       <span className="poll-info-date">
-        <Calendar2Fill /> <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
+        <Calendar2Fill className="mr-2" />{" "}
+        <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
       </span>
 
       <OverlayTrigger
+        placement="right"
         overlay={
           <Tooltip id="timezone-info">
             The times are displayed in your time zone.

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Container, Row, Col, Jumbotron } from "react-bootstrap";
+import { Row, Col, Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -39,12 +39,17 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Jumbotron className="poll-info">
-        <PollInfo poll={pollFromDB} />
-      </Jumbotron>
-      <Container className="outer-container" fluid>
-        <Row className="inner-container">
-          <Col>
+      <Row className="jumbo-row">
+        <Col className="jumbo-col-info col-md-4">
+          <Jumbotron className="poll-info">
+            <PollInfo poll={pollFromDB} />
+            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+              <ShareInvite pollid={pollid} />
+            )}
+          </Jumbotron>
+        </Col>
+        <Col className="jumbo-col col-md-8">
+          <Jumbotron className="poll-table-jumbo">
             <PollTable
               pollFromDB={pollFromDB}
               pollid={pollid}
@@ -56,14 +61,9 @@ const Poll = (props: {
               pollCreatorEmailID={pollCreatorEmailID}
               loggedInUserEmailID={loggedInUserEmailID}
             />
-          </Col>
-        </Row>
-        {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-          <Row className="outer-container share justify-content-center">
-            <ShareInvite pollid={pollid} />
-          </Row>
-        )}
-      </Container>
+          </Jumbotron>
+        </Col>
+      </Row>
     </Layout>
   );
 };
