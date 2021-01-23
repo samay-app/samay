@@ -43,7 +43,7 @@ const PollsList = (): JSX.Element => {
     <>
       <Row className="mt-2">
         <Col>
-          <h3 class="y-polls"> Your Polls </h3>
+          <h3 className="y-polls"> Your Polls </h3>
         </Col>
       </Row>
 
@@ -53,11 +53,11 @@ const PollsList = (): JSX.Element => {
             <Allpolls />
           </CardColumns>
         ) : (
-            <p>
-              You haven't created any polls yet. Start one by clicking the new
-              poll button above
-            </p>
-          )}
+          <p>
+            You haven't created any polls yet. Start one by clicking the new
+            poll button above
+          </p>
+        )}
       </div>
     </>
   );

@@ -536,7 +536,7 @@ h4 {
 }
 .y-polls {
   font-weight: 700;
-  font-size: medium;
+  font-size: 1.25rem;
 }
 @media screen and (max-width: 601px) {
   .show-dsk {
