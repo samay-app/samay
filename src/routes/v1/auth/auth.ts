@@ -1,18 +1,13 @@
 // const firebase = require("firebase-admin");
- import express, { Request, Response, NextFunction, Application } from 'express';
-import cors from 'cors';
+import { Request, Response, NextFunction } from 'express';
 import admin from './firebase';
-// need to add the firebase admin sdk here
 
 declare module 'express-serve-static-core' {
   interface Request {
     currentUser: string | any
   }
 }
-const app: Application = express();
-app.use(cors({ origin: true }));
-
-async function auth(req: Request, res: Response, next: NextFunction):Promise<void> {
+const auth = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
    const headerToken = req.headers?.authorization;
   if (headerToken?.startsWith('Bearer ')) {
     const idToken = headerToken.split('Bearer ')[1];
@@ -28,6 +23,6 @@ async function auth(req: Request, res: Response, next: NextFunction):Promise<voi
     res.json({ msg: 'Token does not exist ' });
   }
   next();
-}
+};
 
 export default auth;

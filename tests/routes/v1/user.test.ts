@@ -3,9 +3,9 @@ import dbHandler from '../../db-handler';
 import app from '../../../src/app';
 import isChoicePresentInPollChoices from '../../../src/helpers';
 import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
+import admin from '../../../src/routes/v1/auth/firebase';
 
 const request: SuperTest<Test> = supertest(app);
-
 const testPoll = {
   title: 'testPoll',
   encryptedEmailID: 'encryptedEmailID',
@@ -16,7 +16,6 @@ const testPoll = {
     { start: 1633671000000, end: 1633674600000 },
   ],
 };
-
 let pollID: string;
 
 const createTestPoll = async () => {
@@ -42,16 +41,29 @@ afterAll(async () => dbHandler.closeDatabase());
 
 // Tests
 
+// token
+const uid = 'RocketMeetUid';
+
+const Token = admin
+  .auth()
+  .createCustomToken(uid)
+  .then((customToken) => {
+  return customToken;
+  });
+
 describe('create poll', () => {
     it('Should save poll to db', async (done) => {
-      const res = await request.post('/v1/user/poll').send({
-        title: 'OccupyMarsMeet',
-        encryptedEmailID: 'encryptedEmailID',
-        choices: [
-          { start: 1633577400000, end: 1633581000000 },
-          { start: 1633588200000, end: 1633591800000 },
-        ],
-      });
+      const res = await request
+                              .post('/v1/user/poll')
+                              .set('Authorization', `bearer ${Token}`)
+                              .send({
+                                title: 'OccupyMarsMeet',
+                                encryptedEmailID: 'encryptedEmailID',
+                                choices: [
+                                  { start: 1633577400000, end: 1633581000000 },
+                                  { start: 1633588200000, end: 1633591800000 },
+                                ],
+                              });
       expect(res.body.title).toEqual('OccupyMarsMeet');
       expect(isChoicePresentInPollChoices(
         { start: 1633577400000, end: 1633581000000 },
@@ -76,9 +88,12 @@ describe('create poll', () => {
     });
 
     it('Should allow poll to be edited', async (done) => {
-      const editPollRes = await request.put(`/v1/user/poll/${pollID}`).send({
-        choices: [{ start: 1633671000042, end: 1633674600042 }],
-      });
+      const editPollRes = await request
+                                      .put(`/v1/user/poll/${pollID}`)
+                                      .set('Authorization', `bearer ${Token}`)
+                                      .send({
+                                         choices: [{ start: 1633671000042, end: 1633674600042 }],
+                                       });
       expect(isChoicePresentInPollChoices(
         { start: 1633671000042, end: 1633674600042 },
         editPollRes.body.choices,
@@ -96,14 +111,18 @@ describe('create poll', () => {
 
 describe('get poll', () => {
   it('Should return poll by emailID', async (done) => {
-    const getPollRes = await request.get(`/v1/user/${testPoll.encryptedEmailID}`);
+    const getPollRes = await request
+                                  .get(`/v1/user/${testPoll.encryptedEmailID}`)
+                                  .set('Authorization', `bearer ${Token}`);
     expect(getPollRes.body[0].title).toEqual('testPoll');
 
     done();
   });
 
   it('Should return nothing if user does not exist', async (done) => {
-    const getPollRes = await request.get('/v1/poll/user/haha/haha');
+    const getPollRes = await request
+                                    .get('/v1/poll/user/haha/haha')
+                                    .set('Authorization', `bearer ${Token}`);
 
     expect(getPollRes.body.message).toEqual(undefined);
     done();
@@ -112,7 +131,9 @@ describe('get poll', () => {
 
 describe('delete poll', () => {
   it('Should delete poll from db', async (done) => {
-    const deletePollRes = await request.delete(`/v1/user/poll/${pollID}`);
+    const deletePollRes = await request
+                                      .delete(`/v1/user/poll/${pollID}`)
+                                      .set('Authorization', `bearer ${Token}`);
     expect(deletePollRes.body.title).toEqual(testPoll.title);
 
     const getPollFirstTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
@@ -122,7 +143,9 @@ describe('delete poll', () => {
 
   it('Should throw err if there is no poll to delete', async (done) => {
     const someIdWhichDoesntExist = '5fe141353477a0591da0c98a';
-    const deletePollRes = await request.delete(`/v1/user/poll/${someIdWhichDoesntExist}`);
+    const deletePollRes = await request
+                                      .delete(`/v1/user/poll/${someIdWhichDoesntExist}`)
+                                      .set('Authorization', `bearer ${Token}`);
 
     expect(deletePollRes.body.message).toEqual('Poll does not exist');
     done();
