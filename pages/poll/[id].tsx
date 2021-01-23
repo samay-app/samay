@@ -69,7 +69,10 @@ const Poll = (props: {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const pollid = context.params.id;
+  var pollid = null;
+  if (context.params) {
+    pollid = context.params.id;
+  }
   const res = await fetch(`http://localhost:5000/v1/poll/${pollid}`);
   const { status } = res;
   const pollFromDB = await res.json();

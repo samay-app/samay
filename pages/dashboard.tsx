@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import Greetings from "../src/components/Greetings";
 import Layout from "../src/components/Layout";
 import withprivateAuth from "../src/utils/privateAuth";

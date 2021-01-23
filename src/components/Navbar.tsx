@@ -2,9 +2,10 @@ import Link from "next/link";
 import { Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Login from "./Login";
+import { RootState } from "src/store/store";
 
 const NavBar = (): JSX.Element => {
-  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+  const isLoggedIn = useSelector((state: RootState) => state.authReducer.isLoggedIn);
 
   return (
     <Navbar className="rm-navbar" variant="light" expand="lg">
@@ -24,8 +25,8 @@ const NavBar = (): JSX.Element => {
               <Nav.Link className="rm-nav-link">Dashboard</Nav.Link>
             </Link>
           ) : (
-            " "
-          )}
+              " "
+            )}
           <Login />
         </Nav>
       </Navbar.Collapse>

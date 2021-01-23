@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import { auth, firebase } from "./Firebase";
 import { login, logout } from "../store/auth/action";
+import { RootState } from "src/store/store";
 
 const Login = (): JSX.Element => {
-  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+  const isLoggedIn = useSelector((state: RootState) => state.authReducer.isLoggedIn);
   const dispatch = useDispatch();
 
   const googleLogin = async (): Promise<void> => {
@@ -17,7 +18,7 @@ const Login = (): JSX.Element => {
       const user = auth.currentUser;
       // token generated
       const token = user && (await user.getIdToken());
-      dispatch(login(user.displayName, user.email, token));
+      user && dispatch(login({ displayName: user.displayName, username: user.email, token }));
       Router.push(`/dashboard`);
     });
   };
@@ -37,13 +38,13 @@ const Login = (): JSX.Element => {
           Log in with Google
         </Button>
       ) : (
-        <Button
-          className="rm-primary-button-outline-small"
-          onClick={googleLogout}
-        >
-          Logout
-        </Button>
-      )}
+          <Button
+            className="rm-primary-button-outline-small"
+            onClick={googleLogout}
+          >
+            Logout
+          </Button>
+        )}
     </div>
   );
 };
