@@ -2,8 +2,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyDi8gy5XMUNVOvStG2kw8yZDR-ZW-5KE3o",
-  authDomain: "rocketauth-d71f0.firebaseapp.com",
+  apiKey: "AIzaSyD5KqdURtfBQRrKdtUziFJZVRbeBKLqBCw",
+  authDomain: "rocketmeet-15a48.firebaseapp.com",
 };
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
