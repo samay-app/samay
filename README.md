@@ -1,11 +1,12 @@
 ![RocketMeet](/client.png)
+
 ### Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
 [badges here]
 
 ## Community
 
-Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
+Come say hello at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
 
 ## API Documentation
 
@@ -18,7 +19,8 @@ You can find the complete API documentation [here](#).
 ## Getting Started
 
 ### Prerequisites
-* `NodeJS v14`
+
+- `NodeJS v14`
 
 ### Installation
 
@@ -58,7 +60,6 @@ Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-clie
 
 RocketMeet-client is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE).
 
-
 ## Todo
 
 - Setup testing using jest
@@ -69,8 +70,8 @@ RocketMeet-client is distributed under the [MIT License](https://github.com/Rock
 
 - Auth modal component, manage auth state with context api
 
-- Create-panel, Share-invite, Dashboard components 
+- Create-panel, Share-invite, Dashboard components
 
 - Optimisations
 
-- Deploy to vercel 
+- Deploy to vercel
