@@ -18,7 +18,7 @@ const Invitation = (props: {
   onChangeF(arg: boolean): void;
 }): JSX.Element => {
   const { pollid } = props;
-  const pollurl = `http://localhost:3000/poll/${pollid}`; /* This should be replaced */
+  const pollurl = `https://rocketmeet.me/poll/${pollid}`; /* This should be replaced */
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
