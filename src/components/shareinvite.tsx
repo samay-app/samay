@@ -3,7 +3,6 @@ import {
   InputGroup,
   Button,
   Popover,
-  Toast,
   OverlayTrigger,
 } from "react-bootstrap";
 import copy from "copy-to-clipboard";
@@ -13,7 +12,11 @@ import { MailerArgs } from "../models/poll";
 import { RootState } from "../store/store";
 import { MailerAPI } from "../api/mailer";
 
-const Invitation = (props: { pollid: string }): JSX.Element => {
+const Invitation = (props: {
+  pollid: string;
+  onChangeS(arg: boolean): void;
+  onChangeF(arg: boolean): void;
+}): JSX.Element => {
   const { pollid } = props;
   const pollurl = `http://localhost:3000/poll/${pollid}`; /* This should be replaced */
   const loggedInUserEmailID = useSelector(
@@ -88,15 +91,15 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
     };
     const status = await MailerAPI.sendInvite(mailerArgs);
     if (status) {
-      alert("Successfully send invites");
+      props.onChangeS(true);
     } else {
-      alert("Internal Server Error");
+      props.onChangeF(true);
     }
   };
 
   return (
     <div
-      className="d-flex flex-column p-4 m-1 border"
+      className="d-flex flex-column p-4 m-1 mt-4 border"
       id="share"
       style={{ width: "90%", maxWidth: "500px" }}
     >
@@ -134,7 +137,7 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
             onChange={handleChange}
             onPaste={handlePaste}
           />
-          <Button className="my-2" onClick={handleSubmit}>
+          <Button className="my-2" variant="light" onClick={handleSubmit}>
             Invite
           </Button>
         </Form.Group>
@@ -146,7 +149,7 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
             <Form.Control type="text" readOnly defaultValue={pollurl} />
             <InputGroup.Append>
               <OverlayTrigger trigger="click" placement="top" overlay={popover}>
-                <Button variant="outline-secondary" onClick={handleCopy}>
+                <Button variant="light" onClick={handleCopy}>
                   copy
                 </Button>
               </OverlayTrigger>

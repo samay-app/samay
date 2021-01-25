@@ -642,6 +642,7 @@ h4 {
 
 .tag-item {
   background-color: #d4d5d6;
+  color: #000000;
   display: inline-block;
   font-size: 14px;
   font-weight: 300;
@@ -733,4 +734,11 @@ h4 {
   transition: all 0.5s;
   -webkit-box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
   box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
+}
+.alert-corner {
+  position: fixed;
+  bottom: 1px;
+  right: 5px;
+  max-height: 200px;
+  width: 400px;
 }
