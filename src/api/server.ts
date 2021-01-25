@@ -1,17 +1,18 @@
 import { Choice, RocketMeetPoll, Vote } from "@models/poll";
 
 class serverAPI {
-    userID: string;
-    token: string;
+    // userID: string;
+    // token: string;
     headers: Headers | string[][] | Record<string, string> | undefined;
-    authHeaders: Headers | string[][] | Record<string, string> | undefined;
-    localURL: string;
-    productionURL: string;
-    URL: string;
+    URL: string | undefined;
 
     constructor() {
-        this.userID = "UserIDfromStore"
-        this.token = "tokenfromStore"; // Figure out a way to access store
+        // this.userID = "UserIDfromStore"
+        // this.token = "tokenfromStore"; // Figure out a way to access store
+        // https://github.com/kirill-konshin/next-redux-wrapper/issues/214#issuecomment-680273330
+
+        this.URL = process.env.NEXT_PUBLIC_SERVER_URL;
+    }
 
     httpMethod = async (payload: any, endpoint: string, reqMethod: string, token: string) => {
         this.headers = {
