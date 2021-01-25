@@ -29,7 +29,6 @@ const Poll = (props: {
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
-  const token = useSelector((state: RootState) => state.authReducer.token)
   const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
     (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );

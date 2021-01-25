@@ -33,7 +33,7 @@ const Create = (): JSX.Element => {
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
-
+  const token = useSelector((state: RootState) => state.authReducer.token)
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setTitle(value);
@@ -65,7 +65,10 @@ const Create = (): JSX.Element => {
         encryptedEmailID,
         choices: pollChoices,
       };
-      const createPollResponse = await ServerAPI.createPoll(poll);
+      const createPollResponse = await ServerAPI.createPoll({
+        poll,
+        token
+      });
       if (createPollResponse.statusCode === 201) {
         Router.push(`/poll/${createPollResponse.data._id}`);
       } else {
@@ -73,40 +76,6 @@ const Create = (): JSX.Element => {
       }
     }
   }
-  /*
-  const handleSubmit = (): void => {
-    if (pollTitle && pollChoices && pollChoices?.length > 0) {
-      const encryptedEmailID = encrypt(loggedInUserEmailID);
-      const poll: RocketMeetPoll = {
-        title: pollTitle,
-        description: pollDescription,
-        encryptedEmailID,
-        choices: pollChoices,
-      };
-      const payload = JSON.stringify(poll);
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: payload,
-      };
-      fetch(`https://rocketmeet.herokuapp.com/v1/user/poll`, requestOptions)
-        .then((res) => {
-          if (res.status === 201) {
-            res.json().then((data) => {
-              Router.push(`/poll/${data._id}`);
-            });
-          } else {
-            console.log("Poll creation failed! Please try again");
-          }
-        })
-        .catch((err) => console.log(err));
-    }
-  };
-  */
-
 
   return (
     <Layout>
