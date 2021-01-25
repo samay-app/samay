@@ -62,7 +62,7 @@ class serverAPI {
         const { poll, token } = pollArgs;
         const payload = JSON.stringify(poll);
         const endpoint = `${this.URL}/user/poll`;
-        return await this.httpMethod(payload, endpoint, "POST", token);
+        return await this.httpMethod(endpoint, "POST", token, payload);
     }
 
     markChoices = async (voteArgs: {
@@ -73,7 +73,7 @@ class serverAPI {
         const { newVote, pollid, token } = voteArgs;
         const payload = JSON.stringify(newVote);
         const endpoint = `${this.URL}/poll/${pollid}`;
-        return await this.httpMethod(payload, endpoint, "PUT", token);
+        return await this.httpMethod(endpoint, "PUT", token, payload);
     }
 
     markFinalChoice = async (voteArgs: {
@@ -84,7 +84,7 @@ class serverAPI {
         const { finalChoice, pollid, token } = voteArgs;
         const payload = JSON.stringify(finalChoice);
         const endpoint = `${this.URL}/user/poll/${pollid}`;
-        return await this.httpMethod(payload, endpoint, "PUT", token);
+        return await this.httpMethod(endpoint, "PUT", token, payload);
     }
 }
 
