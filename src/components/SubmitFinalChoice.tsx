@@ -1,13 +1,16 @@
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import Router from "next/router";
 import { Choice } from "../models/poll";
 import { ServerAPI } from "src/api/server"
+import { RootState } from "src/store/store";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
   pollid: string;
 }): JSX.Element => {
   const { finalChoice, pollid } = props;
+  const token = useSelector((state: RootState) => state.authReducer.token);
 
   const handleSubmit = async (): Promise<void> => {
     const markFinalChoice = {
@@ -16,7 +19,8 @@ const SubmitFinalChoice = (props: {
     };
     const voterArgs = {
       finalChoice: markFinalChoice,
-      pollid: pollid
+      pollid,
+      token
     }
     const submitFinalChoiceResponse = await ServerAPI.markFinalChoice(voterArgs);
     if (submitFinalChoiceResponse.statusCode === 201) {
