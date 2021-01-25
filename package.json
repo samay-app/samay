@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
-    "start": "node build/server.js",  
+    "start": "node build/server.js",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles ./tests",
     "dev": "npm run build && LOG_LEVEL=debug npm run start",
     "lint": "eslint . --ext .ts",
@@ -26,6 +26,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dayjs": "^1.10.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
