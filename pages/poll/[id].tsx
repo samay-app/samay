@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Row, Col, Jumbotron } from "react-bootstrap";
+import { Row, Col, Jumbotron, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -36,6 +36,15 @@ const Poll = (props: {
     choices: [],
   });
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
+  const [showPopS, setShowPopS] = useState<boolean>(false);
+  const [showPopF, setShowPopF] = useState<boolean>(false);
+
+  const handleChangeS = (newValS: boolean): void => {
+    setShowPopS(newValS);
+  };
+  const handleChangeF = (newValF: boolean): void => {
+    setShowPopF(newValF);
+  };
 
   return (
     <Layout>
@@ -44,7 +53,11 @@ const Poll = (props: {
           <Jumbotron className="poll-info">
             <PollInfo poll={pollFromDB} />
             {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-              <ShareInvite pollid={pollid} />
+              <ShareInvite
+                pollid={pollid}
+                onChangeS={handleChangeS}
+                onChangeF={handleChangeF}
+              />
             )}
           </Jumbotron>
         </Col>
@@ -64,6 +77,24 @@ const Poll = (props: {
           </Jumbotron>
         </Col>
       </Row>
+      <div className="alert-corner">
+        <Alert
+          variant="success"
+          show={showPopS}
+          onClose={() => setShowPopS(false)}
+          dismissible
+        >
+          <Alert.Heading>Successfully sent mails</Alert.Heading>
+        </Alert>
+        <Alert
+          variant="danger"
+          show={showPopF}
+          onClose={() => setShowPopF(false)}
+          dismissible
+        >
+          <Alert.Heading>Mails not sent</Alert.Heading>
+        </Alert>
+      </div>
     </Layout>
   );
 };
