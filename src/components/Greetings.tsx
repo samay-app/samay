@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Button, Row, Col, Card } from "react-bootstrap";
+import { RootState } from "src/store/store";
 
 const Greetings = (): JSX.Element => {
-  const displayName = useSelector((state) => state.authReducer.displayName);
-  const displayMail = useSelector((state) => state.authReducer.username);
+  const displayName = useSelector((state: RootState) => state.authReducer.displayName);
+  const displayMail = useSelector((state: RootState) => state.authReducer.username);
   return (
     <div id="maingreeting" className="py-3 my-1 ">
       <Row className="py-2">
