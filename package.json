@@ -4,9 +4,9 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
-    "start": "npm run build && npm run serve",
-    "serve": "node build/server.js",
+    "start": "node build/server.js",  
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles ./tests",
+    "dev": "npm run build && LOG_LEVEL=debug npm run start",
     "lint": "eslint . --ext .ts",
     "tsc": "tsc",
     "build": "tsc --project tsconfig-build.json",
@@ -31,9 +31,7 @@
     "express-pino-logger": "^5.0.0",
     "nodemailer": "^6.4.17",
     "pino": "^6.8.0",
-    "typescript": "^4.1.2",
-    "@types/express-pino-logger": "^4.0.2",
-    "@types/nodemailer": "^6.4.0"
+    "typescript": "^4.1.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.8",
