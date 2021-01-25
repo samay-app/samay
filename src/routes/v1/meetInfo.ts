@@ -30,7 +30,7 @@ router.post('/', async (req: Request, res: Response) => {
       from: data.senderName,
       to: receiverID,
       subject: 'RocketMeet',
-      html: `<p>Hey there, ${data.senderName} has invited you to a RocketMeet poll, <b> visit rocketmeet.me/${data.pollID}</p>`,
+      html: `<p>Hey there, ${data.senderName} has invited you to a RocketMeet poll, <b> visit rocketmeet.me/poll/${data.pollID}</p>`,
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
