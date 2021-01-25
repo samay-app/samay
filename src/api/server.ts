@@ -14,7 +14,12 @@ class serverAPI {
         this.URL = process.env.NEXT_PUBLIC_SERVER_URL;
     }
 
-    httpMethod = async (payload: any, endpoint: string, reqMethod: string, token: string) => {
+    httpMethod = async (
+        endpoint: string,
+        reqMethod: string,
+        token: string = "",
+        payload: string = "",
+    ) => {
         this.headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
@@ -36,13 +41,18 @@ class serverAPI {
         };
     }
 
+    getPoll = async (pollid: any) => {
+        const endpoint = `${this.URL}/poll/${pollid}`;
+        return await this.httpMethod(endpoint, "GET")
+    }
+
     getPolls = async (pollArgs: {
         userID: string;
         token: string;
     }) => {
         const { userID, token } = pollArgs;
         const endpoint = `${this.URL}/user/${userID}`;
-        return await this.httpMethod(null, endpoint, "GET", token);
+        return await this.httpMethod(endpoint, "GET", token);
     }
 
     createPoll = async (pollArgs: {
