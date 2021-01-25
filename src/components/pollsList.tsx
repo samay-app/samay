@@ -4,6 +4,7 @@ import { encrypt } from "../helpers/helpers";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
 import { RocketMeetPollFromDB } from "@models/poll";
 import { RootState } from "src/store/store";
+import { ServerAPI } from "src/api/server"
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
@@ -12,9 +13,8 @@ const PollsList = (): JSX.Element => {
 
   const getData = async () => {
     try {
-      const response = await fetch(`https://rocketmeet.herokuapp.com/v1/user/${userid}`);
-      const fetchedPolls = await response.json();
-      setPollList(fetchedPolls);
+      const fetchedPolls = await ServerAPI.getPolls(userid);
+      setPollList(fetchedPolls.data);
     } catch (err) {
       console.log(err);
     }

@@ -17,6 +17,7 @@ import { encrypt } from "../../src/helpers/helpers";
 import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
+import { ServerAPI } from "@api/server";
 
 // typings aren't available for react-available-times :(
 
@@ -55,6 +56,24 @@ const Create = (): JSX.Element => {
     setChoices(newChoices);
   };
 
+  const handleSubmit = async (): Promise<void> => {
+    if (pollTitle && pollChoices && pollChoices?.length > 0) {
+      const encryptedEmailID = encrypt(loggedInUserEmailID);
+      const poll: RocketMeetPoll = {
+        title: pollTitle,
+        description: pollDescription,
+        encryptedEmailID,
+        choices: pollChoices,
+      };
+      const createPollResponse = await ServerAPI.createPoll(poll);
+      if (createPollResponse.statusCode === 201) {
+        Router.push(`/poll/${createPollResponse.data._id}`);
+      } else {
+        console.log("Poll creation failed! Please try again");
+      }
+    }
+  }
+  /*
   const handleSubmit = (): void => {
     if (pollTitle && pollChoices && pollChoices?.length > 0) {
       const encryptedEmailID = encrypt(loggedInUserEmailID);
@@ -86,6 +105,8 @@ const Create = (): JSX.Element => {
         .catch((err) => console.log(err));
     }
   };
+  */
+
 
   return (
     <Layout>

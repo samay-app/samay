@@ -21,16 +21,20 @@ class serverAPI {
         })
         // TODO: Move this to config / .env later
         this.localURL = "http://localhost:5000"; // local url
-        this.productionURL = "https://rocketmeet.me"; // production url
-        this.URL = this.localURL;
+        this.productionURL = "https://rocketmeet.herokuapp.com/v1"; // production url
+        this.URL = this.productionURL;
     }
 
     httpMethod = async (payload: any, endpoint: string, reqMethod: string) => {
         const requestOptions: RequestInit = {
             method: reqMethod,
             headers: this.headers,
-            body: payload,
         };
+
+        if (reqMethod !== "GET") {
+            requestOptions.body = payload;
+        }
+
         const res = await fetch(endpoint, requestOptions);
         const { status } = res;
         const responseData = await res.json()
@@ -40,9 +44,14 @@ class serverAPI {
         };
     }
 
+    getPolls = async (userID: string) => {
+        const endpoint = `${this.URL}/user/${userID}`;
+        return await this.httpMethod(null, endpoint, "GET");
+    }
+
     createPoll = async (poll: RocketMeetPoll) => {
         const payload = JSON.stringify(poll);
-        const endpoint = `${this.URL}/v1/user/poll`;
+        const endpoint = `${this.URL}/user/poll`;
         return await this.httpMethod(payload, endpoint, "POST");
     }
 
@@ -52,17 +61,17 @@ class serverAPI {
     }) => {
         const { newVote, pollid } = voteArgs;
         const payload = JSON.stringify(newVote);
-        const endpoint = `${this.URL}/v1/poll/${pollid}`;
+        const endpoint = `${this.URL}/poll/${pollid}`;
         return await this.httpMethod(payload, endpoint, "PUT");
     }
 
     markFinalChoice = async (voteArgs: {
-        finalChoice: Choice | undefined;
+        finalChoice: any;
         pollid: string;
     }) => {
         const { finalChoice, pollid } = voteArgs;
         const payload = JSON.stringify(finalChoice);
-        const endpoint = `${this.URL}/v1/poll/${pollid}`;
+        const endpoint = `${this.URL}/user/poll/${pollid}`;
         return await this.httpMethod(payload, endpoint, "PUT");
     }
 }

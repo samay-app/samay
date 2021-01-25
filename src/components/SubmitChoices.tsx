@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap";
 import Router from "next/router";
 import { Vote } from "../models/poll";
+import { ServerAPI } from "src/api/server"
+import { Server } from "tls";
 
 const SubmitChoices = (props: {
   newVote: Vote;
@@ -8,7 +10,18 @@ const SubmitChoices = (props: {
 }): JSX.Element => {
   const { newVote, pollid } = props;
 
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<void> => {
+    const voterArgs = {
+      newVote: newVote,
+      pollid: pollid
+    }
+    const submitChoiceResponse = await ServerAPI.markChoices(voterArgs);
+    if (submitChoiceResponse.statusCode === 201) {
+      Router.reload()
+    } else {
+      console.log(submitChoiceResponse);
+    }
+    /*
     const payload = JSON.stringify(newVote);
     const requestOptions = {
       method: "PUT",
@@ -18,6 +31,7 @@ const SubmitChoices = (props: {
       },
       body: payload,
     };
+    console.log(requestOptions);
     fetch(`https://rocketmeet.herokuapp.com/v1/poll/${pollid}`, requestOptions)
       .then((res) => {
         if (res.status === 201) {
@@ -29,6 +43,8 @@ const SubmitChoices = (props: {
       .catch((err) => {
         console.log(err);
       });
+      */
+
   };
 
   return (
