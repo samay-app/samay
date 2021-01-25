@@ -3,14 +3,15 @@ import {
   InputGroup,
   Button,
   Popover,
+  Toast,
   OverlayTrigger,
 } from "react-bootstrap";
 import copy from "copy-to-clipboard";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { MailerAPI } from "../api/mailer"
-import { MailerArgs } from "@models/poll";
-import { RootState } from "src/store/store";
+import { MailerArgs } from "../models/poll";
+import { RootState } from "../store/store";
+import { MailerAPI } from "../api/mailer";
 
 const Invitation = (props: { pollid: string }): JSX.Element => {
   const { pollid } = props;
@@ -30,67 +31,68 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
       <Popover.Content>Copied</Popover.Content>
     </Popover>
   );
+  const isInList = (email: string): boolean => {
+    return emailList.includes(email);
+  };
+  const isEmail = (email: string): boolean => {
+    return /[\w\d.-]+@[\w\d.-]+\.[\w\d.-]+/.test(email);
+  };
+  const isValid = (email: string): boolean => {
+    let mailerror = null;
+    if (isInList(email)) {
+      mailerror = `${email} has already been added.`;
+    }
+    if (!isEmail(email)) {
+      mailerror = `${email} is not a valid email address.`;
+    }
+    if (mailerror) {
+      setError(mailerror);
+      return false;
+    }
+    return true;
+  };
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>): void => {
     if (["Enter", "Tab", ","].includes(evt.key)) {
       evt.preventDefault();
-      var value = currentEmail.trim();
+      let value = currentEmail.trim();
       if (value && isValid(value)) {
-        setEmails([...emailList, currentEmail])
-        setCurrentEmail("")
+        setEmails([...emailList, currentEmail]);
+        setCurrentEmail("");
       }
     }
   };
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
-    setCurrentEmail(evt.target.value)
-    setError("")
+    setCurrentEmail(evt.target.value);
+    setError("");
   };
-  const handleDelete = (email: any) => {
-    setEmails(emailList.filter(i => i !== email))
+  /* added void and removed email:any to email:string ( remove this comment at last PR) */
+  const handleDelete = (email: string): void => {
+    setEmails(emailList.filter((i) => i !== email));
   };
   const handlePaste = (evt: React.ClipboardEvent<HTMLInputElement>): void => {
     evt.preventDefault();
-    var paste = evt.clipboardData.getData("text");
-    var emails = paste.match(/[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/g);
+    let paste = evt.clipboardData.getData("text");
+    let emails = paste.match(/[\w\d.-]+@[\w\d.-]+\.[\w\d.-]+/g);
     if (emails) {
-      var toBeAdded = emails.filter(email => !isInList(email));
+      let toBeAdded = emails.filter((email) => !isInList(email));
       setEmails([...emailList, ...toBeAdded]);
     }
   };
-
-  const isValid = (email: string): Boolean => {
-    let error = null;
-    if (isInList(email)) {
-      error = `${email} has already been added.`;
-    }
-    if (!isEmail(email)) {
-      error = `${email} is not a valid email address.`;
-    }
-    if (error) {
-      setError(error);
-      return false;
-    }
-    return true;
-  }
-  const isInList = (email: string): Boolean => {
-    return emailList.includes(email);
-  }
-  const isEmail = (email: string): Boolean => {
-    return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
-  }
-  const handleSubmit = async () => {
-    console.log(emailList)
+  /* added void below( remove this comment at last PR) */
+  const handleSubmit = async (): Promise<void> => {
+    /* console.log(emailList); which is also to be removed */
     const mailerArgs: MailerArgs = {
       pollID: pollid,
       receiverIDs: emailList,
       senderID: loggedInUserEmailID,
-    }
+    };
     const status = await MailerAPI.sendInvite(mailerArgs);
     if (status) {
-      alert("Successfully send invites")
+      alert("Successfully send invites");
     } else {
-      alert("Internal Server Error")
+      alert("Internal Server Error");
     }
-  }
+  };
 
   return (
     <div
@@ -98,20 +100,24 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
       id="share"
       style={{ width: "90%", maxWidth: "500px" }}
     >
-      <Form onSubmit={(e): void => {
-        e.preventDefault();
-      }}>
+      <Form
+        onSubmit={(e): void => {
+          e.preventDefault();
+        }}
+      >
         <Form.Group controlId="formBasicEmail" className="text-center">
           <Form.Label className="font-weight-bold">
             Invite participants by email
             <div className="emailList">
-              {emailList.map(email => (
+              {emailList.map((email) => (
                 <div className="tag-item" key={email}>
                   {email}
                   <button
                     type="button"
                     className="button"
-                    onClick={() => handleDelete(email)}
+                    onClick={(): void =>
+                      handleDelete(email)
+                    } /* added void ( remove this comment at last PR) */
                   >
                     &times;
                   </button>
@@ -120,14 +126,17 @@ const Invitation = (props: { pollid: string }): JSX.Element => {
             </div>
           </Form.Label>
           <Form.Control
-            multiple type="email"
+            multiple
+            type="email"
             placeholder="Enter emails"
             value={currentEmail}
             onKeyDown={handleKeyDown}
             onChange={handleChange}
             onPaste={handlePaste}
           />
-          <Button className="my-2" onClick={handleSubmit}>Invite</Button>
+          <Button className="my-2" onClick={handleSubmit}>
+            Invite
+          </Button>
         </Form.Group>
         {error && <p className="error">{error}</p>}
 
