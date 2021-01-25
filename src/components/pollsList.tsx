@@ -12,7 +12,7 @@ const PollsList = (): JSX.Element => {
 
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/v1/user/${userid}`);
+      const response = await fetch(`https://rocketmeet.herokuapp.com/v1/user/${userid}`);
       const fetchedPolls = await response.json();
       setPollList(fetchedPolls);
     } catch (err) {
@@ -53,11 +53,11 @@ const PollsList = (): JSX.Element => {
             <Allpolls />
           </CardColumns>
         ) : (
-          <p>
-            You haven't created any polls yet. Start one by clicking the new
-            poll button above
-          </p>
-        )}
+            <p>
+              You haven't created any polls yet. Start one by clicking the new
+              poll button above
+            </p>
+          )}
       </div>
     </>
   );

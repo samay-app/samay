@@ -73,7 +73,7 @@ const Create = (): JSX.Element => {
         },
         body: payload,
       };
-      fetch(`http://localhost:5000/v1/user/poll`, requestOptions)
+      fetch(`https://rocketmeet.herokuapp.com/v1/user/poll`, requestOptions)
         .then((res) => {
           if (res.status === 201) {
             res.json().then((data) => {
