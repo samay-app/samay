@@ -9,21 +9,21 @@ class mailerAPI {
     constructor() {
         //this.senderID = "userIDfromStore"
         this.token = "tokenfromStore"
+    httpPost = async (payload: any, token: string) => {
         this.headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Authorisation": `Bearer ${this.token}`
+            "Authorisation": `Bearer ${token}`
         }
         this.URL = "https://rocketmeet-mailer.herokuapp.com/v1/meetInfo"
 
-    }
-
-    httpPost = async (payload: any) => {
         const requestOptions: RequestInit = {
             method: "POST",
             headers: this.headers,
             body: payload,
         };
+        console.log(requestOptions);
+
         const res = await fetch(`${this.URL}`, requestOptions);
         const { status } = res;
         return {
@@ -31,10 +31,10 @@ class mailerAPI {
         };
     }
 
-    sendInvite = async (mailerArgs: MailerArgs) => {
+    sendInvite = async (mailerArgs: MailerArgs, token: string) => {
         const payload = JSON.stringify(mailerArgs);
         console.log(payload)
-        const { statusCode } = await this.httpPost(payload)
+        const { statusCode } = await this.httpPost(payload, token)
         return statusCode;
     }
 }

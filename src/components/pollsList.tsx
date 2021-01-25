@@ -8,12 +8,16 @@ import { ServerAPI } from "src/api/server"
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
+  const token = useSelector((state: RootState) => state.authReducer.token);
   const userid = encrypt(user);
   const [pollList, setPollList] = useState([]);
 
   const getData = async () => {
     try {
-      const fetchedPolls = await ServerAPI.getPolls(userid);
+      const fetchedPolls = await ServerAPI.getPolls({
+        userID: userid,
+        token
+      });
       setPollList(fetchedPolls.data);
     } catch (err) {
       console.log(err);

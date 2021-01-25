@@ -12,29 +12,20 @@ class serverAPI {
     constructor() {
         this.userID = "UserIDfromStore"
         this.token = "tokenfromStore"; // Figure out a way to access store
+
+    httpMethod = async (payload: any, endpoint: string, reqMethod: string, token: string) => {
         this.headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            "Authorisation": token
         };
-        this.authHeaders = Object.assign({}, this.headers, {
-            "Authorisation": `Bearer ${this.token}`
-        })
-        // TODO: Move this to config / .env later
-        this.localURL = "http://localhost:5000"; // local url
-        this.productionURL = "https://rocketmeet.herokuapp.com/v1"; // production url
-        this.URL = this.productionURL;
-    }
-
-    httpMethod = async (payload: any, endpoint: string, reqMethod: string) => {
         const requestOptions: RequestInit = {
             method: reqMethod,
             headers: this.headers,
         };
-
         if (reqMethod !== "GET") {
             requestOptions.body = payload;
         }
-
         const res = await fetch(endpoint, requestOptions);
         const { status } = res;
         const responseData = await res.json()
@@ -44,35 +35,45 @@ class serverAPI {
         };
     }
 
-    getPolls = async (userID: string) => {
+    getPolls = async (pollArgs: {
+        userID: string;
+        token: string;
+    }) => {
+        const { userID, token } = pollArgs;
         const endpoint = `${this.URL}/user/${userID}`;
-        return await this.httpMethod(null, endpoint, "GET");
+        return await this.httpMethod(null, endpoint, "GET", token);
     }
 
-    createPoll = async (poll: RocketMeetPoll) => {
+    createPoll = async (pollArgs: {
+        poll: RocketMeetPoll;
+        token: string;
+    }) => {
+        const { poll, token } = pollArgs;
         const payload = JSON.stringify(poll);
         const endpoint = `${this.URL}/user/poll`;
-        return await this.httpMethod(payload, endpoint, "POST");
+        return await this.httpMethod(payload, endpoint, "POST", token);
     }
 
     markChoices = async (voteArgs: {
         newVote: Vote;
         pollid: string;
+        token: string;
     }) => {
-        const { newVote, pollid } = voteArgs;
+        const { newVote, pollid, token } = voteArgs;
         const payload = JSON.stringify(newVote);
         const endpoint = `${this.URL}/poll/${pollid}`;
-        return await this.httpMethod(payload, endpoint, "PUT");
+        return await this.httpMethod(payload, endpoint, "PUT", token);
     }
 
     markFinalChoice = async (voteArgs: {
         finalChoice: any;
         pollid: string;
+        token: string;
     }) => {
-        const { finalChoice, pollid } = voteArgs;
+        const { finalChoice, pollid, token } = voteArgs;
         const payload = JSON.stringify(finalChoice);
         const endpoint = `${this.URL}/user/poll/${pollid}`;
-        return await this.httpMethod(payload, endpoint, "PUT");
+        return await this.httpMethod(payload, endpoint, "PUT", token);
     }
 }
 
