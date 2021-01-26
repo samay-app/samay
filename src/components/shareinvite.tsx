@@ -14,11 +14,16 @@ import { MailerAPI } from "../api/mailer";
 
 const Invitation = (props: {
   pollid: string;
+  polltitle: string;
   onChangeS(arg: boolean): void;
   onChangeF(arg: boolean): void;
 }): JSX.Element => {
   const { pollid } = props;
+  const { polltitle } = props;
   const pollurl = `https://rocketmeet.me/poll/${pollid}`; /* This should be replaced */
+  const displayName = useSelector(
+    (state: RootState) => state.authReducer.displayName
+  );
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
@@ -56,7 +61,7 @@ const Invitation = (props: {
     return true;
   };
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (["Enter", "Tab", ","].includes(evt.key)) {
+    if (["Enter", "Tab", " ", ","].includes(evt.key)) {
       evt.preventDefault();
       let value = currentEmail.trim();
       if (value && isValid(value)) {
@@ -87,8 +92,10 @@ const Invitation = (props: {
     /* console.log(emailList); which is also to be removed */
     const mailerArgs: MailerArgs = {
       pollID: pollid,
+      pollTitle: polltitle,
       receiverIDs: emailList,
-      senderID: loggedInUserEmailID,
+      senderName: displayName,
+      senderEmailID: loggedInUserEmailID,
     };
     const status = await MailerAPI.sendInvite(mailerArgs, token);
     if (status !== 404) {

@@ -699,14 +699,18 @@ h4 {
 
 @media (min-width: 600px) {
   .dash-container {
-    margin: 30px 60px;
+    margin: 30px 30px 30px 60px;
+  }
+  .card-columns {
+    column-count: 1 !important;
+    margin-right: 20px;
   }
 }
 .y-polls {
   font-weight: 700;
   font-size: 1.25rem;
 }
-@media screen and (max-width: 601px) {
+@media screen and (max-width: 601px) and (min-width: 389px) {
   .show-dsk {
     display: none;
   }
@@ -722,8 +726,14 @@ h4 {
   font-weight: 500;
 }
 .card-bdy {
+  text-decoration: none;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 400;
+}
+.card-bdy:hover {
+  text-decoration: none;
+  color: #ffffff;
 }
 .badge {
   height: 28px;
@@ -741,4 +751,30 @@ h4 {
   right: 5px;
   max-height: 200px;
   width: 400px;
+}
+.card-columns {
+  column-count: 1 !important;
+}
+.recent-div {
+  height: 600px;
+  margin-top: 20px;
+}
+@media screen and (max-width: 991.08px) {
+  .recents {
+    display: none;
+  }
+}
+.upcomings {
+  background: #eeeeee;
+  min-height: 60px;
+  border-radius: 5px;
+}
+
+@media (max-width: 388px) {
+  .rm-primary-button {
+    width: 80vw;
+  }
+  .show-mob {
+    display: none;
+  }
 }
