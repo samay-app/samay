@@ -726,8 +726,14 @@ h4 {
   font-weight: 500;
 }
 .card-bdy {
+  text-decoration: none;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 400;
+}
+.card-bdy:hover {
+  text-decoration: none;
+  color: #ffffff;
 }
 .badge {
   height: 28px;

@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { encrypt } from "../helpers/helpers";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
-import { RocketMeetPollFromDB } from "@models/poll";
-import { RootState } from "src/store/store";
+import { encrypt } from "../helpers/helpers";
+import { RocketMeetPollFromDB } from "../models/poll";
+import { RootState } from "../store/store";
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
   const userid = encrypt(user);
   const [pollList, setPollList] = useState([]);
 
-  const getData = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/v1/user/${userid}`);
-      const fetchedPolls = await response.json();
-      setPollList(fetchedPolls);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
+    const getData = async (): Promise<void> => {
+      try {
+        const response = await fetch(`http://localhost:5000/v1/user/${userid}`);
+        const fetchedPolls = await response.json();
+        setPollList(fetchedPolls);
+      } catch (err) {
+        /* console.log(err); */
+      }
+    };
     getData();
-  }, []);
+  }, [userid]);
 
-  const Allpolls = (): any => {
+  const Allpolls: Function = (): JSX.Element[] => {
     return pollList
       .map((item: RocketMeetPollFromDB) => (
         <Card
@@ -39,8 +39,13 @@ const PollsList = (): JSX.Element => {
             </Badge>
           </Card.Title>
           <Card.Body className="text-justify">
-            <span className="card-bdy">{item.description}</span>
-            <a href={`/poll/${item._id}`} className="stretched-link"></a>
+            <a
+              href={`/poll/${item._id}`}
+              aria-label="stretched link"
+              className="stretched-link card-bdy "
+            >
+              {item.description}
+            </a>
           </Card.Body>
           <Card.Footer className="px-0">
             <span className="text-muted">
@@ -52,41 +57,38 @@ const PollsList = (): JSX.Element => {
       .reverse();
   };
   const currentDate = Date.now();
-  const convertedDate = (time: number | undefined) => {
-    if (time) {
-      var months_arr = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      var date = new Date(time);
+  const convertedDate = (time: number | undefined): string => {
+    let monthArr = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    let date = new Date(time ?? 0);
 
-      var month = months_arr[date.getMonth()];
+    let month = monthArr[date.getMonth()];
 
-      var day = date.getDate();
+    let day = date.getDate();
 
-      var hours = date.getHours();
+    let hours = date.getHours();
 
-      var minutes = "0" + date.getMinutes();
+    let minutes = `0${date.getMinutes()}`;
 
-      var convdataTime =
-        day + "-" + month + " at " + hours + ":" + minutes.substr(-2);
-      return convdataTime;
-    }
+    let convdataTime = `${day}-${month} at ${hours}:${minutes.substr(-2)}`;
+    return convdataTime;
   };
-  const Recents = (): any => {
+  const Recents: Function = (): JSX.Element[] => {
     return pollList.reverse().map((item: RocketMeetPollFromDB) => (
       <>
-        {!item.open && item.finalChoice?.start > currentDate ? (
+        {!item.open && (item.finalChoice?.start || 0) > currentDate ? (
           <div className="d-block m-1 p-2 upcomings">
             <b>{item.title}</b> to be conducted on{" "}
             {convertedDate(item.finalChoice?.start)}
