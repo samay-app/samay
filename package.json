@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/server.js",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles ./tests",
-    "dev": "npm run build && npm run start",
+    "dev": "npm run build && LOG_LEVEL=debug npm run start",
     "lint": "eslint . --ext .ts",
     "tsc": "tsc",
     "build": "tsc --project tsconfig-build.json",
