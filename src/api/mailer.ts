@@ -2,28 +2,31 @@ import { MailerArgs } from "@models/poll";
 
 class mailerAPI {
     //senderID: string;
-    token: string;
     headers: Headers | string[][] | Record<string, string> | undefined;
-    URL: string;
+    URL: string | undefined;
 
     constructor() {
-        //this.senderID = "userIDfromStore"
-        this.token = "tokenfromStore"
-        this.headers = {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Authorisation": `Bearer ${this.token}`
-        }
-        this.URL = "https://rocketmeet-mailer.herokuapp.com/v1/meetInfo"
+        // this.senderID = "userIDfromStore"
+        // this.token = "tokenfromStore"
+
+        this.URL = process.env.NEXT_PUBLIC_MAILER_URL;
 
     }
 
-    httpPost = async (payload: any) => {
+    httpPost = async (payload: any, token: string) => {
+        this.headers = {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Authorisation": `Bearer ${token}`
+        }
+
         const requestOptions: RequestInit = {
             method: "POST",
             headers: this.headers,
             body: payload,
         };
+        console.log(requestOptions);
+
         const res = await fetch(`${this.URL}`, requestOptions);
         const { status } = res;
         return {
@@ -31,10 +34,10 @@ class mailerAPI {
         };
     }
 
-    sendInvite = async (mailerArgs: MailerArgs) => {
+    sendInvite = async (mailerArgs: MailerArgs, token: string) => {
         const payload = JSON.stringify(mailerArgs);
         console.log(payload)
-        const { statusCode } = await this.httpPost(payload)
+        const { statusCode } = await this.httpPost(payload, token)
         return statusCode;
     }
 }

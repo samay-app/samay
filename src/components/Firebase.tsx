@@ -1,10 +1,13 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
+// Production - RocketMeet
+
 const config = {
-  apiKey: "AIzaSyD5KqdURtfBQRrKdtUziFJZVRbeBKLqBCw",
-  authDomain: "rocketmeet-15a48.firebaseapp.com",
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
 };
+
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 } else {

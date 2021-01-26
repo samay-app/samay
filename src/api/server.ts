@@ -1,36 +1,37 @@
 import { Choice, RocketMeetPoll, Vote } from "@models/poll";
 
 class serverAPI {
-    userID: string;
-    token: string;
+    // userID: string;
+    // token: string;
     headers: Headers | string[][] | Record<string, string> | undefined;
-    authHeaders: Headers | string[][] | Record<string, string> | undefined;
-    localURL: string;
-    productionURL: string;
-    URL: string;
+    URL: string | undefined;
 
     constructor() {
-        this.userID = "UserIDfromStore"
-        this.token = "tokenfromStore"; // Figure out a way to access store
+        // this.userID = "UserIDfromStore"
+        // this.token = "tokenfromStore"; // Figure out a way to access store
+        // https://github.com/kirill-konshin/next-redux-wrapper/issues/214#issuecomment-680273330
+
+        this.URL = process.env.NEXT_PUBLIC_SERVER_URL;
+    }
+
+    httpMethod = async (
+        endpoint: string,
+        reqMethod: string,
+        token: string = "",
+        payload: string = "",
+    ) => {
         this.headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            "Authorisation": token
         };
-        this.authHeaders = Object.assign({}, this.headers, {
-            "Authorisation": `Bearer ${this.token}`
-        })
-        // TODO: Move this to config / .env later
-        this.localURL = "http://localhost:5000"; // local url
-        this.productionURL = "https://rocketmeet.me"; // production url
-        this.URL = this.localURL;
-    }
-
-    httpMethod = async (payload: any, endpoint: string, reqMethod: string) => {
         const requestOptions: RequestInit = {
             method: reqMethod,
             headers: this.headers,
-            body: payload,
         };
+        if (reqMethod !== "GET") {
+            requestOptions.body = payload;
+        }
         const res = await fetch(endpoint, requestOptions);
         const { status } = res;
         const responseData = await res.json()
@@ -40,30 +41,50 @@ class serverAPI {
         };
     }
 
-    createPoll = async (poll: RocketMeetPoll) => {
+    getPoll = async (pollid: any) => {
+        const endpoint = `${this.URL}/poll/${pollid}`;
+        return await this.httpMethod(endpoint, "GET")
+    }
+
+    getPolls = async (pollArgs: {
+        userID: string;
+        token: string;
+    }) => {
+        const { userID, token } = pollArgs;
+        const endpoint = `${this.URL}/user/${userID}`;
+        return await this.httpMethod(endpoint, "GET", token);
+    }
+
+    createPoll = async (pollArgs: {
+        poll: RocketMeetPoll;
+        token: string;
+    }) => {
+        const { poll, token } = pollArgs;
         const payload = JSON.stringify(poll);
-        const endpoint = `${this.URL}/v1/user/poll`;
-        return await this.httpMethod(payload, endpoint, "POST");
+        const endpoint = `${this.URL}/user/poll`;
+        return await this.httpMethod(endpoint, "POST", token, payload);
     }
 
     markChoices = async (voteArgs: {
         newVote: Vote;
         pollid: string;
+        token: string;
     }) => {
-        const { newVote, pollid } = voteArgs;
+        const { newVote, pollid, token } = voteArgs;
         const payload = JSON.stringify(newVote);
-        const endpoint = `${this.URL}/v1/poll/${pollid}`;
-        return await this.httpMethod(payload, endpoint, "PUT");
+        const endpoint = `${this.URL}/poll/${pollid}`;
+        return await this.httpMethod(endpoint, "PUT", token, payload);
     }
 
     markFinalChoice = async (voteArgs: {
-        finalChoice: Choice | undefined;
+        finalChoice: any;
         pollid: string;
+        token: string;
     }) => {
-        const { finalChoice, pollid } = voteArgs;
+        const { finalChoice, pollid, token } = voteArgs;
         const payload = JSON.stringify(finalChoice);
-        const endpoint = `${this.URL}/v1/poll/${pollid}`;
-        return await this.httpMethod(payload, endpoint, "PUT");
+        const endpoint = `${this.URL}/user/poll/${pollid}`;
+        return await this.httpMethod(endpoint, "PUT", token, payload);
     }
 }
 

@@ -18,10 +18,11 @@ const Invitation = (props: {
   onChangeF(arg: boolean): void;
 }): JSX.Element => {
   const { pollid } = props;
-  const pollurl = `http://localhost:3000/poll/${pollid}`; /* This should be replaced */
+  const pollurl = `https://rocketmeet.me/poll/${pollid}`; /* This should be replaced */
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
+  const token = useSelector((state: RootState) => state.authReducer.token);
   const [currentEmail, setCurrentEmail] = useState<string>("");
   const [emailList, setEmails] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
@@ -89,8 +90,8 @@ const Invitation = (props: {
       receiverIDs: emailList,
       senderID: loggedInUserEmailID,
     };
-    const status = await MailerAPI.sendInvite(mailerArgs);
-    if (status) {
+    const status = await MailerAPI.sendInvite(mailerArgs, token);
+    if (status !== 404) {
       props.onChangeS(true);
     } else {
       props.onChangeF(true);
