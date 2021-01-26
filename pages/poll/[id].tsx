@@ -55,6 +55,7 @@ const Poll = (props: {
             <PollInfo poll={pollFromDB} />
             {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
               <ShareInvite
+                polltitle={pollFromDB.title}
                 pollid={pollid}
                 onChangeS={handleChangeS}
                 onChangeF={handleChangeF}
