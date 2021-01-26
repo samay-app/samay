@@ -1,4 +1,5 @@
 import express, { Request, Response, Router } from 'express';
+import dayjs from 'dayjs';
 import { createTransport, Transporter } from 'nodemailer';
 import { email, password } from '../../config';
 
@@ -13,17 +14,22 @@ router.post('/', async (req: Request, res: Response) => {
     },
   });
 
+  interface Choice {
+      start: number;
+      end: number;
+  }
+
   interface Data {
-    pollID: string;
-    pollTitle: string;
-    senderName: string;
+    senderName: string,
+    pollTitle: string,
+    finalOption: Choice;
     receiverIDs: string[];
   }
 
   const data: Data = {
-    pollID: req.body.pollID,
-    pollTitle: req.body.pollTitle,
     senderName: req.body.senderName,
+    pollTitle: req.body.pollTitle,
+    finalOption: req.body.finalOption,
     receiverIDs: req.body.receiverIDs,
   };
 
@@ -31,9 +37,9 @@ router.post('/', async (req: Request, res: Response) => {
     const mailOptions = {
       from: `${data.senderName} <rocketmeet@gmail.com>`,
       to: receiverID,
-      subject: `RocketMeet: Invitation - ${data.pollTitle}`,
-      html: `<p>Hey there, ${data.senderName} has invited you to a RocketMeet poll <b>
-                ${data.pollTitle},<br><br> <b> visit rocketmeet.me/poll/${data.pollID}
+      subject: `RocketMeet: ${data.pollTitle} - Final time`,
+      html: `<p>The meet <b>${data.pollTitle}</b> has been scheduled on ${dayjs(data.finalOption.start).format('DD/MM/YYYY')} 
+                from ${dayjs(data.finalOption.start).format('HH:mm A')} to ${dayjs(data.finalOption.end).format('HH:mm A')}
             </p>`,
     };
 
