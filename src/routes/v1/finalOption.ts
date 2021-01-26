@@ -21,22 +21,24 @@ router.post('/', async (req: Request, res: Response) => {
 
   interface Data {
     senderName: string,
+    pollTitle: string,
     finalOption: Choice;
     receiverIDs: string[];
   }
 
   const data: Data = {
     senderName: req.body.senderName,
+    pollTitle: req.body.pollTitle,
     finalOption: req.body.finalOption,
     receiverIDs: req.body.receiverIDs,
   };
 
   data.receiverIDs.forEach(async (receiverID: string) => {
     const mailOptions = {
-      from: data.senderName,
+      from: `${data.senderName} <rocketmeet@gmail.com>`,
       to: receiverID,
-      subject: `Final Option: RocketMeet poll - ${data.senderName}`,
-      html: `<p>The meet has been scheduled on ${dayjs(data.finalOption.start).format('DD/MM/YYYY')} 
+      subject: `RocketMeet: ${data.pollTitle} - Final time`,
+      html: `<p>The meet <b>${data.pollTitle}</b> has been scheduled on ${dayjs(data.finalOption.start).format('DD/MM/YYYY')} 
                 from ${dayjs(data.finalOption.start).format('HH:mm A')} to ${dayjs(data.finalOption.end).format('HH:mm A')}
             </p>`,
     };
