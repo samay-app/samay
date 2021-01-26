@@ -4,17 +4,21 @@ import { encrypt } from "../helpers/helpers";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
 import { RocketMeetPollFromDB } from "@models/poll";
 import { RootState } from "src/store/store";
+import { ServerAPI } from "src/api/server"
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
+  const token = useSelector((state: RootState) => state.authReducer.token);
   const userid = encrypt(user);
   const [pollList, setPollList] = useState([]);
 
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/v1/user/${userid}`);
-      const fetchedPolls = await response.json();
-      setPollList(fetchedPolls);
+      const fetchedPolls = await ServerAPI.getPolls({
+        userID: userid,
+        token
+      });
+      setPollList(fetchedPolls.data);
     } catch (err) {
       console.log(err);
     }
@@ -53,11 +57,11 @@ const PollsList = (): JSX.Element => {
             <Allpolls />
           </CardColumns>
         ) : (
-          <p>
-            You haven't created any polls yet. Start one by clicking the new
-            poll button above
-          </p>
-        )}
+            <p>
+              You haven't created any polls yet. Start one by clicking the new
+              poll button above
+            </p>
+          )}
       </div>
     </>
   );

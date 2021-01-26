@@ -16,6 +16,7 @@ import {
 import { decrypt } from "../../src/helpers/helpers";
 import ShareInvite from "../../src/components/shareinvite";
 import { RootState } from "../../src/store/store";
+import { ServerAPI } from "@api/server";
 
 dayjs.extend(localizedFormat);
 
@@ -104,11 +105,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (context.params) {
     pollid = context.params.id;
   }
-  const res = await fetch(`http://localhost:5000/v1/poll/${pollid}`);
-  const { status } = res;
-  const pollFromDB = await res.json();
+  //const res = await fetch(`https://rocketmeet.herokuapp.com/v1/poll/${pollid}`);
+  const getPollResponse = await ServerAPI.getPoll(pollid);
+  const pollFromDB = getPollResponse.data;
 
-  if (status === 404) {
+  if (getPollResponse.statusCode === 404) {
     return {
       redirect: {
         destination: "/404",

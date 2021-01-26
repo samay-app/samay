@@ -61,17 +61,3 @@ Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-clie
 RocketMeet-client is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE).
 
 ## Todo
-
-- Setup testing using jest
-
-- Api interface
-
-- Time-slot ui
-
-- Auth modal component, manage auth state with context api
-
-- Create-panel, Share-invite, Dashboard components
-
-- Optimisations
-
-- Deploy to vercel
