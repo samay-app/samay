@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import firebaseAccountCredentials from './config/service-account-credentials.json';
+import { firebaseAccountCredentials } from '../../../config';
 
 const serviceAccount = firebaseAccountCredentials as admin.ServiceAccount;
 admin.initializeApp({

@@ -5,7 +5,6 @@ import auth from './auth/auth';
 const router: Router = express.Router();
 
 // All the APIs below are private APIs protected for user's role
-// @Aravind: make sure users are authorized properly and can't imitate other users
 
 router.use('/', auth);
 // get all polls created by emailID
