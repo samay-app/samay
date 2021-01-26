@@ -5,6 +5,9 @@ import { email, password } from '../../config';
 const router: Router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
+  if (req.body.senderName !== req.currentUser.name) {
+       res.status(401).json({ msg: 'Unauthorized' });
+  } else {
   const transporter: Transporter = createTransport({
     service: 'gmail',
     auth: {
@@ -48,6 +51,7 @@ router.post('/', async (req: Request, res: Response) => {
         }
     });
   });
+}
 });
 
 export default router;
