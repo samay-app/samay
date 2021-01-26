@@ -15,6 +15,7 @@ const auth = async (req: Request, res: Response, next: NextFunction):Promise<voi
     try {
       const decodedToken = await admin.auth().verifyIdToken(idToken);
       req.currentUser = decodedToken;
+      console.log(req.currentUser)
       next();
     } catch (err) {
       res.json({ msg: err.message });

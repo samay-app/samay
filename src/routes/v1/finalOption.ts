@@ -6,7 +6,7 @@ import { email, password } from '../../config';
 const router: Router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
-  if (req.body.senderName !== req.currentUser.name) {
+  if (req.body.senderEmailId !== req.currentUser.email) {
     res.status(401).json({ msg: 'Unauthorized' });
   } else {
   const transporter: Transporter = createTransport({
@@ -24,6 +24,7 @@ router.post('/', async (req: Request, res: Response) => {
 
   interface Data {
     senderName: string,
+    senderEmailId:string,
     pollTitle: string,
     finalOption: Choice;
     receiverIDs: string[];
@@ -31,6 +32,7 @@ router.post('/', async (req: Request, res: Response) => {
 
   const data: Data = {
     senderName: req.body.senderName,
+    senderEmailId: req.body.senderEmailId,
     pollTitle: req.body.pollTitle,
     finalOption: req.body.finalOption,
     receiverIDs: req.body.receiverIDs,

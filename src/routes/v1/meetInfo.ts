@@ -5,7 +5,7 @@ import { email, password } from '../../config';
 const router: Router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
-  if (req.body.senderName !== req.currentUser.name) {
+  if (req.body.senderEmailId !== req.currentUser.email) {
        res.status(401).json({ msg: 'Unauthorized' });
   } else {
   const transporter: Transporter = createTransport({
@@ -20,6 +20,7 @@ router.post('/', async (req: Request, res: Response) => {
     pollID: string;
     pollTitle: string;
     senderName: string;
+    senderEmailId:string;
     receiverIDs: string[];
   }
 
@@ -27,6 +28,7 @@ router.post('/', async (req: Request, res: Response) => {
     pollID: req.body.pollID,
     pollTitle: req.body.pollTitle,
     senderName: req.body.senderName,
+    senderEmailId: req.body.senderEmailId,
     receiverIDs: req.body.receiverIDs,
   };
 
