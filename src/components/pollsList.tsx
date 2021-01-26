@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
-
 import { encrypt } from "../helpers/helpers";
 import { RocketMeetPollFromDB } from "../models/poll";
 import { RootState } from "../store/store";
-import { ServerAPI } from "src/api/server"
-
+import { ServerAPI } from "src/api/server";
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
