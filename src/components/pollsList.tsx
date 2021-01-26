@@ -9,21 +9,23 @@ import { ServerAPI } from "src/api/server";
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
   const token = useSelector((state: RootState) => state.authReducer.token);
-  const userid = encrypt(user);
+  const userID = encrypt(user);
   const [pollList, setPollList] = useState([]);
 
   useEffect(() => {
     const getData = async (): Promise<void> => {
       try {
-        const response = await fetch(`http://localhost:5000/v1/user/${userid}`);
-        const fetchedPolls = await response.json();
-        setPollList(fetchedPolls);
+        const fetchedPolls = await ServerAPI.getPolls({
+          userID,
+          token
+        });
+        setPollList(fetchedPolls.data);
       } catch (err) {
         /* console.log(err); */
       }
     };
     getData();
-  }, [userid]);
+  }, [userID]);
 
   const Allpolls: Function = (): JSX.Element[] => {
     return pollList
@@ -96,8 +98,8 @@ const PollsList = (): JSX.Element => {
             {convertedDate(item.finalChoice?.start)}
           </div>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </>
     ));
   };
@@ -114,11 +116,11 @@ const PollsList = (): JSX.Element => {
                 <Allpolls />
               </CardColumns>
             ) : (
-              <p>
-                You haven't created any polls yet. Start one by clicking the new
-                poll button above
-              </p>
-            )}
+                <p>
+                  You haven't created any polls yet. Start one by clicking the new
+                  poll button above
+                </p>
+              )}
           </div>
         </Col>
         <Col className="col-xl-4 col-lg-4 recents">
