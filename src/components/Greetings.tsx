@@ -18,7 +18,7 @@ const Greetings = (): JSX.Element => {
             <span>{displayMail}</span>
           </div>
         </Col>
-        <Col className="col-3 d-flex flex-column align-items-center">
+        <Col className="col-sm-3 col-xs-12 d-flex flex-column align-items-center">
           <Button
             className="rm-primary-button mt-2 font-weight-bold"
             href="/poll/create"

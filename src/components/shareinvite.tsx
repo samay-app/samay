@@ -55,7 +55,7 @@ const Invitation = (props: {
     return true;
   };
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (["Enter", "Tab", ","].includes(evt.key)) {
+    if (["Enter", "Tab", " ", ","].includes(evt.key)) {
       evt.preventDefault();
       let value = currentEmail.trim();
       if (value && isValid(value)) {
