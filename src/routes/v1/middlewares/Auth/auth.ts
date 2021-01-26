@@ -3,11 +3,11 @@ import admin from './firebase';
 
 declare module 'express-serve-static-core' {
   interface Request {
-    currentUser: string | any
+    currentUser: admin.auth.DecodedIdToken;
   }
 }
-const auth = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
-   const headerToken = req.headers?.authorization;
+const auth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const headerToken = req.headers?.authorization;
   if (headerToken?.startsWith('Bearer ')) {
     const idToken = headerToken.split('Bearer ')[1];
 
