@@ -1,8 +1,9 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';
+import helmet from 'helmet';
 import pino, { Logger } from 'pino';
-import { loggerLevel } from './config';
+import { loggerLevel, corsURL } from './config';
 import router from './routes/v1/index';
 
 const logger: Logger = pino({ level: loggerLevel });
@@ -14,10 +15,12 @@ if (process.env.NODE_ENV === 'development') {
     app.use(expressLogger);
 }
 
+app.use(helmet());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ optionsSuccessStatus: 200 }));
+app.use(cors({ origin: corsURL, optionsSuccessStatus: 200 }));
 
 app.use('/v1', router);
 
