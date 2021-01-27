@@ -7,6 +7,7 @@
       "strict": true,
       "baseUrl": "./src",
       "esModuleInterop": true,
+      "resolveJsonModule": true,
       "lib": [
           "dom",
           "esnext",
