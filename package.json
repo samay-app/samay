@@ -37,7 +37,6 @@
     "firebase-admin": "^9.4.2",
     "firebase-token-generator": "^2.0.0",
     "helmet": "^4.2.0",
-    "lodash.isequal": "^4.5.0",
     "mongoose": "^5.10.18",
     "pino": "^6.8.0"
   },
@@ -48,7 +47,6 @@
     "@types/express-pino-logger": "^4.0.2",
     "@types/express-rate-limit": "^5.1.1",
     "@types/jest": "^26.0.19",
-    "@types/lodash.isequal": "^4.5.5",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^14.14.10",
     "@types/pino": "^6.3.4",
