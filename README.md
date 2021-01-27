@@ -11,10 +11,6 @@ Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discus
 
 You can find the complete API documentation [here](https://documenter.getpostman.com/view/9605987/TW6wHo7V#intro).
 
-## One-click Heroku deployment
-
-[button here]
-
 ## Getting Started
 
 ### Prerequisites
@@ -32,7 +28,7 @@ $ npm install
 
 ### Setup
 
-Make a copy of the .env.example file to .env and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account.
+Go to Firebase and create a project. In the authentication section, enable sign-in with Google. Then generate a private key from Project Overview > Project Settings > Service Accounts > Firebase Admin SDK. Next, make a copy of the .env.example file to .env and set the vars corresponding to the private key you generated. Then set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account used with Nodemailer.
 
 ### Run
 
@@ -50,7 +46,7 @@ $ npm run test
 
 ### Deployment
 
-In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account.
+In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account. Make sure the Firebase credentials in .env are correct and that you added your domain to the 'Authorized domains' section in your Firebase project.
 
 ## Contributing
 
