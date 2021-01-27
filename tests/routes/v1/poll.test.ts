@@ -1,7 +1,7 @@
 import supertest, { SuperTest, Test } from 'supertest';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
-import isChoicePresentInPollChoices from '../../../src/helpers';
+import { isChoicePresentInPollChoices } from '../../../src/helpers';
 import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
 
 const request: SuperTest<Test> = supertest(app);

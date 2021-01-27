@@ -33,7 +33,7 @@ $ npm install
 
 ### Setup
 
-Make a copy of the .env.example file to .env
+Go to [Firebase](https://firebase.google.com/) and create a project. In the authentication section, enable sign-in with Google. Then generate a private key from Project Overview > Project Settings > Service Accounts > Firebase Admin SDK. Next, make a copy of the .env.example file to .env and set the vars corresponding to the private key you generated.
 
 ### Run
 
@@ -51,7 +51,7 @@ $ npm run test
 
 ### Deployment
 
-In your .env, change the `NODE_ENV` to `production` and set the `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables corresponding to your MongoDB Atlas instance.
+In your .env, change the `NODE_ENV` to `production` and set the `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables corresponding to your MongoDB Atlas instance. Make sure the Firebase credentials in .env are correct and that you added your domain to the 'Authorized domains' section in your Firebase project.
 
 ## Contributing
 

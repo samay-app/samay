@@ -20,6 +20,9 @@ const prodConnectionURL = `mongodb+srv://${db.user}:${encodeURIComponent(db.pass
 
 export const connectionURL: string = environment === 'production' ? prodConnectionURL : devConnectionURL;
 
+export const publicEncryptionKey: string = process.env.PUBLIC_ENCRYPTION_KEY || '';
+export const publicEncryptionIV: string = process.env.PUBLIC_ENCRYPTION_IV || '';
+
 interface ServiceAccount {
   type: string;
   project_id: string;
