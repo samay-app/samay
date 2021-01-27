@@ -1,10 +1,8 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  issue_comment:                                     
+    types: [created]
 
 jobs:
   build:
@@ -16,6 +14,11 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - uses: khan/pull-request-comment-trigger@master
+      id: check
+      with:
+        trigger: '/test'
+      if: steps.check.outputs.triggered == 'true' && github.event.comment.author == 'anandbaburajan'
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
