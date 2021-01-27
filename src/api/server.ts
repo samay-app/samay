@@ -5,6 +5,7 @@ class serverAPI {
     // token: string;
     headers: Headers | string[][] | Record<string, string> | undefined;
     URL: string | undefined;
+    domain: string | undefined;
 
     constructor() {
         // this.userID = "UserIDfromStore"
@@ -12,6 +13,7 @@ class serverAPI {
         // https://github.com/kirill-konshin/next-redux-wrapper/issues/214#issuecomment-680273330
 
         this.URL = process.env.NEXT_PUBLIC_SERVER_URL;
+        this.domain = process.env.NEXT_PUBLIC_ORIGIN_DOMAIN;
     }
 
     httpMethod = async (
@@ -22,7 +24,7 @@ class serverAPI {
     ) => {
         this.headers = {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": `${this.domain}`,
             "Authorization": `Bearer ${token}`
         };
         const requestOptions: RequestInit = {
