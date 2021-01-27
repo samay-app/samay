@@ -23,7 +23,7 @@ class serverAPI {
         this.headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Authorisation": token
+            "Authorization": `Bearer ${token}`
         };
         const requestOptions: RequestInit = {
             method: reqMethod,
@@ -51,6 +51,8 @@ class serverAPI {
         token: string;
     }) => {
         const { userID, token } = pollArgs;
+        console.log(userID)
+        console.log(token)
         const endpoint = `${this.URL}/user/${userID}`;
         return await this.httpMethod(endpoint, "GET", token);
     }

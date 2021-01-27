@@ -17,7 +17,7 @@ class mailerAPI {
         this.headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Authorisation": `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
         }
 
         const requestOptions: RequestInit = {
