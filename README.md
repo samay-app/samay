@@ -9,7 +9,7 @@ Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discus
 
 ## API Documentation
 
-You can find the complete API documentation [here](#).
+You can find the complete API documentation [here](https://documenter.getpostman.com/view/9605987/TW6wHo7V#intro).
 
 ## One-click Heroku deployment
 
