@@ -28,6 +28,7 @@
   "homepage": "https://github.com/RocketMeet/RocketMeet#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",

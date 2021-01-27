@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import isChoicePresentInPollChoices from '../../helpers';
+import { isChoicePresentInPollChoices } from '../../helpers';
 import Poll, { Vote, RocketMeetPoll } from '../../db/models/poll';
 
 const router: Router = express.Router();
