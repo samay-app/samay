@@ -2,7 +2,7 @@ import { AnyAction } from "redux";
 import { SET_LOGIN_STATE, RESET_LOGIN_STATE } from "./type";
 import { AuthState } from "./state";
 
-const initialState: authState = {
+const initialState: AuthState = {
   server: "",
   client: "",
   isLoggedIn: false,
