@@ -1,7 +1,7 @@
 import { RocketMeetPoll, Vote, HttpResponse, Choice } from "../models/poll";
 
 class ServerAPI {
-  headers: Headers | string[][] | Record<string, string> | undefined;
+  headers: any;
 
   URL: string | undefined;
 
@@ -23,10 +23,10 @@ class ServerAPI {
   ): Promise<HttpResponse> => {
     this.headers = {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": `${this.domain}`,
       "Origin": `${this.domain}`,
       "Authorization": `Bearer ${token}`,
-    };
+      "withCredentials": true
+    }
     const requestOptions: RequestInit = {
       method: reqMethod,
       headers: this.headers,

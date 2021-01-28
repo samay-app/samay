@@ -6,7 +6,7 @@ interface MailerResponse {
 
 class MailerAPI {
   // senderID: string;
-  headers: Headers | string[][] | Record<string, string> | undefined;
+  headers: any;
 
   URL: string | undefined;
 
@@ -26,10 +26,9 @@ class MailerAPI {
   ): Promise<MailerResponse> => {
     this.headers = {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": `${this.domain}`,
       "Origin": `${this.domain}`,
       "Authorization": `Bearer ${token}`,
-
+      "withCredentials": true
     };
     const requestOptions: RequestInit = {
       method: "POST",
