@@ -28,10 +28,10 @@ class MailerAPI {
       "Content-Type": "application/json",
       "Origin": `${this.domain}`,
       "Authorization": `Bearer ${token}`,
-      "withCredentials": true,
-      "Access-Control-Request-Headers": "Origin, Content-Type, Authorization, withCredentials"
+      "Access-Control-Request-Headers": "Origin, Content-Type, Authorization"
     };
     const requestOptions: RequestInit = {
+      credentials: 'include',
       method: "POST",
       headers: this.headers,
       body: payload,

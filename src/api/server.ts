@@ -25,10 +25,10 @@ class ServerAPI {
       "Content-Type": "application/json",
       "Origin": `${this.domain}`,
       "Authorization": `Bearer ${token}`,
-      "withCredentials": true,
-      "Access-Control-Request-Headers": "Origin, Content-Type, Authorization, withCredentials"
+      "Access-Control-Request-Headers": "Origin, Content-Type, Authorization"
     }
     const requestOptions: RequestInit = {
+      credentials: 'include',
       method: reqMethod,
       headers: this.headers,
     };
