@@ -78,7 +78,7 @@ class ServerAPI {
   };
 
   markFinalChoice = (voteArgs: {
-    finalChoice: Choice;
+    finalChoice: any;
     pollid: string;
     token: string;
   }): Promise<HttpResponse> => {
