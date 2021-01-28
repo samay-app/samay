@@ -1,7 +1,6 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';
-import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import pino, { Logger } from 'pino';
 import { corsURL, logLevel } from './config';
@@ -17,20 +16,13 @@ if (process.env.NODE_ENV === 'development') {
     app.use(expressLogger);
 }
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-});
+app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
+app.options('*', cors());
 
 app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
-app.options('*', cors());
-
-app.use(limiter);
 
 app.use('/v1', routesV1);
 
