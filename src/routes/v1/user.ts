@@ -12,7 +12,7 @@ router.use('/', auth);
 
 router.get('/:encryptedEmailID', async (req: Request, res: Response) => {
     if (decrypt(req.params.encryptedEmailID) !== req.currentUser.email) {
-        res.status(401).json({ msg: 'Unauthorized' });
+        res.status(403).json({ msg: 'Forbidden' });
     } else {
         try {
             const polls: RocketMeetPoll[] | null = await Poll.find({
@@ -25,11 +25,11 @@ router.get('/:encryptedEmailID', async (req: Request, res: Response) => {
     }
 });
 
-// create a new poll
+// create new poll
 
 router.post('/poll', async (req: Request, res: Response) => {
     if (decrypt(req.body.encryptedEmailID) !== req.currentUser.email) {
-        res.status(401).json({ msg: 'Unauthorized' });
+        res.status(403).json({ msg: 'Forbidden' });
     } else {
         const newPoll: RocketMeetPoll = new Poll(req.body);
 
@@ -42,37 +42,13 @@ router.post('/poll', async (req: Request, res: Response) => {
     }
 });
 
-// update a poll
-
-router.put('/poll/:id', async (req: Request, res: Response) => {
-    const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id }).lean();
-    if (poll) {
-        if (decrypt(poll.encryptedEmailID) !== req.currentUser.email) {
-            res.status(401).json({ msg: 'Unauthorized' });
-        } else {
-            try {
-                const updatedPoll: RocketMeetPoll | null = await Poll.findOneAndUpdate(
-                    { _id: req.params.id },
-                    req.body,
-                    { new: true },
-                );
-                res.status(201).json(updatedPoll);
-            } catch (err) {
-                res.status(400).json({ message: err.message });
-            }
-        }
-    } else {
-        res.status(404).json({ message: 'Poll not found' });
-    }
-});
-
-// delete a specific poll with the id
+// delete a specific poll by id
 
 router.delete('/poll/:id', async (req: Request, res: Response) => {
     const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id }).lean();
     if (poll) {
         if (decrypt(poll.encryptedEmailID) !== req.currentUser.email) {
-            res.status(401).json({ msg: 'Unauthorized' });
+            res.status(403).json({ msg: 'Forbidden' });
         } else {
             try {
                 const deletedPoll = await Poll.findByIdAndRemove(req.params.id);
