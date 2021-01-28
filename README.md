@@ -11,10 +11,6 @@ Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discus
 
 You can find the API documentation [here](https://documenter.getpostman.com/view/10544125/TW6wJodh).
 
-## One-click Heroku deployment
-
-[button here]
-
 ## Getting Started
 
 ### Prerequisites
