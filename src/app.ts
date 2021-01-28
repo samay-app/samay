@@ -3,7 +3,7 @@ import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';
 import helmet from 'helmet';
 import pino, { Logger } from 'pino';
-import { corsURL, logLevel } from './config';
+import { logLevel } from './config';
 import './db/index'; // initialize database
 import routesV1 from './routes/v1/index';
 
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(expressLogger);
 }
 
-app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
+app.use(cors({ origin: ["https://rocketmeet.me", "https://rocketmeet.me/dashboard"], credentials: true, optionsSuccessStatus: 200 }));
 app.options('*', cors());
 
 app.use(helmet());
