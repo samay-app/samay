@@ -24,7 +24,8 @@ class ServerAPI {
     this.headers = {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": `${this.domain}`,
-      Authorization: `Bearer ${token}`,
+      "Origin": `${this.domain}`,
+      "Authorization": `Bearer ${token}`,
     };
     const requestOptions: RequestInit = {
       method: reqMethod,
