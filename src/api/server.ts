@@ -34,8 +34,11 @@ class ServerAPI {
     if (reqMethod !== "GET") {
       requestOptions.body = payload;
     }
+    console.log(enpoint)
+    console.log(requestOptions)
     const res = await fetch(endpoint, requestOptions);
     const { status } = res;
+    console.log(res)
     const responseData = await res.json();
     return {
       data: responseData,
