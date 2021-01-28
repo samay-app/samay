@@ -42,7 +42,7 @@ class ServerAPI {
     };
   };
 
-  getPoll = (pollid: string): Promise<HttpResponse> => {
+  getPoll = (pollid: string | string[] | null | undefined): Promise<HttpResponse> => {
     const endpoint = `${this.URL}/poll/${pollid}`;
     return this.httpMethod(endpoint, "GET");
   };
