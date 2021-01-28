@@ -19,7 +19,7 @@ router.post('/', async (req: Request, res: Response) => {
   const data: Data = req.body;
 
   if (data.senderEmailID !== req.currentUser.email) {
-    res.status(401).json({ msg: 'Unauthorized' });
+    res.status(403).json({ msg: 'Forbidden' });
   } else {
     const filePath = path.join(__dirname, '../../../template/index.html');
     const source = fs.readFileSync(filePath, 'utf-8').toString();

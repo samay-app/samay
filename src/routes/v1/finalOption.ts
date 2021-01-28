@@ -13,7 +13,7 @@ router.post('/', async (req: Request, res: Response) => {
   interface Data {
     senderName: string;
     senderEmailID: string;
-    pollTitle: string,
+    pollTitle: string;
     finalOption: Choice;
     receiverIDs: string[];
   }
@@ -21,7 +21,7 @@ router.post('/', async (req: Request, res: Response) => {
   const data: Data = req.body;
 
   if (data.senderEmailID !== req.currentUser.email) {
-    res.status(401).json({ msg: 'Unauthorized' });
+    res.status(403).json({ msg: 'Forbidden' });
   } else {
     const transporter: Transporter = createTransport({
       service: 'gmail',
