@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { MailerArgs } from "../models/poll";
 import { RootState } from "../store/store";
-import { MailerAPI } from "../api/mailer";
+import { mailerAPI } from "../api/mailer";
 
 const Invitation = (props: {
   pollid: string;
@@ -20,7 +20,7 @@ const Invitation = (props: {
 }): JSX.Element => {
   const { pollid } = props;
   const { polltitle } = props;
-  const pollurl = `https://rocketmeet.me/poll/${pollid}`; /* This should be replaced */
+  const pollurl = `${mailerAPI.domain}/poll/${pollid}`; /* This should be replaced */
   const displayName = useSelector(
     (state: RootState) => state.authReducer.displayName
   );
@@ -97,8 +97,8 @@ const Invitation = (props: {
       senderName: displayName,
       senderEmailID: loggedInUserEmailID,
     };
-    const status = await MailerAPI.sendInvite(mailerArgs, token);
-    if (status !== 404) {
+    const { statusCode } = await mailerAPI.sendInvite(mailerArgs, token);
+    if (statusCode !== 404) {
       props.onChangeS(true);
     } else {
       props.onChangeF(true);

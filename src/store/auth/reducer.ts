@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { SET_LOGIN_STATE, RESET_LOGIN_STATE } from "./type";
-import { authState } from "./state";
+import { AuthState } from "./state";
 
 const initialState: authState = {
   server: "",
@@ -8,12 +8,14 @@ const initialState: authState = {
   isLoggedIn: false,
   displayName: "",
   username: "",
-  token: ""
-
+  token: "",
 };
 
 // Later imported as `authReducer` in store.ts
-export default function reducer(state: authState = initialState, action: AnyAction) {
+export default function reducer(
+  state: AuthState = initialState,
+  action: AnyAction
+) {
   switch (action.type) {
     case SET_LOGIN_STATE:
       return {
@@ -21,14 +23,14 @@ export default function reducer(state: authState = initialState, action: AnyActi
         isLoggedIn: true,
         displayName: action.payload.displayName,
         username: action.payload.username,
-        token: action.payload.token
+        token: action.payload.token,
       };
     case RESET_LOGIN_STATE:
       return {
         ...state,
         isLoggedIn: false,
         username: "",
-        token: ""
+        token: "",
       };
     default:
       return state;

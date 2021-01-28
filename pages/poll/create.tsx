@@ -17,7 +17,7 @@ import { encrypt } from "../../src/helpers/helpers";
 import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
-import { ServerAPI } from "@api/server";
+import { serverAPI } from "../../src/api/server";
 
 // typings aren't available for react-available-times :(
 
@@ -65,7 +65,7 @@ const Create = (): JSX.Element => {
         encryptedEmailID,
         choices: pollChoices,
       };
-      const createPollResponse = await ServerAPI.createPoll({
+      const createPollResponse = await serverAPI.createPoll({
         poll,
         token
       });
