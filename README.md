@@ -46,7 +46,8 @@ $ npm run test
 
 ### Deployment
 
-In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account( Make sure to use a spare account and [Turn on less secure app access](https://myaccount.google.com/less secure apps) ) . Make sure the Firebase credentials in .env are correct and that you added your domain to the 'Authorized domains' section in your Firebase project.
+In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account. Make sure to use a spare account and [Turn on less secure app access](https://myaccount.google.com/lesssecureapps).
+Make sure the Firebase credentials in .env are correct and that you added your domain to the 'Authorized domains' section in your Firebase project.
 
 ## Contributing
 
