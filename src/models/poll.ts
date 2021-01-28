@@ -53,6 +53,6 @@ export interface MailerArgs {
 }
 
 export interface HttpResponse {
-  data: Object;
+  data: any;
   statusCode: number;
 }
