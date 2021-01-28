@@ -13,7 +13,7 @@ router.post('/', async (req: Request, res: Response) => {
   interface Data {
     senderName: string;
     senderEmailID: string;
-    pollTitle: string;
+    pollTitle: string,
     finalOption: Choice;
     receiverIDs: string[];
   }
