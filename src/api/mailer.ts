@@ -30,7 +30,6 @@ class MailerAPI {
     };
     const requestOptions: RequestInit = {
       mode: 'cors',
-      credentials: 'include',
       method: "POST",
       headers: this.headers,
       body: payload,
