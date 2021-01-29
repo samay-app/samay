@@ -1,4 +1,4 @@
-import { MailerArgs } from "../models/poll";
+import { MailerPollArgs, MailerEventArgs } from "../models/poll";
 
 interface MailerResponse {
   statusCode: number;
@@ -22,6 +22,7 @@ class MailerAPI {
 
   httpPost = async (
     payload: string,
+    endpoint: string,
     token: string
   ): Promise<MailerResponse> => {
     this.headers = {
@@ -35,20 +36,33 @@ class MailerAPI {
       headers: this.headers,
       body: payload,
     };
-    const res = await fetch(`${this.URL}`, requestOptions);
+    const res = await fetch(endpoint, requestOptions);
     const { status } = res;
     return {
       statusCode: status,
     };
   };
 
-  sendInvite = (
-    mailerArgs: MailerArgs,
+  sendPollInvites = (
+    // Invite pollers
+    mailerArgs: MailerPollArgs,
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);
-    return this.httpPost(payload, token);
+    const endpoint = `${this.URL}/meetInfo`
+    return this.httpPost(payload, endpoint, token);
   };
+
+  sendEventInvites = (
+    // Invite pollers for the event in final time-slot
+    mailerArgs: MailerEventArgs,
+    token: string
+  ): Promise<MailerResponse> => {
+    const payload = JSON.stringify(mailerArgs);
+    const endpoint = `${this.URL}/finalOption`
+    return this.httpPost(payload, endpoint, token);
+  };
+
 }
 
 export const mailerAPI = new MailerAPI();
