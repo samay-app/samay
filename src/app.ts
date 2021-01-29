@@ -20,7 +20,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ origin: corsURL, optionsSuccessStatus: 200 }));
+app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
 
 app.use('/v1', router);
 
