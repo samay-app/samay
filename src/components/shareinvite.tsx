@@ -90,6 +90,10 @@ const Invitation = (props: {
   /* added void below( remove this comment at last PR) */
   const handleSubmit = async (): Promise<void> => {
     /* console.log(emailList); which is also to be removed */
+    if(isValid(currentEmail)) {
+      setEmails([...emailList, currentEmail]);
+      setCurrentEmail("");
+    }
     const mailerArgs: MailerPollArgs = {
       pollID: pollid,
       pollTitle: polltitle,
