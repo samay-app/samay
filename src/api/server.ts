@@ -22,7 +22,8 @@ class ServerAPI {
     payload = ""
   ): Promise<HttpResponse> => {
     this.headers = {
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     }
     const requestOptions: RequestInit = {
       mode: 'cors',

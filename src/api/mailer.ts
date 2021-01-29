@@ -25,7 +25,8 @@ class MailerAPI {
     token: string
   ): Promise<MailerResponse> => {
     this.headers = {
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     };
     const requestOptions: RequestInit = {
       mode: 'cors',
