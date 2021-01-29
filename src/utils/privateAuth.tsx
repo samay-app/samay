@@ -12,7 +12,7 @@ const privateAuthWrapper = (Component: NextPage) => {
 
     useEffect(() => {
       if (!isLoggedIn) {
-        Router.push("/404");
+        Router.push("/");
       }
     }, [isLoggedIn]);
 
