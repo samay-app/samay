@@ -18,11 +18,10 @@ const limiter = rateLimit({
 
 const app: Application = express();
 
+app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
-app.options('*', cors());
 
 if (process.env.NODE_ENV === 'development') {
     app.use(expressLogger);
