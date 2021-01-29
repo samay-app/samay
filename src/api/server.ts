@@ -1,5 +1,4 @@
 import { RocketMeetPoll, Vote, HttpResponse, Choice } from "../models/poll";
-const axios = require('axios');
 
 class ServerAPI {
   headers: any;
@@ -25,7 +24,6 @@ class ServerAPI {
     this.headers = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
-      //"Access-Control-Request-Headers": "Content-Type, Authorization"
     }
     const requestOptions: RequestInit = {
       mode: 'cors',
