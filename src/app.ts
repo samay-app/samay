@@ -11,7 +11,7 @@ const expressLogger: HttpLogger = expressPino({ logger });
 const app: Application = express();
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://rocketmeet.me/');
+    res.setHeader('Access-Control-Allow-Origin', 'https://rocketmeet.me');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,PATCH,DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,X-Custom-Header');
     res.setHeader('Access-Control-Allow-Credentials', true);
