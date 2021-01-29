@@ -1,8 +1,8 @@
-export interface authState {
-    server: string;
-    client: string;
-    isLoggedIn: Boolean;
-    displayName: any;
-    username: string;
-    token: string;
+export interface AuthState {
+  server: string;
+  client: string;
+  isLoggedIn: boolean;
+  displayName: any;
+  username: string;
+  token: string;
 }

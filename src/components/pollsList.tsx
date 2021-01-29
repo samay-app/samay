@@ -4,7 +4,7 @@ import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
 import { encrypt } from "../helpers/helpers";
 import { RocketMeetPollFromDB } from "../models/poll";
 import { RootState } from "../store/store";
-import { ServerAPI } from "src/api/server";
+import { serverAPI } from "src/api/server";
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
@@ -15,7 +15,7 @@ const PollsList = (): JSX.Element => {
   useEffect(() => {
     const getData = async (): Promise<void> => {
       try {
-        const fetchedPolls = await ServerAPI.getPolls({
+        const fetchedPolls = await serverAPI.getPolls({
           userID,
           token
         });

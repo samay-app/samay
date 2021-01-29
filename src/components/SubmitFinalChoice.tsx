@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Router from "next/router";
 import { Choice } from "../models/poll";
-import { ServerAPI } from "src/api/server"
+import { serverAPI } from "src/api/server"
 import { RootState } from "src/store/store";
 
 const SubmitFinalChoice = (props: {
@@ -22,7 +22,7 @@ const SubmitFinalChoice = (props: {
       pollid,
       token
     }
-    const submitFinalChoiceResponse = await ServerAPI.markFinalChoice(voterArgs);
+    const submitFinalChoiceResponse = await serverAPI.markFinalChoice(voterArgs);
     if (submitFinalChoiceResponse.statusCode === 201) {
       Router.reload();
     } else {

@@ -2,7 +2,7 @@ import React from "react";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-import { auth, firebase } from "./Firebase";
+import { auth, firebase } from "../utils/firebase";
 import { login, logout } from "../store/auth/action";
 import { RootState } from "src/store/store";
 
