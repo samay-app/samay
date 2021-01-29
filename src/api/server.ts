@@ -23,22 +23,22 @@ class ServerAPI {
   ): Promise<HttpResponse> => {
     this.headers = {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
-    }
+      Authorization: `Bearer ${token}`,
+    };
     const requestOptions: RequestInit = {
-      mode: 'cors',
-      credentials: 'include',
+      mode: "cors",
+      credentials: "include",
       method: reqMethod,
       headers: this.headers,
     };
     if (reqMethod !== "GET") {
       requestOptions.body = payload;
     }
-    console.log(endpoint)
-    console.log(requestOptions)
+    console.log(endpoint);
+    console.log(requestOptions);
     const res = await fetch(endpoint, requestOptions);
     const { status } = res;
-    console.log(res)
+    console.log(res);
     const responseData = await res.json();
     return {
       data: responseData,
@@ -46,15 +46,14 @@ class ServerAPI {
     };
   };
 
-  getPoll = (pollid: string | string[] | null | undefined): Promise<HttpResponse> => {
+  getPoll = (
+    pollid: string | string[] | null | undefined
+  ): Promise<HttpResponse> => {
     const endpoint = `${this.URL}/poll/${pollid}`;
     return this.httpMethod(endpoint, "GET");
   };
 
-  getPolls = (pollArgs: {
-    userID: string;
-    token: string;
-  }) => {
+  getPolls = (pollArgs: { userID: string; token: string }) => {
     const { userID, token } = pollArgs;
     const endpoint = `${this.URL}/user/${userID}`;
     return this.httpMethod(endpoint, "GET", token);

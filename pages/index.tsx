@@ -1,11 +1,13 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { RootState } from "../src/store/store";
 import Login from "../src/components/Login";
 import Layout from "../src/components/Layout";
-import { RootState } from "src/store/store";
 
 const Home = (): JSX.Element => {
-  const isLoggedIn = useSelector((state: RootState) => state.authReducer.isLoggedIn);
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.authReducer.isLoggedIn
+  );
 
   return (
     <Layout>
@@ -34,8 +36,8 @@ const Home = (): JSX.Element => {
                   Create a Poll
                 </Button>
               ) : (
-                  <Login />
-                )}
+                <Login />
+              )}
             </div>
           </Col>
         </Row>

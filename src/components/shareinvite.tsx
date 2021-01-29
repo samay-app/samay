@@ -8,7 +8,7 @@ import {
 import copy from "copy-to-clipboard";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { MailerArgs } from "../models/poll";
+import { MailerPollArgs } from "../models/poll";
 import { RootState } from "../store/store";
 import { mailerAPI } from "../api/mailer";
 
@@ -90,14 +90,14 @@ const Invitation = (props: {
   /* added void below( remove this comment at last PR) */
   const handleSubmit = async (): Promise<void> => {
     /* console.log(emailList); which is also to be removed */
-    const mailerArgs: MailerArgs = {
+    const mailerArgs: MailerPollArgs = {
       pollID: pollid,
       pollTitle: polltitle,
       receiverIDs: emailList,
       senderName: displayName,
       senderEmailID: loggedInUserEmailID,
     };
-    const { statusCode } = await mailerAPI.sendInvite(mailerArgs, token);
+    const { statusCode } = await mailerAPI.sendPollInvites(mailerArgs, token);
     if (statusCode !== 404) {
       props.onChangeS(true);
     } else {

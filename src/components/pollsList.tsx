@@ -109,6 +109,7 @@ const PollsList = (): JSX.Element => {
           <></>
         )}
       </div>
+
     ));
   };
 
@@ -124,7 +125,9 @@ const PollsList = (): JSX.Element => {
                 <Allpolls />
               </CardColumns>
             ) : (
+
               <p>{message}</p>
+             
             )}
           </div>
         </Col>
