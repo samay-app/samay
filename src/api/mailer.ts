@@ -27,11 +27,11 @@ class MailerAPI {
   ): Promise<MailerResponse> => {
     this.headers = {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     };
     const requestOptions: RequestInit = {
-      mode: 'cors',
-      credentials: 'include',
+      mode: "cors",
+      credentials: "include",
       method: "POST",
       headers: this.headers,
       body: payload,
@@ -49,7 +49,7 @@ class MailerAPI {
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);
-    const endpoint = `${this.URL}/meetInfo`
+    const endpoint = `${this.URL}/meetInfo`;
     return this.httpPost(payload, endpoint, token);
   };
 
@@ -59,10 +59,9 @@ class MailerAPI {
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);
-    const endpoint = `${this.URL}/finalOption`
+    const endpoint = `${this.URL}/finalOption`;
     return this.httpPost(payload, endpoint, token);
   };
-
 }
 
 export const mailerAPI = new MailerAPI();

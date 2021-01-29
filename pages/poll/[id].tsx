@@ -4,6 +4,7 @@ import { Row, Col, Jumbotron, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { serverAPI } from "../../src/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/PollInfo";
 import PollTable from "../../src/components/PollTable";
@@ -16,7 +17,6 @@ import {
 import { decrypt } from "../../src/helpers/helpers";
 import ShareInvite from "../../src/components/shareinvite";
 import { RootState } from "../../src/store/store";
-import { serverAPI } from "@api/server";
 
 dayjs.extend(localizedFormat);
 
@@ -102,11 +102,10 @@ const Poll = (props: {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  var pollid = null;
+  let pollid = null;
   if (context.params) {
     pollid = context.params.id;
   }
-  //const res = await fetch(`https://rocketmeet.herokuapp.com/v1/poll/${pollid}`);
   const getPollResponse = await serverAPI.getPoll(pollid);
   const pollFromDB = getPollResponse.data;
 

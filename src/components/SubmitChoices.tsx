@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Router from "next/router";
+import { serverAPI } from "../api/server";
+import { RootState } from "../store/store";
 import { Vote } from "../models/poll";
-import { serverAPI } from "src/api/server"
-import { RootState } from "src/store/store";
 
 const SubmitChoices = (props: {
   newVote: Vote;
@@ -16,15 +16,14 @@ const SubmitChoices = (props: {
     const voterArgs = {
       newVote,
       pollid,
-      token
-    }
+      token,
+    };
     const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
     if (submitChoiceResponse.statusCode === 201) {
-      Router.reload()
+      Router.reload();
     } else {
       console.log(submitChoiceResponse);
     }
-
   };
 
   return (
