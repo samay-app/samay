@@ -24,6 +24,7 @@
     "firebase": "^7.8.1",
     "next": "^10.0.0",
     "next-redux-wrapper": "^6.0.2",
+    "nprogress": "^0.2.0",
     "react": "16.13.1",
     "react-available-times": "^1.4.0",
     "react-bootstrap": "^1.4.0",
