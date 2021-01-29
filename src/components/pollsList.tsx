@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
+import { serverAPI } from "../api/server";
 import { encrypt } from "../helpers/helpers";
 import { RocketMeetPollFromDB } from "../models/poll";
 import { RootState } from "../store/store";
-import { serverAPI } from "src/api/server";
 
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
@@ -17,7 +17,7 @@ const PollsList = (): JSX.Element => {
       try {
         const fetchedPolls = await serverAPI.getPolls({
           userID,
-          token
+          token,
         });
         setPollList(fetchedPolls.data);
       } catch (err) {
@@ -98,8 +98,8 @@ const PollsList = (): JSX.Element => {
             {convertedDate(item.finalChoice?.start)}
           </div>
         ) : (
-            <></>
-          )}
+          <></>
+        )}
       </>
     ));
   };
@@ -116,11 +116,11 @@ const PollsList = (): JSX.Element => {
                 <Allpolls />
               </CardColumns>
             ) : (
-                <p>
-                  You haven't created any polls yet. Start one by clicking the new
-                  poll button above
-                </p>
-              )}
+              <p>
+                You haven't created any polls yet. Start one by clicking the new
+                poll button above
+              </p>
+            )}
           </div>
         </Col>
         <Col className="col-xl-4 col-lg-4 recents">

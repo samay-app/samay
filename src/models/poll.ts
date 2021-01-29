@@ -44,12 +44,19 @@ export interface RocketMeetPollFromDB {
   __v: number;
 }
 
-export interface MailerArgs {
+export interface MailerPollArgs {
   pollID: string;
   pollTitle: string;
   receiverIDs: string[];
   senderName: string;
   senderEmailID: string;
+}
+
+export interface MailerEventArgs {
+  senderName: string;
+  pollTitle: string;
+  finalOption: Choice;
+  receiverIDs: string[];
 }
 
 export interface HttpResponse {

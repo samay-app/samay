@@ -33,7 +33,7 @@ const Create = (): JSX.Element => {
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
-  const token = useSelector((state: RootState) => state.authReducer.token)
+  const token = useSelector((state: RootState) => state.authReducer.token);
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setTitle(value);
@@ -67,7 +67,7 @@ const Create = (): JSX.Element => {
       };
       const createPollResponse = await serverAPI.createPoll({
         poll,
-        token
+        token,
       });
       if (createPollResponse.statusCode === 201) {
         Router.push(`/poll/${createPollResponse.data._id}`);
@@ -75,7 +75,7 @@ const Create = (): JSX.Element => {
         console.log("Poll creation failed! Please try again");
       }
     }
-  }
+  };
 
   return (
     <Layout>
