@@ -19,7 +19,7 @@ const PollsList = (): JSX.Element => {
           userID,
           token
         });
-        setPollList(fetchedPolls.data);
+        // setPollList(fetchedPolls.data);
       } catch (err) {
         /* console.log(err); */
       }
