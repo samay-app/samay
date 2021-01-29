@@ -1,4 +1,5 @@
 import { RocketMeetPoll, Vote, HttpResponse, Choice } from "../models/poll";
+const axios = require('axios');
 
 class ServerAPI {
   headers: any;
@@ -55,10 +56,24 @@ class ServerAPI {
   getPolls = (pollArgs: {
     userID: string;
     token: string;
-  }): Promise<HttpResponse> => {
+  }) => {
     const { userID, token } = pollArgs;
     const endpoint = `${this.URL}/user/${userID}`;
-    return this.httpMethod(endpoint, "GET", token);
+
+    axios.get(endpoint, {
+      withCredentials: true,
+      headers: {
+        "Content-type": "Application/json",
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then((res: any) => {
+        console.log(res)
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+    // return this.httpMethod(endpoint, "GET", token);
   };
 
   createPoll = (pollArgs: {
