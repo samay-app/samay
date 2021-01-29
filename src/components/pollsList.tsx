@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import NProgress from "nprogress";
 import { useSelector } from "react-redux";
 import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
 import { serverAPI } from "../api/server";
@@ -10,35 +11,42 @@ const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
   const token = useSelector((state: RootState) => state.authReducer.token);
   const userID = encrypt(user);
-  const [pollList, setPollList] = useState([]);
+  const [pollList, setPollList] = useState<RocketMeetPollFromDB[]>([]);
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     const getData = async (): Promise<void> => {
       try {
+        NProgress.start();
         const fetchedPolls = await serverAPI.getPolls({
           userID,
           token,
         });
-        setPollList(fetchedPolls.data);
+        NProgress.done();
+        if (fetchedPolls.statusCode === 200) {
+          setPollList(fetchedPolls.data);
+          setMessage(
+            "You haven't created any polls yet. Start one by clicking the new poll button above"
+          );
+        } else {
+          setPollList([]);
+          setMessage("Ouch ! an error occured . please try again");
+        }
       } catch (err) {
-        /* console.log(err); */
+        setMessage("Ouch ! an error occured . please try again");
+        NProgress.done();
       }
     };
     getData();
-  }, [userID]);
+  }, [userID, token]);
 
   const Allpolls: Function = (): JSX.Element[] => {
-    return pollList
-      .map((item: RocketMeetPollFromDB) => (
-        <Card
-          bg="dark"
-          text="white"
-          className="pt-4 px-4 my-2 cardindash"
-          key={item._id}
-        >
+    return pollList.reverse().map((item: RocketMeetPollFromDB) => (
+      <div key={item._id}>
+        <Card bg="dark" text="white" className="pt-4 px-4 my-2 cardindash">
           <Card.Title className="d-flex flex-row justify-content-between">
             <span className="card-title">{item.title}</span>
-            <Badge variant={item.open ? "success" : "danger"}>
+            <Badge variant={item.open ? "success" : "secondary"}>
               {item.open ? "open" : "closed"}
             </Badge>
           </Card.Title>
@@ -57,8 +65,8 @@ const PollsList = (): JSX.Element => {
             </span>
           </Card.Footer>
         </Card>
-      ))
-      .reverse();
+      </div>
+    ));
   };
   const currentDate = Date.now();
   const convertedDate = (time: number | undefined): string => {
@@ -91,7 +99,7 @@ const PollsList = (): JSX.Element => {
   };
   const Recents: Function = (): JSX.Element[] => {
     return pollList.reverse().map((item: RocketMeetPollFromDB) => (
-      <>
+      <div key={item.createdAt}>
         {!item.open && (item.finalChoice?.start || 0) > currentDate ? (
           <div className="d-block m-1 p-2 upcomings">
             <b>{item.title}</b> to be conducted on{" "}
@@ -100,7 +108,8 @@ const PollsList = (): JSX.Element => {
         ) : (
           <></>
         )}
-      </>
+      </div>
+
     ));
   };
 
@@ -116,10 +125,9 @@ const PollsList = (): JSX.Element => {
                 <Allpolls />
               </CardColumns>
             ) : (
-              <p>
-                You haven't created any polls yet. Start one by clicking the new
-                poll button above
-              </p>
+
+              <p>{message}</p>
+             
             )}
           </div>
         </Col>
