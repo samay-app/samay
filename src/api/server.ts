@@ -59,22 +59,7 @@ class ServerAPI {
   }) => {
     const { userID, token } = pollArgs;
     const endpoint = `${this.URL}/user/${userID}`;
-
-
-    axios.get(endpoint, {
-      headers: {
-        "Content-type": "Application/json",
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((res: any) => {
-        console.log(res)
-      })
-      .catch((err: any) => {
-        console.log(err)
-      })
-
-    // return this.httpMethod(endpoint, "GET", token);
+    return this.httpMethod(endpoint, "GET", token);
   };
 
   createPoll = (pollArgs: {
