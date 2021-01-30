@@ -42,6 +42,30 @@ router.post('/poll', async (req: Request, res: Response) => {
     }
 });
 
+// update a poll
+
+router.put('/poll/:id', async (req: Request, res: Response) => {
+    const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id }).lean();
+    if (poll) {
+        if (decrypt(poll.encryptedEmailID) !== req.currentUser.email) {
+            res.status(403).json({ msg: 'Forbidden' });
+        } else {
+            try {
+                const updatedPoll: RocketMeetPoll | null = await Poll.findOneAndUpdate(
+                    { _id: req.params.id },
+                    req.body,
+                    { new: true },
+                );
+                res.status(201).json(updatedPoll);
+            } catch (err) {
+                res.status(400).json({ message: err.message });
+            }
+        }
+    } else {
+        res.status(404).json({ message: 'Poll not found' });
+    }
+});
+
 // delete a specific poll by id
 
 router.delete('/poll/:id', async (req: Request, res: Response) => {
@@ -52,13 +76,9 @@ router.delete('/poll/:id', async (req: Request, res: Response) => {
         } else {
             try {
                 const deletedPoll = await Poll.findByIdAndRemove(req.params.id);
-                if (deletedPoll) {
-                    res.status(200).json(deletedPoll);
-                } else {
-                    res.status(404).json({ message: 'Poll does not exist' });
-                }
+                res.status(200).json(deletedPoll);
             } catch (err) {
-                res.status(503).json({ message: err.message });
+                res.status(400).json({ message: err.message });
             }
         }
     } else {
