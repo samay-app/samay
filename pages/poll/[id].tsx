@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Row, Col, Jumbotron, Alert } from "react-bootstrap";
+import { Row, Container, Jumbotron, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -49,54 +49,57 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Row className="jumbo-row">
-        <Col className="jumbo-col-info col-md-4">
-          <Jumbotron className="poll-info">
-            <PollInfo poll={pollFromDB} />
-            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-              <ShareInvite
-                polltitle={pollFromDB.title}
+      <Container className="rm-poll-container" fluid>
+        <Row className="jumbo-row">
+          <div className="jumbo-col-black col-sm-4">
+            <Jumbotron className="poll-info">
+              <PollInfo poll={pollFromDB} />
+              {pollFromDB.open &&
+                loggedInUserEmailID === pollCreatorEmailID && (
+                  <ShareInvite
+                    polltitle={pollFromDB.title}
+                    pollid={pollid}
+                    onChangeS={handleChangeS}
+                    onChangeF={handleChangeF}
+                  />
+                )}
+            </Jumbotron>
+          </div>
+          <div className="col-sm-8">
+            <Jumbotron className="poll-table-jumbo">
+              <PollTable
+                pollFromDB={pollFromDB}
                 pollid={pollid}
-                onChangeS={handleChangeS}
-                onChangeF={handleChangeF}
+                sortedChoices={sortedChoices}
+                newVote={newVote}
+                setNewVote={setNewVote}
+                finalChoice={finalChoice}
+                setFinalChoice={setFinalChoice}
+                pollCreatorEmailID={pollCreatorEmailID}
+                loggedInUserEmailID={loggedInUserEmailID}
               />
-            )}
-          </Jumbotron>
-        </Col>
-        <Col className="jumbo-col col-md-8">
-          <Jumbotron className="poll-table-jumbo">
-            <PollTable
-              pollFromDB={pollFromDB}
-              pollid={pollid}
-              sortedChoices={sortedChoices}
-              newVote={newVote}
-              setNewVote={setNewVote}
-              finalChoice={finalChoice}
-              setFinalChoice={setFinalChoice}
-              pollCreatorEmailID={pollCreatorEmailID}
-              loggedInUserEmailID={loggedInUserEmailID}
-            />
-          </Jumbotron>
-        </Col>
-      </Row>
-      <div className="alert-corner">
-        <Alert
-          variant="success"
-          show={showPopS}
-          onClose={() => setShowPopS(false)}
-          dismissible
-        >
-          <Alert.Heading>Successfully sent mails</Alert.Heading>
-        </Alert>
-        <Alert
-          variant="danger"
-          show={showPopF}
-          onClose={() => setShowPopF(false)}
-          dismissible
-        >
-          <Alert.Heading>Mails not sent</Alert.Heading>
-        </Alert>
-      </div>
+            </Jumbotron>
+          </div>
+        </Row>
+        <div className="alert-corner">
+          <Alert
+            variant="success"
+            show={showPopS}
+            onClose={(): void => setShowPopS(false)}
+            dismissible
+          >
+            <Alert.Heading>Successfully sent mails</Alert.Heading>
+          </Alert>
+          <Alert
+            variant="danger"
+            show={showPopF}
+            onClose={(): void => setShowPopF(false)}
+            dismissible
+          >
+            <Alert.Heading>Mails not sent</Alert.Heading>
+          </Alert>
+        </div>
+      </Container>
     </Layout>
   );
 };

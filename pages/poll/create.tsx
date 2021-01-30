@@ -5,6 +5,7 @@ import {
   Form,
   Row,
   Col,
+  Container,
   Jumbotron,
   Button,
   OverlayTrigger,
@@ -13,6 +14,7 @@ import {
 import { InfoCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
 import Layout from "../../src/components/Layout";
+import ResponseMessage from "../../src/components/ResponseMessage";
 import { encrypt } from "../../src/helpers/helpers";
 import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
@@ -34,6 +36,13 @@ const Create = (): JSX.Element => {
     (state: RootState) => state.authReducer.username
   );
   const token = useSelector((state: RootState) => state.authReducer.token);
+
+  const [response, setResponse] = useState({
+    status: false,
+    type: "",
+    msg: "",
+  });
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setTitle(value);
@@ -56,8 +65,11 @@ const Create = (): JSX.Element => {
     setChoices(newChoices);
   };
 
-  const handleSubmit = async (): Promise<void> => {
-    if (pollTitle && pollChoices && pollChoices?.length > 0) {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLInputElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    if (pollTitle && pollChoices && pollChoices?.length > 1) {
       const encryptedEmailID = encrypt(loggedInUserEmailID);
       const poll: RocketMeetPoll = {
         title: pollTitle,
@@ -72,20 +84,20 @@ const Create = (): JSX.Element => {
       if (createPollResponse.statusCode === 201) {
         Router.push(`/poll/${createPollResponse.data._id}`);
       } else {
-        console.log("Poll creation failed! Please try again");
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Poll creation failed, please try again later.",
+        });
       }
     }
   };
 
   return (
     <Layout>
-      <Form
-        onSubmit={(e): void => {
-          e.preventDefault();
-        }}
-      >
+      <Container className="rm-poll-container" fluid>
         <Row className="jumbo-row">
-          <Col className="jumbo-col-create col-lg-4">
+          <div className="jumbo-col-black col-sm-4">
             <Jumbotron className="poll-create">
               <Form.Group as={Row} controlId="formPlainTextTitle">
                 <Col>
@@ -120,27 +132,31 @@ const Create = (): JSX.Element => {
                 <InfoCircleFill className="timezone-info-icon" />
               </OverlayTrigger>
             </Jumbotron>
-          </Col>
-          <Col className="jumbo-col create-col col-lg-8">
-            <Jumbotron className="poll-table-jumbo">
+          </div>
+          <div className="col-sm-8">
+            <Jumbotron className="poll-timeslot-jumbo">
               <AvailableTimes
                 weekStartsOn="monday"
                 onChange={onChoicesChange}
-                height={500}
+                height="28rem"
               />
               <Button
                 className="rm-primary-button create-poll-btn"
                 onClick={handleSubmit}
-                disabled={
-                  !pollTitle || !pollChoices || pollChoices?.length === 0
-                }
+                disabled={!pollTitle || !pollChoices || pollChoices?.length < 2}
               >
                 Create Poll
               </Button>
+              <ResponseMessage
+                response={response}
+                onHide={(): void =>
+                  setResponse({ status: false, type: "", msg: "" })
+                }
+              />
             </Jumbotron>
-          </Col>
+          </div>
         </Row>
-      </Form>
+      </Container>
     </Layout>
   );
 };

@@ -1,18 +1,30 @@
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import Router from "next/router";
 import { serverAPI } from "../api/server";
 import { RootState } from "../store/store";
 import { Choice } from "../models/poll";
+import ResponseMessage from "./ResponseMessage";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
   pollid: string;
 }): JSX.Element => {
   const { finalChoice, pollid } = props;
+
+  const [response, setResponse] = useState({
+    status: false,
+    type: "",
+    msg: "",
+  });
+
   const token = useSelector((state: RootState) => state.authReducer.token);
 
-  const handleSubmit = async (): Promise<void> => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLInputElement>
+  ): Promise<void> => {
+    e.preventDefault();
     const markFinalChoice = {
       finalChoice,
       open: false,
@@ -28,19 +40,32 @@ const SubmitFinalChoice = (props: {
     if (submitFinalChoiceResponse.statusCode === 201) {
       Router.reload();
     } else {
-      console.log(submitFinalChoiceResponse);
+      setResponse({
+        status: true,
+        type: "error",
+        msg: `${submitFinalChoiceResponse}`,
+      });
     }
   };
 
   return (
-    <Button
-      className="mt-4 mb-4 rm-primary-button-small mark-options-btn"
-      type="submit"
-      disabled={!finalChoice}
-      onClick={handleSubmit}
-    >
-      Mark final option
-    </Button>
+    <div>
+      <Button
+        className="rm-primary-button-small mark-options-btn"
+        type="submit"
+        disabled={!finalChoice}
+        onClick={handleSubmit}
+      >
+        Mark final option
+      </Button>
+      <ResponseMessage
+        response={response}
+        onHide={(): void => {
+          setResponse({ status: false, type: "", msg: "" });
+          Router.reload();
+        }}
+      />
+    </div>
   );
 };
 

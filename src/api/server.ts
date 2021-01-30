@@ -34,11 +34,8 @@ class ServerAPI {
     if (reqMethod !== "GET") {
       requestOptions.body = payload;
     }
-    console.log(endpoint);
-    console.log(requestOptions);
     const res = await fetch(endpoint, requestOptions);
     const { status } = res;
-    console.log(res);
     const responseData = await res.json();
     return {
       data: responseData,
@@ -53,7 +50,10 @@ class ServerAPI {
     return this.httpMethod(endpoint, "GET");
   };
 
-  getPolls = (pollArgs: { userID: string; token: string }) => {
+  getPolls = (pollArgs: {
+    userID: string;
+    token: string;
+  }): Promise<HttpResponse> => {
     const { userID, token } = pollArgs;
     const endpoint = `${this.URL}/user/${userID}`;
     return this.httpMethod(endpoint, "GET", token);
@@ -72,16 +72,15 @@ class ServerAPI {
   markChoices = (voteArgs: {
     newVote: Vote;
     pollid: string;
-    token: string;
   }): Promise<HttpResponse> => {
-    const { newVote, pollid, token } = voteArgs;
+    const { newVote, pollid } = voteArgs;
     const payload = JSON.stringify(newVote);
     const endpoint = `${this.URL}/poll/${pollid}`;
-    return this.httpMethod(endpoint, "PUT", token, payload);
+    return this.httpMethod(endpoint, "PUT", payload);
   };
 
   markFinalChoice = (voteArgs: {
-    finalChoice: any;
+    finalChoice: { finalChoice: Choice | undefined; open: boolean };
     pollid: string;
     token: string;
   }): Promise<HttpResponse> => {
