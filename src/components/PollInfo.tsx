@@ -19,7 +19,7 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
       <Badge
         pill
         variant={poll.open ? "success" : "secondary"}
-        className="rm-badge"
+        className="rm-badge-poll"
       >
         {poll.open ? "Open" : "Closed"}
       </Badge>

@@ -5,6 +5,16 @@ const ResponseMessage = (props: {
   onHide(arg: boolean): void;
 }): JSX.Element => {
   const { response, onHide } = props;
+  let responseClassName: string;
+
+  if (response.type === "error") {
+    responseClassName = "rm-response-error";
+  } else if (response.type === "success") {
+    responseClassName = "rm-response-success";
+  } else {
+    responseClassName = "rm-response-null";
+  }
+
   return (
     <Modal
       show={response.status}
@@ -13,15 +23,11 @@ const ResponseMessage = (props: {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header
-        closeButton
-        className={
-          response.type === "error"
-            ? "rm-response-error"
-            : "rm-response-success"
-        }
-      >
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header closeButton className={responseClassName}>
+        <Modal.Title
+          id="contained-modal-title-vcenter"
+          className="rm-response-title"
+        >
           {response.msg}
         </Modal.Title>
       </Modal.Header>

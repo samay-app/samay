@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Row, Container, Jumbotron, Alert } from "react-bootstrap";
+import { Row, Container, Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -15,7 +15,7 @@ import {
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers/helpers";
-import ShareInvite from "../../src/components/shareinvite";
+import ShareInvite from "../../src/components/ShareInvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
@@ -37,15 +37,6 @@ const Poll = (props: {
     choices: [],
   });
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
-  const [showPopS, setShowPopS] = useState<boolean>(false);
-  const [showPopF, setShowPopF] = useState<boolean>(false);
-
-  const handleChangeS = (newValS: boolean): void => {
-    setShowPopS(newValS);
-  };
-  const handleChangeF = (newValF: boolean): void => {
-    setShowPopF(newValF);
-  };
 
   return (
     <Layout>
@@ -56,12 +47,7 @@ const Poll = (props: {
               <PollInfo poll={pollFromDB} />
               {pollFromDB.open &&
                 loggedInUserEmailID === pollCreatorEmailID && (
-                  <ShareInvite
-                    polltitle={pollFromDB.title}
-                    pollid={pollid}
-                    onChangeS={handleChangeS}
-                    onChangeF={handleChangeF}
-                  />
+                  <ShareInvite polltitle={pollFromDB.title} pollid={pollid} />
                 )}
             </Jumbotron>
           </div>
@@ -81,24 +67,6 @@ const Poll = (props: {
             </Jumbotron>
           </div>
         </Row>
-        <div className="alert-corner">
-          <Alert
-            variant="success"
-            show={showPopS}
-            onClose={(): void => setShowPopS(false)}
-            dismissible
-          >
-            <Alert.Heading>Successfully sent mails</Alert.Heading>
-          </Alert>
-          <Alert
-            variant="danger"
-            show={showPopF}
-            onClose={(): void => setShowPopF(false)}
-            dismissible
-          >
-            <Alert.Heading>Mails not sent</Alert.Heading>
-          </Alert>
-        </div>
       </Container>
     </Layout>
   );

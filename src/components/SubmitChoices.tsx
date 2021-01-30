@@ -34,7 +34,7 @@ const SubmitChoices = (props: {
       setResponse({
         status: true,
         type: "error",
-        msg: `${JSON.stringify(submitChoiceResponse.data.message)}`,
+        msg: "Please try again later.",
       });
     }
   };

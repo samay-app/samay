@@ -8,15 +8,14 @@ import {
 import copy from "copy-to-clipboard";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import ResponseMessage from "./ResponseMessage";
 import { MailerPollArgs } from "../models/poll";
 import { RootState } from "../store/store";
 import { mailerAPI } from "../api/mailer";
 
-const Invitation = (props: {
+const ShareInvite = (props: {
   pollid: string;
   polltitle: string;
-  onChangeS(arg: boolean): void;
-  onChangeF(arg: boolean): void;
 }): JSX.Element => {
   const { pollid } = props;
   const { polltitle } = props;
@@ -32,20 +31,30 @@ const Invitation = (props: {
   const [emailList, setEmails] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
 
+  const [response, setResponse] = useState({
+    status: false,
+    type: "null",
+    msg: "",
+  });
+
   const handleCopy = (): void => {
     copy(pollurl);
   };
+
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Content>Copied</Popover.Content>
+      <Popover.Content>Copied!</Popover.Content>
     </Popover>
   );
+
   const isInList = (email: string): boolean => {
     return emailList.includes(email);
   };
+
   const isEmail = (email: string): boolean => {
     return /[\w\d.-]+@[\w\d.-]+\.[\w\d.-]+/.test(email);
   };
+
   const isValid = (email: string): boolean => {
     let mailerror = null;
     if (isInList(email)) {
@@ -60,8 +69,9 @@ const Invitation = (props: {
     }
     return true;
   };
+
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (["Enter", "Tab", " ", ","].includes(evt.key)) {
+    if ([","].includes(evt.key)) {
       evt.preventDefault();
       let value = currentEmail.trim();
       if (value && isValid(value)) {
@@ -70,14 +80,16 @@ const Invitation = (props: {
       }
     }
   };
+
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     setCurrentEmail(evt.target.value);
     setError("");
   };
-  /* added void and removed email:any to email:string ( remove this comment at last PR) */
+
   const handleDelete = (email: string): void => {
     setEmails(emailList.filter((i) => i !== email));
   };
+
   const handlePaste = (evt: React.ClipboardEvent<HTMLInputElement>): void => {
     evt.preventDefault();
     let paste = evt.clipboardData.getData("text");
@@ -87,18 +99,8 @@ const Invitation = (props: {
       setEmails([...emailList, ...toBeAdded]);
     }
   };
-  const handlePreSubmit = (): void => {
-    let value = currentEmail.trim();
-    if (value && isValid(value)) {
-      setEmails([...emailList, value]);
-      setCurrentEmail("");
-    }
-    handleSubmit();
-  }
-  /* added void below( remove this comment at last PR) */
-  const handleSubmit = async (): Promise<void> => {
-    /* console.log(emailList); which is also to be removed */
 
+  const handleSubmit = async (): Promise<void> => {
     const mailerArgs: MailerPollArgs = {
       pollID: pollid,
       pollTitle: polltitle,
@@ -106,75 +108,97 @@ const Invitation = (props: {
       senderName: displayName,
       senderEmailID: loggedInUserEmailID,
     };
-    const { statusCode } = await mailerAPI.sendPollInvites(mailerArgs, token);
-    if (statusCode === 200) {
-      props.onChangeS(true);
+    const sendEmailsResponse = await mailerAPI.sendPollInvites(
+      mailerArgs,
+      token
+    );
+    if (sendEmailsResponse.statusCode === 200) {
+      setResponse({
+        status: true,
+        type: "success",
+        msg: "Emails successfully sent.",
+      });
     } else {
-      props.onChangeF(true);
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Unable to send emails. Please try again later.",
+      });
     }
   };
 
   return (
-    <div
-      className="d-flex flex-column p-4 m-1 mt-4 border"
-      id="share"
-      style={{ width: "90%", maxWidth: "500px" }}
-    >
+    <div className="poll-shareinvite-content">
       <Form
         onSubmit={(e): void => {
           e.preventDefault();
         }}
       >
-        <Form.Group controlId="formBasicEmail" className="text-center">
-          <Form.Label className="font-weight-bold">
-            Invite participants by email
-            <div className="emailList">
-              {emailList.map((email) => (
-                <div className="tag-item" key={email}>
-                  {email}
-                  <button
-                    type="button"
-                    className="button"
-                    onClick={(): void =>
-                      handleDelete(email)
-                    } /* added void ( remove this comment at last PR) */
-                  >
-                    &times;
-                  </button>
-                </div>
-              ))}
-            </div>
-          </Form.Label>
-          <Form.Control
-            multiple
-            type="email"
-            placeholder="Enter emails"
-            value={currentEmail}
-            onKeyDown={handleKeyDown}
-            onChange={handleChange}
-            onPaste={handlePaste}
-          />
-          <Button className="my-2" variant="light" onClick={handlePreSubmit}>
-            Invite
-          </Button>
-        </Form.Group>
-        {error && <p className="error">{error}</p>}
-
-        <Form.Group className="text-center">
-          <Form.Label className="font-weight-bold">Share Link</Form.Label>
+        <Form.Group>
+          <Form.Label className="font-weight-bold">Share link</Form.Label>
           <InputGroup className="mb-3">
-            <Form.Control type="text" readOnly defaultValue={pollurl} />
+            <Form.Control
+              type="text"
+              readOnly
+              defaultValue={pollurl}
+              className="share-textbox"
+            />
             <InputGroup.Append>
               <OverlayTrigger trigger="click" placement="top" overlay={popover}>
                 <Button variant="light" onClick={handleCopy}>
-                  copy
+                  Copy
                 </Button>
               </OverlayTrigger>
             </InputGroup.Append>
           </InputGroup>
         </Form.Group>
+
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label className="font-weight-bold">
+            Invite participants
+          </Form.Label>
+          <Form.Control
+            multiple
+            type="email"
+            className="invite-textbox"
+            placeholder="Enter comma-separated emails"
+            value={currentEmail}
+            onKeyDown={handleKeyDown}
+            onChange={handleChange}
+            onPaste={handlePaste}
+          />
+          <div className="emailList">
+            {emailList.map((email) => (
+              <div className="tag-item" key={email}>
+                {email}
+                <button
+                  type="button"
+                  className="button"
+                  onClick={(): void => handleDelete(email)}
+                >
+                  &times;
+                </button>
+              </div>
+            ))}
+            {error && <p className="error">{error}</p>}
+          </div>
+          <Button
+            className="my-2"
+            variant="light"
+            onClick={handleSubmit}
+            disabled={emailList.length < 1}
+          >
+            Invite
+          </Button>
+        </Form.Group>
       </Form>
+      <ResponseMessage
+        response={response}
+        onHide={(): void =>
+          setResponse({ status: false, type: "null", msg: "" })
+        }
+      />
     </div>
   );
 };
-export default Invitation;
+export default ShareInvite;
