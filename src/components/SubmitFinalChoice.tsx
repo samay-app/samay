@@ -43,7 +43,7 @@ const SubmitFinalChoice = (props: {
       setResponse({
         status: true,
         type: "error",
-        msg: `${submitFinalChoiceResponse}`,
+        msg: `${JSON.stringify(submitFinalChoiceResponse.data.message)}`,
       });
     }
   };

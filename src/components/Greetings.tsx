@@ -1,39 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { RootState } from "../store/store";
 
 const Greetings = (): JSX.Element => {
   const displayName = useSelector(
     (state: RootState) => state.authReducer.displayName
   );
-  const displayMail = useSelector(
-    (state: RootState) => state.authReducer.username
-  );
   return (
-    <div id="maingreeting" className="py-3 my-1 ">
-      <Row className="py-2">
-        <Col className="d-flex flex-row  mb-2">
-          <div className="rounded-circle profile-pic m-1">
-            {displayName.charAt(0)}
-          </div>
-          <div className="ml-3">
-            <span className="profile-user">{displayName}</span>
-            <br />
-            <span>{displayMail}</span>
-          </div>
-        </Col>
-        <Col className="col-sm-3 col-xs-12 d-flex flex-column align-items-center">
-          <Button
-            className="rm-primary-button mt-2 font-weight-bold"
-            href="/poll/create"
-          >
-            <span className="show-dsk">Create Poll</span>
-            <span className="show-mob">+</span>
-          </Button>
-        </Col>
-      </Row>
-    </div>
+    <Row className="inner-container greetings">
+      <div className="col-sm-8">
+        <span className="profile-user">Welcome {displayName}!</span>
+      </div>
+      <div className="col-sm-4">
+        <Button className="rm-primary-button dashboard-btn" href="/poll/create">
+          Create a Poll
+        </Button>
+      </div>
+    </Row>
   );
 };
 export default Greetings;
