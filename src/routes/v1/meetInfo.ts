@@ -41,9 +41,10 @@ router.post('/', async (req: Request, res: Response) => {
 
     data.receiverIDs.forEach(async (receiverID: string) => {
       const mailOptions = {
-        from: `${data.senderName} <rocketmeet@gmail.com>`,
+        from: `${data.senderName} <${email}>`,
         to: receiverID,
         subject: `RocketMeet: Invitation - ${data.pollTitle}`,
+        replyTo: `${data.senderName} <${data.senderEmailID}>`,
         html: htmlToSend,
         attachments: [
           {
