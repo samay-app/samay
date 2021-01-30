@@ -53,7 +53,7 @@ router.put('/:id', async (req: Request, res: Response) => {
             res.status(404).json({ message: 'Poll does not exist' });
         }
     } catch (err) {
-        res.status(409).json({ message: err.message });
+        res.status(400).json({ message: err.message });
     }
 });
 
