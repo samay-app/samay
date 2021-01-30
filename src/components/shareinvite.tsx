@@ -65,7 +65,7 @@ const Invitation = (props: {
       evt.preventDefault();
       let value = currentEmail.trim();
       if (value && isValid(value)) {
-        setEmails([...emailList, currentEmail]);
+        setEmails([...emailList, value]);
         setCurrentEmail("");
       }
     }
@@ -87,13 +87,17 @@ const Invitation = (props: {
       setEmails([...emailList, ...toBeAdded]);
     }
   };
+  const handlePreSubmit = async (): Promise<void> => {
+    let value = currentEmail.trim();
+    if (value && isValid(value)) {
+      setEmails([...emailList, value]);
+      setCurrentEmail("");
+    }
+    handleSubmit();
+  }
   /* added void below( remove this comment at last PR) */
   const handleSubmit = async (): Promise<void> => {
     /* console.log(emailList); which is also to be removed */
-    if(isValid(currentEmail)) {
-      setEmails([...emailList, currentEmail]);
-      setCurrentEmail("");
-    }
     const mailerArgs: MailerPollArgs = {
       pollID: pollid,
       pollTitle: polltitle,
@@ -102,7 +106,7 @@ const Invitation = (props: {
       senderEmailID: loggedInUserEmailID,
     };
     const { statusCode } = await mailerAPI.sendPollInvites(mailerArgs, token);
-    if (statusCode !== 404) {
+    if (statusCode === 200) {
       props.onChangeS(true);
     } else {
       props.onChangeF(true);
@@ -149,7 +153,7 @@ const Invitation = (props: {
             onChange={handleChange}
             onPaste={handlePaste}
           />
-          <Button className="my-2" variant="light" onClick={handleSubmit}>
+          <Button className="my-2" variant="light" onClick={handlePreSubmit}>
             Invite
           </Button>
         </Form.Group>
