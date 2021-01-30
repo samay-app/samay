@@ -17,23 +17,8 @@ class ServerAPI {
 
   httpMethod = async (
     endpoint: string,
-    reqMethod: string,
-    token = "",
-    payload = ""
+    requestOptions: RequestInit,
   ): Promise<HttpResponse> => {
-    this.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-    const requestOptions: RequestInit = {
-      mode: "cors",
-      credentials: "include",
-      method: reqMethod,
-      headers: this.headers,
-    };
-    if (reqMethod !== "GET") {
-      requestOptions.body = payload;
-    }
     const res = await fetch(endpoint, requestOptions);
     const { status } = res;
     const responseData = await res.json();
@@ -47,7 +32,16 @@ class ServerAPI {
     pollid: string | string[] | null | undefined
   ): Promise<HttpResponse> => {
     const endpoint = `${this.URL}/poll/${pollid}`;
-    return this.httpMethod(endpoint, "GET");
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "GET",
+      headers: this.headers,
+    };
+    return this.httpMethod(endpoint, requestOptions);
   };
 
   getPolls = (pollArgs: {
@@ -56,7 +50,17 @@ class ServerAPI {
   }): Promise<HttpResponse> => {
     const { userID, token } = pollArgs;
     const endpoint = `${this.URL}/user/${userID}`;
-    return this.httpMethod(endpoint, "GET", token);
+    this.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "GET",
+      headers: this.headers,
+    };
+    return this.httpMethod(endpoint, requestOptions);
   };
 
   createPoll = (pollArgs: {
@@ -64,9 +68,19 @@ class ServerAPI {
     token: string;
   }): Promise<HttpResponse> => {
     const { poll, token } = pollArgs;
-    const payload = JSON.stringify(poll);
     const endpoint = `${this.URL}/user/poll`;
-    return this.httpMethod(endpoint, "POST", token, payload);
+    this.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify(poll),
+    };
+    return this.httpMethod(endpoint, requestOptions);
   };
 
   markChoices = (voteArgs: {
@@ -74,9 +88,18 @@ class ServerAPI {
     pollid: string;
   }): Promise<HttpResponse> => {
     const { newVote, pollid } = voteArgs;
-    const payload = JSON.stringify(newVote);
     const endpoint = `${this.URL}/poll/${pollid}`;
-    return this.httpMethod(endpoint, "PUT", payload);
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "PUT",
+      headers: this.headers,
+      body: JSON.stringify(newVote),
+    };
+    return this.httpMethod(endpoint, requestOptions);
   };
 
   markFinalChoice = (voteArgs: {
@@ -85,9 +108,19 @@ class ServerAPI {
     token: string;
   }): Promise<HttpResponse> => {
     const { finalChoice, pollid, token } = voteArgs;
-    const payload = JSON.stringify(finalChoice);
     const endpoint = `${this.URL}/user/poll/${pollid}`;
-    return this.httpMethod(endpoint, "PUT", token, payload);
+    this.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "PUT",
+      headers: this.headers,
+      body: JSON.stringify(finalChoice),
+    };
+    return this.httpMethod(endpoint, requestOptions);
   };
 }
 
