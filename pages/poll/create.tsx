@@ -32,6 +32,7 @@ const Create = (): JSX.Element => {
   const [pollTitle, setTitle] = useState<string>("");
   const [pollDescription, setDescription] = useState<string>("");
   const [pollChoices, setChoices] = useState<Choice[]>();
+  const [disabled, setDisabled] = useState<boolean>(false);
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
@@ -70,6 +71,7 @@ const Create = (): JSX.Element => {
   ): Promise<void> => {
     e.preventDefault();
     if (pollTitle && pollChoices && pollChoices?.length > 1) {
+      setDisabled(true);
       const encryptedEmailID = encrypt(loggedInUserEmailID);
       const poll: RocketMeetPoll = {
         title: pollTitle,
@@ -143,7 +145,12 @@ const Create = (): JSX.Element => {
               <Button
                 className="rm-primary-button create-poll-btn"
                 onClick={handleSubmit}
-                disabled={!pollTitle || !pollChoices || pollChoices?.length < 2}
+                disabled={
+                  !pollTitle ||
+                  !pollChoices ||
+                  pollChoices?.length < 2 ||
+                  disabled
+                }
               >
                 Create Poll
               </Button>

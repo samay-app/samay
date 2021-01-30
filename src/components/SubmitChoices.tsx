@@ -16,11 +16,13 @@ const SubmitChoices = (props: {
     type: "",
     msg: "",
   });
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
+    setDisabled(true);
     const voterArgs = {
       newVote,
       pollid,
@@ -42,7 +44,7 @@ const SubmitChoices = (props: {
       <Button
         className="rm-primary-button-small mark-options-btn"
         type="submit"
-        disabled={!newVote.name || newVote.choices.length === 0}
+        disabled={!newVote.name || newVote.choices.length === 0 || disabled}
         onClick={handleSubmit}
       >
         Mark your availability

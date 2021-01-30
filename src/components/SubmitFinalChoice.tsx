@@ -18,6 +18,7 @@ const SubmitFinalChoice = (props: {
     type: "",
     msg: "",
   });
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const token = useSelector((state: RootState) => state.authReducer.token);
 
@@ -25,6 +26,7 @@ const SubmitFinalChoice = (props: {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
+    setDisabled(true);
     const markFinalChoice = {
       finalChoice,
       open: false,
@@ -53,7 +55,7 @@ const SubmitFinalChoice = (props: {
       <Button
         className="rm-primary-button-small mark-options-btn"
         type="submit"
-        disabled={!finalChoice}
+        disabled={!finalChoice || disabled}
         onClick={handleSubmit}
       >
         Mark final option
