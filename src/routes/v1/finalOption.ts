@@ -33,9 +33,10 @@ router.post('/', async (req: Request, res: Response) => {
 
     data.receiverIDs.forEach(async (receiverID: string) => {
       const mailOptions = {
-        from: `${data.senderName} <rocketmeet@gmail.com>`,
+        from: `${data.senderName} <${email}>`,
         to: receiverID,
         subject: `RocketMeet: ${data.pollTitle} - Final time`,
+        replyTo: `${data.senderName} <${data.senderEmailID}>`,
         html: `<p>The meet <b>${data.pollTitle}</b> has been scheduled on ${dayjs(data.finalOption.start).format('DD/MM/YYYY')} 
                 from ${dayjs(data.finalOption.start).format('HH:mm A')} to ${dayjs(data.finalOption.end).format('HH:mm A')}
             </p>`,
