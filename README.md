@@ -2,7 +2,9 @@
 
 ### Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
-[badges here]
+[![License](https://img.shields.io/github/license/Rocketmeet/RocketMeet-client?color=%23000000&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE)
+[![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/RocketMeet/community)
+
 
 ## Community
 
