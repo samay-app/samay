@@ -793,7 +793,6 @@ h4 {
     display: none;
   }
 }
-<<<<<<< HEAD
 /* Nprogress styles */
 
 /* Make clicks pass-through */
@@ -836,7 +835,7 @@ h4 {
 .nprogress-custom-parent #nprogress .spinner,
 .nprogress-custom-parent #nprogress .bar {
   position: absolute;
-=======
+}
 
 .rm-response-error {
   background-color: #f8d7da !important;
@@ -846,5 +845,4 @@ h4 {
 .rm-response-success {
   background-color: #d4edda !important;
   color: #155724 !important;
->>>>>>> style
 }
