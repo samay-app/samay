@@ -87,7 +87,7 @@ const Invitation = (props: {
       setEmails([...emailList, ...toBeAdded]);
     }
   };
-  const handlePreSubmit = async (): Promise<void> => {
+  const handlePreSubmit = (): void => {
     let value = currentEmail.trim();
     if (value && isValid(value)) {
       setEmails([...emailList, value]);
