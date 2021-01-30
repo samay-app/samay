@@ -19,7 +19,10 @@ const NavBar = (): JSX.Element => {
         />
         RocketMeet
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        className="rm-nav-hamburger"
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           {isLoggedIn ? (

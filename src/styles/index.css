@@ -1,6 +1,7 @@
 .root-container {
   min-height: 100vh;
 }
+
 main {
   flex: 1;
   justify-content: center;
@@ -9,10 +10,30 @@ main {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+.outer-container {
+  margin-top: 2rem;
+}
+
+.inner-container {
+  padding: 1rem 4rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .inner-container {
+    padding: 1rem 1rem;
+  }
+}
+
 .rm-navbar {
   background-color: #ffffff;
   font-family: "IBM Plex Sans", sans-serif;
   color: #101010;
+}
+
+.rm-nav-hamburger {
+  border: none !important;
 }
 
 .rm-brand {
@@ -50,6 +71,10 @@ a {
   text-decoration: none;
 }
 
+.hero-col {
+  margin-top: 3rem !important;
+}
+
 .hero-title {
   font-weight: 700 !important;
   font-size: 5rem !important;
@@ -75,6 +100,11 @@ a {
 }
 
 @media (min-width: 0) and (max-width: 992px) {
+  .hero-col {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   .hero-title {
     font-weight: 700 !important;
     font-size: 3rem !important;
@@ -86,10 +116,22 @@ a {
     font-size: 1.5rem !important;
     color: #101010;
   }
+
+  .hero-strikethrough {
+    text-decoration-thickness: 1.4rem;
+  }
+
+  .rm-primary-button {
+    width: 100% !important;
+  }
+
+  .rm-primary-button-small {
+    width: 100% !important;
+  }
 }
 
 .rm-primary-button {
-  background-color: #2b2b2b !important;
+  background-color: #3a3a3a !important;
   transition: 0.3s;
   font-weight: 600 !important;
   font-size: 1.3rem !important;
@@ -109,7 +151,7 @@ a {
 }
 
 .rm-primary-button-small {
-  background-color: #2b2b2b !important;
+  background-color: #3a3a3a !important;
   transition: 0.3s;
   font-weight: 600 !important;
   font-size: 1rem !important;
@@ -167,28 +209,21 @@ h4 {
   font-size: 1.5rem !important;
 }
 
-.container-fluid {
-  padding: 2rem 0;
+.rm-poll-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
-.outer-container {
-  margin-top: 2rem;
-}
-
-.inner-container {
-  padding: 1rem 4rem;
+.jumbo-row {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
-  .outer-container {
-    margin-top: 0;
-  }
-
-  .inner-container {
-    padding: 1rem 1rem;
-  }
+.jumbo-col-black {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: #101010 !important;
+  height: 100vh !important;
 }
 
 .poll-create {
@@ -199,11 +234,17 @@ h4 {
   margin-bottom: 0 !important;
 }
 
-.jumbo-col-create {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  background-color: #101010 !important;
-  height: 100vh !important;
+.poll-timeslot-jumbo {
+  background-color: #ffffff !important;
+  color: #000000;
+  padding: 3rem !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.create-poll-btn {
+  margin-top: 3rem;
+  float: right;
 }
 
 .poll-create-content {
@@ -211,9 +252,18 @@ h4 {
   padding-right: 3rem;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
-  .jumbo-col-create {
+@media (min-width: 0) and (max-width: 576px) {
+  .jumbo-col-black {
     height: auto !important;
+  }
+
+  .poll-timeslot-jumbo {
+    padding: 0 !important;
+  }
+
+  .create-poll-btn {
+    float: none !important;
+    margin-bottom: 1rem !important;
   }
 
   .poll-create-content {
@@ -289,25 +339,15 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .rat-TimeSlot_title {
-    padding-top: 0.3rem !important;
+    padding: 0.3rem 0 0 0 !important;
     font-size: 0.5rem !important;
     line-height: 0.4rem !important;
-  }
-
-  .create-col {
-    text-align: center !important;
-    justify-content: center !important;
-    align-content: center !important;
   }
 
   .poll-info-div {
     text-align: center !important;
     justify-content: center !important;
     align-content: center !important;
-  }
-
-  .create-poll-btn {
-    float: none !important;
   }
 
   .mark-options-btn {
@@ -328,19 +368,9 @@ h4 {
   background-color: #101010 !important;
 }
 
-.create-poll-btn {
-  margin-top: 3rem;
-  float: right;
-}
-
 .mark-options-btn {
   margin-top: 3rem;
   float: right;
-}
-
-.jumbo-row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
 }
 
 .jumbo-col-info {
@@ -348,11 +378,6 @@ h4 {
   padding-right: 0 !important;
   background-color: #101010 !important;
   height: 100vh !important;
-}
-
-.jumbo-col {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
 }
 
 .poll-info {
@@ -625,13 +650,6 @@ h4 {
   box-shadow: 3px 3px 19px 1px #ededed;
 }
 
-.outer-container.share.row {
-  margin: inherit;
-  padding: inherit;
-  align-items: center;
-  box-shadow: 1px 1px 20px 6px #f5f5f5;
-}
-
 /*Invite tags*/
 
 .error {
@@ -771,13 +789,11 @@ h4 {
 }
 
 @media (max-width: 388px) {
-  .rm-primary-button {
-    width: 80vw;
-  }
   .show-mob {
     display: none;
   }
 }
+<<<<<<< HEAD
 /* Nprogress styles */
 
 /* Make clicks pass-through */
@@ -820,4 +836,15 @@ h4 {
 .nprogress-custom-parent #nprogress .spinner,
 .nprogress-custom-parent #nprogress .bar {
   position: absolute;
+=======
+
+.rm-response-error {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+}
+
+.rm-response-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+>>>>>>> style
 }

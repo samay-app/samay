@@ -7,6 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
     <>
       <Head>
         <title>RocketMeet</title>
+        <link rel="shortcut icon" href="/logo.svg" />
       </Head>
       <div className="d-flex flex-column root-container">
         <NavBar />
