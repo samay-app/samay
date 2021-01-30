@@ -8,6 +8,7 @@ import {
   Container,
   Jumbotron,
   Button,
+  Spinner,
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
@@ -152,7 +153,14 @@ const Create = (): JSX.Element => {
                   disabled
                 }
               >
-                Create Poll
+                {!disabled ? (
+                  `Create Poll`
+                ) : (
+                  <>
+                    <Spinner as="span" animation="grow" size="sm" />
+                    &nbsp;Loading...
+                  </>
+                )}
               </Button>
               <ResponseMessage
                 response={response}

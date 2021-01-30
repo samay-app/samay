@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Router from "next/router";
@@ -58,7 +58,14 @@ const SubmitFinalChoice = (props: {
         disabled={!finalChoice || disabled}
         onClick={handleSubmit}
       >
-        Mark final option
+        {!disabled ? (
+          `Mark final option`
+        ) : (
+          <>
+            <Spinner as="span" animation="grow" size="sm" />
+            &nbsp;Loading...
+          </>
+        )}
       </Button>
       <ResponseMessage
         response={response}

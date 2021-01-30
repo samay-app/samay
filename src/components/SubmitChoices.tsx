@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
 import { serverAPI } from "../api/server";
@@ -47,7 +47,14 @@ const SubmitChoices = (props: {
         disabled={!newVote.name || newVote.choices.length === 0 || disabled}
         onClick={handleSubmit}
       >
-        Mark your availability
+        {!disabled ? (
+          `Mark your availability`
+        ) : (
+          <>
+            <Spinner as="span" animation="grow" size="sm" />
+            &nbsp;Loading...
+          </>
+        )}
       </Button>
       <ResponseMessage
         response={response}
