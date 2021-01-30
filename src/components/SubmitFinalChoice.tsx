@@ -45,7 +45,7 @@ const SubmitFinalChoice = (props: {
       setResponse({
         status: true,
         type: "error",
-        msg: `${JSON.stringify(submitFinalChoiceResponse.data.message)}`,
+        msg: "Please try again later.",
       });
     }
   };

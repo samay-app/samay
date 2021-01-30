@@ -392,7 +392,15 @@ h4 {
   float: right;
 }
 
-.rm-badge {
+.rm-badge-dash {
+  padding-top: 0.6em !important;
+  padding-left: 0.6em !important;
+  padding-right: 0.6em !important;
+  padding-bottom: 0.6em !important;
+  float: right !important;
+}
+
+.rm-badge-poll {
   padding-top: 0.6em !important;
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
@@ -423,6 +431,12 @@ h4 {
 }
 
 .poll-info-content {
+  padding-left: 2rem;
+  padding-right: 3rem;
+}
+
+.poll-shareinvite-content {
+  margin-top: 3rem;
   padding-left: 2rem;
   padding-right: 3rem;
 }
@@ -462,6 +476,11 @@ h4 {
     padding-right: 0;
   }
 
+  .poll-shareinvite-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .poll-info-title {
     font-size: 2.3rem;
   }
@@ -469,6 +488,10 @@ h4 {
   .poll-info-desc {
     font-size: 1rem;
   }
+}
+
+.emailList {
+  margin-top: 0.5rem;
 }
 
 .poll-info-final-date {
@@ -662,7 +685,7 @@ h4 {
   min-height: inherit !important;
 }
 .card-body {
-  padding: 0.5rem !important;
+  padding: 0 !important;
   min-height: 80px !important;
 }
 
@@ -685,8 +708,8 @@ h4 {
 }
 
 .tag-item {
-  background-color: #d4d5d6;
-  color: #000000;
+  background-color: #575757;
+  color: #ffffff;
   display: inline-block;
   font-size: 14px;
   font-weight: 300;
@@ -886,6 +909,10 @@ h4 {
   position: absolute;
 }
 
+.rm-response-null {
+  display: none !important;
+}
+
 .rm-response-error {
   background-color: #f8d7da !important;
   color: #721c24 !important;
@@ -894,4 +921,51 @@ h4 {
 .rm-response-success {
   background-color: #d4edda !important;
   color: #155724 !important;
+}
+
+.rm-response-title {
+  font-size: 1.2rem !important;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .rm-response-title {
+    font-size: 1rem !important;
+  }
+}
+
+.share-textbox {
+  background-color: #101010 !important;
+  color: #e0e0e0 !important;
+  border: 2px solid #6c757d !important;
+  border-top-left-radius: 1rem !important;
+  border-bottom-left-radius: 1rem !important;
+}
+
+.share-textbox:focus {
+  border: 2px solid #a9aaac !important;
+}
+
+.invite-textbox {
+  background-color: #101010 !important;
+  color: #e0e0e0 !important;
+  border: 2px solid #6c757d !important;
+  border-radius: 1rem !important;
+}
+
+.invite-textbox:focus {
+  border: 2px solid #a9aaac !important;
+}
+
+.invite-textbox::placeholder {
+  color: #e0e0e0 !important;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .share-textbox {
+    font-size: 1rem !important;
+  }
+
+  .invite-textbox {
+    font-size: 1rem !important;
+  }
 }

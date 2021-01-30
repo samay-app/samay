@@ -48,16 +48,22 @@ const PollsList = (): JSX.Element => {
     return pollList.reverse().map((item: RocketMeetPollFromDB) => (
       <div key={item._id}>
         <Card bg="dark" text="white" className="pt-4 px-4 my-2 cardindash">
-          <Card.Title className="d-flex flex-row justify-content-between">
-            <span className="card-title">{item.title}</span>
-            <Badge
-              pill
-              variant={item.open ? "success" : "secondary"}
-              className="rm-badge"
-            >
-              {item.open ? "open" : "closed"}
-            </Badge>
-          </Card.Title>
+          <Row>
+            <div className="col-8">
+              <Card.Title className="d-flex flex-row justify-content-between">
+                <span className="card-title">{item.title}</span>
+              </Card.Title>
+            </div>
+            <div className="col-4">
+              <Badge
+                pill
+                variant={item.open ? "success" : "secondary"}
+                className="rm-badge-dash"
+              >
+                {item.open ? "open" : "closed"}
+              </Badge>
+            </div>
+          </Row>
           <Card.Body className="text-justify">
             <a
               href={`/poll/${item._id}`}

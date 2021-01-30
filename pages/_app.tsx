@@ -12,7 +12,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   const persistor = persistStore(store);
 
   return (
-    <PersistGate persistor={persistor} loading={<div>Loading</div>}>
+    <PersistGate persistor={persistor} loading={<div />}>
       <Component {...pageProps} />
     </PersistGate>
   );
