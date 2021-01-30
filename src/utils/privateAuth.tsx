@@ -30,7 +30,7 @@ const privateAuthWrapper = (Component: NextPage) => {
         if (user) {
           user.getIdToken(true)
             .then((token) => {
-              console.log(token)
+              // console.log(token)
               dispatch(
                 login({ displayName: user.displayName, username: user.email, token })
               );
