@@ -1,17 +1,16 @@
+import { Container } from "react-bootstrap";
 import Greetings from "../src/components/Greetings";
 import Layout from "../src/components/Layout";
 import withprivateAuth from "../src/utils/privateAuth";
-import PollsList from "../src/components/pollsList";
+import PollsList from "../src/components/PollsList";
 
 const Dashboard = (): JSX.Element => {
   return (
     <Layout>
-      <div className="dash-container">
+      <Container className="outer-container" fluid>
         <Greetings />
-      </div>
-      <div className="dash-container yp">
         <PollsList />
-      </div>
+      </Container>
     </Layout>
   );
 };

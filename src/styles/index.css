@@ -22,7 +22,7 @@ main {
 
 @media (min-width: 0) and (max-width: 992px) {
   .inner-container {
-    padding: 1rem 1rem;
+    padding: 0 !important;
   }
 }
 
@@ -55,6 +55,10 @@ main {
   margin-right: 1rem;
 }
 
+.github-nav-link {
+  display: none !important;
+}
+
 .rm-footer {
   width: 100%;
   position: fixed;
@@ -64,6 +68,21 @@ main {
 .octocat {
   position: absolute !important;
   right: 2.7rem !important;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .github-nav-link {
+    color: #101010 !important;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-right: 1rem;
+    display: unset !important;
+  }
+
+  .octocat {
+    display: none !important;
+  }
 }
 
 a {
@@ -373,6 +392,13 @@ h4 {
   float: right;
 }
 
+.rm-badge {
+  padding-top: 0.6em !important;
+  padding-left: 0.6em !important;
+  padding-right: 0.6em !important;
+  padding-bottom: 0.6em !important;
+}
+
 .jumbo-col-info {
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -382,7 +408,7 @@ h4 {
 
 .poll-info {
   background-color: #101010 !important;
-  color: #e0e0e0;
+  color: #f1f1f1;
   padding: 3rem !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
@@ -402,13 +428,13 @@ h4 {
 }
 
 .poll-info-title {
-  font-size: 3.7rem;
+  font-size: 3.5rem;
   font-weight: 700;
   display: block;
 }
 
 .poll-info-desc {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 500;
   display: block;
 }
@@ -437,11 +463,11 @@ h4 {
   }
 
   .poll-info-title {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
 
   .poll-info-desc {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 
@@ -703,9 +729,27 @@ h4 {
   text-align: left;
 }
 
+.greetings {
+  margin-bottom: 3rem;
+}
+
 .profile-user {
   font-weight: 500 !important;
   font-size: 2rem;
+}
+
+.dashboard-btn {
+  float: right;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .profile-user {
+    font-size: 1.5rem !important;
+  }
+
+  .dashboard-btn {
+    margin-top: 1.5rem;
+  }
 }
 
 .dash-container {
@@ -724,10 +768,18 @@ h4 {
     margin-right: 20px;
   }
 }
-.y-polls {
+
+.dash-coming-up {
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding-left: 2.5rem;
+}
+
+.dash-your-polls {
   font-weight: 700;
   font-size: 1.25rem;
 }
+
 @media screen and (max-width: 601px) and (min-width: 389px) {
   .show-dsk {
     display: none;
@@ -753,15 +805,10 @@ h4 {
   text-decoration: none;
   color: #ffffff;
 }
-.badge {
-  height: 28px;
-}
 .bg-dark:hover {
   background-color: #000000 !important;
   transform: scale(101%);
   transition: all 0.5s;
-  -webkit-box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
-  box-shadow: -1px 5px 43px 5px rgba(0, 0, 0, 0.31);
 }
 .alert-corner {
   position: fixed;
@@ -773,10 +820,13 @@ h4 {
 .card-columns {
   column-count: 1 !important;
 }
+
 .recent-div {
   height: 600px;
-  margin-top: 20px;
+  margin-top: 1.4rem;
+  padding-left: 2.5rem;
 }
+
 @media screen and (max-width: 991.08px) {
   .recents {
     display: none;
@@ -784,8 +834,7 @@ h4 {
 }
 .upcomings {
   background: #eeeeee;
-  min-height: 60px;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 @media (max-width: 388px) {

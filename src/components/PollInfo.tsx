@@ -16,7 +16,11 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
   const { poll } = props;
   return (
     <div className="poll-info-content">
-      <Badge pill variant={poll.open ? "success" : "secondary"}>
+      <Badge
+        pill
+        variant={poll.open ? "success" : "secondary"}
+        className="rm-badge"
+      >
         {poll.open ? "Open" : "Closed"}
       </Badge>
       <span className="poll-info-title">{poll.title}</span>
@@ -25,7 +29,10 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
         <span className="poll-info-final-date">
           <StarFill className="poll-info-final-date-star mr-2" />{" "}
           <b>
-            {dayjs(poll.finalChoice.start).format("llll")} -{" "}
+            {dayjs(poll.finalChoice.start).format("ddd")},{" "}
+            {dayjs(poll.finalChoice.start).format("MMM")}{" "}
+            {dayjs(poll.finalChoice.start).format("DD")},{" "}
+            {dayjs(poll.finalChoice.start).format("LT")} -{" "}
             {dayjs(poll.finalChoice.end).format("LT")}
           </b>
         </span>
