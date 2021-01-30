@@ -1,8 +1,6 @@
 ![RocketMeet](/server.png)
 ### Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
-[badges here]
-
 ## Community
 
 Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
