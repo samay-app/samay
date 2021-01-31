@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import { useSelector } from "react-redux";
-import { Card, Badge, Row, Col, CardColumns } from "react-bootstrap";
+import { Card, Badge, Row, Col, CardColumns, Button } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { serverAPI } from "../api/server";
@@ -44,6 +44,17 @@ const PollsList = (): JSX.Element => {
     getData();
   }, [userID, token]);
 
+  const handleDelete = (pollid: string) => {
+    const getstatus = async (): Promise<void> => {
+      try {
+        const deletedStatus = await serverAPI.deletePoll({
+          pollid,
+          token,
+        });
+      } catch (err) {}
+    };
+  };
+
   const Polls: Function = (): JSX.Element[] => {
     return pollList.reverse().map((item: RocketMeetPollFromDB) => (
       <div key={item._id}>
@@ -77,6 +88,7 @@ const PollsList = (): JSX.Element => {
             <span className="text-muted">
               Created : {dayjs(item.createdAt).format("DD/MM/YYYY")}
             </span>
+            <Button onClick={handleDelete(item._id)}>Delete</Button>
           </Card.Footer>
         </Card>
       </div>
