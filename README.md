@@ -62,7 +62,7 @@ $ npm i
 ### Setup
 
 - Make a copy of the `.env.development.example` and `.env.production.example` files to `.env.development` and `.env.production` files respectively. 
-- Create a firebase account , setup `firebase-auth` for google sign-in , whitelist the client domain in the `Authorised domains` section in firebase console. Set firebase config variables in `.env` files.
+- Create a firebase account , setup firebase authentication for google sign-in (firebase-console > Authentication > Sign-in methods > Google ), whitelist the client domain in the `Authorised domains` section. Set firebase config variables in `.env` files.
 - Set the encryption variables and domain URLs in the `.env` files
 
 <a name="development"></a>
