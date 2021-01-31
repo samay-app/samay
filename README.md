@@ -27,31 +27,30 @@
 
 <a name="description"></a>
 ## Description
----
 
 RocketMeet is an online meet scheduling app. Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
 <a name="community"></a>
 ## Community
----
+
 Come say hello at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
 
 <a name="api-documentation"></a>
 ## API Documentation
----
+
 You can find the API documentation for the server [here](https://documenter.getpostman.com/view/10544125/TW6wJodh) and the mailer [here](https://documenter.getpostman.com/view/9605987/TW6wHo7V).
 
 <a name="getting-started"></a>
 ## Getting Started
----
+
 <a name="prerequisites"></a>
 ### Prerequisites
----
+
 - `NodeJS v14`
 
 <a name="installation"></a>
 ### Installation
----
+
 ```bash
 $ git clone https://github.com/RocketMeet/RocketMeet-client.git
 
@@ -61,14 +60,14 @@ $ npm i
 ```
 <a name="setup"></a>
 ### Setup
----
+
 - Make a copy of the `.env.development.example` and `.env.production.example` files to `.env.development` and `.env.production` files respectively. 
 - Create a firebase account , setup `firebase-auth` for google sign-in , whitelist the client domain in the `Authorised domains` section in firebase console. Set firebase config variables in `.env` files.
 - Set the encryption variables and domain URLs in the `.env` files
 
 <a name="development"></a>
 ### Development 
----
+
 ```bash
 $ npm run dev
 ```
@@ -88,7 +87,7 @@ $ npm run test
 
 <a name="production"></a>
 ### Production
----
+
 ```bash
 $ npm run build
 
@@ -97,12 +96,11 @@ $ npm start
 
 <a name="deployment"></a>
 ## Deployment
----
+
 Make a copy of the `.env.production.example` file to `.env.production` and set the environment variables.
 
 <a name="vercel"></a>
 ## Deploy with vercel
----
 
 > Note: You need to have the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer) setup before using this one-click deployment. Make sure to create a firebase account and setup `firebase-auth` for google signin. 
 
@@ -112,11 +110,11 @@ Set the environment variables in `.env.production.example` to vercel in the next
 
 <a name="contributing"></a>
 ## Contributing
----
+
 Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-client/blob/main/CONTRIBUTING.md)!
 
 <a name="license"></a>
 ## License
----
+
 RocketMeet-client is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE).
 
