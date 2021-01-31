@@ -9,7 +9,6 @@
 ## Table of contents
 ---
 * [Description](#description)
-* [Usage](#usage)
 * [features](#features)
 * [Community](#community)
 * [API Documentation](#api-documentation)
@@ -31,20 +30,6 @@
 ---
 
 RocketMeet is an online meet scheduling app. Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
-
-<a name="usage"></a>
-## Usage
----
-- Sign-in with your google account 
-- Create a poll, select feasible time-slots for the event
-
-![RocketMeet](screenshots/create-poll.png)
-- Share or send poll invites via email to the participants
-
-![RocketMeet](screenshots/share-invite.png)
-- Participants pick the time they're available.
- 
-![RocketMeet](screenshots/final-choice.png)
 
 <a name="community"></a>
 ## Community
