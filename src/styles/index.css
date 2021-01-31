@@ -126,13 +126,13 @@ a {
 
   .hero-title {
     font-weight: 700 !important;
-    font-size: 3rem !important;
+    font-size: 2.5rem !important;
     color: #101010;
   }
 
   .hero-desc {
     font-weight: 400 !important;
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
     color: #101010;
   }
 
@@ -242,7 +242,12 @@ h4 {
   padding-left: 0 !important;
   padding-right: 0 !important;
   background-color: #101010 !important;
-  height: 100vh !important;
+  min-height: 100vh !important;
+  flex-grow: 1 !important;
+}
+
+.jumbo-col {
+  margin-bottom: 2rem !important;
 }
 
 .poll-create {
@@ -273,7 +278,13 @@ h4 {
 
 @media (min-width: 0) and (max-width: 576px) {
   .jumbo-col-black {
+    flex-grow: unset !important;
+    min-height: unset !important;
     height: auto !important;
+  }
+
+  .jumbo-col {
+    margin-bottom: 0 !important;
   }
 
   .poll-timeslot-jumbo {
@@ -442,15 +453,18 @@ h4 {
 }
 
 .poll-info-title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   display: block;
+  line-height: 3.5rem;
+  margin-top: 1rem;
 }
 
 .poll-info-desc {
   font-size: 1.3rem;
   font-weight: 500;
   display: block;
+  margin-top: 1rem;
 }
 
 .poll-info-user {
@@ -487,6 +501,7 @@ h4 {
 
   .poll-info-desc {
     font-size: 1rem;
+    margin-top: 0;
   }
 }
 
@@ -767,7 +782,7 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .profile-user {
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
   }
 
   .dashboard-btn {
@@ -968,4 +983,12 @@ h4 {
   .invite-textbox {
     font-size: 1rem !important;
   }
+
+  .index-create-button {
+    margin-bottom: 2rem;
+  }
+}
+
+.card-footer-muted {
+  color: #adadad;
 }
