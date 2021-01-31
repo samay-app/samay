@@ -51,8 +51,10 @@ You can find the API documentation for the server [here](https://documenter.getp
 <a name="installation"></a>
 ### Installation
 
+- Fork the repository
+
 ```bash
-$ git clone https://github.com/RocketMeet/RocketMeet-client.git
+$ git clone https://github.com/<your-github-handle>/RocketMeet-client.git
 
 $ cd RocketMeet-client
 
