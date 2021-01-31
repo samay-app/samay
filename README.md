@@ -25,7 +25,7 @@ You can find the API documentation [here](https://documenter.getpostman.com/view
 ### Installation
 
 ```bash
-$ git clone https://github.com/RocketMeet/RocketMeet-server.git
+$ git clone https://github.com/<your-username>/RocketMeet-server.git
 
 $ cd RocketMeet-server
 
