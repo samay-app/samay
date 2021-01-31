@@ -1,8 +1,10 @@
 ![RocketMeet](/mailer.png)
 ### Find the best time for team meetings and one-on-ones with RocketMeet. [Try now](https://rocketmeet.me)!
 
-[![License](https://img.shields.io/github/license/Rocketmeet/RocketMeet-client?color=%23000000&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/Rocketmeet/RocketMeet-mailer?color=%23000000&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-mailer/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/RocketMeet/community)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/RocketMeet/RocketMeet-mailer?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/RocketMeet/RocketMeet-mailer?color=%23000000&&style=for-the-badge)
 
 ## Community
 
