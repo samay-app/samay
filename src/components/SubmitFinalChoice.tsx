@@ -36,16 +36,26 @@ const SubmitFinalChoice = (props: {
       pollid,
       token,
     };
-    const submitFinalChoiceResponse = await serverAPI.markFinalChoice(
-      voterArgs
-    );
-    if (submitFinalChoiceResponse.statusCode === 201) {
-      Router.reload();
-    } else {
+    try {
+      const submitFinalChoiceResponse = await serverAPI.markFinalChoice(
+        voterArgs
+      );
+      if (submitFinalChoiceResponse.statusCode === 201) {
+        Router.reload();
+      } else {
+        setDisabled(false);
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Please try again later.",
+        });
+      }
+    } catch (err) {
+      setDisabled(false);
       setResponse({
         status: true,
         type: "error",
-        msg: "Please try again later.",
+        msg: "Network error. Please try again later.",
       });
     }
   };
@@ -61,11 +71,11 @@ const SubmitFinalChoice = (props: {
         {!disabled ? (
           `Mark final option`
         ) : (
-          <>
-            <Spinner as="span" animation="grow" size="sm" />
+            <>
+              <Spinner as="span" animation="grow" size="sm" />
             &nbsp;Loading...
           </>
-        )}
+          )}
       </Button>
       <ResponseMessage
         response={response}

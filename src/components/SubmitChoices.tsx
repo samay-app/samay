@@ -27,14 +27,24 @@ const SubmitChoices = (props: {
       newVote,
       pollid,
     };
-    const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
-    if (submitChoiceResponse.statusCode === 201) {
-      Router.reload();
-    } else {
+    try {
+      const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
+      if (submitChoiceResponse.statusCode === 201) {
+        Router.reload();
+      } else {
+        setDisabled(false);
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Please try again later.",
+        });
+      }
+    } catch (err) {
+      setDisabled(false);
       setResponse({
         status: true,
         type: "error",
-        msg: "Please try again later.",
+        msg: "Network error. Please try again later.",
       });
     }
   };
@@ -50,11 +60,11 @@ const SubmitChoices = (props: {
         {!disabled ? (
           `Mark your availability`
         ) : (
-          <>
-            <Spinner as="span" animation="grow" size="sm" />
+            <>
+              <Spinner as="span" animation="grow" size="sm" />
             &nbsp;Loading...
           </>
-        )}
+          )}
       </Button>
       <ResponseMessage
         response={response}

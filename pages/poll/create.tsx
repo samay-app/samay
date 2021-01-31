@@ -80,17 +80,27 @@ const Create = (): JSX.Element => {
         encryptedEmailID,
         choices: pollChoices,
       };
-      const createPollResponse = await serverAPI.createPoll({
-        poll,
-        token,
-      });
-      if (createPollResponse.statusCode === 201) {
-        Router.push(`/poll/${createPollResponse.data._id}`);
-      } else {
+      try {
+        const createPollResponse = await serverAPI.createPoll({
+          poll,
+          token,
+        });
+        if (createPollResponse.statusCode === 201) {
+          Router.push(`/poll/${createPollResponse.data._id}`);
+        } else {
+          setDisabled(false);
+          setResponse({
+            status: true,
+            type: "error",
+            msg: "Poll creation failed, please try again later.",
+          });
+        }
+      } catch (err) {
+        setDisabled(false);
         setResponse({
           status: true,
           type: "error",
-          msg: "Poll creation failed, please try again later.",
+          msg: "Poll creation failed, check your connection.",
         });
       }
     }
@@ -156,11 +166,11 @@ const Create = (): JSX.Element => {
                 {!disabled ? (
                   `Create Poll`
                 ) : (
-                  <>
-                    <Spinner as="span" animation="grow" size="sm" />
+                    <>
+                      <Spinner as="span" animation="grow" size="sm" />
                     &nbsp;Loading...
                   </>
-                )}
+                  )}
               </Button>
               <ResponseMessage
                 response={response}
