@@ -113,6 +113,7 @@ const ShareInvite = (props: {
       token
     );
     if (sendEmailsResponse.statusCode === 200) {
+      setEmails([]); // emailList is cleared if mails are sent.
       setResponse({
         status: true,
         type: "success",
