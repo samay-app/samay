@@ -4,7 +4,8 @@
 
 [![License](https://img.shields.io/github/license/Rocketmeet/RocketMeet-client?color=%23000000&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/RocketMeet/community)
-
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/RocketMeet/RocketMeet-client?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/RocketMeet/RocketMeet-client?color=%23000000&&style=for-the-badge)
 
 ## Community
 
