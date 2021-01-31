@@ -15,10 +15,6 @@ Come say hello at our [chatroom](https://gitter.im/RocketMeet/community) for dis
 
 You can find the API documentation for the server [here](https://documenter.getpostman.com/view/10544125/TW6wJodh) and the mailer [here](https://documenter.getpostman.com/view/9605987/TW6wHo7V).
 
-## One-click Vercel deployment
-
-[button here]
-
 ## Getting Started
 
 ### Prerequisites
