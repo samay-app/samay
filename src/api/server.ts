@@ -122,27 +122,29 @@ class ServerAPI {
     };
     return this.httpMethod(endpoint, requestOptions);
   };
+
+  deletePoll = (voteArgs: {
+    pollid: string;
+    token: string;
+  }): Promise<HttpResponse> => {
+    const { pollid, token } = voteArgs;
+    const endpoint = `${this.URL}/user/poll/${pollid}`;
+    this.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "DELETE",
+      headers: this.headers,
+      body: JSON.stringify(voteArgs),
+    };
+    return this.httpMethod(endpoint, requestOptions);
+  };
+  
 }
 
-deletePoll = (voteArgs: {
-  pollid: string;
-  token: string;
-}): Promise<HttpResponse> => {
-  const { pollid, token } = voteArgs;
-  const endpoint = `${this.URL}/user/poll/${pollid}`;
-  this.headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
-  const requestOptions: RequestInit = {
-    mode: "cors",
-    credentials: "include",
-    method: "DELETE",
-    headers: this.headers,
-    body: JSON.stringify("hello"),
-  };
-  return this.httpMethod(endpoint, requestOptions);
-};
 
 
 
