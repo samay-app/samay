@@ -22,7 +22,7 @@ You can find the complete API documentation [here](https://documenter.getpostman
 ### Installation
 
 ```bash
-$ git clone https://github.com/RocketMeet/RocketMeet-mailer.git
+$ git clone https://github.com/<your-username>/RocketMeet-mailer.git
 
 $ cd RocketMeet-mailer
 
