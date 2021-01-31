@@ -87,13 +87,5 @@
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.3"
-  },
-  "contributors": [
-    "Anaswara T Rajan <anaswaratrajan> (https://github.com/anaswaratrajan)",
-    "Anand Baburajan <AnandBaburajan> (https://github.com/AnandBaburajan)",
-    "Vipin K P <VipinVIP> (https://github.com/VipinVIP)",
-    "Athul Joshi <AthulJoshi> (https://github.com/AthulJoshi)",
-    "Aravind K S <iamAravindks> (https://github.com/iamAravindks)",
-    "Bread Genie <BreadGenie> (https://github.com/BreadGenie)"
-  ]
+  }
 }
