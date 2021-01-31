@@ -74,7 +74,7 @@ const PollsList = (): JSX.Element => {
             </a>
           </Card.Body>
           <Card.Footer className="px-0">
-            <span className="text-muted">
+            <span className="card-footer-muted">
               Created : {dayjs(item.createdAt).format("DD/MM/YYYY")}
             </span>
           </Card.Footer>
