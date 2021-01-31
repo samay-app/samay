@@ -39,7 +39,7 @@ Go to Firebase and create a project. In the authentication section, enable sign-
 $ npm run dev
 ```
 
-You will be able to access the API from http://localhost:5000
+You will be able to access the API from http://localhost:8000
 
 ### Testing
 
