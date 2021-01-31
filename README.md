@@ -31,7 +31,7 @@ $ npm install
 
 ### Setup
 
-Go to Firebase and create a project. In the authentication section, enable sign-in with Google. Then generate a private key from Project Overview > Project Settings > Service Accounts > Firebase Admin SDK. Next, make a copy of the .env.example file to .env and set the vars corresponding to the private key you generated. Then set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account used with Nodemailer.
+Go to Firebase and create a project. In the authentication section, enable sign-in with Google. Then generate a private key from Project Overview > Project Settings > Service Accounts > Firebase Admin SDK. Next, make a copy of the .env.example file to .env and set the vars corresponding to the private key you generated. Then set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account used with Nodemailer. Make sure to use a spare account and [Turn on less secure app access](https://myaccount.google.com/lesssecureapps)
 
 ### Run
 
@@ -49,7 +49,7 @@ $ npm run test
 
 ### Deployment
 
-In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account. Make sure to use a spare account and [Turn on less secure app access](https://myaccount.google.com/lesssecureapps).
+In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account. Make sure to use a spare account and [Turn on less secure app access](https://myaccount.google.com/lesssecureapps).Then set the CORS_URL to the domain running RocketMeet-client.
 Make sure the Firebase credentials in .env are correct and that you added your domain to the 'Authorized domains' section in your Firebase project.
 
 ## Contributing
