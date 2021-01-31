@@ -31,7 +31,10 @@ const Home = (): JSX.Element => {
               </span>
             </h3>
             {isLoggedIn ? (
-              <Button className="rm-primary-button" href="/poll/create">
+              <Button
+                className="rm-primary-button index-create-button"
+                href="/poll/create"
+              >
                 Create a Poll
               </Button>
             ) : (

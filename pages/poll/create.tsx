@@ -166,9 +166,14 @@ const Create = (): JSX.Element => {
                 {!disabled ? (
                   `Create Poll`
                 ) : (
-                    <>
-                      <Spinner as="span" animation="grow" size="sm" />
-                    &nbsp;Loading...
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
                   </>
                   )}
               </Button>
