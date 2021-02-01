@@ -34,6 +34,9 @@
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/__mocks__/fileMock.js"
     }
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@babel/core": "^7.12.10",
     "bootstrap": "^4.5.3",

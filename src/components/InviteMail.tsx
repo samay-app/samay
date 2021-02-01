@@ -84,34 +84,45 @@ const InviteMail = (props: {
   };
 
   const handleSubmit = async (): Promise<void> => {
-    const mailerArgs: MailerPollArgs = {
-      pollID: pollid,
-      pollTitle: polltitle,
-      receiverIDs: emailList,
-      senderName: displayName,
-      senderEmailID: loggedInUserEmailID,
-    };
-    const mailerEvArgs: MailerEventArgs = {
-      senderName: displayName,
-      pollTitle: polltitle,
-      finalOption: finalChoice,
-      receiverIDs: emailList,
-    };
-    const sendEmailsResponse = !finalChoice
-      ? await mailerAPI.sendPollInvites(mailerArgs, token)
-      : await mailerAPI.sendEventInvites(mailerEvArgs, token);
-    if (sendEmailsResponse.statusCode === 200) {
-      setEmails([]); // emailList is cleared if mails are sent.
-      setResponse({
-        status: true,
-        type: "success",
-        msg: "Emails successfully sent.",
-      });
-    } else {
+    try {
+      let sendEmailsResponse;
+      if (finalChoice) {
+        const mailerEvArgs: MailerEventArgs = {
+          senderName: displayName,
+          pollTitle: polltitle,
+          finalOption: finalChoice,
+          receiverIDs: emailList,
+        };
+        sendEmailsResponse = await mailerAPI.sendEventInvites(mailerEvArgs, token);
+      } else {
+        const mailerArgs: MailerPollArgs = {
+          pollID: pollid,
+          pollTitle: polltitle,
+          receiverIDs: emailList,
+          senderName: displayName,
+          senderEmailID: loggedInUserEmailID,
+        };
+        sendEmailsResponse = await mailerAPI.sendPollInvites(mailerArgs, token);
+      }
+      if (sendEmailsResponse.statusCode === 200) {
+        setEmails([]); // emailList is cleared if mails are sent.
+        setResponse({
+          status: true,
+          type: "success",
+          msg: "Emails successfully sent.",
+        });
+      } else {
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Unable to send emails. Please try again later.",
+        });
+      }
+    } catch (err) {
       setResponse({
         status: true,
         type: "error",
-        msg: "Unable to send emails. Please try again later.",
+        msg: "Unable to send emails. Check your connection.",
       });
     }
   };

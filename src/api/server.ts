@@ -7,17 +7,20 @@ class ServerAPI {
 
   domain: string | undefined;
 
+  version: string | undefined;
+
   constructor() {
     // Figure out a way to access store
     // https://github.com/kirill-konshin/next-redux-wrapper/issues/214#issuecomment-680273330
 
-    this.URL = process.env.NEXT_PUBLIC_SERVER_URL;
-    this.domain = process.env.NEXT_PUBLIC_ORIGIN_DOMAIN;
+    this.domain = process.env.NEXT_PUBLIC_SERVER_URL;
+    this.version = process.env.NEXT_PUBLIC_VERSION_NUMBER;
+    this.URL = `${this.domain}/v${this.version}`;
   }
 
   httpMethod = async (
     endpoint: string,
-    requestOptions: RequestInit,
+    requestOptions: RequestInit
   ): Promise<HttpResponse> => {
     const res = await fetch(endpoint, requestOptions);
     const { status } = res;
@@ -119,6 +122,26 @@ class ServerAPI {
       method: "PUT",
       headers: this.headers,
       body: JSON.stringify(finalChoice),
+    };
+    return this.httpMethod(endpoint, requestOptions);
+  };
+
+  deletePoll = (voteArgs: {
+    pollid: string;
+    token: string;
+  }): Promise<HttpResponse> => {
+    const { pollid, token } = voteArgs;
+    const endpoint = `${this.URL}/user/poll/${pollid}`;
+    this.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const requestOptions: RequestInit = {
+      mode: "cors",
+      credentials: "include",
+      method: "DELETE",
+      headers: this.headers,
+      body: JSON.stringify(voteArgs),
     };
     return this.httpMethod(endpoint, requestOptions);
   };
