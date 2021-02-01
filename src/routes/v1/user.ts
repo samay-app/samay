@@ -32,7 +32,6 @@ router.post('/poll', async (req: Request, res: Response) => {
         res.status(403).json({ msg: 'Forbidden' });
     } else {
         const newPoll: RocketMeetPoll = new Poll(req.body);
-
         try {
             await newPoll.save();
             res.status(201).json(newPoll);
