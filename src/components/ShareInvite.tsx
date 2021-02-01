@@ -108,24 +108,33 @@ const ShareInvite = (props: {
       senderName: displayName,
       senderEmailID: loggedInUserEmailID,
     };
-    const sendEmailsResponse = await mailerAPI.sendPollInvites(
-      mailerArgs,
-      token
-    );
-    if (sendEmailsResponse.statusCode === 200) {
-      setEmails([]); // emailList is cleared if mails are sent.
-      setResponse({
-        status: true,
-        type: "success",
-        msg: "Emails successfully sent.",
-      });
-    } else {
+    try {
+      const sendEmailsResponse = await mailerAPI.sendPollInvites(
+        mailerArgs,
+        token
+      );
+      if (sendEmailsResponse.statusCode === 200) {
+        setEmails([]); // emailList is cleared if mails are sent.
+        setResponse({
+          status: true,
+          type: "success",
+          msg: "Emails successfully sent.",
+        });
+      } else {
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Unable to send emails. Please try again later.",
+        });
+      }
+    } catch (err) {
       setResponse({
         status: true,
         type: "error",
-        msg: "Unable to send emails. Please try again later.",
+        msg: "Unable to send emails. Check your connection.",
       });
     }
+
   };
 
   return (

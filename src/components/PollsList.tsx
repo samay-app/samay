@@ -51,9 +51,10 @@ const PollsList = (): JSX.Element => {
       } else {
         setPollList([]);
         setMessage("Unable to fetch polls. Please try again later.");
+
       }
     } catch (err) {
-      setMessage("Unable to fetch polls. Please try again later.");
+      setMessage("Unable to fetch polls. Check your connection.");
       NProgress.done();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -157,8 +158,8 @@ const PollsList = (): JSX.Element => {
             {dayjs(item.finalChoice?.start).format("LT")}
           </div>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </div>
     ));
   };
@@ -210,8 +211,8 @@ const PollsList = (): JSX.Element => {
                 <Polls />
               </CardColumns>
             ) : (
-              <p>{message}</p>
-            )}
+                <p>{message}</p>
+              )}
           </div>
         </Col>
         <Col className="col-xl-4 col-lg-4 recents">

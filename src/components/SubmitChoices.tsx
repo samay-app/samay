@@ -27,14 +27,24 @@ const SubmitChoices = (props: {
       newVote,
       pollid,
     };
-    const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
-    if (submitChoiceResponse.statusCode === 201) {
-      Router.reload();
-    } else {
+    try {
+      const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
+      if (submitChoiceResponse.statusCode === 201) {
+        Router.reload();
+      } else {
+        setDisabled(false);
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Please try again later.",
+        });
+      }
+    } catch (err) {
+      setDisabled(false);
       setResponse({
         status: true,
         type: "error",
-        msg: "Please try again later.",
+        msg: "Network error. Please try again later.",
       });
     }
   };
@@ -58,8 +68,9 @@ const SubmitChoices = (props: {
               role="status"
               aria-hidden="true"
             />
+
           </>
-        )}
+          )}
       </Button>
       <ResponseMessage
         response={response}
