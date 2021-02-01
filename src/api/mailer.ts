@@ -12,12 +12,15 @@ class MailerAPI {
 
   domain: string | undefined;
 
+  version: string | undefined;
+
   constructor() {
     // this.senderID = "userIDfromStore"
     // this.token = "tokenfromStore"
 
-    this.URL = process.env.NEXT_PUBLIC_MAILER_URL;
-    this.domain = process.env.NEXT_PUBLIC_ORIGIN_DOMAIN;
+    this.domain = process.env.NEXT_PUBLIC_MAILER_URL;
+    this.version = process.env.NEXT_PUBLIC_VERSION_NUMBER;
+    this.URL = `${this.domain}/v${this.version}`;
   }
 
   httpPost = async (
