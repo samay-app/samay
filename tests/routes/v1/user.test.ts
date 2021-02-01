@@ -1,13 +1,15 @@
 import supertest, { SuperTest, Test } from 'supertest';
+import axios from 'axios';
+import admin from '../../../src/routes/v1/auth/firebase';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
-import { isChoicePresentInPollChoices } from '../../../src/helpers';
+import { isChoicePresentInPollChoices, encrypt } from '../../../src/helpers';
 import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
 
 const request: SuperTest<Test> = supertest(app);
 const testPoll = {
   title: 'testPoll',
-  encryptedEmailID: 'encryptedEmailID',
+  encryptedEmailID: encrypt('testuser19283746@test.com'),
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -40,18 +42,38 @@ afterAll(async () => dbHandler.closeDatabase());
 
 // Tests skipped because we haven't been able to figure out how to mock firebase properly
 
-describe.skip('create poll', () => {
+// tokens
+const uid = 'VxSXc92SVsRwQQmPZfrxKIL16Rt1';
+const API_KEY = 'AIzaSyDi8gy5XMUNVOvStG2kw8yZDR-ZW-5KE3o';
+const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=${API_KEY}`;
+describe('create poll', () => {
   it('Should save poll to db', async (done) => {
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    // console.log(encrypt('testUser19283746@test.com'));
+    const TOKEN = await tokenRes.data.idToken;
     const res = await request
       .post('/v1/user/poll')
+      .set({ Authorization: `Bearer ${TOKEN}` })
       .send({
         title: 'OccupyMarsMeet',
-        encryptedEmailID: 'encryptedEmailID',
+        encryptedEmailID: encrypt('testuser19283746@test.com'),
         choices: [
           { start: 1633577400000, end: 1633581000000 },
           { start: 1633588200000, end: 1633591800000 },
         ],
       });
+    // console.log(res.body)
     expect(res.body.title).toEqual('OccupyMarsMeet');
     expect(isChoicePresentInPollChoices(
       { start: 1633577400000, end: 1633581000000 },
@@ -74,10 +96,23 @@ describe.skip('create poll', () => {
     )).toEqual(true);
     done();
   });
-
   it('Should allow poll to be edited', async (done) => {
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const TOKEN = await tokenRes.data.idToken;
     const editPollRes = await request
       .put(`/v1/user/poll/${pollID}`)
+      .set({ Authorization: `Bearer ${TOKEN}` })
       .send({
         choices: [{ start: 1633671000042, end: 1633674600042 }],
       });
@@ -96,10 +131,25 @@ describe.skip('create poll', () => {
   });
 });
 
-describe.skip('get poll', () => {
+describe('get poll', () => {
   it('Should return poll by emailID', async (done) => {
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const TOKEN = await tokenRes.data.idToken;
+
     const getPollRes = await request
-      .get(`/v1/user/${testPoll.encryptedEmailID}`);
+      .get(`/v1/user/${testPoll.encryptedEmailID}`)
+      .set({ Authorization: `Bearer ${TOKEN}` });
     expect(getPollRes.body[0].title).toEqual('testPoll');
     done();
   });
@@ -112,10 +162,25 @@ describe.skip('get poll', () => {
   });
 });
 
-describe.skip('delete poll', () => {
+describe('delete poll', () => {
   it('Should delete poll from db', async (done) => {
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const TOKEN = await tokenRes.data.idToken;
+
     const deletePollRes = await request
-      .delete(`/v1/user/poll/${pollID}`);
+      .delete(`/v1/user/poll/${pollID}`)
+      .set({ Authorization: `Bearer ${TOKEN}` });
     expect(deletePollRes.body.title).toEqual(testPoll.title);
     const getPollFirstTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
     expect(getPollFirstTime).toEqual(null);
@@ -123,10 +188,25 @@ describe.skip('delete poll', () => {
   });
 
   it('Should throw err if there is no poll to delete', async (done) => {
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const TOKEN = await tokenRes.data.idToken;
+
     const someIdWhichDoesntExist = '5fe141353477a0591da0c98a';
     const deletePollRes = await request
-      .delete(`/v1/user/poll/${someIdWhichDoesntExist}`);
-    expect(deletePollRes.body.message).toEqual('Poll does not exist');
+      .delete(`/v1/user/poll/${someIdWhichDoesntExist}`)
+      .set({ Authorization: `Bearer ${TOKEN}` });
+    expect(deletePollRes.body.message).toEqual('Poll not found');
     done();
   });
 });
