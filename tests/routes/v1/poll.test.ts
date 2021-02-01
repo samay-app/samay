@@ -50,11 +50,12 @@ describe('get poll', () => {
       done();
     });
 
-    it('Should return null if poll does not exist', async (done) => {
+    it('Should return 404 if poll does not exist', async (done) => {
       const someIdWhichDoesntExist = '5fe141353477a0591da0c98a';
       const getPollRes = await request.get(`/v1/poll/${someIdWhichDoesntExist}`);
 
-      expect(getPollRes.body).toEqual(null);
+      expect(getPollRes.body.message).toEqual('Poll does not exist');
+      expect(getPollRes.status).toEqual(404);
       done();
     });
 });
