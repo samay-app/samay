@@ -205,7 +205,24 @@ a {
   color: #ffffff !important;
   transition: 0.3s;
 }
-
+.rm-delete-button {
+  border-color: rgba(0, 0, 0, 0) !important ;
+  width: 40px;
+  height: 40px;
+}
+.rm-delete-button:hover {
+  transition: 0.1s;
+  background-color: rgba(0, 0, 0, 0) !important;
+  transform: scale(1.1);
+}
+.modal-dark {
+  background-color: #2e2e2e;
+  color: #fff;
+}
+.modal-header,
+.modal-footer {
+  border: none !important;
+}
 h2 {
   font-weight: 100 !important;
   font-size: 3rem !important;
