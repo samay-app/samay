@@ -145,22 +145,30 @@ const PollsList = (): JSX.Element => {
 
   const currentDate = Date.now();
 
-  const Recents: Function = (): JSX.Element[] => {
-    return pollList.reverse().map((item: RocketMeetPollFromDB) => (
-      <div key={item.createdAt}>
-        {!item.open && (item.finalChoice?.start || 0) > currentDate ? (
-          <div className="d-block m-1 p-2 upcomings">
-            <b>{item.title}</b> on{" "}
-            {dayjs(item.finalChoice?.start).format("ddd")},{" "}
-            {dayjs(item.finalChoice?.start).format("MMM")}{" "}
-            {dayjs(item.finalChoice?.start).format("DD")},{" "}
-            {dayjs(item.finalChoice?.start).format("LT")}
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-    ));
+  const Recents: Function = (): JSX.Element[] | JSX.Element => {
+    if (
+      pollList.some(
+        (item: RocketMeetPollFromDB) =>
+          !item.open && (item.finalChoice?.start || 0) > currentDate
+      )
+    ) {
+      return pollList.reverse().map((item: RocketMeetPollFromDB) => (
+        <div key={item.createdAt}>
+          {!item.open && (item.finalChoice?.start || 0) > currentDate ? (
+            <div className="d-block m-1 p-2 upcomings">
+              <b>{item.title}</b> on{" "}
+              {dayjs(item.finalChoice?.start).format("ddd")},{" "}
+              {dayjs(item.finalChoice?.start).format("MMM")}{" "}
+              {dayjs(item.finalChoice?.start).format("DD")},{" "}
+              {dayjs(item.finalChoice?.start).format("LT")}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      ));
+    }
+    return <div>No upcoming events</div>;
   };
 
   return (

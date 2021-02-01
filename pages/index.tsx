@@ -17,14 +17,14 @@ const Home = (): JSX.Element => {
             <h1 className="hero-title">
               <span className="hero-line">
                 Scheduling meetings{" "}
-                <span className="hero-strikethrough">is boring</span>
+                <span className="hero-strikethrough">is boring</span>{" "}
               </span>
               <span className="hero-line">has never been faster</span>
             </h1>
             <h3 className="hero-desc">
               <span className="hero-line">
                 Quickly find the best time for team meetings and one-on-ones
-                with
+                with{" "}
               </span>
               <span className="hero-line">
                 RocketMeet — a free and open source meeting scheduling app
