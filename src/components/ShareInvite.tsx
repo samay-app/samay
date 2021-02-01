@@ -26,7 +26,7 @@ const ShareInvite = (props: {
       <Popover.Content>Copied!</Popover.Content>
     </Popover>
   );
-
+  
   return (
     <div>
       <Form
