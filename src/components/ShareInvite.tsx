@@ -1,67 +1,28 @@
-import {
-  Form,
-  InputGroup,
-  Button,
-  Popover,
-  OverlayTrigger,
-} from "react-bootstrap";
-import copy from "copy-to-clipboard";
-import { mailerAPI } from "../api/mailer";
+import { Form } from "react-bootstrap";
+import { Choice } from "../models/poll";
+import CopyLink from "./CopyLink";
 import InviteMail from "./InviteMail";
 
 const ShareInvite = (props: {
   pollid: string;
   polltitle: string;
+  finalChoice: Choice | undefined;
 }): JSX.Element => {
-  const { pollid } = props;
-  const { polltitle } = props;
-  const pollurl = `${mailerAPI.domain}/poll/${pollid}`; /* This should be replaced */
+  const { pollid, polltitle, finalChoice } = props;
+  const pollurl = `${process.env.NEXT_PUBLIC_ORIGIN_DOMAIN}/poll/${pollid}`; /* This should be replaced */
 
-  const handleCopy = (): void => {
-    copy(pollurl);
-  };
-
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Content>Copied!</Popover.Content>
-    </Popover>
-  );
-  
   return (
-    <div>
+    <div className="poll-shareinvite-content">
       <Form
         onSubmit={(e): void => {
           e.preventDefault();
         }}
       >
-        <div className="poll-shareinvite-content">
-          <Form.Group>
-            <Form.Label className="font-weight-bold">Share link</Form.Label>
-            <InputGroup className="mb-3">
-              <Form.Control
-                type="text"
-                readOnly
-                defaultValue={pollurl}
-                className="share-textbox"
-              />
-              <InputGroup.Append>
-                <OverlayTrigger
-                  trigger="click"
-                  placement="top"
-                  overlay={popover}
-                >
-                  <Button variant="light" onClick={handleCopy}>
-                    Copy
-                  </Button>
-                </OverlayTrigger>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form.Group>
-        </div>
+        <CopyLink pollurl={pollurl} final={!!finalChoice} />
         <InviteMail
           pollid={pollid}
           polltitle={polltitle}
-          finalChoice={undefined}
+          finalChoice={finalChoice}
         />
       </Form>
     </div>
