@@ -51,7 +51,7 @@ const Poll = (props: {
                 )}
             </Jumbotron>
           </div>
-          <div className="col-sm-8">
+          <div className="jumbo-col col-sm-8">
             <Jumbotron className="poll-table-jumbo">
               <PollTable
                 pollFromDB={pollFromDB}
