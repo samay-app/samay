@@ -8,6 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
       <Head>
         <title>RocketMeet</title>
         <link rel="shortcut icon" href="/logo.svg" />
+        <meta name="google-site-verification" content="R6Lnd_cWOD3L1dBJGBnEzD5h2E2sNVpCHcPNsZqiQ7k" />
       </Head>
       <div className="d-flex flex-column root-container">
         <NavBar />
