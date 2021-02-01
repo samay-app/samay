@@ -62,13 +62,13 @@ const Login = (): JSX.Element => {
           Log in with Google
         </Button>
       ) : (
-          <Button
-            className="rm-primary-button-outline-small"
-            onClick={googleLogout}
-          >
-            Logout
-          </Button>
-        )}
+        <Button
+          className="rm-primary-button-outline-small"
+          onClick={googleLogout}
+        >
+          Logout
+        </Button>
+      )}
       <ResponseMessage
         response={response}
         onHide={(): void =>

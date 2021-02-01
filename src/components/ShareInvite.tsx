@@ -134,7 +134,6 @@ const ShareInvite = (props: {
         msg: "Unable to send emails. Check your connection.",
       });
     }
-
   };
 
   return (
