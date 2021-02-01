@@ -48,13 +48,17 @@ const Poll = (props: {
               <PollInfo poll={pollFromDB} />
               {pollFromDB.open &&
                 loggedInUserEmailID === pollCreatorEmailID && (
-                  <ShareInvite polltitle={pollFromDB.title} pollid={pollid} />
+                  <ShareInvite
+                    polltitle={pollFromDB.title}
+                    pollid={pollid}
+                    finalChoice={undefined}
+                  />
                 )}
               {!pollFromDB.open &&
                 loggedInUserEmailID === pollCreatorEmailID && (
-                  <InviteMail
-                    pollid={pollid}
+                  <ShareInvite
                     polltitle={pollFromDB.title}
+                    pollid={pollid}
                     finalChoice={pollFromDB.finalChoice}
                   />
                 )}
