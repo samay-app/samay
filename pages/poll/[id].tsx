@@ -8,6 +8,7 @@ import { serverAPI } from "../../src/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/PollInfo";
 import PollTable from "../../src/components/PollTable";
+import InviteMail from "../../src/components/InviteMail";
 import {
   Choice,
   ChoiceFromDB,
@@ -49,9 +50,17 @@ const Poll = (props: {
                 loggedInUserEmailID === pollCreatorEmailID && (
                   <ShareInvite polltitle={pollFromDB.title} pollid={pollid} />
                 )}
+              {!pollFromDB.open &&
+                loggedInUserEmailID === pollCreatorEmailID && (
+                  <InviteMail
+                    pollid={pollid}
+                    polltitle={pollFromDB.title}
+                    finalChoice={pollFromDB.finalChoice}
+                  />
+                )}
             </Jumbotron>
           </div>
-          <div className="jumbo-col col-sm-8">
+          <div className="col-sm-8">
             <Jumbotron className="poll-table-jumbo">
               <PollTable
                 pollFromDB={pollFromDB}
