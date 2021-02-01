@@ -89,11 +89,15 @@ const InviteMail = (props: {
       if (finalChoice) {
         const mailerEvArgs: MailerEventArgs = {
           senderName: displayName,
+          senderEmailID: loggedInUserEmailID,
           pollTitle: polltitle,
           finalOption: finalChoice,
           receiverIDs: emailList,
         };
-        sendEmailsResponse = await mailerAPI.sendEventInvites(mailerEvArgs, token);
+        sendEmailsResponse = await mailerAPI.sendEventInvites(
+          mailerEvArgs,
+          token
+        );
       } else {
         const mailerArgs: MailerPollArgs = {
           pollID: pollid,
