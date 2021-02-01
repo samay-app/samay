@@ -68,9 +68,8 @@ const SubmitChoices = (props: {
               role="status"
               aria-hidden="true"
             />
-
           </>
-          )}
+        )}
       </Button>
       <ResponseMessage
         response={response}

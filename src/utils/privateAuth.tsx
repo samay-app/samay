@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import Router from "next/router";
 import { RootState } from "../store/store";
-import { firebase } from "./firebase"
+import { firebase } from "./firebase";
 import { login } from "../store/auth/action";
 
 // private route for logged in users only
@@ -28,16 +28,19 @@ const privateAuthWrapper = (Component: NextPage) => {
        */
       firebase.auth().onIdTokenChanged((user) => {
         if (user) {
-          user.getIdToken(true)
-            .then((token) => {
-              // console.log(token)
-              dispatch(
-                login({ displayName: user.displayName, username: user.email, token })
-              );
-            })
+          user.getIdToken(true).then((token) => {
+            // console.log(token)
+            dispatch(
+              login({
+                displayName: user.displayName,
+                username: user.email,
+                token,
+              })
+            );
+          });
         }
-      })
-    })
+      });
+    });
 
     // If user is not logged in, return login component
     if (isLoggedIn === false) {

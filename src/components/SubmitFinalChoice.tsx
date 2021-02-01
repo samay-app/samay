@@ -80,7 +80,7 @@ const SubmitFinalChoice = (props: {
               aria-hidden="true"
             />
           </>
-          )}
+        )}
       </Button>
       <ResponseMessage
         response={response}
