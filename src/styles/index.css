@@ -452,6 +452,12 @@ h4 {
   padding-right: 3rem;
 }
 
+.poll-invitemail {
+  margin-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 3rem;
+}
+
 .poll-info-title {
   font-size: 3rem;
   font-weight: 700;
@@ -490,7 +496,8 @@ h4 {
     padding-right: 0;
   }
 
-  .poll-shareinvite-content {
+  .poll-shareinvite-content,
+  .poll-invitemail {
     padding-left: 0;
     padding-right: 0;
   }
