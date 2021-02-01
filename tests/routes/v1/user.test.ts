@@ -5,11 +5,15 @@ import dbHandler from '../../db-handler';
 import app from '../../../src/app';
 import { isChoicePresentInPollChoices, encrypt } from '../../../src/helpers';
 import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
+import { API_KEY } from '../../../src/config';
+
+const EmailID = 'testuser19283746@test.com';
+const encryptedEmailID = encrypt(EmailID);
 
 const request: SuperTest<Test> = supertest(app);
 const testPoll = {
   title: 'testPoll',
-  encryptedEmailID: encrypt('testuser19283746@test.com'),
+  encryptedEmailID,
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -26,7 +30,13 @@ const createTestPoll = async () => {
 
 // Connect to a new in-memory database before running any tests
 
-beforeAll(async () => dbHandler.connect());
+beforeAll(async () => {
+  dbHandler.connect();
+  await admin.auth().createUser({
+    email: EmailID,
+    emailVerified: false,
+  });
+});
 
 // Seed the db
 
@@ -38,16 +48,21 @@ afterEach(async () => dbHandler.clearDatabase());
 
 // Remove and close the db and server.
 
-afterAll(async () => dbHandler.closeDatabase());
-
-// Tests skipped because we haven't been able to figure out how to mock firebase properly
+afterAll(async () => {
+  dbHandler.closeDatabase();
+  const USER = await admin.auth().getUserByEmail(EmailID);
+  const uid = USER.uid;
+  await admin.auth().deleteUser(uid);
+});
 
 // tokens
-const uid = 'VxSXc92SVsRwQQmPZfrxKIL16Rt1';
-const API_KEY = 'AIzaSyDi8gy5XMUNVOvStG2kw8yZDR-ZW-5KE3o';
+
 const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=${API_KEY}`;
+
 describe('create poll', () => {
   it('Should save poll to db', async (done) => {
+    const USER = await admin.auth().getUserByEmail(EmailID);
+    const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
       method: 'post',
@@ -60,20 +75,18 @@ describe('create poll', () => {
         'Content-Type': 'application/json',
       },
     });
-    // console.log(encrypt('testUser19283746@test.com'));
     const TOKEN = await tokenRes.data.idToken;
     const res = await request
       .post('/v1/user/poll')
       .set({ Authorization: `Bearer ${TOKEN}` })
       .send({
         title: 'OccupyMarsMeet',
-        encryptedEmailID: encrypt('testuser19283746@test.com'),
+        encryptedEmailID,
         choices: [
           { start: 1633577400000, end: 1633581000000 },
           { start: 1633588200000, end: 1633591800000 },
         ],
       });
-    // console.log(res.body)
     expect(res.body.title).toEqual('OccupyMarsMeet');
     expect(isChoicePresentInPollChoices(
       { start: 1633577400000, end: 1633581000000 },
@@ -97,6 +110,8 @@ describe('create poll', () => {
     done();
   });
   it('Should allow poll to be edited', async (done) => {
+    const USER = await admin.auth().getUserByEmail(EmailID);
+    const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
       method: 'post',
@@ -133,6 +148,8 @@ describe('create poll', () => {
 
 describe('get poll', () => {
   it('Should return poll by emailID', async (done) => {
+    const USER = await admin.auth().getUserByEmail(EmailID);
+    const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
       method: 'post',
@@ -164,6 +181,8 @@ describe('get poll', () => {
 
 describe('delete poll', () => {
   it('Should delete poll from db', async (done) => {
+    const USER = await admin.auth().getUserByEmail(EmailID);
+    const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
       method: 'post',
@@ -188,6 +207,8 @@ describe('delete poll', () => {
   });
 
   it('Should throw err if there is no poll to delete', async (done) => {
+    const USER = await admin.auth().getUserByEmail(EmailID);
+    const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
       method: 'post',

@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/RocketMeet/RocketMeet#readme",
   "dependencies": {
-    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
@@ -54,6 +53,7 @@
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
+    "axios": "^0.21.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-node": "^4.1.0",
