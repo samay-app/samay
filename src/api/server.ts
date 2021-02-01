@@ -17,7 +17,7 @@ class ServerAPI {
 
   httpMethod = async (
     endpoint: string,
-    requestOptions: RequestInit,
+    requestOptions: RequestInit
   ): Promise<HttpResponse> => {
     const res = await fetch(endpoint, requestOptions);
     const { status } = res;
@@ -142,10 +142,6 @@ class ServerAPI {
     };
     return this.httpMethod(endpoint, requestOptions);
   };
-  
 }
-
-
-
 
 export const serverAPI = new ServerAPI();

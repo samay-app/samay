@@ -18,7 +18,6 @@ import { encrypt } from "../helpers/helpers";
 import { RocketMeetPollFromDB } from "../models/poll";
 import { RootState } from "../store/store";
 import ResponseMessage from "./ResponseMessage";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 dayjs.extend(localizedFormat);
 
@@ -70,7 +69,7 @@ const PollsList = (): JSX.Element => {
         token,
       };
       const deletedStatus = await serverAPI.deletePoll(voteArgs);
-      if (deletedStatus.statusCode == 200) {
+      if (deletedStatus.statusCode === 200) {
         getData();
       } else {
         setResponse({
@@ -114,7 +113,7 @@ const PollsList = (): JSX.Element => {
                 <a
                   href={`/poll/${item._id}`}
                   aria-label="stretched link"
-                  className="stretched-linak card-bdy "
+                  className="stretched-link card-bdy "
                 >
                   {item.description}
                 </a>
@@ -126,16 +125,16 @@ const PollsList = (): JSX.Element => {
               </Card.Footer>
             </Card>
           </Col>
-          <Col className="col-1">
+          <Col className="col-1 p-0">
             <Button
-              size="sm"
-              className="my-2"
-              onClick={() => {
+              variant="outline-light"
+              className="my-2 rm-delete-button"
+              onClick={(): void => {
                 setId(item._id);
                 setModalShow(true);
               }}
             >
-              <Trash />
+              <Trash size="22" color="red " />
             </Button>
           </Col>
         </Row>
@@ -174,23 +173,34 @@ const PollsList = (): JSX.Element => {
               setResponse({ status: false, type: "", msg: "" })
             }
           />
-          <Modal centered show={modalShow} onHide={() => setModalShow(false)}>
-            <Modal.Header>Confirm deletion !</Modal.Header>
-            <Modal.Body>Do you really want to delete this poll ?</Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={() => setModalShow(false)}>
-                Cancel
-              </Button>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  setModalShow(false);
-                  handleDelete(id);
-                }}
-              >
-                Confirm
-              </Button>
-            </Modal.Footer>
+          <Modal
+            centered
+            show={modalShow}
+            onHide={(): void => setModalShow(false)}
+          >
+            <div className="modal-dark">
+              <Modal.Header>
+                <h4>Confirm deletion !</h4>
+              </Modal.Header>
+              <Modal.Body>Do you really want to delete this poll ?</Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={(): void => setModalShow(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={(): void => {
+                    setModalShow(false);
+                    handleDelete(id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </div>
           </Modal>
 
           <div className="mb-2 mt-3">
