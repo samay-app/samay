@@ -135,7 +135,7 @@ const InviteMail = (props: {
     <div className="poll-invitemail">
       <Form.Group controlId="formBasicEmail">
         <Form.Label className="font-weight-bold">
-          Invite participants
+          {finalChoice ? "Share final time info" : "Invite participants"}
         </Form.Label>
         <Form.Control
           multiple
