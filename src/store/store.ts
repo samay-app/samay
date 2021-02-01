@@ -7,6 +7,9 @@ import {
 } from "redux";
 import { MakeStore, createWrapper } from "next-redux-wrapper";
 import thunkMiddleware from "redux-thunk";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+import { composeWithDevTools } from "redux-devtools-extension";
 import authReducer from "./auth/reducer";
 
 const combinedReducer = combineReducers({
@@ -18,7 +21,6 @@ export type RootState = ReturnType<typeof combinedReducer>;
 // BINDING MIDDLEWARE
 const bindMiddleware = (middleware: any) => {
   if (process.env.NODE_ENV !== "production") {
-    const { composeWithDevTools } = require("redux-devtools-extension");
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
@@ -32,8 +34,6 @@ const makeStore: MakeStore<{}, Action<any>> = ({ isServer }: any) => {
   // If it's on client side, create a store which will persist
   // This is necessary to persist global state in client,
   // otherwise auth state perish on reload or rehydrate
-  const { persistReducer } = require("redux-persist");
-  const storage = require("redux-persist/lib/storage").default;
 
   const persistConfig = {
     key: "nextjs",
@@ -47,12 +47,6 @@ const makeStore: MakeStore<{}, Action<any>> = ({ isServer }: any) => {
     persistedReducer,
     bindMiddleware([thunkMiddleware])
   ); // Creating the store again
-
-  // store.__persistor = persistStore(store);
-  // Commenting this hack and creating persistor manually in _app.tsx
-  // Will use it case of SSR issues.
-  // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
-  // TODO : Add type to `__persistor`, if anyone has any idea, ;_; please try here.
 
   return store;
 };
