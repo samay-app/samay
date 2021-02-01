@@ -54,7 +54,7 @@ const PollsList = (): JSX.Element => {
 
       }
     } catch (err) {
-      setMessage("Unable to fetch polls. Check you connection.");
+      setMessage("Unable to fetch polls. Check your connection.");
       NProgress.done();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
