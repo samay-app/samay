@@ -59,6 +59,14 @@ afterAll(async () => {
 
 const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=${API_KEY}`;
 
+describe('User authentication', () => {
+  it('Should throw err if there is no Token to in the header', async (done) => {
+    const res = await request
+      .post('/v1/user/');
+    expect(res.body.msg).toEqual('Token does not exist ');
+    done();
+  });
+});
 describe('create poll', () => {
   it('Should save poll to db', async (done) => {
     const USER = await admin.auth().getUserByEmail(EmailID);
@@ -175,6 +183,28 @@ describe('get poll', () => {
     const getPollRes = await request
       .get('/v1/poll/user/haha/haha');
     expect(getPollRes.body.message).toEqual(undefined);
+    done();
+  });
+  it('Should throw err if there is Token But wrong encrypted email id', async (done) => {
+    const USER = await admin.auth().getUserByEmail(EmailID);
+    const uid = USER.uid;
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const TOKEN = await tokenRes.data.idToken;
+    const getPollRes = await request
+      .get(`/v1/user/${encrypt('test@test.com')}`)
+      .set({ Authorization: `Bearer ${TOKEN}` });
+    expect(getPollRes.body.msg).toEqual('Forbidden');
     done();
   });
 });
