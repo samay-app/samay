@@ -1,5 +1,4 @@
 import { Form } from "react-bootstrap";
-import { mailerAPI } from "../api/mailer";
 import { Choice } from "../models/poll";
 import CopyLink from "./CopyLink";
 import InviteMail from "./InviteMail";
@@ -10,7 +9,7 @@ const ShareInvite = (props: {
   finalChoice: Choice | undefined;
 }): JSX.Element => {
   const { pollid, polltitle, finalChoice } = props;
-  const pollurl = `${mailerAPI.domain}/poll/${pollid}`; /* This should be replaced */
+  const pollurl = `${process.env.NEXT_PUBLIC_ORIGIN_DOMAIN}/poll/${pollid}`; /* This should be replaced */
 
   return (
     <div className="poll-shareinvite-content">
