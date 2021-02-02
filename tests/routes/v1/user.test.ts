@@ -53,6 +53,7 @@ afterAll(async () => {
   const USER = await admin.auth().getUserByEmail(EmailID);
   const uid = USER.uid;
   await admin.auth().deleteUser(uid);
+  return admin.app().delete();
 });
 
 // tokens
