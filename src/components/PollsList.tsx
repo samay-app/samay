@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import { Trash } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
@@ -35,7 +35,7 @@ const PollsList = (): JSX.Element => {
   const [modalShow, setModalShow] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
 
-  const getData = useCallback(async (): Promise<void> => {
+  const getData = async (): Promise<void> => {
     try {
       NProgress.start();
       const fetchedPolls = await serverAPI.getPolls({
@@ -56,12 +56,11 @@ const PollsList = (): JSX.Element => {
       setMessage("Unable to fetch polls. Check your connection.");
       NProgress.done();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  };
   useEffect(() => {
     getData();
-  }, [getData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDelete = async (pollID: string): Promise<void> => {
     try {
