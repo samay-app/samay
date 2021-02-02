@@ -22,29 +22,52 @@ const SubmitChoices = (props: {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    setDisabled(true);
-    const voterArgs = {
-      newVote,
-      pollid,
-    };
-    try {
-      const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
-      if (submitChoiceResponse.statusCode === 201) {
-        Router.reload();
-      } else {
+    if (newVote.name && newVote.choices.length > 0) {
+      setDisabled(true);
+      try {
+        const voterArgs = {
+          newVote,
+          pollid,
+        };
+        const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
+        if (submitChoiceResponse.statusCode === 201) {
+          Router.reload();
+        } else if (submitChoiceResponse.statusCode === 400) {
+          setResponse({
+            status: true,
+            type: "error",
+            msg: "Poll has been closed.",
+          });
+          Router.reload();
+        } else {
+          setDisabled(false);
+          setResponse({
+            status: true,
+            type: "error",
+            msg: "Please try again later.",
+          });
+          Router.reload();
+        }
+      } catch (err) {
         setDisabled(false);
         setResponse({
           status: true,
           type: "error",
-          msg: "Please try again later.",
+          msg: "Network error. Please try again later.",
         });
+        Router.reload();
       }
-    } catch (err) {
-      setDisabled(false);
+    } else if (!newVote.name) {
       setResponse({
         status: true,
         type: "error",
-        msg: "Network error. Please try again later.",
+        msg: "Please enter your name.",
+      });
+    } else {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Please select at least one available time slot.",
       });
     }
   };
@@ -54,7 +77,7 @@ const SubmitChoices = (props: {
       <Button
         className="rm-primary-button-small mark-options-btn"
         type="submit"
-        disabled={!newVote.name || newVote.choices.length === 0 || disabled}
+        disabled={disabled}
         onClick={handleSubmit}
       >
         {!disabled ? (
@@ -75,7 +98,6 @@ const SubmitChoices = (props: {
         response={response}
         onHide={(): void => {
           setResponse({ status: false, type: "", msg: "" });
-          Router.reload();
         }}
       />
     </div>

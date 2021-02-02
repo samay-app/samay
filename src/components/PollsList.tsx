@@ -11,6 +11,7 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
+import Router from "next/router";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { serverAPI } from "../api/server";
@@ -51,6 +52,7 @@ const PollsList = (): JSX.Element => {
       } else {
         setPollList([]);
         setMessage("Unable to fetch polls. Please try again later.");
+        Router.reload();
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
@@ -187,11 +189,11 @@ const PollsList = (): JSX.Element => {
             show={modalShow}
             onHide={(): void => setModalShow(false)}
           >
-            <div className="modal-dark">
+            <div className="modal-dark modal-content">
               <Modal.Header>
-                <h4>Confirm deletion !</h4>
+                <h4>Confirm deletion</h4>
               </Modal.Header>
-              <Modal.Body>Do you really want to delete this poll ?</Modal.Body>
+              <Modal.Body>Do you really want to delete this poll?</Modal.Body>
               <Modal.Footer>
                 <Button
                   variant="secondary"

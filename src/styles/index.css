@@ -223,6 +223,9 @@ a {
   background-color: #2e2e2e;
   color: #fff;
 }
+.modal-content {
+  background-color: #2e2e2e !important;
+}
 .modal-header,
 .modal-footer {
   border: none !important;
