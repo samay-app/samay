@@ -11,7 +11,6 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
-import Router from "next/router";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { serverAPI } from "../api/server";
@@ -51,7 +50,7 @@ const PollsList = (): JSX.Element => {
         );
       } else {
         setPollList([]);
-        Router.reload();
+        setMessage("Unable to fetch polls. Please try again later.");
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
