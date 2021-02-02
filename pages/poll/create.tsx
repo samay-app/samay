@@ -67,11 +67,23 @@ const Create = (): JSX.Element => {
     setChoices(newChoices);
   };
 
+  const areChoicesValid = (choices: Choice[] | undefined): boolean => {
+    if (!choices) return false;
+    if (choices.some((choice: Choice) => choice.start < Date.now()))
+      return false;
+    return true;
+  };
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (pollTitle && pollChoices && pollChoices?.length > 1) {
+    if (
+      pollTitle &&
+      pollChoices &&
+      pollChoices.length > 1 &&
+      areChoicesValid(pollChoices)
+    ) {
       setDisabled(true);
       const encryptedEmailID = encrypt(loggedInUserEmailID);
       const poll: RocketMeetPoll = {
@@ -108,6 +120,12 @@ const Create = (): JSX.Element => {
         status: true,
         type: "error",
         msg: "Please provide a title.",
+      });
+    } else if (!areChoicesValid(pollChoices)) {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Chosen time slots must not be in the past.",
       });
     } else {
       setResponse({

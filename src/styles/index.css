@@ -154,7 +154,7 @@ a {
 }
 
 .rm-primary-button {
-  background-color: #3a3a3a !important;
+  background-color: #000000 !important;
   transition: 0.3s;
   font-weight: 600 !important;
   font-size: 1.3rem !important;
@@ -164,7 +164,7 @@ a {
 }
 
 .rm-primary-button:hover {
-  background-color: #000000 !important;
+  background-color: #3a3a3a !important;
   transition: 0.3s;
 }
 
@@ -174,7 +174,7 @@ a {
 }
 
 .rm-primary-button-small {
-  background-color: #3a3a3a !important;
+  background-color: #000000 !important;
   transition: 0.3s;
   font-weight: 600 !important;
   font-size: 1rem !important;
@@ -184,7 +184,7 @@ a {
 }
 
 .rm-primary-button-small:hover {
-  background-color: #000000 !important;
+  background-color: #3a3a3a !important;
   transition: 0.3s;
 }
 
@@ -396,7 +396,7 @@ h4 {
   .rat-TimeSlot_title {
     padding: 0.3rem 0 0 0 !important;
     font-size: 0.5rem !important;
-    line-height: 0.4rem !important;
+    line-height: 0.6rem !important;
   }
 
   .poll-info-div {

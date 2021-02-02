@@ -1,4 +1,4 @@
-import { MailerPollArgs, MailerEventArgs } from "../models/poll";
+import { MailerArgs } from "../models/poll";
 
 interface MailerResponse {
   statusCode: number;
@@ -48,7 +48,7 @@ class MailerAPI {
 
   sendPollInvites = (
     // Invite pollers
-    mailerArgs: MailerPollArgs,
+    mailerArgs: MailerArgs,
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);
@@ -56,9 +56,9 @@ class MailerAPI {
     return this.httpPost(payload, endpoint, token);
   };
 
-  sendEventInvites = (
+  sendFinalTime = (
     // Invite pollers for the event in final time-slot
-    mailerArgs: MailerEventArgs,
+    mailerArgs: MailerArgs,
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);

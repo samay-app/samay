@@ -46,15 +46,7 @@ const Poll = (props: {
           <div className="jumbo-col-black col-sm-4">
             <Jumbotron className="poll-info">
               <PollInfo poll={pollFromDB} />
-              {pollFromDB.open &&
-                loggedInUserEmailID === pollCreatorEmailID && (
-                  <ShareInvite
-                    pollTitle={pollFromDB.title}
-                    pollID={pollID}
-                    finalChoice={undefined}
-                  />
-                )}
-              {!pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+              {loggedInUserEmailID === pollCreatorEmailID && (
                 <>
                   <ShareInvite
                     pollTitle={pollFromDB.title}
