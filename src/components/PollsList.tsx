@@ -50,7 +50,7 @@ const PollsList = (): JSX.Element => {
         );
       } else {
         setPollList([]);
-        setMessage("Unable to fetch polls. Please try again later.");
+        setMessage("Unable to fetch polls. Please refresh.");
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
