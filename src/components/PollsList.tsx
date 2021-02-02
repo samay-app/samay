@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import NProgress from "nprogress";
-import { Trash } from "react-bootstrap-icons";
+import { ArrowClockwise, Trash } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import {
   Card,
@@ -27,6 +27,7 @@ const PollsList = (): JSX.Element => {
   const encryptedEmailID = encrypt(user);
   const [pollList, setPollList] = useState<RocketMeetPollFromDB[]>([]);
   const [message, setMessage] = useState<string>("");
+  const [showButton, setShowButton] = useState<boolean>(false);
   const [response, setResponse] = useState({
     status: false,
     type: "",
@@ -35,7 +36,7 @@ const PollsList = (): JSX.Element => {
   const [modalShow, setModalShow] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
 
-  const getData = async (): Promise<void> => {
+  const getData = useCallback(async (): Promise<void> => {
     try {
       NProgress.start();
       const fetchedPolls = await serverAPI.getPolls({
@@ -48,19 +49,22 @@ const PollsList = (): JSX.Element => {
         setMessage(
           "You haven't created any polls yet. Create one by clicking the button above!"
         );
+        setShowButton(false);
       } else {
         setPollList([]);
         setMessage("Unable to fetch polls. Please try again later.");
+        setShowButton(true);
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
+      setShowButton(true);
       NProgress.done();
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
   useEffect(() => {
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getData]);
 
   const handleDelete = async (pollID: string): Promise<void> => {
     try {
@@ -217,7 +221,14 @@ const PollsList = (): JSX.Element => {
                 <Polls />
               </CardColumns>
             ) : (
-              <p>{message}</p>
+              <span>{message} </span>
+            )}
+            {showButton ? (
+              <Button className="rm-delete-button mx-3" onClick={getData}>
+                <ArrowClockwise size="22" color="black" />
+              </Button>
+            ) : (
+              <></>
             )}
           </div>
         </Col>
