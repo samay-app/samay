@@ -34,4 +34,7 @@ jobs:
           echo "CLIENT_EMAIL=${{secrets.CLIENT_EMAIL}}" >> .env
           echo "AUTH_URI=${{secrets.AUTH_URI}}" >> .env
           echo "AUTH_PROVIDER_X509_CERT_URL=${{secrets.AUTH_PROVIDER_X509_CERT_URL}}" >> .env
+          echo "API_KEY=${{secrets.API_KEY}}" >> .env
+          echo "PUBLIC_ENCRYPTION_KEY=${{secrets.PUBLIC_ENCRYPTION_KEY}}" >> .env
+          echo "PUBLIC_ENCRYPTION_IV=${{secrets.PUBLIC_ENCRYPTION_IV}}" >> .env
     - run: npm test
