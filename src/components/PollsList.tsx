@@ -51,7 +51,6 @@ const PollsList = (): JSX.Element => {
         );
       } else {
         setPollList([]);
-        setMessage("Unable to fetch polls. Please try again later.");
         Router.reload();
       }
     } catch (err) {
