@@ -2,7 +2,7 @@ import { Form, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import ResponseMessage from "./ResponseMessage";
-import { MailerPollArgs, MailerEventArgs, Choice } from "../models/poll";
+import { MailerArgs, Choice } from "../models/poll";
 import { mailerAPI } from "../api/mailer";
 import { RootState } from "../store/store";
 
@@ -85,27 +85,17 @@ const InviteMail = (props: {
 
   const handleSubmit = async (): Promise<void> => {
     try {
+      const mailerArgs: MailerArgs = {
+        pollID,
+        pollTitle,
+        receiverIDs: emailList,
+        senderName: displayName,
+        senderEmailID: loggedInUserEmailID,
+      };
       let sendEmailsResponse;
       if (finalChoice) {
-        const mailerEvArgs: MailerEventArgs = {
-          senderName: displayName,
-          senderEmailID: loggedInUserEmailID,
-          pollTitle,
-          finalChoice,
-          receiverIDs: emailList,
-        };
-        sendEmailsResponse = await mailerAPI.sendEventInvites(
-          mailerEvArgs,
-          token
-        );
+        sendEmailsResponse = await mailerAPI.sendFinalTime(mailerArgs, token);
       } else {
-        const mailerArgs: MailerPollArgs = {
-          pollID,
-          pollTitle,
-          receiverIDs: emailList,
-          senderName: displayName,
-          senderEmailID: loggedInUserEmailID,
-        };
         sendEmailsResponse = await mailerAPI.sendPollInvites(mailerArgs, token);
       }
       if (sendEmailsResponse.statusCode === 200) {
