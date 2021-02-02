@@ -34,7 +34,7 @@ $ npm install
 
 ### Setup
 
-Go to [Firebase](https://firebase.google.com/) and create a new project. In the authentication section, enable sign-in with Google. Then generate a private key from Project Overview > Project Settings > Service Accounts > Firebase Admin SDK. Next, make a copy of the .env.example file to .env and set the vars corresponding to your Firebase project. Set the public encryption key and IV variables too which is used for email encryption.
+Go to [Firebase](https://firebase.google.com/) and create a new project for testing and running RocketMeet-server locally. In the authentication section at Firebase, enable sign-in with Google. Then generate a private key from your Project Overview > Project Settings > Service Accounts > Firebase Admin SDK. Next, make a copy of the .env.example file to .env and set the vars corresponding to your Firebase project. Set the public encryption key and IV variables too which is used for email encryption.
 
 ### Run
 
@@ -54,7 +54,7 @@ $ npm run test
 
 ### Deployment
 
-In your .env, change the `NODE_ENV` to `production` and set the `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables corresponding to your MongoDB Atlas instance. Then set the `CORS_URL` to the domain running RocketMeet-client. Make sure the Firebase credentials in .env are correct and that you added your domain to the 'Authorized domains' section in your Firebase project.
+In your .env, change the `NODE_ENV` to `production`. Launch a MongoDB Atlas instance and set the correspondin `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables in the .env. Then set the `CORS_URL` to the domain pointing to RocketMeet-client. Follow the steps mentioned in the setup section to create a new Firebase project which will be used in production. Make sure to add your domain (pointing to RocketMeet-client) to the 'Authorized domains' section in your Firebase project. Set the public encryption key and IV variables too.
 
 ## Contributing
 
