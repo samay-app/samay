@@ -41,6 +41,7 @@ const PollsList = (): JSX.Element => {
       NProgress.start();
       const fetchedPolls = await serverAPI.getPolls({
         encryptedEmailID,
+        token,
       });
       NProgress.done();
       if (fetchedPolls.statusCode === 200) {
