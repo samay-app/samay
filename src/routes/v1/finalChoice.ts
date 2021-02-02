@@ -1,7 +1,10 @@
 import express, { Request, Response, Router } from 'express';
 import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { createTransport, Transporter } from 'nodemailer';
 import { email, password } from '../../config';
+
+dayjs.extend(localizedFormat);
 
 const router: Router = express.Router();
 
@@ -14,7 +17,7 @@ router.post('/', async (req: Request, res: Response) => {
     senderName: string;
     senderEmailID: string;
     pollTitle: string;
-    finalOption: Choice;
+    finalChoice: Choice;
     receiverIDs: string[];
   }
 
@@ -37,8 +40,8 @@ router.post('/', async (req: Request, res: Response) => {
         to: receiverID,
         subject: `RocketMeet: ${data.pollTitle} - Final time`,
         replyTo: `${data.senderName} <${data.senderEmailID}>`,
-        html: `<p>The meet <b>${data.pollTitle}</b> has been scheduled on ${dayjs(data.finalOption.start).format('DD/MM/YYYY')} 
-                from ${dayjs(data.finalOption.start).format('HH:mm A')} to ${dayjs(data.finalOption.end).format('HH:mm A')}
+        html: `<p>The meet <b>${data.pollTitle}</b> has been scheduled on ${dayjs(data.finalChoice.start).format('DD/MM/YYYY')} 
+                from ${dayjs(data.finalChoice.start).format('LT')} to ${dayjs(data.finalChoice.end).format('LT')}
             </p>`,
       };
 
