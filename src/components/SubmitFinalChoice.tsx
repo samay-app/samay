@@ -9,9 +9,9 @@ import ResponseMessage from "./ResponseMessage";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
-  pollid: string;
+  pollID: string;
 }): JSX.Element => {
-  const { finalChoice, pollid } = props;
+  const { finalChoice, pollID } = props;
 
   const [response, setResponse] = useState({
     status: false,
@@ -35,7 +35,7 @@ const SubmitFinalChoice = (props: {
         };
         const voterArgs = {
           finalChoice: markFinalChoice,
-          pollid,
+          pollID,
           token,
         };
         const submitFinalChoiceResponse = await serverAPI.markFinalChoice(
@@ -88,6 +88,7 @@ const SubmitFinalChoice = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
+              className="rm-button-spinner"
             />
           </>
         )}

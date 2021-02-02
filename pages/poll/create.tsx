@@ -163,7 +163,7 @@ const Create = (): JSX.Element => {
               <AvailableTimes
                 weekStartsOn="monday"
                 onChange={onChoicesChange}
-                height="28rem"
+                height="65vh"
               />
               <Button
                 className="rm-primary-button create-poll-btn"
@@ -180,6 +180,7 @@ const Create = (): JSX.Element => {
                       size="sm"
                       role="status"
                       aria-hidden="true"
+                      className="rm-button-spinner"
                     />
                   </>
                 )}

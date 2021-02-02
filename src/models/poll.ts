@@ -56,7 +56,7 @@ export interface MailerEventArgs {
   senderName: string;
   senderEmailID: string;
   pollTitle: string;
-  finalOption: Choice;
+  finalChoice: Choice;
   receiverIDs: string[];
 }
 

@@ -213,6 +213,7 @@ a {
   border-color: rgba(0, 0, 0, 0) !important ;
   width: 40px;
   height: 40px;
+  padding-left: 0 !important;
 }
 .rm-delete-button:hover {
   transition: 0.1s;
@@ -500,6 +501,14 @@ h4 {
   display: block;
 }
 
+.rm-chevron-down-div {
+  text-align: center;
+}
+
+.rm-chevron-down {
+  display: none;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
   .jumbo-col-info {
     height: auto !important;
@@ -527,6 +536,10 @@ h4 {
   .poll-info-desc {
     font-size: 1rem;
     margin-top: 1rem;
+  }
+
+  .rm-chevron-down {
+    display: unset;
   }
 }
 
@@ -1016,4 +1029,8 @@ h4 {
 
 .card-footer-muted {
   color: #adadad;
+}
+
+.rm-button-spinner {
+  vertical-align: unset !important;
 }

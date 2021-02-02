@@ -7,9 +7,9 @@ import ResponseMessage from "./ResponseMessage";
 
 const SubmitChoices = (props: {
   newVote: Vote;
-  pollid: string;
+  pollID: string;
 }): JSX.Element => {
-  const { newVote, pollid } = props;
+  const { newVote, pollID } = props;
 
   const [response, setResponse] = useState({
     status: false,
@@ -27,7 +27,7 @@ const SubmitChoices = (props: {
       try {
         const voterArgs = {
           newVote,
-          pollid,
+          pollID,
         };
         const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
         if (submitChoiceResponse.statusCode === 201) {
@@ -90,6 +90,7 @@ const SubmitChoices = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
+              className="rm-button-spinner"
             />
           </>
         )}

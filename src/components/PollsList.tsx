@@ -25,7 +25,7 @@ dayjs.extend(localizedFormat);
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
   const token = useSelector((state: RootState) => state.authReducer.token);
-  const userID = encrypt(user);
+  const encryptedEmailID = encrypt(user);
   const [pollList, setPollList] = useState<RocketMeetPollFromDB[]>([]);
   const [message, setMessage] = useState<string>("");
   const [response, setResponse] = useState({
@@ -40,7 +40,7 @@ const PollsList = (): JSX.Element => {
     try {
       NProgress.start();
       const fetchedPolls = await serverAPI.getPolls({
-        userID,
+        encryptedEmailID,
         token,
       });
       NProgress.done();
@@ -65,10 +65,10 @@ const PollsList = (): JSX.Element => {
     getData();
   }, [getData]);
 
-  const handleDelete = async (pollid: string): Promise<void> => {
+  const handleDelete = async (pollID: string): Promise<void> => {
     try {
       const voteArgs = {
-        pollid,
+        pollID,
         token,
       };
       const deletedStatus = await serverAPI.deletePoll(voteArgs);

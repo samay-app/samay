@@ -32,9 +32,9 @@ class ServerAPI {
   };
 
   getPoll = (
-    pollid: string | string[] | null | undefined
+    pollID: string | string[] | null | undefined
   ): Promise<HttpResponse> => {
-    const endpoint = `${this.URL}/poll/${pollid}`;
+    const endpoint = `${this.URL}/poll/${pollID}`;
     this.headers = {
       "Content-Type": "application/json",
     };
@@ -48,11 +48,11 @@ class ServerAPI {
   };
 
   getPolls = (pollArgs: {
-    userID: string;
+    encryptedEmailID: string;
     token: string;
   }): Promise<HttpResponse> => {
-    const { userID, token } = pollArgs;
-    const endpoint = `${this.URL}/user/${userID}`;
+    const { encryptedEmailID, token } = pollArgs;
+    const endpoint = `${this.URL}/user/${encryptedEmailID}`;
     this.headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -88,10 +88,10 @@ class ServerAPI {
 
   markChoices = (voteArgs: {
     newVote: Vote;
-    pollid: string;
+    pollID: string;
   }): Promise<HttpResponse> => {
-    const { newVote, pollid } = voteArgs;
-    const endpoint = `${this.URL}/poll/${pollid}`;
+    const { newVote, pollID } = voteArgs;
+    const endpoint = `${this.URL}/poll/${pollID}`;
     this.headers = {
       "Content-Type": "application/json",
     };
@@ -107,11 +107,11 @@ class ServerAPI {
 
   markFinalChoice = (voteArgs: {
     finalChoice: { finalChoice: Choice | undefined; open: boolean };
-    pollid: string;
+    pollID: string;
     token: string;
   }): Promise<HttpResponse> => {
-    const { finalChoice, pollid, token } = voteArgs;
-    const endpoint = `${this.URL}/user/poll/${pollid}`;
+    const { finalChoice, pollID, token } = voteArgs;
+    const endpoint = `${this.URL}/user/poll/${pollID}`;
     this.headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -127,11 +127,11 @@ class ServerAPI {
   };
 
   deletePoll = (voteArgs: {
-    pollid: string;
+    pollID: string;
     token: string;
   }): Promise<HttpResponse> => {
-    const { pollid, token } = voteArgs;
-    const endpoint = `${this.URL}/user/poll/${pollid}`;
+    const { pollID, token } = voteArgs;
+    const endpoint = `${this.URL}/user/poll/${pollID}`;
     this.headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
