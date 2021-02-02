@@ -103,6 +103,18 @@ const Create = (): JSX.Element => {
           msg: "Poll creation failed, check your connection.",
         });
       }
+    } else if (!pollTitle) {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Please provide a title.",
+      });
+    } else {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Please select at least two time slots to choose from.",
+      });
     }
   };
 
@@ -151,17 +163,12 @@ const Create = (): JSX.Element => {
               <AvailableTimes
                 weekStartsOn="monday"
                 onChange={onChoicesChange}
-                height="28rem"
+                height="65vh"
               />
               <Button
                 className="rm-primary-button create-poll-btn"
                 onClick={handleSubmit}
-                disabled={
-                  !pollTitle ||
-                  !pollChoices ||
-                  pollChoices?.length < 2 ||
-                  disabled
-                }
+                disabled={disabled}
               >
                 {!disabled ? (
                   `Create Poll`
@@ -173,6 +180,7 @@ const Create = (): JSX.Element => {
                       size="sm"
                       role="status"
                       aria-hidden="true"
+                      className="rm-button-spinner"
                     />
                   </>
                 )}

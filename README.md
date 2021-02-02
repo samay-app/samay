@@ -9,20 +9,19 @@
 
 ## Table of contents
 
-* [features](#features)
-* [Community](#community)
-* [API Documentation](#api-documentation)
-* [Getting Started](#getting-started)
-* [Prerequisites](#prerequisites)
-* [Installation](#installation)
-* [Setup](#setup)
-    * [Development](#development)
-    * [Testing](#test)
-    * [Production](#production)
-* [Deployment](#deployment)
-    * [Deploy with vercel](#vercel)
-* [Contributing](#contributing)
-* [License](#license)
+- [Community](#community)
+- [API Documentation](#api-documentation)
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Setup](#setup)
+  - [Development](#development)
+  - [Testing](#test)
+  - [Production](#production)
+- [Deployment](#deployment)
+  - [Deploy with vercel](#vercel)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Community
 
@@ -52,20 +51,22 @@ $ npm i
 
 ### Setup
 
-- Make a copy of the `.env.development.example` and `.env.production.example` files to `.env.development` and `.env.production` files respectively. 
+- Make a copy of the `.env.development.example` and `.env.production.example` files to `.env.development` and `.env.production` files respectively.
 - Create a firebase account , setup firebase authentication for google sign-in (firebase-console > Authentication > Sign-in methods > Google ), whitelist the client domain in the `Authorised domains` section. Set firebase config variables in `.env` files.
 - Set the encryption variables and domain URLs in the `.env` files
 
-### Development 
+### Development
 
 ```bash
 $ npm run dev
 ```
 
 Linting
+
 ```bash
 $ npx eslint . --ext .tsx,.ts
 ```
+
 > Note: Or simply setup automatic linting in `vscode`
 
 Testing
@@ -73,6 +74,7 @@ Testing
 ```bash
 $ npm run test
 ```
+
 ### Production
 
 ```bash
@@ -87,7 +89,7 @@ Make a copy of the `.env.production.example` file to `.env.production` and set t
 
 ## Deploy with vercel
 
-> Note: You need to have the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer) setup before using this one-click deployment. Make sure to create a firebase account and setup `firebase-auth` for google signin. 
+> Note: You need to have the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer) setup before using this one-click deployment. Make sure to create a firebase account and setup `firebase-auth` for google signin.
 
 Set the environment variables in `.env.production.example` to vercel in the next step.
 
@@ -100,4 +102,3 @@ Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-clie
 ## License
 
 RocketMeet-client is distributed under the [MIT License](https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE).
-

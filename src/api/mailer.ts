@@ -52,7 +52,7 @@ class MailerAPI {
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);
-    const endpoint = `${this.URL}/meetInfo`;
+    const endpoint = `${this.URL}/invite`;
     return this.httpPost(payload, endpoint, token);
   };
 
@@ -62,7 +62,7 @@ class MailerAPI {
     token: string
   ): Promise<MailerResponse> => {
     const payload = JSON.stringify(mailerArgs);
-    const endpoint = `${this.URL}/finalOption`;
+    const endpoint = `${this.URL}/finalChoice`;
     return this.httpPost(payload, endpoint, token);
   };
 }

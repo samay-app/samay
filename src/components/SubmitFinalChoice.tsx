@@ -9,9 +9,9 @@ import ResponseMessage from "./ResponseMessage";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
-  pollid: string;
+  pollID: string;
 }): JSX.Element => {
-  const { finalChoice, pollid } = props;
+  const { finalChoice, pollID } = props;
 
   const [response, setResponse] = useState({
     status: false,
@@ -26,36 +26,46 @@ const SubmitFinalChoice = (props: {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    setDisabled(true);
-    const markFinalChoice = {
-      finalChoice,
-      open: false,
-    };
-    const voterArgs = {
-      finalChoice: markFinalChoice,
-      pollid,
-      token,
-    };
-    try {
-      const submitFinalChoiceResponse = await serverAPI.markFinalChoice(
-        voterArgs
-      );
-      if (submitFinalChoiceResponse.statusCode === 201) {
-        Router.reload();
-      } else {
+    if (finalChoice) {
+      setDisabled(true);
+      try {
+        const markFinalChoice = {
+          finalChoice,
+          open: false,
+        };
+        const voterArgs = {
+          finalChoice: markFinalChoice,
+          pollID,
+          token,
+        };
+        const submitFinalChoiceResponse = await serverAPI.markFinalChoice(
+          voterArgs
+        );
+        if (submitFinalChoiceResponse.statusCode === 201) {
+          Router.reload();
+        } else {
+          setDisabled(false);
+          setResponse({
+            status: true,
+            type: "error",
+            msg: "Please try again later.",
+          });
+          Router.reload();
+        }
+      } catch (err) {
         setDisabled(false);
         setResponse({
           status: true,
           type: "error",
-          msg: "Please try again later.",
+          msg: "Network error. Please try again later.",
         });
+        Router.reload();
       }
-    } catch (err) {
-      setDisabled(false);
+    } else {
       setResponse({
         status: true,
         type: "error",
-        msg: "Network error. Please try again later.",
+        msg: "Please choose the final time.",
       });
     }
   };
@@ -65,7 +75,7 @@ const SubmitFinalChoice = (props: {
       <Button
         className="rm-primary-button-small mark-options-btn"
         type="submit"
-        disabled={!finalChoice || disabled}
+        disabled={disabled}
         onClick={handleSubmit}
       >
         {!disabled ? (
@@ -78,6 +88,7 @@ const SubmitFinalChoice = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
+              className="rm-button-spinner"
             />
           </>
         )}
@@ -86,7 +97,6 @@ const SubmitFinalChoice = (props: {
         response={response}
         onHide={(): void => {
           setResponse({ status: false, type: "", msg: "" });
-          Router.reload();
         }}
       />
     </div>

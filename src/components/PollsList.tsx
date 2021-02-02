@@ -11,6 +11,7 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
+import Router from "next/router";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { serverAPI } from "../api/server";
@@ -24,7 +25,7 @@ dayjs.extend(localizedFormat);
 const PollsList = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.authReducer.username);
   const token = useSelector((state: RootState) => state.authReducer.token);
-  const userID = encrypt(user);
+  const encryptedEmailID = encrypt(user);
   const [pollList, setPollList] = useState<RocketMeetPollFromDB[]>([]);
   const [message, setMessage] = useState<string>("");
   const [response, setResponse] = useState({
@@ -39,7 +40,7 @@ const PollsList = (): JSX.Element => {
     try {
       NProgress.start();
       const fetchedPolls = await serverAPI.getPolls({
-        userID,
+        encryptedEmailID,
         token,
       });
       NProgress.done();
@@ -51,6 +52,7 @@ const PollsList = (): JSX.Element => {
       } else {
         setPollList([]);
         setMessage("Unable to fetch polls. Please try again later.");
+        Router.reload();
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
@@ -63,10 +65,10 @@ const PollsList = (): JSX.Element => {
     getData();
   }, [getData]);
 
-  const handleDelete = async (pollid: string): Promise<void> => {
+  const handleDelete = async (pollID: string): Promise<void> => {
     try {
       const voteArgs = {
-        pollid,
+        pollID,
         token,
       };
       const deletedStatus = await serverAPI.deletePoll(voteArgs);
@@ -145,22 +147,30 @@ const PollsList = (): JSX.Element => {
 
   const currentDate = Date.now();
 
-  const Recents: Function = (): JSX.Element[] => {
-    return pollList.reverse().map((item: RocketMeetPollFromDB) => (
-      <div key={item.createdAt}>
-        {!item.open && (item.finalChoice?.start || 0) > currentDate ? (
-          <div className="d-block m-1 p-2 upcomings">
-            <b>{item.title}</b> on{" "}
-            {dayjs(item.finalChoice?.start).format("ddd")},{" "}
-            {dayjs(item.finalChoice?.start).format("MMM")}{" "}
-            {dayjs(item.finalChoice?.start).format("DD")},{" "}
-            {dayjs(item.finalChoice?.start).format("LT")}
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-    ));
+  const Recents: Function = (): JSX.Element[] | JSX.Element => {
+    if (
+      pollList.some(
+        (item: RocketMeetPollFromDB) =>
+          !item.open && (item.finalChoice?.start || 0) > currentDate
+      )
+    ) {
+      return pollList.reverse().map((item: RocketMeetPollFromDB) => (
+        <div key={item.createdAt}>
+          {!item.open && (item.finalChoice?.start || 0) > currentDate ? (
+            <div className="d-block m-1 p-2 upcomings">
+              <b>{item.title}</b> on{" "}
+              {dayjs(item.finalChoice?.start).format("ddd")},{" "}
+              {dayjs(item.finalChoice?.start).format("MMM")}{" "}
+              {dayjs(item.finalChoice?.start).format("DD")},{" "}
+              {dayjs(item.finalChoice?.start).format("LT")}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      ));
+    }
+    return <div>No upcoming events</div>;
   };
 
   return (
@@ -179,11 +189,11 @@ const PollsList = (): JSX.Element => {
             show={modalShow}
             onHide={(): void => setModalShow(false)}
           >
-            <div className="modal-dark">
+            <div className="modal-dark modal-content">
               <Modal.Header>
-                <h4>Confirm deletion !</h4>
+                <h4>Confirm deletion</h4>
               </Modal.Header>
-              <Modal.Body>Do you really want to delete this poll ?</Modal.Body>
+              <Modal.Body>Do you really want to delete this poll?</Modal.Body>
               <Modal.Footer>
                 <Button
                   variant="secondary"

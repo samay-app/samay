@@ -45,7 +45,6 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
         <Calendar2Fill className="mr-2" />{" "}
         <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
       </span>
-
       <OverlayTrigger
         placement="right"
         overlay={

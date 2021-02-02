@@ -4,12 +4,12 @@ import CopyLink from "./CopyLink";
 import InviteMail from "./InviteMail";
 
 const ShareInvite = (props: {
-  pollid: string;
-  polltitle: string;
+  pollID: string;
+  pollTitle: string;
   finalChoice: Choice | undefined;
 }): JSX.Element => {
-  const { pollid, polltitle, finalChoice } = props;
-  const pollurl = `${process.env.NEXT_PUBLIC_ORIGIN_DOMAIN}/poll/${pollid}`; /* This should be replaced */
+  const { pollID, pollTitle, finalChoice } = props;
+  const pollURL = `${process.env.NEXT_PUBLIC_ORIGIN_DOMAIN}/poll/${pollID}`; /* This should be replaced */
 
   return (
     <div className="poll-shareinvite-content">
@@ -18,10 +18,14 @@ const ShareInvite = (props: {
           e.preventDefault();
         }}
       >
-        <CopyLink pollurl={pollurl} final={!!finalChoice} />
+        <CopyLink
+          pollURL={pollURL}
+          pollTitle={pollTitle}
+          finalChoice={finalChoice}
+        />
         <InviteMail
-          pollid={pollid}
-          polltitle={polltitle}
+          pollID={pollID}
+          pollTitle={pollTitle}
           finalChoice={finalChoice}
         />
       </Form>

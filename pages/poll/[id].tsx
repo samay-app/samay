@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
 import { Row, Container, Jumbotron } from "react-bootstrap";
+import { ChevronDown } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -8,7 +9,6 @@ import { serverAPI } from "../../src/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/PollInfo";
 import PollTable from "../../src/components/PollTable";
-import InviteMail from "../../src/components/InviteMail";
 import {
   Choice,
   ChoiceFromDB,
@@ -23,9 +23,9 @@ dayjs.extend(localizedFormat);
 
 const Poll = (props: {
   pollFromDB: RocketMeetPollFromDB;
-  pollid: string;
+  pollID: string;
 }): JSX.Element => {
-  const { pollFromDB, pollid } = props;
+  const { pollFromDB, pollID } = props;
   const pollCreatorEmailID = decrypt(pollFromDB.encryptedEmailID);
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
@@ -49,26 +49,30 @@ const Poll = (props: {
               {pollFromDB.open &&
                 loggedInUserEmailID === pollCreatorEmailID && (
                   <ShareInvite
-                    polltitle={pollFromDB.title}
-                    pollid={pollid}
+                    pollTitle={pollFromDB.title}
+                    pollID={pollID}
                     finalChoice={undefined}
                   />
                 )}
-              {!pollFromDB.open &&
-                loggedInUserEmailID === pollCreatorEmailID && (
+              {!pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+                <>
                   <ShareInvite
-                    polltitle={pollFromDB.title}
-                    pollid={pollid}
+                    pollTitle={pollFromDB.title}
+                    pollID={pollID}
                     finalChoice={pollFromDB.finalChoice}
                   />
-                )}
+                  <div className="rm-chevron-down-div">
+                    <ChevronDown className="rm-chevron-down" />
+                  </div>
+                </>
+              )}
             </Jumbotron>
           </div>
           <div className="col-sm-8">
             <Jumbotron className="poll-table-jumbo">
               <PollTable
                 pollFromDB={pollFromDB}
-                pollid={pollid}
+                pollID={pollID}
                 sortedChoices={sortedChoices}
                 newVote={newVote}
                 setNewVote={setNewVote}
@@ -86,11 +90,11 @@ const Poll = (props: {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  let pollid = null;
+  let pollID = null;
   if (context.params) {
-    pollid = context.params.id;
+    pollID = context.params.id;
   }
-  const getPollResponse = await serverAPI.getPoll(pollid);
+  const getPollResponse = await serverAPI.getPoll(pollID);
   const pollFromDB = getPollResponse.data;
 
   if (getPollResponse.statusCode === 404) {
@@ -102,7 +106,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
   return {
-    props: { pollFromDB, pollid }, // will be passed to the page component as props
+    props: { pollFromDB, pollID }, // will be passed to the page component as props
   };
 };
 

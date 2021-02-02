@@ -124,6 +124,10 @@ a {
     margin-bottom: 0 !important;
   }
 
+  .hero-line {
+    display: unset;
+  }
+
   .hero-title {
     font-weight: 700 !important;
     font-size: 2.5rem !important;
@@ -209,6 +213,7 @@ a {
   border-color: rgba(0, 0, 0, 0) !important ;
   width: 40px;
   height: 40px;
+  padding-left: 0 !important;
 }
 .rm-delete-button:hover {
   transition: 0.1s;
@@ -218,6 +223,9 @@ a {
 .modal-dark {
   background-color: #2e2e2e;
   color: #fff;
+}
+.modal-content {
+  background-color: #2e2e2e !important;
 }
 .modal-header,
 .modal-footer {
@@ -493,6 +501,14 @@ h4 {
   display: block;
 }
 
+.rm-chevron-down-div {
+  text-align: center;
+}
+
+.rm-chevron-down {
+  display: none;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
   .jumbo-col-info {
     height: auto !important;
@@ -514,11 +530,16 @@ h4 {
 
   .poll-info-title {
     font-size: 2.3rem;
+    line-height: 2.5rem;
   }
 
   .poll-info-desc {
     font-size: 1rem;
-    margin-top: 0;
+    margin-top: 1rem;
+  }
+
+  .rm-chevron-down {
+    display: unset;
   }
 }
 
@@ -1008,4 +1029,8 @@ h4 {
 
 .card-footer-muted {
   color: #adadad;
+}
+
+.rm-button-spinner {
+  vertical-align: unset !important;
 }

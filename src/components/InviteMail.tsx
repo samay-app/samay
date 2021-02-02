@@ -7,11 +7,11 @@ import { mailerAPI } from "../api/mailer";
 import { RootState } from "../store/store";
 
 const InviteMail = (props: {
-  pollid: string;
-  polltitle: string;
+  pollID: string;
+  pollTitle: string;
   finalChoice: Choice | undefined;
 }): JSX.Element => {
-  const { pollid, polltitle, finalChoice } = props;
+  const { pollID, pollTitle, finalChoice } = props;
 
   const displayName = useSelector(
     (state: RootState) => state.authReducer.displayName
@@ -90,8 +90,8 @@ const InviteMail = (props: {
         const mailerEvArgs: MailerEventArgs = {
           senderName: displayName,
           senderEmailID: loggedInUserEmailID,
-          pollTitle: polltitle,
-          finalOption: finalChoice,
+          pollTitle,
+          finalChoice,
           receiverIDs: emailList,
         };
         sendEmailsResponse = await mailerAPI.sendEventInvites(
@@ -100,8 +100,8 @@ const InviteMail = (props: {
         );
       } else {
         const mailerArgs: MailerPollArgs = {
-          pollID: pollid,
-          pollTitle: polltitle,
+          pollID,
+          pollTitle,
           receiverIDs: emailList,
           senderName: displayName,
           senderEmailID: loggedInUserEmailID,
@@ -135,7 +135,7 @@ const InviteMail = (props: {
     <div className="poll-invitemail">
       <Form.Group controlId="formBasicEmail">
         <Form.Label className="font-weight-bold">
-          {finalChoice ? "Share final time info" : "Invite participants"}
+          {finalChoice ? "Share final time via email" : "Invite participants"}
         </Form.Label>
         <Form.Control
           multiple

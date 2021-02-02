@@ -15,7 +15,7 @@ dayjs.extend(localizedFormat);
 
 const PollTable = (props: {
   pollFromDB: RocketMeetPollFromDB;
-  pollid: string;
+  pollID: string;
   sortedChoices: Choice[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
@@ -26,7 +26,7 @@ const PollTable = (props: {
 }): JSX.Element => {
   const {
     pollFromDB,
-    pollid,
+    pollID,
     sortedChoices,
     newVote,
     setNewVote,
@@ -98,10 +98,10 @@ const PollTable = (props: {
         </tbody>
       </Table>
       {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-        <SubmitChoices newVote={newVote} pollid={pollid} />
+        <SubmitChoices newVote={newVote} pollID={pollID} />
       )}
       {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-        <SubmitFinalChoice finalChoice={finalChoice} pollid={pollid} />
+        <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
       )}
     </div>
   );
