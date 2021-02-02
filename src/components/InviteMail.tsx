@@ -158,7 +158,7 @@ const InviteMail = (props: {
           onClick={handleSubmit}
           disabled={emailList.length < 1}
         >
-          Invite
+          Send
         </Button>
       </Form.Group>
       <ResponseMessage
