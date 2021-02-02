@@ -3,8 +3,8 @@
 
 [![License](https://img.shields.io/github/license/Rocketmeet/RocketMeet-mailer?color=%23000000&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-mailer/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/RocketMeet/community)
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/RocketMeet/RocketMeet-mailer?style=for-the-badge)
-![GitHub contributors](https://img.shields.io/github/contributors/RocketMeet/RocketMeet-mailer?color=%23000000&&style=for-the-badge)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/RocketMeet/RocketMeet-mailer?style=for-the-badge)](https://codeclimate.com/github/RocketMeet/RocketMeet-mailer)
+[![GitHub contributors](https://img.shields.io/github/contributors/RocketMeet/RocketMeet-mailer?color=%23000000&&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-mailer/graphs/contributors)
 
 ## Community
 
