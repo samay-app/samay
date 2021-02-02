@@ -28,7 +28,7 @@ const privateAuthWrapper = (Component: NextPage) => {
        */
       firebase.auth().onIdTokenChanged((user) => {
         if (user) {
-          user.getIdToken(true).then((token) => {
+          user.getIdToken().then((token) => {
             // console.log(token)
             dispatch(
               login({
