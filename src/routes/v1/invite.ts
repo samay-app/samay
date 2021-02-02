@@ -20,8 +20,8 @@ router.post('/', async (req: Request, res: Response) => {
 
   if (data.senderEmailID !== req.currentUser.email) {
     res.status(403).json({ msg: 'Forbidden' });
-  } else {
-    const filePath = path.join(__dirname, '../../../template/index.html');
+    } else {
+    const filePath = path.join(__dirname, '../../../template/invite.html');
     const source = fs.readFileSync(filePath, 'utf-8').toString();
     const template = handlebars.compile(source);
     const replacements = {
@@ -48,8 +48,8 @@ router.post('/', async (req: Request, res: Response) => {
         html: htmlToSend,
         attachments: [
           {
-            filename: 'logo.jpg',
-            path: `${__dirname}/../../../template/images/image-1.png`,
+            filename: 'logo.png',
+            path: `${__dirname}/../../../template/images/logo.png`,
             cid: 'logo',
           },
         ],
