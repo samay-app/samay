@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import { decrypt } from '../../helpers';
 import Poll, { RocketMeetPoll } from '../../db/models/poll';
-import auth from './auth/auth';
+import auth from './auth';
 
 const router: Router = express.Router();
 

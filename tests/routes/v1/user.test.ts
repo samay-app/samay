@@ -46,7 +46,7 @@ beforeEach(async () => createTestPoll());
 
 afterEach(async () => dbHandler.clearDatabase());
 
-// Remove and close the db and server.
+// Delete the mock user and close the db
 
 afterAll(async () => {
   dbHandler.closeDatabase();
@@ -66,7 +66,7 @@ describe('User authentication', () => {
   it('Should throw err if there is no token in the header', async (done) => {
     const res = await request
       .post('/v1/user/');
-    expect(res.body.msg).toEqual('Token does not exist ');
+    expect(res.body.msg).toEqual('Token does not exist');
     done();
   });
 });
