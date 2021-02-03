@@ -13,7 +13,7 @@ class ServerAPI {
     // Figure out a way to access store
     // https://github.com/kirill-konshin/next-redux-wrapper/issues/214#issuecomment-680273330
 
-    this.domain = process.env.NEXT_PUBLIC_SERVER_URL;
+    this.domain = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
     this.version = process.env.NEXT_PUBLIC_VERSION_NUMBER;
     this.URL = `${this.domain}/v${this.version}`;
   }
