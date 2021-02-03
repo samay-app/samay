@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { serverAPI } from "../api/server";
+import { getPolls, deletePoll } from "../utils/api/server";
 import { encrypt } from "../helpers/helpers";
 import { RocketMeetPollFromDB } from "../models/poll";
 import { RootState } from "../store/store";
@@ -38,7 +38,7 @@ const PollsList = (): JSX.Element => {
   const getData = useCallback(async (): Promise<void> => {
     try {
       NProgress.start();
-      const fetchedPolls = await serverAPI.getPolls({
+      const fetchedPolls = await getPolls({
         encryptedEmailID,
         token,
       });
@@ -49,19 +49,8 @@ const PollsList = (): JSX.Element => {
           "You haven't created any polls yet. Create one by clicking the button above!"
         );
       } else if (fetchedPolls.statusCode === 401) {
-        const fetchedPollsAgain = await serverAPI.getPolls({
-          encryptedEmailID,
-          token,
-        });
-        if (fetchedPollsAgain.statusCode === 200) {
-          setPollList(fetchedPollsAgain.data);
-          setMessage(
-            "You haven't created any polls yet. Create one by clicking the button above!"
-          );
-        } else {
-          setPollList([]);
-          setMessage("Unable to fetch polls. Please refresh.");
-        }
+        setPollList([]);
+        setMessage("Unable to fetch polls. Please refresh.");
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
@@ -79,7 +68,7 @@ const PollsList = (): JSX.Element => {
         pollID,
         token,
       };
-      const deletedStatus = await serverAPI.deletePoll(voteArgs);
+      const deletedStatus = await deletePoll(voteArgs);
       if (deletedStatus.statusCode === 200) {
         getData();
       } else {

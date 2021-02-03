@@ -20,7 +20,7 @@ import { encrypt } from "../../src/helpers/helpers";
 import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
-import { serverAPI } from "../../src/api/server";
+import { createPoll } from "../../src/utils/api/server";
 
 // typings aren't available for react-available-times :(
 
@@ -93,7 +93,7 @@ const Create = (): JSX.Element => {
         choices: pollChoices,
       };
       try {
-        const createPollResponse = await serverAPI.createPoll({
+        const createPollResponse = await createPoll({
           poll,
           token,
         });
@@ -191,17 +191,17 @@ const Create = (): JSX.Element => {
                 {!disabled ? (
                   `Create Poll`
                 ) : (
-                  <>
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                      className="rm-button-spinner"
-                    />
-                  </>
-                )}
+                    <>
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        className="rm-button-spinner"
+                      />
+                    </>
+                  )}
               </Button>
               <ResponseMessage
                 response={response}

@@ -1,7 +1,7 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
-import { serverAPI } from "../api/server";
+import { markChoices } from "../utils/api/server";
 import { Vote } from "../models/poll";
 import ResponseMessage from "./ResponseMessage";
 
@@ -29,7 +29,7 @@ const SubmitChoices = (props: {
           newVote,
           pollID,
         };
-        const submitChoiceResponse = await serverAPI.markChoices(voterArgs);
+        const submitChoiceResponse = await markChoices(voterArgs);
         if (submitChoiceResponse.statusCode === 201) {
           Router.reload();
         } else if (submitChoiceResponse.statusCode === 400) {
@@ -83,17 +83,17 @@ const SubmitChoices = (props: {
         {!disabled ? (
           `Mark your availability`
         ) : (
-          <>
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              className="rm-button-spinner"
-            />
-          </>
-        )}
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="rm-button-spinner"
+              />
+            </>
+          )}
       </Button>
       <ResponseMessage
         response={response}

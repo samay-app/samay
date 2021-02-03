@@ -2,7 +2,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Router from "next/router";
-import { serverAPI } from "../api/server";
+import { markFinalChoice } from "../utils/api/server";
 import { RootState } from "../store/store";
 import { Choice } from "../models/poll";
 import ResponseMessage from "./ResponseMessage";
@@ -29,16 +29,15 @@ const SubmitFinalChoice = (props: {
     if (finalChoice) {
       setDisabled(true);
       try {
-        const markFinalChoice = {
-          finalChoice,
-          open: false,
-        };
         const voterArgs = {
-          finalChoice: markFinalChoice,
+          finalChoice: {
+            finalChoice,
+            open: false,
+          },
           pollID,
           token,
         };
-        const submitFinalChoiceResponse = await serverAPI.markFinalChoice(
+        const submitFinalChoiceResponse = await markFinalChoice(
           voterArgs
         );
         if (submitFinalChoiceResponse.statusCode === 201) {
@@ -81,17 +80,17 @@ const SubmitFinalChoice = (props: {
         {!disabled ? (
           `Mark final option`
         ) : (
-          <>
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              className="rm-button-spinner"
-            />
-          </>
-        )}
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="rm-button-spinner"
+              />
+            </>
+          )}
       </Button>
       <ResponseMessage
         response={response}

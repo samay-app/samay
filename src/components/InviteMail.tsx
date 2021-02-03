@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import ResponseMessage from "./ResponseMessage";
 import { MailerArgs, Choice } from "../models/poll";
-import { mailerAPI } from "../api/mailer";
+import { sendFinalTime, sendPollInvites } from "../utils/api/mailer";
 import { RootState } from "../store/store";
 
 const InviteMail = (props: {
@@ -94,9 +94,9 @@ const InviteMail = (props: {
       };
       let sendEmailsResponse;
       if (finalChoice) {
-        sendEmailsResponse = await mailerAPI.sendFinalTime(mailerArgs, token);
+        sendEmailsResponse = await sendFinalTime(mailerArgs, token);
       } else {
-        sendEmailsResponse = await mailerAPI.sendPollInvites(mailerArgs, token);
+        sendEmailsResponse = await sendPollInvites(mailerArgs, token);
       }
       if (sendEmailsResponse.statusCode === 200) {
         setEmails([]); // emailList is cleared if mails are sent.
