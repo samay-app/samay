@@ -4,67 +4,51 @@ interface MailerResponse {
   statusCode: number;
 }
 
-class MailerAPI {
-  // senderID: string;
-  headers: any;
+const DOMAIN = process.env.NEXT_PUBLIC_MAILER_DOMAIN || "";
+const VERSION = process.env.NEXT_PUBLIC_VERSION_NUMBER || "";
+const URL = `${DOMAIN}/v${VERSION}`;
 
-  URL: string | undefined;
-
-  domain: string | undefined;
-
-  version: string | undefined;
-
-  constructor() {
-    // this.senderID = "userIDfromStore"
-    // this.token = "tokenfromStore"
-
-    this.domain = process.env.NEXT_PUBLIC_MAILER_DOMAIN;
-    this.version = process.env.NEXT_PUBLIC_VERSION_NUMBER;
-    this.URL = `${this.domain}/v${this.version}`;
-  }
-
-  httpPost = async (
-    payload: string,
-    endpoint: string,
-    token: string
-  ): Promise<MailerResponse> => {
-    this.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-    const requestOptions: RequestInit = {
-      mode: "cors",
-      credentials: "include",
-      method: "POST",
-      headers: this.headers,
-      body: payload,
-    };
-    const res = await fetch(endpoint, requestOptions);
-    const { status } = res;
-    return {
-      statusCode: status,
-    };
+const httpPost = async (
+  payload: string,
+  endpoint: string,
+  token: string
+): Promise<MailerResponse> => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
   };
-
-  sendPollInvites = (
-    // Invite pollers
-    mailerArgs: MailerArgs,
-    token: string
-  ): Promise<MailerResponse> => {
-    const payload = JSON.stringify(mailerArgs);
-    const endpoint = `${this.URL}/invite`;
-    return this.httpPost(payload, endpoint, token);
+  const requestOptions: RequestInit = {
+    mode: "cors",
+    credentials: "include",
+    method: "POST",
+    headers,
+    body: payload,
   };
-
-  sendFinalTime = (
-    // Invite pollers for the event in final time-slot
-    mailerArgs: MailerArgs,
-    token: string
-  ): Promise<MailerResponse> => {
-    const payload = JSON.stringify(mailerArgs);
-    const endpoint = `${this.URL}/finalChoice`;
-    return this.httpPost(payload, endpoint, token);
+  const res = await fetch(endpoint, requestOptions);
+  const { status } = res;
+  return {
+    statusCode: status,
   };
-}
+};
 
-export const mailerAPI = new MailerAPI();
+const sendPollInvites = (
+  // Invite pollers
+  mailerArgs: MailerArgs,
+  token: string
+): Promise<MailerResponse> => {
+  const payload = JSON.stringify(mailerArgs);
+  const endpoint = `${URL}/invite`;
+  return httpPost(payload, endpoint, token);
+};
+
+const sendFinalTime = (
+  // Invite pollers for the event in final time-slot
+  mailerArgs: MailerArgs,
+  token: string
+): Promise<MailerResponse> => {
+  const payload = JSON.stringify(mailerArgs);
+  const endpoint = `${URL}/finalChoice`;
+  return httpPost(payload, endpoint, token);
+};
+
+export { sendPollInvites, sendFinalTime };
