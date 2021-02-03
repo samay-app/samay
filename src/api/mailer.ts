@@ -18,7 +18,7 @@ class MailerAPI {
     // this.senderID = "userIDfromStore"
     // this.token = "tokenfromStore"
 
-    this.domain = process.env.NEXT_PUBLIC_MAILER_URL;
+    this.domain = process.env.NEXT_PUBLIC_MAILER_DOMAIN;
     this.version = process.env.NEXT_PUBLIC_VERSION_NUMBER;
     this.URL = `${this.domain}/v${this.version}`;
   }
