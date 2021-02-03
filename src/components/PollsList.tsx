@@ -48,9 +48,20 @@ const PollsList = (): JSX.Element => {
         setMessage(
           "You haven't created any polls yet. Create one by clicking the button above!"
         );
-      } else {
-        setPollList([]);
-        setMessage("Unable to fetch polls. Please refresh.");
+      } else if (fetchedPolls.statusCode === 401) {
+        const fetchedPollsAgain = await serverAPI.getPolls({
+          encryptedEmailID,
+          token,
+        });
+        if (fetchedPollsAgain.statusCode === 200) {
+          setPollList(fetchedPollsAgain.data);
+          setMessage(
+            "You haven't created any polls yet. Create one by clicking the button above!"
+          );
+        } else {
+          setPollList([]);
+          setMessage("Unable to fetch polls. Please refresh.");
+        }
       }
     } catch (err) {
       setMessage("Unable to fetch polls. Check your connection.");
@@ -168,8 +179,8 @@ const PollsList = (): JSX.Element => {
               {dayjs(item.finalChoice?.start).format("LT")}
             </div>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
       ));
     }
@@ -223,8 +234,8 @@ const PollsList = (): JSX.Element => {
                 <Polls />
               </CardColumns>
             ) : (
-              <span>{message} </span>
-            )}
+                <span>{message} </span>
+              )}
           </div>
         </Col>
         <Col className="col-xl-4 col-lg-4 recents">
