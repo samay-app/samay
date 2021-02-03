@@ -93,7 +93,7 @@ Make a copy of the `.env.production.example` file to `.env.production` and set t
 
 > Note: You need to have the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer) setup before using this one-click deployment. Make sure to create a firebase account and setup `firebase-auth` for google signin.
 
-Set the environment variables in `.env.production.example` to vercel in the next step.
+Set the environment variables in `.env.production.example` at Vercel in the next step.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2FRocketMeet%2FRocketMeet-client&project-name=rocketmeet-client-demo&repository-name=RocketMeet-client&demo-title=RocketMeet%20Demo)
 
