@@ -30,6 +30,6 @@ const PollSchema: mongoose.Schema = new mongoose.Schema({
   votes: [{ name: String, choices: [{ start: Number, end: Number }] }],
 }, { timestamps: true });
 
-const Poll: Model<RocketMeetPoll> = mongoose.model('Poll', PollSchema);
+const Poll: Model<RocketMeetPoll> = mongoose.model<RocketMeetPoll>('Poll', PollSchema);
 
 export default Poll;
