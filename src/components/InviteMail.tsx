@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import ResponseMessage from "./ResponseMessage";
 import { MailerArgs, Choice } from "../models/poll";
-import { mailerAPI } from "../api/mailer";
+import { mailerAPI } from "../utils/api/mailer";
 import { RootState } from "../store/store";
 
 const InviteMail = (props: {

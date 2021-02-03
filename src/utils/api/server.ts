@@ -1,4 +1,4 @@
-import { RocketMeetPoll, Vote, HttpResponse, Choice } from "../models/poll";
+import { RocketMeetPoll, Vote, HttpResponse, Choice } from "../../models/poll";
 
 class ServerAPI {
   headers: any;

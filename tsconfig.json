@@ -24,7 +24,7 @@
         "./src/components/*"
       ],
       "@api/*": [
-        "./src/api/*"
+        "src/utils/api/*"
       ],
       "@models/*": [
         "./src/models/*"

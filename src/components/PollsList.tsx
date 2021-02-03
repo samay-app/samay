@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { serverAPI } from "../api/server";
+import { serverAPI } from "../utils/api/server";
 import { encrypt } from "../helpers/helpers";
 import { RocketMeetPollFromDB } from "../models/poll";
 import { RootState } from "../store/store";

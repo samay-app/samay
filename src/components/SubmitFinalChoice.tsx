@@ -2,7 +2,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Router from "next/router";
-import { serverAPI } from "../api/server";
+import { serverAPI } from "../utils/api/server";
 import { RootState } from "../store/store";
 import { Choice } from "../models/poll";
 import ResponseMessage from "./ResponseMessage";
@@ -81,17 +81,17 @@ const SubmitFinalChoice = (props: {
         {!disabled ? (
           `Mark final option`
         ) : (
-          <>
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              className="rm-button-spinner"
-            />
-          </>
-        )}
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="rm-button-spinner"
+              />
+            </>
+          )}
       </Button>
       <ResponseMessage
         response={response}

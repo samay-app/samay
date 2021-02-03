@@ -5,7 +5,7 @@ import { ChevronDown } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { serverAPI } from "../../src/api/server";
+import { serverAPI } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/PollInfo";
 import PollTable from "../../src/components/PollTable";

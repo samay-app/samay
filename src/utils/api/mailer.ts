@@ -1,4 +1,4 @@
-import { MailerArgs } from "../models/poll";
+import { MailerArgs } from "../../models/poll";
 
 interface MailerResponse {
   statusCode: number;
