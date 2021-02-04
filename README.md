@@ -10,7 +10,7 @@
 
 ## Community
 
-Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
+Come say hello at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
 
 ## API Documentation
 
