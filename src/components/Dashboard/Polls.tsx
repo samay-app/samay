@@ -45,7 +45,7 @@ const Polls: Function = (props: {
                 </a>
               </Card.Body>
               <Card.Footer className="px-0">
-                <span className="text-muted">
+                <span className="card-created">
                   Created : {dayjs(item.createdAt).format("DD/MM/YYYY")}
                 </span>
               </Card.Footer>

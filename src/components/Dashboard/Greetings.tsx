@@ -4,13 +4,15 @@ import { Button, Row } from "react-bootstrap";
 import { RootState } from "../../store/store";
 
 const Greetings = (): JSX.Element => {
-  const displayName = useSelector(
+  const displayName: string = useSelector(
     (state: RootState) => state.authReducer.displayName
   );
   return (
     <Row className="inner-container greetings">
       <div className="col-sm-8">
-        <span className="profile-user">Welcome {displayName}!</span>
+        <span className="profile-user">
+          Welcome {displayName.split(" ")[0]}!
+        </span>
       </div>
       <div className="col-sm-4">
         <Button className="rm-primary-button dashboard-btn" href="/poll/create">

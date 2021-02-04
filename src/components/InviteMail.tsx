@@ -124,7 +124,7 @@ const InviteMail = (props: {
   return (
     <div className="poll-invitemail">
       <Form.Group controlId="formBasicEmail">
-        <Form.Label className="font-weight-bold">
+        <Form.Label className="font-weight-bold share-label">
           {finalChoice ? "Share final time via email" : "Invite participants"}
         </Form.Label>
         <Form.Control
@@ -153,7 +153,7 @@ const InviteMail = (props: {
           {error && <p className="error">{error}</p>}
         </div>
         <Button
-          className="my-2"
+          className="my-2 send-btn"
           variant="light"
           onClick={handleSubmit}
           disabled={emailList.length < 1}

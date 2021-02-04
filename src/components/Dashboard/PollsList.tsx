@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import NProgress from "nprogress";
 import { useSelector } from "react-redux";
 import { Row, Col, CardColumns, Button, Modal } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import Router from "next/router";
 import { getPolls, deletePoll } from "../../utils/api/server";
 import { encrypt } from "../../helpers/helpers";
 import { RocketMeetPollFromDB } from "../../models/poll";
@@ -29,33 +28,32 @@ const PollsList = (): JSX.Element => {
   const [modalShow, setModalShow] = useState<boolean>(false);
   const [pollIDToDelete, setPollIDToDelete] = useState<string>("");
 
-  useEffect(() => {
-    const fetchPolls = async (): Promise<void> => {
-      try {
-        NProgress.start();
-        const fetchedPolls = await getPolls({
-          encryptedEmailID,
-          token,
-        });
-        NProgress.done();
-        if (fetchedPolls.statusCode === 200) {
-          setPollList(fetchedPolls.data);
-          setMessage(
-            "You haven't created any polls yet. Create one by clicking the button above!"
-          );
-        } else if (fetchedPolls.statusCode === 401) {
-          setPollList([]);
-          Router.reload();
-        }
-      } catch (err) {
-        setMessage("Unable to fetch polls. Check your connection.");
-        NProgress.done();
+  const getData = useCallback(async (): Promise<void> => {
+    try {
+      NProgress.start();
+      const fetchedPolls = await getPolls({
+        encryptedEmailID,
+        token,
+      });
+      NProgress.done();
+      if (fetchedPolls.statusCode === 200) {
+        setPollList(fetchedPolls.data);
+        setMessage(
+          "You haven't created any polls yet. Create one by clicking the button above!"
+        );
+      } else if (fetchedPolls.statusCode === 401) {
+        setPollList([]);
+        setMessage("Unable to fetch polls. Please refresh.");
       }
-    };
-
-    fetchPolls();
+    } catch (err) {
+      setMessage("Unable to fetch polls. Check your connection.");
+      NProgress.done();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const handleDelete = async (pollID: string): Promise<void> => {
     try {
@@ -65,7 +63,7 @@ const PollsList = (): JSX.Element => {
       };
       const deletedStatus = await deletePoll(voteArgs);
       if (deletedStatus.statusCode === 200) {
-        Router.reload();
+        getData();
       } else {
         setResponse({
           status: true,
@@ -86,7 +84,7 @@ const PollsList = (): JSX.Element => {
     <>
       <Row className="inner-container">
         <Col className="col-xl-8 col-lg-8 col-md-12">
-          <h3 className="dash-your-polls">Your Polls </h3>
+          <h3 className="dash-your-polls">Your Polls</h3>
           <div className="mb-2 mt-3">
             {pollList && pollList.length > 0 ? (
               <CardColumns>
