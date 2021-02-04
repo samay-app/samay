@@ -61,7 +61,7 @@ describe('get poll', () => {
 
     it('Should return poll count properly', async (done) => {
       const pollCount = await request.get('/v1/pollCount');
-      expect(pollCount.body).toEqual(1);
+      expect(pollCount.body).toEqual(42);
       done();
     });
 });
