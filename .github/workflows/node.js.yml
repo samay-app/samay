@@ -24,6 +24,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+      working-directory: ./
     - run: |
           touch .env
           echo "TYPE=${{secrets.TYPE}}" >> .env
