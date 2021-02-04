@@ -13,11 +13,11 @@ import {
 } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { getPolls, deletePoll } from "../utils/api/server";
-import { encrypt } from "../helpers/helpers";
-import { RocketMeetPollFromDB } from "../models/poll";
-import { RootState } from "../store/store";
-import ResponseMessage from "./ResponseMessage";
+import { getPolls, deletePoll } from "../../utils/api/server";
+import { encrypt } from "../../helpers/helpers";
+import { RocketMeetPollFromDB } from "../../models/poll";
+import { RootState } from "../../store/store";
+import ResponseMessage from "../ResponseMessage";
 
 dayjs.extend(localizedFormat);
 
@@ -168,8 +168,8 @@ const PollsList = (): JSX.Element => {
               {dayjs(item.finalChoice?.start).format("LT")}
             </div>
           ) : (
-              <></>
-            )}
+            <></>
+          )}
         </div>
       ));
     }
@@ -223,8 +223,8 @@ const PollsList = (): JSX.Element => {
                 <Polls />
               </CardColumns>
             ) : (
-                <span>{message} </span>
-              )}
+              <span>{message} </span>
+            )}
           </div>
         </Col>
         <Col className="col-xl-4 col-lg-4 recents">
