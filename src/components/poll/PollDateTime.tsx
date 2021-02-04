@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { Choice } from "../models/poll";
+import { Choice } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 

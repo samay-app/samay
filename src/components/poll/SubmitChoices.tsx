@@ -1,9 +1,9 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
-import { markChoices } from "../utils/api/server";
-import { Vote } from "../models/poll";
-import ResponseMessage from "./ResponseMessage";
+import { markChoices } from "../../utils/api/server";
+import { Vote } from "../../models/poll";
+import ResponseMessage from "../ResponseMessage";
 
 const SubmitChoices = (props: {
   newVote: Vote;
@@ -83,17 +83,17 @@ const SubmitChoices = (props: {
         {!disabled ? (
           `Mark your availability`
         ) : (
-            <>
-              <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-                className="rm-button-spinner"
-              />
-            </>
-          )}
+          <>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              className="rm-button-spinner"
+            />
+          </>
+        )}
       </Button>
       <ResponseMessage
         response={response}

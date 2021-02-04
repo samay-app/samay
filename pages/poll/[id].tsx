@@ -7,8 +7,8 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
-import PollInfo from "../../src/components/PollInfo";
-import PollTable from "../../src/components/PollTable";
+import PollInfo from "../../src/components/poll/PollInfo";
+import PollTable from "../../src/components/poll/PollTable";
 import {
   Choice,
   ChoiceFromDB,
