@@ -23,6 +23,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: 'safe to test'
+          })
     - run: npm ci
     - run: |
           touch .env
@@ -40,13 +50,3 @@ jobs:
           echo "PUBLIC_ENCRYPTION_KEY=${{secrets.PUBLIC_ENCRYPTION_KEY}}" >> .env
           echo "PUBLIC_ENCRYPTION_IV=${{secrets.PUBLIC_ENCRYPTION_IV}}" >> .env
     - run: npm test
-    - uses: actions/github-script@v3
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          github.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: 'safe to test'
-          })
