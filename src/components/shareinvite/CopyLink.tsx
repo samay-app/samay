@@ -52,7 +52,7 @@ const CopyLink = (props: {
   return (
     <div>
       <Form.Group>
-        <Form.Label className="font-weight-bold">
+        <Form.Label className="font-weight-bold share-label">
           {finalChoice ? "Copy final time" : "Share link"}
         </Form.Label>
         <InputGroup className="mb-3">
@@ -69,7 +69,7 @@ const CopyLink = (props: {
               show={show}
               overlay={popover}
             >
-              <Button variant="light" onClick={handleCopy}>
+              <Button variant="light" onClick={handleCopy} className="copy-btn">
                 <Files />
               </Button>
             </OverlayTrigger>
