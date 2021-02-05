@@ -129,7 +129,7 @@ const InviteMail = (props: {
         </Form.Label>
         <Form.Control
           multiple
-          type="tel"
+          type="email"
           className="invite-textbox"
           placeholder="Enter comma-separated emails"
           value={currentEmail}
