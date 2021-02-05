@@ -7,8 +7,6 @@
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/RocketMeet/RocketMeet-client?style=for-the-badge)](https://codeclimate.com/github/RocketMeet/RocketMeet-client)
 [![GitHub contributors](https://img.shields.io/github/contributors/RocketMeet/RocketMeet-client?color=%23000000&&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-client/graphs/contributors)
 
-## [Under active development]
-
 ## Table of contents
 
 - [Community](#community)
@@ -58,6 +56,8 @@ $ npm i
 - Set the encryption variables and domain URLs in the `.env` files
 
 ### Development
+
+Run the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer), then run the client:
 
 ```bash
 $ npm run dev
