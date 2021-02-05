@@ -8,8 +8,8 @@ import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import SubmitChoices from "./SubmitChoices";
 import SubmitFinalChoice from "./SubmitFinalChoice";
-import { Choice, RocketMeetPollFromDB, Vote } from "../models/poll";
-import { isChoicePresentInPollChoices } from "../helpers/helpers";
+import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
+import { isChoicePresentInPollChoices } from "../../helpers/helpers";
 
 dayjs.extend(localizedFormat);
 

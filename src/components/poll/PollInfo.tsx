@@ -7,8 +7,8 @@ import {
 } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { RocketMeetPollFromDB } from "../models/poll";
-import { decrypt } from "../helpers/helpers";
+import { RocketMeetPollFromDB } from "../../models/poll";
+import { decrypt } from "../../helpers/helpers";
 
 dayjs.extend(localizedFormat);
 

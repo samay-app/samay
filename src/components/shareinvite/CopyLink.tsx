@@ -5,11 +5,12 @@ import {
   Popover,
   OverlayTrigger,
 } from "react-bootstrap";
-import { Clipboard } from "react-bootstrap-icons";
+import { Files } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import copy from "copy-to-clipboard";
-import { Choice } from "../models/poll";
+import { useState } from "react";
+import { Choice } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
@@ -33,9 +34,13 @@ const CopyLink = (props: {
   } else {
     textToCopy = pollURL;
   }
-
+  const [show, setShow] = useState(false);
   const handleCopy = (): void => {
+    setShow(true);
     copy(textToCopy);
+    setTimeout(() => {
+      setShow(false);
+    }, 1000);
   };
 
   const popover = (
@@ -58,9 +63,14 @@ const CopyLink = (props: {
             className="share-textbox"
           />
           <InputGroup.Append>
-            <OverlayTrigger trigger="click" placement="top" overlay={popover}>
+            <OverlayTrigger
+              trigger="click"
+              placement="top"
+              show={show}
+              overlay={popover}
+            >
               <Button variant="light" onClick={handleCopy} className="copy-btn">
-                <Clipboard />
+                <Files />
               </Button>
             </OverlayTrigger>
           </InputGroup.Append>

@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { Choice } from "../models/poll";
+import { Choice } from "../../models/poll";
 import CopyLink from "./CopyLink";
 import InviteMail from "./InviteMail";
 

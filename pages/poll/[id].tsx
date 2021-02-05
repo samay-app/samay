@@ -7,8 +7,8 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
-import PollInfo from "../../src/components/PollInfo";
-import PollTable from "../../src/components/PollTable";
+import PollInfo from "../../src/components/poll/PollInfo";
+import PollTable from "../../src/components/poll/PollTable";
 import {
   Choice,
   ChoiceFromDB,
@@ -16,7 +16,7 @@ import {
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers/helpers";
-import ShareInvite from "../../src/components/ShareInvite";
+import ShareInvite from "../../src/components/shareinvite/ShareInvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);

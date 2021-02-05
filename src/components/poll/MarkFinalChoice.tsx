@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 import { Dispatch } from "react";
-import { Choice } from "../models/poll";
+import { Choice } from "../../models/poll";
 
 const MarkFinalChoice = (props: {
   choices: Choice[];
