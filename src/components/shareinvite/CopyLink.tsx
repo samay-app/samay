@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import copy from "copy-to-clipboard";
 import { useState } from "react";
-import { Choice } from "../models/poll";
+import { Choice } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 

@@ -1,10 +1,10 @@
 import { Form, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import ResponseMessage from "./ResponseMessage";
-import { MailerArgs, Choice } from "../models/poll";
-import { sendFinalTime, sendPollInvites } from "../utils/api/mailer";
-import { RootState } from "../store/store";
+import ResponseMessage from "../ResponseMessage";
+import { MailerArgs, Choice } from "../../models/poll";
+import { sendFinalTime, sendPollInvites } from "../../utils/api/mailer";
+import { RootState } from "../../store/store";
 
 const InviteMail = (props: {
   pollID: string;

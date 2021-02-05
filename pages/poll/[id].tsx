@@ -16,7 +16,7 @@ import {
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers/helpers";
-import ShareInvite from "../../src/components/ShareInvite";
+import ShareInvite from "../../src/components/shareinvite/ShareInvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
