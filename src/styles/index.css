@@ -96,7 +96,7 @@ a {
 
 .hero-title {
   font-weight: 700 !important;
-  font-size: 5rem !important;
+  font-size: 5vw !important;
   color: #101010;
 }
 
@@ -107,12 +107,12 @@ a {
 .hero-strikethrough {
   text-decoration: line-through;
   text-decoration-color: rgba(255, 128, 128, 0.9);
-  text-decoration-thickness: 2rem;
+  text-decoration-thickness: 2vw;
 }
 
 .hero-desc {
   font-weight: 400 !important;
-  font-size: 1.8rem !important;
+  font-size: 1.8vw !important;
   color: #101010;
   margin-top: 2rem;
   margin-bottom: 3rem;
@@ -130,18 +130,18 @@ a {
 
   .hero-title {
     font-weight: 700 !important;
-    font-size: 2.5rem !important;
+    font-size: 9vw !important;
     color: #101010;
   }
 
   .hero-desc {
     font-weight: 400 !important;
-    font-size: 1.3rem !important;
+    font-size: 5vw !important;
     color: #101010;
   }
 
   .hero-strikethrough {
-    text-decoration-thickness: 1.4rem;
+    text-decoration-thickness: 3.5vw;
   }
 
   .rm-primary-button {
@@ -475,12 +475,14 @@ h4 {
 
 .poll-shareinvite-content {
   margin-top: 3rem;
+  padding-top: 2rem;
   padding-left: 2rem;
   padding-right: 3rem;
+  border-top: 1px solid #818181;
 }
 
 .poll-info-title {
-  font-size: 3rem;
+  font-size: 3vw;
   font-weight: 700;
   display: block;
   line-height: 3.5rem;
@@ -488,19 +490,29 @@ h4 {
 }
 
 .poll-info-desc {
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: 1.4vw;
   display: block;
-  margin-top: 1rem;
 }
 
 .poll-info-user {
   padding-top: 2rem;
+  font-size: 1vw;
   display: block;
 }
 
 .poll-info-date {
   display: block;
+  font-size: 1vw;
+}
+
+.poll-info-final-date {
+  font-size: 1vw;
+  margin-top: 2rem;
+  display: block;
+}
+
+.poll-info-final-date-star {
+  color: #ffbf00;
 }
 
 .rm-chevron-down-div {
@@ -509,6 +521,11 @@ h4 {
 
 .rm-chevron-down {
   display: none;
+}
+
+.card-created {
+  font-size: 1vw !important;
+  color: #aaaaaa;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -531,31 +548,47 @@ h4 {
   }
 
   .poll-info-title {
-    font-size: 2.3rem;
+    font-size: 10vw;
     line-height: 2.5rem;
   }
 
   .poll-info-desc {
-    font-size: 1rem;
-    margin-top: 1rem;
+    font-size: 5vw;
+    margin-top: 0.5rem;
+  }
+
+  .poll-info-user {
+    font-size: 4vw;
+  }
+
+  .poll-info-date {
+    font-size: 4vw;
+  }
+
+  .poll-info-final-date {
+    font-size: 4vw;
   }
 
   .rm-chevron-down {
     display: unset;
+    font-size: 4vw;
+  }
+
+  .rm-badge-dash {
+    font-size: 2.5vw !important;
+  }
+
+  .rm-badge-poll {
+    font-size: 2.5vw !important;
+  }
+
+  .card-created {
+    font-size: 3vw !important;
   }
 }
 
 .emailList {
   margin-top: 0.5rem;
-}
-
-.poll-info-final-date {
-  padding-top: 2rem;
-  display: block;
-}
-
-.poll-info-final-date-star {
-  color: #ffbf00;
 }
 
 .poll-table {
@@ -813,7 +846,7 @@ h4 {
 
 .profile-user {
   font-weight: 500 !important;
-  font-size: 2rem;
+  font-size: 2vw;
 }
 
 .dashboard-btn {
@@ -822,11 +855,14 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .profile-user {
-    font-size: 1.3rem !important;
+    font-size: 6vw !important;
   }
 
   .dashboard-btn {
     margin-top: 1.5rem;
+    float: unset;
+    font-size: 5vw !important;
+    width: unset !important;
   }
 }
 
@@ -848,14 +884,18 @@ h4 {
 }
 
 .dash-coming-up {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 2vw !important;
   padding-left: 2.5rem;
 }
 
 .dash-your-polls {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 2vw !important;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .dash-your-polls {
+    font-size: 6vw !important;
+  }
 }
 
 @media screen and (max-width: 601px) and (min-width: 389px) {
@@ -870,13 +910,13 @@ h4 {
 }
 
 .card-title {
-  font-size: 1.75rem;
+  font-size: 1.75vw;
   font-weight: 500;
 }
 .card-bdy {
   text-decoration: none;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1vw;
   font-weight: 400;
 }
 .card-bdy:hover {
@@ -908,6 +948,12 @@ h4 {
 @media screen and (max-width: 991.08px) {
   .recents {
     display: none;
+  }
+  .card-title {
+    font-size: 5vw;
+  }
+  .card-bdy {
+    font-size: 3.5vw;
   }
 }
 .upcomings {
@@ -988,12 +1034,17 @@ h4 {
   }
 }
 
+.share-label {
+  font-size: 1vw !important;
+}
+
 .share-textbox {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
   border: 2px solid #6c757d !important;
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
+  font-size: 1vw !important;
 }
 
 .share-textbox:focus {
@@ -1005,6 +1056,7 @@ h4 {
   color: #e0e0e0 !important;
   border: 2px solid #6c757d !important;
   border-radius: 1rem !important;
+  font-size: 1vw !important;
 }
 
 .invite-textbox:focus {
@@ -1015,17 +1067,42 @@ h4 {
   color: #e0e0e0 !important;
 }
 
+.copy-btn {
+  font-size: 1vw !important;
+}
+
+.send-btn {
+  font-size: 1vw !important;
+}
+
+.index-create-button {
+  margin-bottom: 5rem;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
   .share-textbox {
-    font-size: 1rem !important;
+    font-size: 4vw !important;
   }
 
   .invite-textbox {
-    font-size: 1rem !important;
+    font-size: 4vw !important;
+  }
+
+  .share-label {
+    font-size: 4vw !important;
+  }
+
+  .copy-btn {
+    font-size: 4vw !important;
+  }
+
+  .send-btn {
+    font-size: 4vw !important;
   }
 
   .index-create-button {
-    margin-bottom: 2rem;
+    font-size: 5vw !important;
+    width: unset !important;
   }
 }
 
