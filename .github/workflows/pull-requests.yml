@@ -9,7 +9,7 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    if: contains(github.event.pull_request.labels.*.name, 'test')
 
     strategy:
       matrix:
@@ -31,7 +31,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            name: 'safe to test'
+            name: 'test'
           })
     - run: npm ci
     - run: |
