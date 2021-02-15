@@ -4,7 +4,7 @@
 
 ## Reviewer Checklist:
 
-* [ ] Tests passed (after applying `safe to test` label)
+* [ ] Tests passed (after using `test` label)
 
 <!--
 
