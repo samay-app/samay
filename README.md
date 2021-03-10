@@ -61,7 +61,7 @@ $ npm i
 
 Make sure that the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer), are located at the level same as this repository with their relevant `node_modules` installed.
 
-The structure should like the following:
+The structure should like the following:  
 ├── folder/                
     ├── RocketMeet-server/             
     ├── RocketMeet-mailer/            
