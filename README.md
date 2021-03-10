@@ -59,10 +59,17 @@ $ npm i
 
 ### Development
 
-Run the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer), then run the client:
+Make sure that the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer), are located at the level same as this repository with their relevant `node_modules` installed.
+
+The structure should like the following:  
+/                
+├── RocketMeet-server/             
+├── RocketMeet-mailer/            
+└── RocketMeet-client/
+
 
 ```bash
-$ npm run dev
+$ npm run script
 ```
 
 Linting
