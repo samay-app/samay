@@ -10,7 +10,7 @@ initSystem=`ps --no-headers -o comm 1`
 # Perform a check and start mongod.
 if [ "$initSystem" = "init" ]
 then
-    sudo service mongodb start
+    sudo service mongod start
 else 
     sudo systemctl start mongod
 fi
