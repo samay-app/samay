@@ -45,8 +45,12 @@ jobs:
       - name: Check ESLint Error
         uses: reviewdog/action-eslint@v1
         with:
+          github_token: ${{ secrets.SECRET_KEY }}
           reporter: github-pr-check
+          fail_on_error: true
       - name: Check ESLint Review
         uses: reviewdog/action-eslint@v1
         with:
+          github_token: ${{ secrets.SECRET_KEY }}
           reporter: github-pr-review
+          fail_on_error: true
