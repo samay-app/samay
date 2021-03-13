@@ -37,20 +37,3 @@ jobs:
           echo "AUTH_URI=${{secrets.AUTH_URI}}" >> .env
           echo "AUTH_PROVIDER_X509_CERT_URL=${{secrets.AUTH_PROVIDER_X509_CERT_URL}}" >> .env
     - run: npm test
-  run-eslint:
-    name: Run ESLint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Check ESLint Error
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.SECRET_KEY }}
-          reporter: github-pr-check
-          fail_on_error: true
-      - name: Check ESLint Review
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.SECRET_KEY }}
-          reporter: github-pr-review
-          fail_on_error: true
