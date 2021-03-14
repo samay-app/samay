@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import { InfoCircleFill, QuestionCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
+import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import Layout from "../../src/components/Layout";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { encrypt } from "../../src/helpers/helpers";
@@ -21,7 +22,6 @@ import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
 import { createPoll } from "../../src/utils/api/server";
-import Joyride, { CallBackProps, STATUS, Step, StoreHelpers } from 'react-joyride';
 
 // typings aren't available for react-available-times :(
 
@@ -49,36 +49,38 @@ const Create = (): JSX.Element => {
   const [tourRun, setTourRun] = useState<boolean>(false);
 
   // Run automatically for first time users
-  if (typeof window !== 'undefined') {
-    if (localStorage.visited !== 'true') {
-      localStorage.setItem('visited', 'true')
-      setTourRun(true)
+  if (typeof window !== "undefined") {
+    if (localStorage.visited !== "true") {
+      localStorage.setItem("visited", "true");
+      setTourRun(true);
     }
   }
 
-  const [tourHelpers, setTourHelpers] = useState<StoreHelpers | undefined>(undefined)
   const tourSteps: Step[] = [
     {
       disableBeacon: true,
-      target: '#formPlainTextTitle',
-      content: 'Give your event the memorable title it deserves.'
+      target: "#formPlainTextTitle",
+      content: "Give your event the memorable title it deserves.",
     },
     {
-      target: '#formPlainTextDescription',
-      content: 'Add a description to let your invitees know what this is all about.'
+      target: "#formPlainTextDescription",
+      content:
+        "Add a description to let your invitees know what this is all about.",
     },
     {
-      target: '.rat-AvailableTimes_buttons',
-      content: 'Are you an early planner? Use these button to schedule in the future. (ps: Time travel powers not included)'
+      target: ".rat-AvailableTimes_buttons",
+      content:
+        "Are you an early planner? Use these button to schedule in the future. (ps: Time travel powers not included)",
     },
     {
-      target: '.rat-Slider_component',
-      content: 'Click and drag to create a time slot. You can create more than one. These will be the choices that are generated in the poll'
+      target: ".rat-Slider_component",
+      content:
+        "Click and drag to create a time slot. You can create more than one. These will be the choices that are generated in the poll",
     },
     {
-      target: '.create-poll-btn',
-      content: 'Click here when you\'re all done to get a sharable link'
-    }
+      target: ".create-poll-btn",
+      content: "Click here when you're all done to get a sharable link",
+    },
   ];
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -172,42 +174,35 @@ const Create = (): JSX.Element => {
     }
   };
 
-  const getTourHelpers = (helpers: StoreHelpers) => {
-    setTourHelpers(helpers);
-  }
+  const handleStartTour = (): void => {
+    setTourRun(true);
+  };
 
-  const handleStartTour = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
-    setTourRun(true)
-  }
-
-  const handleJoyrideCallback = (data: CallBackProps) => {
+  const handleJoyrideCallback = (data: CallBackProps): void => {
     const { status, type } = data;
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
 
-    console.log(data)
-
-    if (finishedStatuses.includes(status) || type === 'beacon') {
-      setTourRun(false)
+    if (finishedStatuses.includes(status) || type === "beacon") {
+      setTourRun(false);
     }
-  }
+  };
 
   return (
     <Layout>
       <Joyride
         callback={handleJoyrideCallback}
-        getHelpers={getTourHelpers}
         steps={tourSteps}
         run={tourRun}
-        continuous={true}
-        showSkipButton={true}
-        showProgress={true}
+        continuous
+        showSkipButton
+        showProgress
         debug={process.env.NODE_ENV === "development"}
-        spotlightClicks={true}
+        spotlightClicks
         styles={{
           buttonClose: { visibility: "hidden" },
           options: {
-            primaryColor: "#101010"
-          }
+            primaryColor: "#101010",
+          },
         }}
       />
       <Container className="rm-poll-container" fluid>
@@ -246,7 +241,10 @@ const Create = (): JSX.Element => {
               >
                 <InfoCircleFill className="timezone-info-icon" />
               </OverlayTrigger>
-              <QuestionCircleFill className="tour-start-icon" onClick={handleStartTour} />
+              <QuestionCircleFill
+                className="tour-start-icon"
+                onClick={handleStartTour}
+              />
             </Jumbotron>
           </div>
           <div className="col-sm-8">
@@ -264,17 +262,17 @@ const Create = (): JSX.Element => {
                 {!disabled ? (
                   `Create Poll`
                 ) : (
-                    <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className="rm-button-spinner"
-                      />
-                    </>
-                  )}
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="rm-button-spinner"
+                    />
+                  </>
+                )}
               </Button>
               <ResponseMessage
                 response={response}
