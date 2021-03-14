@@ -61,7 +61,7 @@ const Create = (): JSX.Element => {
     {
       disableBeacon: true,
       target: '#formPlainTextTitle',
-      content: 'Give your event the title it deserves. Something memorable'
+      content: 'Give your event the memorable title it deserves.'
     },
     {
       target: '#formPlainTextDescription',
@@ -69,15 +69,15 @@ const Create = (): JSX.Element => {
     },
     {
       target: '.rat-AvailableTimes_buttons',
-      content: 'Are you an early planner? Use these button to schedule in the future, or past. (ps: Time travel powers not included)'
+      content: 'Are you an early planner? Use these button to schedule in the future. (ps: Time travel powers not included)'
     },
     {
       target: '.rat-Slider_component',
-      content: 'Click and drag to create a time slots. Repeat to create more of them. These will be the choices that are generated in the poll'
+      content: 'Click and drag to create a time slot. You can create more than one. These will be the choices that are generated in the poll'
     },
     {
       target: '.create-poll-btn',
-      content: 'Press here when you\'re all done to create the poll and get a sharable link'
+      content: 'Click here when you\'re all done to get a sharable link'
     }
   ];
 
