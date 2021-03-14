@@ -243,6 +243,7 @@ const Create = (): JSX.Element => {
               >
                 <InfoCircleFill className="timezone-info-icon" />
               </OverlayTrigger>
+              <QuestionCircleFill className="tour-start-icon" onClick={handleStartTour} />
             </Jumbotron>
           </div>
           <div className="col-sm-8">
