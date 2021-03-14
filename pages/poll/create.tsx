@@ -203,9 +203,12 @@ const Create = (): JSX.Element => {
         showProgress={true}
         debug={process.env.NODE_ENV === "development"}
         spotlightClicks={true}
-        styles={
-          { buttonClose: { visibility: "hidden" } }
-        }
+        styles={{
+          buttonClose: { visibility: "hidden" },
+          options: {
+            primaryColor: "#101010"
+          }
+        }}
       />
       <Container className="rm-poll-container" fluid>
         <Row className="jumbo-row">
