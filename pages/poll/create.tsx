@@ -12,7 +12,7 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
-import { InfoCircleFill } from "react-bootstrap-icons";
+import { InfoCircleFill, QuestionCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
 import Layout from "../../src/components/Layout";
 import ResponseMessage from "../../src/components/ResponseMessage";
@@ -21,6 +21,7 @@ import { Choice, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
 import { createPoll } from "../../src/utils/api/server";
+import Joyride, { CallBackProps, STATUS, Step, StoreHelpers } from 'react-joyride';
 
 // typings aren't available for react-available-times :(
 
@@ -44,6 +45,41 @@ const Create = (): JSX.Element => {
     type: "",
     msg: "",
   });
+
+  const [tourRun, setTourRun] = useState<boolean>(false);
+
+  // Run automatically for first time users
+  if (typeof window !== 'undefined') {
+    if (localStorage.visited !== 'true') {
+      localStorage.setItem('visited', 'true')
+      setTourRun(true)
+    }
+  }
+
+  const [tourHelpers, setTourHelpers] = useState<StoreHelpers | undefined>(undefined)
+  const tourSteps: Step[] = [
+    {
+      disableBeacon: true,
+      target: '#formPlainTextTitle',
+      content: 'Give your event the title it deserves. Something memorable'
+    },
+    {
+      target: '#formPlainTextDescription',
+      content: 'Add a description to let your invitees know what this is all about.'
+    },
+    {
+      target: '.rat-AvailableTimes_buttons',
+      content: 'Are you an early planner? Use these button to schedule in the future, or past. (ps: Time travel powers not included)'
+    },
+    {
+      target: '.rat-Slider_component',
+      content: 'Click and drag to create a time slots. Repeat to create more of them. These will be the choices that are generated in the poll'
+    },
+    {
+      target: '.create-poll-btn',
+      content: 'Press here when you\'re all done to create the poll and get a sharable link'
+    }
+  ];
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -136,8 +172,41 @@ const Create = (): JSX.Element => {
     }
   };
 
+  const getTourHelpers = (helpers: StoreHelpers) => {
+    setTourHelpers(helpers);
+  }
+
+  const handleStartTour = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
+    setTourRun(true)
+  }
+
+  const handleJoyrideCallback = (data: CallBackProps) => {
+    const { status, type } = data;
+    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
+
+    console.log(data)
+
+    if (finishedStatuses.includes(status) || type === 'beacon') {
+      setTourRun(false)
+    }
+  }
+
   return (
     <Layout>
+      <Joyride
+        callback={handleJoyrideCallback}
+        getHelpers={getTourHelpers}
+        steps={tourSteps}
+        run={tourRun}
+        continuous={true}
+        showSkipButton={true}
+        showProgress={true}
+        debug={process.env.NODE_ENV === "development"}
+        spotlightClicks={true}
+        styles={
+          { buttonClose: { visibility: "hidden" } }
+        }
+      />
       <Container className="rm-poll-container" fluid>
         <Row className="jumbo-row">
           <div className="jumbo-col-black col-sm-4">
