@@ -18,6 +18,9 @@ router.post('/', async (req: Request, res: Response) => {
 
   const data: Data = req.body;
 
+  if (data.senderEmailID !== req.currentUser.email) {
+    res.status(403).json({ msg: 'Forbidden' });
+    } else {
     const filePath = path.join(__dirname, '../../../template/pollResponse.html');
     const source = fs.readFileSync(filePath, 'utf-8').toString();
     const template = handlebars.compile(source);
@@ -35,31 +38,33 @@ router.post('/', async (req: Request, res: Response) => {
         pass: password,
       },
     });
-      const mailOptions = {
-        from: `RocketMeet <${email}>`,
-        to: data.receiverIDs[0],
-        subject: `RocketMeet: New Vote - ${data.pollTitle}`,
-        replyTo: `RocketMeet <${data.senderEmailID}>`,
-        html: htmlToSend,
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: `${__dirname}/../../../template/images/logo.png`,
-            cid: 'logo',
-          },
-        ],
-      };
 
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          res.status(404).json(err);
-        } else {
-          res.status(200).json({
-            sent: true,
-            id: info.messageId,
-          });
-        }
-      });
+    const mailOptions = {
+      from: `RocketMeet <${email}>`,
+      to: data.receiverIDs[0],
+      subject: `RocketMeet: New Vote - ${data.pollTitle}`,
+      replyTo: `RocketMeet <${data.senderEmailID}>`,
+      html: htmlToSend,
+      attachments: [
+        {
+          filename: 'logo.png',
+          path: `${__dirname}/../../../template/images/logo.png`,
+          cid: 'logo',
+        },
+      ],
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        res.status(200).json({
+          sent: true,
+          id: info.messageId,
+        });
+      }
+    });
+  }
 });
 
 export default router;
