@@ -1,14 +1,19 @@
-name: lint
+name: Lint
 on:
   pull_request:
     branches: [main]
+
 jobs:
   eslint:
     name: eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: eslint
-        uses: reviewdog/action-eslint@v1
+      - name: install node v12
+        uses: actions/setup-node@v1
         with:
-          reporter: github-pr-review # Change reporter.
+          node-version: 12
+      - name: yarn install
+        run: yarn install
+      - name: eslint
+        uses: icrawl/action-eslint@v1
