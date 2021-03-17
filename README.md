@@ -58,7 +58,7 @@ $ npm run test
 
 In your .env, change the `NODE_ENV` to `production`. Launch a MongoDB Atlas instance and set the corresponding `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables in the .env. Set the `CORS_URL` to the domain pointing to RocketMeet-client. Make sure to add that domain to the 'Authorized domains' section in your Firebase project. Make sure the Firebase and email encryption variables are set and correct.
 ## Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Ayushisood/RocketMeet-server)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RocketMeet/RocketMeet-server)
 ## Contributing
 
 Check out our [contributing guide](https://github.com/RocketMeet/RocketMeet-server/blob/main/CONTRIBUTING.md)!
