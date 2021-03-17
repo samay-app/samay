@@ -6,9 +6,7 @@
     "expressjs","meeting-scheduler","foss"
   ],
   "website": "https://rocketmeet.me/",
-  "repository": "https://github.com/RocketMeet/RocketMeet-server",
   "logo": "https://github.com/RocketMeet/RocketMeet-server/blob/main/server.png",
-  "success_url": "https://rocketmeet.me/",
   "buildpacks": [
     {
       "url": "heroku/nodejs"
