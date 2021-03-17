@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://github.com/RocketMeet/RocketMeet-server.git"
   },
-  "keywords": ["node","meeting"],
+  "keywords": ["expressjs","meeting-scheduler","foss"],
   "author": "",
   "license": "ISC",
   "bugs": {
