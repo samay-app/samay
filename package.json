@@ -4,7 +4,7 @@
   "engines": {
     "node": "14.15.1"
   },
-  "description": "a free and open source meeting scheduling app using Node.js",
+  "description": "a free and open source meeting scheduling app",
   "main": "build/server.js",
   "scripts": {
     "start": "npm run build && npm run serve",
