@@ -1,15 +1,28 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
+import { useSelector } from "react-redux";
 import { markChoices } from "../../utils/api/server";
-import { Vote } from "../../models/poll";
+import { Vote, RocketMeetPollFromDB, MailerArgs } from "../../models/poll";
 import ResponseMessage from "../ResponseMessage";
+import { decrypt } from "../../helpers/helpers";
+import { sendPollResponse } from "../../utils/api/mailer";
+import { RootState } from "../../store/store";
 
 const SubmitChoices = (props: {
   newVote: Vote;
   pollID: string;
+  pollFromDB: RocketMeetPollFromDB;
 }): JSX.Element => {
-  const { newVote, pollID } = props;
+  const { newVote, pollID, pollFromDB } = props;
+  const pollCreatorEmailID = decrypt(pollFromDB.encryptedEmailID);
+  const token = useSelector((state: RootState) => state.authReducer.token);
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.authReducer.isLoggedIn
+  );
+  const senderEmailID = useSelector(
+    (state: RootState) => state.authReducer.username
+  );
 
   const [response, setResponse] = useState({
     status: false,
@@ -31,6 +44,16 @@ const SubmitChoices = (props: {
         };
         const submitChoiceResponse = await markChoices(voterArgs);
         if (submitChoiceResponse.statusCode === 201) {
+          if (isLoggedIn) {
+            const mailerArgs: MailerArgs = {
+              pollID,
+              senderEmailID,
+              pollTitle: pollFromDB.title,
+              receiverIDs: Array<string>(pollCreatorEmailID),
+              senderName: newVote.name,
+            };
+            sendPollResponse(mailerArgs, token);
+          }
           Router.reload();
         } else if (submitChoiceResponse.statusCode === 400) {
           setResponse({
