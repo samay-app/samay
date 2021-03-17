@@ -51,4 +51,14 @@ const sendFinalTime = (
   return httpPost(payload, endpoint, token);
 };
 
-export { sendPollInvites, sendFinalTime };
+const sendPollResponse = (
+  // Send poll creater an email, everytime someone votes on their poll
+  mailerArgs: MailerArgs,
+  token: string
+): Promise<MailerResponse> => {
+  const payload = JSON.stringify(mailerArgs);
+  const endpoint = `${URL}/pollResponse`;
+  return httpPost(payload, endpoint, token);
+};
+
+export { sendPollInvites, sendFinalTime, sendPollResponse };
