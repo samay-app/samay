@@ -4,12 +4,12 @@
   "engines": {
     "node": "14.15.1"
   },
-  "description": "",
+  "description": "a free and open source meeting scheduling app using Node.js",
   "main": "build/server.js",
   "scripts": {
     "start": "npm run build && npm run serve",
     "serve": "node build/server.js",
-    "dev": "npm run build && LOG_LEVEL=debug npm run serve | ./node_modules/.bin/pino-pretty",
+    "dev": "npm run build && cross-env LOG_LEVEL=debug npm run serve | ./node_modules/.bin/pino-pretty",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles ./tests",
     "lint": "eslint . --ext .ts",
     "build": "tsc --project tsconfig-build.json",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RocketMeet/RocketMeet.git"
+    "url": "https://github.com/RocketMeet/RocketMeet-server.git"
   },
-  "keywords": [],
+  "keywords": ["node","meeting"],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RocketMeet/RocketMeet/issues"
+    "url": "https://github.com/RocketMeet/RocketMeet-server/issues"
   },
-  "homepage": "https://github.com/RocketMeet/RocketMeet#readme",
+  "homepage": "https://github.com/RocketMeet/RocketMeet-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
