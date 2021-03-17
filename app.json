@@ -1,12 +1,12 @@
 
 {
   "name": "rocketmeet server",
-  "description": "a free and open source meeting scheduling app using Node.js.",
+  "description": "a free and open source meeting scheduling app",
   "keywords": [
     "node","meeting"
   ],
   "website": "https://rocketmeet.me/",
-  "repository": "https://github.com/RocketMeet/RocketMeet",
+  "repository": "https://github.com/RocketMeet/RocketMeet-server",
   "logo": "https://github.com/RocketMeet/RocketMeet-server/blob/main/server.png",
   "success_url": "/rocketmeet.me",
   "buildpacks": [
