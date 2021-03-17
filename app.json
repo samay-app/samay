@@ -7,6 +7,9 @@
   ],
   "website": "https://rocketmeet.me/",
   "logo": "https://github.com/RocketMeet/RocketMeet-server/blob/main/server.png",
+  "env" : {
+    "NODE_ENV": "production"
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"
