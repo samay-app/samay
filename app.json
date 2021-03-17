@@ -3,12 +3,12 @@
   "name": "rocketmeet server",
   "description": "a free and open source meeting scheduling app",
   "keywords": [
-    "node","meeting"
+    "expressjs","meeting-scheduler","foss"
   ],
   "website": "https://rocketmeet.me/",
   "repository": "https://github.com/RocketMeet/RocketMeet-server",
   "logo": "https://github.com/RocketMeet/RocketMeet-server/blob/main/server.png",
-  "success_url": "/rocketmeet.me",
+  "success_url": "https://rocketmeet.me/",
   "buildpacks": [
     {
       "url": "heroku/nodejs"
