@@ -49,6 +49,13 @@ You will be able to access the API from http://localhost:8000
 $ npm run test
 ```
 
+### Linting
+
+We use the `airbnb-typescript` style guide. Before opening a PR, it's recommended to check the ESLint warnings and errors in your code using the ESLint extension from Dirk Baeumer for VSCode or by running:
+```bash
+$ npm run lint
+```
+  
 ### Deployment
 
 In your .env, change the `NODE_ENV` to `production` and set the `EMAIL` and `PASSWORD` variables corresponding to your Gmail account. Make sure to use a spare account and [Turn on less secure app access](https://myaccount.google.com/lesssecureapps). Then set the CORS_URL to the domain running RocketMeet-client.
