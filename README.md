@@ -51,16 +51,10 @@ $ npm run test
 
 ### Linting
 
-We use `airbnb-typescript` style guide.
-To check ESLint errors run the code below:
+We use the `airbnb-typescript` style guide. Before opening a PR, it's recommended to check the ESLint warnings and errors in your code using the ESLint extension from Dirk Baeumer for VSCode or by running:
 ```bash
 $ npm run lint
 ```
-If you want to see ESLint errors on *realtime* install this ESLint extension from `Dirk Baeumer` for VSCode.
-![vscode-extension](https://user-images.githubusercontent.com/43095489/111869830-5a294880-89ab-11eb-819d-3fbaea0adf3d.png)
-
-🌟 *ESLint error will show in the PROBLEMS tab and on the actual line. When you will close the file, errors won't show in the PROBLEMS tab from that file. So, be cautious you might forget about the ESLint error. Recommended is before making PR you can run the above command to check if you missed any ESLint error to fix.*
-![vscode-lint-problems](https://j.gifs.com/XLjYOv.gif)
   
 ### Deployment
 
