@@ -63,8 +63,12 @@ main {
 .rm-footer {
   width: 100%;
   position: auto;
-  background-color: #24262b !important;
+  background-color: #FFFFFF !important;
   bottom: 0rem;
+  display: flex;
+	flex-wrap: wrap;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
 .octocat {
@@ -74,18 +78,6 @@ main {
 }
 
 
-/* Footer */
-container{
-	max-width: 1170px;
-  background-color: #24262b !important;
-  
-	margin:auto;
-}
-.row{
-	display: flex;
-	flex-wrap: wrap;
-  margin-top: 20px;
-}
 ul{
 	list-style: none;
 }
@@ -96,46 +88,35 @@ ul{
 }
 .footer-col h4{
 	font-size: 18px;
-	color: #ffffff;
+	color: #000000;
 	text-transform: capitalize;
-	margin-bottom: 35px;
-	font-weight: 500;
+	margin-bottom: 15px;
+	font-weight: 550 !important;
 	position: relative;
-}
-.footer-col h4::before{
-	content: '';
-	position: absolute;
-	left:0;
-	bottom: -10px;
-	background-color: #e91e63;
-	height: 2px;
-	box-sizing: border-box;
-	width: 50px;
 }
 .footer-col ul li:not(:last-child){
 	margin-bottom: 10px;
 }
 .footer-col ul li a{
-	font-size: 16px;
+	font-size: 18px;
 	text-transform: capitalize;
-	color: #ffffff;
 	text-decoration: none;
-	font-weight: 300;
-	color: #bbbbbb;
+	font-weight: 600 !important;
+	color:  #828591;
 	display: block;
   margin-left: -40px  !important;
 }
 
 .footer-col .social-links a{
 	display: inline-block;
-	height: 40px;
-	width: 40px;
-	background-color: rgba(255,255,255,0.2);
+	height: 43px;
+	width: 43px;
+	background-color: gray;
 	margin:0 10px 10px 0;
 	text-align: center;
 	line-height: 40px;
-	border-radius: 50%;
-	color: #ffffff;
+	border-radius: 50%; 
+	color: #fff;
 	transition: all 0.5s ease;
 }
 .footer-col .social-links a:hover{
@@ -154,8 +135,6 @@ ul{
     width: 100%;
 }
 }
-
-/* FooterEnd */
 
 @media (min-width: 0) and (max-width: 992px) {
   .github-nav-link {
