@@ -52,7 +52,7 @@ const SubmitChoices = (props: {
               receiverIDs: Array<string>(pollCreatorEmailID),
               senderName: newVote.name,
             };
-            sendPollResponse(mailerArgs, token);
+            await sendPollResponse(mailerArgs, token);
           }
           Router.reload();
         } else if (submitChoiceResponse.statusCode === 400) {
