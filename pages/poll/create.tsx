@@ -12,8 +12,9 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
-import { InfoCircleFill } from "react-bootstrap-icons";
+import { InfoCircleFill, QuestionCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
+import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import Layout from "../../src/components/Layout";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { encrypt } from "../../src/helpers/helpers";
@@ -44,6 +45,43 @@ const Create = (): JSX.Element => {
     type: "",
     msg: "",
   });
+
+  const [tourRun, setTourRun] = useState<boolean>(false);
+
+  // Run automatically for first time users
+  if (typeof window !== "undefined") {
+    if (localStorage.visited !== "true") {
+      localStorage.setItem("visited", "true");
+      setTourRun(true);
+    }
+  }
+
+  const tourSteps: Step[] = [
+    {
+      disableBeacon: true,
+      target: "#formPlainTextTitle",
+      content: "Give your event the memorable title it deserves.",
+    },
+    {
+      target: "#formPlainTextDescription",
+      content:
+        "Add a description to let your invitees know what this is all about.",
+    },
+    {
+      target: ".rat-AvailableTimes_buttons",
+      content:
+        "Are you an early planner? Use these button to schedule in the future. (ps: Time travel powers not included)",
+    },
+    {
+      target: ".rat-Slider_component",
+      content:
+        "Click and drag to create a time slot. You can create more than one. These will be the choices that are generated in the poll",
+    },
+    {
+      target: ".create-poll-btn",
+      content: "Click here when you're all done to get a sharable link",
+    },
+  ];
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -136,8 +174,37 @@ const Create = (): JSX.Element => {
     }
   };
 
+  const handleStartTour = (): void => {
+    setTourRun(true);
+  };
+
+  const handleJoyrideCallback = (data: CallBackProps): void => {
+    const { status, type } = data;
+    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
+
+    if (finishedStatuses.includes(status) || type === "beacon") {
+      setTourRun(false);
+    }
+  };
+
   return (
     <Layout>
+      <Joyride
+        callback={handleJoyrideCallback}
+        steps={tourSteps}
+        run={tourRun}
+        continuous
+        showSkipButton
+        showProgress
+        debug={process.env.NODE_ENV === "development"}
+        spotlightClicks
+        styles={{
+          buttonClose: { visibility: "hidden" },
+          options: {
+            primaryColor: "#101010",
+          },
+        }}
+      />
       <Container className="rm-poll-container" fluid>
         <Row className="jumbo-row">
           <div className="jumbo-col-black col-sm-4">
@@ -174,6 +241,10 @@ const Create = (): JSX.Element => {
               >
                 <InfoCircleFill className="timezone-info-icon" />
               </OverlayTrigger>
+              <QuestionCircleFill
+                className="tour-start-icon"
+                onClick={handleStartTour}
+              />
             </Jumbotron>
           </div>
           <div className="col-sm-8">
@@ -191,17 +262,17 @@ const Create = (): JSX.Element => {
                 {!disabled ? (
                   `Create Poll`
                 ) : (
-                    <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className="rm-button-spinner"
-                      />
-                    </>
-                  )}
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="rm-button-spinner"
+                    />
+                  </>
+                )}
               </Button>
               <ResponseMessage
                 response={response}
