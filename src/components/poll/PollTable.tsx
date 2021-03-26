@@ -98,7 +98,11 @@ const PollTable = (props: {
         </tbody>
       </Table>
       {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-        <SubmitChoices newVote={newVote} pollID={pollID} />
+        <SubmitChoices
+          newVote={newVote}
+          pollID={pollID}
+          pollFromDB={pollFromDB}
+        />
       )}
       {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
         <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
