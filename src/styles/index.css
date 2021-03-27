@@ -12,6 +12,7 @@ main {
 
 .outer-container {
   margin-top: 2rem;
+  margin-bottom: 100px;
 }
 
 .inner-container {
@@ -61,13 +62,127 @@ main {
 
 .rm-footer {
   width: 100%;
-  position: fixed;
-  bottom: 2.8rem;
+  position: auto;
+  background-color: #FFFFFF !important;
+  bottom: 0rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
-.octocat {
-  position: absolute !important;
-  right: 2.7rem !important;
+.rm-footer ul{
+	list-style: none;
+}
+
+.right-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-col h4{
+	font-size: 18px;
+	color: #000000;
+	text-transform: capitalize;
+	margin-bottom: 15px;
+	font-weight: 550 !important;
+	position: relative;
+}
+
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+
+.footer-col ul li a{
+	font-size: 18px;
+	text-transform: capitalize;
+	text-decoration: none;
+	font-weight: 600 !important;
+	color:  #828591;
+	display: block;
+  margin-left: -40px  !important;
+}
+
+.footer-col ul li a:hover{
+  color: rgba(255, 128, 128, 0.575);
+}
+ 
+.left p{
+  font-size: 18px;
+	text-transform: capitalize;
+	text-decoration: none;
+	font-weight: 600 !important;
+	color:  #828591;
+	display: block;
+  margin-left: -40px  !important;
+}
+
+.footer-col .social-links a{
+	display: inline-block;
+	height: 43px;
+	width: 43px;
+	background-color: gray;
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%; 
+	color: #fff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+@media only screen and (max-width: 500px){
+  .rm-footer {
+    flex-direction: column;
+  }
+ .right{
+  padding:0 1rem;
+   }
+  .right-container{
+    flex-direction: column;
+  }
+  .left{
+    padding-left: 1rem;
+  }
+  .left li p{
+    padding-right: 0.70rem;
+  }
+  .footer-col{
+    margin-bottom: 1.8rem;
+  }
+     
+}
+
+
+@media(min-width:501px) and (max-width: 767px){
+  .rm-footer {
+    flex-direction: column;
+  }
+  .right{
+    padding:0 1.2rem;
+  }
+  .right-container{
+    flex-direction: column;
+  }
+  .left{
+    padding-left: 1.2rem;
+  }
+  .footer-col{
+    margin-bottom: 1.8rem;
+  }
+     
+}
+
+@media(min-width: 768px){
+  .right{
+    padding:0 2.5rem;
+ }   
+ .left li p{
+   padding-right: 1rem;
+ }
 }
 
 @media (min-width: 0) and (max-width: 992px) {
