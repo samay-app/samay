@@ -53,10 +53,20 @@ You will be able to access the API from http://localhost:5000
 ```bash
 $ npm run test
 ```
+If got an error related to NODE_ENV then, use
+
+```bash
+$ npm install -g win-node-env
+```
 
 ### Deployment
 
 In your .env, change the `NODE_ENV` to `production`. Launch a MongoDB Atlas instance and set the corresponding `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables in the .env. Set the `CORS_URL` to the domain pointing to RocketMeet-client. Make sure to add that domain to the 'Authorized domains' section in your Firebase project. Make sure the Firebase and email encryption variables are set and correct.
+
+## Heroku 
+ 
+You can deploy the app using Heroku 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Contributing
 
