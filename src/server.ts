@@ -4,7 +4,6 @@ import app from './app';
 
 const logger: Logger = pino({ level: logLevel });
 
-const port = process.env.PORT || 80;
 app
     .listen(port, () => {
         logger.info(`Server running on port: ${port}`);
