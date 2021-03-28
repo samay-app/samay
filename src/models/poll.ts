@@ -57,20 +57,19 @@ export interface HttpResponse {
   statusCode: number;
 }
 
-
 export interface PieObj {
-  [key : string] : {
-    start : number;
-    end : number;
-    voters : string[];
-  }
+  [key: string]: {
+    start: number;
+    end: number;
+    voters: string[];
+  };
 }
 export interface DataSetArgs {
-  label : string;
-  data : number[];
-  backgroundColor :string[];
+  label: string;
+  data: number[];
+  backgroundColor: string[];
 }
 export interface ChartDataArgs {
-  labels:string[] ;
-  datasets : DataSetArgs[] ;
+  labels: string[];
+  datasets: DataSetArgs[];
 }

@@ -360,7 +360,7 @@ h4 {
 }
 
 .timezone-info-icon,
-.tour-start-icon {        
+.tour-start-icon {
   width: 1.3rem;
   height: 1.3rem;
   color: #e0e0e0;
@@ -1121,7 +1121,6 @@ h4 {
   color: rgb(14, 10, 10) !important;
 }
 
-
 .chart_button {
   width: 70px;
   height: 45px;
@@ -1145,3 +1144,7 @@ h4 {
   outline: none;
 }
 
+.chart_button_icon {
+  width: 40px;
+  height: 30px;
+}

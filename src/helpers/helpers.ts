@@ -1,10 +1,8 @@
 import crypto from "crypto";
-// import { Choice } from "../models/poll";
 import dayjs from "dayjs";
 import {
   Choice,
   RocketMeetPollFromDB,
-  Vote,
   ChoiceFromDB,
   VoteFromDB,
   PieObj,
@@ -47,7 +45,7 @@ export const decrypt = (text: string): string => {
   return decrypted.toString();
 };
 
-export const ChartData = (pollFromDB: RocketMeetPollFromDB) => {
+export const ChartData = (pollFromDB: RocketMeetPollFromDB): ChartDataArgs => {
   const obj: PieObj = {};
   const arr = pollFromDB.choices;
 
@@ -63,49 +61,57 @@ export const ChartData = (pollFromDB: RocketMeetPollFromDB) => {
   if (votesArr) {
     votesArr.forEach((vote: VoteFromDB) => {
       vote.choices.forEach((choice: ChoiceFromDB) => {
-        obj[choice._id]["voters"].push(vote.name);
+        obj[choice._id].voters.push(vote.name);
       });
     });
   }
 
   const objectKeySet = Object.keys(obj);
-  const getRandomRgb = () => {
-    let num = Math.round(0xffffff * Math.random());
-    let r = num >> 16;
-    let g = (num >> 5) & 255;
-    let b = num & 255;
-    return "rgba(" + r + ", " + g + ", " + b + ", " + "0.6)";
+
+  const getRandom = (): number => {
+    let max = 255;
+    let min = 10;
+    return min + Math.floor(Math.random() * (max - min));
+  };
+
+  const getColor = (): string => {
+    let opacity = 0.6;
+    let first = getRandom();
+    let second = getRandom();
+    let third = getRandom();
+    let result = "";
+
+    result = `rgba(${first},${second},${third},${opacity})`;
+
+    return result;
   };
 
   const labelsForChart = objectKeySet.map((key: string) => {
     const option = obj[key];
 
-    let label =
-      dayjs(option.start).format("D") +
-      "-" +
-      dayjs(option.start).format("MMM") +
-      " " +
-      dayjs(option.start).format("LT");
+    let label = `${dayjs(option.start).format("D")}-${dayjs(
+      option.start
+    ).format("MMM")} ${dayjs(option.start).format("LT")}`;
 
-    label =
-      label.length == 13
-        ? "    " + label
-        : label.length == 14
-        ? "  " + label
-        : label;
+    let labelSize = label.length;
+    if (labelSize === 13) {
+      label = `    ${label}`;
+    } else if (labelSize === 14) {
+      label = `  ${label}`;
+    }
     return label;
   });
 
-  const Chart_Data: ChartDataArgs = {
+  const chartData: ChartDataArgs = {
     labels: labelsForChart,
     datasets: [
       {
         label: "Votes",
         data: objectKeySet.map((key: string) => obj[key].voters.length),
-        backgroundColor: objectKeySet.map(() => getRandomRgb()),
+        backgroundColor: objectKeySet.map((): string => getColor()),
       },
     ],
   };
 
-  return Chart_Data;
+  return chartData;
 };
