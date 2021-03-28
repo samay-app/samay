@@ -1,5 +1,15 @@
 import crypto from "crypto";
-import { Choice } from "../models/poll";
+// import { Choice } from "../models/poll";
+import dayjs from "dayjs";
+import {
+  Choice,
+  RocketMeetPollFromDB,
+  Vote,
+  ChoiceFromDB,
+  VoteFromDB,
+  PieObj,
+  ChartDataArgs,
+} from "../models/poll";
 
 export const isChoicePresentInPollChoices = (
   choiceToSearch: Choice,
@@ -35,4 +45,67 @@ export const decrypt = (text: string): string => {
   let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);
   return decrypted.toString();
+};
+
+export const ChartData = (pollFromDB: RocketMeetPollFromDB) => {
+  const obj: PieObj = {};
+  const arr = pollFromDB.choices;
+
+  arr.forEach((el: ChoiceFromDB) => {
+    obj[el._id] = {
+      start: el.start,
+      end: el.end,
+      voters: [],
+    };
+  });
+
+  const votesArr = pollFromDB?.votes;
+  if (votesArr) {
+    votesArr.forEach((vote: VoteFromDB) => {
+      vote.choices.forEach((choice: ChoiceFromDB) => {
+        obj[choice._id]["voters"].push(vote.name);
+      });
+    });
+  }
+
+  const objectKeySet = Object.keys(obj);
+  const getRandomRgb = () => {
+    let num = Math.round(0xffffff * Math.random());
+    let r = num >> 16;
+    let g = (num >> 5) & 255;
+    let b = num & 255;
+    return "rgba(" + r + ", " + g + ", " + b + ", " + "0.6)";
+  };
+
+  const labelsForChart = objectKeySet.map((key: string) => {
+    const option = obj[key];
+
+    let label =
+      dayjs(option.start).format("D") +
+      "-" +
+      dayjs(option.start).format("MMM") +
+      " " +
+      dayjs(option.start).format("LT");
+
+    label =
+      label.length == 13
+        ? "    " + label
+        : label.length == 14
+        ? "  " + label
+        : label;
+    return label;
+  });
+
+  const Chart_Data: ChartDataArgs = {
+    labels: labelsForChart,
+    datasets: [
+      {
+        label: "Votes",
+        data: objectKeySet.map((key: string) => obj[key].voters.length),
+        backgroundColor: objectKeySet.map(() => getRandomRgb()),
+      },
+    ],
+  };
+
+  return Chart_Data;
 };

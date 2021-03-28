@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch, useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { Check, StarFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
@@ -8,8 +8,14 @@ import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import SubmitChoices from "./SubmitChoices";
 import SubmitFinalChoice from "./SubmitFinalChoice";
-import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
-import { isChoicePresentInPollChoices } from "../../helpers/helpers";
+import ChartModal from "./ChartModal";
+import { isChoicePresentInPollChoices} from "../../helpers/helpers";
+
+import {
+  Choice,
+  RocketMeetPollFromDB,
+  Vote,
+} from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
@@ -35,8 +41,10 @@ const PollTable = (props: {
     pollCreatorEmailID,
     loggedInUserEmailID,
   } = props;
+
   return (
     <div className="poll-info-div">
+      <ChartModal pollFromDB={pollFromDB} />
       <Table responsive className="poll-table">
         <thead>
           <tr className="poll-table-top-row">
@@ -112,3 +120,4 @@ const PollTable = (props: {
 };
 
 export default PollTable;
+

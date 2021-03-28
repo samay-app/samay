@@ -56,3 +56,21 @@ export interface HttpResponse {
   data: any;
   statusCode: number;
 }
+
+
+export interface PieObj {
+  [key : string] : {
+    start : number;
+    end : number;
+    voters : string[];
+  }
+}
+export interface DataSetArgs {
+  label : string;
+  data : number[];
+  backgroundColor :string[];
+}
+export interface ChartDataArgs {
+  labels:string[] ;
+  datasets : DataSetArgs[] ;
+}

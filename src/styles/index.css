@@ -359,7 +359,8 @@ h4 {
   border-bottom: 3px solid #d3d3d3 !important;
 }
 
-.timezone-info-icon, .tour-start-icon {
+.timezone-info-icon,
+.tour-start-icon {        
   width: 1.3rem;
   height: 1.3rem;
   color: #e0e0e0;
@@ -375,7 +376,8 @@ h4 {
     font-size: 1.5rem !important;
   }
 
-  .timezone-info-icon, .tour-start-icon {
+  .timezone-info-icon,
+  .tour-start-icon {
     width: 1rem;
     height: 1rem;
     margin: 1rem 0.125rem 0rem 0.125rem;
@@ -1113,3 +1115,33 @@ h4 {
 .rm-button-spinner {
   vertical-align: unset !important;
 }
+
+.special_modal .modal-content {
+  background-color: #fff !important;
+  color: rgb(14, 10, 10) !important;
+}
+
+
+.chart_button {
+  width: 70px;
+  height: 45px;
+  text-transform: uppercase;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.chart_button:hover {
+  background-color: #eef8f3;
+  box-shadow: 0px 10px 10px rgba(28, 39, 35, 0.4);
+  color: #fff;
+}
+
+.chart_button:focus {
+  outline: none;
+}
+
