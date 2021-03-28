@@ -9,22 +9,6 @@
 
 ## [Under active development]
 
-## Table of contents
-
-- [Community](#community)
-- [API Documentation](#api-documentation)
-- [Getting Started](#getting-started)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Setup](#setup)
-  - [Development](#development)
-  - [Testing](#test)
-  - [Production](#production)
-- [Deployment](#deployment)
-  - [Deploy with vercel](#vercel)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Community
 
 Come say hello at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
