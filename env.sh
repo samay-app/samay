@@ -42,7 +42,7 @@ do
     then
         hold=0
         /bin/echo -E $output >> .env
-        output="$word"
+        output=$(echo $word | tr '[a-z]' '[A-Z]')
         continue
     fi
 
