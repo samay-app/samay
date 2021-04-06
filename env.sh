@@ -23,8 +23,8 @@ fi
 
 content=$(cat $1)
 alter=0
-output=""
 
+output=""
 for word in $content
 do
     word=$(echo $word | tr -d '"')
@@ -37,8 +37,9 @@ do
         then
             alter=0
             equals="="
-            nl="\n"
-            output=$output$equals$word$nl
+            output=$output$equals$word
+            echo $output >> .env
+            output=""
         else
             alter=1
             word=$(echo $word | tr '[a-z]' '[A-Z]')
@@ -46,5 +47,3 @@ do
         fi
     fi
 done
-
-echo $output > .env
