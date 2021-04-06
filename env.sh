@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This is a script that takes a .json file and converts it into
 # .env file. The .json file can be of the format,
@@ -15,7 +15,6 @@ usage() {
     exit 1
 }
 
-echo $#
 if [ $# -ne 1 ]
 then
     usage
@@ -23,15 +22,37 @@ fi
 
 content=$(cat $1)
 alter=0
-
+hold=0
 output=""
+
 for word in $content
 do
     word=$(echo $word | tr -d '"')
     word=$(echo $word | tr -d ':')
     word=$(echo $word | tr -d ',')
     
-    if [ "$word" != "}" -a "$word" != "{" ]    
+    if [ "$word" = "-----BEGIN" ]
+    then
+        hold=1
+        equals="="
+        output=$output$equals
+    fi
+
+    if [ "$word" = "client_email" ]
+    then
+        hold=0
+        /bin/echo -E $output >> .env
+        output="$word"
+        continue
+    fi
+
+    if [ $hold -eq 1 ]
+    then
+        space=" "
+        output=$output$space$word
+    fi
+    
+    if [ "$word" != "}" -a "$word" != "{" -a $hold -eq 0 ]    
     then
         if [ $alter -eq 1 ]
         then
