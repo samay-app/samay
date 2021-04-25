@@ -98,7 +98,7 @@ const SubmitChoices = (props: {
   return (
     <div>
       <Button
-        className="rm-primary-button-small mark-options-btn"
+        className="rm-primary-button mark-options-btn"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}

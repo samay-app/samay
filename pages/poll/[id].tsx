@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Row, Container, Jumbotron } from "react-bootstrap";
-import { ChevronDown } from "react-bootstrap-icons";
+import { Col, Row, Container, Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -41,26 +40,31 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Container className="rm-poll-container" fluid>
+      <Container>
         <Row className="jumbo-row">
-          <div className="jumbo-col-black col-sm-4">
+          <Col className="jumbo-col-black">
             <Jumbotron className="poll-info">
-              <PollInfo poll={pollFromDB} />
-              {loggedInUserEmailID === pollCreatorEmailID && (
-                <>
-                  <ShareInvite
-                    pollTitle={pollFromDB.title}
-                    pollID={pollID}
-                    finalChoice={pollFromDB.finalChoice}
-                  />
-                  <div className="rm-chevron-down-div">
-                    <ChevronDown className="rm-chevron-down" />
-                  </div>
-                </>
-              )}
+              <Row>
+                <Col sm>
+                  <PollInfo poll={pollFromDB} />
+                </Col>
+                <Col sm>
+                  {loggedInUserEmailID === pollCreatorEmailID && (
+                    <>
+                      <ShareInvite
+                        pollTitle={pollFromDB.title}
+                        pollID={pollID}
+                        finalChoice={pollFromDB.finalChoice}
+                      />
+                    </>
+                  )}
+                </Col>
+              </Row>
             </Jumbotron>
-          </div>
-          <div className="col-sm-8">
+          </Col>
+        </Row>
+        <Row className="jumbo-row">
+          <Col className="jumbo-col">
             <Jumbotron className="poll-table-jumbo">
               <PollTable
                 pollFromDB={pollFromDB}
@@ -74,7 +78,7 @@ const Poll = (props: {
                 loggedInUserEmailID={loggedInUserEmailID}
               />
             </Jumbotron>
-          </div>
+          </Col>
         </Row>
       </Container>
     </Layout>

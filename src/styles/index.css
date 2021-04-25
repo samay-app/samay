@@ -11,10 +11,11 @@ main {
 }
 
 .rm-navbar {
-  margin-top: 1vh;
+  margin-top: 0.5rem;
   background-color: #ffffff;
   font-family: "Lato", sans-serif;
   color: #101010;
+  margin-bottom: 0.5rem;
 }
 
 .rm-nav-hamburger {
@@ -41,12 +42,26 @@ main {
 }
 
 .rm-footer {
-  margin-top: 5rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border-top: 0.1rem solid #eeeeee;
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   font-family: "Lato", sans-serif;
+}
+
+.footer-text {
+  display: block;
 }
 
 .rm-footer ul {
   list-style: none;
+}
+
+.footer-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .footer-col h6 {
@@ -101,6 +116,7 @@ main {
 @media only screen and (max-width: 500px) {
   .rm-footer {
     flex-direction: column;
+    margin-bottom: 0;
   }
   .footer-col {
     margin-bottom: 1.8rem;
@@ -110,6 +126,7 @@ main {
 @media (min-width: 501px) and (max-width: 767px) {
   .rm-footer {
     flex-direction: column;
+    margin-bottom: 0;
   }
   .footer-col {
     margin-bottom: 1.8rem;
@@ -149,7 +166,7 @@ a {
 .hero-desc {
   font-weight: 400 !important;
   font-size: 1.3rem !important;
-  color: #9f9f9f;
+  color: #828282;
 }
 
 .hero-buttons {
@@ -213,7 +230,7 @@ a {
 
 .rm-primary-button {
   background-color: #000000 !important;
-  transition: 0.3s;
+  transition: 0.3s !important;
   font-weight: 600 !important;
   font-family: "Lato", sans-serif;
   font-size: 1rem !important;
@@ -223,7 +240,8 @@ a {
 }
 
 .rm-primary-button:hover {
-  background-color: #3a3a3a !important;
+  box-shadow: 0px 15px 20px rgba(216, 216, 216, 0.4);
+  transform: translateY(-2px);
   transition: 0.3s;
 }
 
@@ -234,7 +252,7 @@ a {
 
 .rm-secondary-button {
   background-color: #ffffff !important;
-  transition: 0.3s;
+  transition: 0.3s !important;
   font-weight: 600 !important;
   color: #000000 !important;
   font-family: "Lato", sans-serif;
@@ -246,6 +264,7 @@ a {
 
 .rm-secondary-button:hover {
   box-shadow: 0px 15px 20px rgba(216, 216, 216, 0.4);
+  transform: translateY(-2px);
   transition: 0.3s;
 }
 
@@ -256,7 +275,7 @@ a {
 
 .rm-primary-button-small {
   background-color: #000000 !important;
-  transition: 0.3s;
+  transition: 0.3s !important;
   font-weight: 600 !important;
   font-family: "Lato", sans-serif;
   font-size: 1rem !important;
@@ -266,7 +285,8 @@ a {
 }
 
 .rm-primary-button-small:hover {
-  background-color: #3a3a3a !important;
+  box-shadow: 0px 15px 20px rgba(216, 216, 216, 0.4);
+  transform: translateY(-2px);
   transition: 0.3s;
 }
 
@@ -321,32 +341,27 @@ h4 {
   font-size: 1.5rem !important;
 }
 
-.rm-poll-container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
 .jumbo-row {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
 
 .jumbo-col-black {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
   background-color: #101010 !important;
-  min-height: 100vh !important;
   flex-grow: 1 !important;
 }
 
 .jumbo-col {
   margin-bottom: 2rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  flex-grow: 1 !important;
 }
 
 .poll-create {
   background-color: #101010 !important;
   color: #ffffff;
-  padding: 3rem !important;
+  padding: 2rem 2rem 2rem 2rem !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -354,7 +369,7 @@ h4 {
 .poll-timeslot-jumbo {
   background-color: #ffffff !important;
   color: #000000;
-  padding: 3rem !important;
+  padding: 2rem 0rem 0rem 0rem !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -364,34 +379,26 @@ h4 {
   float: right;
 }
 
-.poll-create-content {
-  padding-left: 2rem;
-  padding-right: 3rem;
-}
-
 @media (min-width: 0) and (max-width: 576px) {
-  .jumbo-col-black {
-    flex-grow: unset !important;
-    min-height: unset !important;
-    height: auto !important;
-  }
-
   .jumbo-col {
     margin-bottom: 0 !important;
+  }
+
+  .jumbo-col-black {
+    margin-bottom: 1rem !important;
   }
 
   .poll-timeslot-jumbo {
     padding: 0 !important;
   }
 
+  .poll-create {
+    padding: 2rem !important;
+  }
+
   .create-poll-btn {
     float: none !important;
     margin-bottom: 1rem !important;
-  }
-
-  .poll-create-content {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 
@@ -425,12 +432,24 @@ h4 {
   border-bottom: 3px solid #d3d3d3 !important;
 }
 
-.timezone-info-icon,
+.timezone-info-icon {
+  color: #e0e0e0;
+  margin: 2rem 0.25rem 2rem 0rem;
+}
+
+.timezone-info-icon-create {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: #e0e0e0;
+  margin: 2rem 0.25rem 2rem 0rem;
+}
+
 .tour-start-icon {
   width: 1.3rem;
   height: 1.3rem;
   color: #e0e0e0;
-  margin: 2rem 0.25rem 0rem 0.25rem;
+  margin: 2rem 0.25rem 2rem 0.25rem;
+  cursor: pointer;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -442,11 +461,22 @@ h4 {
     font-size: 1.5rem !important;
   }
 
-  .timezone-info-icon,
+  .timezone-info-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0rem !important;
+  }
+
+  .timezone-info-icon-create {
+    width: 1rem;
+    height: 1rem;
+    margin: 1rem 0.125rem 0rem 0rem;
+  }
+
   .tour-start-icon {
     width: 1rem;
     height: 1rem;
-    margin: 1rem 0.125rem 0rem 0.125rem;
+    margin: 1rem 0.125rem 0rem 0.5rem;
   }
 }
 
@@ -499,6 +529,7 @@ h4 {
 }
 
 .rm-badge-dash {
+  font-size: 0.6rem !important;
   padding-top: 0.6em !important;
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
@@ -507,6 +538,7 @@ h4 {
 }
 
 .rm-badge-poll {
+  font-size: 0.6rem !important;
   padding-top: 0.6em !important;
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
@@ -522,8 +554,8 @@ h4 {
 
 .poll-info {
   background-color: #101010 !important;
-  color: #f1f1f1;
-  padding: 3rem !important;
+  color: #e0e0e0;
+  padding: 2.5rem 2rem 2rem 2rem !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -531,64 +563,48 @@ h4 {
 .poll-table-jumbo {
   background-color: #ffffff !important;
   color: #000000;
-  padding: 3rem !important;
+  padding: 2rem 0rem 0rem 0rem !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
 }
 
 .poll-info-content {
-  padding-left: 2rem;
-  padding-right: 3rem;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .poll-shareinvite-content {
   margin-top: 3rem;
-  padding-top: 2rem;
   padding-left: 2rem;
   padding-right: 3rem;
-  border-top: 1px solid #818181;
+  border-left: 0.1rem solid #818181;
 }
 
 .poll-info-title {
-  font-size: 3vw;
-  font-weight: 700;
+  font-size: 3rem;
   display: block;
   line-height: 3.5rem;
   margin-top: 1rem;
 }
 
 .poll-info-desc {
-  font-size: 1.4vw;
+  font-size: 1.5rem;
   display: block;
+  margin-bottom: 2rem;
 }
 
 .poll-info-user {
-  padding-top: 2rem;
-  font-size: 1vw;
+  font-size: 1rem;
   display: block;
-}
-
-.poll-info-date {
-  display: block;
-  font-size: 1vw;
 }
 
 .poll-info-final-date {
-  font-size: 1vw;
-  margin-top: 2rem;
+  font-size: 1rem;
   display: block;
 }
 
 .poll-info-final-date-star {
   color: #ffbf00;
-}
-
-.rm-chevron-down-div {
-  text-align: center;
-}
-
-.rm-chevron-down {
-  display: none;
 }
 
 .card-created {
@@ -602,7 +618,7 @@ h4 {
   }
 
   .poll-info {
-    padding: 2rem !important;
+    padding: 1.5rem 1rem 1rem 1rem !important;
   }
 
   .poll-info-content {
@@ -611,43 +627,39 @@ h4 {
   }
 
   .poll-shareinvite-content {
+    margin-top: 2rem;
     padding-left: 0;
     padding-right: 0;
+    padding-top: 1rem;
+    border-left: 0rem;
+    border-top: 0.1rem solid #818181;
   }
 
   .poll-info-title {
-    font-size: 10vw;
-    line-height: 2.5rem;
+    font-size: 2rem;
+    line-height: 1.8rem;
   }
 
   .poll-info-desc {
-    font-size: 5vw;
+    font-size: 1rem;
     margin-top: 0.5rem;
+    margin-bottom: 1.4rem;
   }
 
   .poll-info-user {
-    font-size: 4vw;
-  }
-
-  .poll-info-date {
-    font-size: 4vw;
+    font-size: 0.8rem;
   }
 
   .poll-info-final-date {
-    font-size: 4vw;
-  }
-
-  .rm-chevron-down {
-    display: unset;
-    font-size: 4vw;
+    font-size: 0.8rem;
   }
 
   .rm-badge-dash {
-    font-size: 2.5vw !important;
+    font-size: 0.5rem !important;
   }
 
   .rm-badge-poll {
-    font-size: 2.5vw !important;
+    font-size: 0.5rem !important;
   }
 
   .card-created {
@@ -727,7 +739,6 @@ h4 {
   display: block;
   text-align: center;
   font-size: 1rem;
-  font-weight: 500;
   margin-bottom: -0.2em;
 }
 
@@ -735,7 +746,6 @@ h4 {
   display: block;
   text-align: center;
   font-size: 1rem;
-  font-weight: 500;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -1103,32 +1113,33 @@ h4 {
 }
 
 .share-label {
-  font-size: 1vw !important;
+  font-size: 1rem !important;
+  font-weight: 700;
 }
 
 .share-textbox {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
-  border: 2px solid #6c757d !important;
+  border: 0.1rem solid #6c757d !important;
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
-  font-size: 1vw !important;
+  font-size: 1rem !important;
 }
 
 .share-textbox:focus {
-  border: 2px solid #a9aaac !important;
+  border: 0.1rem solid #a9aaac !important;
 }
 
 .invite-textbox {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
-  border: 2px solid #6c757d !important;
+  border: 0.1rem solid #6c757d !important;
   border-radius: 1rem !important;
-  font-size: 1vw !important;
+  font-size: 1rem !important;
 }
 
 .invite-textbox:focus {
-  border: 2px solid #a9aaac !important;
+  border: 0.1rem solid #a9aaac !important;
 }
 
 .invite-textbox::placeholder {
@@ -1136,11 +1147,11 @@ h4 {
 }
 
 .copy-btn {
-  font-size: 1vw !important;
+  font-size: 1rem !important;
 }
 
 .send-btn {
-  font-size: 1vw !important;
+  font-size: 1rem !important;
 }
 
 .index-create-button {
@@ -1149,27 +1160,27 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .share-textbox {
-    font-size: 4vw !important;
+    font-size: 0.8rem !important;
   }
 
   .invite-textbox {
-    font-size: 4vw !important;
+    font-size: 0.8rem !important;
   }
 
   .share-label {
-    font-size: 4vw !important;
+    font-size: 0.8rem !important;
   }
 
   .copy-btn {
-    font-size: 4vw !important;
+    font-size: 0.8rem !important;
   }
 
   .send-btn {
-    font-size: 4vw !important;
+    font-size: 0.8rem !important;
   }
 
   .index-create-button {
-    font-size: 5vw !important;
+    font-size: 1rem !important;
     width: unset !important;
   }
 }
@@ -1180,4 +1191,33 @@ h4 {
 
 .rm-button-spinner {
   vertical-align: unset !important;
+}
+
+.four-o-four {
+  margin-top: 10rem !important;
+  font-family: "Lato", sans-serif;
+}
+
+.four-o-four span {
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+.four-o-four p {
+  font-size: 2rem;
+}
+
+@media (min-width: 0) and (max-width: 576px) {
+  .four-o-four {
+    margin-top: 2rem !important;
+  }
+
+  .four-o-four span {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  .four-o-four p {
+    font-size: 0.9rem;
+  }
 }

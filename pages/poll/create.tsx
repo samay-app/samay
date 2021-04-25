@@ -15,6 +15,7 @@ import {
 import { InfoCircleFill, QuestionCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
+import dayjs from "dayjs";
 import Layout from "../../src/components/Layout";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { encrypt } from "../../src/helpers/helpers";
@@ -70,16 +71,16 @@ const Create = (): JSX.Element => {
     {
       target: ".rat-AvailableTimes_buttons",
       content:
-        "Are you an early planner? Use these button to schedule in the future. (ps: Time travel powers not included)",
+        "Are you an early planner? Use these button to schedule further in future. (ps: Time travel powers not included)",
     },
     {
       target: ".rat-Slider_component",
       content:
-        "Click and drag to create a time slot. You can create more than one. These will be the choices that are generated in the poll",
+        "What are the options? Mark your availability by creating time slots. These will be the choices that are generated in the poll.",
     },
     {
       target: ".create-poll-btn",
-      content: "Click here when you're all done to get a sharable link",
+      content: "Click here when you're all done!",
     },
   ];
 
@@ -205,30 +206,26 @@ const Create = (): JSX.Element => {
           },
         }}
       />
-      <Container className="rm-poll-container" fluid>
+      <Container>
         <Row className="jumbo-row">
-          <div className="jumbo-col-black col-sm-4">
+          <Col className="jumbo-col-black">
             <Jumbotron className="poll-create">
               <Form.Group as={Row} controlId="formPlainTextTitle">
-                <Col>
-                  <Form.Control
-                    className="rm-form-text"
-                    type="text"
-                    placeholder="Enter the title *"
-                    required
-                    onChange={handleTitleChange}
-                  />
-                </Col>
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Enter the title"
+                  required
+                  onChange={handleTitleChange}
+                />
               </Form.Group>
               <Form.Group as={Row} controlId="formPlainTextDescription">
-                <Col>
-                  <Form.Control
-                    className="rm-form-desc"
-                    type="text"
-                    placeholder="Enter the description"
-                    onChange={handleDescriptionChange}
-                  />
-                </Col>
+                <Form.Control
+                  className="rm-form-desc"
+                  type="text"
+                  placeholder="Enter the description"
+                  onChange={handleDescriptionChange}
+                />
               </Form.Group>
               <OverlayTrigger
                 placement="right"
@@ -239,20 +236,27 @@ const Create = (): JSX.Element => {
                   </Tooltip>
                 }
               >
-                <InfoCircleFill className="timezone-info-icon" />
+                <InfoCircleFill className="timezone-info-icon-create" />
               </OverlayTrigger>
-              <QuestionCircleFill
-                className="tour-start-icon"
-                onClick={handleStartTour}
-              />
+              <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip id="tour-start-info">Start tour!</Tooltip>}
+              >
+                <QuestionCircleFill
+                  className="tour-start-icon"
+                  onClick={handleStartTour}
+                />
+              </OverlayTrigger>
             </Jumbotron>
-          </div>
-          <div className="col-sm-8">
+          </Col>
+        </Row>
+        <Row className="jumbo-row">
+          <Col className="jumbo-col">
             <Jumbotron className="poll-timeslot-jumbo">
               <AvailableTimes
-                weekStartsOn="monday"
+                weekStartsOn={dayjs().format("dddd").toLowerCase()}
                 onChange={onChoicesChange}
-                height="65vh"
+                height="42rem"
               />
               <Button
                 className="rm-primary-button create-poll-btn"
@@ -260,7 +264,7 @@ const Create = (): JSX.Element => {
                 disabled={disabled}
               >
                 {!disabled ? (
-                  `Create Poll`
+                  `Create poll`
                 ) : (
                   <>
                     <Spinner
@@ -281,7 +285,7 @@ const Create = (): JSX.Element => {
                 }
               />
             </Jumbotron>
-          </div>
+          </Col>
         </Row>
       </Container>
     </Layout>
