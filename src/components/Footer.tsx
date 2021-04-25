@@ -52,6 +52,24 @@ const Footer = (): JSX.Element => {
           <h6>PAGES</h6>
           <ul>
             <li>
+              <a
+                href="https://rocketmeet.gitbook.io/rocketmeet/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Product Docs
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://rocketmeet.gitbook.io/rocketmeet/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                API Docs
+              </a>
+            </li>
+            <li>
               <a href="/team" target="_blank" rel="noreferrer">
                 Team
               </a>
@@ -63,33 +81,6 @@ const Footer = (): JSX.Element => {
                 rel="noreferrer"
               >
                 Roadmap
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://gitter.im/RocketMeet/community"
-                rel="noreferrer"
-                target="_blank"
-              >
-                Chatroom
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CODE_OF_CONDUCT.md"
-                rel="noreferrer"
-                target="_blank"
-              >
-                Code of Conduct
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE"
-                rel="noreferrer"
-                target="_blank"
-              >
-                License
               </a>
             </li>
           </ul>
@@ -146,6 +137,24 @@ const Footer = (): JSX.Element => {
             <li>
               <a href="/terms-of-service" target="_blank" rel="noreferrer">
                 Terms of Service
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CODE_OF_CONDUCT.md"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Code of Conduct
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE"
+                rel="noreferrer"
+                target="_blank"
+              >
+                License
               </a>
             </li>
           </ul>

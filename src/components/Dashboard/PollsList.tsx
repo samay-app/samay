@@ -9,7 +9,6 @@ import { encrypt } from "../../helpers/helpers";
 import { RocketMeetPollFromDB } from "../../models/poll";
 import { RootState } from "../../store/store";
 import ResponseMessage from "../ResponseMessage";
-import ComingUp from "./ComingUp";
 import Polls from "./Polls";
 
 dayjs.extend(localizedFormat);
@@ -97,12 +96,6 @@ const PollsList = (): JSX.Element => {
             ) : (
               <span>{message}</span>
             )}
-          </div>
-        </Col>
-        <Col className="col-xl-4 col-lg-4 recents">
-          <h3 className="dash-coming-up">Coming up</h3>
-          <div className="border-left recent-div">
-            <ComingUp pollList={pollList} />
           </div>
         </Col>
       </Row>

@@ -8,7 +8,7 @@ const Greetings = (): JSX.Element => {
     (state: RootState) => state.authReducer.displayName
   );
   return (
-    <Row className="inner-container greetings">
+    <Row className="greetings">
       <div className="col-sm-8">
         <span className="profile-user">
           Welcome {displayName.split(" ")[0]}!
