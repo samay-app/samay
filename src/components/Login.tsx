@@ -7,7 +7,8 @@ import { auth, firebase } from "../utils/firebase";
 import { login, logout } from "../store/auth/action";
 import ResponseMessage from "./ResponseMessage";
 
-const Login = (): JSX.Element => {
+const Login = (props: { btnStyle: string }): JSX.Element => {
+  const { btnStyle } = props;
   const isLoggedIn = useSelector(
     (state: RootState) => state.authReducer.isLoggedIn
   );
@@ -53,19 +54,13 @@ const Login = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <>
       {!isLoggedIn ? (
-        <Button
-          className="rm-primary-button-outline-small"
-          onClick={googleLogin}
-        >
+        <Button className={btnStyle} onClick={googleLogin}>
           Log in with Google
         </Button>
       ) : (
-        <Button
-          className="rm-primary-button-outline-small"
-          onClick={googleLogout}
-        >
+        <Button className={btnStyle} onClick={googleLogout}>
           Logout
         </Button>
       )}
@@ -75,7 +70,7 @@ const Login = (): JSX.Element => {
           setResponse({ status: false, type: "null", msg: "" })
         }
       />
-    </div>
+    </>
   );
 };
 

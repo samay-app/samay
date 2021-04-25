@@ -32,12 +32,7 @@ const NavBar = (): JSX.Element => {
           ) : (
             " "
           )}
-          <Link href="https://github.com/RocketMeet" passHref>
-            <Nav.Link className="github-nav-link">
-              Check us out on GitHub!
-            </Nav.Link>
-          </Link>
-          <Login />
+          <Login btnStyle="rm-primary-button-small" />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

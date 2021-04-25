@@ -1,26 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
 html,
 body {
   padding: 0;
   margin: 0;
-  max-width: 100vw;
   overflow-x: hidden;
-  font-family: "IBM Plex Sans", sans-serif;
   height: 100%;
 }
 
 * {
   box-sizing: border-box;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-thumb {
-  background: #efefef;
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #cccccc;
 }
