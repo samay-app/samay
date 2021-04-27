@@ -3,18 +3,15 @@ import { Table } from "react-bootstrap";
 import { Check, StarFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { nanoid } from "nanoid";
 import MarkChoices from "./MarkChoices";
 import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import SubmitChoices from "./SubmitChoices";
 import SubmitFinalChoice from "./SubmitFinalChoice";
 import ChartModal from "./ChartModal";
-import { isChoicePresentInPollChoices} from "../../helpers/helpers";
-import {
-  Choice,
-  RocketMeetPollFromDB,
-  Vote,
-} from "../../models/poll";
+import { isChoicePresentInPollChoices } from "../../helpers/helpers";
+import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
@@ -81,8 +78,8 @@ const PollTable = (props: {
               setFinalChoice={setFinalChoice}
             />
           )}
-          {pollFromDB.votes?.map((vote: Vote, idx: number) => (
-            <tr key={idx}>
+          {pollFromDB.votes?.map((vote: Vote) => (
+            <tr key={nanoid()}>
               <td className="poll-table-participants">{vote.name}</td>
               {sortedChoices.map((choice) => (
                 <td
@@ -119,4 +116,3 @@ const PollTable = (props: {
 };
 
 export default PollTable;
-
