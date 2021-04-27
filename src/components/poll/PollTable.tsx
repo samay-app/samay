@@ -10,7 +10,6 @@ import SubmitChoices from "./SubmitChoices";
 import SubmitFinalChoice from "./SubmitFinalChoice";
 import ChartModal from "./ChartModal";
 import { isChoicePresentInPollChoices} from "../../helpers/helpers";
-
 import {
   Choice,
   RocketMeetPollFromDB,

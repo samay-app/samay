@@ -43,7 +43,7 @@ module.exports = {
       "error",
       { functions: false, classes: false, variables: true },
     ],
-    "no-underscore-dangle": ["error", { "allow": ["_id", "__persistor"] }]
+    "no-underscore-dangle": ["error", { "allow": ["_id", "__persistor", "_meta"] }]
 
   },
   globals: {

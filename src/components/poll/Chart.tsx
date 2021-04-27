@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import { ChartDataArgs } from "../../models/poll";
+import { ChartDataArgs, ChartTooltipItem } from "../../models/poll";
 
 const Chart = (props: { ChartData: ChartDataArgs }): JSX.Element => {
   const { ChartData } = props;
@@ -10,7 +10,6 @@ const Chart = (props: { ChartData: ChartDataArgs }): JSX.Element => {
   const [fontPosition, setFontPosition] = useState(
     window.innerWidth < 500 ? "bottom" : "right"
   );
-
   useEffect(() => {
     const handleResize = (): void => {
       let size = 12;
@@ -32,7 +31,7 @@ const Chart = (props: { ChartData: ChartDataArgs }): JSX.Element => {
   const options = {
     tooltips: {
       callbacks: {
-        label: (tooltipItem: any, data: any): string => {
+        label: (tooltipItem: ChartTooltipItem, data: any): string => {
           let dataset = data.datasets[tooltipItem.datasetIndex];
           let meta = dataset._meta[Object.keys(dataset._meta)[0]];
           let { total } = meta;
@@ -40,10 +39,13 @@ const Chart = (props: { ChartData: ChartDataArgs }): JSX.Element => {
           let percentage = parseFloat(
             ((currentValue / total) * 100).toFixed(1)
           );
-          currentValue = `${currentValue} ( ${percentage} %)`;
-          return currentValue;
+          let newCurrentValue = `${currentValue} ( ${percentage} %)`;
+          return newCurrentValue;
         },
-        title: (tooltipItem: any, data: any): string => {
+        title: (
+          tooltipItem: ChartTooltipItem[],
+          data: ChartDataArgs
+        ): string => {
           return data.labels[tooltipItem[0].index];
         },
       },
@@ -59,6 +61,7 @@ const Chart = (props: { ChartData: ChartDataArgs }): JSX.Element => {
       },
     },
     onHover: (event: any, chartElement: any): void => {
+      // eslint-disable-next-line no-param-reassign
       event.target.style.cursor = chartElement[0] ? "pointer" : "default";
     },
   };
