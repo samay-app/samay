@@ -69,11 +69,11 @@ $ npm run lint
 ### Deployment
 
 In your .env, change the `NODE_ENV` to `production`. Launch a MongoDB Atlas instance and set the corresponding `DB_URL`, `DB_USER` and `DB_USER_PWD` variables in the .env. Set the `CORS_URL` to the domain pointing to RocketMeet-client. Make sure to add that domain to the 'Authorized domains' section in your Firebase project. Make sure the Firebase and email encryption variables are set and correct.
-<<<<<<< HEAD
 
 ## Heroku 
  
 You can deploy the app using Heroku 
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Contributing
