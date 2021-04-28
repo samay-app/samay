@@ -8,7 +8,7 @@ export const logLevel: string = process.env.LOG_LEVEL || 'info';
 
 export const db = {
   name: process.env.DB_NAME || '',
-  host: process.env.DB_HOST || '',
+  url: process.env.DB_URL || '',
   user: process.env.DB_USER || '',
   password: process.env.DB_USER_PWD || '',
 };
@@ -16,7 +16,7 @@ export const db = {
 export const corsURL: string = process.env.CORS_URL || '';
 
 const devConnectionURL = `mongodb://localhost:27017/${db.name}`;
-const prodConnectionURL = `mongodb+srv://${db.user}:${encodeURIComponent(db.password)}@${db.host}.j3qrv.mongodb.net/${db.name}?retryWrites=true&w=majority`;
+const prodConnectionURL = `mongodb+srv://${db.user}:${encodeURIComponent(db.password)}@${db.url}/${db.name}?retryWrites=true&w=majority`;
 
 export const connectionURL: string = environment === 'production' ? prodConnectionURL : devConnectionURL;
 
