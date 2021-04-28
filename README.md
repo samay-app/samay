@@ -59,6 +59,13 @@ If got an error related to NODE_ENV then, use
 $ npm install -g win-node-env
 ```
 
+### Linting
+
+We use the `airbnb-typescript` style guide. Before opening a PR, it's recommended to check the ESLint warnings and errors in your code using the ESLint extension from Dirk Baeumer for VSCode or by running:
+```bash
+$ npm run lint
+```
+
 ### Deployment
 
 In your .env, change the `NODE_ENV` to `production`. Launch a MongoDB Atlas instance and set the corresponding `DB_HOST`, `DB_USER` and `DB_USER_PWD` variables in the .env. Set the `CORS_URL` to the domain pointing to RocketMeet-client. Make sure to add that domain to the 'Authorized domains' section in your Firebase project. Make sure the Firebase and email encryption variables are set and correct.
