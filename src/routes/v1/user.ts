@@ -31,7 +31,7 @@ router.post('/poll', async (req: Request, res: Response) => {
     if (decrypt(req.body.encryptedEmailID) !== req.currentUser.email) {
         res.status(403).json({ msg: 'Forbidden' });
     } else {
-        const newPoll: RocketMeetPoll = new Poll(req.body);
+        const newPoll: RocketMeetPoll = new Poll(req.body)
         try {
             await newPoll.save();
             res.status(201).json(newPoll);
