@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron, Button } from "react-bootstrap";
 import { FaGithub } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Login from "../src/components/Login";
@@ -13,8 +13,8 @@ const Home = (): JSX.Element => {
   return (
     <Layout>
       <Container className="rm-container">
-        <Row className="hero-row">
-          <Col>
+        <Row className="home-hero-row">
+          <Col className="home-hero-first-col" sm>
             <h1 className="hero-title">
               Scheduling meetings{" "}
               <span className="hero-strikethrough">is boring</span> has never
@@ -45,7 +45,7 @@ const Home = (): JSX.Element => {
               </div>
             </div>
           </Col>
-          <Col className="d-none d-lg-block">
+          <Col sm>
             <img
               src="/undraw_hang_out_h9ud.svg"
               className="illustration"
@@ -53,6 +53,20 @@ const Home = (): JSX.Element => {
             />
           </Col>
         </Row>
+      </Container>
+      <Jumbotron className="home-second-jumbo" fluid>
+        <Container>
+          <img
+            src="https://d33wubrfki0l68.cloudfront.net/52712975f70951f2ed341b2e17f3a575d6959177/fe6e2/static/dashboard-screen-b294bdd1d718312290ec49b6c2a13428.png"
+            className="illustration-two"
+            alt="Illustration"
+          />
+        </Container>
+      </Jumbotron>
+      <Container className="d-flex justify-content-center">
+        <h1 className="hero-secondary-title">
+          Scheduling meetings has never been faster
+        </h1>
       </Container>
     </Layout>
   );

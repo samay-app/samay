@@ -9,10 +9,9 @@ dayjs.extend(localizedFormat);
 
 const Polls: Function = (props: {
   pollList: RocketMeetPollFromDB[];
-  setPollIDToDelete: Dispatch<string>;
-  setModalShow: Dispatch<boolean>;
+  handleDelete: Dispatch<string>;
 }): JSX.Element[] => {
-  const { pollList, setPollIDToDelete, setModalShow } = props;
+  const { pollList, handleDelete } = props;
   const sorted = pollList.sort(
     (a: RocketMeetPollFromDB, b: RocketMeetPollFromDB) => {
       return Date.parse(b.createdAt) - Date.parse(a.createdAt);
@@ -60,8 +59,7 @@ const Polls: Function = (props: {
             variant="outline-light"
             className="my-2 rm-delete-button"
             onClick={(): void => {
-              setPollIDToDelete(item._id);
-              setModalShow(true);
+              handleDelete(item._id);
             }}
           >
             <Trash size="22" color="red " />

@@ -15,9 +15,11 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
           content="R6Lnd_cWOD3L1dBJGBnEzD5h2E2sNVpCHcPNsZqiQ7k"
         />
       </Head>
-      <NavBar />
-      <main>{children}</main>
-      <Footer />
+      <div className="flex-wrapper">
+        <NavBar />
+        <main>{children}</main>
+        <Footer />
+      </div>
     </>
   );
 };

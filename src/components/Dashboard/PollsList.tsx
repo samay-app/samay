@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import NProgress from "nprogress";
 import { useSelector } from "react-redux";
-import { Row, Col, CardColumns, Button, Modal } from "react-bootstrap";
+import { Row, Col, CardColumns } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPolls, deletePoll } from "../../utils/api/server";
@@ -24,8 +24,6 @@ const PollsList = (): JSX.Element => {
     type: "",
     msg: "",
   });
-  const [modalShow, setModalShow] = useState<boolean>(false);
-  const [pollIDToDelete, setPollIDToDelete] = useState<string>("");
 
   const getData = useCallback(async (): Promise<void> => {
     try {
@@ -37,9 +35,7 @@ const PollsList = (): JSX.Element => {
       NProgress.done();
       if (fetchedPolls.statusCode === 200) {
         setPollList(fetchedPolls.data);
-        setMessage(
-          "You haven't created any polls yet. Create one by clicking the button above!"
-        );
+        setMessage("You don't have any polls yet.");
       } else if (fetchedPolls.statusCode === 401) {
         setPollList([]);
         setMessage("Unable to fetch polls. Please refresh.");
@@ -87,11 +83,7 @@ const PollsList = (): JSX.Element => {
           <div className="mb-2 mt-3">
             {pollList && pollList.length > 0 ? (
               <CardColumns>
-                <Polls
-                  pollList={pollList}
-                  setPollIDToDelete={setPollIDToDelete}
-                  setModalShow={setModalShow}
-                />
+                <Polls pollList={pollList} handleDelete={handleDelete} />
               </CardColumns>
             ) : (
               <span>{message}</span>
@@ -104,31 +96,6 @@ const PollsList = (): JSX.Element => {
         response={response}
         onHide={(): void => setResponse({ status: false, type: "", msg: "" })}
       />
-      <Modal centered show={modalShow} onHide={(): void => setModalShow(false)}>
-        <div className="modal-dark modal-content">
-          <Modal.Header>
-            <h4>Confirm deletion</h4>
-          </Modal.Header>
-          <Modal.Body>Do you really want to delete this poll?</Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={(): void => setModalShow(false)}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="danger"
-              onClick={(): void => {
-                setModalShow(false);
-                handleDelete(pollIDToDelete);
-              }}
-            >
-              Delete
-            </Button>
-          </Modal.Footer>
-        </div>
-      </Modal>
     </>
   );
 };

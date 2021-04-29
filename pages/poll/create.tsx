@@ -80,7 +80,7 @@ const Create = (): JSX.Element => {
     {
       target: ".rat-Slider_component",
       content:
-        "What are the options? Mark your availability by creating time slots. These will be the choices provided to your invitees in the poll.",
+        "Mark your availability by creating time slots. These will be the choices provided to your invitees in the poll.",
     },
     {
       target: ".create-poll-btn",
