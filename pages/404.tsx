@@ -4,7 +4,7 @@ import Layout from "../src/components/Layout";
 const NotFound = (): JSX.Element => {
   return (
     <Layout>
-      <Container>
+      <Container className="rm-container">
         <Row>
           <Col className="four-o-four">
             <span>404</span>

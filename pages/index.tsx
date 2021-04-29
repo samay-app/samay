@@ -12,7 +12,7 @@ const Home = (): JSX.Element => {
 
   return (
     <Layout>
-      <Container>
+      <Container className="rm-container">
         <Row className="hero-row">
           <Col>
             <h1 className="hero-title">

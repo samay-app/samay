@@ -8,6 +8,8 @@ import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/poll/PollInfo";
 import PollTable from "../../src/components/poll/PollTable";
+import SubmitChoices from "../../src/components/poll/SubmitChoices";
+import SubmitFinalChoice from "../../src/components/poll/SubmitFinalChoice";
 import {
   Choice,
   ChoiceFromDB,
@@ -40,7 +42,7 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Container>
+      <Container className="rm-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-info">
@@ -68,16 +70,24 @@ const Poll = (props: {
             <Jumbotron className="poll-table-jumbo">
               <PollTable
                 pollFromDB={pollFromDB}
-                pollID={pollID}
                 sortedChoices={sortedChoices}
                 newVote={newVote}
                 setNewVote={setNewVote}
-                finalChoice={finalChoice}
                 setFinalChoice={setFinalChoice}
                 pollCreatorEmailID={pollCreatorEmailID}
                 loggedInUserEmailID={loggedInUserEmailID}
               />
             </Jumbotron>
+            {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
+              <SubmitChoices
+                newVote={newVote}
+                pollID={pollID}
+                pollFromDB={pollFromDB}
+              />
+            )}
+            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+              <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
+            )}
           </Col>
         </Row>
       </Container>

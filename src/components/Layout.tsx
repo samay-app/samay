@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import Head from "next/head";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
@@ -16,11 +15,9 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
           content="R6Lnd_cWOD3L1dBJGBnEzD5h2E2sNVpCHcPNsZqiQ7k"
         />
       </Head>
-      <Container>
-        <NavBar />
-        <main>{children}</main>
-        <Footer />
-      </Container>
+      <NavBar />
+      <main>{children}</main>
+      <Footer />
     </>
   );
 };

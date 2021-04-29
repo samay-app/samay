@@ -6,20 +6,35 @@ main {
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #f1f3f6;
   font-family: "Lato", sans-serif;
 }
 
+.rm-container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 .rm-navbar {
-  margin-top: 0.5rem;
+  padding-top: 0.5rem;
   background-color: #ffffff;
   font-family: "Lato", sans-serif;
   color: #101010;
-  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+@media (min-width: 0) and (max-width: 992px) {
+  .rm-navbar {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
 
 .rm-nav-hamburger {
   border: none !important;
+  padding: 0 !important;
 }
 
 .rm-brand {
@@ -31,12 +46,12 @@ main {
 .rm-logo-icon {
   width: 1.5em;
   height: 1.5em;
-  margin-right: 0.5em;
+  margin-right: 0.4em;
 }
 
 .rm-nav-link {
   color: #686868 !important;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-right: 1rem;
   transition: 0.6s;
@@ -48,20 +63,39 @@ main {
 }
 
 .rm-footer {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  border-top: 0.1rem solid #eeeeee;
+  margin-top: 2rem !important;
+  background-color: #ffffff !important;
+}
+
+.rm-footer-row {
+  background-color: #ffffff !important;
   padding-top: 2.5rem;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
   font-family: "Lato", sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-container {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 .footer-text {
   display: block;
 }
 
-.rm-footer ul {
+.footer-logo {
+  color: #101010 !important;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.rm-footer-row ul {
   list-style: none;
 }
 
@@ -82,22 +116,22 @@ main {
 .footer-col ul li a {
   font-size: 1rem;
   text-decoration: none;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   color: #828591;
   display: block;
   margin-left: -2.5rem !important;
-  transition: 0.6s;
+  transition: 0.3s;
 }
 
 .footer-col ul li a:hover {
   color: #3f3f3f;
-  transition: 0.6s;
+  transition: 0.3s;
 }
 
 .footer-left p {
   font-size: 1rem;
   text-decoration: none;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   color: #828591;
   display: block;
   margin-left: -2.5rem !important;
@@ -112,7 +146,7 @@ main {
   line-height: 1rem;
   border-radius: 50%;
   color: #828591;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .footer-col .social-links a:hover {
@@ -120,22 +154,36 @@ main {
 }
 
 @media only screen and (max-width: 500px) {
-  .rm-footer {
+  .rm-footer-row {
     flex-direction: column;
-    margin-bottom: 0;
+    padding-left: 1rem !important;
+    padding-bottom: 0rem !important;
+    padding-top: 0 !important;
   }
+
+  .right-container {
+    flex-direction: column;
+  }
+
   .footer-col {
-    margin-bottom: 1.8rem;
+    margin-top: 1.8rem;
   }
 }
 
 @media (min-width: 501px) and (max-width: 767px) {
-  .rm-footer {
+  .rm-footer-row {
     flex-direction: column;
-    margin-bottom: 0;
+    padding-left: 1rem !important;
+    padding-bottom: 0rem !important;
+    padding-top: 0 !important;
   }
+
+  .right-container {
+    flex-direction: column;
+  }
+
   .footer-col {
-    margin-bottom: 1.8rem;
+    margin-top: 1.8rem;
   }
 }
 
@@ -143,6 +191,7 @@ main {
   .footer-right {
     padding: 0 2.5rem;
   }
+
   .footer-left li p {
     padding-right: 1rem;
   }
@@ -155,6 +204,10 @@ a {
 
 .hero-row {
   margin-top: 10rem !important;
+}
+
+.dashboard-polls-row {
+  margin-top: 7rem !important;
 }
 
 .hero-title {
@@ -192,13 +245,31 @@ a {
   width: 100%;
 }
 
+.greeting {
+  font-weight: 700 !important;
+  font-size: 3.4rem !important;
+  color: #101010;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
+  .greeting {
+    font-size: 1.7rem !important;
+  }
+
   .navbar-nav {
     height: 100vh !important;
   }
 
   .hero-row {
     margin-top: 3rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .dashboard-polls-row {
+    margin-top: 3rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
   .hero-title {
@@ -246,8 +317,8 @@ a {
 }
 
 .rm-primary-button:hover {
-  box-shadow: 0px 15px 20px rgba(216, 216, 216, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0px 1rem 1.2rem rgba(216, 216, 216, 0.4);
+  transform: translateY(-0.1rem);
   transition: 0.3s;
 }
 
@@ -269,8 +340,8 @@ a {
 }
 
 .rm-secondary-button:hover {
-  box-shadow: 0px 15px 20px rgba(216, 216, 216, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0px 1rem 1.2rem rgba(216, 216, 216, 0.4);
+  transform: translateY(-0.1rem);
   transition: 0.3s;
 }
 
@@ -291,12 +362,35 @@ a {
 }
 
 .rm-primary-button-small:hover {
-  box-shadow: 0px 15px 20px rgba(216, 216, 216, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0px 1rem 1.2rem rgba(216, 216, 216, 0.4);
+  transform: translateY(-0.1rem);
   transition: 0.3s;
 }
 
 .rm-primary-button-small[disabled] {
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+}
+
+.rm-secondary-button-small {
+  background-color: #ffffff !important;
+  transition: 0.3s !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem !important;
+  border-radius: 0.5rem !important;
+  border-color: #000000 !important;
+  padding: 0.5rem 1rem 0.5rem 1rem !important;
+}
+
+.rm-secondary-button-small:hover {
+  box-shadow: 0px 1rem 1.2rem rgba(216, 216, 216, 0.4);
+  transform: translateY(-0.1rem);
+  transition: 0.3s;
+}
+
+.rm-secondary-button-small[disabled] {
   opacity: 0.4 !important;
   pointer-events: none !important;
 }
@@ -353,8 +447,9 @@ h4 {
 }
 
 .jumbo-col-black {
-  background-color: #101010 !important;
   flex-grow: 1 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .jumbo-col {
@@ -367,21 +462,25 @@ h4 {
 .poll-create {
   background-color: #101010 !important;
   color: #ffffff;
-  padding: 2rem 2rem 2rem 2rem !important;
-  border-radius: 0 !important;
+  padding: 2rem 4rem 2rem 4rem !important;
+  margin-top: 1rem !important;
   margin-bottom: 0 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 
 .poll-timeslot-jumbo {
   background-color: #ffffff !important;
   color: #000000;
-  padding: 2rem 0rem 0rem 0rem !important;
-  border-radius: 0 !important;
-  margin-bottom: 0 !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  margin-top: 1rem !important;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 
 .create-poll-btn {
-  margin-top: 3rem;
   float: right;
 }
 
@@ -390,21 +489,20 @@ h4 {
     margin-bottom: 0 !important;
   }
 
-  .jumbo-col-black {
-    margin-bottom: 1rem !important;
-  }
-
   .poll-timeslot-jumbo {
-    padding: 0 !important;
+    padding: 1rem !important;
+    border-radius: 0 !important;
   }
 
   .poll-create {
     padding: 2rem !important;
+    border-radius: 0 !important;
   }
 
   .create-poll-btn {
     float: none !important;
-    margin-bottom: 1rem !important;
+    width: 90% !important;
+    margin-left: 1.25rem !important;
   }
 }
 
@@ -513,6 +611,8 @@ h4 {
 
   .mark-options-btn {
     float: none !important;
+    width: 90% !important;
+    margin-left: 1.25rem !important;
   }
 }
 
@@ -530,7 +630,7 @@ h4 {
 }
 
 .mark-options-btn {
-  margin-top: 3rem;
+  margin-top: 2rem;
   float: right;
 }
 
@@ -551,27 +651,26 @@ h4 {
   padding-bottom: 0.6em !important;
 }
 
-.jumbo-col-info {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  background-color: #101010 !important;
-  height: 100vh !important;
-}
-
 .poll-info {
   background-color: #101010 !important;
   color: #e0e0e0;
   padding: 2.5rem 2rem 2rem 2rem !important;
-  border-radius: 0 !important;
+  margin-top: 1rem !important;
   margin-bottom: 0 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 
 .poll-table-jumbo {
   background-color: #ffffff !important;
   color: #000000;
-  padding: 2rem 0rem 0rem 0rem !important;
-  border-radius: 0 !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
   margin-bottom: 0 !important;
+  margin-top: 1rem !important;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 
 .poll-info-content {
@@ -614,7 +713,7 @@ h4 {
 }
 
 .card-created {
-  font-size: 1vw !important;
+  font-size: 1rem !important;
   color: #aaaaaa;
 }
 
@@ -625,6 +724,7 @@ h4 {
 
   .poll-info {
     padding: 1.5rem 1rem 1rem 1rem !important;
+    border-radius: 0 !important;
   }
 
   .poll-info-content {
@@ -660,6 +760,10 @@ h4 {
     font-size: 0.8rem;
   }
 
+  .poll-table-jumbo {
+    border-radius: 0 !important;
+  }
+
   .rm-badge-dash {
     font-size: 0.5rem !important;
   }
@@ -669,7 +773,7 @@ h4 {
   }
 
   .card-created {
-    font-size: 3vw !important;
+    font-size: 0.8rem !important;
   }
 }
 
@@ -924,29 +1028,23 @@ h4 {
   text-align: left;
 }
 
-.greetings {
-  margin-bottom: 3rem;
-}
-
-.profile-user {
-  font-weight: 500 !important;
-  font-size: 2vw;
-}
-
 .dashboard-btn {
   float: right;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
-  .profile-user {
-    font-size: 6vw !important;
-  }
+.dashboard-card {
+  background-color: #000000 !important;
+  color: #e0e0e0 !important;
+  border: none !important;
+  border-radius: 1rem !important;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
+}
 
+@media (min-width: 0) and (max-width: 992px) {
   .dashboard-btn {
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
     float: unset;
-    font-size: 5vw !important;
-    width: unset !important;
   }
 }
 
@@ -967,18 +1065,14 @@ h4 {
   }
 }
 
-.dash-coming-up {
-  font-size: 2vw !important;
-  padding-left: 2.5rem;
-}
-
 .dash-your-polls {
-  font-size: 2vw !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
   .dash-your-polls {
-    font-size: 6vw !important;
+    font-size: 1.3rem !important;
   }
 }
 
@@ -994,13 +1088,13 @@ h4 {
 }
 
 .card-title {
-  font-size: 1.75vw;
+  font-size: 2rem;
   font-weight: 500;
 }
 .card-bdy {
   text-decoration: none;
   color: #ffffff;
-  font-size: 1vw;
+  font-size: 1.2rem;
   font-weight: 400;
 }
 .card-bdy:hover {
@@ -1023,26 +1117,13 @@ h4 {
   column-count: 1 !important;
 }
 
-.recent-div {
-  height: 600px;
-  margin-top: 1.4rem;
-  padding-left: 2.5rem;
-}
-
 @media screen and (max-width: 991.08px) {
-  .recents {
-    display: none;
-  }
   .card-title {
-    font-size: 5vw;
+    font-size: 2rem;
   }
   .card-bdy {
-    font-size: 3.5vw;
+    font-size: 1rem;
   }
-}
-.upcomings {
-  background: #eeeeee;
-  border-radius: 0.3rem;
 }
 
 @media (max-width: 388px) {
@@ -1129,7 +1210,7 @@ h4 {
   border: 0.1rem solid #6c757d !important;
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
 }
 
 .share-textbox:focus {
@@ -1141,7 +1222,7 @@ h4 {
   color: #e0e0e0 !important;
   border: 0.1rem solid #6c757d !important;
   border-radius: 1rem !important;
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
 }
 
 .invite-textbox:focus {
@@ -1153,11 +1234,11 @@ h4 {
 }
 
 .copy-btn {
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
 }
 
 .send-btn {
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
 }
 
 .index-create-button {
@@ -1166,11 +1247,11 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .share-textbox {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
   }
 
   .invite-textbox {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
   }
 
   .share-label {
@@ -1178,11 +1259,11 @@ h4 {
   }
 
   .copy-btn {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
   }
 
   .send-btn {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
   }
 
   .index-create-button {

@@ -60,6 +60,10 @@ const Create = (): JSX.Element => {
   const tourSteps: Step[] = [
     {
       disableBeacon: true,
+      target: ".poll-create",
+      content: "Let us give you a quick tour!",
+    },
+    {
       target: "#formPlainTextTitle",
       content: "Give your event the memorable title it deserves.",
     },
@@ -71,12 +75,12 @@ const Create = (): JSX.Element => {
     {
       target: ".rat-AvailableTimes_buttons",
       content:
-        "Are you an early planner? Use these button to schedule further in future. (ps: Time travel powers not included)",
+        "Are you an early planner? Use these buttons to schedule further in future.",
     },
     {
       target: ".rat-Slider_component",
       content:
-        "What are the options? Mark your availability by creating time slots. These will be the choices that are generated in the poll.",
+        "What are the options? Mark your availability by creating time slots. These will be the choices provided to your invitees in the poll.",
     },
     {
       target: ".create-poll-btn",
@@ -206,7 +210,7 @@ const Create = (): JSX.Element => {
           },
         }}
       />
-      <Container>
+      <Container className="rm-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-create">
@@ -258,33 +262,33 @@ const Create = (): JSX.Element => {
                 onChange={onChoicesChange}
                 height="42rem"
               />
-              <Button
-                className="rm-primary-button create-poll-btn"
-                onClick={handleSubmit}
-                disabled={disabled}
-              >
-                {!disabled ? (
-                  `Create poll`
-                ) : (
-                  <>
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                      className="rm-button-spinner"
-                    />
-                  </>
-                )}
-              </Button>
-              <ResponseMessage
-                response={response}
-                onHide={(): void =>
-                  setResponse({ status: false, type: "", msg: "" })
-                }
-              />
             </Jumbotron>
+            <Button
+              className="rm-primary-button create-poll-btn"
+              onClick={handleSubmit}
+              disabled={disabled}
+            >
+              {!disabled ? (
+                `Create poll`
+              ) : (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="rm-button-spinner"
+                  />
+                </>
+              )}
+            </Button>
+            <ResponseMessage
+              response={response}
+              onHide={(): void =>
+                setResponse({ status: false, type: "", msg: "" })
+              }
+            />
           </Col>
         </Row>
       </Container>

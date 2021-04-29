@@ -5,8 +5,25 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: #f1f3f6 !important;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+  border-radius: 0.5rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cfcfcf;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0.5rem;
 }

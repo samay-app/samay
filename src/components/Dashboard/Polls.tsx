@@ -22,10 +22,10 @@ const Polls: Function = (props: {
     <div key={item._id}>
       <Row>
         <Col className="col-11">
-          <Card bg="dark" text="white" className="pt-4 px-4 my-2 cardindash">
+          <Card className="pt-4 px-4 my-2 dashboard-card">
             <Row>
               <div className="col-8">
-                <Card.Title className="d-flex flex-row justify-content-between">
+                <Card.Title>
                   <span className="card-title">{item.title}</span>
                 </Card.Title>
               </div>
@@ -39,18 +39,18 @@ const Polls: Function = (props: {
                 </Badge>
               </div>
             </Row>
-            <Card.Body className="text-justify">
+            <Card.Body>
               <a
                 href={`/poll/${item._id}`}
                 aria-label="stretched link"
-                className="stretched-link card-bdy "
+                className="stretched-link card-bdy"
               >
                 {item.description}
               </a>
             </Card.Body>
             <Card.Footer className="px-0">
               <span className="card-created">
-                Created : {dayjs(item.createdAt).format("DD/MM/YYYY")}
+                Created on: {dayjs(item.createdAt).format("DD/MM/YYYY")}
               </span>
             </Card.Footer>
           </Card>

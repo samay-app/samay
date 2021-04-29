@@ -4,7 +4,7 @@ import PollsList from "./PollsList";
 
 const DashboardContainer = (): JSX.Element => {
   return (
-    <Container>
+    <Container className="rm-container">
       <Greetings />
       <PollsList />
     </Container>

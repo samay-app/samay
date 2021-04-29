@@ -81,7 +81,7 @@ const PollsList = (): JSX.Element => {
 
   return (
     <>
-      <Row className="inner-container">
+      <Row className="dashboard-polls-row">
         <Col className="col-xl-8 col-lg-8 col-md-12">
           <h3 className="dash-your-polls">Your Polls</h3>
           <div className="mb-2 mt-3">

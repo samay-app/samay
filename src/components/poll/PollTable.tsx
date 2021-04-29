@@ -6,8 +6,6 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import MarkChoices from "./MarkChoices";
 import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
-import SubmitChoices from "./SubmitChoices";
-import SubmitFinalChoice from "./SubmitFinalChoice";
 import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
 import { isChoicePresentInPollChoices } from "../../helpers/helpers";
 
@@ -15,22 +13,18 @@ dayjs.extend(localizedFormat);
 
 const PollTable = (props: {
   pollFromDB: RocketMeetPollFromDB;
-  pollID: string;
   sortedChoices: Choice[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
-  finalChoice: Choice | undefined;
   setFinalChoice: Dispatch<Choice | undefined>;
   pollCreatorEmailID: string;
   loggedInUserEmailID: string;
 }): JSX.Element => {
   const {
     pollFromDB,
-    pollID,
     sortedChoices,
     newVote,
     setNewVote,
-    finalChoice,
     setFinalChoice,
     pollCreatorEmailID,
     loggedInUserEmailID,
@@ -97,16 +91,6 @@ const PollTable = (props: {
           ))}
         </tbody>
       </Table>
-      {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-        <SubmitChoices
-          newVote={newVote}
-          pollID={pollID}
-          pollFromDB={pollFromDB}
-        />
-      )}
-      {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-        <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
-      )}
     </div>
   );
 };
