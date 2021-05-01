@@ -1,72 +1,185 @@
-import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaTwitter, FaGithub, FaGitter, FaLinkedin } from "react-icons/fa";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Footer = (): JSX.Element => {
   return (
     <footer className="rm-footer">
-      <div className="footer-col left">
-        <h4>RocketMeet</h4>
-        <ul>
-          <li>
-            <p>Free and open source meeting scheduling app</p>
-          </li>
-          <li>
-            <p>Copyright RocketMeet &#169; 2021.All rights resereved</p>
-          </li>
-        </ul>
-      </div>
-      <div className="right-container">
-        <div className="footer-col right">
-          <h4>Open Source</h4>
-          <ul>
-            <li>
-              <a href="https://github.com/RocketMeet/RocketMeet-server/blob/main/README.md">
-                Quick Start
+      <Container>
+        <Row className="rm-footer-row">
+          <Col className="footer-col footer-left">
+            <div className="footer-logo">
+              <img
+                alt="logo"
+                src="/logo.svg"
+                className="rm-logo-icon d-inline-block align-top"
+              />
+              RocketMeet
+            </div>
+            <ul>
+              <li>
+                <p>
+                  <span className="footer-text">
+                    Free and open source meeting scheduling tool.
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span className="footer-text">
+                    Copyright RocketMeet &#169; 2021.
+                  </span>
+                  <span className="footer-text">All rights reserved.</span>
+                </p>
+              </li>
+            </ul>
+            <div className="social-links">
+              <a
+                href="https://twitter.com/RocketMeetHQ"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaTwitter />
               </a>
-            </li>
-            <li>
-              <a href="https://github.com/RocketMeet/RocketMeet-server/blob/main/CONTRIBUTING.md">
-                Contributing
+              <a
+                href="https://www.linkedin.com/company/rocketmeet"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <FaLinkedin />
               </a>
-            </li>
-            <li>
-              <a href="https://github.com/RocketMeet/RocketMeet-server/blob/main/CODE_OF_CONDUCT.md">
-                Code of Conduct
+              <a
+                href="https://github.com/RocketMeet"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub />
               </a>
-            </li>
-            <li>
-              <a href="https://github.com/RocketMeet/RocketMeet-server/blob/main/LICENSE">
-                License
+              <a
+                href="https://gitter.im/RocketMeet/community"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGitter />
               </a>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-col right">
-          <h4>About Us</h4>
-          <ul>
-            <li>
-              <a href="#">Team</a>
-            </li>
-            <li>
-              <a href="#">Roadmap</a>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-col right">
-          <h4>follow us</h4>
-          <div className="social-links">
-            <a href="https://twitter.com/RocketMeetHQ">
-              <FaTwitter />
-            </a>
-            <a href="https://www.linkedin.com/company/rocketmeet">
-              <FaLinkedin />
-            </a>
-            <a href="https://github.com/RocketMeet">
-              <FaGithub />
-            </a>
-          </div>
-        </div>
-      </div>
+            </div>
+          </Col>
+          <Col className="right-container">
+            <Col className="footer-col footer-right">
+              <h6>PAGES</h6>
+              <ul>
+                <li>
+                  <a
+                    href="https://rocketmeet.gitbook.io/rocketmeet/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Product Docs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://rocketmeet.gitbook.io/rocketmeet/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    API Docs
+                  </a>
+                </li>
+                <li>
+                  <a href="/team" target="_blank" rel="noreferrer">
+                    Team
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/milestones"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Roadmap
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col className="footer-col footer-right">
+              <h6>GET STARTED</h6>
+              <ul>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/README.md"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Self-hosting Guide
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CONTRIBUTING.md"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Contribution Guide
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/issues/new?assignees=&labels=&template=bug_report.md&title="
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Bug Report
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/issues/new?assignees=&labels=&template=feature_request.md&title="
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Feature Request
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col className="footer-col footer-right">
+              <h6>LEGAL</h6>
+              <ul>
+                <li>
+                  <a href="/privacy-policy" target="_blank" rel="noreferrer">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="/terms-of-service" target="_blank" rel="noreferrer">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CODE_OF_CONDUCT.md"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Code of Conduct
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    License
+                  </a>
+                </li>
+              </ul>
+            </Col>
+          </Col>
+        </Row>
+      </Container>
     </footer>
   );
 };
+
 export default Footer;

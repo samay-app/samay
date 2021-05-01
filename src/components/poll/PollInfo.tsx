@@ -1,10 +1,5 @@
 import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
-import {
-  Calendar2Fill,
-  InfoCircleFill,
-  PersonCircle,
-  StarFill,
-} from "react-bootstrap-icons";
+import { InfoCircleFill, PersonCircle, StarFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { RocketMeetPollFromDB } from "../../models/poll";
@@ -41,10 +36,6 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
         <PersonCircle className="mr-2" />{" "}
         <b>{decrypt(poll.encryptedEmailID)}</b>
       </span>
-      <span className="poll-info-date">
-        <Calendar2Fill className="mr-2" />{" "}
-        <b>{dayjs(poll.createdAt).format("DD/MM/YYYY")}</b>
-      </span>
       <OverlayTrigger
         placement="right"
         overlay={
@@ -53,7 +44,7 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
           </Tooltip>
         }
       >
-        <InfoCircleFill className="timezone-info-icon" />
+        <InfoCircleFill className="timezone-info-icon mr-2" />
       </OverlayTrigger>
     </div>
   );

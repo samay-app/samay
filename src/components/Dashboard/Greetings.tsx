@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Row } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import { RootState } from "../../store/store";
 
 const Greetings = (): JSX.Element => {
@@ -8,17 +8,15 @@ const Greetings = (): JSX.Element => {
     (state: RootState) => state.authReducer.displayName
   );
   return (
-    <Row className="inner-container greetings">
-      <div className="col-sm-8">
-        <span className="profile-user">
-          Welcome {displayName.split(" ")[0]}!
-        </span>
-      </div>
-      <div className="col-sm-4">
+    <Row className="hero-row">
+      <Col sm>
+        <h1 className="greeting">Welcome {displayName.split(" ")[0]}!</h1>
+      </Col>
+      <Col sm>
         <Button className="rm-primary-button dashboard-btn" href="/poll/create">
-          Create a Poll
+          Create a poll
         </Button>
-      </div>
+      </Col>
     </Row>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
-import { Row, Container, Jumbotron } from "react-bootstrap";
-import { ChevronDown } from "react-bootstrap-icons";
+import { Col, Row, Container, Jumbotron } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -9,6 +8,8 @@ import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/poll/PollInfo";
 import PollTable from "../../src/components/poll/PollTable";
+import SubmitChoices from "../../src/components/poll/SubmitChoices";
+import SubmitFinalChoice from "../../src/components/poll/SubmitFinalChoice";
 import {
   Choice,
   ChoiceFromDB,
@@ -41,40 +42,53 @@ const Poll = (props: {
 
   return (
     <Layout>
-      <Container className="rm-poll-container" fluid>
+      <Container className="rm-container">
         <Row className="jumbo-row">
-          <div className="jumbo-col-black col-sm-4">
+          <Col className="jumbo-col-black">
             <Jumbotron className="poll-info">
-              <PollInfo poll={pollFromDB} />
-              {loggedInUserEmailID === pollCreatorEmailID && (
-                <>
-                  <ShareInvite
-                    pollTitle={pollFromDB.title}
-                    pollID={pollID}
-                    finalChoice={pollFromDB.finalChoice}
-                  />
-                  <div className="rm-chevron-down-div">
-                    <ChevronDown className="rm-chevron-down" />
-                  </div>
-                </>
-              )}
+              <Row>
+                <Col sm>
+                  <PollInfo poll={pollFromDB} />
+                </Col>
+                <Col sm>
+                  {loggedInUserEmailID === pollCreatorEmailID && (
+                    <>
+                      <ShareInvite
+                        pollTitle={pollFromDB.title}
+                        pollID={pollID}
+                        finalChoice={pollFromDB.finalChoice}
+                      />
+                    </>
+                  )}
+                </Col>
+              </Row>
             </Jumbotron>
-          </div>
-          <div className="col-sm-8">
+          </Col>
+        </Row>
+        <Row className="jumbo-row">
+          <Col className="jumbo-col">
             <Jumbotron className="poll-table-jumbo">
               <PollTable
                 pollFromDB={pollFromDB}
-                pollID={pollID}
                 sortedChoices={sortedChoices}
                 newVote={newVote}
                 setNewVote={setNewVote}
-                finalChoice={finalChoice}
                 setFinalChoice={setFinalChoice}
                 pollCreatorEmailID={pollCreatorEmailID}
                 loggedInUserEmailID={loggedInUserEmailID}
               />
             </Jumbotron>
-          </div>
+            {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
+              <SubmitChoices
+                newVote={newVote}
+                pollID={pollID}
+                pollFromDB={pollFromDB}
+              />
+            )}
+            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+              <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
+            )}
+          </Col>
         </Row>
       </Container>
     </Layout>
