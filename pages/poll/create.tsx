@@ -15,7 +15,6 @@ import {
 import { InfoCircleFill, QuestionCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
-import dayjs from "dayjs";
 import Layout from "../../src/components/Layout";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { encrypt } from "../../src/helpers/helpers";
@@ -258,7 +257,7 @@ const Create = (): JSX.Element => {
           <Col className="jumbo-col">
             <Jumbotron className="poll-timeslot-jumbo">
               <AvailableTimes
-                weekStartsOn={dayjs().format("dddd").toLowerCase()}
+                weekStartsOn="monday"
                 onChange={onChoicesChange}
                 height="42rem"
               />

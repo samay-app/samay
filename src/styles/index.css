@@ -220,6 +220,7 @@ a {
 
 .dashboard-polls-row {
   margin-top: 7rem !important;
+  margin-bottom: 3rem !important;
 }
 
 .hero-title {
@@ -1549,6 +1550,10 @@ h4 {
 
 .four-o-four p {
   font-size: 2rem;
+}
+
+.four-o-four a {
+  text-decoration: underline !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
