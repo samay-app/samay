@@ -1,5 +1,5 @@
-import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { InfoCircleFill, PersonCircle, StarFill } from "react-bootstrap-icons";
+import { Badge } from "react-bootstrap";
+import { PersonCircle, StarFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { RocketMeetPollFromDB } from "../../models/poll";
@@ -36,16 +36,6 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
         <PersonCircle className="mr-2" />{" "}
         <b>{decrypt(poll.encryptedEmailID)}</b>
       </span>
-      <OverlayTrigger
-        placement="right"
-        overlay={
-          <Tooltip id="timezone-info">
-            The times are displayed in your time zone.
-          </Tooltip>
-        }
-      >
-        <InfoCircleFill className="timezone-info-icon mr-2" />
-      </OverlayTrigger>
     </div>
   );
 };

@@ -76,13 +76,13 @@ const Home = (): JSX.Element => {
           No more back-and-forth emails. Just four simple steps.
         </span>
         <span className="hero-secondary-desc">
-          Create a poll. Share the poll. Wait for invitees. Decide the time.
+          Create a poll → Share the poll → Wait for invitees → Decide the time.
         </span>
       </Container>
       <Jumbotron className="home-second-jumbo" fluid id="features">
         <Container>
           <span className="hero-secondary-title">
-            Different types of polls for different kinds of needs.
+            Polls that meet your needs.
           </span>
           <CardDeck>
             <Card className="features-card">
@@ -93,9 +93,6 @@ const Home = (): JSX.Element => {
                   login required. Best for public meetings.
                 </Card.Text>
               </Card.Body>
-              <Card.Footer className="features-card-footer">
-                <small>(Coming soon)</small>
-              </Card.Footer>
             </Card>
             <Card className="features-card">
               <Card.Body>
@@ -105,9 +102,6 @@ const Home = (): JSX.Element => {
                   space for impersonation.
                 </Card.Text>
               </Card.Body>
-              <Card.Footer className="features-card-footer">
-                <small>(Coming soon)</small>
-              </Card.Footer>
             </Card>
             <Card className="features-card">
               <Card.Body>
@@ -133,8 +127,8 @@ const Home = (): JSX.Element => {
               </span>
               <span className="hero-secondary-desc">
                 RocketMeet fluently handles time zones, leaving no space for
-                confusion. Optionally, check availability across time zones, so
-                invitees don’t get left out.
+                confusion. You see the times in your time zone and participants
+                see the times in theirs.
               </span>
             </Col>
             <Col sm>
@@ -165,6 +159,8 @@ const Home = (): JSX.Element => {
                 Share your availability. Let invitees narrow it down. See who’s
                 free - or who can be - with “if need be” votes. Date and time
                 set.
+                <br />
+                (Coming soon)
               </span>
             </Col>
           </Row>

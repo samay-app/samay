@@ -2,7 +2,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
 import { useSelector } from "react-redux";
-import { markChoices } from "../../utils/api/server";
+import { markChoicesPublic } from "../../utils/api/server";
 import { Vote, RocketMeetPollFromDB, MailerArgs } from "../../models/poll";
 import ResponseMessage from "../ResponseMessage";
 import { decrypt } from "../../helpers/helpers";
@@ -42,7 +42,7 @@ const SubmitChoices = (props: {
           newVote,
           pollID,
         };
-        const submitChoiceResponse = await markChoices(voterArgs);
+        const submitChoiceResponse = await markChoicesPublic(voterArgs);
         if (submitChoiceResponse.statusCode === 201) {
           if (isLoggedIn) {
             const mailerArgs: MailerArgs = {

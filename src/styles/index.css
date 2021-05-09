@@ -17,11 +17,6 @@ main {
   justify-content: space-between !important;
 }
 
-.rm-container {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
-
 .rm-navbar {
   padding-top: 0.5rem;
   background-color: #ffffff;
@@ -106,11 +101,6 @@ main {
   list-style: none;
 }
 
-.footer-col {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
 .footer-col h6 {
   font-weight: 700;
   color: #6f6f6f;
@@ -174,6 +164,8 @@ main {
 
   .footer-col {
     margin-top: 1.8rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -225,7 +217,7 @@ a {
 
 .hero-title {
   font-weight: 700;
-  font-size: 3.4rem;
+  font-size: 3.3rem;
   color: #101010;
   display: block;
   line-height: 4rem;
@@ -318,7 +310,7 @@ a {
 .home-second-jumbo .hero-secondary-title {
   color: #f5f5f5;
   text-align: center !important;
-  margin-bottom: 3rem !important;
+  margin-bottom: 5rem !important;
 }
 
 .features-card {
@@ -404,11 +396,7 @@ a {
 
   .home-hero-row {
     margin-top: 2.5rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
     margin-bottom: 3rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
     flex-flow: column-reverse;
   }
 
@@ -423,7 +411,7 @@ a {
   }
 
   .hero-title {
-    font-size: 2.1rem !important;
+    font-size: 2.2rem !important;
     line-height: 2.5rem;
   }
 
@@ -463,7 +451,7 @@ a {
   }
 
   .home-second-jumbo .hero-secondary-title {
-    margin-bottom: 2rem !important;
+    margin-bottom: 4rem !important;
   }
 
   .features-card {
@@ -761,51 +749,51 @@ h4 {
 .rm-form-text {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: 3px solid #6c757d !important;
-  border-radius: 0 !important;
-  font-size: 3rem !important;
+  border: 0.1rem solid #6c757d !important;
+  border-radius: 0.5rem !important;
+  font-size: 1.5rem !important;
 }
 
 .rm-form-text:focus {
-  border-bottom: 3px solid #d3d3d3 !important;
+  border: 0.1rem solid #d3d3d3 !important;
 }
 
 .rm-form-desc {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: 3px solid #6c757d !important;
-  border-radius: 0 !important;
+  border: 0.1rem solid #6c757d !important;
+  border-radius: 0.5rem !important;
   font-size: 1.5rem !important;
 }
 
 .rm-form-desc:focus {
-  border-bottom: 3px solid #d3d3d3 !important;
+  border: 0.1rem solid #d3d3d3 !important;
 }
 
-.timezone-info-icon {
-  color: #e0e0e0;
-  margin: 2rem 0.25rem 2rem 0rem;
+.rm-form-option {
+  background-color: #101010 !important;
+  color: #6c757d !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 0.1rem solid #6c757d !important;
+  border-radius: 0;
+  font-size: 1rem !important;
+  width: 25% !important;
 }
 
-.timezone-info-icon-create {
-  width: 1.3rem;
-  height: 1.3rem;
-  color: #e0e0e0;
-  margin: 2rem 0.25rem 2rem 0rem;
+.rm-form-last-row-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .tour-start-icon {
   width: 1.3rem;
   height: 1.3rem;
   color: #e0e0e0;
-  margin: 2rem 0.25rem 2rem 0.25rem;
+  margin: 0.8rem 0rem 0rem 0rem;
   cursor: pointer;
+  float: right;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -814,25 +802,18 @@ h4 {
   }
 
   .rm-form-text {
-    font-size: 1.5rem !important;
+    font-size: 1rem !important;
   }
 
-  .timezone-info-icon {
-    width: 0.8rem;
-    height: 0.8rem;
-    margin: 0rem !important;
-  }
-
-  .timezone-info-icon-create {
-    width: 1rem;
-    height: 1rem;
-    margin: 1rem 0.125rem 0rem 0rem;
+  .rm-form-option {
+    font-size: 0.8rem !important;
+    width: 65% !important;
   }
 
   .tour-start-icon {
     width: 1rem;
     height: 1rem;
-    margin: 1rem 0.125rem 0rem 0.5rem;
+    margin: 0.6rem 0rem 0rem 0rem;
   }
 }
 

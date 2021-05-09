@@ -38,7 +38,7 @@ const getPolls = (pollArgs: {
   token: string;
 }): Promise<HttpResponse> => {
   const { encryptedEmailID, token } = pollArgs;
-  const endpoint = `${URL}/user/${encryptedEmailID}`;
+  const endpoint = `${URL}/pollster/${encryptedEmailID}`;
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const createPoll = (pollArgs: {
   token: string;
 }): Promise<HttpResponse> => {
   const { poll, token } = pollArgs;
-  const endpoint = `${URL}/user/poll`;
+  const endpoint = `${URL}/pollster/poll`;
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -72,14 +72,35 @@ const createPoll = (pollArgs: {
   return httpMethod(endpoint, requestOptions);
 };
 
-const markChoices = (voteArgs: {
+const markChoicesPublic = (voteArgs: {
   newVote: Vote;
   pollID: string;
 }): Promise<HttpResponse> => {
   const { newVote, pollID } = voteArgs;
-  const endpoint = `${URL}/poll/${pollID}`;
+  const endpoint = `${URL}/poll/public/${pollID}`;
   const headers = {
     "Content-Type": "application/json",
+  };
+  const requestOptions: RequestInit = {
+    mode: "cors",
+    credentials: "include",
+    method: "PUT",
+    headers,
+    body: JSON.stringify(newVote),
+  };
+  return httpMethod(endpoint, requestOptions);
+};
+
+const markChoicesProtected = (voteArgs: {
+  newVote: Vote;
+  pollID: string;
+  token: string;
+}): Promise<HttpResponse> => {
+  const { newVote, pollID, token } = voteArgs;
+  const endpoint = `${URL}/poll/protected/${pollID}`;
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
   };
   const requestOptions: RequestInit = {
     mode: "cors",
@@ -97,7 +118,7 @@ const markFinalChoice = (voteArgs: {
   token: string;
 }): Promise<HttpResponse> => {
   const { finalChoice, pollID, token } = voteArgs;
-  const endpoint = `${URL}/user/poll/${pollID}`;
+  const endpoint = `${URL}/pollster/poll/${pollID}`;
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -117,7 +138,7 @@ const deletePoll = (voteArgs: {
   token: string;
 }): Promise<HttpResponse> => {
   const { pollID, token } = voteArgs;
-  const endpoint = `${URL}/user/poll/${pollID}`;
+  const endpoint = `${URL}/pollster/poll/${pollID}`;
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -136,7 +157,8 @@ export {
   getPoll,
   getPolls,
   createPoll,
-  markChoices,
+  markChoicesPublic,
+  markChoicesProtected,
   markFinalChoice,
   deletePoll,
 };
