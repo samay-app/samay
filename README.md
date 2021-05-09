@@ -53,11 +53,6 @@ You will be able to access the API from http://localhost:5000
 ```bash
 $ npm run test
 ```
-If got an error related to NODE_ENV then, use
-
-```bash
-$ npm install -g win-node-env
-```
 
 ### Linting
 
