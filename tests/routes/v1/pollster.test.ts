@@ -7,13 +7,14 @@ import { isChoicePresentInPollChoices, encrypt } from '../../../src/helpers';
 import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
 import { webAPIKey } from '../../../src/config';
 
-const emailID = 'test@test.com';
-const encryptedEmailID = encrypt(emailID);
-
 const request: SuperTest<Test> = supertest(app);
+
+const pollsterEmailID = 'pollster@test.com';
+const encryptedPollsterEmailID = encrypt(pollsterEmailID);
+
 const testPoll = {
   title: 'testPoll',
-  encryptedEmailID,
+  encryptedEmailID: encryptedPollsterEmailID,
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -33,7 +34,7 @@ const createTestPoll = async () => {
 beforeAll(async () => {
   dbHandler.connect();
   await admin.auth().createUser({
-    email: emailID,
+    email: pollsterEmailID,
     emailVerified: false,
   });
 });
@@ -50,7 +51,7 @@ afterEach(async () => dbHandler.clearDatabase());
 
 afterAll(async () => {
   dbHandler.closeDatabase();
-  const USER = await admin.auth().getUserByEmail(emailID);
+  const USER = await admin.auth().getUserByEmail(pollsterEmailID);
   const uid = USER.uid;
   await admin.auth().deleteUser(uid);
   return admin.app().delete();
@@ -65,15 +66,16 @@ const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustom
 describe('User authentication', () => {
   it('Should throw err if there is no token in the header', async (done) => {
     const res = await request
-      .post('/v1/user/');
+      .post('/v1/pollster/');
     expect(res.body.msg).toEqual('Token does not exist');
+
     done();
   });
 });
 
 describe('create poll', () => {
   it('Should save poll to db', async (done) => {
-    const USER = await admin.auth().getUserByEmail(emailID);
+    const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
@@ -89,11 +91,11 @@ describe('create poll', () => {
     });
     const TOKEN = await tokenRes.data.idToken;
     const res = await request
-      .post('/v1/user/poll')
+      .post('/v1/pollster/poll')
       .set({ Authorization: `Bearer ${TOKEN}` })
       .send({
         title: 'OccupyMarsMeet',
-        encryptedEmailID,
+        encryptedEmailID: encryptedPollsterEmailID,
         choices: [
           { start: 1633577400000, end: 1633581000000 },
           { start: 1633588200000, end: 1633591800000 },
@@ -118,11 +120,12 @@ describe('create poll', () => {
       { start: 1633588200000, end: 1633591800000 },
       poll!.choices,
     )).toEqual(true);
+
     done();
   });
 
   it('Should allow poll to be edited', async (done) => {
-    const USER = await admin.auth().getUserByEmail(emailID);
+    const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
@@ -138,7 +141,7 @@ describe('create poll', () => {
     });
     const TOKEN = await tokenRes.data.idToken;
     const editPollRes = await request
-      .put(`/v1/user/poll/${pollID}`)
+      .put(`/v1/pollster/poll/${pollID}`)
       .set({ Authorization: `Bearer ${TOKEN}` })
       .send({
         choices: [{ start: 1633671000042, end: 1633674600042 }],
@@ -152,13 +155,14 @@ describe('create poll', () => {
       { start: 1633671000042, end: 1633674600042 },
       getPollFirstTime!.choices,
     )).toEqual(true);
+
     done();
   });
 });
 
 describe('get poll', () => {
   it('Should return poll by emailID', async (done) => {
-    const USER = await admin.auth().getUserByEmail(emailID);
+    const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
@@ -174,7 +178,7 @@ describe('get poll', () => {
     });
     const TOKEN = await tokenRes.data.idToken;
     const getPollRes = await request
-      .get(`/v1/user/${encryptedEmailID}`)
+      .get(`/v1/pollster/${encryptedPollsterEmailID}`)
       .set({ Authorization: `Bearer ${TOKEN}` });
     expect(getPollRes.body[0].title).toEqual('testPoll');
     done();
@@ -182,13 +186,14 @@ describe('get poll', () => {
 
   it('Should return nothing if user does not exist', async (done) => {
     const getPollRes = await request
-      .get('/v1/poll/user/haha/haha');
+      .get('/v1/pollster/haha');
     expect(getPollRes.body.message).toEqual(undefined);
+
     done();
   });
 
   it('Should throw err if there is token but wrong encrypted email id', async (done) => {
-    const USER = await admin.auth().getUserByEmail(emailID);
+    const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
@@ -204,16 +209,17 @@ describe('get poll', () => {
     });
     const TOKEN = await tokenRes.data.idToken;
     const getPollRes = await request
-      .get(`/v1/user/${encrypt('invalid-user@test.com')}`)
+      .get(`/v1/pollster/${encrypt('invalid-user@test.com')}`)
       .set({ Authorization: `Bearer ${TOKEN}` });
     expect(getPollRes.body.msg).toEqual('Forbidden');
+
     done();
   });
 });
 
 describe('delete poll', () => {
   it('Should delete poll from db', async (done) => {
-    const USER = await admin.auth().getUserByEmail(emailID);
+    const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
@@ -229,16 +235,17 @@ describe('delete poll', () => {
     });
     const TOKEN = await tokenRes.data.idToken;
     const deletePollRes = await request
-      .delete(`/v1/user/poll/${pollID}`)
+      .delete(`/v1/pollster/poll/${pollID}`)
       .set({ Authorization: `Bearer ${TOKEN}` });
     expect(deletePollRes.body.title).toEqual(testPoll.title);
     const getPollFirstTime: RocketMeetPoll | null = await Poll.findOne({ _id: pollID }).lean();
     expect(getPollFirstTime).toEqual(null);
+
     done();
   });
 
   it('Should throw err if there is no poll to delete', async (done) => {
-    const USER = await admin.auth().getUserByEmail(emailID);
+    const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
     const CTOKEN = await admin.auth().createCustomToken(uid);
     const tokenRes = await axios({
@@ -255,9 +262,10 @@ describe('delete poll', () => {
     const TOKEN = await tokenRes.data.idToken;
     const someIdWhichDoesntExist = '5fe141353477a0591da0c98a';
     const deletePollRes = await request
-      .delete(`/v1/user/poll/${someIdWhichDoesntExist}`)
+      .delete(`/v1/pollster/poll/${someIdWhichDoesntExist}`)
       .set({ Authorization: `Bearer ${TOKEN}` });
     expect(deletePollRes.body.message).toEqual('Poll not found');
+
     done();
   });
 });

@@ -1,14 +1,17 @@
 import supertest, { SuperTest, Test } from 'supertest';
 import dbHandler from '../../db-handler';
 import app from '../../../src/app';
-import { isChoicePresentInPollChoices } from '../../../src/helpers';
+import { isChoicePresentInPollChoices, encrypt } from '../../../src/helpers';
 import Poll, { RocketMeetPoll } from '../../../src/db/models/poll';
 
 const request: SuperTest<Test> = supertest(app);
 
+const pollsterEmailID = 'pollster@test.com';
+const encryptedPollsterEmailID = encrypt(pollsterEmailID);
+
 const testPoll = {
   title: 'testPoll',
-  encryptedEmailID: 'encryptedEmailID',
+  encryptedEmailID: encryptedPollsterEmailID,
   choices: [
     { start: 1633577400000, end: 1633581000000 },
     { start: 1633588200000, end: 1633591800000 },
@@ -62,7 +65,7 @@ describe('get poll', () => {
 
 describe('vote on poll', () => {
   it('Should allow users to mark on a poll', async (done) => {
-    const voterOneVotesRes = await request.put(`/v1/poll/${pollID}`).send({
+    const voterOneVotesRes = await request.put(`/v1/poll/public/${pollID}`).send({
       name: 'dbowie',
       choices: [{ start: 1633667400000, end: 1633671000000 }],
     });
@@ -77,7 +80,7 @@ describe('vote on poll', () => {
       getPollFirstTime!.votes![0].choices,
     )).toEqual(true);
 
-    const voterTwoVotesRes = await request.put(`/v1/poll/${pollID}`).send({
+    const voterTwoVotesRes = await request.put(`/v1/poll/public/${pollID}`).send({
       name: 'elon',
       choices: [{ start: 1633671000000, end: 1633674600000 }],
     });
@@ -98,7 +101,7 @@ describe('vote on poll', () => {
   it('Should not allow users to vote on a closed poll', async (done) => {
     const closedPoll = await Poll.create({
       title: 'testPoll',
-      encryptedEmailID: 'encryptedEmailID',
+      encryptedEmailID: encryptedPollsterEmailID,
       choices: [
         { start: 1633667400000, end: 1633671000000 },
         { start: 1633671000000, end: 1633674600000 },
@@ -107,7 +110,7 @@ describe('vote on poll', () => {
       open: false,
     });
 
-    const voterOneVotesRes = await request.put(`/v1/poll/${closedPoll._id}`).send({
+    const voterOneVotesRes = await request.put(`/v1/poll/public/${closedPoll._id}`).send({
       name: 'dbowie',
       choices: [{ start: 1633671000000, end: 1633674600000 }],
     });
@@ -116,7 +119,7 @@ describe('vote on poll', () => {
   });
 
   it('Should not allow invalid slot choices', async (done) => {
-    const voterOneVotesRes = await request.put(`/v1/poll/${pollID}`).send({
+    const voterOneVotesRes = await request.put(`/v1/poll/public/${pollID}`).send({
       name: 'dbowie',
       choices: [{ start: 1633671000042, end: 1633674600042 }],
     });
