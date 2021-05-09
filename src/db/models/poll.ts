@@ -15,7 +15,7 @@ export type PollType = 'public' | 'protected' | 'private';
 export interface RocketMeetPoll extends Document {
   title: string;
   description?: string;
-  type?: PollType;
+  type: PollType;
   open?: boolean;
   encryptedEmailID: string;
   choices: Choice[];
