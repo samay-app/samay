@@ -1,0 +1,77 @@
+
+{
+  "name": "rocketmeet server",
+  "description": "a free and open source meeting scheduling app",
+  "keywords": [
+    "expressjs","meeting-scheduler","foss"
+  ],
+  "website": "https://rocketmeet.me/",
+  "logo": "https://github.com/RocketMeet/RocketMeet-server/blob/main/server.png",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "LOG_LEVEL": {
+      "value": "info"
+    },
+    "NODE_ENV": {
+       "value": "production"
+    },
+    "CORS_URL": {
+      "description" : "production client domain URL"
+    },
+    "DB_NAME": {
+      "value": "pollsdb"
+    },
+    "DB_URL": {
+      "description": "db url"
+    },
+    "DB_USER": {
+      "description": "db user"
+    },
+    "DB_USER_PWD": {
+      "description": "db user password"
+    },
+    "PUBLIC_ENCRYPTION_KEY": {
+      "description": "your_key_of_length_32_characters_here"
+    },
+    "PUBLIC_ENCRYPTION_IV": {
+      "description": "your_IV_of_length_16_characters_here"
+    },
+    "WEB_API_KEY": {
+      "description": "your_firebase_web_api_key"
+    },
+    "TYPE": {
+      "description": "type_of_firebase_account"
+    },
+    "PROJECT_ID": {
+      "description": "firebase_project_id"
+    },
+    "PRIVATE_KEY_ID": {
+      "description": "firebase_private_key_id"
+    },
+    "PRIVATE_KEY": {
+      "description": "firebase_private_key"
+    },
+    "CLIENT_EMAIL": {
+      "description": "firebase_client_email"
+    },
+    "CLIENT_ID": {
+      "description": "firebase_client_id"
+    },
+    "AUTH_URI": {
+      "description": "firebase_auth_uri"
+    },
+    "TOKEN_URI": {
+      "description": "firebase_token_uri"
+    },
+    "AUTH_PROVIDER_X509_CERT_URL": {
+      "description": "firebase_auth_provider_x509_cert_url"
+    },
+    "CLIENT_X509_CERT_URL": {
+      "description": "firebase_client_x509_cert_url"
+    }
+  }
+}
