@@ -15,7 +15,7 @@ Come say hello at our [chatroom](https://gitter.im/RocketMeet/community) for dis
 
 ## API Documentation
 
-You can find the API documentation for the server [here](https://documenter.getpostman.com/view/10544125/TW6wJodh) and the mailer [here](https://documenter.getpostman.com/view/9605987/TW6wHo7V).
+You can find the API documentation for the server [here](https://documenter.getpostman.com/view/10544125/TW6wJodh).
 
 ## Getting Started
 
@@ -43,12 +43,11 @@ $ npm i
 
 ### Development
 
-Make sure that the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer), are located at the level same as this repository with their relevant `node_modules` installed.
+Make sure that the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) is located at the level same as this repository with the relevant `node_modules` installed.
 
 The structure should like the following:  
 /                
-├── RocketMeet-server/             
-├── RocketMeet-mailer/            
+├── RocketMeet-server/               
 └── RocketMeet-client/
 
 
@@ -84,7 +83,7 @@ Make a copy of the `.env.production.example` file to `.env.production` and set t
 
 ## Deploy with vercel
 
-> Note: You need to have the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) and [RocketMeet-mailer](https://github.com/RocketMeet/RocketMeet-mailer) setup before using this one-click deployment. Make sure to create a firebase account and setup `firebase-auth` for google signin.
+> Note: You need to have the [RocketMeet-server](https://github.com/RocketMeet/RocketMeet-server) setup before using this one-click deployment. Make sure to create a firebase account and setup `firebase-auth` for google signin.
 
 Set the environment variables in `.env.production.example` at Vercel in the next step.
 
