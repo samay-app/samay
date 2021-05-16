@@ -67,7 +67,7 @@ describe('User authentication', () => {
   it('Should throw err if there is no token in the header', async (done) => {
     const res = await request
       .post('/v1/pollster/');
-    expect(res.body.msg).toEqual('Token does not exist');
+    expect(res.body.message).toEqual('Token does not exist');
 
     done();
   });
@@ -184,14 +184,6 @@ describe('get poll', () => {
     done();
   });
 
-  it('Should return nothing if user does not exist', async (done) => {
-    const getPollRes = await request
-      .get('/v1/pollster/haha');
-    expect(getPollRes.body.message).toEqual(undefined);
-
-    done();
-  });
-
   it('Should throw err if there is token but wrong encrypted email id', async (done) => {
     const USER = await admin.auth().getUserByEmail(pollsterEmailID);
     const uid = USER.uid;
@@ -211,7 +203,7 @@ describe('get poll', () => {
     const getPollRes = await request
       .get(`/v1/pollster/${encrypt('invalid-user@test.com')}`)
       .set({ Authorization: `Bearer ${TOKEN}` });
-    expect(getPollRes.body.msg).toEqual('Forbidden');
+    expect(getPollRes.body.message).toEqual('Forbidden');
 
     done();
   });

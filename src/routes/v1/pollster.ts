@@ -13,7 +13,7 @@ router.use('/', auth);
 
 router.get('/:encryptedEmailID', async (req: Request, res: Response) => {
     if (decrypt(req.params.encryptedEmailID) !== req.currentUser.email) {
-        res.status(403).json({ msg: 'Forbidden' });
+        res.status(403).json({ message: 'Forbidden' });
     } else {
         try {
             const polls: RocketMeetPoll[] | null = await Poll.find({
@@ -30,7 +30,7 @@ router.get('/:encryptedEmailID', async (req: Request, res: Response) => {
 
 router.post('/poll', async (req: Request, res: Response) => {
     if (decrypt(req.body.encryptedEmailID) !== req.currentUser.email) {
-        res.status(403).json({ msg: 'Forbidden' });
+        res.status(403).json({ message: 'Forbidden' });
     } else {
         const newPoll: RocketMeetPoll = new Poll(req.body);
         try {
@@ -48,7 +48,7 @@ router.put('/poll/:id', async (req: Request, res: Response) => {
     const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id }).lean();
     if (poll) {
         if (decrypt(poll.encryptedEmailID) !== req.currentUser.email) {
-            res.status(403).json({ msg: 'Forbidden' });
+            res.status(403).json({ message: 'Forbidden' });
         } else {
             try {
                 const updatedPoll: RocketMeetPoll | null = await Poll.findOneAndUpdate(
@@ -72,7 +72,7 @@ router.delete('/poll/:id', async (req: Request, res: Response) => {
     const poll: RocketMeetPoll | null = await Poll.findOne({ _id: req.params.id }).lean();
     if (poll) {
         if (decrypt(poll.encryptedEmailID) !== req.currentUser.email) {
-            res.status(403).json({ msg: 'Forbidden' });
+            res.status(403).json({ message: 'Forbidden' });
         } else {
             try {
                 const deletedPoll = await Poll.findByIdAndRemove(req.params.id);

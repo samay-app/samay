@@ -116,6 +116,43 @@ describe('vote on poll', () => {
     done();
   });
 
+  it('Should not allow multiple votes by same voter', async (done) => {
+    const USER = await admin.auth().getUserByEmail(voterEmailID);
+    const uid = USER.uid;
+    const CTOKEN = await admin.auth().createCustomToken(uid);
+    const tokenRes = await axios({
+      method: 'post',
+      url,
+      data: {
+        token: CTOKEN,
+        returnSecureToken: true,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const TOKEN = await tokenRes.data.idToken;
+
+    await request
+    .put(`/v1/poll/protected/${pollID}`)
+    .send({
+      name: 'dbowie',
+      choices: [{ start: 1633667400000, end: 1633671000000 }],
+    })
+    .set({ Authorization: `Bearer ${TOKEN}` });
+
+    const voterTwoVotesRes = await request
+      .put(`/v1/poll/protected/${pollID}`)
+      .send({
+        name: 'dbowie',
+        choices: [{ start: 1633671000000, end: 1633674600000 }],
+      })
+      .set({ Authorization: `Bearer ${TOKEN}` });
+
+    expect(voterTwoVotesRes.body.message).toEqual('User cannot vote more than once');
+    done();
+  });
+
   it('Should not allow anonymous voters to mark on a poll', async (done) => {
     const voterOneVotesRes = await request
       .put(`/v1/poll/protected/${pollID}`)
@@ -124,7 +161,7 @@ describe('vote on poll', () => {
         choices: [{ start: 1633667405000, end: 1633671005000 }],
       });
 
-    expect(voterOneVotesRes.body.msg).toEqual('Token does not exist');
+    expect(voterOneVotesRes.body.message).toEqual('Token does not exist');
 
     done();
   });
@@ -153,7 +190,7 @@ describe('vote on poll', () => {
       })
       .set({ Authorization: `Bearer ${TOKEN}` });
 
-    expect(voterOneVotesRes.body.msg).toEqual('Forbidden');
+    expect(voterOneVotesRes.body.message).toEqual('Forbidden');
 
     done();
   });

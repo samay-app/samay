@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import { isChoicePresentInPollChoices } from '../../helpers';
+import { isChoicePresentInPollChoices, isUserPresentInVotes } from '../../helpers';
 import Poll, { Vote, RocketMeetPoll } from '../../db/models/poll';
 import auth from './auth';
 
@@ -76,13 +76,15 @@ router.put('/protected/:id', async (req: Request, res: Response) => {
             if (poll.type !== 'protected') {
                 res.status(400).json({ message: 'Poll is not protected' });
             } else if (vote.name !== req.currentUser.name) {
-                res.status(403).json({ msg: 'Forbidden' });
+                res.status(403).json({ message: 'Forbidden' });
             } else if (!poll.open) {
                 res.status(400).json({ message: 'Poll closed' });
             } else if (
                 !vote.choices.every((choice) => isChoicePresentInPollChoices(choice, poll.choices))
                 ) {
                 res.status(400).json({ message: 'Invalid choices' });
+            } else if (poll.votes && isUserPresentInVotes(req.currentUser.name, poll.votes)) {
+                res.status(403).json({ message: 'User cannot vote more than once' });
             } else {
                 const currentVotes: Vote[] | undefined = poll.votes;
                 let newVotes: Vote[] | undefined;
