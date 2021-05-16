@@ -6,8 +6,6 @@
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/RocketMeet/RocketMeet-mailer?style=for-the-badge)](https://codeclimate.com/github/RocketMeet/RocketMeet-mailer)
 [![GitHub contributors](https://img.shields.io/github/contributors/RocketMeet/RocketMeet-mailer?color=%23000000&&style=for-the-badge)](https://github.com/RocketMeet/RocketMeet-mailer/graphs/contributors)
 
-## [Under active development]
-
 ## Community
 
 Come say hi at our [chatroom](https://gitter.im/RocketMeet/community) for discussions, voicing new ideas or getting help!
