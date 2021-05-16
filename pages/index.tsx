@@ -20,7 +20,7 @@ const Home = (): JSX.Element => {
 
   return (
     <Layout>
-      <Container className="rm-container">
+      <Container>
         <Row className="home-hero-row">
           <Col className="home-hero-first-col" sm>
             <span className="hero-title">

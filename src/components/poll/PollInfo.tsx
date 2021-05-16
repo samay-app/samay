@@ -1,5 +1,10 @@
 import { Badge } from "react-bootstrap";
-import { PersonCircle, StarFill } from "react-bootstrap-icons";
+import {
+  PersonCircle,
+  PatchCheckFill,
+  Globe,
+  LockFill,
+} from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { RocketMeetPollFromDB } from "../../models/poll";
@@ -22,7 +27,7 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
       <span className="poll-info-desc">{poll.description}</span>
       {poll.finalChoice && (
         <span className="poll-info-final-date">
-          <StarFill className="poll-info-final-date-star mr-2" />{" "}
+          <PatchCheckFill className="poll-info-final-date-star mr-2" />{" "}
           <b>
             {dayjs(poll.finalChoice.start).format("ddd")},{" "}
             {dayjs(poll.finalChoice.start).format("MMM")}{" "}
@@ -35,6 +40,18 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
       <span className="poll-info-user">
         <PersonCircle className="mr-2" />{" "}
         <b>{decrypt(poll.encryptedEmailID)}</b>
+      </span>
+      <span className="poll-info-user">
+        {poll.type === "public" && (
+          <>
+            <Globe className="mr-2" /> <b>Public</b>
+          </>
+        )}
+        {poll.type === "protected" && (
+          <>
+            <LockFill className="mr-2" /> <b>Protected (login required)</b>
+          </>
+        )}
       </span>
     </div>
   );

@@ -17,7 +17,7 @@ import {
   RocketMeetPollFromDB,
 } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers/helpers";
-import ShareInvite from "../../src/components/shareinvite/ShareInvite";
+import ShareInvite from "../../src/components/shareInvite/ShareInvite";
 import { RootState } from "../../src/store/store";
 
 dayjs.extend(localizedFormat);
@@ -31,11 +31,14 @@ const Poll = (props: {
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
+  const loggedInUserDisplayName = useSelector(
+    (state: RootState) => state.authReducer.displayName
+  );
   const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
     (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );
   const [newVote, setNewVote] = useState<Vote>({
-    name: "",
+    name: loggedInUserDisplayName,
     choices: [],
   });
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
@@ -50,7 +53,7 @@ const Poll = (props: {
                 <Col sm>
                   <PollInfo poll={pollFromDB} />
                 </Col>
-                <Col sm>
+                <Col sm className="poll-shareinvite-col">
                   {loggedInUserEmailID === pollCreatorEmailID && (
                     <>
                       <ShareInvite
@@ -76,6 +79,7 @@ const Poll = (props: {
                 setFinalChoice={setFinalChoice}
                 pollCreatorEmailID={pollCreatorEmailID}
                 loggedInUserEmailID={loggedInUserEmailID}
+                loggedInUserDisplayName={loggedInUserDisplayName}
               />
             </Jumbotron>
             {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (

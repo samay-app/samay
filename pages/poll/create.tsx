@@ -60,10 +60,6 @@ const Create = (): JSX.Element => {
   const tourSteps: Step[] = [
     {
       disableBeacon: true,
-      target: ".poll-create",
-      content: "Let us give you a quick tour!",
-    },
-    {
       target: "#formPlainTextTitle",
       content: "Give your event the memorable title it deserves.",
     },

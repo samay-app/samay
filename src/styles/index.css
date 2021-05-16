@@ -25,6 +25,7 @@ main {
   padding-bottom: 0.5rem;
   padding-right: 0 !important;
   padding-left: 0 !important;
+  border-bottom: 1px solid #ededf4;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -62,6 +63,11 @@ main {
 .rm-nav-link:hover {
   color: #000000 !important;
   transition: 0.3s;
+}
+
+.rm-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .rm-footer {
@@ -831,7 +837,7 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .rat-TimeSlot_title {
-    padding: 0.3rem 0 0 0 !important;
+    padding: 0.1rem 0 0 0 !important;
     font-size: 0.5rem !important;
     line-height: 0.6rem !important;
   }
@@ -864,7 +870,6 @@ h4 {
 }
 
 .mark-options-btn {
-  margin-top: 2rem;
   float: right;
 }
 
@@ -901,7 +906,7 @@ h4 {
   color: #000000;
   padding: 1rem !important;
   border-radius: 0.5rem !important;
-  margin-bottom: 0 !important;
+  margin-bottom: 2rem !important;
   margin-top: 1rem !important;
   box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
     inset 0px 0px 4px rgba(255, 255, 255, 0.2);
@@ -912,11 +917,14 @@ h4 {
   padding-right: 0;
 }
 
+.poll-shareinvite-col {
+  border-left: 0.1rem solid #818181 !important;
+}
+
 .poll-shareinvite-content {
   margin-top: 3rem;
   padding-left: 2rem;
   padding-right: 3rem;
-  border-left: 0.1rem solid #818181;
 }
 
 .poll-info-title {
@@ -969,13 +977,18 @@ h4 {
     padding-right: 0;
   }
 
-  .poll-shareinvite-content {
+  .poll-shareinvite-col {
+    border-left: 0 !important;
+    border-top: 0.1rem solid #818181 !important;
     margin-top: 2rem;
+    padding-top: 1rem !important;
+  }
+
+  .poll-shareinvite-content {
+    margin-top: 0rem;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 1rem;
     border-left: 0rem;
-    border-top: 0.1rem solid #818181;
   }
 
   .poll-info-title {
@@ -1097,9 +1110,20 @@ h4 {
   font-size: 1rem;
 }
 
+.mark-choice-name {
+  color: #000000 !important;
+  border: 2px solid #6c757d !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem !important;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
   .slot-time {
     min-width: 4.5rem !important;
+  }
+
+  .poll-table-participants {
+    font-size: 0.8rem;
   }
 
   .datetime-time-1 {
@@ -1109,13 +1133,10 @@ h4 {
   .datetime-time-2 {
     font-size: 0.6rem;
   }
-}
 
-.mark-choice-name {
-  color: #000000 !important;
-  border: 2px solid #6c757d !important;
-  border-radius: 0.5rem !important;
-  font-size: 1rem !important;
+  .mark-choice-name {
+    font-size: 0.8rem !important;
+  }
 }
 
 .slot-checked {

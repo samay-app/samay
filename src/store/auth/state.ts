@@ -2,7 +2,7 @@ export interface AuthState {
   server: string;
   client: string;
   isLoggedIn: boolean;
-  displayName: any;
+  displayName: string;
   username: string;
   token: string;
 }

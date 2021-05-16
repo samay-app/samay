@@ -36,8 +36,8 @@ const Login = (props: { btnStyle: string }): JSX.Element => {
               token,
             })
           );
-        Router.push(`/dashboard`);
       });
+      Router.reload();
     } catch (err) {
       setResponse({
         status: true,
@@ -51,6 +51,7 @@ const Login = (props: { btnStyle: string }): JSX.Element => {
   const googleLogout = (): void => {
     firebase.auth().signOut();
     dispatch(logout());
+    Router.reload();
   };
 
   return (

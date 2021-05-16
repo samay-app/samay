@@ -29,6 +29,7 @@ export default function reducer(
       return {
         ...state,
         isLoggedIn: false,
+        displayName: "",
         username: "",
         token: "",
       };
