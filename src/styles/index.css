@@ -17,11 +17,6 @@ main {
   justify-content: space-between !important;
 }
 
-.rm-container {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
-
 .rm-navbar {
   padding-top: 0.5rem;
   background-color: #ffffff;
@@ -30,6 +25,7 @@ main {
   padding-bottom: 0.5rem;
   padding-right: 0 !important;
   padding-left: 0 !important;
+  border-bottom: 1px solid #ededf4;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -69,6 +65,11 @@ main {
   transition: 0.3s;
 }
 
+.rm-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .rm-footer {
   padding-top: 2rem !important;
   background-color: #ffffff !important;
@@ -104,11 +105,6 @@ main {
 
 .rm-footer-row ul {
   list-style: none;
-}
-
-.footer-col {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
 }
 
 .footer-col h6 {
@@ -174,6 +170,8 @@ main {
 
   .footer-col {
     margin-top: 1.8rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -220,11 +218,12 @@ a {
 
 .dashboard-polls-row {
   margin-top: 7rem !important;
+  margin-bottom: 3rem !important;
 }
 
 .hero-title {
   font-weight: 700;
-  font-size: 3.4rem;
+  font-size: 3.3rem;
   color: #101010;
   display: block;
   line-height: 4rem;
@@ -317,7 +316,7 @@ a {
 .home-second-jumbo .hero-secondary-title {
   color: #f5f5f5;
   text-align: center !important;
-  margin-bottom: 3rem !important;
+  margin-bottom: 5rem !important;
 }
 
 .features-card {
@@ -403,11 +402,7 @@ a {
 
   .home-hero-row {
     margin-top: 2.5rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
     margin-bottom: 3rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
     flex-flow: column-reverse;
   }
 
@@ -422,7 +417,7 @@ a {
   }
 
   .hero-title {
-    font-size: 2.1rem !important;
+    font-size: 2.2rem !important;
     line-height: 2.5rem;
   }
 
@@ -462,7 +457,7 @@ a {
   }
 
   .home-second-jumbo .hero-secondary-title {
-    margin-bottom: 2rem !important;
+    margin-bottom: 4rem !important;
   }
 
   .features-card {
@@ -760,51 +755,51 @@ h4 {
 .rm-form-text {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: 3px solid #6c757d !important;
-  border-radius: 0 !important;
-  font-size: 3rem !important;
+  border: 0.1rem solid #6c757d !important;
+  border-radius: 0.5rem !important;
+  font-size: 1.5rem !important;
 }
 
 .rm-form-text:focus {
-  border-bottom: 3px solid #d3d3d3 !important;
+  border: 0.1rem solid #d3d3d3 !important;
 }
 
 .rm-form-desc {
   background-color: #101010 !important;
   color: #e0e0e0 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: 3px solid #6c757d !important;
-  border-radius: 0 !important;
+  border: 0.1rem solid #6c757d !important;
+  border-radius: 0.5rem !important;
   font-size: 1.5rem !important;
 }
 
 .rm-form-desc:focus {
-  border-bottom: 3px solid #d3d3d3 !important;
+  border: 0.1rem solid #d3d3d3 !important;
 }
 
-.timezone-info-icon {
-  color: #e0e0e0;
-  margin: 2rem 0.25rem 2rem 0rem;
+.rm-form-option {
+  background-color: #101010 !important;
+  color: #6c757d !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 0.1rem solid #6c757d !important;
+  border-radius: 0;
+  font-size: 1rem !important;
+  width: 25% !important;
 }
 
-.timezone-info-icon-create {
-  width: 1.3rem;
-  height: 1.3rem;
-  color: #e0e0e0;
-  margin: 2rem 0.25rem 2rem 0rem;
+.rm-form-last-row-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .tour-start-icon {
   width: 1.3rem;
   height: 1.3rem;
   color: #e0e0e0;
-  margin: 2rem 0.25rem 2rem 0.25rem;
+  margin: 0.8rem 0rem 0rem 0rem;
   cursor: pointer;
+  float: right;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -813,25 +808,18 @@ h4 {
   }
 
   .rm-form-text {
-    font-size: 1.5rem !important;
+    font-size: 1rem !important;
   }
 
-  .timezone-info-icon {
-    width: 0.8rem;
-    height: 0.8rem;
-    margin: 0rem !important;
-  }
-
-  .timezone-info-icon-create {
-    width: 1rem;
-    height: 1rem;
-    margin: 1rem 0.125rem 0rem 0rem;
+  .rm-form-option {
+    font-size: 0.8rem !important;
+    width: 65% !important;
   }
 
   .tour-start-icon {
     width: 1rem;
     height: 1rem;
-    margin: 1rem 0.125rem 0rem 0.5rem;
+    margin: 0.6rem 0rem 0rem 0rem;
   }
 }
 
@@ -849,7 +837,7 @@ h4 {
 
 @media (min-width: 0) and (max-width: 992px) {
   .rat-TimeSlot_title {
-    padding: 0.3rem 0 0 0 !important;
+    padding: 0.1rem 0 0 0 !important;
     font-size: 0.5rem !important;
     line-height: 0.6rem !important;
   }
@@ -882,7 +870,6 @@ h4 {
 }
 
 .mark-options-btn {
-  margin-top: 2rem;
   float: right;
 }
 
@@ -919,7 +906,7 @@ h4 {
   color: #000000;
   padding: 1rem !important;
   border-radius: 0.5rem !important;
-  margin-bottom: 0 !important;
+  margin-bottom: 2rem !important;
   margin-top: 1rem !important;
   box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
     inset 0px 0px 4px rgba(255, 255, 255, 0.2);
@@ -930,11 +917,14 @@ h4 {
   padding-right: 0;
 }
 
+.poll-shareinvite-col {
+  border-left: 0.1rem solid #818181 !important;
+}
+
 .poll-shareinvite-content {
   margin-top: 3rem;
   padding-left: 2rem;
   padding-right: 3rem;
-  border-left: 0.1rem solid #818181;
 }
 
 .poll-info-title {
@@ -987,13 +977,18 @@ h4 {
     padding-right: 0;
   }
 
-  .poll-shareinvite-content {
+  .poll-shareinvite-col {
+    border-left: 0 !important;
+    border-top: 0.1rem solid #818181 !important;
     margin-top: 2rem;
+    padding-top: 1rem !important;
+  }
+
+  .poll-shareinvite-content {
+    margin-top: 0rem;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 1rem;
     border-left: 0rem;
-    border-top: 0.1rem solid #818181;
   }
 
   .poll-info-title {
@@ -1115,9 +1110,20 @@ h4 {
   font-size: 1rem;
 }
 
+.mark-choice-name {
+  color: #000000 !important;
+  border: 2px solid #6c757d !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem !important;
+}
+
 @media (min-width: 0) and (max-width: 992px) {
   .slot-time {
     min-width: 4.5rem !important;
+  }
+
+  .poll-table-participants {
+    font-size: 0.8rem;
   }
 
   .datetime-time-1 {
@@ -1127,13 +1133,10 @@ h4 {
   .datetime-time-2 {
     font-size: 0.6rem;
   }
-}
 
-.mark-choice-name {
-  color: #000000 !important;
-  border: 2px solid #6c757d !important;
-  border-radius: 0.5rem !important;
-  font-size: 1rem !important;
+  .mark-choice-name {
+    font-size: 0.8rem !important;
+  }
 }
 
 .slot-checked {
@@ -1549,6 +1552,10 @@ h4 {
 
 .four-o-four p {
   font-size: 2rem;
+}
+
+.four-o-four a {
+  text-decoration: underline !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {

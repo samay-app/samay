@@ -1,9 +1,10 @@
 import { Dispatch } from "react";
-import { Table } from "react-bootstrap";
-import { Check, StarFill } from "react-bootstrap-icons";
+import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Check, PatchCheckFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkChoices from "./MarkChoices";
+import MarkChoicesPublic from "./MarkChoicesPublic";
+import MarkChoicesProtected from "./MarkChoicesProtected";
 import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
@@ -19,6 +20,7 @@ const PollTable = (props: {
   setFinalChoice: Dispatch<Choice | undefined>;
   pollCreatorEmailID: string;
   loggedInUserEmailID: string;
+  loggedInUserDisplayName: string;
 }): JSX.Element => {
   const {
     pollFromDB,
@@ -28,6 +30,7 @@ const PollTable = (props: {
     setFinalChoice,
     pollCreatorEmailID,
     loggedInUserEmailID,
+    loggedInUserDisplayName,
   } = props;
   return (
     <div className="poll-info-div">
@@ -47,7 +50,12 @@ const PollTable = (props: {
               >
                 {choice.start === pollFromDB.finalChoice?.start &&
                   choice.end === pollFromDB.finalChoice?.end && (
-                    <StarFill className="final-star" />
+                    <OverlayTrigger
+                      placement="right"
+                      overlay={<Tooltip id="finalTime1">Final time</Tooltip>}
+                    >
+                      <PatchCheckFill className="final-star" />
+                    </OverlayTrigger>
                   )}
                 <PollDateTime choice={choice} />
               </th>
@@ -55,13 +63,26 @@ const PollTable = (props: {
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-            <MarkChoices
-              choices={sortedChoices}
-              newVote={newVote}
-              setNewVote={setNewVote}
-            />
-          )}
+          {pollFromDB.open &&
+            loggedInUserEmailID !== pollCreatorEmailID &&
+            pollFromDB.type === "public" && (
+              <MarkChoicesPublic
+                choices={sortedChoices}
+                newVote={newVote}
+                setNewVote={setNewVote}
+              />
+            )}
+          {pollFromDB.open &&
+            loggedInUserEmailID !== pollCreatorEmailID &&
+            pollFromDB.type === "protected" && (
+              <MarkChoicesProtected
+                pollFromDB={pollFromDB}
+                voterName={loggedInUserDisplayName}
+                choices={sortedChoices}
+                newVote={newVote}
+                setNewVote={setNewVote}
+              />
+            )}
           {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
             <MarkFinalChoice
               choices={sortedChoices}
@@ -69,7 +90,7 @@ const PollTable = (props: {
             />
           )}
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
-            <tr key={idx}>
+            <tr key={`${idx}-${vote.name}`}>
               <td className="poll-table-participants">{vote.name}</td>
               {sortedChoices.map((choice) => (
                 <td

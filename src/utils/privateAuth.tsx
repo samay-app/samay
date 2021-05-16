@@ -42,18 +42,10 @@ const privateAuthWrapper = (Component: NextPage) => {
       });
     });
 
-    // If user is not logged in, return login component
+    // If user is logged in, return login component
     if (isLoggedIn === false) {
-      return (
-        <>
-          Not authorised!!
-          <Link href="/">
-            <a>Go back to landing page</a>
-          </Link>
-        </>
-      );
+      return <></>;
     }
-    // If user is logged in, return original component
     return <Component {...props} />;
   };
   return Auth;

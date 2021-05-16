@@ -1,4 +1,4 @@
-import DashboardContainer from "../src/components/Dashboard/DashboardContainer";
+import DashboardContainer from "../src/components/dashboard/DashboardContainer";
 import Layout from "../src/components/Layout";
 import withprivateAuth from "../src/utils/privateAuth";
 

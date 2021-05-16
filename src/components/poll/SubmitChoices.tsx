@@ -2,12 +2,14 @@ import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
 import { useSelector } from "react-redux";
-import { markChoices } from "../../utils/api/server";
-import { Vote, RocketMeetPollFromDB, MailerArgs } from "../../models/poll";
+import {
+  markChoicesProtected,
+  markChoicesPublic,
+} from "../../utils/api/server";
+import { Vote, RocketMeetPollFromDB } from "../../models/poll";
 import ResponseMessage from "../ResponseMessage";
-import { decrypt } from "../../helpers/helpers";
-import { sendPollResponse } from "../../utils/api/mailer";
 import { RootState } from "../../store/store";
+import { isUserPresentInVotes } from "../../helpers/helpers";
 
 const SubmitChoices = (props: {
   newVote: Vote;
@@ -15,15 +17,11 @@ const SubmitChoices = (props: {
   pollFromDB: RocketMeetPollFromDB;
 }): JSX.Element => {
   const { newVote, pollID, pollFromDB } = props;
-  const pollCreatorEmailID = decrypt(pollFromDB.encryptedEmailID);
+  const pollType = pollFromDB.type;
   const token = useSelector((state: RootState) => state.authReducer.token);
   const isLoggedIn = useSelector(
     (state: RootState) => state.authReducer.isLoggedIn
   );
-  const senderEmailID = useSelector(
-    (state: RootState) => state.authReducer.username
-  );
-
   const [response, setResponse] = useState({
     status: false,
     type: "",
@@ -31,31 +29,53 @@ const SubmitChoices = (props: {
   });
   const [disabled, setDisabled] = useState<boolean>(false);
 
+  let btnHidden = false;
+  if (
+    pollType === "protected" &&
+    isLoggedIn &&
+    pollFromDB.votes &&
+    isUserPresentInVotes(newVote.name, pollFromDB.votes)
+  ) {
+    btnHidden = true;
+  }
+  if (pollType === "protected" && !isLoggedIn) {
+    btnHidden = true;
+  }
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (newVote.name && newVote.choices.length > 0) {
+    if (pollType === "protected" && !isLoggedIn) {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Poll is protected. Please login first.",
+      });
+    } else if (newVote.name && newVote.choices.length > 0) {
       setDisabled(true);
       try {
-        const voterArgs = {
-          newVote,
-          pollID,
-        };
-        const submitChoiceResponse = await markChoices(voterArgs);
-        if (submitChoiceResponse.statusCode === 201) {
-          if (isLoggedIn) {
-            const mailerArgs: MailerArgs = {
-              pollID,
-              senderEmailID,
-              pollTitle: pollFromDB.title,
-              receiverIDs: Array<string>(pollCreatorEmailID),
-              senderName: newVote.name,
-            };
-            await sendPollResponse(mailerArgs, token);
-          }
+        let submitChoiceResponse;
+        if (pollType === "public") {
+          const voterArgs = {
+            newVote,
+            pollID,
+          };
+          submitChoiceResponse = await markChoicesPublic(voterArgs);
+        } else {
+          const voterArgs = {
+            newVote,
+            pollID,
+            token,
+          };
+          submitChoiceResponse = await markChoicesProtected(voterArgs);
+        }
+        if (submitChoiceResponse && submitChoiceResponse.statusCode === 201) {
           Router.reload();
-        } else if (submitChoiceResponse.statusCode === 400) {
+        } else if (
+          submitChoiceResponse &&
+          submitChoiceResponse.statusCode === 400
+        ) {
           setResponse({
             status: true,
             type: "error",
@@ -78,7 +98,6 @@ const SubmitChoices = (props: {
           type: "error",
           msg: "Network error. Please try again later.",
         });
-        Router.reload();
       }
     } else if (!newVote.name) {
       setResponse({
@@ -102,6 +121,7 @@ const SubmitChoices = (props: {
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
+        hidden={btnHidden}
       >
         {!disabled ? (
           `Mark your availability`

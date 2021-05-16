@@ -1,7 +1,6 @@
 import { Form } from "react-bootstrap";
 import { Choice } from "../../models/poll";
 import CopyLink from "./CopyLink";
-import InviteMail from "./InviteMail";
 
 const ShareInvite = (props: {
   pollID: string;
@@ -20,11 +19,6 @@ const ShareInvite = (props: {
       >
         <CopyLink
           pollURL={pollURL}
-          pollTitle={pollTitle}
-          finalChoice={finalChoice}
-        />
-        <InviteMail
-          pollID={pollID}
           pollTitle={pollTitle}
           finalChoice={finalChoice}
         />

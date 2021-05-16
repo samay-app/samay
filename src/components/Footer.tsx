@@ -85,20 +85,6 @@ const Footer = (): JSX.Element => {
                     API Docs
                   </a>
                 </li>
-                <li>
-                  <a href="/team" target="_blank" rel="noreferrer">
-                    Team
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/milestones"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Roadmap
-                  </a>
-                </li>
               </ul>
             </Col>
             <Col className="footer-col footer-right">
@@ -122,39 +108,11 @@ const Footer = (): JSX.Element => {
                     Contribution Guide
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/issues/new?assignees=&labels=&template=bug_report.md&title="
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Bug Report
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/issues/new?assignees=&labels=&template=feature_request.md&title="
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Feature Request
-                  </a>
-                </li>
               </ul>
             </Col>
             <Col className="footer-col footer-right">
               <h6>LEGAL</h6>
               <ul>
-                <li>
-                  <a href="/privacy-policy" target="_blank" rel="noreferrer">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms-of-service" target="_blank" rel="noreferrer">
-                    Terms of Service
-                  </a>
-                </li>
                 <li>
                   <a
                     href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CODE_OF_CONDUCT.md"

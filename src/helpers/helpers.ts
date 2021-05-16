@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { Choice } from "../models/poll";
+import { Choice, VoteFromDB } from "../models/poll";
 
 export const isChoicePresentInPollChoices = (
   choiceToSearch: Choice,
@@ -9,6 +9,13 @@ export const isChoicePresentInPollChoices = (
     (choice) =>
       choice.start === choiceToSearch.start && choice.end === choiceToSearch.end
   );
+};
+
+export const isUserPresentInVotes = (
+  userToSearch: string,
+  votes: VoteFromDB[]
+): boolean => {
+  return votes.some((vote) => vote.name === userToSearch);
 };
 
 const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || "";

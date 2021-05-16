@@ -20,9 +20,12 @@ export interface ChoiceFromDB {
   end: number;
 }
 
+export type PollType = "public" | "protected" | "private";
+
 export interface RocketMeetPoll {
   title: string;
   description?: string;
+  type: PollType;
   open?: boolean;
   encryptedEmailID: string;
   choices: Choice[];
@@ -34,6 +37,7 @@ export interface RocketMeetPollFromDB {
   _id: string;
   title: string;
   description?: string;
+  type: PollType;
   open?: boolean;
   encryptedEmailID: string;
   choices: ChoiceFromDB[];
@@ -42,14 +46,6 @@ export interface RocketMeetPollFromDB {
   createdAt: string;
   updatedAt: string;
   __v: number;
-}
-
-export interface MailerArgs {
-  pollID: string;
-  pollTitle: string;
-  receiverIDs: string[];
-  senderName: string;
-  senderEmailID: string;
 }
 
 export interface HttpResponse {
