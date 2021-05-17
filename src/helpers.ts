@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { publicEncryptionKey, publicEncryptionIV } from './config';
-import { Choice } from './db/models/poll';
+import { Choice, Vote } from './db/models/poll';
 
 export const isChoicePresentInPollChoices = (
   choiceToSearch: Choice, choices: Choice[],
@@ -8,6 +8,12 @@ export const isChoicePresentInPollChoices = (
   return choices.some(
     (choice) => (choice.start === choiceToSearch.start && choice.end === choiceToSearch.end),
   );
+};
+
+export const isUserPresentInVotes = (
+  userToSearch: string, votes: Vote[],
+): boolean => {
+  return votes.some((vote) => vote.name === userToSearch);
 };
 
 export const encrypt = (text: string): string => {

@@ -16,10 +16,10 @@ const auth = async (req: Request, res: Response, next: NextFunction): Promise<vo
       req.currentUser = decodedToken;
       next();
     } catch (err) {
-      res.status(401).json({ msg: err.message });
+      res.status(401).json({ message: err.message });
     }
   } else {
-    res.status(401).json({ msg: 'Token does not exist' });
+    res.status(401).json({ message: 'Token does not exist' });
   }
 };
 

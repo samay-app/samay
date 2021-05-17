@@ -1,12 +1,10 @@
 import express, { Router } from 'express';
 import poll from './poll';
-import user from './user';
-import pollCount from './pollCount';
+import pollster from './pollster';
 
 const router: Router = express.Router();
 
 router.use('/poll', poll);
-router.use('/user', user);
-router.use('/pollCount', pollCount);
+router.use('/pollster', pollster);
 
 export default router;
