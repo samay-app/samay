@@ -1572,3 +1572,82 @@ h4 {
     font-size: 0.9rem;
   }
 }
+
+.calendar-event-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  letter-spacing: 1px;
+  border: solid 2px #a3a3a3;
+  color: white;
+}
+
+.calendar-event-container-title {
+  font-size: 34px;
+  font-weight: bold;
+  font-family: "IBM Plex Sans", sans-serif;
+  text-align: center;
+}
+
+.calendar-event-date-month-wrapper {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-event-wrapper {
+  height: 100px;
+  display: flex;
+  padding: 20px;
+}
+
+.calendar-event-date {
+  font-family: "New Tegomin", serif;
+  font-family: "Train One", cursive;
+  font-size: 47px;
+  margin: 0px;
+  line-height: 47px;
+}
+
+.calendar-event-month {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.calendar-event-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.calendar-event-title {
+  font-family: "Inconsolata", monospace;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0px;
+  color: rgb(255, 251, 0);
+  word-break: break-all;
+}
+
+.calendar-event-title:hover {
+  text-decoration: none;
+  color: rgb(22, 77, 255);
+}
+
+.calendar-event-date-time {
+  font-family: "Inconsolata", monospace;
+  font-weight: bold;
+  color: #e9e7e7;
+  margin-bottom: 0px;
+}
+
+.google-calendar-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
