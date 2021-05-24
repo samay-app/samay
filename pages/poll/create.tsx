@@ -11,6 +11,7 @@ import {
   Spinner,
   OverlayTrigger,
   Tooltip,
+  Modal,
 } from "react-bootstrap";
 import { QuestionCircleFill } from "react-bootstrap-icons";
 import { useState } from "react";
@@ -22,6 +23,7 @@ import { Choice, PollType, RocketMeetPoll } from "../../src/models/poll";
 import withprivateAuth from "../../src/utils/privateAuth";
 import { RootState } from "../../src/store/store";
 import { createPoll } from "../../src/utils/api/server";
+import Calendar from "../../src/components/GoogleCalendarEvent";
 
 // typings aren't available for react-available-times :(
 
@@ -36,6 +38,7 @@ const Create = (): JSX.Element => {
   const [pollType, setPollType] = useState<PollType>("public");
   const [pollChoices, setChoices] = useState<Choice[]>();
   const [disabled, setDisabled] = useState<boolean>(false);
+  const [show, setShow] = useState(false);
   const loggedInUserEmailID = useSelector(
     (state: RootState) => state.authReducer.username
   );
@@ -193,6 +196,13 @@ const Create = (): JSX.Element => {
     setTourRun(true);
   };
 
+  const handleClose = (): void => {
+    setShow(false);
+  };
+  const handleShow = (): void => {
+    setShow(true);
+  };
+
   const handleJoyrideCallback = (data: CallBackProps): void => {
     const { status, type } = data;
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
@@ -270,6 +280,18 @@ const Create = (): JSX.Element => {
                 </Col>
               </Row>
             </Jumbotron>
+            <div className="google-calendar-button-container">
+              <Button className="rm-primary-button" onClick={handleShow}>
+                Google Calendar Events
+              </Button>
+            </div>
+            <Modal show={show} onHide={handleClose} animation>
+              {/* Currently we don't have any option for user to add Calendar ID. So I have added manually for testing purpose */}
+              <Calendar
+                calendarID={process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID}
+                API={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              />
+            </Modal>
           </Col>
         </Row>
         <Row className="jumbo-row">
