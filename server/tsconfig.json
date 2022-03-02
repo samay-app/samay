@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+      "module": "CommonJS",
+      "target": "ES2019",
+      "outDir": "./build",
+      "moduleResolution": "node",
+      "strict": true,
+      "baseUrl": "./src",
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "lib": [
+          "dom",
+          "esnext",
+          "dom.iterable",
+          "scripthost"
+      ],
+  },
+  "include": [
+    "./src",
+    "./tests"
+  ],
+  "exclude": [
+    "./node_modules/",
+    "./build/",
+  ],
+}
