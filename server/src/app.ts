@@ -5,15 +5,15 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import pino, { Logger } from 'pino';
 import { corsURL, logLevel } from './config';
-import './db/index'; // initialize database
+import './db/index';
 import routesV1 from './routes/v1/index';
 
 const logger: Logger = pino({ level: logLevel });
 const expressLogger: HttpLogger = expressPino({ logger });
 
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 50, // limit each IP to 50 requests per windowMs
+   windowMs: 15 * 60 * 1000, // 15 minutes
+   max: 50, // limit each IP to 50 requests per windowMs
 });
 
 const app: Application = express();
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'development') {
-    app.use(expressLogger);
+   app.use(expressLogger);
 }
 
 app.use(limiter);

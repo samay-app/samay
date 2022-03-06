@@ -8,6 +8,7 @@
       "baseUrl": "./src",
       "esModuleInterop": true,
       "resolveJsonModule": true,
+      "useUnknownInCatchVariables": false,
       "lib": [
           "dom",
           "esnext",

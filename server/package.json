@@ -2,9 +2,9 @@
   "name": "rocketmeet",
   "version": "1.0.0",
   "engines": {
-    "node": "14.15.1"
+    "node": "16.14.0"
   },
-  "description": "a free and open source meeting scheduling app",
+  "description": "Free and open source meeting scheduling tool",
   "main": "build/server.js",
   "scripts": {
     "start": "npm run build && npm run serve",
@@ -15,27 +15,19 @@
     "build": "tsc --project tsconfig-build.json",
     "upgrade": "npm update --save-dev && npm update --save"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/RocketMeet/RocketMeet-server.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RocketMeet/RocketMeet-server/issues"
+    "url": "https://github.com/RocketMeet/RocketMeet/issues"
   },
-  "homepage": "https://github.com/RocketMeet/RocketMeet-server#readme",
+  "homepage": "https://github.com/RocketMeet/RocketMeet#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
     "express-rate-limit": "^5.2.3",
-    "firebase": "^7.24.0",
-    "firebase-admin": "^9.4.2",
-    "firebase-token-generator": "^2.0.0",
     "helmet": "^4.4.1",
     "mongoose": "^5.11.15",
     "pino": "^6.11.0"
