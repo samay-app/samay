@@ -1,17 +1,16 @@
 import { Button, Spinner } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 import Router from "next/router";
 import { markFinalChoice } from "../../utils/api/server";
-import { RootState } from "../../store/store";
 import { Choice } from "../../models/poll";
 import ResponseMessage from "../ResponseMessage";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
   pollID: string;
+  secret: string;
 }): JSX.Element => {
-  const { finalChoice, pollID } = props;
+  const { finalChoice, pollID, secret } = props;
 
   const [response, setResponse] = useState({
     status: false,
@@ -19,8 +18,6 @@ const SubmitFinalChoice = (props: {
     msg: "",
   });
   const [disabled, setDisabled] = useState<boolean>(false);
-
-  const token = useSelector((state: RootState) => state.authReducer.token);
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
@@ -35,7 +32,7 @@ const SubmitFinalChoice = (props: {
             open: false,
           },
           pollID,
-          token,
+          secret,
         };
         const submitFinalChoiceResponse = await markFinalChoice(voterArgs);
         if (submitFinalChoiceResponse.statusCode === 201) {

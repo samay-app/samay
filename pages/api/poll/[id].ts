@@ -10,6 +10,7 @@ export default async (
   const {
     query: { id },
     method,
+    body,
   } = req;
 
   switch (method) {
@@ -35,7 +36,7 @@ export default async (
           _id: id,
         });
         if (poll) {
-          const vote: Vote = JSON.parse(req.body);
+          const vote: Vote = JSON.parse(body);
           if (!poll.open) {
             res.status(400).json({ message: "Poll closed" });
           } else if (

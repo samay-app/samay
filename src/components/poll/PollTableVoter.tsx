@@ -4,7 +4,6 @@ import { Check, PatchCheckFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import MarkChoices from "./MarkChoices";
-import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import { Choice, PollFromDB, Vote } from "../../models/poll";
 import { isChoicePresentInPollChoices } from "../../helpers";

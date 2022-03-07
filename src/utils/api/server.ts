@@ -51,19 +51,12 @@ const markChoices = (voteArgs: {
 const markFinalChoice = (voteArgs: {
   finalChoice: { finalChoice: Choice | undefined; open: boolean };
   pollID: string;
-  token: string;
+  secret: string;
 }): Promise<HttpResponse> => {
-  const { finalChoice, pollID, token } = voteArgs;
-  const endpoint = `api/pollster/poll/${pollID}`;
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
+  const { finalChoice, pollID, secret } = voteArgs;
+  const endpoint = `${BASE_URL}/api/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
-    mode: "cors",
-    credentials: "include",
     method: "PUT",
-    headers,
     body: JSON.stringify(finalChoice),
   };
   return httpMethod(endpoint, requestOptions);
@@ -71,19 +64,12 @@ const markFinalChoice = (voteArgs: {
 
 const deletePoll = (voteArgs: {
   pollID: string;
-  token: string;
+  secret: string;
 }): Promise<HttpResponse> => {
-  const { pollID, token } = voteArgs;
-  const endpoint = `api/pollster/poll/${pollID}`;
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
+  const { pollID, secret } = voteArgs;
+  const endpoint = `${BASE_URL}/api/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
-    mode: "cors",
-    credentials: "include",
     method: "DELETE",
-    headers,
     body: JSON.stringify(voteArgs),
   };
   return httpMethod(endpoint, requestOptions);

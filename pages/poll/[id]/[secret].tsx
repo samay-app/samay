@@ -6,15 +6,9 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../../src/utils/api/server";
 import Layout from "../../../src/components/Layout";
 import PollInfo from "../../../src/components/poll/PollInfo";
-import PollTable from "../../../src/components/poll/PollTableAdmin";
-import SubmitChoices from "../../../src/components/poll/SubmitChoices";
+import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
 import SubmitFinalChoice from "../../../src/components/poll/SubmitFinalChoice";
-import {
-  Choice,
-  ChoiceFromDB,
-  Vote,
-  PollFromDB,
-} from "../../../src/models/poll";
+import { Choice, ChoiceFromDB, PollFromDB } from "../../../src/models/poll";
 import ShareInvite from "../../../src/components/shareInvite/ShareInvite";
 
 dayjs.extend(localizedFormat);
@@ -22,16 +16,12 @@ dayjs.extend(localizedFormat);
 const Poll = (props: {
   pollFromDB: PollFromDB;
   pollID: string;
+  secret: string;
 }): JSX.Element => {
-  const { pollFromDB, pollID } = props;
-  const pollCreatorEmailID = decrypt(pollFromDB.encryptedEmailID);
+  const { pollFromDB, pollID, secret } = props;
   const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
     (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );
-  const [newVote, setNewVote] = useState<Vote>({
-    name: "",
-    choices: [],
-  });
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
 
   return (
@@ -45,15 +35,11 @@ const Poll = (props: {
                   <PollInfo poll={pollFromDB} />
                 </Col>
                 <Col sm className="poll-shareinvite-col">
-                  {loggedInUserEmailID === pollCreatorEmailID && (
-                    <>
-                      <ShareInvite
-                        pollTitle={pollFromDB.title}
-                        pollID={pollID}
-                        finalChoice={pollFromDB.finalChoice}
-                      />
-                    </>
-                  )}
+                  <ShareInvite
+                    pollTitle={pollFromDB.title}
+                    pollID={pollID}
+                    finalChoice={pollFromDB.finalChoice}
+                  />
                 </Col>
               </Row>
             </Jumbotron>
@@ -62,25 +48,18 @@ const Poll = (props: {
         <Row className="jumbo-row">
           <Col className="jumbo-col">
             <Jumbotron className="poll-table-jumbo">
-              <PollTable
+              <PollTableAdmin
                 pollFromDB={pollFromDB}
                 sortedChoices={sortedChoices}
-                newVote={newVote}
-                setNewVote={setNewVote}
                 setFinalChoice={setFinalChoice}
-                pollCreatorEmailID={pollCreatorEmailID}
-                loggedInUserEmailID={loggedInUserEmailID}
               />
             </Jumbotron>
-            {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-              <SubmitChoices
-                newVote={newVote}
+            {pollFromDB.open && (
+              <SubmitFinalChoice
+                finalChoice={finalChoice}
                 pollID={pollID}
-                pollFromDB={pollFromDB}
+                secret={secret}
               />
-            )}
-            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-              <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
             )}
           </Col>
         </Row>
@@ -91,8 +70,10 @@ const Poll = (props: {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let pollID = null;
+  let secret = null;
   if (context.params) {
     pollID = context.params.id;
+    secret = context.params.secret;
   }
   const getPollResponse = await getPoll(pollID);
   const pollFromDB = getPollResponse.data;
@@ -105,8 +86,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+
+  if (secret !== pollFromDB.secret) {
+    return {
+      redirect: {
+        destination: `/poll/${pollID}`,
+        permanent: false,
+      },
+    };
+  }
+
   return {
-    props: { pollFromDB, pollID }, // will be passed to the page component as props
+    props: { pollFromDB, pollID, secret }, // will be passed to the page component as props
   };
 };
 

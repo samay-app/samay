@@ -3,7 +3,6 @@ import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Check, PatchCheckFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkChoices from "./MarkChoices";
 import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import { Choice, PollFromDB, Vote } from "../../models/poll";
@@ -14,21 +13,9 @@ dayjs.extend(localizedFormat);
 const PollTable = (props: {
   pollFromDB: PollFromDB;
   sortedChoices: Choice[];
-  newVote: Vote;
-  setNewVote: Dispatch<Vote>;
   setFinalChoice: Dispatch<Choice | undefined>;
-  pollCreatorEmailID: string;
-  loggedInUserEmailID: string;
 }): JSX.Element => {
-  const {
-    pollFromDB,
-    sortedChoices,
-    newVote,
-    setNewVote,
-    setFinalChoice,
-    pollCreatorEmailID,
-    loggedInUserEmailID,
-  } = props;
+  const { pollFromDB, sortedChoices, setFinalChoice } = props;
   return (
     <div className="poll-info-div">
       <Table responsive className="poll-table">
@@ -60,14 +47,7 @@ const PollTable = (props: {
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
-            <MarkChoices
-              choices={sortedChoices}
-              newVote={newVote}
-              setNewVote={setNewVote}
-            />
-          )}
-          {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+          {pollFromDB.open && (
             <MarkFinalChoice
               choices={sortedChoices}
               setFinalChoice={setFinalChoice}

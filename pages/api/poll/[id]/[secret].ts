@@ -9,6 +9,7 @@ export default async (
   const {
     query: { id, secret },
     method,
+    body,
   } = req;
 
   switch (method) {
@@ -25,7 +26,7 @@ export default async (
             try {
               const updatedPoll: PollDoc | null = await RocketMeetPoll.findOneAndUpdate(
                 { _id: id },
-                JSON.parse(req.body),
+                JSON.parse(body),
                 { new: true }
               );
               res.status(201).json(updatedPoll);
@@ -65,7 +66,7 @@ export default async (
       }
       break;
     default:
-      res.setHeader("Allow", ["GET", "PUT"]);
+      res.setHeader("Allow", ["PUT", "DELETE"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 };
