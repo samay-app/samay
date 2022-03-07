@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import Router from "next/router";
 import dynamic from "next/dynamic";
 import {
@@ -17,10 +16,7 @@ import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import Layout from "../../src/components/Layout";
 import ResponseMessage from "../../src/components/ResponseMessage";
-import { encrypt } from "../../src/helpers/helpers";
-import { Choice, PollType, RocketMeetPoll } from "../../src/models/poll";
-import withprivateAuth from "../../src/utils/privateAuth";
-import { RootState } from "../../src/store/store";
+import { Choice, Poll } from "../../src/models/poll";
 import { createPoll } from "../../src/utils/api/server";
 
 // typings aren't available for react-available-times :(
@@ -33,13 +29,8 @@ const AvailableTimes: any = dynamic(() => import("react-available-times"), {
 const Create = (): JSX.Element => {
   const [pollTitle, setTitle] = useState<string>("");
   const [pollDescription, setDescription] = useState<string>("");
-  const [pollType, setPollType] = useState<PollType>("public");
   const [pollChoices, setChoices] = useState<Choice[]>();
   const [disabled, setDisabled] = useState<boolean>(false);
-  const loggedInUserEmailID = useSelector(
-    (state: RootState) => state.authReducer.username
-  );
-  const token = useSelector((state: RootState) => state.authReducer.token);
 
   const [response, setResponse] = useState({
     status: false,
@@ -69,11 +60,6 @@ const Create = (): JSX.Element => {
         "Add a description to let your invitees know what this is all about.",
     },
     {
-      target: "#pollType",
-      content:
-        "Choose a poll type. Public polls let anyone with the poll link mark their availability. No login required. Best for public meetings. Protected polls only allow logged-in users to mark their availability, leaving no space for impersonation.",
-    },
-    {
       target: ".rat-AvailableTimes_buttons",
       content:
         "Are you an early planner? Use these buttons to schedule further in future.",
@@ -99,14 +85,6 @@ const Create = (): JSX.Element => {
   ): void => {
     const { value } = e.target;
     setDescription(value);
-  };
-
-  const handlePollTypeChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    const { value } = e.target;
-    const pollTypeFromOptions = value as PollType;
-    setPollType(pollTypeFromOptions);
   };
 
   const onChoicesChange = (selections: { start: Date; end: Date }[]): void => {
@@ -137,18 +115,17 @@ const Create = (): JSX.Element => {
       areChoicesValid(pollChoices)
     ) {
       setDisabled(true);
-      const encryptedEmailID = encrypt(loggedInUserEmailID);
-      const poll: RocketMeetPoll = {
+      const secret = "secret";
+      const poll: Poll = {
         title: pollTitle,
         description: pollDescription,
-        type: pollType,
-        encryptedEmailID,
+        secret,
+        name: "anand",
         choices: pollChoices,
       };
       try {
         const createPollResponse = await createPoll({
           poll,
-          token,
         });
         if (createPollResponse.statusCode === 201) {
           Router.push(`/poll/${createPollResponse.data._id}`);
@@ -211,7 +188,6 @@ const Create = (): JSX.Element => {
         continuous
         showSkipButton
         showProgress
-        debug={process.env.NODE_ENV === "development"}
         spotlightClicks
         styles={{
           buttonClose: { visibility: "hidden" },
@@ -242,19 +218,6 @@ const Create = (): JSX.Element => {
                 />
               </Form.Group>
               <Row>
-                <Col className="rm-form-last-row-col">
-                  <Form.Group controlId="pollType">
-                    <Form.Control
-                      as="select"
-                      className="rm-form-option"
-                      required
-                      onChange={handlePollTypeChange}
-                    >
-                      <option value="public">Public</option>
-                      <option value="protected">Protected</option>
-                    </Form.Control>
-                  </Form.Group>
-                </Col>
                 <Col className="rm-form-last-row-col">
                   <OverlayTrigger
                     placement="right"
@@ -314,4 +277,4 @@ const Create = (): JSX.Element => {
   );
 };
 
-export default withprivateAuth(Create);
+export default Create;

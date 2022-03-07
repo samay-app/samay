@@ -7,8 +7,7 @@ import {
 } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { RocketMeetPollFromDB } from "../../models/poll";
-import { decrypt } from "../../helpers/helpers";
+import { PollFromDB } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
@@ -38,8 +37,7 @@ const PollInfo = (props: { poll: RocketMeetPollFromDB }): JSX.Element => {
         </span>
       )}
       <span className="poll-info-user">
-        <PersonCircle className="mr-2" />{" "}
-        <b>{decrypt(poll.encryptedEmailID)}</b>
+        <PersonCircle className="mr-2" /> <b>fgfgfg</b>
       </span>
       <span className="poll-info-user">
         {poll.type === "public" && (

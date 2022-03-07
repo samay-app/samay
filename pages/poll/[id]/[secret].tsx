@@ -3,12 +3,19 @@ import { GetServerSideProps } from "next";
 import { Col, Row, Container, Jumbotron } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { getPoll } from "../../src/utils/api/server";
-import Layout from "../../src/components/Layout";
-import PollInfo from "../../src/components/poll/PollInfo";
-import PollTableVoter from "../../src/components/poll/PollTableVoter";
-import SubmitChoices from "../../src/components/poll/SubmitChoices";
-import { ChoiceFromDB, Vote, PollFromDB } from "../../src/models/poll";
+import { getPoll } from "../../../src/utils/api/server";
+import Layout from "../../../src/components/Layout";
+import PollInfo from "../../../src/components/poll/PollInfo";
+import PollTable from "../../../src/components/poll/PollTableAdmin";
+import SubmitChoices from "../../../src/components/poll/SubmitChoices";
+import SubmitFinalChoice from "../../../src/components/poll/SubmitFinalChoice";
+import {
+  Choice,
+  ChoiceFromDB,
+  Vote,
+  PollFromDB,
+} from "../../../src/models/poll";
+import ShareInvite from "../../../src/components/shareInvite/ShareInvite";
 
 dayjs.extend(localizedFormat);
 
@@ -17,6 +24,7 @@ const Poll = (props: {
   pollID: string;
 }): JSX.Element => {
   const { pollFromDB, pollID } = props;
+  const pollCreatorEmailID = decrypt(pollFromDB.encryptedEmailID);
   const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
     (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );
@@ -24,6 +32,7 @@ const Poll = (props: {
     name: "",
     choices: [],
   });
+  const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
 
   return (
     <Layout>
@@ -35,6 +44,17 @@ const Poll = (props: {
                 <Col sm>
                   <PollInfo poll={pollFromDB} />
                 </Col>
+                <Col sm className="poll-shareinvite-col">
+                  {loggedInUserEmailID === pollCreatorEmailID && (
+                    <>
+                      <ShareInvite
+                        pollTitle={pollFromDB.title}
+                        pollID={pollID}
+                        finalChoice={pollFromDB.finalChoice}
+                      />
+                    </>
+                  )}
+                </Col>
               </Row>
             </Jumbotron>
           </Col>
@@ -42,19 +62,25 @@ const Poll = (props: {
         <Row className="jumbo-row">
           <Col className="jumbo-col">
             <Jumbotron className="poll-table-jumbo">
-              <PollTableVoter
+              <PollTable
                 pollFromDB={pollFromDB}
                 sortedChoices={sortedChoices}
                 newVote={newVote}
                 setNewVote={setNewVote}
+                setFinalChoice={setFinalChoice}
+                pollCreatorEmailID={pollCreatorEmailID}
+                loggedInUserEmailID={loggedInUserEmailID}
               />
             </Jumbotron>
-            {pollFromDB.open && (
+            {pollFromDB.open && loggedInUserEmailID !== pollCreatorEmailID && (
               <SubmitChoices
                 newVote={newVote}
                 pollID={pollID}
                 pollFromDB={pollFromDB}
               />
+            )}
+            {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
+              <SubmitFinalChoice finalChoice={finalChoice} pollID={pollID} />
             )}
           </Col>
         </Row>

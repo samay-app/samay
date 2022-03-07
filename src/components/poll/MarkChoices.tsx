@@ -1,25 +1,18 @@
 import { Form } from "react-bootstrap";
 import { Dispatch } from "react";
-import { Choice, Vote, RocketMeetPollFromDB } from "../../models/poll";
-import { isUserPresentInVotes } from "../../helpers/helpers";
+import { Choice, Vote } from "../../models/poll";
 
-const MarkChoicesProtected = (props: {
-  pollFromDB: RocketMeetPollFromDB;
-  voterName: string;
+const MarkChoices = (props: {
   choices: Choice[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { pollFromDB, voterName, choices, newVote, setNewVote } = props;
+  const { choices, newVote, setNewVote } = props;
 
-  let markChoicesHidden = false;
-  if (
-    pollFromDB.type === "protected" &&
-    pollFromDB.votes &&
-    isUserPresentInVotes(voterName, pollFromDB.votes)
-  ) {
-    markChoicesHidden = true;
-  }
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    setNewVote({ ...newVote, name: value });
+  };
 
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { dataset, checked } = e.target;
@@ -36,14 +29,14 @@ const MarkChoicesProtected = (props: {
   };
 
   return (
-    <tr hidden={markChoicesHidden}>
+    <tr>
       <td className="poll-table-choose-textbox">
         <Form.Control
           className="mark-choice-name"
           type="text"
-          value={voterName}
-          disabled
+          placeholder="Your name"
           required
+          onChange={handleNameChange}
         />
       </td>
       {choices.map((choice) => (
@@ -53,7 +46,6 @@ const MarkChoicesProtected = (props: {
             data-value={JSON.stringify(choice)}
             className="slot-checkbox"
             onChange={handleChoiceChange}
-            disabled={!voterName}
           />
         </td>
       ))}
@@ -61,4 +53,4 @@ const MarkChoicesProtected = (props: {
   );
 };
 
-export default MarkChoicesProtected;
+export default MarkChoices;

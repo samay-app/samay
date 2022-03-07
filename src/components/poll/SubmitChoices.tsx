@@ -1,27 +1,18 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import Router from "next/router";
-import { useSelector } from "react-redux";
-import {
-  markChoicesProtected,
-  markChoicesPublic,
-} from "../../utils/api/server";
-import { Vote, RocketMeetPollFromDB } from "../../models/poll";
+import { markChoices } from "../../utils/api/server";
+import { Vote, PollFromDB } from "../../models/poll";
 import ResponseMessage from "../ResponseMessage";
-import { RootState } from "../../store/store";
-import { isUserPresentInVotes } from "../../helpers/helpers";
+import { isUserPresentInVotes } from "../../helpers";
 
 const SubmitChoices = (props: {
   newVote: Vote;
   pollID: string;
-  pollFromDB: RocketMeetPollFromDB;
+  pollFromDB: PollFromDB;
 }): JSX.Element => {
   const { newVote, pollID, pollFromDB } = props;
-  const pollType = pollFromDB.type;
-  const token = useSelector((state: RootState) => state.authReducer.token);
-  const isLoggedIn = useSelector(
-    (state: RootState) => state.authReducer.isLoggedIn
-  );
+
   const [response, setResponse] = useState({
     status: false,
     type: "",
@@ -31,45 +22,24 @@ const SubmitChoices = (props: {
 
   let btnHidden = false;
   if (
-    pollType === "protected" &&
-    isLoggedIn &&
     pollFromDB.votes &&
     isUserPresentInVotes(newVote.name, pollFromDB.votes)
   ) {
     btnHidden = true;
   }
-  if (pollType === "protected" && !isLoggedIn) {
-    btnHidden = true;
-  }
-
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (pollType === "protected" && !isLoggedIn) {
-      setResponse({
-        status: true,
-        type: "error",
-        msg: "Poll is protected. Please login first.",
-      });
-    } else if (newVote.name && newVote.choices.length > 0) {
+    if (newVote.name && newVote.choices.length > 0) {
       setDisabled(true);
       try {
         let submitChoiceResponse;
-        if (pollType === "public") {
-          const voterArgs = {
-            newVote,
-            pollID,
-          };
-          submitChoiceResponse = await markChoicesPublic(voterArgs);
-        } else {
-          const voterArgs = {
-            newVote,
-            pollID,
-            token,
-          };
-          submitChoiceResponse = await markChoicesProtected(voterArgs);
-        }
+        const voterArgs = {
+          newVote,
+          pollID,
+        };
+        submitChoiceResponse = await markChoices(voterArgs);
         if (submitChoiceResponse && submitChoiceResponse.statusCode === 201) {
           Router.reload();
         } else if (

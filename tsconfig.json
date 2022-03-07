@@ -10,6 +10,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -68,7 +69,8 @@
       "@assets/*": [
         "./src/assets/*"
       ]
-    }
+    },
+    "incremental": true
   },
   "exclude": [
     "node_modules"

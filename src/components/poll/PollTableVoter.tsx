@@ -3,35 +3,21 @@ import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Check, PatchCheckFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkChoicesPublic from "./MarkChoicesPublic";
-import MarkChoicesProtected from "./MarkChoicesProtected";
+import MarkChoices from "./MarkChoices";
 import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
-import { Choice, RocketMeetPollFromDB, Vote } from "../../models/poll";
-import { isChoicePresentInPollChoices } from "../../helpers/helpers";
+import { Choice, PollFromDB, Vote } from "../../models/poll";
+import { isChoicePresentInPollChoices } from "../../helpers";
 
 dayjs.extend(localizedFormat);
 
 const PollTable = (props: {
-  pollFromDB: RocketMeetPollFromDB;
+  pollFromDB: PollFromDB;
   sortedChoices: Choice[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
-  setFinalChoice: Dispatch<Choice | undefined>;
-  pollCreatorEmailID: string;
-  loggedInUserEmailID: string;
-  loggedInUserDisplayName: string;
 }): JSX.Element => {
-  const {
-    pollFromDB,
-    sortedChoices,
-    newVote,
-    setNewVote,
-    setFinalChoice,
-    pollCreatorEmailID,
-    loggedInUserEmailID,
-    loggedInUserDisplayName,
-  } = props;
+  const { pollFromDB, sortedChoices, newVote, setNewVote } = props;
   return (
     <div className="poll-info-div">
       <Table responsive className="poll-table">
@@ -63,30 +49,11 @@ const PollTable = (props: {
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open &&
-            loggedInUserEmailID !== pollCreatorEmailID &&
-            pollFromDB.type === "public" && (
-              <MarkChoicesPublic
-                choices={sortedChoices}
-                newVote={newVote}
-                setNewVote={setNewVote}
-              />
-            )}
-          {pollFromDB.open &&
-            loggedInUserEmailID !== pollCreatorEmailID &&
-            pollFromDB.type === "protected" && (
-              <MarkChoicesProtected
-                pollFromDB={pollFromDB}
-                voterName={loggedInUserDisplayName}
-                choices={sortedChoices}
-                newVote={newVote}
-                setNewVote={setNewVote}
-              />
-            )}
-          {pollFromDB.open && loggedInUserEmailID === pollCreatorEmailID && (
-            <MarkFinalChoice
+          {pollFromDB.open && (
+            <MarkChoices
               choices={sortedChoices}
-              setFinalChoice={setFinalChoice}
+              newVote={newVote}
+              setNewVote={setNewVote}
             />
           )}
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
