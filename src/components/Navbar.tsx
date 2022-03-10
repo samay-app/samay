@@ -19,16 +19,11 @@ const NavBar = (): JSX.Element => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Link href="/#features" passHref>
-              <Nav.Link className="rm-nav-link">Features</Nav.Link>
-            </Link>
-            <a
-              className="rm-nav-link nav-link"
-              href="https://rocketmeet.gitbook.io/rocketmeet/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Docs
+            <a className="rm-nav-link nav-link" href="/" target="_blank">
+              GitHub
+            </a>
+            <a className="rm-nav-link nav-link" href="/" target="_blank">
+              Donate
             </a>
           </Nav>
         </Navbar.Collapse>

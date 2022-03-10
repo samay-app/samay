@@ -26,7 +26,7 @@ export default async (
           res.status(200).json(poll);
         }
       } catch (err) {
-        res.status(404).json({ message: "Poll does not exist" });
+        res.status(404).json({ message: err.message });
       }
       break;
     case "PUT":

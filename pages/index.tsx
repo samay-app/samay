@@ -1,163 +1,326 @@
+import Router from "next/router";
+import dynamic from "next/dynamic";
+import { nanoid } from "nanoid";
 import {
-  Container,
+  Form,
   Row,
   Col,
+  Container,
   Jumbotron,
   Button,
-  CardDeck,
-  Card,
+  Spinner,
+  OverlayTrigger,
+  Tooltip,
 } from "react-bootstrap";
-import { FaGithub } from "react-icons/fa";
+import { QuestionCircleFill } from "react-bootstrap-icons";
+import { useState } from "react";
+import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import Layout from "../src/components/Layout";
+import ResponseMessage from "../src/components/ResponseMessage";
+import { Choice, Poll } from "../src/models/poll";
+import { createPoll } from "../src/utils/api/server";
 
-const Home = (): JSX.Element => {
+// typings aren't available for react-available-times :(
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AvailableTimes: any = dynamic(() => import("react-available-times"), {
+  ssr: false,
+});
+
+const Create = (): JSX.Element => {
+  const [pollTitle, setTitle] = useState<string>("");
+  const [pollLocation, setLocation] = useState<string>("");
+  const [pollDescription, setDescription] = useState<string>("");
+  const [pollChoices, setChoices] = useState<Choice[]>();
+  const [disabled, setDisabled] = useState<boolean>(false);
+
+  const [response, setResponse] = useState({
+    status: false,
+    type: "",
+    msg: "",
+  });
+
+  const [tourRun, setTourRun] = useState<boolean>(false);
+
+  // Run automatically for first time users
+  if (typeof window !== "undefined") {
+    if (localStorage.visited !== "true") {
+      localStorage.setItem("visited", "true");
+      setTourRun(true);
+    }
+  }
+
+  const tourSteps: Step[] = [
+    {
+      disableBeacon: true,
+      target: "#formPlainTextTitle",
+      content: "Give your event the memorable title it deserves.",
+    },
+    {
+      target: "#formPlainTextDescription",
+      content:
+        "Add a description to let your invitees know what this is all about.",
+    },
+    {
+      target: "#formPlainTextLocation",
+      content:
+        "Add a location to let your invitees know where this event is going to happen.",
+    },
+    {
+      target: ".rat-AvailableTimes_buttons",
+      content:
+        "Are you an early planner? Use these buttons to schedule further in future.",
+    },
+    {
+      target: ".rat-Slider_component",
+      content:
+        "Mark your availability by creating time slots. These will be the choices provided to your invitees in the poll. You see the times in your time zone and participants see the times in theirs.",
+    },
+    {
+      target: ".create-poll-btn",
+      content: "Click here when you're all done!",
+    },
+  ];
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    setTitle(value);
+  };
+
+  const handleLocationChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { value } = e.target;
+    setLocation(value);
+  };
+
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { value } = e.target;
+    setDescription(value);
+  };
+
+  const onChoicesChange = (selections: { start: Date; end: Date }[]): void => {
+    const newChoices: Choice[] = selections.map(
+      (choice): Choice => ({
+        start: choice.start.getTime(),
+        end: choice.end.getTime(),
+      })
+    );
+    setChoices(newChoices);
+  };
+
+  const areChoicesValid = (choices: Choice[] | undefined): boolean => {
+    if (!choices) return false;
+    if (choices.some((choice: Choice) => choice.start < Date.now()))
+      return false;
+    return true;
+  };
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLInputElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    if (
+      pollTitle &&
+      pollChoices &&
+      pollChoices.length > 1 &&
+      areChoicesValid(pollChoices)
+    ) {
+      setDisabled(true);
+
+      const secret = nanoid(10);
+
+      const poll: Poll = {
+        title: pollTitle,
+        description: pollDescription,
+        location: pollLocation,
+        secret,
+        choices: pollChoices,
+      };
+
+      try {
+        const createPollResponse = await createPoll({
+          poll,
+        });
+
+        if (createPollResponse.statusCode === 201) {
+          Router.push(
+            `/poll/${createPollResponse.data._id}/${createPollResponse.data.secret}`
+          );
+        } else {
+          setDisabled(false);
+          setResponse({
+            status: true,
+            type: "error",
+            msg: "Poll creation failed, please try again later.",
+          });
+        }
+      } catch (err) {
+        setDisabled(false);
+        setResponse({
+          status: true,
+          type: "error",
+          msg: "Poll creation failed, check your connection.",
+        });
+      }
+    } else if (!pollTitle) {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Please provide a title.",
+      });
+    } else if (!areChoicesValid(pollChoices)) {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Chosen time slots must not be in the past.",
+      });
+    } else {
+      setResponse({
+        status: true,
+        type: "error",
+        msg: "Please select at least two time slots to choose from.",
+      });
+    }
+  };
+
+  const handleStartTour = (): void => {
+    setTourRun(true);
+  };
+
+  const handleJoyrideCallback = (data: CallBackProps): void => {
+    const { status, type } = data;
+    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
+
+    if (finishedStatuses.includes(status) || type === "beacon") {
+      setTourRun(false);
+    }
+  };
+
   return (
     <Layout>
       <Container>
         <Row className="home-hero-row">
-          <Col className="home-hero-first-col" sm>
+          <Col className="home-hero-col">
             <span className="hero-title">
-              Scheduling meetings{" "}
-              <span className="hero-strikethrough">is boring</span> has never
-              been faster
+              Never ask “what time works for you all?” again.
+            </span>
+            <span className="hero-secondary-desc">
+              Create a poll → Share the poll → Wait for invitees → Decide the
+              time → Share the time.
             </span>
             <span className="hero-desc">
-              Quickly find the best time for one-on-one and team meetings with{" "}
-              RocketMeet — a free and open source meeting scheduling tool
+              Finding the best time for team meetings or hanging out with your
+              friends has never been faster.
             </span>
-            <div className="hero-buttons">
-              <div className="hero-first-button">
-                <Button className="rm-primary-button" href="/poll/create">
-                  Create a poll
-                </Button>
-              </div>
-              <div className="hero-second-button">
-                <Button
-                  className="rm-secondary-button"
-                  href="https://github.com/RocketMeet"
-                  target="_blank"
-                >
-                  <FaGithub /> Use self-hosted version
-                </Button>
-              </div>
-            </div>
           </Col>
-          <Col sm>
-            <img
-              src="/undraw_hang_out_h9ud.svg"
-              className="illustration-home"
-              alt="illustration-home"
+        </Row>
+      </Container>
+      <Joyride
+        callback={handleJoyrideCallback}
+        steps={tourSteps}
+        run={tourRun}
+        disableScrolling
+        continuous
+        showSkipButton
+        showProgress
+        spotlightClicks
+        styles={{
+          buttonClose: { visibility: "hidden" },
+          options: {
+            primaryColor: "#68e4f5",
+          },
+        }}
+      />
+      <Container className="rm-container">
+        <Row className="jumbo-row">
+          <Col className="jumbo-col-black">
+            <Jumbotron className="poll-create">
+              <Form.Group as={Row} controlId="formPlainTextTitle">
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Title"
+                  required
+                  onChange={handleTitleChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlainTextDescription">
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Description (optional)"
+                  onChange={handleDescriptionChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlainTextLocation">
+                <Form.Control
+                  className="rm-form-text"
+                  type="text"
+                  placeholder="Location (optional)"
+                  onChange={handleLocationChange}
+                />
+              </Form.Group>
+              <Row>
+                <Col className="rm-form-last-row-col">
+                  <OverlayTrigger
+                    placement="right"
+                    overlay={
+                      <Tooltip id="tour-start-info">Start tour!</Tooltip>
+                    }
+                  >
+                    <QuestionCircleFill
+                      className="tour-start-icon"
+                      onClick={handleStartTour}
+                    />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+            </Jumbotron>
+          </Col>
+        </Row>
+        <Row className="jumbo-row">
+          <Col className="jumbo-col">
+            <Jumbotron className="poll-timeslot-jumbo">
+              <AvailableTimes
+                weekStartsOn="monday"
+                onChange={onChoicesChange}
+                height="42rem"
+              />
+            </Jumbotron>
+            <Button
+              className="rm-primary-button create-poll-btn"
+              onClick={handleSubmit}
+              disabled={disabled}
+            >
+              {!disabled ? (
+                `Create poll`
+              ) : (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="rm-button-spinner"
+                  />
+                </>
+              )}
+            </Button>
+            <ResponseMessage
+              response={response}
+              onHide={(): void =>
+                setResponse({ status: false, type: "", msg: "" })
+              }
             />
           </Col>
         </Row>
       </Container>
-      <Jumbotron className="home-first-jumbo" fluid>
-        <Container>
-          <img
-            src="/screenshot.png"
-            className="illustration-home-two"
-            alt="illustration-home"
-          />
-        </Container>
-      </Jumbotron>
-      <Container className="hero-secondary-container">
-        <span className="hero-secondary-title">
-          No more back-and-forth texts. Just five simple steps.
-        </span>
-        <span className="hero-secondary-desc">
-          Create a poll → Share the poll → Wait for invitees → Decide the time →
-          Share the time.
-        </span>
-      </Container>
-      <Jumbotron className="home-second-jumbo" fluid id="features">
-        <Container>
-          <span className="hero-secondary-title">
-            Polls that meet your needs.
-          </span>
-          <CardDeck>
-            <Card className="features-card">
-              <Card.Body>
-                <Card.Title>Public</Card.Title>
-                <Card.Text>
-                  Anyone with the poll link can mark their availability. No
-                  login required. Best for public meetings.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card className="features-card">
-              <Card.Body>
-                <Card.Title>Protected</Card.Title>
-                <Card.Text>
-                  Only logged-in users can mark their availability, leaving no
-                  space for impersonation.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card className="features-card">
-              <Card.Body>
-                <Card.Title>Private</Card.Title>
-                <Card.Text>
-                  Choose who can see your poll and mark their availability.
-                  Hidden for everyone else.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer className="features-card-footer">
-                <small>(Coming soon)</small>
-              </Card.Footer>
-            </Card>
-          </CardDeck>
-        </Container>
-      </Jumbotron>
-      <Jumbotron className="home-third-jumbo" fluid>
-        <Container>
-          <Row>
-            <Col sm>
-              <span className="hero-secondary-title">
-                No more worrying about time zones.
-              </span>
-              <span className="hero-secondary-desc">
-                RocketMeet fluently handles time zones, leaving no space for
-                confusion. You see the times in your time zone and participants
-                see the times in theirs.
-              </span>
-            </Col>
-            <Col sm>
-              <img
-                src="/undraw_world_9iqb.svg"
-                className="illustration-home-features"
-                alt="illustration-home"
-              />
-            </Col>
-          </Row>
-        </Container>
-      </Jumbotron>
-      <Jumbotron className="home-fourth-jumbo" fluid>
-        <Container>
-          <Row className="home-fourth-jumbo-row">
-            <Col sm>
-              <img
-                src="/undraw_Experts_re_i40h.svg"
-                className="illustration-home-features"
-                alt="illustration-home"
-              />
-            </Col>
-            <Col sm>
-              <span className="hero-secondary-title">
-                Make scheduling collaborative.
-              </span>
-              <span className="hero-secondary-desc">
-                Share your availability. Let invitees narrow it down. See who’s
-                free - or who can be - with “if need be” votes. Date and time
-                set.
-                <br />
-                (Coming soon)
-              </span>
-            </Col>
-          </Row>
-        </Container>
-      </Jumbotron>
     </Layout>
   );
 };
 
-export default Home;
+export default Create;

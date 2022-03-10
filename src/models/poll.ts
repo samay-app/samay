@@ -27,7 +27,7 @@ export interface Poll {
   description?: string;
   open?: boolean;
   secret: string;
-  name: string;
+  location?: string;
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
@@ -39,7 +39,7 @@ export interface PollFromDB {
   description?: string;
   open?: boolean;
   secret: string;
-  name: string;
+  location?: string;
   choices: ChoiceFromDB[];
   finalChoice?: ChoiceFromDB;
   votes?: VoteFromDB[];
@@ -53,7 +53,7 @@ export interface PollDoc extends Document {
   description?: string;
   open?: boolean;
   secret: string;
-  name: string;
+  location?: string;
   choices: Choice[];
   finalChoice?: Choice;
   votes?: Vote[];
@@ -65,7 +65,7 @@ const PollSchema: Schema = new Schema(
     description: { type: String },
     open: { type: Boolean, default: true },
     secret: { type: String, required: true },
-    name: { type: String, required: true },
+    location: { type: String },
     choices: { type: [{ start: Number, end: Number }], required: true },
     finalChoice: { type: { start: Number, end: Number } },
     votes: [{ name: String, choices: [{ start: Number, end: Number }] }],

@@ -40,6 +40,7 @@
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.9.7",
     "mongoose": "^6.2.4",
+    "nanoid": "^3.3.1",
     "next": "^12.1.0",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",
@@ -47,7 +48,6 @@
     "react-bootstrap": "^1.4.0",
     "react-bootstrap-icons": "^1.2.3",
     "react-dom": "16.13.1",
-    "react-icons": "^4.2.0",
     "react-joyride": "^2.3.2"
   },
   "devDependencies": {

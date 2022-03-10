@@ -1,6 +1,5 @@
 import Head from "next/head";
 import NavBar from "./Navbar";
-import Footer from "./Footer";
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
@@ -18,7 +17,6 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
       <div className="flex-wrapper">
         <NavBar />
         <main>{children}</main>
-        <Footer />
       </div>
     </>
   );

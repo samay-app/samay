@@ -5,7 +5,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #f9fbfd !important;
+  background-color: #0f1729 !important;
 }
 
 * {
@@ -16,14 +16,14 @@ body {
   width: 0.8rem;
 }
 ::-webkit-scrollbar-thumb {
-  background: #dbdbdb;
+  background: #4d4d4d;
   border-radius: 0.5rem;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #cfcfcf;
+  background: #5a5a5a;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #333333;
   border-radius: 0.5rem;
 }
