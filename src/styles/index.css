@@ -243,13 +243,14 @@ a {
   text-decoration-thickness: 1.2rem;
 }
 
-.hero-desc {
+.hero-tour {
   font-weight: 400;
   font-size: 1.3rem;
   color: #c0c0c0;
   display: block;
   margin-top: 2rem;
   text-align: center;
+  cursor: pointer;
 }
 
 .hero-secondary-desc {
@@ -423,7 +424,7 @@ a {
     line-height: 1.5rem;
   }
 
-  .hero-desc {
+  .hero-tour {
     font-size: 1.1rem !important;
     margin-top: 0.5rem !important;
   }
@@ -704,7 +705,7 @@ h4 {
   background-color: #0e0f0e !important;
   border: 0.1rem solid #333333 !important;
   color: #ffffff;
-  padding: 2rem 4rem 2rem 4rem !important;
+  padding: 1.5rem 2.5rem 0.5rem 2.5rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
   border-radius: 0.5rem !important;
@@ -713,13 +714,17 @@ h4 {
 .poll-timeslot-jumbo {
   background-color: #0e0f0e !important;
   color: #e2e2e2;
-  padding: 1rem !important;
+  padding-top: 0.5rem !important;
+  padding-left: 0rem !important;
+  padding-right: 1rem !important;
+  padding-bottom: 1.5rem !important;
   border-radius: 0.5rem !important;
   margin-top: 1rem !important;
   border: 0.1rem solid #333333 !important;
 }
 
 .create-poll-btn {
+  margin-bottom: 5rem !important;
   float: right;
 }
 
@@ -785,12 +790,17 @@ h4 {
 }
 
 .tour-start-icon {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.8rem;
+  height: 1.8rem;
   color: #e0e0e0;
-  margin: 0.8rem 0rem 0rem 0rem;
+  margin: 0rem 0rem 0rem 0.5rem;
+  transition: 0.3s;
   cursor: pointer;
-  float: right;
+}
+
+.hero-tour:hover .tour-start-icon {
+  transform: translate(0.3rem);
+  transition: 0.3s;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -898,6 +908,16 @@ h4 {
 
 .rat-TimeSlot_delete {
   line-height: normal !important;
+  font-size: 1rem !important;
+}
+
+.rat-Day_component {
+  border-left: 1px solid #505050 !important;
+}
+
+.rat-Day_mouseTarget {
+  cursor: pointer !important;
+  height: 75rem !important;
 }
 
 .mark-options-btn {
@@ -1466,28 +1486,8 @@ h4 {
   position: absolute;
 }
 
-.rm-response-null {
-  display: none !important;
-}
-
-.rm-response-error {
-  background-color: #f8d7da !important;
-  color: #721c24 !important;
-}
-
-.rm-response-success {
-  background-color: #d4edda !important;
-  color: #155724 !important;
-}
-
-.rm-response-title {
-  font-size: 1.2rem !important;
-}
-
-@media (min-width: 0) and (max-width: 992px) {
-  .rm-response-title {
-    font-size: 1rem !important;
-  }
+.custom-toast {
+  max-width: 35rem !important;
 }
 
 .share-label {

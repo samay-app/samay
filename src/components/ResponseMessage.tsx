@@ -1,37 +1,22 @@
-import { Modal } from "react-bootstrap";
+import { Toast } from "react-bootstrap";
+import { Dispatch } from "react";
 
 const ResponseMessage = (props: {
   response: { status: boolean; type: string; msg: string };
-  onHide(arg: boolean): void;
+  setResponse: Dispatch<{ status: boolean; type: string; msg: string }>;
 }): JSX.Element => {
-  const { response, onHide } = props;
-  let responseClassName: string;
-
-  if (response.type === "error") {
-    responseClassName = "rm-response-error";
-  } else if (response.type === "success") {
-    responseClassName = "rm-response-success";
-  } else {
-    responseClassName = "rm-response-null";
-  }
+  const { response, setResponse } = props;
 
   return (
-    <Modal
+    <Toast
+      onClose={(): void => setResponse({ status: false, type: "", msg: "" })}
       show={response.status}
-      onHide={onHide}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
+      delay={3000}
+      autohide
+      className="custom-toast"
     >
-      <Modal.Header closeButton className={responseClassName}>
-        <Modal.Title
-          id="contained-modal-title-vcenter"
-          className="rm-response-title"
-        >
-          {response.msg}
-        </Modal.Title>
-      </Modal.Header>
-    </Modal>
+      <Toast.Body>{response.msg}</Toast.Body>
+    </Toast>
   );
 };
 

@@ -9,10 +9,8 @@ import {
   Jumbotron,
   Button,
   Spinner,
-  OverlayTrigger,
-  Tooltip,
 } from "react-bootstrap";
-import { QuestionCircleFill } from "react-bootstrap-icons";
+import { ArrowRightShort, ArrowRight } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import Layout from "../src/components/Layout";
@@ -64,17 +62,16 @@ const Create = (): JSX.Element => {
     {
       target: "#formPlainTextLocation",
       content:
-        "Add a location to let your invitees know where this event is going to happen.",
+        "Add a location to let your invitees know where this is going to happen.",
     },
     {
       target: ".rat-AvailableTimes_buttons",
-      content:
-        "Are you an early planner? Use these buttons to schedule further in future.",
+      content: "Use these buttons to schedule further in future if needed.",
     },
     {
       target: ".rat-Slider_component",
       content:
-        "Mark your availability by creating time slots. These will be the choices provided to your invitees in the poll. You see the times in your time zone and participants see the times in theirs.",
+        "Mark your availability by selecting time slots. These will be the choices provided to your invitees in the poll. You see the times in your time zone and invitees see the times in theirs.",
     },
     {
       target: ".create-poll-btn",
@@ -181,7 +178,8 @@ const Create = (): JSX.Element => {
       setResponse({
         status: true,
         type: "error",
-        msg: "Please select at least two time slots to choose from.",
+        msg:
+          "Please select at least two time slots for invitees to choose from.",
       });
     }
   };
@@ -208,12 +206,17 @@ const Create = (): JSX.Element => {
               Never ask “what time works for you all?” again.
             </span>
             <span className="hero-secondary-desc">
-              Create a poll → Share the poll → Wait for invitees → Decide the
-              time → Share the time.
+              Create a poll <ArrowRight /> Share the poll <ArrowRight /> Wait
+              for invitees <ArrowRight /> Decide the time <ArrowRight /> Share
+              the time.
             </span>
-            <span className="hero-desc">
-              Finding the best time for team meetings or hanging out with your
-              friends has never been faster.
+            <span
+              className="hero-tour"
+              aria-hidden="true"
+              onClick={handleStartTour}
+            >
+              Go on a quick tour
+              <ArrowRightShort className="tour-start-icon" />
             </span>
           </Col>
         </Row>
@@ -230,7 +233,7 @@ const Create = (): JSX.Element => {
         styles={{
           buttonClose: { visibility: "hidden" },
           options: {
-            primaryColor: "#68e4f5",
+            primaryColor: "#000",
           },
         }}
       />
@@ -244,6 +247,7 @@ const Create = (): JSX.Element => {
                   type="text"
                   placeholder="Title"
                   required
+                  autoFocus
                   onChange={handleTitleChange}
                 />
               </Form.Group>
@@ -263,21 +267,6 @@ const Create = (): JSX.Element => {
                   onChange={handleLocationChange}
                 />
               </Form.Group>
-              <Row>
-                <Col className="rm-form-last-row-col">
-                  <OverlayTrigger
-                    placement="right"
-                    overlay={
-                      <Tooltip id="tour-start-info">Start tour!</Tooltip>
-                    }
-                  >
-                    <QuestionCircleFill
-                      className="tour-start-icon"
-                      onClick={handleStartTour}
-                    />
-                  </OverlayTrigger>
-                </Col>
-              </Row>
             </Jumbotron>
           </Col>
         </Row>
@@ -310,12 +299,7 @@ const Create = (): JSX.Element => {
                 </>
               )}
             </Button>
-            <ResponseMessage
-              response={response}
-              onHide={(): void =>
-                setResponse({ status: false, type: "", msg: "" })
-              }
-            />
+            <ResponseMessage response={response} setResponse={setResponse} />
           </Col>
         </Row>
       </Container>
