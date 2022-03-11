@@ -58,7 +58,7 @@ const PollTable = (props: {
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
             <tr key={`${idx}-${vote.name}`}>
               <td className="poll-table-participants">{vote.name}</td>
-              {sortedChoices.map((choice) => (
+              {sortedChoices.map((choice: Choice) => (
                 <td
                   key={choice.start}
                   className={
@@ -68,7 +68,16 @@ const PollTable = (props: {
                   }
                 >
                   {isChoicePresentInPollChoices(choice, vote.choices) ? (
-                    <Check className="checked-option" />
+                    <Check
+                      className={
+                        vote.choices.find(
+                          (currentChoice) =>
+                            currentChoice.start === choice.start
+                        )?.ifNeedBe
+                          ? "if-need-be-option"
+                          : "checked-option"
+                      }
+                    />
                   ) : (
                     ""
                   )}

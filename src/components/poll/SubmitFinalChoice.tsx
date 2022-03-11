@@ -87,12 +87,7 @@ const SubmitFinalChoice = (props: {
           </>
         )}
       </Button>
-      <ResponseMessage
-        response={response}
-        onHide={(): void => {
-          setResponse({ status: false, type: "", msg: "" });
-        }}
-      />
+      <ResponseMessage response={response} setResponse={setResponse} />
     </div>
   );
 };

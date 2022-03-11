@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
 import { Choice, Vote } from "../../models/poll";
 
 const MarkChoices = (props: {
@@ -11,20 +11,44 @@ const MarkChoices = (props: {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setNewVote({ ...newVote, name: value });
+    setNewVote({ name: value, choices: newVote.choices });
   };
+
+  const [ifNeedBeHidden, setIfNeedBeHidden] = useState<Record<number, boolean>>(
+    {}
+  );
 
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { dataset, checked } = e.target;
     const choice: Choice = dataset.value ? JSON.parse(dataset.value) : {};
+    let newChoices = newVote.choices;
     if (checked) {
-      const newChoices = newVote.choices;
+      setIfNeedBeHidden((prev) => ({ ...prev, [choice.start]: true }));
       newChoices.push(choice);
-      setNewVote({ ...newVote, choices: newChoices });
+      setNewVote({ name: newVote.name, choices: newChoices });
     } else {
-      let newChoices = newVote.choices;
+      setIfNeedBeHidden((prev) => ({ ...prev, [choice.start]: false }));
       newChoices = newChoices.filter((item) => item.start !== choice.start);
-      setNewVote({ ...newVote, choices: newChoices });
+      setNewVote({ name: newVote.name, choices: newChoices });
+    }
+  };
+
+  const handleIfNeedBeChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { dataset, checked } = e.target;
+    let choice: Choice = dataset.value ? JSON.parse(dataset.value) : {};
+    let newChoices = newVote.choices;
+    if (checked) {
+      newChoices = newChoices.filter((item) => item.start !== choice.start);
+      choice.ifNeedBe = true;
+      newChoices.push(choice);
+      setNewVote({ name: newVote.name, choices: newChoices });
+    } else {
+      newChoices = newChoices.filter((item) => item.start !== choice.start);
+      choice.ifNeedBe = false;
+      newChoices.push(choice);
+      setNewVote({ name: newVote.name, choices: newChoices });
     }
   };
 
@@ -42,10 +66,14 @@ const MarkChoices = (props: {
       {choices.map((choice) => (
         <td key={choice.start} className="slot-checkbox-cell">
           <Form.Check
-            name="choices"
             data-value={JSON.stringify(choice)}
             className="slot-checkbox"
             onChange={handleChoiceChange}
+          />
+          <Form.Check
+            data-value={JSON.stringify(choice)}
+            hidden={!ifNeedBeHidden[choice.start]}
+            onChange={handleIfNeedBeChange}
           />
         </td>
       ))}

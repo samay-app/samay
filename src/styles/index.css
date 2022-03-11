@@ -26,6 +26,7 @@ main {
 
 @media (min-width: 0) and (max-width: 992px) {
   .rm-navbar {
+    margin-top: 0rem;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
@@ -209,7 +210,7 @@ a {
 
 .home-hero-row {
   margin-top: 4rem !important;
-  margin-bottom: 4rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .dashboard-polls-row {
@@ -243,16 +244,6 @@ a {
   text-decoration-thickness: 1.2rem;
 }
 
-.hero-tour {
-  font-weight: 400;
-  font-size: 1.3rem;
-  color: #c0c0c0;
-  display: block;
-  margin-top: 2rem;
-  text-align: center;
-  cursor: pointer;
-}
-
 .hero-secondary-desc {
   font-weight: 500;
   font-size: 1.3rem;
@@ -265,6 +256,18 @@ a {
 
 .hero-buttons {
   margin-top: 2rem;
+}
+
+.hero-tour {
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #c0c0c0;
+  display: block;
+  margin-top: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  width: 14rem;
 }
 
 .hero-first-button {
@@ -415,8 +418,8 @@ a {
   }
 
   .hero-title {
-    font-size: 2.2rem !important;
-    line-height: 2.5rem;
+    font-size: 2rem !important;
+    line-height: 2.3rem;
   }
 
   .hero-secondary-title {
@@ -425,8 +428,9 @@ a {
   }
 
   .hero-tour {
-    font-size: 1.1rem !important;
-    margin-top: 0.5rem !important;
+    font-size: 1.1rem;
+    margin-top: 1.9rem;
+    width: 12rem;
   }
 
   .home-first-jumbo {
@@ -547,8 +551,8 @@ a {
 }
 
 .rm-primary-button {
-  background-color: #68e4f5 !important;
-  color: #000000 !important;
+  background-color: #0f1729 !important;
+  color: #68e4f5 !important;
   transition: 0.3s !important;
   font-weight: 600 !important;
   font-family: "Space Grotesk", sans-serif;
@@ -560,8 +564,8 @@ a {
 
 .rm-primary-button:hover {
   transition: 0.3s;
-  box-shadow: #68e5f54f 0 8px 15px;
-  transform: translateY(-2px);
+  background-color: #68e4f5 !important;
+  color: #0f1729 !important;
 }
 
 .rm-primary-button[disabled] {
@@ -818,14 +822,14 @@ h4 {
   }
 
   .tour-start-icon {
-    width: 1rem;
-    height: 1rem;
-    margin: 0.6rem 0rem 0rem 0rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin: 0rem 0rem 0rem 0.5rem;
   }
 }
 
 .rat-TimeSlot_component {
-  background-color: #e2e2e2 !important;
+  background-color: #68e4f5 !important;
 }
 
 .rat-TimeSlot_handle {
@@ -942,25 +946,28 @@ h4 {
 }
 
 .poll-info {
-  background-color: #e2e2e2 !important;
-  color: #e0e0e0;
+  background-color: #0e0f0e !important;
+  border: 0.1rem solid #333333 !important;
+  color: #d6d6d6;
   padding: 2.5rem 2rem 2rem 2rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
   border-radius: 0.5rem !important;
-  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
-    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
+}
+
+.poll-location {
+  margin-top: -0.2rem;
+  margin-right: 0.5rem;
 }
 
 .poll-table-jumbo {
-  background-color: #ffffff !important;
+  background-color: #0e0f0e !important;
+  border: 0.1rem solid #333333 !important;
   color: #e2e2e2;
   padding: 1rem !important;
   border-radius: 0.5rem !important;
   margin-bottom: 2rem !important;
   margin-top: 1rem !important;
-  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15),
-    inset 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 
 .poll-info-content {
@@ -1090,6 +1097,7 @@ h4 {
 
 .poll-table-participants {
   font-size: 1.1rem;
+  color: #b9b9b9;
   font-weight: 600;
   border-top: 0 !important;
   vertical-align: middle !important;
@@ -1103,8 +1111,8 @@ h4 {
 }
 
 .poll-table-top-row {
-  background-color: #ffffff;
-  color: #e2e2e2;
+  background-color: #0e0f0e;
+  color: #b9b9b9;
 }
 
 .slot-time {
@@ -1162,10 +1170,22 @@ h4 {
 }
 
 .mark-choice-name {
-  color: #e2e2e2 !important;
-  border: 2px solid #6c757d !important;
+  background-color: #2c2c2c !important;
+  color: #e0e0e0 !important;
+  border: 0.1rem solid #1d1d1d !important;
   border-radius: 0.5rem !important;
   font-size: 1rem !important;
+  transition: 0.5s;
+}
+
+.mark-choice-name::placeholder {
+  color: #b9b9b9 !important;
+  opacity: 1 !important;
+}
+
+.mark-choice-name:focus {
+  border: 0.1rem solid #68e4f5 !important;
+  transition: 0.5s;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -1191,10 +1211,10 @@ h4 {
 }
 
 .slot-checked {
-  background-color: #e2e2e2;
+  background-color: #3d3d3d;
   text-align: center;
-  border-top: 0.5rem solid #ffffff !important;
-  border-left: 0.5rem solid #ffffff !important;
+  border-top: 0.5rem solid #0e0f0e !important;
+  border-left: 0.5rem solid #0e0f0e !important;
   width: 7rem !important;
 }
 
@@ -1204,18 +1224,24 @@ h4 {
   color: #37f713;
 }
 
+.if-need-be-option {
+  width: 2rem;
+  height: 2rem;
+  color: #ffbb00;
+}
+
 .slot-unchecked {
-  border-top: 0.5rem solid #ffffff !important;
-  border-left: 0.5rem solid #ffffff !important;
+  border-top: 0.5rem solid #0e0f0e !important;
+  border-left: 0.5rem solid #0e0f0e !important;
   background-image: linear-gradient(
     135deg,
-    #ffffff 30%,
-    #c7c7c7 30%,
-    #c7c7c7 50%,
-    #ffffff 50%,
-    #ffffff 80%,
-    #c7c7c7 80%,
-    #c7c7c7 100%
+    #000000 30%,
+    #2b2b2b 30%,
+    #2b2b2b 50%,
+    #000000 50%,
+    #000000 80%,
+    #2b2b2b 80%,
+    #2b2b2b 100%
   );
   background-size: 7.07px 7.07px;
   width: 7rem !important;
