@@ -7,6 +7,7 @@ import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/poll/PollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
+import PollTableVotes from "../../src/components/poll/PollTableVotes";
 import SubmitChoices from "../../src/components/poll/SubmitChoices";
 import { ChoiceFromDB, Vote, PollFromDB } from "../../src/models/poll";
 
@@ -49,6 +50,8 @@ const Poll = (props: {
                 setNewVote={setNewVote}
               />
             </Jumbotron>
+          </Col>
+          <Col className="jumbo-col">
             {pollFromDB.open && (
               <SubmitChoices
                 newVote={newVote}
@@ -56,6 +59,14 @@ const Poll = (props: {
                 pollFromDB={pollFromDB}
               />
             )}
+          </Col>
+          <Col className="jumbo-col">
+            <Jumbotron className="poll-table-jumbo">
+              <PollTableVotes
+                pollFromDB={pollFromDB}
+                sortedChoices={sortedChoices}
+              />
+            </Jumbotron>
           </Col>
         </Row>
       </Container>

@@ -40,14 +40,6 @@ const Create = (): JSX.Element => {
 
   const [tourRun, setTourRun] = useState<boolean>(false);
 
-  // Run automatically for first time users
-  if (typeof window !== "undefined") {
-    if (localStorage.visited !== "true") {
-      localStorage.setItem("visited", "true");
-      setTourRun(true);
-    }
-  }
-
   const tourSteps: Step[] = [
     {
       disableBeacon: true,

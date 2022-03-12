@@ -18,12 +18,15 @@ const MarkChoices = (props: {
     {}
   );
 
+  const [ifNeedBe, setIfNeedBe] = useState<Record<number, boolean>>({});
+
   const handleChoiceChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { dataset, checked } = e.target;
     const choice: Choice = dataset.value ? JSON.parse(dataset.value) : {};
     let newChoices = newVote.choices;
     if (checked) {
       setIfNeedBeHidden((prev) => ({ ...prev, [choice.start]: true }));
+      choice.ifNeedBe = ifNeedBe[choice.start];
       newChoices.push(choice);
       setNewVote({ name: newVote.name, choices: newChoices });
     } else {
@@ -40,11 +43,13 @@ const MarkChoices = (props: {
     let choice: Choice = dataset.value ? JSON.parse(dataset.value) : {};
     let newChoices = newVote.choices;
     if (checked) {
+      setIfNeedBe((prev) => ({ ...prev, [choice.start]: true }));
       newChoices = newChoices.filter((item) => item.start !== choice.start);
       choice.ifNeedBe = true;
       newChoices.push(choice);
       setNewVote({ name: newVote.name, choices: newChoices });
     } else {
+      setIfNeedBe((prev) => ({ ...prev, [choice.start]: false }));
       newChoices = newChoices.filter((item) => item.start !== choice.start);
       choice.ifNeedBe = false;
       newChoices.push(choice);
@@ -70,8 +75,10 @@ const MarkChoices = (props: {
             className="slot-checkbox"
             onChange={handleChoiceChange}
           />
+
           <Form.Check
             data-value={JSON.stringify(choice)}
+            className="if-need-be-checkbox"
             hidden={!ifNeedBeHidden[choice.start]}
             onChange={handleIfNeedBeChange}
           />

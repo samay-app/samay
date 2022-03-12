@@ -728,7 +728,6 @@ h4 {
 }
 
 .create-poll-btn {
-  margin-bottom: 5rem !important;
   float: right;
 }
 
@@ -829,11 +828,11 @@ h4 {
 }
 
 .rat-TimeSlot_component {
-  background-color: #68e4f5 !important;
+  background-color: #68e4f52e !important;
 }
 
 .rat-TimeSlot_handle {
-  color: #000000 !important;
+  color: #68e4f5 !important;
 }
 
 .rat-TimeSlot_title {
@@ -841,7 +840,7 @@ h4 {
   text-align: center !important;
   font-size: 0.8rem !important;
   font-weight: 600 !important;
-  color: #000000 !important;
+  color: #68e4f5 !important;
 }
 
 @media (min-width: 0) and (max-width: 992px) {
@@ -926,6 +925,7 @@ h4 {
 
 .mark-options-btn {
   float: right;
+  margin-bottom: 2rem !important;
 }
 
 .rm-badge-dash {
@@ -943,6 +943,8 @@ h4 {
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
   padding-bottom: 0.6em !important;
+  background-color: #68e4f52e !important;
+  color: #68e4f5 !important;
 }
 
 .poll-info {
@@ -966,7 +968,7 @@ h4 {
   color: #e2e2e2;
   padding: 1rem !important;
   border-radius: 0.5rem !important;
-  margin-bottom: 2rem !important;
+  margin-bottom: 0rem !important;
   margin-top: 1rem !important;
 }
 
@@ -1102,6 +1104,7 @@ h4 {
   border-top: 0 !important;
   vertical-align: middle !important;
   width: 5rem !important;
+  min-width: 8.3rem !important;
 }
 
 .participant-cell {
@@ -1119,10 +1122,22 @@ h4 {
   border-top: 0 !important;
   border-bottom: 0 !important;
   min-width: 7rem !important;
+  transition: 0.3s;
+}
+
+.slot-if-need-be-choice {
+  background-color: #ffbb002e;
+  color: #ffbb00;
+}
+
+.slot-normal-choice {
+  background-color: #2cdf0c2e;
+  color: #2cdf0c;
 }
 
 .slot-final-choice {
-  text-align: center;
+  background-color: #68e4f52e;
+  color: #68e4f5;
 }
 
 .final-star {
@@ -1210,24 +1225,25 @@ h4 {
   }
 }
 
+.if-need-be-checkbox {
+  width: 1rem !important;
+  margin: 0 auto !important;
+}
+
 .slot-checked {
-  background-color: #3d3d3d;
+  background-color: #2cdf0c2e;
   text-align: center;
   border-top: 0.5rem solid #0e0f0e !important;
   border-left: 0.5rem solid #0e0f0e !important;
   width: 7rem !important;
 }
 
-.checked-option {
-  width: 2rem;
-  height: 2rem;
-  color: #37f713;
-}
-
-.if-need-be-option {
-  width: 2rem;
-  height: 2rem;
-  color: #ffbb00;
+.slot-checked-if-need-be {
+  background-color: #ffbb002e;
+  text-align: center;
+  border-top: 0.5rem solid #0e0f0e !important;
+  border-left: 0.5rem solid #0e0f0e !important;
+  width: 7rem !important;
 }
 
 .slot-unchecked {
@@ -1247,6 +1263,22 @@ h4 {
   width: 7rem !important;
 }
 
+.slot-checked .slot-check {
+  width: 2rem;
+  height: 2rem;
+  color: #2cdf0c;
+}
+
+.slot-checked-if-need-be .slot-check {
+  width: 2rem;
+  height: 2rem;
+  color: #ffbb00;
+}
+
+.slot-unchecked .slot-check {
+  display: none;
+}
+
 .poll-table-choose-text {
   font-size: 1.2rem;
   font-weight: 600 !important;
@@ -1259,13 +1291,19 @@ h4 {
   font-size: 1.2rem;
   font-weight: 600 !important;
   border-top: 0 !important;
-  min-width: 8rem !important;
+  min-width: 8.3rem !important;
 }
 
 .slot-checkbox-cell {
   border-top: 0 !important;
   text-align: center;
   width: 7rem !important;
+  height: 5.7rem;
+}
+
+.slot-checkbox {
+  width: 1.5rem !important;
+  margin: 0 auto !important;
 }
 
 .slot-checkbox input[type="checkbox"] {
