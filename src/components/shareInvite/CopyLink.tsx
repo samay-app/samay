@@ -53,7 +53,7 @@ const CopyLink = (props: {
     <div>
       <Form.Group>
         <Form.Label className="share-label">
-          {finalChoice ? "Copy final time" : "Share link"}
+          {finalChoice ? "Copy final time" : "Share link with invitees"}
         </Form.Label>
         <InputGroup className="mb-3">
           <Form.Control

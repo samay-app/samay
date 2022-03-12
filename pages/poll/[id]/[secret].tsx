@@ -33,8 +33,6 @@ const Poll = (props: {
               <Row>
                 <Col sm>
                   <PollInfo poll={pollFromDB} />
-                </Col>
-                <Col sm className="poll-shareinvite-col">
                   <ShareInvite
                     pollTitle={pollFromDB.title}
                     pollID={pollID}

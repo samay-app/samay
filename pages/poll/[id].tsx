@@ -40,35 +40,43 @@ const Poll = (props: {
             </Jumbotron>
           </Col>
         </Row>
-        <Row className="jumbo-row">
-          <Col className="jumbo-col">
-            <Jumbotron className="poll-table-jumbo">
-              <PollTableVoter
-                pollFromDB={pollFromDB}
-                sortedChoices={sortedChoices}
-                newVote={newVote}
-                setNewVote={setNewVote}
-              />
-            </Jumbotron>
-          </Col>
-          <Col className="jumbo-col">
-            {pollFromDB.open && (
+        {pollFromDB.open && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <Jumbotron className="poll-table-jumbo">
+                <PollTableVoter
+                  pollFromDB={pollFromDB}
+                  sortedChoices={sortedChoices}
+                  newVote={newVote}
+                  setNewVote={setNewVote}
+                />
+              </Jumbotron>
+            </Col>
+          </Row>
+        )}
+        {pollFromDB.open && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
               <SubmitChoices
                 newVote={newVote}
                 pollID={pollID}
                 pollFromDB={pollFromDB}
               />
-            )}
-          </Col>
-          <Col className="jumbo-col">
-            <Jumbotron className="poll-table-jumbo">
-              <PollTableVotes
-                pollFromDB={pollFromDB}
-                sortedChoices={sortedChoices}
-              />
-            </Jumbotron>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        )}
+        {pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <Jumbotron className="poll-table-jumbo">
+                <PollTableVotes
+                  pollFromDB={pollFromDB}
+                  sortedChoices={sortedChoices}
+                />
+              </Jumbotron>
+            </Col>
+          </Row>
+        )}
       </Container>
     </Layout>
   );

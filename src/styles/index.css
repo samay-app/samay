@@ -24,7 +24,7 @@ main {
   padding-left: 0 !important;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .rm-navbar {
     margin-top: 0rem;
     padding-left: 1rem !important;
@@ -382,7 +382,7 @@ a {
   color: #e2e2e2;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .greeting {
     font-size: 1.7rem !important;
   }
@@ -806,7 +806,7 @@ h4 {
   transition: 0.3s;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .rm-form-desc {
     font-size: 1rem !important;
   }
@@ -843,7 +843,7 @@ h4 {
   color: #68e4f5 !important;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .rat-TimeSlot_title {
     padding: 0.1rem 0 0 0 !important;
     font-size: 0.5rem !important;
@@ -983,8 +983,6 @@ h4 {
 
 .poll-shareinvite-content {
   margin-top: 3rem;
-  padding-left: 2rem;
-  padding-right: 3rem;
 }
 
 .poll-info-title {
@@ -992,7 +990,7 @@ h4 {
   display: block;
   line-height: 3.5rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .poll-info-desc {
@@ -1021,7 +1019,7 @@ h4 {
   color: #aaaaaa;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .jumbo-col-info {
     height: auto !important;
   }
@@ -1203,7 +1201,7 @@ h4 {
   transition: 0.5s;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .slot-time {
     min-width: 4.5rem !important;
   }
@@ -1282,8 +1280,8 @@ h4 {
 .poll-table-choose-text {
   font-size: 1.2rem;
   font-weight: 600 !important;
-  text-decoration: underline;
   border-top: 0 !important;
+  color: #e0e0e0 !important;
   min-width: 9rem !important;
 }
 
@@ -1312,7 +1310,7 @@ h4 {
 }
 
 .slot-checkbox-final-cell {
-  background-color: #ffffff;
+  background-color: #0e0f0e;
   border-top: 0 !important;
   text-align: center;
 }
@@ -1416,7 +1414,7 @@ h4 {
     inset 0px 0px 4px rgba(255, 255, 255, 0.2);
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .dashboard-btn {
     margin-top: 0.5rem;
     float: unset;
@@ -1445,7 +1443,7 @@ h4 {
   font-weight: 700 !important;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .dash-your-polls {
     font-size: 1.3rem !important;
   }
@@ -1560,16 +1558,13 @@ h4 {
 }
 
 .share-textbox {
-  background-color: #e2e2e2 !important;
+  background-color: #2c2c2c !important;
   color: #e0e0e0 !important;
   border: 0.1rem solid #6c757d !important;
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
   font-size: 0.8rem !important;
-}
-
-.share-textbox:focus {
-  border: 0.1rem solid #a9aaac !important;
+  max-width: 24rem !important;
 }
 
 .invite-textbox {
@@ -1600,7 +1595,7 @@ h4 {
   margin-bottom: 5rem;
 }
 
-@media (min-width: 0) and (max-width: 992px) {
+@media (min-width: 0) and (max-width: 576px) {
   .share-textbox {
     font-size: 0.7rem !important;
   }

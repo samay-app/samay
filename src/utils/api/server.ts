@@ -1,6 +1,7 @@
 import { Poll, Vote, HttpResponse, Choice } from "../../models/poll";
 
-const BASE_URL = process.env.BASE_URL || "";
+const NEXT_PUBLIC_BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 const httpMethod = async (
   endpoint: string,
@@ -18,7 +19,7 @@ const httpMethod = async (
 const getPoll = (
   pollID: string | string[] | null | undefined
 ): Promise<HttpResponse> => {
-  const endpoint = `${BASE_URL}/api/poll/${pollID}`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}`;
   const requestOptions: RequestInit = {
     method: "GET",
   };
@@ -27,7 +28,7 @@ const getPoll = (
 
 const createPoll = (pollArgs: { poll: Poll }): Promise<HttpResponse> => {
   const { poll } = pollArgs;
-  const endpoint = `${BASE_URL}/api/poll/create`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/create`;
   const requestOptions: RequestInit = {
     method: "POST",
     body: JSON.stringify(poll),
@@ -40,7 +41,7 @@ const markChoices = (voteArgs: {
   pollID: string;
 }): Promise<HttpResponse> => {
   const { newVote, pollID } = voteArgs;
-  const endpoint = `${BASE_URL}/api/poll/${pollID}`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}`;
   const requestOptions: RequestInit = {
     method: "PUT",
     body: JSON.stringify(newVote),
@@ -54,7 +55,7 @@ const markFinalChoice = (voteArgs: {
   secret: string;
 }): Promise<HttpResponse> => {
   const { finalChoice, pollID, secret } = voteArgs;
-  const endpoint = `${BASE_URL}/api/poll/${pollID}/${secret}`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
     method: "PUT",
     body: JSON.stringify(finalChoice),
@@ -67,7 +68,7 @@ const deletePoll = (voteArgs: {
   secret: string;
 }): Promise<HttpResponse> => {
   const { pollID, secret } = voteArgs;
-  const endpoint = `${BASE_URL}/api/poll/${pollID}/${secret}`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
     method: "DELETE",
     body: JSON.stringify(voteArgs),

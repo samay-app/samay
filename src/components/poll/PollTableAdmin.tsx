@@ -6,11 +6,14 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import MarkFinalChoice from "./MarkFinalChoice";
 import PollDateTime from "./PollDateTime";
 import { Choice, PollFromDB, Vote } from "../../models/poll";
-import { isChoicePresentInPollChoices } from "../../helpers";
+import {
+  isChoicePresentInPollChoices,
+  slotCheckClassName,
+} from "../../helpers";
 
 dayjs.extend(localizedFormat);
 
-const PollTable = (props: {
+const PollTableAdmin = (props: {
   pollFromDB: PollFromDB;
   sortedChoices: Choice[];
   setFinalChoice: Dispatch<Choice | undefined>;
@@ -56,17 +59,13 @@ const PollTable = (props: {
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
             <tr key={`${idx}-${vote.name}`}>
               <td className="poll-table-participants">{vote.name}</td>
-              {sortedChoices.map((choice) => (
+              {sortedChoices.map((choice: Choice) => (
                 <td
                   key={choice.start}
-                  className={
-                    isChoicePresentInPollChoices(choice, vote.choices)
-                      ? "slot-checked"
-                      : "slot-unchecked"
-                  }
+                  className={slotCheckClassName(choice, vote.choices)}
                 >
                   {isChoicePresentInPollChoices(choice, vote.choices) ? (
-                    <Check className="checked-option" />
+                    <Check className="slot-check" />
                   ) : (
                     ""
                   )}
@@ -80,4 +79,4 @@ const PollTable = (props: {
   );
 };
 
-export default PollTable;
+export default PollTableAdmin;
