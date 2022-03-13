@@ -68,17 +68,26 @@ main {
 }
 
 .rm-footer {
-  padding-top: 2rem !important;
-  background-color: #ffffff !important;
+  margin-top: 2rem !important;
+  background-color: #0f1729 !important;
+}
+
+.footer-container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 .rm-footer-row {
-  background-color: #ffffff !important;
+  background-color: #0f1729 !important;
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
   font-family: "Space Grotesk", sans-serif;
   display: flex;
   justify-content: space-between;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .right-container {
@@ -104,9 +113,15 @@ main {
   list-style: none;
 }
 
+.footer-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .footer-col h6 {
   font-weight: 700;
-  color: #6f6f6f;
+  color: #b6b6b6;
+  margin-left: 2.5rem !important;
 }
 
 .footer-col ul li:not(:last-child) {
@@ -117,14 +132,13 @@ main {
   font-size: 1rem;
   text-decoration: none;
   font-weight: 400 !important;
-  color: #6f6f6f;
+  color: #b6b6b6;
   display: block;
-  margin-left: -2.5rem !important;
   transition: 0.3s;
 }
 
 .footer-col ul li a:hover {
-  color: #e2e2e2;
+  color: #68e4f5;
   transition: 0.3s;
 }
 
@@ -132,7 +146,7 @@ main {
   font-size: 1rem;
   text-decoration: none;
   font-weight: 400 !important;
-  color: #6f6f6f;
+  color: #b6b6b6;
   display: block;
   margin-left: -2.5rem !important;
 }
@@ -145,7 +159,7 @@ main {
   text-align: center;
   line-height: 1rem;
   border-radius: 50%;
-  color: #6f6f6f;
+  color: #b6b6b6;
   transition: all 0.3s ease;
 }
 
@@ -699,7 +713,6 @@ h4 {
 }
 
 .jumbo-col {
-  margin-bottom: 2rem !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   flex-grow: 1 !important;
@@ -729,6 +742,7 @@ h4 {
 
 .create-poll-btn {
   float: right;
+  margin-bottom: 2rem !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -860,7 +874,14 @@ h4 {
     float: none !important;
     width: 90% !important;
     margin-left: 1.25rem !important;
-    margin-bottom: 2rem !important;
+    margin-bottom: 3rem !important;
+  }
+
+  .mark-final-time-btn {
+    float: none !important;
+    width: 90% !important;
+    margin-left: 1.25rem !important;
+    margin-bottom: 3rem !important;
   }
 }
 
@@ -925,6 +946,13 @@ h4 {
 
 .mark-options-btn {
   float: right;
+  margin-top: 2rem !important;
+  margin-bottom: 4rem !important;
+}
+
+.mark-final-time-btn {
+  float: right;
+  margin-top: 0 !important;
   margin-bottom: 2rem !important;
 }
 
@@ -937,7 +965,7 @@ h4 {
   float: right !important;
 }
 
-.rm-badge-poll {
+.rm-badge-poll-open {
   font-size: 0.6rem !important;
   padding-top: 0.6em !important;
   padding-left: 0.6em !important;
@@ -945,6 +973,16 @@ h4 {
   padding-bottom: 0.6em !important;
   background-color: #68e4f52e !important;
   color: #68e4f5 !important;
+}
+
+.rm-badge-poll-closed {
+  font-size: 0.6rem !important;
+  padding-top: 0.6em !important;
+  padding-left: 0.6em !important;
+  padding-right: 0.6em !important;
+  padding-bottom: 0.6em !important;
+  background-color: #d6d6d62e !important;
+  color: #d6d6d6 !important;
 }
 
 .poll-info {
@@ -955,6 +993,11 @@ h4 {
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
   border-radius: 0.5rem !important;
+}
+
+.poll-info-location {
+  font-size: 1rem;
+  display: block;
 }
 
 .poll-location {
@@ -972,6 +1015,10 @@ h4 {
   margin-top: 1rem !important;
 }
 
+#all-votes-table {
+  margin-bottom: 2rem !important;
+}
+
 .poll-info-content {
   padding-left: 0;
   padding-right: 0;
@@ -982,7 +1029,7 @@ h4 {
 }
 
 .poll-shareinvite-content {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .poll-info-title {
@@ -998,20 +1045,6 @@ h4 {
   display: block;
   margin-bottom: 2rem;
   line-height: 1.8rem;
-}
-
-.poll-info-user {
-  font-size: 1rem;
-  display: block;
-}
-
-.poll-info-final-date {
-  font-size: 1rem;
-  display: block;
-}
-
-.poll-info-final-date-star {
-  color: #ffbf00;
 }
 
 .card-created {
@@ -1043,30 +1076,26 @@ h4 {
   }
 
   .poll-shareinvite-content {
-    margin-top: 0rem;
+    margin-top: 1.5rem;
     padding-left: 0;
     padding-right: 0;
     border-left: 0rem;
   }
 
   .poll-info-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1.8rem;
   }
 
   .poll-info-desc {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 0.5rem;
     margin-bottom: 1.4rem;
     line-height: 1.3rem;
   }
 
-  .poll-info-user {
-    font-size: 0.8rem;
-  }
-
-  .poll-info-final-date {
-    font-size: 0.8rem;
+  .poll-info-location {
+    font-size: 0.7rem;
   }
 
   .poll-table-jumbo {
@@ -1078,7 +1107,11 @@ h4 {
     font-size: 0.5rem !important;
   }
 
-  .rm-badge-poll {
+  .rm-badge-poll-open {
+    font-size: 0.5rem !important;
+  }
+
+  .rm-badge-poll-closed {
     font-size: 0.5rem !important;
   }
 
@@ -1097,6 +1130,16 @@ h4 {
 
 .poll-table-participants {
   font-size: 1.1rem;
+  color: #b9b9b9;
+  font-weight: 600;
+  border-top: 0 !important;
+  vertical-align: middle !important;
+  width: 5rem !important;
+  min-width: 8.3rem !important;
+}
+
+.poll-table-total-participants {
+  font-size: 0.8rem;
   color: #b9b9b9;
   font-weight: 600;
   border-top: 0 !important;
@@ -1210,6 +1253,10 @@ h4 {
     font-size: 0.8rem;
   }
 
+  .poll-table-total-participants {
+    font-size: 0.7rem;
+  }
+
   .datetime-time-1 {
     font-size: 0.6rem;
   }
@@ -1259,6 +1306,23 @@ h4 {
   );
   background-size: 7.07px 7.07px;
   width: 7rem !important;
+}
+
+.slot-total-votes {
+  background-color: #0e0f0e;
+  text-align: center;
+  border-top: 0.5rem solid #0e0f0e !important;
+  border-left: 0.5rem solid #0e0f0e !important;
+  width: 7rem !important;
+}
+
+.total-yes-votes {
+  color: #2cdf0c;
+}
+
+.total-if-need-be-votes {
+  margin-left: 0.5rem;
+  color: #ffbb00;
 }
 
 .slot-checked .slot-check {
@@ -1550,21 +1614,22 @@ h4 {
 
 .custom-toast {
   max-width: 35rem !important;
-}
-
-.share-label {
-  font-size: 1rem !important;
-  font-weight: 700;
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+  z-index: 9999 !important;
+  float: right !important;
 }
 
 .share-textbox {
   background-color: #2c2c2c !important;
   color: #e0e0e0 !important;
-  border: 0.1rem solid #6c757d !important;
+  border: 0.05rem solid #616161 !important;
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
   font-size: 0.8rem !important;
   max-width: 24rem !important;
+  text-overflow: ellipsis;
 }
 
 .invite-textbox {
@@ -1585,6 +1650,9 @@ h4 {
 
 .copy-btn {
   font-size: 0.8rem !important;
+  border: 0.05rem solid #616161 !important;
+  color: #dbdbdb !important;
+  background-color: #1b1b1b !important;
 }
 
 .send-btn {
@@ -1602,10 +1670,6 @@ h4 {
 
   .invite-textbox {
     font-size: 0.7rem !important;
-  }
-
-  .share-label {
-    font-size: 0.8rem !important;
   }
 
   .copy-btn {
@@ -1627,7 +1691,7 @@ h4 {
 }
 
 .rm-button-spinner {
-  vertical-align: unset !important;
+  vertical-align: -0.2rem !important;
 }
 
 .four-o-four {

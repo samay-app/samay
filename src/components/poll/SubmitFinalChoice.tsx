@@ -1,22 +1,20 @@
 import { Button, Spinner } from "react-bootstrap";
-import { useState } from "react";
+import { useState, Dispatch } from "react";
 import Router from "next/router";
 import { markFinalChoice } from "../../utils/api/server";
 import { Choice } from "../../models/poll";
-import ResponseMessage from "../ResponseMessage";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
   pollID: string;
   secret: string;
+  setResponse: Dispatch<{
+    status: boolean;
+    msg: string;
+  }>;
 }): JSX.Element => {
-  const { finalChoice, pollID, secret } = props;
+  const { finalChoice, pollID, secret, setResponse } = props;
 
-  const [response, setResponse] = useState({
-    status: false,
-    type: "",
-    msg: "",
-  });
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleSubmit = async (
@@ -41,7 +39,6 @@ const SubmitFinalChoice = (props: {
           setDisabled(false);
           setResponse({
             status: true,
-            type: "error",
             msg: "Please try again later.",
           });
           Router.reload();
@@ -50,7 +47,6 @@ const SubmitFinalChoice = (props: {
         setDisabled(false);
         setResponse({
           status: true,
-          type: "error",
           msg: "Network error. Please try again later.",
         });
         Router.reload();
@@ -58,7 +54,6 @@ const SubmitFinalChoice = (props: {
     } else {
       setResponse({
         status: true,
-        type: "error",
         msg: "Please choose the final time.",
       });
     }
@@ -67,13 +62,13 @@ const SubmitFinalChoice = (props: {
   return (
     <div>
       <Button
-        className="rm-primary-button mark-options-btn"
+        className="rm-primary-button mark-final-time-btn"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
       >
         {!disabled ? (
-          `Mark final option`
+          `Mark final time`
         ) : (
           <>
             <Spinner
@@ -87,7 +82,6 @@ const SubmitFinalChoice = (props: {
           </>
         )}
       </Button>
-      <ResponseMessage response={response} setResponse={setResponse} />
     </div>
   );
 };

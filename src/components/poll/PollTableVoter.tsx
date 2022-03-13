@@ -1,6 +1,5 @@
 import { useState, Dispatch } from "react";
-import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { PatchCheckFill } from "react-bootstrap-icons";
+import { Table } from "react-bootstrap";
 import dayjs from "dayjs";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -75,15 +74,6 @@ const PollTableVoter = (props: {
                   pollFromDB.finalChoice
                 )}
               >
-                {choice.start === pollFromDB.finalChoice?.start &&
-                  choice.end === pollFromDB.finalChoice?.end && (
-                    <OverlayTrigger
-                      placement="right"
-                      overlay={<Tooltip id="finalTime1">Final time</Tooltip>}
-                    >
-                      <PatchCheckFill className="final-star" />
-                    </OverlayTrigger>
-                  )}
                 <PollDateTime choice={choice} />
               </th>
             ))}

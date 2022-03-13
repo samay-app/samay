@@ -34,7 +34,6 @@ const Create = (): JSX.Element => {
 
   const [response, setResponse] = useState({
     status: false,
-    type: "",
     msg: "",
   });
 
@@ -142,7 +141,6 @@ const Create = (): JSX.Element => {
           setDisabled(false);
           setResponse({
             status: true,
-            type: "error",
             msg: "Poll creation failed, please try again later.",
           });
         }
@@ -150,26 +148,22 @@ const Create = (): JSX.Element => {
         setDisabled(false);
         setResponse({
           status: true,
-          type: "error",
           msg: "Poll creation failed, check your connection.",
         });
       }
     } else if (!pollTitle) {
       setResponse({
         status: true,
-        type: "error",
         msg: "Please provide a title.",
       });
     } else if (!areChoicesValid(pollChoices)) {
       setResponse({
         status: true,
-        type: "error",
         msg: "Chosen time slots must not be in the past.",
       });
     } else {
       setResponse({
         status: true,
-        type: "error",
         msg:
           "Please select at least two time slots for invitees to choose from.",
       });
@@ -219,7 +213,6 @@ const Create = (): JSX.Element => {
         run={tourRun}
         disableScrolling
         continuous
-        showSkipButton
         showProgress
         spotlightClicks
         styles={{

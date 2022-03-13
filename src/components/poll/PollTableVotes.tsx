@@ -1,5 +1,5 @@
-import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Check, PatchCheckFill } from "react-bootstrap-icons";
+import { Table } from "react-bootstrap";
+import { Check } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import PollDateTime from "./PollDateTime";
@@ -23,16 +23,15 @@ const PollTable = (props: {
           <tr className="poll-table-top-row">
             <th className="participant-cell"> </th>
             {sortedChoices.map((choice) => (
-              <th key={choice.start} className="slot-time">
-                {choice.start === pollFromDB.finalChoice?.start &&
-                  choice.end === pollFromDB.finalChoice?.end && (
-                    <OverlayTrigger
-                      placement="right"
-                      overlay={<Tooltip id="finalTime1">Final time</Tooltip>}
-                    >
-                      <PatchCheckFill className="final-star" />
-                    </OverlayTrigger>
-                  )}
+              <th
+                key={choice.start}
+                className={
+                  choice.start === pollFromDB.finalChoice?.start &&
+                  choice.end === pollFromDB.finalChoice?.end
+                    ? "slot-time slot-final-choice"
+                    : "slot-time"
+                }
+              >
                 <PollDateTime choice={choice} />
               </th>
             ))}

@@ -8,6 +8,7 @@ import Layout from "../../../src/components/Layout";
 import PollInfo from "../../../src/components/poll/PollInfo";
 import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
 import SubmitFinalChoice from "../../../src/components/poll/SubmitFinalChoice";
+import ResponseMessage from "../../../src/components/ResponseMessage";
 import { Choice, ChoiceFromDB, PollFromDB } from "../../../src/models/poll";
 import ShareInvite from "../../../src/components/shareInvite/ShareInvite";
 
@@ -23,7 +24,10 @@ const Poll = (props: {
     (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );
   const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
-
+  const [response, setResponse] = useState({
+    status: false,
+    msg: "",
+  });
   return (
     <Layout>
       <Container className="rm-container">
@@ -45,7 +49,7 @@ const Poll = (props: {
         </Row>
         <Row className="jumbo-row">
           <Col className="jumbo-col">
-            <Jumbotron className="poll-table-jumbo">
+            <Jumbotron className="poll-table-jumbo" id="all-votes-table">
               <PollTableAdmin
                 pollFromDB={pollFromDB}
                 sortedChoices={sortedChoices}
@@ -57,11 +61,13 @@ const Poll = (props: {
                 finalChoice={finalChoice}
                 pollID={pollID}
                 secret={secret}
+                setResponse={setResponse}
               />
             )}
           </Col>
         </Row>
       </Container>
+      <ResponseMessage response={response} setResponse={setResponse} />
     </Layout>
   );
 };

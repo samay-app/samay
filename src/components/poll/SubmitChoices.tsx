@@ -1,85 +1,91 @@
 import { Button, Spinner } from "react-bootstrap";
-import { useState } from "react";
+import { useState, Dispatch } from "react";
 import Router from "next/router";
 import { markChoices } from "../../utils/api/server";
 import { Vote, PollFromDB } from "../../models/poll";
-import ResponseMessage from "../ResponseMessage";
 import { isUserPresentInVotes } from "../../helpers";
 
 const SubmitChoices = (props: {
   newVote: Vote;
   pollID: string;
   pollFromDB: PollFromDB;
+  setResponse: Dispatch<{
+    status: boolean;
+    msg: string;
+  }>;
 }): JSX.Element => {
-  const { newVote, pollID, pollFromDB } = props;
+  const { newVote, pollID, pollFromDB, setResponse } = props;
 
-  const [response, setResponse] = useState({
-    status: false,
-    type: "",
-    msg: "",
-  });
   const [disabled, setDisabled] = useState<boolean>(false);
 
-  let btnHidden = false;
-  if (
-    pollFromDB.votes &&
-    isUserPresentInVotes(newVote.name, pollFromDB.votes)
-  ) {
-    btnHidden = true;
-  }
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (newVote.name && newVote.choices.length > 0) {
-      setDisabled(true);
-      try {
-        let submitChoiceResponse;
-        const voterArgs = {
-          newVote,
-          pollID,
-        };
-        submitChoiceResponse = await markChoices(voterArgs);
-        if (submitChoiceResponse && submitChoiceResponse.statusCode === 201) {
-          Router.reload();
-        } else if (
-          submitChoiceResponse &&
-          submitChoiceResponse.statusCode === 400
-        ) {
-          setResponse({
-            status: true,
-            type: "error",
-            msg: "Poll has been closed.",
-          });
-          Router.reload();
-        } else {
-          setDisabled(false);
-          setResponse({
-            status: true,
-            type: "error",
-            msg: "Please try again later.",
-          });
-          Router.reload();
-        }
-      } catch (err) {
+
+    if (!newVote.name) {
+      setResponse({
+        status: true,
+        msg: "Please enter your name.",
+      });
+      return;
+    }
+
+    if (
+      pollFromDB.votes &&
+      isUserPresentInVotes(newVote.name, pollFromDB.votes)
+    ) {
+      setResponse({
+        status: true,
+        msg: "An invitee with the same name has voted before.",
+      });
+      return;
+    }
+
+    if (newVote.choices.length === 0) {
+      setResponse({
+        status: true,
+        msg: "Please select at least one available time slot.",
+      });
+      return;
+    }
+
+    setDisabled(true);
+    try {
+      let submitChoiceResponse;
+      const voterArgs = {
+        newVote,
+        pollID,
+      };
+      submitChoiceResponse = await markChoices(voterArgs);
+      if (submitChoiceResponse && submitChoiceResponse.statusCode === 201) {
+        setResponse({
+          status: true,
+          msg: "Your vote has been successfully recorded.",
+        });
+        Router.reload();
+      } else if (
+        submitChoiceResponse &&
+        submitChoiceResponse.statusCode === 400
+      ) {
+        setResponse({
+          status: true,
+          msg: "Sorry, poll has been closed.",
+        });
+        Router.reload();
+      } else {
         setDisabled(false);
         setResponse({
           status: true,
-          type: "error",
-          msg: "Network error. Please try again later.",
+          msg: "Please try again later.",
         });
+        Router.reload();
       }
-    } else if (!newVote.name) {
+    } catch (err) {
+      setDisabled(false);
       setResponse({
         status: true,
-        type: "error",
-        msg: "Please enter your name.",
-      });
-    } else {
-      setResponse({
-        status: true,
-        type: "error",
-        msg: "Please select at least one available time slot.",
+        msg: "Network error. Please try again later.",
       });
     }
   };
@@ -91,7 +97,6 @@ const SubmitChoices = (props: {
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
-        hidden={btnHidden}
       >
         {!disabled ? (
           `Mark your availability`
@@ -108,7 +113,6 @@ const SubmitChoices = (props: {
           </>
         )}
       </Button>
-      <ResponseMessage response={response} setResponse={setResponse} />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import PollInfo from "../../src/components/poll/PollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
 import PollTableVotes from "../../src/components/poll/PollTableVotes";
 import SubmitChoices from "../../src/components/poll/SubmitChoices";
+import ResponseMessage from "../../src/components/ResponseMessage";
 import { ChoiceFromDB, Vote, PollFromDB } from "../../src/models/poll";
 
 dayjs.extend(localizedFormat);
@@ -25,7 +26,10 @@ const Poll = (props: {
     name: "",
     choices: [],
   });
-
+  const [response, setResponse] = useState({
+    status: false,
+    msg: "",
+  });
   return (
     <Layout>
       <Container className="rm-container">
@@ -61,6 +65,7 @@ const Poll = (props: {
                 newVote={newVote}
                 pollID={pollID}
                 pollFromDB={pollFromDB}
+                setResponse={setResponse}
               />
             </Col>
           </Row>
@@ -68,7 +73,7 @@ const Poll = (props: {
         {pollFromDB.votes && pollFromDB.votes?.length > 0 && (
           <Row className="jumbo-row">
             <Col className="jumbo-col">
-              <Jumbotron className="poll-table-jumbo">
+              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
                 <PollTableVotes
                   pollFromDB={pollFromDB}
                   sortedChoices={sortedChoices}
@@ -78,6 +83,7 @@ const Poll = (props: {
           </Row>
         )}
       </Container>
+      <ResponseMessage response={response} setResponse={setResponse} />
     </Layout>
   );
 };

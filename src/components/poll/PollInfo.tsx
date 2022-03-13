@@ -1,5 +1,5 @@
 import { Badge } from "react-bootstrap";
-import { GeoAltFill, PatchCheckFill } from "react-bootstrap-icons";
+import { GeoAltFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { PollFromDB } from "../../models/poll";
@@ -13,7 +13,7 @@ const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
       <Badge
         pill
         variant={poll.open ? "success" : "secondary"}
-        className="rm-badge-poll"
+        className={poll.open ? "rm-badge-poll-open" : "rm-badge-poll-closed"}
       >
         {poll.open ? "Open" : "Closed"}
       </Badge>
@@ -21,20 +21,8 @@ const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
       {poll.description && (
         <span className="poll-info-desc">{poll.description}</span>
       )}
-      {poll.finalChoice && (
-        <span className="poll-info-final-date">
-          <PatchCheckFill className="poll-info-final-date-star mr-2" />{" "}
-          <b>
-            {dayjs(poll.finalChoice.start).format("ddd")},{" "}
-            {dayjs(poll.finalChoice.start).format("MMM")}{" "}
-            {dayjs(poll.finalChoice.start).format("DD")},{" "}
-            {dayjs(poll.finalChoice.start).format("LT")} -{" "}
-            {dayjs(poll.finalChoice.end).format("LT")}
-          </b>
-        </span>
-      )}
       {poll.location && (
-        <span className="poll-info-user">
+        <span className="poll-info-location">
           <GeoAltFill className="poll-location" />
           {poll.location}
         </span>
