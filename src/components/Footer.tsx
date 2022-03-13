@@ -18,7 +18,20 @@ const Footer = (): JSX.Element => {
               <li>
                 <p>
                   <span className="footer-text">
-                    Free and open source meeting scheduling tool.
+                    Free and open source meeting scheduling tool
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span className="footer-text">
+                    Copyright &#169; 2022{" "}
+                    <a
+                      className="anand"
+                      href="https://anandbaburajan.github.io/"
+                    >
+                      Anand Baburajan
+                    </a>
                   </span>
                 </p>
               </li>
@@ -44,7 +57,7 @@ const Footer = (): JSX.Element => {
                 </li>
                 <li>
                   <a
-                    href="https://rocketmeet.gitbook.io/rocketmeet/"
+                    href="https://github.com/rocketmeet/"
                     rel="noreferrer"
                     target="_blank"
                   >

@@ -79,8 +79,8 @@ main {
 
 .rm-footer-row {
   background-color: #0f1729 !important;
-  padding-top: 2.5rem;
-  padding-bottom: 1.5rem;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
   font-family: "Space Grotesk", sans-serif;
   display: flex;
   justify-content: space-between;
@@ -118,22 +118,27 @@ main {
   padding-right: 0 !important;
 }
 
+.footer-col ul {
+  padding-left: 0 !important;
+}
+
 .footer-col h6 {
   font-weight: 700;
   color: #b6b6b6;
-  margin-left: 2.5rem !important;
 }
 
 .footer-col ul li:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
+.anand {
+  color: #68e4f5 !important;
+}
+
 .footer-col ul li a {
   font-size: 1rem;
   text-decoration: none;
-  font-weight: 400 !important;
   color: #b6b6b6;
-  display: block;
   transition: 0.3s;
 }
 
@@ -148,7 +153,6 @@ main {
   font-weight: 400 !important;
   color: #b6b6b6;
   display: block;
-  margin-left: -2.5rem !important;
 }
 
 .footer-col .social-links a {
@@ -171,8 +175,8 @@ main {
   .rm-footer-row {
     flex-direction: column;
     padding-left: 1rem !important;
-    padding-bottom: 0rem !important;
-    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
   }
 
   .right-container {
