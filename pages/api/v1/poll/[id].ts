@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import RocketMeetPoll, { Vote, PollDoc } from "../../../src/models/poll";
-import { isChoicePresentInPollChoices } from "../../../src/helpers";
-import connectToDatabase from "../../../src/utils/db";
+import RocketMeetPoll, { Vote, PollDoc } from "../../../../src/models/poll";
+import { isChoicePresentInPollChoices } from "../../../../src/helpers";
+import connectToDatabase from "../../../../src/utils/db";
 
 export default async (
   req: NextApiRequest,

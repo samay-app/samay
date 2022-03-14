@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Router from "next/router";
 import { GetServerSideProps } from "next";
 import { Col, Row, Container, Jumbotron } from "react-bootstrap";
 import dayjs from "dayjs";
@@ -11,6 +12,7 @@ import PollTableVotes from "../../src/components/poll/PollTableVotes";
 import SubmitChoices from "../../src/components/poll/SubmitChoices";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { ChoiceFromDB, Vote, PollFromDB } from "../../src/models/poll";
+import { decrypt } from "../../src/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -19,6 +21,13 @@ const Poll = (props: {
   pollID: string;
 }): JSX.Element => {
   const { pollFromDB, pollID } = props;
+
+  if (typeof window !== "undefined") {
+    if (localStorage[pollID] === "creator") {
+      Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
+    }
+  }
+
   const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
     (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
   );
@@ -104,6 +113,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+
   return {
     props: { pollFromDB, pollID }, // will be passed to the page component as props
   };

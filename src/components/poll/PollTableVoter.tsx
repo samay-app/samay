@@ -33,7 +33,7 @@ const PollTableVoter = (props: {
       disableBeacon: true,
       target: "#poll-vote-table",
       content:
-        "Enter your name and choose which times work for you. Tick a checkbox to vote 'yes' (green) and then tick the new, smaller checkbox below it to vote 'if need be' (yellow). The times are shown in your time zone.",
+        "Enter your name and choose which times work for you. Tick a checkbox to vote 'yes' (green) and then tick the new, smaller checkbox below it to vote 'if need be' (yellow inside circle). The times are shown in your time zone.",
     },
   ];
 

@@ -13,6 +13,7 @@ import {
 import { ArrowRightShort, ArrowRight } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
+import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
 import { Choice, Poll } from "../src/models/poll";
@@ -110,62 +111,64 @@ const Create = (): JSX.Element => {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (
-      pollTitle &&
-      pollChoices &&
-      pollChoices.length > 1 &&
-      areChoicesValid(pollChoices)
-    ) {
-      setDisabled(true);
 
-      const secret = nanoid(10);
-
-      const poll: Poll = {
-        title: pollTitle,
-        description: pollDescription,
-        location: pollLocation,
-        secret,
-        choices: pollChoices,
-      };
-
-      try {
-        const createPollResponse = await createPoll({
-          poll,
-        });
-
-        if (createPollResponse.statusCode === 201) {
-          Router.push(
-            `/poll/${createPollResponse.data._id}/${createPollResponse.data.secret}`
-          );
-        } else {
-          setDisabled(false);
-          setResponse({
-            status: true,
-            msg: "Poll creation failed, please try again later.",
-          });
-        }
-      } catch (err) {
-        setDisabled(false);
-        setResponse({
-          status: true,
-          msg: "Poll creation failed, check your connection.",
-        });
-      }
-    } else if (!pollTitle) {
+    if (!pollTitle) {
       setResponse({
         status: true,
         msg: "Please provide a title.",
       });
-    } else if (!areChoicesValid(pollChoices)) {
-      setResponse({
-        status: true,
-        msg: "Chosen time slots must not be in the past.",
-      });
-    } else {
+      return;
+    }
+    if (!pollChoices || (pollChoices && pollChoices?.length < 2)) {
       setResponse({
         status: true,
         msg:
           "Please select at least two time slots for invitees to choose from.",
+      });
+      return;
+    }
+    if (!areChoicesValid(pollChoices)) {
+      setResponse({
+        status: true,
+        msg: "Chosen time slots must not be in the past.",
+      });
+      return;
+    }
+
+    const secret = nanoid(10);
+
+    const poll: Poll = {
+      title: pollTitle,
+      description: pollDescription,
+      location: pollLocation,
+      secret: encrypt(secret),
+      choices: pollChoices,
+    };
+
+    try {
+      setDisabled(true);
+
+      const createPollResponse = await createPoll({
+        poll,
+      });
+
+      if (createPollResponse.statusCode === 201) {
+        if (typeof window !== "undefined") {
+          localStorage.setItem(`${createPollResponse.data._id}`, "creator");
+        }
+        Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
+      } else {
+        setDisabled(false);
+        setResponse({
+          status: true,
+          msg: "Poll creation failed, please try again later.",
+        });
+      }
+    } catch (err) {
+      setDisabled(false);
+      setResponse({
+        status: true,
+        msg: "Poll creation failed, check your connection.",
       });
     }
   };

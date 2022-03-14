@@ -1,13 +1,10 @@
 import { Table } from "react-bootstrap";
-import { Check } from "react-bootstrap-icons";
+import { Check2, Check2Circle } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import PollDateTime from "./PollDateTime";
 import { Choice, PollFromDB, Vote } from "../../models/poll";
-import {
-  isChoicePresentInPollChoices,
-  slotCheckClassName,
-} from "../../helpers";
+import { slotCheckClassName, isChoiceIfNeedBe } from "../../helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -46,10 +43,10 @@ const PollTable = (props: {
                   key={choice.start}
                   className={slotCheckClassName(choice, vote.choices)}
                 >
-                  {isChoicePresentInPollChoices(choice, vote.choices) ? (
-                    <Check className="slot-check" />
+                  {isChoiceIfNeedBe(choice, vote.choices) ? (
+                    <Check2Circle className="slot-check" />
                   ) : (
-                    ""
+                    <Check2 className="slot-check" />
                   )}
                 </td>
               ))}

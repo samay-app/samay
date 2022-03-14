@@ -11,6 +11,7 @@ import SubmitFinalChoice from "../../../src/components/poll/SubmitFinalChoice";
 import ResponseMessage from "../../../src/components/ResponseMessage";
 import { Choice, ChoiceFromDB, PollFromDB } from "../../../src/models/poll";
 import ShareInvite from "../../../src/components/shareInvite/ShareInvite";
+import { decrypt } from "../../../src/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -91,7 +92,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  if (secret !== pollFromDB.secret) {
+  if (secret !== decrypt(pollFromDB.secret)) {
     return {
       redirect: {
         destination: `/poll/${pollID}`,

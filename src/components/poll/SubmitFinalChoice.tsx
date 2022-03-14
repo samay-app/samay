@@ -3,6 +3,7 @@ import { useState, Dispatch } from "react";
 import Router from "next/router";
 import { markFinalChoice } from "../../utils/api/server";
 import { Choice } from "../../models/poll";
+import { encrypt } from "../../helpers";
 
 const SubmitFinalChoice = (props: {
   finalChoice: Choice | undefined;
@@ -30,7 +31,7 @@ const SubmitFinalChoice = (props: {
             open: false,
           },
           pollID,
-          secret,
+          secret: encrypt(secret),
         };
         const submitFinalChoiceResponse = await markFinalChoice(voterArgs);
         if (submitFinalChoiceResponse.statusCode === 201) {

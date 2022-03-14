@@ -25,13 +25,7 @@ const Footer = (): JSX.Element => {
               <li>
                 <p>
                   <span className="footer-text">
-                    Copyright &#169; 2022{" "}
-                    <a
-                      className="anand"
-                      href="https://anandbaburajan.github.io/"
-                    >
-                      Anand Baburajan
-                    </a>
+                    Copyright &#169; 2022 RocketMeet
                   </span>
                 </p>
               </li>

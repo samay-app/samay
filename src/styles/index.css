@@ -106,7 +106,7 @@ main {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .rm-footer-row ul {
@@ -131,10 +131,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-.anand {
-  color: #68e4f5 !important;
-}
-
 .footer-col ul li a {
   font-size: 1rem;
   text-decoration: none;
@@ -153,6 +149,8 @@ main {
   font-weight: 400 !important;
   color: #b6b6b6;
   display: block;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .footer-col .social-links a {
@@ -1325,7 +1323,7 @@ h4 {
 }
 
 .total-if-need-be-votes {
-  margin-left: 0.5rem;
+  margin-left: 0.8rem;
   color: #ffbb00;
 }
 
@@ -1688,6 +1686,10 @@ h4 {
     font-size: 1rem !important;
     width: unset !important;
   }
+
+  .total-if-need-be-votes {
+    margin-left: 0rem;
+  }
 }
 
 .card-footer-muted {
@@ -1701,6 +1703,7 @@ h4 {
 .four-o-four {
   margin-top: 10rem !important;
   font-family: "Space Grotesk", sans-serif;
+  color: #b6b6b6;
 }
 
 .four-o-four span {
@@ -1713,12 +1716,21 @@ h4 {
 }
 
 .four-o-four a {
+  color: #b6b6b6;
   text-decoration: underline !important;
+  transition: 0.3s;
+}
+
+.four-o-four a:hover {
+  color: #68e4f5;
+  text-decoration: underline !important;
+  transition: 0.3s;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
   .four-o-four {
     margin-top: 2rem !important;
+    margin-left: 1rem;
   }
 
   .four-o-four span {

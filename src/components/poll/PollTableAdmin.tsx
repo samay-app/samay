@@ -1,6 +1,6 @@
 import { Dispatch, useState } from "react";
 import { Table } from "react-bootstrap";
-import { Check } from "react-bootstrap-icons";
+import { Check2, Check2Circle } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -10,6 +10,7 @@ import { Choice, PollFromDB, Vote } from "../../models/poll";
 import {
   isChoicePresentInPollChoices,
   slotCheckClassName,
+  isChoiceIfNeedBe,
 } from "../../helpers";
 
 dayjs.extend(localizedFormat);
@@ -46,7 +47,7 @@ const PollTableAdmin = (props: {
     {
       target: "#poll-vote-table",
       content:
-        "See who's free with 'yes' votes (green) - or who can be - with 'if need be' votes (yellow).",
+        "See who's free with 'yes' votes (green) - or who can be - with 'if need be' votes (yellow inside circle).",
     },
     {
       target: ".mark-options-btn",
@@ -113,6 +114,7 @@ const PollTableAdmin = (props: {
             {sortedChoices.map((choice: Choice) => (
               <td key={choice.start} className="slot-total-votes">
                 <span className="total-yes-votes">
+                  <Check2 className="slot-check" />
                   {
                     pollFromDB.votes?.filter((vote: Vote) =>
                       isChoicePresentInPollChoices(
@@ -125,6 +127,7 @@ const PollTableAdmin = (props: {
                   }
                 </span>
                 <span className="total-if-need-be-votes">
+                  <Check2Circle className="slot-check" />
                   {
                     pollFromDB.votes?.filter((vote: Vote) =>
                       isChoicePresentInPollChoices(
@@ -147,10 +150,10 @@ const PollTableAdmin = (props: {
                   key={choice.start}
                   className={slotCheckClassName(choice, vote.choices)}
                 >
-                  {isChoicePresentInPollChoices(choice, vote.choices) ? (
-                    <Check className="slot-check" />
+                  {isChoiceIfNeedBe(choice, vote.choices) ? (
+                    <Check2Circle className="slot-check" />
                   ) : (
-                    ""
+                    <Check2 className="slot-check" />
                   )}
                 </td>
               ))}
