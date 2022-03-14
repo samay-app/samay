@@ -48,7 +48,7 @@ const SubmitFinalChoice = (props: {
         setDisabled(false);
         setResponse({
           status: true,
-          msg: "Network error. Please try again later.",
+          msg: "Please try again later.",
         });
         Router.reload();
       }

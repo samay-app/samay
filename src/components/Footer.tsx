@@ -120,15 +120,6 @@ const Footer = (): JSX.Element => {
                 </li>
                 <li>
                   <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CODE_OF_CONDUCT.md"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Code of Conduct
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE"
                     rel="noreferrer"
                     target="_blank"

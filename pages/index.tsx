@@ -168,7 +168,7 @@ const Create = (): JSX.Element => {
       setDisabled(false);
       setResponse({
         status: true,
-        msg: "Poll creation failed, check your connection.",
+        msg: "Poll creation failed, please try again later.",
       });
     }
   };

@@ -24,13 +24,13 @@ const CopyLink = (props: {
   let textToCopy: string;
 
   if (finalChoice) {
-    textToCopy = `${pollTitle} would be held on ${dayjs(
-      finalChoice?.start
-    ).format("ddd")}, ${dayjs(finalChoice?.start).format("MMM")} ${dayjs(
+    textToCopy = `"${pollTitle}": ${dayjs(finalChoice?.start).format(
+      "ddd"
+    )}, ${dayjs(finalChoice?.start).format("MMM")} ${dayjs(
       finalChoice?.start
     ).format("DD")}, ${dayjs(finalChoice?.start).format("LT")} - ${dayjs(
       finalChoice?.end
-    ).format("LT")}.`;
+    ).format("LT")}`;
   } else {
     textToCopy = pollURL;
   }

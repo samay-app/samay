@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import MarkChoices from "./MarkChoices";
-import PollDateTime from "./PollDateTime";
+import PollDateTimeWithCheck from "./PollDateTimeWithCheck";
 import { Choice, PollFromDB, Vote } from "../../models/poll";
 import { slotTimeClassName } from "../../helpers";
 
@@ -74,7 +74,10 @@ const PollTableVoter = (props: {
                   pollFromDB.finalChoice
                 )}
               >
-                <PollDateTime choice={choice} />
+                <PollDateTimeWithCheck
+                  choice={choice}
+                  voteChoices={newVote.choices}
+                />
               </th>
             ))}
           </tr>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Router from "next/router";
 import { GetServerSideProps } from "next";
 import { Col, Row, Container, Jumbotron } from "react-bootstrap";
+import { PeopleFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
@@ -79,7 +80,21 @@ const Poll = (props: {
             </Col>
           </Row>
         )}
-        {pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+        {pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <PeopleFill className="votes-table-icon" />
+              <span className="votes-table-title">Participants</span>
+              <Jumbotron className="poll-table-jumbo" id="all-votes-table-open">
+                <PollTableVotes
+                  pollFromDB={pollFromDB}
+                  sortedChoices={sortedChoices}
+                />
+              </Jumbotron>
+            </Col>
+          </Row>
+        )}
+        {!pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
           <Row className="jumbo-row">
             <Col className="jumbo-col">
               <Jumbotron className="poll-table-jumbo" id="all-votes-table">
