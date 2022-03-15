@@ -1,4 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
+import Link from "next/link";
 
 const Footer = (): JSX.Element => {
   return (
@@ -44,7 +45,9 @@ const Footer = (): JSX.Element => {
               <h6>CHECK OUT</h6>
               <ul>
                 <li>
-                  <a href="/features">Features</a>
+                  <Link href="/features" passHref>
+                    Features
+                  </Link>
                 </li>
                 <li>
                   <a href="https://rocketmeet.gitbook.io/rocketmeet/">
@@ -77,10 +80,17 @@ const Footer = (): JSX.Element => {
               <h6>LEGAL</h6>
               <ul>
                 <li>
-                  <a href="/privacy-policy">Privacy Policy</a>
+                  <Link href="/privacy" passHref>
+                    Privacy
+                  </Link>
                 </li>
                 <li>
                   <a href="https://github.com/Roc">License</a>
+                </li>
+                <li>
+                  <Link href="/contact" passHref>
+                    Contact
+                  </Link>
                 </li>
               </ul>
             </Col>

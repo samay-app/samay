@@ -57,12 +57,10 @@ main {
   padding-right: 0 !important;
   padding-left: 0 !important;
   margin-right: 0 !important;
-  transition: 0.3s;
 }
 
 .rm-nav-link:hover {
   color: #363636 !important;
-  transition: 0.3s;
 }
 
 .rm-container {
@@ -135,12 +133,10 @@ main {
   font-size: 1rem;
   text-decoration: none;
   color: #6f6f6f;
-  transition: 0.3s;
 }
 
 .footer-col ul li a:hover {
   color: #363636;
-  transition: 0.3s;
 }
 
 .footer-left p {
@@ -166,7 +162,6 @@ main {
   line-height: 1rem;
   border-radius: 50%;
   color: #b6b6b6;
-  transition: all 0.3s ease;
 }
 
 .footer-col .social-links a:hover {
@@ -579,7 +574,6 @@ a {
 .rm-primary-button {
   background-color: #f4f5f4 !important;
   color: #363636 !important;
-  transition: 0.3s !important;
   font-weight: 600 !important;
   font-family: "Manrope", sans-serif;
   font-size: 1rem !important;
@@ -590,7 +584,6 @@ a {
 }
 
 .rm-primary-button:hover {
-  transition: 0.3s;
   background-color: #363636 !important;
   color: #f4f5f4 !important;
 }
@@ -598,24 +591,6 @@ a {
 .rm-primary-button[disabled] {
   opacity: 0.4 !important;
   pointer-events: none !important;
-}
-
-.rm-secondary-button {
-  background-color: #ffffff !important;
-  transition: 0.3s !important;
-  font-weight: 600 !important;
-  color: #363636 !important;
-  font-family: "Manrope", sans-serif;
-  font-size: 1rem !important;
-  border-radius: 0 !important;
-  border-color: #363636 !important;
-  padding: 0.8rem 1.5rem 0.8rem 1.5rem !important;
-}
-
-.rm-secondary-button:hover {
-  box-shadow: 0px 1rem 1.2rem rgba(216, 216, 216, 0.4);
-  transform: translateY(-0.1rem);
-  transition: 0.3s;
 }
 
 .rm-secondary-button[disabled] {
@@ -691,27 +666,6 @@ a {
 .modal-header,
 .modal-footer {
   border: none !important;
-}
-h2 {
-  font-weight: 100 !important;
-  font-size: 3rem !important;
-}
-
-h3 {
-  font-weight: 300 !important;
-  font-size: 2rem !important;
-}
-
-h3.ctl,
-h4.ctl,
-h5.ctl {
-  font-weight: 300 !important;
-  font-size: 2rem !important;
-}
-
-h4 {
-  font-weight: 300 !important;
-  font-size: 1.5rem !important;
 }
 
 .jumbo-row {
@@ -790,6 +744,7 @@ h4 {
   border: 0.1rem solid #fffefe !important;
   border-radius: 0 !important;
   font-size: 1rem !important;
+  font-weight: 600 !important;
 }
 
 .rm-form-text::placeholder {
@@ -1280,6 +1235,7 @@ h4 {
   outline: 0.1rem solid #e0e1e0 !important;
   border: 0.1rem solid #f4f5f4 !important;
   border-radius: 0 !important;
+  font-weight: 600 !important;
   font-size: 1rem !important;
 }
 
@@ -1707,8 +1663,8 @@ h4 {
   background-color: #f4f5f4 !important;
   color: #6f6f6f !important;
   border: 0.05rem solid #616161 !important;
-  border-top-left-radius: 1rem !important;
-  border-bottom-left-radius: 1rem !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
   font-size: 0.8rem !important;
   max-width: 24rem !important;
   text-overflow: ellipsis;
@@ -1733,8 +1689,9 @@ h4 {
 .copy-btn {
   font-size: 0.8rem !important;
   border: 0.05rem solid #616161 !important;
-  color: #eeeeee !important;
-  background-color: #6f6f6f !important;
+  color: #fffefe !important;
+  border-radius: 0 !important;
+  background-color: #363636 !important;
 }
 
 .send-btn {
@@ -1784,7 +1741,7 @@ h4 {
 .four-o-four {
   margin-top: 10rem !important;
   font-family: "Manrope", sans-serif;
-  color: #b6b6b6;
+  color: #6f6f6f;
 }
 
 .four-o-four span {
@@ -1797,15 +1754,13 @@ h4 {
 }
 
 .four-o-four a {
-  color: #b6b6b6;
+  color: #6f6f6f;
   text-decoration: underline !important;
-  transition: 0.3s;
 }
 
 .four-o-four a:hover {
   color: #363636;
   text-decoration: underline !important;
-  transition: 0.3s;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -1821,5 +1776,51 @@ h4 {
 
   .four-o-four p {
     font-size: 0.9rem;
+  }
+}
+
+.privacy {
+  margin-top: 5rem !important;
+  font-family: "Manrope", sans-serif;
+  color: #6f6f6f;
+}
+
+.privacy h1 {
+  color: #363636;
+  margin-bottom: 2rem !important;
+}
+
+.privacy h2 {
+  color: #363636;
+  margin-top: 2rem !important;
+}
+
+.privacy h3 {
+  color: #363636;
+  margin-top: 2rem !important;
+}
+
+.privacy p {
+  font-size: 1.2rem;
+}
+
+.privacy a {
+  color: #6f6f6f;
+  text-decoration: underline !important;
+}
+
+.privacy a:hover {
+  color: #363636;
+  text-decoration: underline !important;
+}
+
+@media (min-width: 0) and (max-width: 576px) {
+  .privacy {
+    margin-top: 2rem !important;
+    margin-left: 1rem;
+  }
+
+  .privacy p {
+    font-size: 1.1rem;
   }
 }

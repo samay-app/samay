@@ -107,6 +107,12 @@ const Home = (): JSX.Element => {
     return true;
   };
 
+  let showHero = true;
+
+  if (typeof window !== "undefined") {
+    showHero = localStorage.heroShowed !== "true";
+  }
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
@@ -155,6 +161,10 @@ const Home = (): JSX.Element => {
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
           localStorage.setItem(`${createPollResponse.data._id}`, "creator");
+
+          if (localStorage.heroShowed !== "true") {
+            localStorage.setItem("heroShowed", "true");
+          }
         }
         Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
       } else {
@@ -185,16 +195,6 @@ const Home = (): JSX.Element => {
       setTourRun(false);
     }
   };
-
-  let showHero = true;
-
-  if (typeof window !== "undefined") {
-    if (localStorage.heroShowed !== "true") {
-      localStorage.setItem("heroShowed", "true");
-    } else {
-      showHero = false;
-    }
-  }
 
   return (
     <Layout>

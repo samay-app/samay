@@ -7,7 +7,7 @@ const Features = (): JSX.Element => {
       <Container className="rm-container">
         <Row>
           <Col className="four-o-four">
-            <span>404</span>
+            <span>hehe</span>
             <p>
               We can't seem to find the page you're looking for.
               <br />
