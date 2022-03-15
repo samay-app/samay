@@ -1,8 +1,6 @@
-![Kukkee](/client.png)
-
 ### Finding the best time for team meetings or hanging out with your friends has never been faster. [Try now](https://kukkee.com)!
 
-[![License](https://img.shields.io/github/license/Rocketmeet/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Kukkee/Kukkee?style=for-the-badge)](https://codeclimate.com/github/Kukkee/Kukkee)
 [![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
