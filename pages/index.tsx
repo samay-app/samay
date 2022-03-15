@@ -26,7 +26,7 @@ const AvailableTimes: any = dynamic(() => import("react-available-times"), {
   ssr: false,
 });
 
-const Create = (): JSX.Element => {
+const Home = (): JSX.Element => {
   const [pollTitle, setTitle] = useState<string>("");
   const [pollLocation, setLocation] = useState<string>("");
   const [pollDescription, setDescription] = useState<string>("");
@@ -186,30 +186,45 @@ const Create = (): JSX.Element => {
     }
   };
 
+  let showHero = true;
+
+  if (typeof window !== "undefined") {
+    if (localStorage.heroShowed !== "true") {
+      localStorage.setItem("heroShowed", "true");
+    } else {
+      showHero = false;
+    }
+  }
+
   return (
     <Layout>
-      <Container>
-        <Row className="home-hero-row">
-          <Col className="home-hero-col">
-            <span className="hero-title">
-              Never ask “what time works for you all?” again.
-            </span>
-            <span className="hero-secondary-desc">
-              Create a poll <ArrowRight /> Share the poll <ArrowRight /> Wait
-              for invitees <ArrowRight /> Decide the time <ArrowRight /> Share
-              the time.
-            </span>
-            <span
-              className="hero-tour"
-              aria-hidden="true"
-              onClick={handleStartTour}
-            >
-              Go on a quick tour
-              <ArrowRightShort className="tour-start-icon" />
-            </span>
-          </Col>
-        </Row>
-      </Container>
+      {showHero && (
+        <Container>
+          <Row className="home-hero-row">
+            <Col className="home-hero-col">
+              <span className="hero-title">
+                Never ask “what time works for you all?” again.
+              </span>
+              <span className="hero-secondary-desc">
+                Create a poll <ArrowRight /> Share the poll <ArrowRight /> Wait
+                for invitees <ArrowRight /> Decide the time <ArrowRight /> Share
+                the time.
+              </span>
+              <span className="hero-tagline">
+                Free, fast and open source.
+                <span
+                  className="hero-tour"
+                  aria-hidden="true"
+                  onClick={handleStartTour}
+                >
+                  Go on a quick tour
+                  <ArrowRightShort className="tour-start-icon" />
+                </span>
+              </span>
+            </Col>
+          </Row>
+        </Container>
+      )}
       <Joyride
         callback={handleJoyrideCallback}
         steps={tourSteps}
@@ -221,7 +236,7 @@ const Create = (): JSX.Element => {
         styles={{
           buttonClose: { visibility: "hidden" },
           options: {
-            primaryColor: "#000",
+            primaryColor: "#363636",
           },
         }}
       />
@@ -235,7 +250,6 @@ const Create = (): JSX.Element => {
                   type="text"
                   placeholder="Title"
                   required
-                  autoFocus
                   onChange={handleTitleChange}
                 />
               </Form.Group>
@@ -295,4 +309,4 @@ const Create = (): JSX.Element => {
   );
 };
 
-export default Create;
+export default Home;

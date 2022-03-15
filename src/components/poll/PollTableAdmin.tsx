@@ -42,7 +42,7 @@ const PollTableAdmin = (props: {
     {
       target: "#poll-vote-table",
       content:
-        "When the invitees have finished voting, come back to this page. If you happen to close this page, don't worry; you can also get here by visiting the link you shared with the invitees (this browser would remember that you're the poll creator). But if you need to mark the final time from another browser or device, make sure to save the poll's admin URL (this tab's URL).",
+        "When the invitees have finished voting, come back to this page. If you happen to close this page, don't worry; you can also get here by visiting the link you shared with the invitees (this browser would remember that you're the poll creator). But if you need to mark the final time from another browser or device, make sure to save this poll's admin URL (this tab's URL).",
     },
     {
       target: "#poll-vote-table",

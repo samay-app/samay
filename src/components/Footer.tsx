@@ -29,43 +29,30 @@ const Footer = (): JSX.Element => {
                   </span>
                 </p>
               </li>
+              <li>
+                <a
+                  className="footer-text donate"
+                  href="https://github.com/RocketMeet/RocketMeet-client/milestones"
+                >
+                  Donate
+                </a>
+              </li>
             </ul>
           </Col>
           <Col className="right-container">
             <Col className="footer-col footer-right">
-              <h6>PAGES</h6>
+              <h6>CHECK OUT</h6>
               <ul>
                 <li>
-                  <a
-                    href="https://rocketmeet.gitbook.io/rocketmeet/"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Join our Gitter
+                  <a href="/features">Features</a>
+                </li>
+                <li>
+                  <a href="https://rocketmeet.gitbook.io/rocketmeet/">
+                    Community
                   </a>
                 </li>
                 <li>
-                  <a href="/team" target="_blank" rel="noreferrer">
-                    Contributors
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/rocketmeet/"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/milestones"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Donate
-                  </a>
+                  <a href="https://github.com/rocketmeet/">GitHub</a>
                 </li>
               </ul>
             </Col>
@@ -73,40 +60,16 @@ const Footer = (): JSX.Element => {
               <h6>GET STARTED</h6>
               <ul>
                 <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/README.md"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Self-hosting Guide
-                  </a>
+                  <a href="https">Request a feature</a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/CONTRIBUTING.md"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Contribution Guide
-                  </a>
+                  <a href="https://github.com">Report a bug</a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/issues/new?assignees=&labels=&template=bug_report.md&title="
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Bug Report
-                  </a>
+                  <a href="https://githu">Self-host</a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/issues/new?assignees=&labels=&template=feature_request.md&title="
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Feature Request
-                  </a>
+                  <a href="https://github.com">Contribute</a>
                 </li>
               </ul>
             </Col>
@@ -114,18 +77,10 @@ const Footer = (): JSX.Element => {
               <h6>LEGAL</h6>
               <ul>
                 <li>
-                  <a href="/privacy-policy" target="_blank" rel="noreferrer">
-                    Privacy Policy
-                  </a>
+                  <a href="/privacy-policy">Privacy Policy</a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/RocketMeet/RocketMeet-client/blob/main/LICENSE"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    License
-                  </a>
+                  <a href="https://github.com/Roc">License</a>
                 </li>
               </ul>
             </Col>

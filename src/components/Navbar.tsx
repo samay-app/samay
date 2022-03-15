@@ -1,8 +1,9 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import Link from "next/link";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar className="rm-navbar" variant="dark" expand="lg" collapseOnSelect>
+    <Navbar className="rm-navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="rm-container">
         <Navbar.Brand href="/" className="rm-brand">
           <img
@@ -18,10 +19,13 @@ const NavBar = (): JSX.Element => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <a className="rm-nav-link nav-link" href="/" target="_blank">
+            <Link href="/features" passHref>
+              <Nav.Link className="rm-nav-link nav-link">Features</Nav.Link>
+            </Link>
+            <a className="rm-nav-link nav-link" href="/">
               GitHub
             </a>
-            <a className="rm-nav-link nav-link" href="/" target="_blank">
+            <a className="rm-nav-link nav-link" href="/">
               Donate
             </a>
           </Nav>

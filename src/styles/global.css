@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 
 html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #0f1729 !important;
+  background-color: #f4f5f4 !important;
 }
 
 * {
@@ -16,14 +15,12 @@ body {
   width: 0.8rem;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4d4d4d;
-  border-radius: 0.5rem;
+  background: #c9c9c9;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #5a5a5a;
+  background: #b9b9b9;
 }
 
 ::-webkit-scrollbar-track {
-  background: #333333;
-  border-radius: 0.5rem;
+  background: #e4e4e4;
 }
