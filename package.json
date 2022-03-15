@@ -1,6 +1,6 @@
 {
-  "name": "rocketmeet-client",
-  "description": "RocketMeet is an online meet scheduling app. Find the best time for team meetings and one-on-ones with RocketMeet",
+  "name": "kukkee",
+  "description": "Finding the best time for team meetings or hanging out with your friends has never been faster.",
   "version": "1.0.0",
   "private": false,
   "scripts": {
@@ -10,21 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RocketMeet/RocketMeet-client.git"
+    "url": "https://github.com/Kukkee/Kukkee.git"
   },
   "keywords": [
-    "rocketmeet",
+    "kukkee",
     "scheduler",
     "meeting-scheduler",
     "meetings",
     "polls"
   ],
-  "author": "rocketmeet",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RocketMeet/RocketMeet-client/issues"
+    "url": "https://github.com/Kukkee/Kukkee/issues"
   },
-  "homepage": "https://rocketmeet.me/",
+  "homepage": "https://kukkee.com/",
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/src/__mocks__/styleMock.js",

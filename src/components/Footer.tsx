@@ -13,7 +13,7 @@ const Footer = (): JSX.Element => {
                 src="/logo.svg"
                 className="rm-logo-icon d-inline-block align-top"
               />
-              RocketMeet
+              Kukkee
             </div>
             <ul>
               <li>
@@ -26,14 +26,14 @@ const Footer = (): JSX.Element => {
               <li>
                 <p>
                   <span className="footer-text">
-                    Copyright &#169; 2022 RocketMeet
+                    Copyright &#169; 2022 Kukkee
                   </span>
                 </p>
               </li>
               <li>
                 <a
                   className="footer-text donate"
-                  href="https://github.com/RocketMeet/RocketMeet-client/milestones"
+                  href="https://github.com/Kukkee/Kukkee/milestones"
                 >
                   Donate
                 </a>
@@ -50,12 +50,10 @@ const Footer = (): JSX.Element => {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://rocketmeet.gitbook.io/rocketmeet/">
-                    Community
-                  </a>
+                  <a href="https://kukkee.gitbook.io/kukkee/">Community</a>
                 </li>
                 <li>
-                  <a href="https://github.com/rocketmeet/">GitHub</a>
+                  <a href="https://github.com/kukkee/">GitHub</a>
                 </li>
               </ul>
             </Col>

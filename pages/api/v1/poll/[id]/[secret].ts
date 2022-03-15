@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import RocketMeetPoll, { PollDoc } from "../../../../../src/models/poll";
+import KukkeePoll, { PollDoc } from "../../../../../src/models/poll";
 import connectToDatabase from "../../../../../src/utils/db";
 
 export default async (
@@ -16,7 +16,7 @@ export default async (
     case "PUT":
       try {
         await connectToDatabase();
-        const poll: PollDoc | null = await RocketMeetPoll.findOne({
+        const poll: PollDoc | null = await KukkeePoll.findOne({
           _id: id,
         }).lean();
         if (poll) {
@@ -24,7 +24,7 @@ export default async (
             res.status(403).json({ message: "Forbidden" });
           } else {
             try {
-              const updatedPoll: PollDoc | null = await RocketMeetPoll.findOneAndUpdate(
+              const updatedPoll: PollDoc | null = await KukkeePoll.findOneAndUpdate(
                 { _id: id },
                 JSON.parse(body),
                 { new: true }
@@ -44,7 +44,7 @@ export default async (
     case "DELETE":
       try {
         await connectToDatabase();
-        const poll: PollDoc | null = await RocketMeetPoll.findOne({
+        const poll: PollDoc | null = await KukkeePoll.findOne({
           _id: id,
         }).lean();
         if (poll) {
@@ -52,7 +52,7 @@ export default async (
             res.status(403).json({ message: "Forbidden" });
           } else {
             try {
-              const deletedPoll = await RocketMeetPoll.findByIdAndRemove(id);
+              const deletedPoll = await KukkeePoll.findByIdAndRemove(id);
               res.status(200).json(deletedPoll);
             } catch (err) {
               res.status(400).json({ message: err.message });

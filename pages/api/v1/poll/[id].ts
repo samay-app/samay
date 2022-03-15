@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import RocketMeetPoll, { Vote, PollDoc } from "../../../../src/models/poll";
+import KukkeePoll, { Vote, PollDoc } from "../../../../src/models/poll";
 import { isChoicePresentInPollChoices } from "../../../../src/helpers";
 import connectToDatabase from "../../../../src/utils/db";
 
@@ -17,7 +17,7 @@ export default async (
     case "GET":
       try {
         await connectToDatabase();
-        const poll: PollDoc | null = await RocketMeetPoll.findOne({
+        const poll: PollDoc | null = await KukkeePoll.findOne({
           _id: id,
         }).lean();
         if (!poll) {
@@ -32,7 +32,7 @@ export default async (
     case "PUT":
       try {
         await connectToDatabase();
-        const poll: PollDoc | null = await RocketMeetPoll.findOne({
+        const poll: PollDoc | null = await KukkeePoll.findOne({
           _id: id,
         });
         if (poll) {
@@ -60,7 +60,7 @@ export default async (
                 },
               ];
             }
-            const updatedPoll: PollDoc | null = await RocketMeetPoll.findOneAndUpdate(
+            const updatedPoll: PollDoc | null = await KukkeePoll.findOneAndUpdate(
               { _id: id },
               { votes: newVotes },
               { new: true }

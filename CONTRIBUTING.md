@@ -1,6 +1,6 @@
 ## Contributing
 
-Hi there! We're thrilled that you'd like to contribute to RocketMeet!
+Hi there! We're thrilled that you'd like to contribute to Kukkee!
 
 ## Issues and PRs
 

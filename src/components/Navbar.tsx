@@ -11,7 +11,7 @@ const NavBar = (): JSX.Element => {
             src="/logo.svg"
             className="rm-logo-icon d-inline-block align-top"
           />
-          RocketMeet
+          Kukkee
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"

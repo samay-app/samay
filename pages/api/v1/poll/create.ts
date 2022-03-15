@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import RocketMeetPoll, { PollDoc } from "../../../../src/models/poll";
+import KukkeePoll, { PollDoc } from "../../../../src/models/poll";
 import connectToDatabase from "../../../../src/utils/db";
 
 export default async (
@@ -12,7 +12,7 @@ export default async (
     case "POST":
       try {
         await connectToDatabase();
-        const newPoll: PollDoc = new RocketMeetPoll(JSON.parse(body));
+        const newPoll: PollDoc = new KukkeePoll(JSON.parse(body));
         await newPoll.save();
         res.status(201).json(newPoll);
       } catch (err) {

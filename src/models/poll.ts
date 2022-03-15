@@ -83,7 +83,7 @@ const PollSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-const RocketMeetPoll: Model<PollDoc> =
+const KukkeePoll: Model<PollDoc> =
   mongoose.models.Poll || model("Poll", PollSchema);
 
 export interface HttpResponse {
@@ -91,4 +91,4 @@ export interface HttpResponse {
   statusCode: number;
 }
 
-export default RocketMeetPoll;
+export default KukkeePoll;
