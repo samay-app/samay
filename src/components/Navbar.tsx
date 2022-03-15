@@ -22,12 +22,15 @@ const NavBar = (): JSX.Element => {
             <Link href="/features" passHref>
               <Nav.Link className="rm-nav-link nav-link">Features</Nav.Link>
             </Link>
-            <a className="rm-nav-link nav-link" href="/">
+            <a
+              className="rm-nav-link nav-link"
+              href="https://github.com/Kukkee/Kukkee"
+            >
               GitHub
             </a>
-            <a className="rm-nav-link nav-link" href="/">
+            {/* <a className="rm-nav-link nav-link" href="/">
               Donate
-            </a>
+            </a> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

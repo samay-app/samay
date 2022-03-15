@@ -30,14 +30,14 @@ const Footer = (): JSX.Element => {
                   </span>
                 </p>
               </li>
-              <li>
+              {/* <li>
                 <a
                   className="footer-text donate"
                   href="https://github.com/Kukkee/Kukkee/milestones"
                 >
                   Donate
                 </a>
-              </li>
+              </li> */}
             </ul>
           </Col>
           <Col className="right-container">
@@ -61,16 +61,24 @@ const Footer = (): JSX.Element => {
               <h6>GET STARTED</h6>
               <ul>
                 <li>
-                  <a href="https">Request a feature</a>
+                  <a href="https://github.com/Kukkee/Kukkee/issues/new?assignees=&labels=&template=feature_request.md&title=">
+                    Request a feature
+                  </a>
                 </li>
                 <li>
-                  <a href="https://github.com">Report a bug</a>
+                  <a href="https://github.com/Kukkee/Kukkee/issues/new?assignees=&labels=&template=bug_report.md&title=">
+                    Report a bug
+                  </a>
                 </li>
                 <li>
-                  <a href="https://githu">Self-host</a>
+                  <a href="https://github.com/Kukkee/Kukkee#self-host">
+                    Self-host
+                  </a>
                 </li>
                 <li>
-                  <a href="https://github.com">Contribute</a>
+                  <a href="https://github.com/Kukkee/Kukkee/blob/main/CONTRIBUTING.md">
+                    Contribute
+                  </a>
                 </li>
               </ul>
             </Col>
@@ -83,7 +91,9 @@ const Footer = (): JSX.Element => {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://github.com/Roc">License</a>
+                  <a href="https://github.com/Kukkee/Kukkee/blob/main/LICENSE">
+                    License
+                  </a>
                 </li>
                 <li>
                   <Link href="/contact" passHref>

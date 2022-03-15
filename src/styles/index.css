@@ -177,12 +177,21 @@ main {
   .rm-footer-row {
     flex-direction: column;
     padding-left: 1rem !important;
+    padding-right: 1rem !important;
     margin-bottom: 0 !important;
     margin-top: 0 !important;
   }
 
   .footer-col ul {
     padding-left: 0 !important;
+  }
+
+  .footer-col ul li a {
+    font-size: 0.9rem !important;
+  }
+
+  .footer-text {
+    font-size: 0.9rem !important;
   }
 
   .footer-text {
@@ -271,7 +280,7 @@ a {
   margin-top: 2.5rem;
   margin-left: auto;
   margin-right: auto;
-  width: 32rem;
+  width: 30.5rem;
 }
 
 .hero-tour {
@@ -443,7 +452,7 @@ a {
   .hero-tagline {
     font-size: 1.1rem;
     margin-top: 1.9rem;
-    width: 14.5rem;
+    width: 14.1rem;
   }
 
   .hero-tour {
@@ -745,6 +754,7 @@ a {
   border-radius: 0 !important;
   font-size: 1rem !important;
   font-weight: 600 !important;
+  transition: none !important;
 }
 
 .rm-form-text::placeholder {
@@ -784,13 +794,7 @@ a {
   height: 1.8rem;
   color: #363636;
   margin: 0rem 0rem 0rem 0.5rem;
-  transition: 0.3s;
   cursor: pointer;
-}
-
-.hero-tour:hover .tour-start-icon {
-  transform: translate(0.3rem);
-  transition: 0.3s;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -837,6 +841,17 @@ a {
     line-height: 0.6rem !important;
   }
 
+  .rat-AvailableTimes_toolbar {
+    padding-top: 1rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .rat-AvailableTimes_interval {
+    flex-basis: 13rem !important;
+  }
+
   .poll-info-div {
     text-align: center !important;
     justify-content: center !important;
@@ -877,7 +892,7 @@ a {
 
 .rat-AvailableTimes_button:hover {
   fill: #f4f5f4 !important;
-  background-color: #6f6f6f !important;
+  background-color: #363636 !important;
 }
 
 .rat-Ruler_component {

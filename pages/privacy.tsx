@@ -35,6 +35,10 @@ const Privacy = (): JSX.Element => {
               </ul>
             </p>
             <h2>What data we collect</h2>
+            <p>
+              Information about events and your availability for the those
+              events which you enter in a poll.
+            </p>
             <h2>How and why we use your data</h2>
             <p>
               Data protection law means that we can only use your data for
@@ -93,7 +97,7 @@ const Privacy = (): JSX.Element => {
             <p>
               We use MongoDB's{" "}
               <a href="https://www.mongodb.com/legal/privacy-policy">Atlas</a>{" "}
-              cloud database service to store all the event and your
+              cloud database service to store all the events and your
               availability information.
             </p>
             <h2>How long do we store your data?</h2>
