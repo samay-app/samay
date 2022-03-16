@@ -1,11 +1,11 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState, Dispatch } from "react";
 import Router from "next/router";
-import { markChoices } from "../../utils/api/server";
+import { markTimes } from "../../utils/api/server";
 import { Vote, PollFromDB } from "../../models/poll";
 import { isUserPresentInVotes } from "../../helpers";
 
-const SubmitChoices = (props: {
+const SubmitTimes = (props: {
   newVote: Vote;
   pollID: string;
   pollFromDB: PollFromDB;
@@ -42,7 +42,7 @@ const SubmitChoices = (props: {
       return;
     }
 
-    if (newVote.choices.length === 0) {
+    if (newVote.times.length === 0) {
       setResponse({
         status: true,
         msg: "Please select at least one available time slot.",
@@ -52,31 +52,25 @@ const SubmitChoices = (props: {
 
     setDisabled(true);
     try {
-      let submitChoiceResponse;
+      let submitTimeResponse;
       const voterArgs = {
         newVote,
         pollID,
       };
-      submitChoiceResponse = await markChoices(voterArgs);
-      if (submitChoiceResponse && submitChoiceResponse.statusCode === 201) {
+      submitTimeResponse = await markTimes(voterArgs);
+      if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         setResponse({
           status: true,
           msg: "Your vote has been successfully recorded.",
         });
         Router.reload();
-      } else if (
-        submitChoiceResponse &&
-        submitChoiceResponse.statusCode === 404
-      ) {
+      } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {
         setResponse({
           status: true,
           msg: "Sorry, poll has been deleted.",
         });
         Router.push("/");
-      } else if (
-        submitChoiceResponse &&
-        submitChoiceResponse.statusCode === 400
-      ) {
+      } else if (submitTimeResponse && submitTimeResponse.statusCode === 400) {
         setResponse({
           status: true,
           msg: "Sorry, poll has been closed.",
@@ -102,7 +96,7 @@ const SubmitChoices = (props: {
   return (
     <div>
       <Button
-        className="rm-primary-button mark-options-btn"
+        className="kukkee-primary-button mark-options-btn"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
@@ -117,7 +111,7 @@ const SubmitChoices = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
-              className="rm-button-spinner"
+              className="kukkee-button-spinner"
             />
           </>
         )}
@@ -126,4 +120,4 @@ const SubmitChoices = (props: {
   );
 };
 
-export default SubmitChoices;
+export default SubmitTimes;

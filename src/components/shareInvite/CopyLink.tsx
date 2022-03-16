@@ -10,26 +10,26 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import copy from "copy-to-clipboard";
 import { useState } from "react";
-import { Choice } from "../../models/poll";
+import { Time } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
 const CopyLink = (props: {
   pollURL: string;
   pollTitle: string;
-  finalChoice: Choice | undefined;
+  finalTime: Time | undefined;
 }): JSX.Element => {
-  const { pollURL, pollTitle, finalChoice } = props;
+  const { pollURL, pollTitle, finalTime } = props;
 
   let textToCopy: string;
 
-  if (finalChoice) {
-    textToCopy = `"${pollTitle}": ${dayjs(finalChoice?.start).format(
+  if (finalTime) {
+    textToCopy = `"${pollTitle}": ${dayjs(finalTime?.start).format(
       "ddd"
-    )}, ${dayjs(finalChoice?.start).format("MMM")} ${dayjs(
-      finalChoice?.start
-    ).format("DD")}, ${dayjs(finalChoice?.start).format("LT")} - ${dayjs(
-      finalChoice?.end
+    )}, ${dayjs(finalTime?.start).format("MMM")} ${dayjs(
+      finalTime?.start
+    ).format("DD")}, ${dayjs(finalTime?.start).format("LT")} - ${dayjs(
+      finalTime?.end
     ).format("LT")}`;
   } else {
     textToCopy = pollURL;

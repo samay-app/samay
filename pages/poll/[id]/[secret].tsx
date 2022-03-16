@@ -7,10 +7,10 @@ import { getPoll } from "../../../src/utils/api/server";
 import Layout from "../../../src/components/Layout";
 import PollInfo from "../../../src/components/poll/PollInfo";
 import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
-import SubmitFinalChoice from "../../../src/components/poll/SubmitFinalChoice";
+import SubmitFinalTime from "../../../src/components/poll/SubmitFinalTime";
 import DeletePoll from "../../../src/components/poll/DeletePoll";
 import ResponseMessage from "../../../src/components/ResponseMessage";
-import { Choice, ChoiceFromDB, PollFromDB } from "../../../src/models/poll";
+import { Time, TimeFromDB, PollFromDB } from "../../../src/models/poll";
 import ShareInvite from "../../../src/components/shareInvite/ShareInvite";
 import { decrypt } from "../../../src/helpers";
 
@@ -22,17 +22,17 @@ const Poll = (props: {
   secret: string;
 }): JSX.Element => {
   const { pollFromDB, pollID, secret } = props;
-  const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
-    (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
+  const sortedTimes: TimeFromDB[] = pollFromDB.times.sort(
+    (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
   );
-  const [finalChoice, setFinalChoice] = useState<Choice | undefined>();
+  const [finalTime, setFinalTime] = useState<Time | undefined>();
   const [response, setResponse] = useState({
     status: false,
     msg: "",
   });
   return (
     <Layout>
-      <Container className="rm-container">
+      <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-info">
@@ -47,7 +47,7 @@ const Poll = (props: {
                   <ShareInvite
                     pollTitle={pollFromDB.title}
                     pollID={pollID}
-                    finalChoice={pollFromDB.finalChoice}
+                    finalTime={pollFromDB.finalTime}
                   />
                 </Col>
               </Row>
@@ -59,13 +59,13 @@ const Poll = (props: {
             <Jumbotron className="poll-table-jumbo" id="all-votes-table">
               <PollTableAdmin
                 pollFromDB={pollFromDB}
-                sortedChoices={sortedChoices}
-                setFinalChoice={setFinalChoice}
+                sortedTimes={sortedTimes}
+                setFinalTime={setFinalTime}
               />
             </Jumbotron>
             {pollFromDB.open && (
-              <SubmitFinalChoice
-                finalChoice={finalChoice}
+              <SubmitFinalTime
+                finalTime={finalTime}
                 pollID={pollID}
                 secret={secret}
                 setResponse={setResponse}

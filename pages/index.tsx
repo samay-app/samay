@@ -16,7 +16,7 @@ import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
-import { Choice, Poll } from "../src/models/poll";
+import { Time, Poll } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
 // typings aren't available for react-available-times :(
@@ -30,7 +30,7 @@ const Home = (): JSX.Element => {
   const [pollTitle, setTitle] = useState<string>("");
   const [pollLocation, setLocation] = useState<string>("");
   const [pollDescription, setDescription] = useState<string>("");
-  const [pollChoices, setChoices] = useState<Choice[]>();
+  const [pollTimes, setTimes] = useState<Time[]>();
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const [response, setResponse] = useState({
@@ -63,7 +63,7 @@ const Home = (): JSX.Element => {
     {
       target: ".rat-Slider_component",
       content:
-        "Mark your availability by selecting time slots. These will be the choices provided to your invitees in the poll. You see the times in your time zone and invitees see the times in theirs.",
+        "Mark your availability by selecting time slots. These will be the times provided to your invitees in the poll. You see the times in your time zone and invitees see the times in theirs.",
     },
     {
       target: ".create-poll-btn",
@@ -90,20 +90,19 @@ const Home = (): JSX.Element => {
     setDescription(value);
   };
 
-  const onChoicesChange = (selections: { start: Date; end: Date }[]): void => {
-    const newChoices: Choice[] = selections.map(
-      (choice): Choice => ({
-        start: choice.start.getTime(),
-        end: choice.end.getTime(),
+  const onTimesChange = (selections: { start: Date; end: Date }[]): void => {
+    const newTimes: Time[] = selections.map(
+      (time): Time => ({
+        start: time.start.getTime(),
+        end: time.end.getTime(),
       })
     );
-    setChoices(newChoices);
+    setTimes(newTimes);
   };
 
-  const areChoicesValid = (choices: Choice[] | undefined): boolean => {
-    if (!choices) return false;
-    if (choices.some((choice: Choice) => choice.start < Date.now()))
-      return false;
+  const areTimesValid = (times: Time[] | undefined): boolean => {
+    if (!times) return false;
+    if (times.some((time: Time) => time.start < Date.now())) return false;
     return true;
   };
 
@@ -125,7 +124,7 @@ const Home = (): JSX.Element => {
       });
       return;
     }
-    if (!pollChoices || (pollChoices && pollChoices?.length < 2)) {
+    if (!pollTimes || (pollTimes && pollTimes?.length < 2)) {
       setResponse({
         status: true,
         msg:
@@ -133,7 +132,7 @@ const Home = (): JSX.Element => {
       });
       return;
     }
-    if (!areChoicesValid(pollChoices)) {
+    if (!areTimesValid(pollTimes)) {
       setResponse({
         status: true,
         msg: "Chosen time slots must not be in the past.",
@@ -148,7 +147,7 @@ const Home = (): JSX.Element => {
       description: pollDescription,
       location: pollLocation,
       secret: encrypt(secret),
-      choices: pollChoices,
+      times: pollTimes,
     };
 
     try {
@@ -240,13 +239,13 @@ const Home = (): JSX.Element => {
           },
         }}
       />
-      <Container className="rm-container">
+      <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-create">
               <Form.Group as={Row} controlId="formPlainTextTitle">
                 <Form.Control
-                  className="rm-form-text"
+                  className="kukkee-form-text"
                   type="text"
                   placeholder="Title"
                   required
@@ -255,7 +254,7 @@ const Home = (): JSX.Element => {
               </Form.Group>
               <Form.Group as={Row} controlId="formPlainTextDescription">
                 <Form.Control
-                  className="rm-form-text"
+                  className="kukkee-form-text"
                   type="text"
                   placeholder="Description (optional)"
                   onChange={handleDescriptionChange}
@@ -263,7 +262,7 @@ const Home = (): JSX.Element => {
               </Form.Group>
               <Form.Group as={Row} controlId="formPlainTextLocation">
                 <Form.Control
-                  className="rm-form-text"
+                  className="kukkee-form-text"
                   type="text"
                   placeholder="Location (optional)"
                   onChange={handleLocationChange}
@@ -277,12 +276,12 @@ const Home = (): JSX.Element => {
             <Jumbotron className="poll-timeslot-jumbo">
               <AvailableTimes
                 weekStartsOn="monday"
-                onChange={onChoicesChange}
+                onChange={onTimesChange}
                 height="42rem"
               />
             </Jumbotron>
             <Button
-              className="rm-primary-button create-poll-btn"
+              className="kukkee-primary-button create-poll-btn"
               onClick={handleSubmit}
               disabled={disabled}
             >
@@ -296,7 +295,7 @@ const Home = (): JSX.Element => {
                     size="sm"
                     role="status"
                     aria-hidden="true"
-                    className="rm-button-spinner"
+                    className="kukkee-button-spinner"
                   />
                 </>
               )}

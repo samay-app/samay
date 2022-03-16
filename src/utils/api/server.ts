@@ -1,4 +1,4 @@
-import { Poll, Vote, HttpResponse, Choice } from "../../models/poll";
+import { Poll, Vote, HttpResponse, Time } from "../../models/poll";
 
 const NEXT_PUBLIC_BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -38,7 +38,7 @@ const createPoll = (pollArgs: { poll: Poll }): Promise<HttpResponse> => {
   return httpMethod(endpoint, requestOptions);
 };
 
-const markChoices = (voteArgs: {
+const markTimes = (voteArgs: {
   newVote: Vote;
   pollID: string;
 }): Promise<HttpResponse> => {
@@ -51,16 +51,16 @@ const markChoices = (voteArgs: {
   return httpMethod(endpoint, requestOptions);
 };
 
-const markFinalChoice = (voteArgs: {
-  finalChoice: { finalChoice: Choice | undefined; open: boolean };
+const markFinalTime = (voteArgs: {
+  finalTime: { finalTime: Time | undefined; open: boolean };
   pollID: string;
   secret: string;
 }): Promise<HttpResponse> => {
-  const { finalChoice, pollID, secret } = voteArgs;
+  const { finalTime, pollID, secret } = voteArgs;
   const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/v${NEXT_PUBLIC_API_VERSION}/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
     method: "PUT",
-    body: JSON.stringify(finalChoice),
+    body: JSON.stringify(finalTime),
   };
   return httpMethod(endpoint, requestOptions);
 };
@@ -77,4 +77,4 @@ const deletePoll = (deleteArgs: {
   return httpMethod(endpoint, requestOptions);
 };
 
-export { getPoll, createPoll, markChoices, markFinalChoice, deletePoll };
+export { getPoll, createPoll, markTimes, markFinalTime, deletePoll };

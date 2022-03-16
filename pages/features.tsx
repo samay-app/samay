@@ -4,12 +4,12 @@ import Layout from "../src/components/Layout";
 const Features = (): JSX.Element => {
   return (
     <Layout>
-      <Container className="rm-container">
+      <Container className="kukkee-container">
         <Row>
           <Col className="inside-page">
             <h1>Features</h1>
             <CardGroup className="features">
-              <Card className="card">
+              <Card className="kukkee-card">
                 <Card.Body>
                   <Card.Title className="title">Free forever</Card.Title>
                   <Card.Text>
@@ -18,7 +18,7 @@ const Features = (): JSX.Element => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card className="card">
+              <Card className="kukkee-card">
                 <Card.Body>
                   <Card.Title className="title">Open Source</Card.Title>
                   <Card.Text>
@@ -27,7 +27,7 @@ const Features = (): JSX.Element => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card className="card-last">
+              <Card className="kukkee-card-last">
                 <Card.Body>
                   <Card.Title className="title">Fast</Card.Title>
                   <Card.Text>
@@ -39,7 +39,7 @@ const Features = (): JSX.Element => {
               </Card>
             </CardGroup>
             <CardGroup className="features">
-              <Card className="card">
+              <Card className="kukkee-card">
                 <Card.Body>
                   <Card.Title className="title">Collaborative</Card.Title>
                   <Card.Text>
@@ -49,7 +49,7 @@ const Features = (): JSX.Element => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card className="card">
+              <Card className="kukkee-card">
                 <Card.Body>
                   <Card.Title className="title">Self-host</Card.Title>
                   <Card.Text>
@@ -58,7 +58,7 @@ const Features = (): JSX.Element => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card className="card-last">
+              <Card className="kukkee-card-last">
                 <Card.Body>
                   <Card.Title className="title">
                     Integrations (coming soon)

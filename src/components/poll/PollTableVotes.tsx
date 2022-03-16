@@ -3,33 +3,33 @@ import { Check2, Check2Circle } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import PollDateTime from "./PollDateTime";
-import { Choice, PollFromDB, Vote } from "../../models/poll";
-import { slotCheckClassName, isChoiceIfNeedBe } from "../../helpers";
+import { Time, PollFromDB, Vote } from "../../models/poll";
+import { slotCheckClassName, isTimeIfNeedBe } from "../../helpers";
 
 dayjs.extend(localizedFormat);
 
-const PollTable = (props: {
+const PollTableVotes = (props: {
   pollFromDB: PollFromDB;
-  sortedChoices: Choice[];
+  sortedTimes: Time[];
 }): JSX.Element => {
-  const { pollFromDB, sortedChoices } = props;
+  const { pollFromDB, sortedTimes } = props;
   return (
     <div className="poll-info-div">
       <Table responsive className="poll-table">
         <thead>
           <tr className="poll-table-top-row">
             <th className="participant-cell"> </th>
-            {sortedChoices.map((choice) => (
+            {sortedTimes.map((time) => (
               <th
-                key={choice.start}
+                key={time.start}
                 className={
-                  choice.start === pollFromDB.finalChoice?.start &&
-                  choice.end === pollFromDB.finalChoice?.end
-                    ? "slot-time slot-final-choice"
+                  time.start === pollFromDB.finalTime?.start &&
+                  time.end === pollFromDB.finalTime?.end
+                    ? "slot-time slot-final-time"
                     : "slot-time"
                 }
               >
-                <PollDateTime choice={choice} />
+                <PollDateTime time={time} />
               </th>
             ))}
           </tr>
@@ -38,12 +38,12 @@ const PollTable = (props: {
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
             <tr key={`${idx}-${vote.name}`}>
               <td className="poll-table-participants">{vote.name}</td>
-              {sortedChoices.map((choice: Choice) => (
+              {sortedTimes.map((time: Time) => (
                 <td
-                  key={choice.start}
-                  className={slotCheckClassName(choice, vote.choices)}
+                  key={time.start}
+                  className={slotCheckClassName(time, vote.times)}
                 >
-                  {isChoiceIfNeedBe(choice, vote.choices) ? (
+                  {isTimeIfNeedBe(time, vote.times) ? (
                     <Check2Circle className="slot-check" />
                   ) : (
                     <Check2 className="slot-check" />
@@ -58,4 +58,4 @@ const PollTable = (props: {
   );
 };
 
-export default PollTable;
+export default PollTableVotes;

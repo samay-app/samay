@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { Choice } from "../../models/poll";
+import { Time } from "../../models/poll";
 import CopyLink from "./CopyLink";
 
 const NEXT_PUBLIC_BASE_URL =
@@ -8,9 +8,9 @@ const NEXT_PUBLIC_BASE_URL =
 const ShareInvite = (props: {
   pollID: string;
   pollTitle: string;
-  finalChoice: Choice | undefined;
+  finalTime: Time | undefined;
 }): JSX.Element => {
-  const { pollID, pollTitle, finalChoice } = props;
+  const { pollID, pollTitle, finalTime } = props;
   const pollURL = `${NEXT_PUBLIC_BASE_URL}/poll/${pollID}`;
 
   return (
@@ -23,7 +23,7 @@ const ShareInvite = (props: {
         <CopyLink
           pollURL={pollURL}
           pollTitle={pollTitle}
-          finalChoice={finalChoice}
+          finalTime={finalTime}
         />
       </Form>
     </div>

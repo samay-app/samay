@@ -4,7 +4,7 @@ import Layout from "../src/components/Layout";
 const Privacy = (): JSX.Element => {
   return (
     <Layout>
-      <Container className="rm-container">
+      <Container className="kukkee-container">
         <Row>
           <Col className="inside-page">
             <h1>Privacy Policy</h1>
@@ -46,7 +46,7 @@ const Privacy = (): JSX.Element => {
               the data solely to ensure the functionality of Kukkee — which is
               to help you find the best time for meetings.
             </p>
-            <h2>Your choices</h2>
+            <h2>Your times</h2>
             <p>
               <ul>
                 <li>

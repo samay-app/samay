@@ -4,23 +4,23 @@ import { Check2, Check2Circle } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkFinalChoice from "./MarkFinalChoice";
+import MarkFinalTime from "./MarkFinalTime";
 import PollDateTime from "./PollDateTime";
-import { Choice, PollFromDB, Vote } from "../../models/poll";
+import { Time, PollFromDB, Vote } from "../../models/poll";
 import {
-  isChoicePresentInPollChoices,
+  isTimePresentInPollTimes,
   slotCheckClassName,
-  isChoiceIfNeedBe,
+  isTimeIfNeedBe,
 } from "../../helpers";
 
 dayjs.extend(localizedFormat);
 
 const PollTableAdmin = (props: {
   pollFromDB: PollFromDB;
-  sortedChoices: Choice[];
-  setFinalChoice: Dispatch<Choice | undefined>;
+  sortedTimes: Time[];
+  setFinalTime: Dispatch<Time | undefined>;
 }): JSX.Element => {
-  const { pollFromDB, sortedChoices, setFinalChoice } = props;
+  const { pollFromDB, sortedTimes, setFinalTime } = props;
 
   const [tourRun, setTourRun] = useState<boolean>(false);
 
@@ -85,42 +85,39 @@ const PollTableAdmin = (props: {
         <thead>
           <tr className="poll-table-top-row">
             <th className="participant-cell"> </th>
-            {sortedChoices.map((choice) => (
+            {sortedTimes.map((time) => (
               <th
-                key={choice.start}
+                key={time.start}
                 className={
-                  choice.start === pollFromDB.finalChoice?.start &&
-                  choice.end === pollFromDB.finalChoice?.end
-                    ? "slot-time slot-final-choice"
+                  time.start === pollFromDB.finalTime?.start &&
+                  time.end === pollFromDB.finalTime?.end
+                    ? "slot-time slot-final-time"
                     : "slot-time"
                 }
               >
-                <PollDateTime choice={choice} />
+                <PollDateTime time={time} />
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {pollFromDB.open && (
-            <MarkFinalChoice
-              choices={sortedChoices}
-              setFinalChoice={setFinalChoice}
-            />
+            <MarkFinalTime times={sortedTimes} setFinalTime={setFinalTime} />
           )}
           <tr>
             <td className="poll-table-total-participants">
               {pollFromDB.votes?.length} PARTICIPANTS
             </td>
-            {sortedChoices.map((choice: Choice) => (
-              <td key={choice.start} className="slot-total-votes">
+            {sortedTimes.map((time: Time) => (
+              <td key={time.start} className="slot-total-votes">
                 <span className="total-yes-votes">
                   <Check2 className="slot-check" />
                   {
                     pollFromDB.votes?.filter((vote: Vote) =>
-                      isChoicePresentInPollChoices(
-                        choice,
-                        vote.choices.filter(
-                          (choiceFromVote: Choice) => !choiceFromVote.ifNeedBe
+                      isTimePresentInPollTimes(
+                        time,
+                        vote.times.filter(
+                          (timeFromVote: Time) => !timeFromVote.ifNeedBe
                         )
                       )
                     ).length
@@ -130,10 +127,10 @@ const PollTableAdmin = (props: {
                   <Check2Circle className="slot-check" />
                   {
                     pollFromDB.votes?.filter((vote: Vote) =>
-                      isChoicePresentInPollChoices(
-                        choice,
-                        vote.choices.filter(
-                          (choiceFromVote: Choice) => choiceFromVote.ifNeedBe
+                      isTimePresentInPollTimes(
+                        time,
+                        vote.times.filter(
+                          (timeFromVote: Time) => timeFromVote.ifNeedBe
                         )
                       )
                     ).length
@@ -145,12 +142,12 @@ const PollTableAdmin = (props: {
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
             <tr key={`${idx}-${vote.name}`}>
               <td className="poll-table-participants">{vote.name}</td>
-              {sortedChoices.map((choice: Choice) => (
+              {sortedTimes.map((time: Time) => (
                 <td
-                  key={choice.start}
-                  className={slotCheckClassName(choice, vote.choices)}
+                  key={time.start}
+                  className={slotCheckClassName(time, vote.times)}
                 >
-                  {isChoiceIfNeedBe(choice, vote.choices) ? (
+                  {isTimeIfNeedBe(time, vote.times) ? (
                     <Check2Circle className="slot-check" />
                   ) : (
                     <Check2 className="slot-check" />

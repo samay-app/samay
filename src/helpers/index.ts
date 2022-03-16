@@ -1,40 +1,27 @@
 import crypto from "crypto";
-import { Choice, VoteFromDB } from "../models/poll";
+import { Time, VoteFromDB } from "../models/poll";
 
-export const isChoicePresentInPollChoices = (
-  choiceToSearch: Choice,
-  choices: Choice[]
+export const isTimePresentInPollTimes = (
+  timeToSearch: Time,
+  times: Time[]
 ): boolean => {
-  return choices.some(
-    (choice) =>
-      choice.start === choiceToSearch.start && choice.end === choiceToSearch.end
+  return times.some(
+    (time) => time.start === timeToSearch.start && time.end === timeToSearch.end
   );
 };
 
-export const slotCheckClassName = (
-  choice: Choice,
-  choices: Choice[]
-): string => {
-  if (isChoicePresentInPollChoices(choice, choices)) {
-    if (
-      choices.find((currentChoice) => currentChoice.start === choice.start)
-        ?.ifNeedBe
-    )
+export const slotCheckClassName = (time: Time, times: Time[]): string => {
+  if (isTimePresentInPollTimes(time, times)) {
+    if (times.find((currentTime) => currentTime.start === time.start)?.ifNeedBe)
       return "slot-checked-if-need-be";
     return "slot-checked";
   }
   return "slot-unchecked";
 };
 
-export const isChoiceIfNeedBe = (
-  choice: Choice,
-  choices: Choice[]
-): boolean => {
-  if (isChoicePresentInPollChoices(choice, choices)) {
-    if (
-      choices.find((currentChoice) => currentChoice.start === choice.start)
-        ?.ifNeedBe
-    )
+export const isTimeIfNeedBe = (time: Time, times: Time[]): boolean => {
+  if (isTimePresentInPollTimes(time, times)) {
+    if (times.find((currentTime) => currentTime.start === time.start)?.ifNeedBe)
       return true;
     return false;
   }
@@ -42,20 +29,20 @@ export const isChoiceIfNeedBe = (
 };
 
 export const slotTimeClassName = (
-  choice: Choice,
-  voteChoices: Choice[],
-  finalChoice?: Choice
+  time: Time,
+  voteTimes: Time[],
+  finalTime?: Time
 ): string => {
-  if (choice.start === finalChoice?.start && choice.end === finalChoice?.end)
-    return "slot-time slot-final-choice";
+  if (time.start === finalTime?.start && time.end === finalTime?.end)
+    return "slot-time slot-final-time";
 
-  if (isChoicePresentInPollChoices(choice, voteChoices)) {
+  if (isTimePresentInPollTimes(time, voteTimes)) {
     if (
-      voteChoices.find((currentChoice) => currentChoice.start === choice.start)
+      voteTimes.find((currentTime) => currentTime.start === time.start)
         ?.ifNeedBe
     )
-      return "slot-time slot-if-need-be-choice";
-    return "slot-time slot-normal-choice";
+      return "slot-time slot-if-need-be-time";
+    return "slot-time slot-normal-time";
   }
   return "slot-time";
 };

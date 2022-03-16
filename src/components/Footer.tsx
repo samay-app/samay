@@ -3,15 +3,15 @@ import Link from "next/link";
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className="rm-footer">
+    <footer className="kukkee-footer">
       <Container className="footer-container">
-        <Row className="rm-footer-row">
+        <Row className="kukkee-footer-row">
           <Col className="footer-col footer-left">
             <div className="footer-logo">
               <img
                 alt="logo"
                 src="/logo.svg"
-                className="rm-logo-icon d-inline-block align-top"
+                className="kukkee-logo-icon d-inline-block align-top"
               />
               Kukkee
             </div>

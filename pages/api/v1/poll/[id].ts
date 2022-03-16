@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import KukkeePoll, { Vote, PollDoc } from "../../../../src/models/poll";
-import { isChoicePresentInPollChoices } from "../../../../src/helpers";
+import { isTimePresentInPollTimes } from "../../../../src/helpers";
 import connectToDatabase from "../../../../src/utils/db";
 
 export default async (
@@ -40,11 +40,11 @@ export default async (
           if (!poll.open) {
             res.status(400).json({ message: "Poll closed" });
           } else if (
-            !vote.choices.every((choice) =>
-              isChoicePresentInPollChoices(choice, poll.choices)
+            !vote.times.every((time) =>
+              isTimePresentInPollTimes(time, poll.times)
             )
           ) {
-            res.status(400).json({ message: "Invalid choices" });
+            res.status(400).json({ message: "Invalid times" });
           } else {
             const currentVotes: Vote[] | undefined = poll.votes;
             let newVotes: Vote[] | undefined;
@@ -56,7 +56,7 @@ export default async (
               newVotes = [
                 {
                   name: vote.name,
-                  choices: vote.choices,
+                  times: vote.times,
                 },
               ];
             }

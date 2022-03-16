@@ -1,12 +1,12 @@
 import mongoose, { model, Model, Document, Schema } from "mongoose";
 
-export interface Choice {
+export interface Time {
   start: number;
   end: number;
   ifNeedBe?: boolean;
 }
 
-export interface ChoiceFromDB {
+export interface TimeFromDB {
   _id: string;
   start: number;
   end: number;
@@ -15,13 +15,13 @@ export interface ChoiceFromDB {
 
 export interface Vote {
   name: string;
-  choices: Choice[];
+  times: Time[];
 }
 
 export interface VoteFromDB {
   _id: string;
   name: string;
-  choices: ChoiceFromDB[];
+  times: TimeFromDB[];
 }
 
 export interface Poll {
@@ -30,8 +30,8 @@ export interface Poll {
   open?: boolean;
   secret: string;
   location?: string;
-  choices: Choice[];
-  finalChoice?: Choice;
+  times: Time[];
+  finalTime?: Time;
   votes?: Vote[];
 }
 
@@ -42,8 +42,8 @@ export interface PollFromDB {
   open?: boolean;
   secret: string;
   location?: string;
-  choices: ChoiceFromDB[];
-  finalChoice?: ChoiceFromDB;
+  times: TimeFromDB[];
+  finalTime?: TimeFromDB;
   votes?: VoteFromDB[];
   createdAt: string;
   updatedAt: string;
@@ -56,8 +56,8 @@ export interface PollDoc extends Document {
   open?: boolean;
   secret: string;
   location?: string;
-  choices: Choice[];
-  finalChoice?: Choice;
+  times: Time[];
+  finalTime?: Time;
   votes?: Vote[];
 }
 
@@ -68,15 +68,15 @@ const PollSchema: Schema = new Schema(
     open: { type: Boolean, default: true },
     secret: { type: String, required: true },
     location: { type: String },
-    choices: {
+    times: {
       type: [{ start: Number, end: Number }],
       required: true,
     },
-    finalChoice: { type: { start: Number, end: Number } },
+    finalTime: { type: { start: Number, end: Number } },
     votes: [
       {
         name: String,
-        choices: [{ start: Number, end: Number, ifNeedBe: Boolean }],
+        times: [{ start: Number, end: Number, ifNeedBe: Boolean }],
       },
     ],
   },

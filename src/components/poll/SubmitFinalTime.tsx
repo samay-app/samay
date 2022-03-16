@@ -1,12 +1,12 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState, Dispatch } from "react";
 import Router from "next/router";
-import { markFinalChoice } from "../../utils/api/server";
-import { Choice } from "../../models/poll";
+import { markFinalTime } from "../../utils/api/server";
+import { Time } from "../../models/poll";
 import { encrypt } from "../../helpers";
 
-const SubmitFinalChoice = (props: {
-  finalChoice: Choice | undefined;
+const SubmitFinalTime = (props: {
+  finalTime: Time | undefined;
   pollID: string;
   secret: string;
   setResponse: Dispatch<{
@@ -14,7 +14,7 @@ const SubmitFinalChoice = (props: {
     msg: string;
   }>;
 }): JSX.Element => {
-  const { finalChoice, pollID, secret, setResponse } = props;
+  const { finalTime, pollID, secret, setResponse } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -22,22 +22,22 @@ const SubmitFinalChoice = (props: {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (finalChoice) {
+    if (finalTime) {
       setDisabled(true);
       try {
         const voterArgs = {
-          finalChoice: {
-            finalChoice,
+          finalTime: {
+            finalTime,
             open: false,
           },
           pollID,
           secret: encrypt(secret),
         };
-        const submitFinalChoiceResponse = await markFinalChoice(voterArgs);
-        if (submitFinalChoiceResponse.statusCode === 201) {
+        const submitFinalTimeResponse = await markFinalTime(voterArgs);
+        if (submitFinalTimeResponse.statusCode === 201) {
           setResponse({
             status: true,
-            msg: "Final time has been successfully decided.",
+            msg: "Time has been finalised and the poll has been closed",
           });
           Router.reload();
         } else {
@@ -67,7 +67,7 @@ const SubmitFinalChoice = (props: {
   return (
     <div>
       <Button
-        className="rm-primary-button mark-final-time-btn"
+        className="kukkee-primary-button mark-final-time-btn"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
@@ -82,7 +82,7 @@ const SubmitFinalChoice = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
-              className="rm-button-spinner"
+              className="kukkee-button-spinner"
             />
           </>
         )}
@@ -91,4 +91,4 @@ const SubmitFinalChoice = (props: {
   );
 };
 
-export default SubmitFinalChoice;
+export default SubmitFinalTime;

@@ -3,20 +3,20 @@ import { Table } from "react-bootstrap";
 import dayjs from "dayjs";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkChoices from "./MarkChoices";
+import MarkTimes from "./MarkTimes";
 import PollDateTimeWithCheck from "./PollDateTimeWithCheck";
-import { Choice, PollFromDB, Vote } from "../../models/poll";
+import { Time, PollFromDB, Vote } from "../../models/poll";
 import { slotTimeClassName } from "../../helpers";
 
 dayjs.extend(localizedFormat);
 
 const PollTableVoter = (props: {
   pollFromDB: PollFromDB;
-  sortedChoices: Choice[];
+  sortedTimes: Time[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { pollFromDB, sortedChoices, newVote, setNewVote } = props;
+  const { pollFromDB, sortedTimes, newVote, setNewVote } = props;
 
   const [tourRun, setTourRun] = useState<boolean>(false);
 
@@ -65,27 +65,24 @@ const PollTableVoter = (props: {
         <thead>
           <tr className="poll-table-top-row">
             <th className="participant-cell"> </th>
-            {sortedChoices.map((choice) => (
+            {sortedTimes.map((time) => (
               <th
-                key={choice.start}
+                key={time.start}
                 className={slotTimeClassName(
-                  choice,
-                  newVote.choices,
-                  pollFromDB.finalChoice
+                  time,
+                  newVote.times,
+                  pollFromDB.finalTime
                 )}
               >
-                <PollDateTimeWithCheck
-                  choice={choice}
-                  voteChoices={newVote.choices}
-                />
+                <PollDateTimeWithCheck time={time} voteTimes={newVote.times} />
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {pollFromDB.open && (
-            <MarkChoices
-              choices={sortedChoices}
+            <MarkTimes
+              times={sortedTimes}
               newVote={newVote}
               setNewVote={setNewVote}
             />

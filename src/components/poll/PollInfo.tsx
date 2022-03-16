@@ -13,7 +13,9 @@ const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
       <Badge
         pill
         variant={poll.open ? "success" : "secondary"}
-        className={poll.open ? "rm-badge-poll-open" : "rm-badge-poll-closed"}
+        className={
+          poll.open ? "kukkee-badge-poll-open" : "kukkee-badge-poll-closed"
+        }
       >
         {poll.open ? "Open" : "Closed"}
       </Badge>

@@ -10,9 +10,9 @@ import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/poll/PollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
 import PollTableVotes from "../../src/components/poll/PollTableVotes";
-import SubmitChoices from "../../src/components/poll/SubmitChoices";
+import SubmitTimes from "../../src/components/poll/SubmitTimes";
 import ResponseMessage from "../../src/components/ResponseMessage";
-import { ChoiceFromDB, Vote, PollFromDB } from "../../src/models/poll";
+import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers";
 
 dayjs.extend(localizedFormat);
@@ -29,12 +29,12 @@ const Poll = (props: {
     }
   }
 
-  const sortedChoices: ChoiceFromDB[] = pollFromDB.choices.sort(
-    (a: ChoiceFromDB, b: ChoiceFromDB) => a.start - b.start
+  const sortedTimes: TimeFromDB[] = pollFromDB.times.sort(
+    (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
   );
   const [newVote, setNewVote] = useState<Vote>({
     name: "",
-    choices: [],
+    times: [],
   });
   const [response, setResponse] = useState({
     status: false,
@@ -42,7 +42,7 @@ const Poll = (props: {
   });
   return (
     <Layout>
-      <Container className="rm-container">
+      <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-info">
@@ -60,7 +60,7 @@ const Poll = (props: {
               <Jumbotron className="poll-table-jumbo">
                 <PollTableVoter
                   pollFromDB={pollFromDB}
-                  sortedChoices={sortedChoices}
+                  sortedTimes={sortedTimes}
                   newVote={newVote}
                   setNewVote={setNewVote}
                 />
@@ -71,7 +71,7 @@ const Poll = (props: {
         {pollFromDB.open && (
           <Row className="jumbo-row">
             <Col className="jumbo-col">
-              <SubmitChoices
+              <SubmitTimes
                 newVote={newVote}
                 pollID={pollID}
                 pollFromDB={pollFromDB}
@@ -88,7 +88,7 @@ const Poll = (props: {
               <Jumbotron className="poll-table-jumbo" id="all-votes-table-open">
                 <PollTableVotes
                   pollFromDB={pollFromDB}
-                  sortedChoices={sortedChoices}
+                  sortedTimes={sortedTimes}
                 />
               </Jumbotron>
             </Col>
@@ -100,7 +100,7 @@ const Poll = (props: {
               <Jumbotron className="poll-table-jumbo" id="all-votes-table">
                 <PollTableVotes
                   pollFromDB={pollFromDB}
-                  sortedChoices={sortedChoices}
+                  sortedTimes={sortedTimes}
                 />
               </Jumbotron>
             </Col>
