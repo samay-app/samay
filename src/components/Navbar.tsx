@@ -1,9 +1,13 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import Link from "next/link";
 
 const NavBar = (): JSX.Element => {
   return (
-    <Navbar className="kukkee-navbar" variant="light" expand="lg" collapseOnSelect>
+    <Navbar
+      className="kukkee-navbar"
+      variant="light"
+      expand="lg"
+      collapseOnSelect
+    >
       <Container className="kukkee-container">
         <Navbar.Brand href="/" className="kukkee-brand">
           <img
