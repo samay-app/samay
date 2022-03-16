@@ -66,6 +66,15 @@ const SubmitChoices = (props: {
         Router.reload();
       } else if (
         submitChoiceResponse &&
+        submitChoiceResponse.statusCode === 404
+      ) {
+        setResponse({
+          status: true,
+          msg: "Sorry, poll has been deleted.",
+        });
+        Router.push("/");
+      } else if (
+        submitChoiceResponse &&
         submitChoiceResponse.statusCode === 400
       ) {
         setResponse({

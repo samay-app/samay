@@ -35,6 +35,10 @@ const SubmitFinalChoice = (props: {
         };
         const submitFinalChoiceResponse = await markFinalChoice(voterArgs);
         if (submitFinalChoiceResponse.statusCode === 201) {
+          setResponse({
+            status: true,
+            msg: "Final time has been successfully decided.",
+          });
           Router.reload();
         } else {
           setDisabled(false);

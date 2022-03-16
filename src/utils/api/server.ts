@@ -65,15 +65,14 @@ const markFinalChoice = (voteArgs: {
   return httpMethod(endpoint, requestOptions);
 };
 
-const deletePoll = (voteArgs: {
+const deletePoll = (deleteArgs: {
   pollID: string;
   secret: string;
 }): Promise<HttpResponse> => {
-  const { pollID, secret } = voteArgs;
+  const { pollID, secret } = deleteArgs;
   const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/v${NEXT_PUBLIC_API_VERSION}/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
     method: "DELETE",
-    body: JSON.stringify(voteArgs),
   };
   return httpMethod(endpoint, requestOptions);
 };

@@ -55,7 +55,5 @@ typings/
 # Next.js build output and env files
 .next
 next-env.d.ts
-.env.local
+
 .env
-.env.development
-.env.production

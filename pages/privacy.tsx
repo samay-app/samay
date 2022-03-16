@@ -67,8 +67,7 @@ const Privacy = (): JSX.Element => {
             </p>
             <h2>Your rights</h2>
             <p>
-              You can exercise your rights by contacting us using our contact
-              page.
+              You can exercise your rights by contacting us.
               <ul>
                 <li>
                   You have the right to access information we hold about you. We
@@ -102,7 +101,7 @@ const Privacy = (): JSX.Element => {
             </p>
             <h2>How long do we store your data?</h2>
             <p>
-              We will delete all polls 1 month after their final event time.
+              We will delete every poll 1 month after the event associated with the poll is over.
             </p>
             <h2>Cookies</h2>
             <p>

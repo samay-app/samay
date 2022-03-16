@@ -19,7 +19,7 @@ const NavBar = (): JSX.Element => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Link href="/features" passHref>
+            <Link href="/features">
               <Nav.Link className="rm-nav-link nav-link">Features</Nav.Link>
             </Link>
             <a
@@ -28,9 +28,6 @@ const NavBar = (): JSX.Element => {
             >
               GitHub
             </a>
-            {/* <a className="rm-nav-link nav-link" href="/">
-              Donate
-            </a> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

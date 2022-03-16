@@ -8,6 +8,7 @@ import Layout from "../../../src/components/Layout";
 import PollInfo from "../../../src/components/poll/PollInfo";
 import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
 import SubmitFinalChoice from "../../../src/components/poll/SubmitFinalChoice";
+import DeletePoll from "../../../src/components/poll/DeletePoll";
 import ResponseMessage from "../../../src/components/ResponseMessage";
 import { Choice, ChoiceFromDB, PollFromDB } from "../../../src/models/poll";
 import ShareInvite from "../../../src/components/shareInvite/ShareInvite";
@@ -37,6 +38,11 @@ const Poll = (props: {
             <Jumbotron className="poll-info">
               <Row>
                 <Col sm>
+                  <DeletePoll
+                    pollID={pollID}
+                    secret={secret}
+                    setResponse={setResponse}
+                  />
                   <PollInfo poll={pollFromDB} />
                   <ShareInvite
                     pollTitle={pollFromDB.title}

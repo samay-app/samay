@@ -24,3 +24,13 @@ body {
 ::-webkit-scrollbar-track {
   background: #e4e4e4;
 }
+
+::-moz-selection {
+  color: #f4f5f4;
+  background: #363636;
+}
+
+::selection {
+  color: #f4f5f4;
+  background: #363636;
+}

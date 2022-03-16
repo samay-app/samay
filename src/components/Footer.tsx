@@ -16,28 +16,20 @@ const Footer = (): JSX.Element => {
               Kukkee
             </div>
             <ul>
-              <li>
+              <li className="footer-text">
+                <p>Free and open source meeting scheduling tool</p>
+              </li>
+              <li className="footer-text">
+                <p>Copyright &#169; 2022 Kukkee</p>
+              </li>
+              <li className="footer-text">
                 <p>
-                  <span className="footer-text">
-                    Free and open source meeting scheduling tool
-                  </span>
+                  <a href="https://vercel.com?utm_source=Kukkee&utm_campaign=oss">
+                    Powered by
+                    <img className="vercel-logo" alt="logo" src="/vercel.svg" />
+                  </a>
                 </p>
               </li>
-              <li>
-                <p>
-                  <span className="footer-text">
-                    Copyright &#169; 2022 Kukkee
-                  </span>
-                </p>
-              </li>
-              {/* <li>
-                <a
-                  className="footer-text donate"
-                  href="https://github.com/Kukkee/Kukkee/milestones"
-                >
-                  Donate
-                </a>
-              </li> */}
             </ul>
           </Col>
           <Col className="right-container">
@@ -45,15 +37,13 @@ const Footer = (): JSX.Element => {
               <h6>CHECK OUT</h6>
               <ul>
                 <li>
-                  <Link href="/features" passHref>
-                    Features
-                  </Link>
+                  <Link href="/features">Features</Link>
                 </li>
+                {/* <li>
+                  <a href="https://gitter.im/Kukkee/community">Community</a>
+                </li> */}
                 <li>
-                  <a href="https://kukkee.gitbook.io/kukkee/">Community</a>
-                </li>
-                <li>
-                  <a href="https://github.com/kukkee/">GitHub</a>
+                  <a href="https://github.com/Kukkee/Kukkee">GitHub</a>
                 </li>
               </ul>
             </Col>
@@ -86,9 +76,7 @@ const Footer = (): JSX.Element => {
               <h6>LEGAL</h6>
               <ul>
                 <li>
-                  <Link href="/privacy" passHref>
-                    Privacy
-                  </Link>
+                  <Link href="/privacy">Privacy</Link>
                 </li>
                 <li>
                   <a href="https://github.com/Kukkee/Kukkee/blob/main/LICENSE">
@@ -96,9 +84,7 @@ const Footer = (): JSX.Element => {
                   </a>
                 </li>
                 <li>
-                  <Link href="/contact" passHref>
-                    Contact
-                  </Link>
+                  <Link href="mailto:anandbaburajan@gmail.com">Contact</Link>
                 </li>
               </ul>
             </Col>

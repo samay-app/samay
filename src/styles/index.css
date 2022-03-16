@@ -168,6 +168,12 @@ main {
   color: #363636;
 }
 
+.vercel-logo {
+  width: 4.3rem;
+  margin-top: -0.05rem;
+  margin-left: 0.2rem;
+}
+
 @media (min-width: 0) and (max-width: 576px) {
   .rm-nav-link {
     margin-left: 0 !important;
@@ -186,16 +192,13 @@ main {
     padding-left: 0 !important;
   }
 
-  .footer-col ul li a {
-    font-size: 0.9rem !important;
-  }
-
-  .footer-text {
+  .footer-right ul li a {
     font-size: 0.9rem !important;
   }
 
   .footer-text {
     margin-left: 0 !important;
+    font-size: 0.9rem !important;
   }
 
   .footer-col h6 {
@@ -278,15 +281,16 @@ a {
   color: #363636;
   display: block;
   margin-top: 2.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30.5rem;
+  text-align: center;
 }
 
 .hero-tour {
   margin-left: 0.5rem;
-  text-decoration: underline;
   cursor: pointer;
+}
+
+.hero-tour:hover {
+  text-decoration: underline;
 }
 
 .hero-first-button {
@@ -452,13 +456,11 @@ a {
   .hero-tagline {
     font-size: 1.1rem;
     margin-top: 1.9rem;
-    width: 14.1rem;
+    text-align: center;
   }
 
   .hero-tour {
-    width: 11.3rem;
     display: block;
-    margin: 0 auto;
   }
 
   .home-first-jumbo {
@@ -590,6 +592,7 @@ a {
   border-color: #363636 !important;
   padding: 0.8rem 1.5rem 0.8rem 1.5rem !important;
   box-shadow: none !important;
+  transition: none !important;
 }
 
 .rm-primary-button:hover {
@@ -609,7 +612,6 @@ a {
 
 .rm-primary-button-small {
   background-color: #363636 !important;
-  transition: 0.3s !important;
   font-weight: 600 !important;
   font-family: "Manrope", sans-serif;
   font-size: 1rem !important;
@@ -970,6 +972,7 @@ a {
   padding-bottom: 0.6em !important;
   background-color: #2cdf0c1f !important;
   color: #2cdf0c !important;
+  transition: none !important;
 }
 
 .rm-badge-poll-closed {
@@ -980,6 +983,7 @@ a {
   padding-bottom: 0.6em !important;
   background-color: #3636362e !important;
   color: #363636 !important;
+  transition: none !important;
 }
 
 .poll-info {
@@ -1049,6 +1053,7 @@ a {
   line-height: 3.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  color: #363636 !important;
 }
 
 .poll-info-desc {
@@ -1056,6 +1061,12 @@ a {
   display: block;
   margin-bottom: 2rem;
   line-height: 1.8rem;
+}
+
+.delete-icon {
+  float: right;
+  cursor: pointer;
+  color: #ff0000;
 }
 
 .card-created {
@@ -1182,7 +1193,6 @@ a {
   border-top: 0 !important;
   border-bottom: 0 !important;
   min-width: 7rem !important;
-  transition: 0.3s;
 }
 
 .slot-if-need-be-choice {
@@ -1594,7 +1604,6 @@ a {
 .bg-dark:hover {
   background-color: #363636 !important;
   transform: scale(101%);
-  transition: all 0.5s;
 }
 .alert-corner {
   position: fixed;
@@ -1707,6 +1716,7 @@ a {
   color: #fffefe !important;
   border-radius: 0 !important;
   background-color: #363636 !important;
+  transition: none !important;
 }
 
 .send-btn {
@@ -1756,7 +1766,7 @@ a {
 .four-o-four {
   margin-top: 10rem !important;
   font-family: "Manrope", sans-serif;
-  color: #6f6f6f;
+  color: #363636;
 }
 
 .four-o-four span {
@@ -1797,7 +1807,7 @@ a {
 .privacy {
   margin-top: 5rem !important;
   font-family: "Manrope", sans-serif;
-  color: #6f6f6f;
+  color: #363636;
 }
 
 .privacy h1 {
