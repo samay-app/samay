@@ -230,11 +230,6 @@ a {
   margin-bottom: 2rem !important;
 }
 
-.dashboard-polls-row {
-  margin-top: 7rem !important;
-  margin-bottom: 3rem !important;
-}
-
 .home-hero-col {
   margin-top: 1rem !important;
   padding-left: 0rem !important;
@@ -1769,7 +1764,7 @@ a {
   color: #363636;
 }
 
-.four-o-four span {
+.four-o-four h1 {
   font-size: 5rem;
   font-weight: 900;
 }
@@ -1804,48 +1799,80 @@ a {
   }
 }
 
-.privacy {
+.inside-page {
   margin-top: 5rem !important;
   font-family: "Manrope", sans-serif;
   color: #363636;
 }
 
-.privacy h1 {
+.inside-page h1 {
   color: #363636;
-  margin-bottom: 2rem !important;
+  margin-bottom: 3rem !important;
+  font-weight: 800;
 }
 
-.privacy h2 {
-  color: #363636;
-  margin-top: 2rem !important;
-}
-
-.privacy h3 {
+.inside-page h2 {
   color: #363636;
   margin-top: 2rem !important;
+  font-weight: 700;
 }
 
-.privacy p {
+.inside-page h3 {
+  color: #363636;
+  margin-top: 2rem !important;
+  font-weight: 600;
+}
+
+.inside-page p {
   font-size: 1.2rem;
 }
 
-.privacy a {
+.inside-page a {
   color: #6f6f6f;
   text-decoration: underline !important;
 }
 
-.privacy a:hover {
+.inside-page a:hover {
   color: #363636;
   text-decoration: underline !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
-  .privacy {
+  .inside-page {
     margin-top: 2rem !important;
     margin-left: 1rem;
   }
 
-  .privacy p {
+  .inside-page p {
     font-size: 1.1rem;
   }
+}
+
+.features {
+  margin-bottom: 3rem !important;
+}
+
+.features .card {
+  background-color: #f4f5f4 !important;
+  margin-right: 2rem !important;
+  padding-top: 1rem !important;
+  border-top: 0.15rem #1d1d1d solid !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+}
+
+.features .title {
+  font-weight: 700 !important;
+}
+
+.feature .card-last {
+  background-color: #f4f5f4 !important;
+  padding-top: 1rem !important;
+  border-top: 0.15rem #1d1d1d solid !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
 }

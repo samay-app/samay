@@ -19,9 +19,9 @@ const NavBar = (): JSX.Element => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Link href="/features">
-              <Nav.Link className="rm-nav-link nav-link">Features</Nav.Link>
-            </Link>
+            <a href="/features" className="rm-nav-link nav-link">
+              Features
+            </a>
             <a
               className="rm-nav-link nav-link"
               href="https://github.com/Kukkee/Kukkee"

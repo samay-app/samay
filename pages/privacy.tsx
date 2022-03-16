@@ -6,7 +6,7 @@ const Privacy = (): JSX.Element => {
     <Layout>
       <Container className="rm-container">
         <Row>
-          <Col className="privacy">
+          <Col className="inside-page">
             <h1>Privacy Policy</h1>
             <p>Last updated: March 15, 2022</p>
             <p>
@@ -101,7 +101,8 @@ const Privacy = (): JSX.Element => {
             </p>
             <h2>How long do we store your data?</h2>
             <p>
-              We will delete every poll 1 month after the event associated with the poll is over.
+              We will delete every poll 1 month after the event associated with
+              the poll is over.
             </p>
             <h2>Cookies</h2>
             <p>

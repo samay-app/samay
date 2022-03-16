@@ -7,7 +7,7 @@ const NotFound = (): JSX.Element => {
       <Container className="rm-container">
         <Row>
           <Col className="four-o-four">
-            <span>404</span>
+            <h1>404</h1>
             <p>
               We can't seem to find the page you're looking for.
               <br />

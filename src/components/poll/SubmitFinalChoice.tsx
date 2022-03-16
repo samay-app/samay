@@ -73,7 +73,7 @@ const SubmitFinalChoice = (props: {
         onClick={handleSubmit}
       >
         {!disabled ? (
-          `Mark final time`
+          `Finalise time`
         ) : (
           <>
             <Spinner
