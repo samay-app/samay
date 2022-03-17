@@ -1,5 +1,4 @@
 import Router from "next/router";
-import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
 import {
   Form,
@@ -13,24 +12,18 @@ import {
 import { ArrowRightShort, ArrowRight } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
+import TimePicker from "../src/components/TimePicker";
 import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
 import { Time, Poll } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
-// typings aren't available for react-available-times :(
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const AvailableTimes: any = dynamic(() => import("react-available-times"), {
-  ssr: false,
-});
-
 const Home = (): JSX.Element => {
   const [pollTitle, setTitle] = useState<string>("");
   const [pollLocation, setLocation] = useState<string>("");
   const [pollDescription, setDescription] = useState<string>("");
-  const [pollTimes, setTimes] = useState<Time[]>();
+  const [pollTimes, setPollTimes] = useState<Time[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const [response, setResponse] = useState({
@@ -90,19 +83,10 @@ const Home = (): JSX.Element => {
     setDescription(value);
   };
 
-  const onTimesChange = (selections: { start: Date; end: Date }[]): void => {
-    const newTimes: Time[] = selections.map(
-      (time): Time => ({
-        start: time.start.getTime(),
-        end: time.end.getTime(),
-      })
-    );
-    setTimes(newTimes);
-  };
-
   const areTimesValid = (times: Time[] | undefined): boolean => {
     if (!times) return false;
-    if (times.some((time: Time) => time.start < Date.now())) return false;
+    if (times.some((time: Time) => time.start < Date.now() / 1000))
+      return false;
     return true;
   };
 
@@ -274,11 +258,7 @@ const Home = (): JSX.Element => {
         <Row className="jumbo-row">
           <Col className="jumbo-col">
             <Jumbotron className="poll-timeslot-jumbo">
-              <AvailableTimes
-                weekStartsOn="monday"
-                onChange={onTimesChange}
-                height="42rem"
-              />
+              <TimePicker pollTimes={pollTimes} setPollTimes={setPollTimes} />
             </Jumbotron>
             <Button
               className="kukkee-primary-button create-poll-btn"
