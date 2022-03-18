@@ -1,4 +1,6 @@
-### Finding the best time for team meetings or hanging out with your friends has never been faster. [Try now](https://kukkee.com)!
+[![Kukkee](./public/Kukkee-banner.png)](https://kukkee.com)
+
+### Never ask “what time works for you all?” again. [Try now](https://kukkee.com)!
 
 [![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
@@ -6,15 +8,9 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
 [![Powered by Vercel](https://img.shields.io/badge/Powered%20by%20Vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com?utm_source=Kukkee&utm_campaign=oss)
 
-## [Under active development]
-
 ## Community
 
 Come say hello at our [chatroom](https://gitter.im/Kukkee/community) for discussions, voicing new ideas or getting help!
-
-## API Documentation
-
-You can find the API documentation for the server [here](https://documenter.getpostman.com/view/10544125/TW6wJodh).
 
 ## Getting Started
 
