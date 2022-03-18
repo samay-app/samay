@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
     <>
       <Head>
         <title>Kukkee</title>
-        <link rel="shortcut icon" href="/logo.svg" />
+        <link rel="shortcut icon" href="/Kukkee-favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta

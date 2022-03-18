@@ -39,9 +39,9 @@ main {
 }
 
 .kukkee-brand {
-  color: #363636 !important;
+  color: #000000 !important;
   font-family: "Manrope", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .kukkee-logo-icon {
@@ -104,9 +104,9 @@ main {
 }
 
 .footer-logo {
-  color: #363636 !important;
+  color: #000000 !important;
   font-family: "Manrope", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
 }

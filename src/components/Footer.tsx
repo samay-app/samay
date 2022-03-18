@@ -10,7 +10,7 @@ const Footer = (): JSX.Element => {
             <div className="footer-logo">
               <img
                 alt="logo"
-                src="/logo.svg"
+                src="/Kukkee.svg"
                 className="kukkee-logo-icon d-inline-block align-top"
               />
               Kukkee
