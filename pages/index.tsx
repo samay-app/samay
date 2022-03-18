@@ -1,6 +1,8 @@
 import Router from "next/router";
+import dynamic from "next/dynamic";
 import { nanoid } from "nanoid";
 import {
+  Form,
   Row,
   Col,
   Container,
@@ -11,24 +13,24 @@ import {
 import { ArrowRightShort, ArrowRight } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
-import CreatePollInfo from "../src/components/poll/CreatePollInfo";
-import TimePicker from "../src/components/TimePicker";
 import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
 import { Time, Poll } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
+// typings aren't available for react-available-times
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AvailableTimes: any = dynamic(() => import("react-available-times"), {
+  ssr: false,
+});
+
 const Home = (): JSX.Element => {
-  let pollTitle = "";
-  let pollLocation = "";
-  let pollDescription = "";
-
-  const onCreatePollInfoMount = (data: string[]): void => {
-    [pollTitle, pollLocation, pollDescription] = data;
-  };
-
-  const [pollTimes, setPollTimes] = useState<Time[]>([]);
+  const [pollTitle, setTitle] = useState<string>("");
+  const [pollLocation, setLocation] = useState<string>("");
+  const [pollDescription, setDescription] = useState<string>("");
+  const [pollTimes, setTimes] = useState<Time[]>();
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const [response, setResponse] = useState({
@@ -69,10 +71,38 @@ const Home = (): JSX.Element => {
     },
   ];
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    setTitle(value);
+  };
+
+  const handleLocationChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { value } = e.target;
+    setLocation(value);
+  };
+
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { value } = e.target;
+    setDescription(value);
+  };
+
+  const onTimesChange = (selections: { start: Date; end: Date }[]): void => {
+    const newTimes: Time[] = selections.map(
+      (time): Time => ({
+        start: time.start.getTime(),
+        end: time.end.getTime(),
+      })
+    );
+    setTimes(newTimes);
+  };
+
   const areTimesValid = (times: Time[] | undefined): boolean => {
     if (!times) return false;
-    if (times.some((time: Time) => time.start < Date.now() / 1000))
-      return false;
+    if (times.some((time: Time) => time.start < Date.now())) return false;
     return true;
   };
 
@@ -213,14 +243,42 @@ const Home = (): JSX.Element => {
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-create">
-              <CreatePollInfo onMount={onCreatePollInfoMount} />
+              <Form.Group as={Row} controlId="formPlainTextTitle">
+                <Form.Control
+                  className="kukkee-form-text"
+                  type="text"
+                  placeholder="Title"
+                  required
+                  onChange={handleTitleChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlainTextDescription">
+                <Form.Control
+                  className="kukkee-form-text"
+                  type="text"
+                  placeholder="Description (optional)"
+                  onChange={handleDescriptionChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlainTextLocation">
+                <Form.Control
+                  className="kukkee-form-text"
+                  type="text"
+                  placeholder="Location (optional)"
+                  onChange={handleLocationChange}
+                />
+              </Form.Group>
             </Jumbotron>
           </Col>
         </Row>
         <Row className="jumbo-row">
           <Col className="jumbo-col">
-            <Jumbotron className="poll-timepicker-jumbo">
-              <TimePicker pollTimes={pollTimes} setPollTimes={setPollTimes} />
+            <Jumbotron className="poll-timeslot-jumbo">
+              <AvailableTimes
+                weekStartsOn="monday"
+                onChange={onTimesChange}
+                height="42rem"
+              />
             </Jumbotron>
             <Button
               className="kukkee-primary-button create-poll-btn"

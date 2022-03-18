@@ -6,7 +6,6 @@
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Kukkee/Kukkee?style=for-the-badge)](https://codeclimate.com/github/Kukkee/Kukkee)
 [![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
-[![Powered by Vercel](https://img.shields.io/badge/Powered%20by%20Vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com?utm_source=Kukkee&utm_campaign=oss)
 
 ## Community
 

@@ -22,14 +22,6 @@ const Footer = (): JSX.Element => {
               <li className="footer-text">
                 <p>Copyright &#169; 2022 Kukkee</p>
               </li>
-              <li className="footer-text">
-                <p>
-                  <a href="https://vercel.com?utm_source=Kukkee&utm_campaign=oss">
-                    Powered by
-                    <img className="vercel-logo" alt="logo" src="/vercel.svg" />
-                  </a>
-                </p>
-              </li>
             </ul>
           </Col>
           <Col className="right-container">
