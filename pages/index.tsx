@@ -219,7 +219,7 @@ const Home = (): JSX.Element => {
         </Row>
         <Row className="jumbo-row">
           <Col className="jumbo-col">
-            <Jumbotron className="poll-timeslot-jumbo">
+            <Jumbotron className="poll-timepicker-jumbo">
               <TimePicker pollTimes={pollTimes} setPollTimes={setPollTimes} />
             </Jumbotron>
             <Button

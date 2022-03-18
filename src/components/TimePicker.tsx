@@ -2,6 +2,7 @@ import { useState, Dispatch } from "react";
 import { Table, Form } from "react-bootstrap";
 import { Time } from "../models/poll";
 import { timeIntervalsInADay } from "../helpers/constants";
+import { generateNumArray } from "../helpers";
 
 const TimePicker = (props: {
   pollTimes: Time[];
@@ -30,6 +31,8 @@ const TimePicker = (props: {
     }[]
   >([]);
 
+  const [disabledCheckboxes, setDisabledCheckboxes] = useState<string[]>([]);
+
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { dataset, checked } = e.target;
     const currrentCheckboxTime: number = dataset.value
@@ -57,6 +60,13 @@ const TimePicker = (props: {
           start: Math.min(activeCheckbox.time, currrentCheckboxTime),
           end: Math.max(activeCheckbox.time, currrentCheckboxTime),
         };
+        const checkboxesToDisable = generateNumArray(
+          Math.min(activeCheckbox.time, currrentCheckboxTime) + 900,
+          Math.max(activeCheckbox.time, currrentCheckboxTime),
+          900
+        ).map((checkbox) => `${checkbox}-${currrentCheckboxColumn}`);
+
+        setDisabledCheckboxes([...disabledCheckboxes, ...checkboxesToDisable]);
         let newCheckboxPairs = checkboxPairs;
         newCheckboxPairs = newCheckboxPairs.filter(
           (pair) =>
@@ -146,12 +156,12 @@ const TimePicker = (props: {
   };
 
   return (
-    <Table responsive>
+    <Table responsive className="timepicker-table">
       <thead>
-        <tr>
-          <th>#</th>
+        <tr className="timepicker-day-header">
+          <th className="timepicker-colum timepicker-time">#</th>
           {[...Array(7).keys()].map((day) => (
-            <th key={day}>
+            <th key={day} className="timepicker-column">
               {getDayAndMonth(startTimestamp + day * 86400).day},{" "}
               {getDayAndMonth(startTimestamp + day * 86400).month}
             </th>
@@ -161,11 +171,14 @@ const TimePicker = (props: {
       <tbody>
         {timeIntervalsInADay.map((time, minutesIdx) => (
           <tr key={time}>
-            <td>{time}</td>
+            <td className="timepicker-column timepicker-time">{time}</td>
             {[...Array(7).keys()].map((day) => (
-              <td key={day}>
+              <td key={day} className="timepicker-column">
                 <Form.Check
                   id={`${startTimestamp + day * 86400 + minutesIdx * 900}-1`}
+                  className={`${
+                    startTimestamp + day * 86400 + minutesIdx * 900
+                  }-1`}
                   inline
                   data-value={`${
                     startTimestamp + day * 86400 + minutesIdx * 900
@@ -182,7 +195,22 @@ const TimePicker = (props: {
                   disabled={
                     activeCheckbox.column === 2 || activeCheckbox.column === 3
                   }
+                  hidden={disabledCheckboxes.some(
+                    (checkbox) =>
+                      checkbox ===
+                      `${startTimestamp + day * 86400 + minutesIdx * 900}-1`
+                  )}
                   onChange={handleTimeChange}
+                />
+                <div
+                  className="vl"
+                  hidden={
+                    !disabledCheckboxes.some(
+                      (checkbox) =>
+                        checkbox ===
+                        `${startTimestamp + day * 86400 + minutesIdx * 900}-1`
+                    )
+                  }
                 />
                 <Form.Check
                   id={`${startTimestamp + day * 86400 + minutesIdx * 900}-2`}
@@ -204,6 +232,16 @@ const TimePicker = (props: {
                   }
                   onChange={handleTimeChange}
                 />
+                <div
+                  className="vl"
+                  hidden={
+                    !disabledCheckboxes.some(
+                      (checkbox) =>
+                        checkbox ===
+                        `${startTimestamp + day * 86400 + minutesIdx * 900}-2`
+                    )
+                  }
+                />
                 <Form.Check
                   id={`${startTimestamp + day * 86400 + minutesIdx * 900}-3`}
                   inline
@@ -223,6 +261,16 @@ const TimePicker = (props: {
                     activeCheckbox.column === 1 || activeCheckbox.column === 2
                   }
                   onChange={handleTimeChange}
+                />
+                <div
+                  className="vl"
+                  hidden={
+                    !disabledCheckboxes.some(
+                      (checkbox) =>
+                        checkbox ===
+                        `${startTimestamp + day * 86400 + minutesIdx * 900}-3`
+                    )
+                  }
                 />
               </td>
             ))}

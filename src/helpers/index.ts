@@ -79,3 +79,12 @@ export const decrypt = (text: string): string => {
   decrypted = Buffer.concat([decrypted, decipher.final()]);
   return decrypted.toString();
 };
+
+export const generateNumArray = (
+  start: number,
+  stop: number,
+  step = 1
+): number[] =>
+  Array(Math.ceil((stop - start) / step))
+    .fill(start)
+    .map((x, y) => x + y * step);
