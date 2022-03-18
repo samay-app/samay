@@ -1,6 +1,6 @@
 [![Kukkee](./public/Kukkee-banner.png)](https://kukkee.com)
 
-### Never ask “what time works for you all?” again. [Try now](https://kukkee.com)!
+<h2 align="center" style="border-bottom: none;">Never ask “what time works for you all?” again. <a href="https://kukkee.com">Try now</a>!</h1>
 
 [![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)

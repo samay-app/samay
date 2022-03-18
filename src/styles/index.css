@@ -6,8 +6,12 @@ main {
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #f4f5f4;
-  font-family: "Manrope", sans-serif;
+  background-color: #f9f9f8;
+}
+
+.text-sm {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem !important;
 }
 
 .flex-wrapper {
@@ -19,7 +23,6 @@ main {
 
 .kukkee-navbar {
   margin-top: 1.5rem;
-  font-family: "Manrope", sans-serif;
   padding-right: 0 !important;
   padding-left: 0 !important;
 }
@@ -71,7 +74,7 @@ main {
 
 .kukkee-footer {
   margin-top: 2rem !important;
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
 }
 
 .footer-container {
@@ -80,10 +83,9 @@ main {
 }
 
 .kukkee-footer-row {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   margin-top: 3.5rem;
   margin-bottom: 1.5rem;
-  font-family: "Manrope", sans-serif;
   display: flex;
   justify-content: space-between;
   margin-left: 0 !important;
@@ -317,10 +319,9 @@ a {
 }
 
 .kukkee-primary-button {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   color: #363636 !important;
-  font-weight: 600 !important;
-  font-family: "Manrope", sans-serif;
+  font-weight: 500 !important;
   font-size: 1rem !important;
   border-radius: 0 !important;
   border-color: #363636 !important;
@@ -331,7 +332,7 @@ a {
 
 .kukkee-primary-button:hover {
   background-color: #363636 !important;
-  color: #f4f5f4 !important;
+  color: #f9f9f8 !important;
 }
 
 .kukkee-primary-button[disabled] {
@@ -357,7 +358,7 @@ a {
 }
 
 .poll-create {
-  background-color: #f4f5f4 !important;
+  background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
   color: #ffffff;
   padding: 1.5rem 2.5rem 0.5rem 2.5rem !important;
@@ -367,7 +368,7 @@ a {
 }
 
 .poll-timeslot-jumbo {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   color: #363636;
   padding-top: 0.5rem !important;
   padding-left: 0rem !important;
@@ -409,24 +410,36 @@ a {
 }
 
 .kukkee-form-text {
-  background-color: #fffefe !important;
-  color: #363636 !important;
-  outline: 0.1rem solid #e0e1e0 !important;
-  border: 0.1rem solid #fffefe !important;
-  border-radius: 0 !important;
-  font-size: 1rem !important;
-  font-weight: 600 !important;
+  background-color: #fefffe !important;
+  color: #000000 !important;
+  outline: 0.05rem solid #e0e1e0 !important;
+  border: 0.05rem solid #fefffe !important;
+  border-radius: 0.1rem !important;
+  font-weight: 400 !important;
   transition: none !important;
 }
 
 .kukkee-form-text::placeholder {
-  color: #969696 !important;
+  color: #818181 !important;
   opacity: 1 !important;
 }
 
 .kukkee-form-text:focus {
-  border: 0.1rem solid #fffefe !important;
-  outline: 0.15rem solid #363636 !important;
+  border: 0.1rem solid #fefffe !important;
+  outline: 0.12rem solid #363636 !important;
+}
+
+.kukkee-form-text.title {
+  margin-bottom: 1rem;
+}
+
+.kukkee-form-text.description {
+  margin-bottom: 1rem;
+}
+
+.kukkee-form-label {
+  font-weight: 400 !important;
+  color: #4b4b4b !important;
 }
 
 .form-control:focus {
@@ -485,7 +498,7 @@ a {
 }
 
 .rat-TimeSlot_handle {
-  color: #f4f5f4 !important;
+  color: #f9f9f8 !important;
 }
 
 .rat-TimeSlot_title {
@@ -493,7 +506,7 @@ a {
   text-align: center !important;
   font-size: 0.8rem !important;
   font-weight: 600 !important;
-  color: #f4f5f4 !important;
+  color: #f9f9f8 !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -553,12 +566,12 @@ a {
 }
 
 .rat-AvailableTimes_button:hover {
-  fill: #f4f5f4 !important;
+  fill: #f9f9f8 !important;
   background-color: #363636 !important;
 }
 
 .rat-Ruler_component {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
 }
 
 .rat-AvailableTimes_home {
@@ -587,11 +600,11 @@ a {
 }
 
 .rat-Week_days {
-  background-color: #fffefe !important;
+  background-color: #fefffe !important;
 }
 
 .rat-Week_lines {
-  background-color: #fffefe !important;
+  background-color: #fefffe !important;
 }
 
 .rat-Day_component {
@@ -647,7 +660,7 @@ a {
 }
 
 .poll-info {
-  background-color: #fffefe !important;
+  background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
   color: #6f6f6f;
   padding: 2.5rem 2rem 2rem 2rem !important;
@@ -667,7 +680,7 @@ a {
 }
 
 .poll-table-jumbo {
-  background-color: #fffefe !important;
+  background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
   color: #363636;
   padding: 1rem !important;
@@ -832,7 +845,7 @@ a {
 }
 
 .poll-table-top-row {
-  background-color: #fffefe;
+  background-color: #fefffe;
   color: #6f6f6f;
 }
 
@@ -854,7 +867,7 @@ a {
 
 .slot-final-time {
   background-color: #363636;
-  color: #fffefe;
+  color: #fefffe;
 }
 
 .datetime-weekday {
@@ -895,10 +908,10 @@ a {
 }
 
 .mark-time-name {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   color: #363636 !important;
   outline: 0.1rem solid #e0e1e0 !important;
-  border: 0.1rem solid #f4f5f4 !important;
+  border: 0.1rem solid #f9f9f8 !important;
   border-radius: 0 !important;
   font-weight: 600 !important;
   font-size: 1rem !important;
@@ -910,7 +923,7 @@ a {
 }
 
 .mark-time-name:focus {
-  border: 0.1rem solid #f4f5f4 !important;
+  border: 0.1rem solid #f9f9f8 !important;
   outline: 0.15rem solid #363636 !important;
 }
 
@@ -980,29 +993,29 @@ a {
 .slot-checked {
   background-color: #2cdf0c1f;
   text-align: center;
-  border-top: 0.5rem solid #fffefe !important;
-  border-left: 0.5rem solid #fffefe !important;
+  border-top: 0.5rem solid #fefffe !important;
+  border-left: 0.5rem solid #fefffe !important;
   width: 7rem !important;
 }
 
 .slot-checked-if-need-be {
   background-color: #ffbb001f;
   text-align: center;
-  border-top: 0.5rem solid #fffefe !important;
-  border-left: 0.5rem solid #fffefe !important;
+  border-top: 0.5rem solid #fefffe !important;
+  border-left: 0.5rem solid #fefffe !important;
   width: 7rem !important;
 }
 
 .slot-unchecked {
-  border-top: 0.5rem solid #fffefe !important;
-  border-left: 0.5rem solid #fffefe !important;
+  border-top: 0.5rem solid #fefffe !important;
+  border-left: 0.5rem solid #fefffe !important;
   background-image: linear-gradient(
     135deg,
-    #fffefe 30%,
+    #fefffe 30%,
     #e0e0e0 30%,
     #e0e0e0 50%,
-    #fffefe 50%,
-    #fffefe 80%,
+    #fefffe 50%,
+    #fefffe 80%,
     #e0e0e0 80%,
     #e0e0e0 100%
   );
@@ -1011,10 +1024,10 @@ a {
 }
 
 .slot-total-votes {
-  background-color: #fffefe;
+  background-color: #fefffe;
   text-align: center;
-  border-top: 0.5rem solid #fffefe !important;
-  border-left: 0.5rem solid #fffefe !important;
+  border-top: 0.5rem solid #fefffe !important;
+  border-left: 0.5rem solid #fefffe !important;
   width: 7rem !important;
   font-weight: 600;
 }
@@ -1077,7 +1090,7 @@ a {
 }
 
 .slot-checkbox-final-cell {
-  background-color: #fffefe;
+  background-color: #fefffe;
   border-top: 0 !important;
   text-align: center;
 }
@@ -1139,7 +1152,7 @@ a {
 }
 
 .share-textbox {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   color: #6f6f6f !important;
   border: 0.05rem solid #616161 !important;
   border-top-left-radius: 0 !important;
@@ -1150,7 +1163,7 @@ a {
 }
 
 .invite-textbox {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   color: #6f6f6f !important;
   border: 0.1rem solid #6c757d !important;
   border-radius: 0 !important;
@@ -1168,7 +1181,7 @@ a {
 .copy-btn {
   font-size: 0.8rem !important;
   border: 0.05rem solid #616161 !important;
-  color: #fffefe !important;
+  color: #fefffe !important;
   border-radius: 0 !important;
   background-color: #363636 !important;
   transition: none !important;
@@ -1220,7 +1233,6 @@ a {
 
 .four-o-four {
   margin-top: 10rem !important;
-  font-family: "Manrope", sans-serif;
   color: #363636;
 }
 
@@ -1261,7 +1273,6 @@ a {
 
 .inside-page {
   margin-top: 5rem !important;
-  font-family: "Manrope", sans-serif;
   color: #363636;
 }
 
@@ -1302,7 +1313,7 @@ a {
 }
 
 .kukkee-card {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   margin-right: 2rem !important;
   padding-top: 1rem !important;
   border-top: 0.15rem #1d1d1d solid !important;
@@ -1313,7 +1324,7 @@ a {
 }
 
 .kukkee-card-last {
-  background-color: #f4f5f4 !important;
+  background-color: #f9f9f8 !important;
   padding-top: 1rem !important;
   border-top: 0.15rem #1d1d1d solid !important;
   border-bottom: none !important;

@@ -244,8 +244,11 @@ const Home = (): JSX.Element => {
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-create">
               <Form.Group as={Row} controlId="formPlainTextTitle">
+                <Form.Label className="kukkee-form-label text-sm">
+                  Title
+                </Form.Label>
                 <Form.Control
-                  className="kukkee-form-text"
+                  className="kukkee-form-text title text-sm"
                   type="text"
                   placeholder="Title"
                   required
@@ -253,18 +256,24 @@ const Home = (): JSX.Element => {
                 />
               </Form.Group>
               <Form.Group as={Row} controlId="formPlainTextDescription">
+                <Form.Label className="kukkee-form-label text-sm">
+                  Description (Optional)
+                </Form.Label>
                 <Form.Control
-                  className="kukkee-form-text"
+                  className="kukkee-form-text description text-sm"
                   type="text"
-                  placeholder="Description (optional)"
+                  placeholder="Description"
                   onChange={handleDescriptionChange}
                 />
               </Form.Group>
               <Form.Group as={Row} controlId="formPlainTextLocation">
+                <Form.Label className="kukkee-form-label text-sm">
+                  Location (Optional)
+                </Form.Label>
                 <Form.Control
-                  className="kukkee-form-text"
+                  className="kukkee-form-text location text-sm"
                   type="text"
-                  placeholder="Location (optional)"
+                  placeholder="Location"
                   onChange={handleLocationChange}
                 />
               </Form.Group>
