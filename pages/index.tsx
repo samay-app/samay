@@ -1,7 +1,6 @@
 import Router from "next/router";
 import { nanoid } from "nanoid";
 import {
-  Form,
   Row,
   Col,
   Container,
@@ -12,6 +11,7 @@ import {
 import { ArrowRightShort, ArrowRight } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
+import CreatePollInfo from "../src/components/poll/CreatePollInfo";
 import TimePicker from "../src/components/TimePicker";
 import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
@@ -20,9 +20,14 @@ import { Time, Poll } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
 const Home = (): JSX.Element => {
-  const [pollTitle, setTitle] = useState<string>("");
-  const [pollLocation, setLocation] = useState<string>("");
-  const [pollDescription, setDescription] = useState<string>("");
+  let pollTitle = "";
+  let pollLocation = "";
+  let pollDescription = "";
+
+  const onCreatePollInfoMount = (data: string[]): void => {
+    [pollTitle, pollLocation, pollDescription] = data;
+  };
+
   const [pollTimes, setPollTimes] = useState<Time[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -63,25 +68,6 @@ const Home = (): JSX.Element => {
       content: "Click here when you're all done!",
     },
   ];
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setTitle(value);
-  };
-
-  const handleLocationChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const { value } = e.target;
-    setLocation(value);
-  };
-
-  const handleDescriptionChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const { value } = e.target;
-    setDescription(value);
-  };
 
   const areTimesValid = (times: Time[] | undefined): boolean => {
     if (!times) return false;
@@ -227,31 +213,7 @@ const Home = (): JSX.Element => {
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
             <Jumbotron className="poll-create">
-              <Form.Group as={Row} controlId="formPlainTextTitle">
-                <Form.Control
-                  className="kukkee-form-text"
-                  type="text"
-                  placeholder="Title"
-                  required
-                  onChange={handleTitleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextDescription">
-                <Form.Control
-                  className="kukkee-form-text"
-                  type="text"
-                  placeholder="Description (optional)"
-                  onChange={handleDescriptionChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextLocation">
-                <Form.Control
-                  className="kukkee-form-text"
-                  type="text"
-                  placeholder="Location (optional)"
-                  onChange={handleLocationChange}
-                />
-              </Form.Group>
+              <CreatePollInfo onMount={onCreatePollInfoMount} />
             </Jumbotron>
           </Col>
         </Row>
