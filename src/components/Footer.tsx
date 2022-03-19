@@ -28,9 +28,6 @@ const Footer = (): JSX.Element => {
             <Col className="footer-col footer-right">
               <h6>CHECK OUT</h6>
               <ul>
-                <li>
-                  <Link href="/features">Features</Link>
-                </li>
                 {/* <li>
                   <a href="https://gitter.im/Kukkee/community">Community</a>
                 </li> */}
