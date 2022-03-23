@@ -10,10 +10,8 @@ import {
   Button,
   Spinner,
 } from "react-bootstrap";
-import { ArrowRightShort, ArrowRight } from "react-bootstrap-icons";
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
-import { useSession, signOut } from "next-auth/react";
 import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
@@ -28,8 +26,6 @@ const AvailableTimes: any = dynamic(() => import("react-available-times"), {
 });
 
 const Create = (): JSX.Element => {
-  const { data: session } = useSession();
-
   const [pollDetails, setPollDetails] = useState<{
     pollTitle: string;
     pollLocation: string;
@@ -109,12 +105,6 @@ const Create = (): JSX.Element => {
     if (times.some((time: Time) => time.start < Date.now())) return false;
     return true;
   };
-
-  let showHero = true;
-
-  if (typeof window !== "undefined") {
-    showHero = localStorage.heroShowed !== "true";
-  }
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
@@ -200,38 +190,9 @@ const Create = (): JSX.Element => {
 
   return (
     <Layout>
-      {showHero && (
-        <Container>
-          <Row className="home-hero-row">
-            <Col className="home-hero-col">
-              <span className="hero-title">
-                Never ask “what time works for you all?” again.
-              </span>
-              <span className="hero-secondary-desc">
-                Create a poll <ArrowRight /> Share the poll <ArrowRight /> Wait
-                for invitees <ArrowRight /> Decide the time <ArrowRight /> Share
-                the time.
-              </span>
-              <span className="hero-tagline">
-                Free, fast and open source.
-                <span
-                  className="hero-tour"
-                  aria-hidden="true"
-                  onClick={handleStartTour}
-                >
-                  Go on a quick tour
-                  <ArrowRightShort className="tour-start-icon" />
-                </span>
-              </span>
-            </Col>
-          </Row>
-        </Container>
-      )}
-      {session && (
-        <button type="submit" onClick={(): Promise<void> => signOut()}>
-          Sign out
-        </button>
-      )}
+      <div className="kukkee-main-heading">
+        <Container className="kukkee-container">New poll</Container>
+      </div>
       <Joyride
         callback={handleJoyrideCallback}
         steps={tourSteps}
@@ -250,8 +211,8 @@ const Create = (): JSX.Element => {
       <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
-            <Jumbotron className="poll-create">
-              <Form.Group as={Row} controlId="formPlainTextTitle">
+            <Jumbotron className="kukkee-jumbo">
+              <Form.Group as={Row} controlId="pollTitle">
                 <Form.Label className="kukkee-form-label text-sm">
                   Title
                 </Form.Label>
@@ -263,7 +224,7 @@ const Create = (): JSX.Element => {
                   onChange={handlePollDetailsChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextDescription">
+              <Form.Group as={Row} controlId="pollDescription">
                 <Form.Label className="kukkee-form-label text-sm">
                   Description (optional)
                 </Form.Label>
@@ -275,7 +236,7 @@ const Create = (): JSX.Element => {
                   onChange={handlePollDetailsChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextLocation">
+              <Form.Group as={Row} controlId="pollLocation">
                 <Form.Label className="kukkee-form-label text-sm">
                   Location (optional)
                 </Form.Label>

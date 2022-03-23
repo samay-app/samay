@@ -1,16 +1,17 @@
 import { useState } from "react";
-import Link from "next/link";
 import { Button, Form, Row, Col, Container, Jumbotron } from "react-bootstrap";
+import Router from "next/router";
+import { signIn } from "next-auth/react";
 import ResponseMessage from "../ResponseMessage";
 import Layout from "../Layout";
 import { signupUser } from "../../utils/api/server";
+import { validEmail, validPassword } from "../../helpers/auth";
 
 const SignUp = (): JSX.Element => {
   const [userCredentials, setUserCredentials] = useState({
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [response, setResponse] = useState({
@@ -18,14 +19,47 @@ const SignUp = (): JSX.Element => {
     msg: "",
   });
 
-  const { username, email, password, confirmPassword } = userCredentials;
+  const { username, email, password } = userCredentials;
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (!username) {
+      setResponse({
+        status: true,
+        msg: "Please enter your username.",
+      });
+      return;
+    }
+    if (!email) {
+      setResponse({
+        status: true,
+        msg: "Please enter your email address.",
+      });
+      return;
+    }
+    if (!validEmail.test(email)) {
+      setResponse({
+        status: true,
+        msg: "Please enter a valid email address.",
+      });
+      return;
+    }
+    if (!password) {
+      setResponse({
+        status: true,
+        msg: "Please enter a password.",
+      });
+      return;
+    }
+    if (!validPassword.test(password)) {
+      setResponse({
+        status: true,
+        msg:
+          "Password must be between 8 to 15 characters, containing at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.",
+      });
       return;
     }
 
@@ -40,11 +74,15 @@ const SignUp = (): JSX.Element => {
         username: "",
         email: "",
         password: "",
-        confirmPassword: "",
       });
 
       if (signupUserResponse.statusCode === 201) {
-        //
+        await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
+        Router.push("/");
       }
     } catch (error) {
       //
@@ -62,69 +100,55 @@ const SignUp = (): JSX.Element => {
 
   return (
     <Layout>
+      <div className="kukkee-main-heading">
+        <Container className="kukkee-container">Sign up</Container>
+      </div>
       <Container className="kukkee-container">
         <Row className="jumbo-row">
-          <Col className="jumbo-col-black">
-            <Jumbotron className="poll-create">
-              <Form.Group as={Row} controlId="formPlainTextTitle">
+          <Col className="jumbo-col">
+            <Jumbotron className="kukkee-jumbo">
+              <Form.Group as={Row} controlId="username">
                 <Form.Label className="kukkee-form-label text-sm">
-                  username
+                  Username
                 </Form.Label>
                 <Form.Control
                   className="kukkee-form-text title text-sm"
                   type="text"
-                  placeholder="What's it about?"
+                  placeholder="Username"
                   name="username"
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextTitle">
+              <Form.Group as={Row} controlId="email">
                 <Form.Label className="kukkee-form-label text-sm">
-                  email
+                  Email address
                 </Form.Label>
                 <Form.Control
-                  className="kukkee-form-text title text-sm"
+                  className="kukkee-form-text description text-sm"
                   type="text"
-                  placeholder="What's it about?"
+                  placeholder="Email address"
                   name="email"
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextTitle">
+              <Form.Group as={Row} controlId="password">
                 <Form.Label className="kukkee-form-label text-sm">
-                  password
+                  Password
                 </Form.Label>
                 <Form.Control
-                  className="kukkee-form-text title text-sm"
+                  className="kukkee-form-text location text-sm"
                   type="password"
-                  placeholder="What's it about?"
+                  placeholder="**********"
                   name="password"
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="formPlainTextTitle">
-                <Form.Label className="kukkee-form-label text-sm">
-                  confirmpassword
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text title text-sm"
-                  type="password"
-                  placeholder="What's it about?"
-                  name="confirmpassword"
-                  onChange={handleChange}
-                />
-              </Form.Group>
             </Jumbotron>
-            <Link href="/auth/signin">
-              <a className="hover:underline self-end">
-                Already have an account? Sign in
-              </a>
-            </Link>
             <Button
-              className="kukkee-primary-button create-poll-btn"
+              className="kukkee-primary-button auth-button"
               onClick={handleSubmit}
             >
-              Sign Up
+              Sign up
             </Button>
             <ResponseMessage response={response} setResponse={setResponse} />
           </Col>

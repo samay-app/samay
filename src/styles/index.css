@@ -22,9 +22,12 @@ main {
 }
 
 .kukkee-navbar {
-  margin-top: 1.5rem;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
   padding-right: 0 !important;
   padding-left: 0 !important;
+  background-color: #fffefe;
+  border-bottom: #eaeaea solid 0.1rem;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -364,7 +367,7 @@ a {
   flex-grow: 1 !important;
 }
 
-.poll-create {
+.kukkee-jumbo {
   background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
   color: #ffffff;
@@ -402,8 +405,8 @@ a {
     margin-top: 0 !important;
   }
 
-  .poll-create {
-    padding: 2rem !important;
+  .kukkee-jumbo {
+    padding: 1rem 2rem 0.5rem 2rem !important;
     border-radius: 0.1rem !important;
     margin-top: 0 !important;
   }
@@ -412,7 +415,6 @@ a {
     float: none !important;
     width: 90% !important;
     margin-left: 1.25rem !important;
-    margin-bottom: 2rem !important;
   }
 }
 
@@ -1369,5 +1371,35 @@ a {
 
   .features {
     margin-bottom: 0 !important;
+  }
+}
+
+.kukkee-main-heading {
+  font-family: "Manrope", sans-serif;
+  font-size: 2rem;
+  font-weight: 700 !important;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  background-color: #fffefe;
+  border-bottom: #eaeaea solid 0.1rem;
+}
+
+.auth-button {
+  margin-top: 2rem;
+  float: right;
+  margin-bottom: 2rem !important;
+}
+
+@media (min-width: 0) and (max-width: 576px) {
+  .kukkee-main-heading {
+    font-size: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .auth-button {
+    float: none !important;
+    width: 90% !important;
+    margin-left: 1.25rem !important;
   }
 }

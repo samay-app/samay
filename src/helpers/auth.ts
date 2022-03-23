@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable prettier/prettier */
+
 import { hash, genSalt, compare } from "bcryptjs";
 
 export const hashPassword = async (password: string): Promise<string> => {
@@ -18,3 +21,7 @@ export const verifyPassword = async (
     throw new Error(error);
   }
 };
+
+export const validEmail = /[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*/;
+
+export const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;

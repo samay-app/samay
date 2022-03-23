@@ -16,11 +16,6 @@ export default async (
 
         const newUserData = JSON.parse(body);
 
-        if (!newUserData.email.includes("@")) {
-          res.status(422).json({ message: "Invalid email or password." });
-          return;
-        }
-
         const existingUser: UserDoc | null = await KukkeeUser.findOne({
           email: newUserData.email,
         }).lean();
