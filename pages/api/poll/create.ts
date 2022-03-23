@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import KukkeePoll, { PollDoc } from "../../../../src/models/poll";
-import connectToDatabase from "../../../../src/utils/db";
+import KukkeePoll, { PollDoc } from "../../../src/models/poll";
+import connectToDatabase from "../../../src/utils/db";
 
 export default async (
   req: NextApiRequest,
