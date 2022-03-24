@@ -1,18 +1,24 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
-import { Button } from "react-bootstrap";
-import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { NextRouter } from "next/router";
+import { Button, Form, Row, Col, Container, Jumbotron } from "react-bootstrap";
+import { signIn, useSession, SignInResponse } from "next-auth/react";
+import ResponseMessage from "../ResponseMessage";
+import Layout from "../Layout";
 
-const SignIn = (): JSX.Element => {
+const SignIn = (props: { router: NextRouter }): JSX.Element => {
+  const { router } = props;
+
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
 
-  const { data: session } = useSession();
+  const [response, setResponse] = useState({
+    status: false,
+    msg: "",
+  });
 
-  const router = useRouter();
+  const { data: session } = useSession();
 
   const { email, password } = userCredentials;
 
@@ -23,15 +29,24 @@ const SignIn = (): JSX.Element => {
 
     if (!session) {
       try {
-        const result = await signIn("credentials", {
-          redirect: false,
-          email,
-          password,
-        });
+        const result: SignInResponse | undefined = await signIn<"credentials">(
+          "credentials",
+          {
+            redirect: false,
+            email,
+            password,
+          }
+        );
 
-        // if (!result?.error) {
-        //   router.replace("/");
-        // }
+        if (result && !result.error) {
+          if (router.query.from && typeof router.query?.from === "string") {
+            router.push(router.query.from);
+          } else {
+            router.replace("/");
+          }
+        } else {
+          //
+        }
       } catch (error) {
         //
       }
@@ -47,45 +62,164 @@ const SignIn = (): JSX.Element => {
   };
 
   return (
-    <div className="mt-10 flex flex-col items-center w-3/5 mx-auto space-y-4">
-      <h1 className="text-xl">Sign In</h1>
-      <form className="form">
-        <input
-          className="input"
-          type="email"
-          placeholder="Email Address"
-          required
-          value={email}
-          onChange={handleChange}
-          name="email"
-          autoComplete="email"
-        />
-        <input
-          className="input"
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={handleChange}
-          name="password"
-          autoComplete="password"
-        />
-        <div className="flex flex-col md:flex-row flex-1 space-y-6 md:space-y-0 md:space-x-6">
-          <Button
-            className="kukkee-primary-button create-poll-btn"
-            onClick={handleSubmit}
-          >
-            Sign In
-          </Button>
-        </div>
-      </form>
-      <div className="flex flex-col items-start md:flex-row md:justify-between w-full">
-        <Link href="/auth/signup">
-          <a className="hover:underline">Don't have an account? Sign Up</a>
-        </Link>
+    <Layout>
+      <div className="kukkee-main-heading">
+        <Container className="kukkee-container">Sign in</Container>
       </div>
-    </div>
+      <Container className="kukkee-container">
+        <Row className="jumbo-row">
+          <Col className="jumbo-col">
+            <Jumbotron className="kukkee-jumbo">
+              <Form.Group as={Row} controlId="email">
+                <Form.Label className="kukkee-form-label text-sm">
+                  Email address
+                </Form.Label>
+                <Form.Control
+                  className="kukkee-form-text title text-sm"
+                  type="text"
+                  placeholder="Email address"
+                  name="email"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} controlId="password">
+                <Form.Label className="kukkee-form-label text-sm">
+                  Password
+                </Form.Label>
+                <Form.Control
+                  className="kukkee-form-text location text-sm"
+                  type="password"
+                  placeholder="•••••••••••••"
+                  name="password"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Jumbotron>
+            <Button
+              className="kukkee-primary-button auth-button"
+              onClick={handleSubmit}
+            >
+              Sign in
+            </Button>
+            <ResponseMessage response={response} setResponse={setResponse} />
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
   );
 };
 
 export default SignIn;
+
+// import { useState } from "react";
+// import { NextRouter } from "next/router";
+// import { Button, Form, Row, Col, Container, Jumbotron } from "react-bootstrap";
+// import { signIn, useSession, SignInResponse } from "next-auth/react";
+// import ResponseMessage from "../ResponseMessage";
+// import Layout from "../Layout";
+
+// const SignIn = (props: { router: NextRouter }): JSX.Element => {
+//   const { router } = props;
+
+//   const [userCredentials, setUserCredentials] = useState({
+//     email: "",
+//     password: "",
+//   });
+
+//   const [response, setResponse] = useState({
+//     status: false,
+//     msg: "",
+//   });
+
+//   const { data: session } = useSession();
+
+//   const { email, password } = userCredentials;
+
+//   const handleSubmit = async (
+//     e: React.MouseEvent<HTMLInputElement>
+//   ): Promise<void> => {
+//     e.preventDefault();
+
+//     if (!session) {
+//       try {
+//         const result: SignInResponse | undefined = await signIn<"credentials">(
+//           "credentials",
+//           {
+//             redirect: false,
+//             email,
+//             password,
+//           }
+//         );
+
+//         if (result && !result.error) {
+//           router.replace("/");
+//         }
+//       } catch (error) {
+//         //
+//       }
+//     } else if (
+//       session &&
+//       router.query.from &&
+//       typeof router.query?.from === "string"
+//     ) {
+//       router.push(router.query.from);
+//     } else {
+//       router.push("/");
+//     }
+//   };
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+//     const { name, value } = e.target;
+
+//     setUserCredentials({ ...userCredentials, [name]: value });
+//   };
+
+//   return (
+//     <Layout>
+//       <div className="kukkee-main-heading">
+//         <Container className="kukkee-container">Sign in</Container>
+//       </div>
+//       <Container className="kukkee-container">
+//         <Row className="jumbo-row">
+//           <Col className="jumbo-col">
+//             <Jumbotron className="kukkee-jumbo">
+//               <Form.Group as={Row} controlId="email">
+//                 <Form.Label className="kukkee-form-label text-sm">
+//                   Email address
+//                 </Form.Label>
+//                 <Form.Control
+//                   className="kukkee-form-text title text-sm"
+//                   type="text"
+//                   placeholder="Email address"
+//                   name="email"
+//                   onChange={handleChange}
+//                 />
+//               </Form.Group>
+//               <Form.Group as={Row} controlId="password">
+//                 <Form.Label className="kukkee-form-label text-sm">
+//                   Password
+//                 </Form.Label>
+//                 <Form.Control
+//                   className="kukkee-form-text location text-sm"
+//                   type="password"
+//                   placeholder="•••••••••••••"
+//                   name="password"
+//                   onChange={handleChange}
+//                 />
+//               </Form.Group>
+//             </Jumbotron>
+//             <Button
+//               className="kukkee-primary-button auth-button"
+//               onClick={handleSubmit}
+//             >
+//               Sign in
+//             </Button>
+//             <ResponseMessage response={response} setResponse={setResponse} />
+//           </Col>
+//         </Row>
+//       </Container>
+//     </Layout>
+//   );
+// };
+
+// export default SignIn;

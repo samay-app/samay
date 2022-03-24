@@ -1,6 +1,13 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { useRouter } from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 const NavBar = (): JSX.Element => {
+  const router = useRouter();
+
+  const { data: session } = useSession();
+
   return (
     <Navbar
       className="kukkee-navbar"
@@ -23,15 +30,41 @@ const NavBar = (): JSX.Element => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <a href="/features" className="kukkee-nav-link nav-link">
-              Features
-            </a>
-            <a
-              className="kukkee-nav-link nav-link"
-              href="https://github.com/Kukkee/Kukkee"
-            >
-              GitHub
-            </a>
+            {session && (
+              <>
+                <Link href="/">
+                  <a className="kukkee-nav-link nav-link">Dashboard</a>
+                </Link>
+                <Link href="/new">
+                  <a className="kukkee-nav-link nav-link">Create poll</a>
+                </Link>
+              </>
+            )}
+            {!session && router.pathname !== "/auth/signup" && (
+              <Link href="/auth/signup">
+                <a className="kukkee-nav-link nav-link">Sign up</a>
+              </Link>
+            )}
+            {!session && router.pathname !== "/auth/signin" && (
+              <a
+                onClick={(): Promise<undefined> => signIn()}
+                className="kukkee-nav-link nav-link"
+                aria-hidden="true"
+              >
+                Sign in
+              </a>
+            )}
+            {session && (
+              <a
+                onClick={(): Promise<undefined> =>
+                  signOut({ callbackUrl: "/auth/signin" })
+                }
+                className="kukkee-nav-link nav-link"
+                aria-hidden="true"
+              >
+                Sign out
+              </a>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

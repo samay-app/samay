@@ -6,7 +6,7 @@ main {
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f8;
+  background-color: #fafafa;
 }
 
 .text-sm {
@@ -65,6 +65,7 @@ main {
   padding-right: 0 !important;
   padding-left: 0 !important;
   margin-right: 0 !important;
+  cursor: pointer;
 }
 
 .kukkee-nav-link:hover {
@@ -78,7 +79,7 @@ main {
 
 .kukkee-footer {
   margin-top: 2rem !important;
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
 }
 
 .footer-container {
@@ -87,7 +88,7 @@ main {
 }
 
 .kukkee-footer-row {
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
   margin-top: 3.5rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -330,7 +331,7 @@ a {
 
 .kukkee-primary-button {
   background-color: #000000 !important;
-  color: #f9f9f8 !important;
+  color: #fafafa !important;
   font-weight: 500 !important;
   font-size: 1rem !important;
   font-family: "Inter", sans-serif;
@@ -508,7 +509,7 @@ a {
 }
 
 .rat-TimeSlot_handle {
-  color: #f9f9f8 !important;
+  color: #fafafa !important;
 }
 
 .rat-TimeSlot_title {
@@ -516,7 +517,7 @@ a {
   text-align: center !important;
   font-size: 0.8rem !important;
   font-weight: 600 !important;
-  color: #f9f9f8 !important;
+  color: #fafafa !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -576,7 +577,7 @@ a {
 }
 
 .rat-AvailableTimes_button:hover {
-  fill: #f9f9f8 !important;
+  fill: #fafafa !important;
   background-color: #363636 !important;
 }
 
@@ -918,7 +919,7 @@ a {
 }
 
 .mark-time-name {
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
   color: #363636 !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
@@ -1164,7 +1165,7 @@ a {
 }
 
 .share-textbox {
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
   color: #6f6f6f !important;
   border: 0.05rem solid #616161 !important;
   border-top-left-radius: 0 !important;
@@ -1175,7 +1176,7 @@ a {
 }
 
 .invite-textbox {
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
   color: #6f6f6f !important;
   border: 0.1rem solid #6c757d !important;
   border-radius: 0.1rem !important;
@@ -1328,7 +1329,7 @@ a {
 }
 
 .kukkee-card {
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
   margin-right: 2rem !important;
   padding-top: 1rem !important;
   border-top: 0.15rem #1d1d1d solid !important;
@@ -1339,7 +1340,7 @@ a {
 }
 
 .kukkee-card-last {
-  background-color: #f9f9f8 !important;
+  background-color: #fafafa !important;
   padding-top: 1rem !important;
   border-top: 0.15rem #1d1d1d solid !important;
   border-bottom: none !important;

@@ -138,7 +138,7 @@ const SignUp = (): JSX.Element => {
                 <Form.Control
                   className="kukkee-form-text location text-sm"
                   type="password"
-                  placeholder="**********"
+                  placeholder="•••••••••••••"
                   name="password"
                   onChange={handleChange}
                 />
