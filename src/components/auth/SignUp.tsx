@@ -29,28 +29,28 @@ const SignUp = (): JSX.Element => {
     if (!username) {
       setResponse({
         status: true,
-        msg: "Please enter your username.",
+        msg: "Please provide a username.",
       });
       return;
     }
     if (!email) {
       setResponse({
         status: true,
-        msg: "Please enter your email address.",
+        msg: "Please provide a email address.",
       });
       return;
     }
     if (!validEmail.test(email)) {
       setResponse({
         status: true,
-        msg: "Please enter a valid email address.",
+        msg: "Please provide a valid email address.",
       });
       return;
     }
     if (!password) {
       setResponse({
         status: true,
-        msg: "Please enter a password.",
+        msg: "Please provide a password.",
       });
       return;
     }
@@ -85,7 +85,10 @@ const SignUp = (): JSX.Element => {
         Router.push("/");
       }
     } catch (error) {
-      //
+      setResponse({
+        status: true,
+        msg: "Please try again later.",
+      });
     }
   };
 

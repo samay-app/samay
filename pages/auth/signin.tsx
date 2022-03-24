@@ -1,19 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { getSession } from "next-auth/react";
-import { useEffect } from "react";
+import { getSession, getCsrfToken } from "next-auth/react";
+import { GetServerSidePropsContext } from "next";
 import SignIn from "../../src/components/auth/SignIn";
 
-const SignInPage = (): JSX.Element => {
-  const router = useRouter();
+export default function SignInPage(props: { csrfToken: string }): JSX.Element {
+  const { csrfToken } = props;
 
-  useEffect(() => {
-    getSession().then((session) => {
-      if (session) {
-        router.replace("/");
-      }
-    });
-  }, [router]);
+  const router = useRouter();
 
   return (
     <>
@@ -22,9 +16,34 @@ const SignInPage = (): JSX.Element => {
         <meta name="description" content="Kukkee" />
       </Head>
 
-      <SignIn router={router} />
+      <SignIn router={router} csrfToken={csrfToken} />
     </>
   );
-};
+}
 
-export default SignInPage;
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<
+  | {
+      props: {
+        csrfToken: string | undefined;
+      };
+    }
+  | {
+      redirect: {
+        permanent: boolean;
+        destination: string;
+      };
+    }
+> {
+  const session = await getSession(context);
+
+  if (session) {
+    return { redirect: { permanent: false, destination: "/" } };
+  }
+
+  const csrfToken = await getCsrfToken({ req: context.req });
+  return {
+    props: { csrfToken },
+  };
+}
