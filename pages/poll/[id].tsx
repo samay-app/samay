@@ -4,6 +4,7 @@ import { GetServerSideProps } from "next";
 import { Col, Row, Container, Jumbotron } from "react-bootstrap";
 import { PeopleFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
+import { useSession, getSession } from "next-auth/react";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
@@ -13,7 +14,6 @@ import PollTableVotes from "../../src/components/poll/PollTableVotes";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
-import { decrypt } from "../../src/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -21,25 +21,29 @@ const Poll = (props: {
   pollFromDB: PollFromDB;
   pollID: string;
 }): JSX.Element => {
-  const { pollFromDB, pollID } = props;
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      Router.push("auth/signin");
+    },
+  });
 
-  if (typeof window !== "undefined") {
-    if (localStorage[pollID] === "creator") {
-      Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
-    }
-  }
+  const { pollFromDB, pollID } = props;
 
   const sortedTimes: TimeFromDB[] = pollFromDB.times.sort(
     (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
   );
   const [newVote, setNewVote] = useState<Vote>({
-    name: "",
+    username: "",
     times: [],
   });
   const [response, setResponse] = useState({
     status: false,
     msg: "",
   });
+
+  if (!session) return <></>;
+
   return (
     <Layout>
       <Container className="kukkee-container">
@@ -130,7 +134,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { pollFromDB, pollID }, // will be passed to the page component as props
+    props: { pollFromDB, pollID, session: await getSession(context) },
   };
 };
 

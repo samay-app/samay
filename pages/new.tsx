@@ -1,6 +1,5 @@
 import Router from "next/router";
 import dynamic from "next/dynamic";
-import { nanoid } from "nanoid";
 import {
   Form,
   Row,
@@ -13,7 +12,6 @@ import {
 import { useState } from "react";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { useSession } from "next-auth/react";
-import { encrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
 import { Time, Poll } from "../src/models/poll";
@@ -37,6 +35,7 @@ const New = (): JSX.Element => {
     },
   });
 
+  if (session) console.log(session.username);
   const [pollDetails, setPollDetails] = useState<{
     pollTitle: string;
     pollLocation: string;
@@ -144,13 +143,13 @@ const New = (): JSX.Element => {
       return;
     }
 
-    const secret = nanoid(10);
+    if (!session) return;
 
     const poll: Poll = {
       title: pollTitle,
       description: pollDescription,
       location: pollLocation,
-      secret: encrypt(secret),
+      username: session.user.username,
       times: pollTimes,
     };
 
@@ -162,14 +161,7 @@ const New = (): JSX.Element => {
       });
 
       if (createPollResponse.statusCode === 201) {
-        if (typeof window !== "undefined") {
-          localStorage.setItem(`${createPollResponse.data._id}`, "creator");
-
-          if (localStorage.heroShowed !== "true") {
-            localStorage.setItem("heroShowed", "true");
-          }
-        }
-        Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
+        Router.push(`/poll/${createPollResponse.data._id}}`);
       } else {
         setDisabled(false);
         setResponse({

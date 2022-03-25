@@ -14,13 +14,13 @@ export interface TimeFromDB {
 }
 
 export interface Vote {
-  name: string;
+  username: string;
   times: Time[];
 }
 
 export interface VoteFromDB {
   _id: string;
-  name: string;
+  username: string;
   times: TimeFromDB[];
 }
 
@@ -28,7 +28,7 @@ export interface Poll {
   title: string;
   description?: string;
   open?: boolean;
-  secret: string;
+  username: string;
   location?: string;
   times: Time[];
   finalTime?: Time;
@@ -40,7 +40,7 @@ export interface PollFromDB {
   title: string;
   description?: string;
   open?: boolean;
-  secret: string;
+  username: string;
   location?: string;
   times: TimeFromDB[];
   finalTime?: TimeFromDB;
@@ -54,7 +54,7 @@ export interface PollDoc extends Document {
   title: string;
   description?: string;
   open?: boolean;
-  secret: string;
+  username: string;
   location?: string;
   times: Time[];
   finalTime?: Time;
@@ -66,7 +66,7 @@ const PollSchema: Schema = new Schema(
     title: { type: String, required: true },
     description: { type: String },
     open: { type: Boolean, default: true },
-    secret: { type: String, required: true },
+    username: { type: String, required: true },
     location: { type: String },
     times: {
       type: [{ start: Number, end: Number }],
@@ -75,7 +75,7 @@ const PollSchema: Schema = new Schema(
     finalTime: { type: { start: Number, end: Number } },
     votes: [
       {
-        name: String,
+        username: String,
         times: [{ start: Number, end: Number, ifNeedBe: Boolean }],
       },
     ],
@@ -87,6 +87,7 @@ const KukkeePoll: Model<PollDoc> =
   mongoose.models.Poll || model("Poll", PollSchema);
 
 export interface HttpResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   statusCode: number;
 }

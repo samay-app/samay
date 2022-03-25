@@ -1,26 +1,31 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/react";
 import KukkeePoll, { PollDoc } from "../../../src/models/poll";
 import connectToDatabase from "../../../src/utils/db";
 
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> => {
-  const { method, body } = req;
+): Promise<NextApiResponse | void> => {
+  const session = await getSession({ req });
+  if (!session) return res.status(401);
 
-  switch (method) {
+  let body = JSON.parse(req.body);
+
+  if (session.user.username !== body.username) return res.status(401);
+
+  switch (req.method) {
     case "POST":
       try {
         await connectToDatabase();
-        const newPoll: PollDoc = new KukkeePoll(JSON.parse(body));
+        const newPoll: PollDoc = new KukkeePoll(body);
         await newPoll.save();
-        res.status(201).json(newPoll);
+        return res.status(201).json(newPoll);
       } catch (err) {
-        res.status(400).json({ message: err.message });
+        return res.status(400).json({ message: err.message });
       }
-      break;
     default:
       res.setHeader("Allow", ["POST"]);
-      res.status(405).end(`Method ${method} Not Allowed`);
+      return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };

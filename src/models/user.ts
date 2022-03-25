@@ -35,6 +35,7 @@ const KukkeeUser: Model<UserDoc> =
   mongoose.models.User || model("User", UserSchema);
 
 export interface HttpResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   statusCode: number;
 }
