@@ -160,12 +160,6 @@ main {
   margin-bottom: 0 !important;
 }
 
-.vercel-logo {
-  width: 4.3rem;
-  margin-top: -0.05rem;
-  margin-left: 0.2rem;
-}
-
 @media (min-width: 0) and (max-width: 576px) {
   .kukkee-nav-link {
     margin-left: 0 !important;
@@ -378,6 +372,16 @@ a {
   border-radius: 0.1rem !important;
 }
 
+.kukkee-new-poll-jumbo {
+  background-color: #fefffe !important;
+  border: 0.1rem solid #e0e1e0 !important;
+  color: #ffffff;
+  padding: 1.2rem 1.5rem 0.5rem 1.5rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+  border-radius: 0.1rem !important;
+}
+
 .poll-timeslot-jumbo {
   background-color: #fefffe !important;
   color: #363636;
@@ -412,6 +416,12 @@ a {
     margin-top: 0 !important;
   }
 
+  .kukkee-new-poll-jumbo {
+    padding: 1rem 1rem 0.5rem 1rem !important;
+    border-radius: 0.1rem !important;
+    margin-top: 0 !important;
+  }
+
   .create-poll-btn {
     float: none !important;
     width: 90% !important;
@@ -425,6 +435,8 @@ a {
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
   border-radius: 0.1rem !important;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem !important;
   font-weight: 400 !important;
   transition: none !important;
   box-shadow: 0rem 0.05rem 0.1rem rgba(0, 0, 0, 0.2);
@@ -445,6 +457,10 @@ a {
 }
 
 .kukkee-form-text.description {
+  margin-bottom: 1rem;
+}
+
+.kukkee-form-text.location {
   margin-bottom: 1rem;
 }
 
@@ -485,10 +501,6 @@ a {
 
 @media (min-width: 0) and (max-width: 576px) {
   .kukkee-form-desc {
-    font-size: 1rem !important;
-  }
-
-  .kukkee-form-text {
     font-size: 1rem !important;
   }
 
@@ -919,24 +931,31 @@ a {
 }
 
 .mark-time-name {
-  background-color: #fafafa !important;
-  color: #363636 !important;
+  background-color: #fefffe !important;
+  color: #000000 !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
   border-radius: 0.1rem !important;
-  font-weight: 600 !important;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem !important;
+  font-weight: 400 !important;
+  transition: none !important;
   box-shadow: 0rem 0.05rem 0.1rem rgba(0, 0, 0, 0.2);
-  font-size: 1rem !important;
 }
 
 .mark-time-name::placeholder {
-  color: #969696 !important;
+  color: #818181 !important;
   opacity: 1 !important;
 }
 
 .mark-time-name:focus {
   border: none !important;
   outline: 0.14rem solid #363636 !important;
+}
+
+.mark-time-name.protected {
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -958,10 +977,6 @@ a {
 
   .datetime-time-2 {
     font-size: 0.6rem;
-  }
-
-  .mark-time-name {
-    font-size: 0.8rem !important;
   }
 }
 
@@ -1390,6 +1405,17 @@ a {
   margin-top: 2rem;
   float: right;
   margin-bottom: 2rem !important;
+}
+
+.poll-type {
+  background-color: #fefffe !important;
+  color: #000000 !important;
+  border: none !important;
+  outline: 0.05rem solid #e0e1e0 !important;
+  border-radius: 0.1rem !important;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem !important;
+  width: 8rem !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {

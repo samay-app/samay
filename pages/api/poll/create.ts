@@ -12,7 +12,7 @@ export default async (
 
   let body = JSON.parse(req.body);
 
-  if (session.user.username !== body.username) return res.status(401);
+  if (session.username !== body.username) return res.status(403);
 
   switch (req.method) {
     case "POST":

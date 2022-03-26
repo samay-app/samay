@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap";
 import { Dispatch, useState } from "react";
 import { Time, Vote } from "../../models/poll";
 
-const MarkTimes = (props: {
+const MarkTimesPublic = (props: {
   times: Time[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
@@ -11,7 +11,7 @@ const MarkTimes = (props: {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setNewVote({ name: value, times: newVote.times });
+    setNewVote({ username: value, times: newVote.times });
   };
 
   const [ifNeedBeHidden, setIfNeedBeHidden] = useState<Record<number, boolean>>(
@@ -28,11 +28,11 @@ const MarkTimes = (props: {
       setIfNeedBeHidden((prev) => ({ ...prev, [time.start]: true }));
       time.ifNeedBe = ifNeedBe[time.start];
       newTimes.push(time);
-      setNewVote({ name: newVote.name, times: newTimes });
+      setNewVote({ username: newVote.username, times: newTimes });
     } else {
       setIfNeedBeHidden((prev) => ({ ...prev, [time.start]: false }));
       newTimes = newTimes.filter((item) => item.start !== time.start);
-      setNewVote({ name: newVote.name, times: newTimes });
+      setNewVote({ username: newVote.username, times: newTimes });
     }
   };
 
@@ -47,13 +47,13 @@ const MarkTimes = (props: {
       newTimes = newTimes.filter((item) => item.start !== time.start);
       time.ifNeedBe = true;
       newTimes.push(time);
-      setNewVote({ name: newVote.name, times: newTimes });
+      setNewVote({ username: newVote.username, times: newTimes });
     } else {
       setIfNeedBe((prev) => ({ ...prev, [time.start]: false }));
       newTimes = newTimes.filter((item) => item.start !== time.start);
       time.ifNeedBe = false;
       newTimes.push(time);
-      setNewVote({ name: newVote.name, times: newTimes });
+      setNewVote({ username: newVote.username, times: newTimes });
     }
   };
 
@@ -88,4 +88,4 @@ const MarkTimes = (props: {
   );
 };
 
-export default MarkTimes;
+export default MarkTimesPublic;

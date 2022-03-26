@@ -32,12 +32,15 @@ const NavBar = (): JSX.Element => {
           <Nav className="ml-auto">
             {session && (
               <>
+                <Link href="/new">
+                  <a className="kukkee-nav-link nav-link">+ New poll</a>
+                </Link>
                 <Link href="/">
                   <a className="kukkee-nav-link nav-link">Dashboard</a>
                 </Link>
-                <Link href="/new">
-                  <a className="kukkee-nav-link nav-link">Create poll</a>
-                </Link>
+                <a className="kukkee-nav-link nav-link" href="/guide">
+                  Guide
+                </a>
               </>
             )}
             {!session && router.pathname !== "/auth/signup" && (

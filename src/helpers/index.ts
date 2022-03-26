@@ -49,9 +49,10 @@ export const slotTimeClassName = (
 
 export const isUserPresentInVotes = (
   userToSearch: string,
-  votes: VoteFromDB[]
+  votes: VoteFromDB[] | undefined
 ): boolean => {
-  return votes.some((vote) => vote.name === userToSearch);
+  if (!votes) return false;
+  return votes.some((vote) => vote.username === userToSearch);
 };
 
 const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || "";

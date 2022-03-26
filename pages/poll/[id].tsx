@@ -13,6 +13,7 @@ import PollTableVoter from "../../src/components/poll/PollTableVoter";
 import PollTableVotes from "../../src/components/poll/PollTableVotes";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
 import ResponseMessage from "../../src/components/ResponseMessage";
+import { isUserPresentInVotes } from "../../src/helpers";
 import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
 
 dayjs.extend(localizedFormat);
@@ -21,14 +22,22 @@ const Poll = (props: {
   pollFromDB: PollFromDB;
   pollID: string;
 }): JSX.Element => {
+  const { pollFromDB, pollID } = props;
+
+  let isPollCreator = false;
+  let loggedInUsername = "";
+
   const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      Router.push("auth/signin");
+      if (pollFromDB.type === "protected") {
+        Router.push({
+          pathname: "/auth/signin",
+          query: { from: `/poll/${pollID}` },
+        });
+      }
     },
   });
-
-  const { pollFromDB, pollID } = props;
 
   const sortedTimes: TimeFromDB[] = pollFromDB.times.sort(
     (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
@@ -42,10 +51,31 @@ const Poll = (props: {
     msg: "",
   });
 
-  if (!session) return <></>;
+  if (!session && pollFromDB.type === "protected") return <></>;
+
+  if (session) {
+    loggedInUsername = session.username ? session.username : "";
+    isPollCreator = session.username === pollFromDB.username;
+  }
+
+  let hideMarkTimesTable = true;
+
+  if (
+    pollFromDB.open &&
+    ((pollFromDB.type === "protected" &&
+      loggedInUsername !== "" &&
+      !isUserPresentInVotes(loggedInUsername, pollFromDB.votes)) ||
+      (pollFromDB.open && pollFromDB.type === "public"))
+  )
+    hideMarkTimesTable = false;
 
   return (
     <Layout>
+      <div className="kukkee-main-heading">
+        <Container className="kukkee-container">
+          Mark your availablity
+        </Container>
+      </div>
       <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
@@ -58,32 +88,29 @@ const Poll = (props: {
             </Jumbotron>
           </Col>
         </Row>
-        {pollFromDB.open && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <Jumbotron className="poll-table-jumbo">
-                <PollTableVoter
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                  newVote={newVote}
-                  setNewVote={setNewVote}
-                />
-              </Jumbotron>
-            </Col>
-          </Row>
-        )}
-        {pollFromDB.open && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <SubmitTimes
-                newVote={newVote}
-                pollID={pollID}
+        <Row className="jumbo-row" hidden={hideMarkTimesTable}>
+          <Col className="jumbo-col">
+            <Jumbotron className="poll-table-jumbo">
+              <PollTableVoter
                 pollFromDB={pollFromDB}
-                setResponse={setResponse}
+                loggedInUsername={loggedInUsername}
+                sortedTimes={sortedTimes}
+                newVote={newVote}
+                setNewVote={setNewVote}
               />
-            </Col>
-          </Row>
-        )}
+            </Jumbotron>
+          </Col>
+        </Row>
+        <Row className="jumbo-row" hidden={hideMarkTimesTable}>
+          <Col className="jumbo-col">
+            <SubmitTimes
+              newVote={newVote}
+              pollID={pollID}
+              pollFromDB={pollFromDB}
+              setResponse={setResponse}
+            />
+          </Col>
+        </Row>
         {pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
           <Row className="jumbo-row">
             <Col className="jumbo-col">

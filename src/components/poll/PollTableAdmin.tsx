@@ -1,8 +1,7 @@
-import { Dispatch, useState } from "react";
+import { Dispatch } from "react";
 import { Table } from "react-bootstrap";
 import { Check2, Check2Circle } from "react-bootstrap-icons";
 import dayjs from "dayjs";
-import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import MarkFinalTime from "./MarkFinalTime";
 import PollDateTime from "./PollDateTime";
@@ -22,65 +21,8 @@ const PollTableAdmin = (props: {
 }): JSX.Element => {
   const { pollFromDB, sortedTimes, setFinalTime } = props;
 
-  const [tourRun, setTourRun] = useState<boolean>(false);
-
-  // Run automatically for first time users
-  if (typeof window !== "undefined") {
-    if (localStorage.adminVisited !== "true") {
-      localStorage.setItem("adminVisited", "true");
-      setTourRun(true);
-    }
-  }
-
-  const tourSteps: Step[] = [
-    {
-      disableBeacon: true,
-      target: ".poll-info",
-      content:
-        "Share the poll link with invitees to let them mark their availability.",
-    },
-    {
-      target: "#poll-vote-table",
-      content:
-        "When the invitees have finished voting, come back to this page. If you happen to close this page, don't worry; you can also get here by visiting the link you shared with the invitees (this browser would remember that you're the poll creator). But if you need to mark the final time from another browser or device, make sure to save this poll's admin URL (this tab's URL).",
-    },
-    {
-      target: "#poll-vote-table",
-      content:
-        "See who's free with 'yes' votes (green) - or who can be - with 'if need be' votes (yellow inside circle).",
-    },
-    {
-      target: ".mark-options-btn",
-      content: "Click here to mark the final time!",
-    },
-  ];
-
-  const handleJoyrideCallback = (data: CallBackProps): void => {
-    const { status, type } = data;
-    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
-
-    if (finishedStatuses.includes(status) || type === "beacon") {
-      setTourRun(false);
-    }
-  };
-
   return (
     <div className="poll-info-div" id="poll-vote-table">
-      <Joyride
-        callback={handleJoyrideCallback}
-        steps={tourSteps}
-        run={tourRun}
-        disableScrolling
-        spotlightClicks
-        showProgress
-        continuous
-        styles={{
-          buttonClose: { visibility: "hidden" },
-          options: {
-            primaryColor: "#000",
-          },
-        }}
-      />
       <Table responsive className="poll-table">
         <thead>
           <tr className="poll-table-top-row">
@@ -140,8 +82,8 @@ const PollTableAdmin = (props: {
             ))}
           </tr>
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
-            <tr key={`${idx}-${vote.name}`}>
-              <td className="poll-table-participants">{vote.name}</td>
+            <tr key={`${idx}-${vote.username}`}>
+              <td className="poll-table-participants">{vote.username}</td>
               {sortedTimes.map((time: Time) => (
                 <td
                   key={time.start}

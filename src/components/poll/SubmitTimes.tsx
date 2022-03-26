@@ -23,7 +23,7 @@ const SubmitTimes = (props: {
   ): Promise<void> => {
     e.preventDefault();
 
-    if (!newVote.name) {
+    if (!newVote.username) {
       setResponse({
         status: true,
         msg: "Please enter your name.",
@@ -33,7 +33,7 @@ const SubmitTimes = (props: {
 
     if (
       pollFromDB.votes &&
-      isUserPresentInVotes(newVote.name, pollFromDB.votes)
+      isUserPresentInVotes(newVote.username, pollFromDB.votes)
     ) {
       setResponse({
         status: true,

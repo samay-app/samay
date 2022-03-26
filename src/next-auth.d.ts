@@ -14,5 +14,6 @@ declare module "next-auth" {
     user: {
       username: string;
     };
+    username?: string;
   }
 }

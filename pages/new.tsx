@@ -9,12 +9,12 @@ import {
   Button,
   Spinner,
 } from "react-bootstrap";
+import { format } from "url";
 import { useState } from "react";
-import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { useSession } from "next-auth/react";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
-import { Time, Poll } from "../src/models/poll";
+import { Time, Poll, PollType } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
 // typings aren't available for react-available-times
@@ -30,12 +30,11 @@ const New = (): JSX.Element => {
     onUnauthenticated() {
       Router.push({
         pathname: "/auth/signin",
-        query: { from: Router.pathname },
+        query: { from: "/new" },
       });
     },
   });
 
-  if (session) console.log(session.username);
   const [pollDetails, setPollDetails] = useState<{
     pollTitle: string;
     pollLocation: string;
@@ -46,6 +45,16 @@ const New = (): JSX.Element => {
     pollDescription: "",
   });
 
+  const [pollType, setPollType] = useState<PollType>("protected");
+
+  const handlePollTypeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    const { value } = e.target;
+    const pollTypeFromOptions = value as PollType;
+    setPollType(pollTypeFromOptions);
+  };
+
   const { pollTitle, pollLocation, pollDescription } = pollDetails;
 
   const [pollTimes, setTimes] = useState<Time[]>();
@@ -55,39 +64,6 @@ const New = (): JSX.Element => {
     status: false,
     msg: "",
   });
-
-  const [tourRun, setTourRun] = useState<boolean>(false);
-
-  const tourSteps: Step[] = [
-    {
-      disableBeacon: true,
-      target: "#formPlainTextTitle",
-      content: "Give your event the memorable title it deserves.",
-    },
-    {
-      target: "#formPlainTextDescription",
-      content:
-        "Add a description to let your invitees know what this is all about.",
-    },
-    {
-      target: "#formPlainTextLocation",
-      content:
-        "Add a location to let your invitees know where this is going to happen.",
-    },
-    {
-      target: ".rat-AvailableTimes_buttons",
-      content: "Use these buttons to schedule further in future if needed.",
-    },
-    {
-      target: ".rat-Slider_component",
-      content:
-        "Mark your availability by selecting time slots. These will be the times provided to your invitees in the poll. You see the times in your time zone and invitees see the times in theirs.",
-    },
-    {
-      target: ".create-poll-btn",
-      content: "Click here when you're all done!",
-    },
-  ];
 
   const handlePollDetailsChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -143,13 +119,14 @@ const New = (): JSX.Element => {
       return;
     }
 
-    if (!session) return;
+    if (!session || !session.username) return;
 
     const poll: Poll = {
       title: pollTitle,
       description: pollDescription,
       location: pollLocation,
-      username: session.user.username,
+      type: pollType,
+      username: session.username,
       times: pollTimes,
     };
 
@@ -161,7 +138,10 @@ const New = (): JSX.Element => {
       });
 
       if (createPollResponse.statusCode === 201) {
-        Router.push(`/poll/${createPollResponse.data._id}}`);
+        Router.push(
+          "/poll/[id]",
+          format({ pathname: `/poll/${createPollResponse.data._id}` })
+        );
       } else {
         setDisabled(false);
         setResponse({
@@ -178,19 +158,6 @@ const New = (): JSX.Element => {
     }
   };
 
-  const handleStartTour = (): void => {
-    setTourRun(true);
-  };
-
-  const handleJoyrideCallback = (data: CallBackProps): void => {
-    const { status, type } = data;
-    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
-
-    if (finishedStatuses.includes(status) || type === "beacon") {
-      setTourRun(false);
-    }
-  };
-
   if (!session) return <></>;
 
   return (
@@ -198,38 +165,23 @@ const New = (): JSX.Element => {
       <div className="kukkee-main-heading">
         <Container className="kukkee-container">New poll</Container>
       </div>
-      <Joyride
-        callback={handleJoyrideCallback}
-        steps={tourSteps}
-        run={tourRun}
-        disableScrolling
-        continuous
-        showProgress
-        spotlightClicks
-        styles={{
-          buttonClose: { visibility: "hidden" },
-          options: {
-            primaryColor: "#363636",
-          },
-        }}
-      />
       <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col-black">
-            <Jumbotron className="kukkee-jumbo">
-              <Form.Group as={Row} controlId="pollTitle">
+            <Jumbotron className="kukkee-new-poll-jumbo">
+              <Form.Group controlId="pollTitle">
                 <Form.Label className="kukkee-form-label text-sm">
                   Title
                 </Form.Label>
                 <Form.Control
                   className="kukkee-form-text title text-sm"
                   type="text"
-                  placeholder="What's it about?"
+                  placeholder="What's this about?"
                   name="pollTitle"
                   onChange={handlePollDetailsChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="pollDescription">
+              <Form.Group controlId="pollDescription">
                 <Form.Label className="kukkee-form-label text-sm">
                   Description (optional)
                 </Form.Label>
@@ -241,7 +193,7 @@ const New = (): JSX.Element => {
                   onChange={handlePollDetailsChange}
                 />
               </Form.Group>
-              <Form.Group as={Row} controlId="pollLocation">
+              <Form.Group controlId="pollLocation">
                 <Form.Label className="kukkee-form-label text-sm">
                   Location (optional)
                 </Form.Label>
@@ -252,6 +204,21 @@ const New = (): JSX.Element => {
                   placeholder="Where is this going to happen?"
                   onChange={handlePollDetailsChange}
                 />
+              </Form.Group>
+              <Form.Group controlId="pollType">
+                <Form.Label className="kukkee-form-label text-sm">
+                  Poll Type
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  className="poll-type"
+                  name="pollType"
+                  onChange={handlePollTypeChange}
+                  defaultValue="protected"
+                >
+                  <option value="protected">Protected</option>
+                  <option value="public">Public</option>
+                </Form.Control>
               </Form.Group>
             </Jumbotron>
           </Col>

@@ -72,7 +72,7 @@ export default NextAuth({
       token: JWT;
     }): Promise<Session> => {
       // eslint-disable-next-line no-param-reassign
-      session.username = token.username;
+      session.username = token.username as string;
       return session;
     },
   },
