@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Router from "next/router";
 import { GetServerSideProps } from "next";
 import { Col, Row, Container, Jumbotron } from "react-bootstrap";
-import { PeopleFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import { useSession, getSession } from "next-auth/react";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -10,11 +9,15 @@ import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/poll/PollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
+import PollTableAdmin from "../../src/components/poll/PollTableAdmin";
 import PollTableVotes from "../../src/components/poll/PollTableVotes";
+import DeletePoll from "../../src/components/poll/DeletePoll";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
+import SubmitFinalTime from "../../src/components/poll/SubmitFinalTime";
 import ResponseMessage from "../../src/components/ResponseMessage";
+import ShareInvite from "../../src/components/shareInvite/ShareInvite";
 import { isUserPresentInVotes } from "../../src/helpers";
-import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
+import { TimeFromDB, Vote, Time, PollFromDB } from "../../src/models/poll";
 
 dayjs.extend(localizedFormat);
 
@@ -42,10 +45,14 @@ const Poll = (props: {
   const sortedTimes: TimeFromDB[] = pollFromDB.times.sort(
     (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
   );
+
   const [newVote, setNewVote] = useState<Vote>({
     username: "",
     times: [],
   });
+
+  const [finalTime, setFinalTime] = useState<Time | undefined>();
+
   const [response, setResponse] = useState({
     status: false,
     msg: "",
@@ -62,13 +69,58 @@ const Poll = (props: {
 
   if (
     pollFromDB.open &&
-    ((pollFromDB.type === "protected" &&
-      loggedInUsername !== "" &&
+    ((loggedInUsername !== "" &&
       !isUserPresentInVotes(loggedInUsername, pollFromDB.votes)) ||
-      (pollFromDB.open && pollFromDB.type === "public"))
+      (pollFromDB.type === "public" && !loggedInUsername))
   )
     hideMarkTimesTable = false;
 
+  if (isPollCreator)
+    return (
+      <Layout>
+        <div className="kukkee-main-heading">
+          <Container className="kukkee-container">Finalise time</Container>
+        </div>
+        <Container className="kukkee-container">
+          <Row className="jumbo-row">
+            <Col className="jumbo-col-black">
+              <Jumbotron className="poll-info">
+                <Row>
+                  <Col sm>
+                    <DeletePoll pollID={pollID} setResponse={setResponse} />
+                    <PollInfo poll={pollFromDB} />
+                    <ShareInvite
+                      pollTitle={pollFromDB.title}
+                      pollID={pollID}
+                      finalTime={pollFromDB.finalTime}
+                    />
+                  </Col>
+                </Row>
+              </Jumbotron>
+            </Col>
+          </Row>
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
+                <PollTableAdmin
+                  pollFromDB={pollFromDB}
+                  sortedTimes={sortedTimes}
+                  setFinalTime={setFinalTime}
+                />
+              </Jumbotron>
+              {pollFromDB.open && (
+                <SubmitFinalTime
+                  finalTime={finalTime}
+                  pollID={pollID}
+                  setResponse={setResponse}
+                />
+              )}
+            </Col>
+          </Row>
+        </Container>
+        <ResponseMessage response={response} setResponse={setResponse} />
+      </Layout>
+    );
   return (
     <Layout>
       <div className="kukkee-main-heading">
@@ -111,21 +163,7 @@ const Poll = (props: {
             />
           </Col>
         </Row>
-        {pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <PeopleFill className="votes-table-icon" />
-              <span className="votes-table-title">Participants</span>
-              <Jumbotron className="poll-table-jumbo" id="all-votes-table-open">
-                <PollTableVotes
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                />
-              </Jumbotron>
-            </Col>
-          </Row>
-        )}
-        {!pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+        {pollFromDB.votes && pollFromDB.votes?.length > 0 && (
           <Row className="jumbo-row">
             <Col className="jumbo-col">
               <Jumbotron className="poll-table-jumbo" id="all-votes-table">
@@ -148,7 +186,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (context.params) {
     pollID = context.params.id;
   }
-  const getPollResponse = await getPoll(pollID);
+  const {
+    headers: { cookie },
+  } = context.req;
+
+  const session = await getSession(context);
+
+  const getPollResponse = await getPoll(pollID, cookie);
+
+  if (getPollResponse.statusCode === 401) {
+    return {
+      redirect: {
+        destination: `/auth/signin?from=/poll/${pollID}`,
+        permanent: false,
+      },
+    };
+  }
+
   const pollFromDB = getPollResponse.data;
 
   if (getPollResponse.statusCode === 404) {
@@ -161,7 +215,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { pollFromDB, pollID, session: await getSession(context) },
+    props: { pollFromDB, pollID, session },
   };
 };
 

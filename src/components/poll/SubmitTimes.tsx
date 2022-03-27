@@ -37,7 +37,7 @@ const SubmitTimes = (props: {
     ) {
       setResponse({
         status: true,
-        msg: "An invitee with the same name has voted before.",
+        msg: "You cannot vote more than once.",
       });
       return;
     }

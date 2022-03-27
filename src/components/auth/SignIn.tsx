@@ -60,6 +60,12 @@ const SignIn = (props: {
         if (result && !result.error) {
           if (router.query.from && typeof router.query?.from === "string") {
             router.push(router.query.from);
+          }
+          if (
+            router.query.callbackUrl &&
+            typeof router.query?.callbackUrl === "string"
+          ) {
+            router.push(router.query.callbackUrl);
           } else {
             router.replace("/");
           }

@@ -2,8 +2,8 @@ import { Dispatch } from "react";
 import { Table } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkTimesPublic from "./MarkTimesPublic";
-import MarkTimesProtected from "./MarkTimesProtected";
+import MarkTimesDefault from "./MarkTimesDefault";
+import MarkTimesLoggedIn from "./MarkTimesLoggedIn";
 import PollDateTimeWithCheck from "./PollDateTimeWithCheck";
 import { Time, PollFromDB, Vote } from "../../models/poll";
 import { slotTimeClassName } from "../../helpers";
@@ -50,11 +50,21 @@ const PollTableVoter = (props: {
             </tr>
           </thead>
           <tbody>
-            <MarkTimesPublic
-              times={sortedTimes}
-              newVote={newVote}
-              setNewVote={setNewVote}
-            />
+            {!loggedInUsername && (
+              <MarkTimesDefault
+                times={sortedTimes}
+                newVote={newVote}
+                setNewVote={setNewVote}
+              />
+            )}
+            {loggedInUsername && (
+              <MarkTimesLoggedIn
+                username={loggedInUsername}
+                times={sortedTimes}
+                newVote={newVote}
+                setNewVote={setNewVote}
+              />
+            )}
           </tbody>
         </Table>
       </div>
@@ -85,7 +95,7 @@ const PollTableVoter = (props: {
             </tr>
           </thead>
           <tbody>
-            <MarkTimesProtected
+            <MarkTimesLoggedIn
               username={loggedInUsername}
               times={sortedTimes}
               newVote={newVote}

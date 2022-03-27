@@ -2,17 +2,13 @@ import { Form } from "react-bootstrap";
 import { Dispatch, useState } from "react";
 import { Time, Vote } from "../../models/poll";
 
-const MarkTimesPublic = (props: {
+const MarkTimesLoggedIn = (props: {
+  username: string;
   times: Time[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { times, newVote, setNewVote } = props;
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setNewVote({ username: value, times: newVote.times });
-  };
+  const { username, times, newVote, setNewVote } = props;
 
   const [ifNeedBeHidden, setIfNeedBeHidden] = useState<Record<number, boolean>>(
     {}
@@ -28,11 +24,11 @@ const MarkTimesPublic = (props: {
       setIfNeedBeHidden((prev) => ({ ...prev, [time.start]: true }));
       time.ifNeedBe = ifNeedBe[time.start];
       newTimes.push(time);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ username, times: newTimes });
     } else {
       setIfNeedBeHidden((prev) => ({ ...prev, [time.start]: false }));
       newTimes = newTimes.filter((item) => item.start !== time.start);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ username, times: newTimes });
     }
   };
 
@@ -47,25 +43,24 @@ const MarkTimesPublic = (props: {
       newTimes = newTimes.filter((item) => item.start !== time.start);
       time.ifNeedBe = true;
       newTimes.push(time);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ username, times: newTimes });
     } else {
       setIfNeedBe((prev) => ({ ...prev, [time.start]: false }));
       newTimes = newTimes.filter((item) => item.start !== time.start);
       time.ifNeedBe = false;
       newTimes.push(time);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ username, times: newTimes });
     }
   };
-
   return (
     <tr>
       <td className="poll-table-choose-textbox">
         <Form.Control
-          className="mark-time-name"
+          className="mark-time-name protected"
           type="text"
           placeholder="Your name"
-          required
-          onChange={handleNameChange}
+          value={username}
+          disabled
         />
       </td>
       {times.map((time) => (
@@ -88,4 +83,4 @@ const MarkTimesPublic = (props: {
   );
 };
 
-export default MarkTimesPublic;
+export default MarkTimesLoggedIn;

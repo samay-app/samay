@@ -2,17 +2,15 @@ import { Trash } from "react-bootstrap-icons";
 import { Dispatch } from "react";
 import Router from "next/router";
 import { deletePoll } from "../../utils/api/server";
-import { encrypt } from "../../helpers";
 
 const DeletePoll = (props: {
   pollID: string;
-  secret: string;
   setResponse: Dispatch<{
     status: boolean;
     msg: string;
   }>;
 }): JSX.Element => {
-  const { pollID, secret, setResponse } = props;
+  const { pollID, setResponse } = props;
 
   const handleDelete = async (
     e: React.MouseEvent<HTMLInputElement>
@@ -22,7 +20,6 @@ const DeletePoll = (props: {
       let deletePollResponse;
       const deleteArgs = {
         pollID,
-        secret: encrypt(secret),
       };
       deletePollResponse = await deletePoll(deleteArgs);
       if (deletePollResponse && deletePollResponse.statusCode === 200) {

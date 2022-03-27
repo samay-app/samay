@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { Time, VoteFromDB } from "../models/poll";
+import { Time, Vote, VoteFromDB } from "../models/poll";
 
 export const isTimePresentInPollTimes = (
   timeToSearch: Time,
@@ -49,7 +49,7 @@ export const slotTimeClassName = (
 
 export const isUserPresentInVotes = (
   userToSearch: string,
-  votes: VoteFromDB[] | undefined
+  votes: Vote[] | VoteFromDB[] | undefined
 ): boolean => {
   if (!votes) return false;
   return votes.some((vote) => vote.username === userToSearch);
