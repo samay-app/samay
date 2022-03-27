@@ -953,7 +953,7 @@ a {
   outline: 0.14rem solid #363636 !important;
 }
 
-.mark-time-name.protected {
+.mark-time-name.logged-in {
   box-shadow: none !important;
   outline: none !important;
 }

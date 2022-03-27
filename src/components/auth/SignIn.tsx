@@ -113,59 +113,62 @@ const SignIn = (props: {
       <Container className="kukkee-container">
         <Row className="jumbo-row">
           <Col className="jumbo-col">
-            <Jumbotron className="kukkee-jumbo">
-              <input
-                name="csrfToken"
-                onChange={handleChange}
-                type="hidden"
-                defaultValue={csrfToken}
-                hidden
-              />
-              <Form.Group as={Row} controlId="username">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Username
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text title text-sm"
-                  type="text"
-                  placeholder="Username"
-                  name="username"
+            <Form>
+              <Jumbotron className="kukkee-jumbo">
+                <input
+                  name="csrfToken"
                   onChange={handleChange}
+                  type="hidden"
+                  defaultValue={csrfToken}
+                  hidden
                 />
-              </Form.Group>
-              <Form.Group as={Row} controlId="password">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Password
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text location text-sm"
-                  type="password"
-                  placeholder="•••••••••••••"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Jumbotron>
-            <Button
-              className="kukkee-primary-button auth-button"
-              onClick={handleSubmit}
-              disabled={disabled}
-            >
-              {!disabled ? (
-                `Sign in`
-              ) : (
-                <>
-                  <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                    className="kukkee-button-spinner"
+                <Form.Group as={Row} controlId="username">
+                  <Form.Label className="kukkee-form-label text-sm">
+                    Username
+                  </Form.Label>
+                  <Form.Control
+                    className="kukkee-form-text title text-sm"
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    onChange={handleChange}
                   />
-                </>
-              )}
-            </Button>
+                </Form.Group>
+                <Form.Group as={Row} controlId="password">
+                  <Form.Label className="kukkee-form-label text-sm">
+                    Password
+                  </Form.Label>
+                  <Form.Control
+                    className="kukkee-form-text location text-sm"
+                    type="password"
+                    placeholder="•••••••••••••"
+                    name="password"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Jumbotron>
+              <Button
+                className="kukkee-primary-button auth-button"
+                onClick={handleSubmit}
+                disabled={disabled}
+                type="submit"
+              >
+                {!disabled ? (
+                  `Sign in`
+                ) : (
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="kukkee-button-spinner"
+                    />
+                  </>
+                )}
+              </Button>
+            </Form>
             <ResponseMessage response={response} setResponse={setResponse} />
           </Col>
         </Row>
