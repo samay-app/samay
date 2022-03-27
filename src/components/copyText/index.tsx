@@ -1,11 +1,11 @@
 import { Form } from "react-bootstrap";
 import { Time } from "../../models/poll";
-import CopyLink from "./CopyLink";
+import CopyTextMain from "./CopyTextMain";
 
 const NEXT_PUBLIC_BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-const ShareInvite = (props: {
+const CopyText = (props: {
   pollID: string;
   pollTitle: string;
   finalTime: Time | undefined;
@@ -20,7 +20,7 @@ const ShareInvite = (props: {
           e.preventDefault();
         }}
       >
-        <CopyLink
+        <CopyTextMain
           pollURL={pollURL}
           pollTitle={pollTitle}
           finalTime={finalTime}
@@ -29,4 +29,4 @@ const ShareInvite = (props: {
     </div>
   );
 };
-export default ShareInvite;
+export default CopyText;

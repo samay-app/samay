@@ -14,7 +14,7 @@ import { Time } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
-const CopyLink = (props: {
+const CopyTextMain = (props: {
   pollURL: string;
   pollTitle: string;
   finalTime: Time | undefined;
@@ -77,4 +77,4 @@ const CopyLink = (props: {
   );
 };
 
-export default CopyLink;
+export default CopyTextMain;
