@@ -12,8 +12,11 @@ export default function SignInPage(props: { csrfToken: string }): JSX.Element {
   return (
     <>
       <Head>
-        <title>Sign In</title>
+        <title>Sign In | Kukkee</title>
+        <link rel="shortcut icon" href="/Kukkee-favicon.svg" />
         <meta name="description" content="Kukkee" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
       <SignIn router={router} csrfToken={csrfToken} />

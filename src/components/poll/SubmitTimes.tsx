@@ -67,13 +67,13 @@ const SubmitTimes = (props: {
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {
         setResponse({
           status: true,
-          msg: "Sorry, poll has been deleted.",
+          msg: "Poll has been deleted.",
         });
         Router.push("/");
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 400) {
         setResponse({
           status: true,
-          msg: "Sorry, poll has been closed.",
+          msg: "Poll has been closed.",
         });
         Router.reload();
       } else {

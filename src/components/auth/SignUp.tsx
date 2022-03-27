@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Button, Form, Row, Col, Container, Jumbotron } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Row,
+  Col,
+  Container,
+  Jumbotron,
+  Spinner,
+} from "react-bootstrap";
 import Router from "next/router";
 import { signIn } from "next-auth/react";
 import ResponseMessage from "../ResponseMessage";
@@ -18,6 +26,8 @@ const SignUp = (): JSX.Element => {
     status: false,
     msg: "",
   });
+
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const { username, email, password } = userCredentials;
 
@@ -63,6 +73,7 @@ const SignUp = (): JSX.Element => {
       return;
     }
 
+    setDisabled(true);
     try {
       const signupUserResponse = await signupUser({
         username,
@@ -70,21 +81,23 @@ const SignUp = (): JSX.Element => {
         password,
       });
 
-      setUserCredentials({
-        username: "",
-        email: "",
-        password: "",
-      });
-
       if (signupUserResponse.statusCode === 201) {
         await signIn("credentials", {
           redirect: false,
-          email,
+          username,
           password,
         });
         Router.push("/");
+      } else if (signupUserResponse.statusCode === 422) {
+        setDisabled(true);
+        setResponse({
+          status: true,
+          msg: signupUserResponse.data.message,
+        });
+        return;
       }
     } catch (error) {
+      setDisabled(true);
       setResponse({
         status: true,
         msg: "Please try again later.",
@@ -150,8 +163,22 @@ const SignUp = (): JSX.Element => {
             <Button
               className="kukkee-primary-button auth-button"
               onClick={handleSubmit}
+              disabled={disabled}
             >
-              Sign up
+              {!disabled ? (
+                `Sign up`
+              ) : (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="kukkee-button-spinner"
+                  />
+                </>
+              )}
             </Button>
             <ResponseMessage response={response} setResponse={setResponse} />
           </Col>

@@ -32,7 +32,7 @@ export default NextAuth({
           if (!credentials) throw new Error("No user found");
 
           const user: UserDoc | null = await KukkeeUser.findOne({
-            email: credentials.email,
+            username: credentials.username,
           }).lean();
 
           if (!user) throw new Error("No user found");

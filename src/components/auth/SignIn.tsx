@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { NextRouter } from "next/router";
-import { Button, Form, Row, Col, Container, Jumbotron } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Row,
+  Col,
+  Container,
+  Jumbotron,
+  Spinner,
+} from "react-bootstrap";
 import { signIn, useSession, SignInResponse } from "next-auth/react";
 import ResponseMessage from "../ResponseMessage";
 import Layout from "../Layout";
@@ -12,7 +20,7 @@ const SignIn = (props: {
   const { router, csrfToken } = props;
 
   const [userCredentials, setUserCredentials] = useState({
-    email: "",
+    username: "",
     password: "",
     csrfToken: "",
   });
@@ -22,19 +30,21 @@ const SignIn = (props: {
     msg: "",
   });
 
+  const [disabled, setDisabled] = useState<boolean>(false);
+
   const { data: session } = useSession();
 
-  const { email, password } = userCredentials;
+  const { username, password } = userCredentials;
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
 
-    if (!email) {
+    if (!username) {
       setResponse({
         status: true,
-        msg: "Please enter your email address.",
+        msg: "Please enter your username.",
       });
       return;
     }
@@ -47,12 +57,13 @@ const SignIn = (props: {
     }
 
     if (!session) {
+      setDisabled(true);
       try {
         const result: SignInResponse | undefined = await signIn<"credentials">(
           "credentials",
           {
             redirect: false,
-            email,
+            username,
             password,
           }
         );
@@ -60,8 +71,7 @@ const SignIn = (props: {
         if (result && !result.error) {
           if (router.query.from && typeof router.query?.from === "string") {
             router.push(router.query.from);
-          }
-          if (
+          } else if (
             router.query.callbackUrl &&
             typeof router.query?.callbackUrl === "string"
           ) {
@@ -70,12 +80,15 @@ const SignIn = (props: {
             router.replace("/");
           }
         } else {
+          setDisabled(false);
           setResponse({
             status: true,
-            msg: "Please check your email and password.",
+            msg: "Please check your username and password.",
           });
+          return;
         }
       } catch (error) {
+        setDisabled(false);
         setResponse({
           status: true,
           msg: "Please try again later.",
@@ -108,15 +121,15 @@ const SignIn = (props: {
                 defaultValue={csrfToken}
                 hidden
               />
-              <Form.Group as={Row} controlId="email">
+              <Form.Group as={Row} controlId="username">
                 <Form.Label className="kukkee-form-label text-sm">
-                  Email address
+                  Username
                 </Form.Label>
                 <Form.Control
                   className="kukkee-form-text title text-sm"
                   type="text"
-                  placeholder="Email address"
-                  name="email"
+                  placeholder="Username"
+                  name="username"
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -136,8 +149,22 @@ const SignIn = (props: {
             <Button
               className="kukkee-primary-button auth-button"
               onClick={handleSubmit}
+              disabled={disabled}
             >
-              Sign in
+              {!disabled ? (
+                `Sign in`
+              ) : (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="kukkee-button-spinner"
+                  />
+                </>
+              )}
             </Button>
             <ResponseMessage response={response} setResponse={setResponse} />
           </Col>

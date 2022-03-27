@@ -25,7 +25,7 @@ const DeletePoll = (props: {
       if (deletePollResponse && deletePollResponse.statusCode === 200) {
         setResponse({
           status: true,
-          msg: "Your poll been successfully deleted.",
+          msg: "Poll been successfully deleted.",
         });
         Router.push("/");
       } else {

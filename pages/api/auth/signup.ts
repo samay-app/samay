@@ -16,12 +16,28 @@ export default async (
 
         const newUserData = JSON.parse(body);
 
-        const existingUser: UserDoc | null = await KukkeeUser.findOne({
-          email: newUserData.email,
-        }).lean();
+        const existingUserWithSameEmail: UserDoc | null = await KukkeeUser.findOne(
+          {
+            email: newUserData.email,
+          }
+        ).lean();
+        if (existingUserWithSameEmail) {
+          res.status(422).json({
+            message:
+              "You already have an account assoicated with this email address.",
+          });
+          return;
+        }
 
-        if (existingUser) {
-          res.status(422).json({ message: "User is already registered." });
+        const existingUserWithSameUsername: UserDoc | null = await KukkeeUser.findOne(
+          {
+            username: newUserData.username,
+          }
+        ).lean();
+        if (existingUserWithSameUsername) {
+          res.status(422).json({
+            message: "Username taken. Please try another one.",
+          });
           return;
         }
 

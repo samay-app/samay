@@ -1,15 +1,8 @@
-import Head from "next/head";
 import NavBar from "./Navbar";
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
     <>
-      <Head>
-        <title>Kukkee</title>
-        <link rel="shortcut icon" href="/Kukkee-favicon.svg" />
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
       <div className="flex-wrapper">
         <NavBar />
         <main>{children}</main>
