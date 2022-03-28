@@ -330,7 +330,7 @@ a {
   font-size: 1rem !important;
   font-family: "Inter", sans-serif;
   border: none !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   padding: 0.8rem 1.5rem 0.8rem 1.5rem !important;
   box-shadow: none !important;
   transition: none !important;
@@ -369,7 +369,7 @@ a {
   padding: 1.5rem 2.5rem 0.5rem 2.5rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
 }
 
 .kukkee-new-poll-jumbo {
@@ -379,7 +379,7 @@ a {
   padding: 1.2rem 1.5rem 0.5rem 1.5rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
 }
 
 .poll-timeslot-jumbo {
@@ -389,7 +389,7 @@ a {
   padding-left: 0rem !important;
   padding-right: 1rem !important;
   padding-bottom: 1.5rem !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   margin-top: 1rem !important;
   border: 0.1rem solid #e0e1e0 !important;
 }
@@ -406,19 +406,19 @@ a {
 
   .poll-timeslot-jumbo {
     padding: 1rem !important;
-    border-radius: 0.1rem !important;
+    border-radius: 0.3rem !important;
     margin-top: 0 !important;
   }
 
   .kukkee-jumbo {
     padding: 1rem 2rem 0.5rem 2rem !important;
-    border-radius: 0.1rem !important;
+    border-radius: 0.3rem !important;
     margin-top: 0 !important;
   }
 
   .kukkee-new-poll-jumbo {
     padding: 1rem 1rem 0.5rem 1rem !important;
-    border-radius: 0.1rem !important;
+    border-radius: 0.3rem !important;
     margin-top: 0 !important;
   }
 
@@ -434,7 +434,7 @@ a {
   color: #000000 !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem !important;
   font-weight: 400 !important;
@@ -481,7 +481,7 @@ a {
   border-left: none !important;
   border-right: none !important;
   border-bottom: 0.1rem solid #6c757d !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   font-size: 1rem !important;
   width: 25% !important;
 }
@@ -683,13 +683,14 @@ a {
 }
 
 .poll-info {
+  font-family: "Manrope", sans-serif;
   background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
   color: #6f6f6f;
   padding: 2.5rem 2rem 2rem 2rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
 }
 
 .poll-info-location {
@@ -703,11 +704,12 @@ a {
 }
 
 .poll-table-jumbo {
+  font-family: "Manrope", sans-serif;
   background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
   color: #363636;
   padding: 1rem !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   margin-bottom: 0rem !important;
   margin-top: 1rem !important;
 }
@@ -773,7 +775,7 @@ a {
   .poll-info {
     margin-top: 0 !important;
     padding: 1.5rem 1rem 1rem 1rem !important;
-    border-radius: 0.1rem !important;
+    border-radius: 0.3rem !important;
   }
 
   .poll-info-content {
@@ -820,7 +822,7 @@ a {
   }
 
   .poll-table-jumbo {
-    border-radius: 0.1rem !important;
+    border-radius: 0.3rem !important;
     margin-top: 0 !important;
   }
 
@@ -935,7 +937,7 @@ a {
   color: #000000 !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem !important;
   font-weight: 400 !important;
@@ -1183,8 +1185,8 @@ a {
   background-color: #fafafa !important;
   color: #6f6f6f !important;
   border: 0.05rem solid #616161 !important;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0.3rem !important;
+  border-bottom-left-radius: 0.3rem !important;
   font-size: 0.8rem !important;
   max-width: 24rem !important;
   text-overflow: ellipsis;
@@ -1194,7 +1196,7 @@ a {
   background-color: #fafafa !important;
   color: #6f6f6f !important;
   border: 0.1rem solid #6c757d !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   font-size: 0.8rem !important;
 }
 
@@ -1210,7 +1212,8 @@ a {
   font-size: 0.8rem !important;
   border: 0.05rem solid #616161 !important;
   color: #fefffe !important;
-  border-radius: 0.1rem !important;
+  border-top-right-radius: 0.3rem !important;
+  border-bottom-right-radius: 0.3rem !important;
   background-color: #363636 !important;
   transition: none !important;
 }
@@ -1351,7 +1354,7 @@ a {
   border-bottom: none !important;
   border-left: none !important;
   border-right: none !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
 }
 
 .kukkee-card-last {
@@ -1361,7 +1364,7 @@ a {
   border-bottom: none !important;
   border-left: none !important;
   border-right: none !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
 }
 
 .features .title {
@@ -1401,18 +1404,12 @@ a {
   border-bottom: #eaeaea solid 0.1rem;
 }
 
-.auth-button {
-  margin-top: 2rem;
-  float: right;
-  margin-bottom: 2rem !important;
-}
-
 .poll-type {
   background-color: #fefffe !important;
   color: #000000 !important;
   border: none !important;
   outline: 0.05rem solid #e0e1e0 !important;
-  border-radius: 0.1rem !important;
+  border-radius: 0.3rem !important;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem !important;
   width: 8rem !important;
@@ -1422,12 +1419,6 @@ a {
   .kukkee-main-heading {
     font-size: 1.5rem;
     padding-left: 1rem;
-  }
-
-  .auth-button {
-    float: none !important;
-    width: 90% !important;
-    margin-left: 1.25rem !important;
   }
 }
 
@@ -1478,4 +1469,137 @@ a {
 .mark-time-box-check.if-need-be {
   color: #ffbb00;
   pointer-events: none;
+}
+
+.auth-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  font-family: "Inter", sans-serif !important;
+  width: 85% !important;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-jumbo {
+  background-color: #fefffe !important;
+  border: 0.1rem solid #e0e1e0 !important;
+  color: #ffffff;
+  padding: 1rem 2rem 0.5rem 2rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+  border-radius: 0.3rem !important;
+}
+
+.auth-button {
+  margin-top: 1rem;
+  background-color: #000000 !important;
+  color: #fafafa !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  border: none !important;
+  border-radius: 0.3rem !important;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem !important;
+  box-shadow: none !important;
+  transition: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.auth-button:hover {
+  box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.auth-button[disabled] {
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+}
+
+.auth-logo {
+  margin: 0 auto !important;
+  width: 100%;
+  font-size: 1.7rem !important;
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 700;
+}
+
+.auth-logo img {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.4em;
+  margin-top: -0.3rem;
+}
+
+.kukkee-auth-secondary-jumbo {
+  background-color: #fafafa !important;
+  border: 0.1rem solid #e0e1e0 !important;
+  color: #363636;
+  font-size: 0.9rem !important;
+  padding-top: 0.8rem !important;
+  padding-bottom: 0.8rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+  text-align: center;
+  border-radius: 0.3rem !important;
+}
+
+.kukkee-auth-secondary-jumbo a {
+  color: #363636 !important;
+  cursor: pointer;
+}
+
+.kukkee-container.dashboard {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-top: 3rem !important;
+}
+
+.dashboard-polls-heading {
+  font-size: 1.2rem !important;
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 700;
+}
+
+.dashboard-polls-heading a {
+  color: #363636 !important;
+}
+
+.polls-dashboard-col {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.poll-card {
+  font-family: "Manrope", sans-serif;
+  border-radius: 0.7rem !important;
+  margin-top: 1.5rem !important;
+  background-color: #fffefe !important;
+  border: 0.1rem solid #e0e1e0 !important;
+  color: #363636;
+}
+
+.poll-card:hover {
+  box-shadow: 0.2rem 0.2rem 0.2rem #e0e1e06e;
+}
+
+.poll-card-a {
+  text-decoration: none !important;
+}
+
+@media (min-width: 576px) {
+  .auth-container {
+    width: 20rem !important;
+  }
+
+  .poll-card {
+    width: 30rem !important;
+  }
+
+  .polls-dashboard-col {
+    padding-left: unset !important;
+    padding-right: unset !important;
+    padding-bottom: unset !important;
+  }
 }

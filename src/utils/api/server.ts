@@ -67,10 +67,14 @@ const markFinalTime = (voteArgs: {
   return httpMethod(endpoint, requestOptions);
 };
 
-const getPolls = (): Promise<HttpResponse> => {
+const getPolls = (cookie = ""): Promise<HttpResponse> => {
   const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/admin/poll/getAll`;
   const requestOptions: RequestInit = {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      cookie,
+    },
   };
   return httpMethod(endpoint, requestOptions);
 };
