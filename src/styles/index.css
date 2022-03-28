@@ -1430,3 +1430,52 @@ a {
     margin-left: 1.25rem !important;
   }
 }
+
+.mark-time-cell {
+  border-top: 0 !important;
+  text-align: center;
+  width: 7rem !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+}
+
+.mark-time-box {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+  border-radius: 0.2rem;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.mark-time-box-check {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.mark-time-box.no {
+  border: 0.1rem solid #b6b6b6 !important;
+}
+
+.mark-time-box.yes {
+  border: 0.1rem solid #2cdf0c !important;
+  background-color: #2cdf0c1f;
+}
+
+.mark-time-box-check.yes {
+  color: #2cdf0c;
+  pointer-events: none;
+}
+
+.mark-time-box.if-need-be {
+  border: 0.1rem solid #ffbb00 !important;
+  background-color: #ffbb001f;
+}
+
+.mark-time-box-check.if-need-be {
+  color: #ffbb00;
+  pointer-events: none;
+}

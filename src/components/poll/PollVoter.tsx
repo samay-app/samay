@@ -9,7 +9,7 @@ import PollTableVoter from "./PollTableVoter";
 import PollTableVotes from "./PollTableVotes";
 import SubmitTimes from "./SubmitTimes";
 import ResponseMessage from "../ResponseMessage";
-import { Vote, Time, PollFromDB } from "../../models/poll";
+import { Vote, TimeFromDB, PollFromDB } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
@@ -18,7 +18,7 @@ const PollVoter = (props: {
   pollID: string;
   hideMarkTimesTable: boolean;
   loggedInUsername: string;
-  sortedTimes: Time[];
+  sortedTimes: TimeFromDB[];
 }): JSX.Element => {
   const {
     pollFromDB,
@@ -69,7 +69,6 @@ const PollVoter = (props: {
             <Col className="jumbo-col">
               <Jumbotron className="poll-table-jumbo">
                 <PollTableVoter
-                  pollFromDB={pollFromDB}
                   loggedInUsername={loggedInUsername}
                   sortedTimes={sortedTimes}
                   newVote={newVote}

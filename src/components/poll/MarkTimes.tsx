@@ -1,62 +1,54 @@
 import { Form } from "react-bootstrap";
 import { Dispatch, useState } from "react";
-import { Time, Vote } from "../../models/poll";
+import { Check2, Check2Circle } from "react-bootstrap-icons";
+import { TimeFromDB, Vote } from "../../models/poll";
 
 const MarkTimes = (props: {
   username: string;
-  times: Time[];
+  times: TimeFromDB[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
   const { username, times, newVote, setNewVote } = props;
 
-  const [ifNeedBeHidden, setIfNeedBeHidden] = useState<Record<number, boolean>>(
-    {}
+  const [timeBoxStatus, setTimeBoxStatus] = useState<Record<number, number>>(
+    times.reduce((obj, cur) => ({ ...obj, [cur.start]: 0 }), {})
   );
 
-  const [ifNeedBe, setIfNeedBe] = useState<Record<number, boolean>>({});
+  const statusValues = ["no", "yes", "if-need-be"];
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setNewVote({ username: value, times: newVote.times });
   };
 
-  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { dataset, checked } = e.target;
-    const time: Time = dataset.value ? JSON.parse(dataset.value) : {};
+  const handleMarkTimeBoxClick = (e: React.MouseEvent<HTMLElement>): void => {
+    if (e.target !== e.currentTarget) return;
+    const time = JSON.parse((e.target as HTMLElement).id);
+
+    const newTimeBoxStatus = (timeBoxStatus[time.start] + 1) % 3;
+    setTimeBoxStatus((prev) => ({ ...prev, [time.start]: newTimeBoxStatus }));
+
     let newTimes = newVote.times;
-    if (checked) {
-      setIfNeedBeHidden((prev) => ({ ...prev, [time.start]: true }));
-      time.ifNeedBe = ifNeedBe[time.start];
+
+    if (newTimeBoxStatus === 1) {
+      // yes
+      newTimes = newTimes.filter((item) => item.start !== time.start);
       newTimes.push(time);
       setNewVote({ username: newVote.username, times: newTimes });
-    } else {
-      setIfNeedBeHidden((prev) => ({ ...prev, [time.start]: false }));
-      newTimes = newTimes.filter((item) => item.start !== time.start);
-      setNewVote({ username: newVote.username, times: newTimes });
-    }
-  };
-
-  const handleIfNeedBeChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const { dataset, checked } = e.target;
-    let time: Time = dataset.value ? JSON.parse(dataset.value) : {};
-    let newTimes = newVote.times;
-    if (checked) {
-      setIfNeedBe((prev) => ({ ...prev, [time.start]: true }));
+    } else if (newTimeBoxStatus === 2) {
+      // if-need-be
       newTimes = newTimes.filter((item) => item.start !== time.start);
       time.ifNeedBe = true;
       newTimes.push(time);
       setNewVote({ username: newVote.username, times: newTimes });
     } else {
-      setIfNeedBe((prev) => ({ ...prev, [time.start]: false }));
+      // no
       newTimes = newTimes.filter((item) => item.start !== time.start);
-      time.ifNeedBe = false;
-      newTimes.push(time);
       setNewVote({ username: newVote.username, times: newTimes });
     }
   };
+
   return (
     <tr>
       <td className="poll-table-choose-textbox">
@@ -78,19 +70,22 @@ const MarkTimes = (props: {
         )}
       </td>
       {times.map((time) => (
-        <td key={time.start} className="slot-checkbox-cell">
-          <Form.Check
-            data-value={JSON.stringify(time)}
-            className="slot-checkbox"
-            onChange={handleTimeChange}
-          />
-
-          <Form.Check
-            data-value={JSON.stringify(time)}
-            className="if-need-be-checkbox"
-            hidden={!ifNeedBeHidden[time.start]}
-            onChange={handleIfNeedBeChange}
-          />
+        <td key={time.start} className="mark-time-cell">
+          <div
+            className={`mark-time-box ${
+              statusValues[timeBoxStatus[time.start]]
+            }`}
+            id={JSON.stringify(time)}
+            aria-hidden="true"
+            onClick={handleMarkTimeBoxClick}
+          >
+            {timeBoxStatus[time.start] === 1 && (
+              <Check2 className="mark-time-box-check yes" />
+            )}
+            {timeBoxStatus[time.start] === 2 && (
+              <Check2Circle className="mark-time-box-check if-need-be" />
+            )}
+          </div>
         </td>
       ))}
     </tr>

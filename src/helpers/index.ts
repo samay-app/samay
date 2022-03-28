@@ -28,25 +28,6 @@ export const isTimeIfNeedBe = (time: Time, times: Time[]): boolean => {
   return false;
 };
 
-export const slotTimeClassName = (
-  time: Time,
-  voteTimes: Time[],
-  finalTime?: Time
-): string => {
-  if (time.start === finalTime?.start && time.end === finalTime?.end)
-    return "slot-time slot-final-time";
-
-  if (isTimePresentInPollTimes(time, voteTimes)) {
-    if (
-      voteTimes.find((currentTime) => currentTime.start === time.start)
-        ?.ifNeedBe
-    )
-      return "slot-time slot-if-need-be-time";
-    return "slot-time slot-normal-time";
-  }
-  return "slot-time";
-};
-
 export const isUserPresentInVotes = (
   userToSearch: string,
   votes: Vote[] | VoteFromDB[] | undefined
