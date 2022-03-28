@@ -1549,6 +1549,10 @@ a {
   cursor: pointer;
 }
 
+.kukkee-auth-secondary-jumbo a:hover {
+  text-decoration: underline !important;
+}
+
 .kukkee-container.dashboard {
   padding-left: 0 !important;
   padding-right: 0 !important;
