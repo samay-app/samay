@@ -52,14 +52,7 @@ const MarkTimes = (props: {
   return (
     <tr>
       <td className="poll-table-choose-textbox">
-        {username && (
-          <Form.Control
-            className="mark-time-name logged-in"
-            type="text"
-            value={username}
-            disabled
-          />
-        )}
+        {username && <span>{username}</span>}
         {!username && (
           <Form.Control
             className="mark-time-name"
