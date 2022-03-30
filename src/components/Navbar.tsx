@@ -33,7 +33,7 @@ const NavBar = (): JSX.Element => {
             {session && (
               <>
                 <Link href="/new">
-                  <a className="kukkee-nav-link nav-link">+ New poll</a>
+                  <a className="kukkee-nav-link nav-link new">+ New poll</a>
                 </Link>
                 <Link href="/">
                   <a className="kukkee-nav-link nav-link">Dashboard</a>

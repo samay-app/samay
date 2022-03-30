@@ -6,7 +6,7 @@ main {
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #fafafa;
+  background-color: #fafafd;
 }
 
 .text-sm {
@@ -45,7 +45,7 @@ main {
 }
 
 .kukkee-brand {
-  color: #000000 !important;
+  color: #172b4d !important;
   font-family: "Manrope", sans-serif;
   font-weight: 700;
 }
@@ -57,19 +57,34 @@ main {
 }
 
 .kukkee-nav-link {
-  color: #6f6f6f !important;
+  color: #172b4d !important;
   font-size: 1rem;
   font-weight: 600;
   font-family: "Manrope", sans-serif;
-  margin-left: 2rem;
-  padding-right: 0 !important;
-  padding-left: 0 !important;
+  margin-left: 1rem;
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  border-radius: 0.3rem !important;
   margin-right: 0 !important;
   cursor: pointer;
 }
 
 .kukkee-nav-link:hover {
-  color: #363636 !important;
+  background-color: #deebff;
+  color: #0052cc !important;
+}
+
+.kukkee-nav-link.new {
+  background-color: #0052cc;
+  color: #fffefe !important;
+  padding-right: 0.7rem !important;
+  padding-left: 0.7rem !important;
+}
+
+.kukkee-nav-link.new:hover {
+  background-color: #003f9d !important;
 }
 
 .kukkee-container {
@@ -113,7 +128,7 @@ main {
 }
 
 .footer-logo {
-  color: #000000 !important;
+  color: #172b4d !important;
   font-family: "Manrope", sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
@@ -148,7 +163,7 @@ main {
 }
 
 .footer-col ul li a:hover {
-  color: #363636;
+  color: #172b4d;
 }
 
 .footer-left p {
@@ -225,7 +240,7 @@ a {
 .hero-title {
   font-weight: 700;
   font-size: 2.5rem;
-  color: #363636;
+  color: #172b4d;
   font-family: "Manrope", sans-serif;
   display: block;
   line-height: 3rem;
@@ -247,7 +262,7 @@ a {
   font-weight: 600;
   font-size: 1.3rem;
   font-family: "Manrope", sans-serif;
-  color: #363636;
+  color: #172b4d;
   display: block;
   margin-top: 2.5rem;
   text-align: center;
@@ -324,7 +339,7 @@ a {
 }
 
 .kukkee-primary-button {
-  background-color: #000000 !important;
+  background-color: #0052cc !important;
   color: #fafafa !important;
   font-weight: 500 !important;
   font-size: 1rem !important;
@@ -384,7 +399,7 @@ a {
 
 .poll-timeslot-jumbo {
   background-color: #fefffe !important;
-  color: #363636;
+  color: #172b4d;
   padding-top: 0.5rem !important;
   padding-left: 0rem !important;
   padding-right: 1rem !important;
@@ -430,8 +445,8 @@ a {
 }
 
 .kukkee-form-text {
-  background-color: #fefffe !important;
-  color: #000000 !important;
+  background-color: #fafafd !important;
+  color: #172b4d !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
   border-radius: 0.3rem !important;
@@ -449,7 +464,8 @@ a {
 
 .kukkee-form-text:focus {
   border: none !important;
-  outline: 0.14rem solid #363636 !important;
+  background-color: #fefffe !important;
+  outline: 0.14rem solid #0052cc !important;
 }
 
 .kukkee-form-text.title {
@@ -466,7 +482,7 @@ a {
 
 .kukkee-form-label {
   font-weight: 400 !important;
-  color: #4b4b4b !important;
+  color: #172b4d !important;
 }
 
 .form-control:focus {
@@ -475,7 +491,7 @@ a {
 }
 
 .kukkee-form-option {
-  background-color: #363636 !important;
+  background-color: #172b4d !important;
   color: #6c757d !important;
   border-top: none !important;
   border-left: none !important;
@@ -494,7 +510,7 @@ a {
 .tour-start-icon {
   width: 1.8rem;
   height: 1.8rem;
-  color: #363636;
+  color: #172b4d;
   margin: 0rem 0rem 0rem 0.5rem;
   cursor: pointer;
 }
@@ -517,7 +533,8 @@ a {
 }
 
 .rat-TimeSlot_component {
-  background-color: #363636 !important;
+  background-color: #172b4d !important;
+  color: #fafafa !important;
 }
 
 .rat-TimeSlot_handle {
@@ -589,8 +606,8 @@ a {
 }
 
 .rat-AvailableTimes_button:hover {
-  fill: #fafafa !important;
-  background-color: #363636 !important;
+  fill: #0052cc !important;
+  background-color: #deebff !important;
 }
 
 .rat-Ruler_component {
@@ -666,8 +683,8 @@ a {
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
   padding-bottom: 0.6em !important;
-  background-color: #2cdf0c1f !important;
-  color: #2cdf0c !important;
+  background-color: #4bcc001f !important;
+  color: #4bcc00 !important;
   transition: none !important;
 }
 
@@ -677,8 +694,8 @@ a {
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
   padding-bottom: 0.6em !important;
-  background-color: #3636362e !important;
-  color: #363636 !important;
+  background-color: #172b4d2e !important;
+  color: #172b4d !important;
   transition: none !important;
 }
 
@@ -707,7 +724,7 @@ a {
   font-family: "Manrope", sans-serif;
   background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #363636;
+  color: #172b4d;
   padding: 1rem !important;
   border-radius: 0.3rem !important;
   margin-bottom: 0rem !important;
@@ -715,12 +732,12 @@ a {
 }
 
 .votes-table-icon {
-  color: #363636;
+  color: #172b4d;
   margin-top: -0.2rem;
 }
 
 .votes-table-title {
-  color: #363636;
+  color: #172b4d;
   margin-left: 0.5rem;
 }
 
@@ -751,7 +768,7 @@ a {
   line-height: 3.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  color: #363636 !important;
+  color: #172b4d !important;
 }
 
 .poll-info-desc {
@@ -886,12 +903,12 @@ a {
 }
 
 .slot-normal-time {
-  background-color: #2cdf0c1f;
-  color: #2cdf0c;
+  background-color: #4bcc001f;
+  color: #4bcc00;
 }
 
 .slot-final-time {
-  background-color: #363636;
+  background-color: #0052cc;
   color: #fefffe;
 }
 
@@ -934,7 +951,7 @@ a {
 
 .mark-time-name {
   background-color: #fefffe !important;
-  color: #000000 !important;
+  color: #172b4d !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
   border-radius: 0.3rem !important;
@@ -952,7 +969,7 @@ a {
 
 .mark-time-name:focus {
   border: none !important;
-  outline: 0.14rem solid #363636 !important;
+  outline: 0.14rem solid #0052cc !important;
 }
 
 .mark-time-name.logged-in {
@@ -1003,7 +1020,7 @@ a {
 .slot-check-date-time-yes {
   right: 0;
   top: 0;
-  color: #2cdf0c;
+  color: #4bcc00;
   right: -0.5rem;
   top: -0.5rem;
   position: absolute;
@@ -1020,7 +1037,7 @@ a {
 }
 
 .slot-checked {
-  background-color: #2cdf0c1f;
+  background-color: #4bcc001f;
   text-align: center;
   border-top: 0.5rem solid #fefffe !important;
   border-left: 0.5rem solid #fefffe !important;
@@ -1062,7 +1079,7 @@ a {
 }
 
 .total-yes-votes {
-  color: #2cdf0c;
+  color: #4bcc00;
 }
 
 .total-if-need-be-votes {
@@ -1073,7 +1090,7 @@ a {
 .slot-checked .slot-check {
   width: 2rem;
   height: 2rem;
-  color: #2cdf0c;
+  color: #4bcc00;
 }
 
 .slot-checked-if-need-be .slot-check {
@@ -1182,7 +1199,7 @@ a {
 }
 
 .share-textbox {
-  background-color: #fafafa !important;
+  background-color: #fafafd !important;
   color: #6f6f6f !important;
   border: 0.05rem solid #616161 !important;
   border-top-left-radius: 0.3rem !important;
@@ -1210,11 +1227,11 @@ a {
 
 .copy-btn {
   font-size: 0.8rem !important;
-  border: 0.05rem solid #616161 !important;
+  border: 0.05rem solid #172b4d !important;
   color: #fefffe !important;
   border-top-right-radius: 0.3rem !important;
   border-bottom-right-radius: 0.3rem !important;
-  background-color: #363636 !important;
+  background-color: #0052cc !important;
   transition: none !important;
 }
 
@@ -1264,7 +1281,7 @@ a {
 
 .four-o-four {
   margin-top: 10rem !important;
-  color: #363636;
+  color: #172b4d;
 }
 
 .four-o-four h1 {
@@ -1282,7 +1299,7 @@ a {
 }
 
 .four-o-four a:hover {
-  color: #363636;
+  color: #172b4d;
   text-decoration: underline !important;
 }
 
@@ -1304,25 +1321,25 @@ a {
 
 .inside-page {
   margin-top: 5rem !important;
-  color: #363636;
+  color: #172b4d;
 }
 
 .inside-page h1 {
-  color: #363636;
+  color: #172b4d;
   font-family: "Manrope", sans-serif;
   margin-bottom: 3rem !important;
   font-weight: 800;
 }
 
 .inside-page h2 {
-  color: #363636;
+  color: #172b4d;
   font-family: "Manrope", sans-serif;
   margin-top: 2rem !important;
   font-weight: 700;
 }
 
 .inside-page h3 {
-  color: #363636;
+  color: #172b4d;
   font-family: "Manrope", sans-serif;
   margin-top: 2rem !important;
   font-weight: 600;
@@ -1338,7 +1355,7 @@ a {
 }
 
 .inside-page a:hover {
-  color: #363636;
+  color: #172b4d;
   text-decoration: underline !important;
 }
 
@@ -1395,6 +1412,7 @@ a {
 
 .kukkee-main-heading {
   font-family: "Manrope", sans-serif;
+  color: #172b4d;
   font-size: 2rem;
   font-weight: 700 !important;
   padding-top: 2rem;
@@ -1405,7 +1423,7 @@ a {
 }
 
 .poll-type {
-  background-color: #fefffe !important;
+  background-color: #fafafd !important;
   color: #000000 !important;
   border: none !important;
   outline: 0.05rem solid #e0e1e0 !important;
@@ -1413,6 +1431,10 @@ a {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem !important;
   width: 8rem !important;
+}
+
+.poll-type:focus {
+  outline: 0.14rem solid #0052cc !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -1452,12 +1474,12 @@ a {
 }
 
 .mark-time-box.yes {
-  border: 0.1rem solid #2cdf0c !important;
-  background-color: #2cdf0c1f;
+  border: 0.1rem solid #4bcc00 !important;
+  background-color: #4bcc001f;
 }
 
 .mark-time-box-check.yes {
-  color: #2cdf0c;
+  color: #4bcc00;
   pointer-events: none;
 }
 
@@ -1494,7 +1516,7 @@ a {
 
 .auth-button {
   margin-top: 1rem;
-  background-color: #000000 !important;
+  background-color: #0052cc !important;
   color: #fafafa !important;
   font-weight: 500 !important;
   font-size: 0.9rem !important;
@@ -1532,9 +1554,9 @@ a {
 }
 
 .kukkee-auth-secondary-jumbo {
-  background-color: #fafafa !important;
+  background-color: #fafafd !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #363636;
+  color: #172b4d;
   font-size: 0.9rem !important;
   padding-top: 0.8rem !important;
   padding-bottom: 0.8rem !important;
@@ -1545,7 +1567,7 @@ a {
 }
 
 .kukkee-auth-secondary-jumbo a {
-  color: #363636 !important;
+  color: #0052cc !important;
   cursor: pointer;
 }
 
@@ -1561,12 +1583,13 @@ a {
 
 .dashboard-polls-heading {
   font-size: 1.2rem !important;
+  color: #172b4d;
   font-family: "Manrope", sans-serif !important;
   font-weight: 700;
 }
 
 .dashboard-polls-heading a {
-  color: #363636 !important;
+  color: #0052cc !important;
 }
 
 .polls-dashboard-col {
@@ -1581,11 +1604,15 @@ a {
   margin-top: 1.5rem !important;
   background-color: #fffefe !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #363636;
+  color: #172b4d;
 }
 
 .poll-card:hover {
   box-shadow: 0.2rem 0.2rem 0.2rem #e0e1e06e;
+}
+
+.poll-card:hover .title {
+  color: #0052cc;
 }
 
 .poll-card-a {
