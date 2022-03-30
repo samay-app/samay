@@ -1280,6 +1280,7 @@ a {
 }
 
 .four-o-four {
+  font-family: "Manrope", sans-serif;
   margin-top: 10rem !important;
   color: #172b4d;
 }
@@ -1293,16 +1294,6 @@ a {
   font-size: 2rem;
 }
 
-.four-o-four a {
-  color: #6f6f6f;
-  text-decoration: underline !important;
-}
-
-.four-o-four a:hover {
-  color: #172b4d;
-  text-decoration: underline !important;
-}
-
 @media (min-width: 0) and (max-width: 576px) {
   .four-o-four {
     margin-top: 2rem !important;
@@ -1312,6 +1303,10 @@ a {
   .four-o-four span {
     font-size: 2rem;
     font-weight: 900;
+  }
+
+  .four-o-four h1 {
+    font-size: 3rem;
   }
 
   .four-o-four p {
