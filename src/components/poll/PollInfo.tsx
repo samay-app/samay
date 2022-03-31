@@ -1,5 +1,5 @@
 import { Badge } from "react-bootstrap";
-import { GeoAltFill } from "react-bootstrap-icons";
+import { GeoAltFill, PersonCircle } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { PollFromDB } from "../../models/poll";
@@ -29,6 +29,10 @@ const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
           {poll.location}
         </span>
       )}
+      <span className="poll-info-username">
+        <PersonCircle className="poll-location" />
+        {poll.username}
+      </span>
     </div>
   );
 };

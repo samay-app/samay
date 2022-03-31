@@ -1,9 +1,9 @@
-import { connect, ConnectionOptions } from "mongoose";
+import { connect } from "mongoose";
 
 const NEXT_PUBLIC_MONGODB_URI =
   process.env.NEXT_PUBLIC_MONGODB_URI || "mongodb://localhost:27017/polls";
 
-const options: ConnectionOptions = {
+const options = {
   useUnifiedTopology: true,
   autoIndex: true,
 };

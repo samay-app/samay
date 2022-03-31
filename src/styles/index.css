@@ -715,6 +715,12 @@ a {
   display: block;
 }
 
+.poll-info-username {
+  font-size: 1rem;
+  display: block;
+  margin-top: 1rem;
+}
+
 .poll-location {
   margin-top: -0.2rem;
   margin-right: 0.5rem;
@@ -835,6 +841,10 @@ a {
   }
 
   .poll-info-location {
+    font-size: 0.7rem;
+  }
+
+  .poll-info-username {
     font-size: 0.7rem;
   }
 
@@ -1562,12 +1572,13 @@ a {
 }
 
 .kukkee-auth-secondary-jumbo a {
-  color: #0052cc !important;
+  text-decoration: underline !important;
+  color: #172b4d;
   cursor: pointer;
 }
 
 .kukkee-auth-secondary-jumbo a:hover {
-  text-decoration: underline !important;
+  color: #0052cc !important;
 }
 
 .kukkee-container.dashboard {
@@ -1584,6 +1595,11 @@ a {
 }
 
 .dashboard-polls-heading a {
+  color: #172b4d !important;
+  text-decoration: underline;
+}
+
+.dashboard-polls-heading a:hover {
   color: #0052cc !important;
 }
 
