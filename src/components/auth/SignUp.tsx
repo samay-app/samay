@@ -88,7 +88,7 @@ const SignUp = (): JSX.Element => {
         });
         Router.push("/");
       } else if (signupUserResponse.statusCode === 422) {
-        setDisabled(true);
+        setDisabled(false);
         setResponse({
           status: true,
           msg: signupUserResponse.data.message,
@@ -96,7 +96,7 @@ const SignUp = (): JSX.Element => {
         return;
       }
     } catch (error) {
-      setDisabled(true);
+      setDisabled(false);
       setResponse({
         status: true,
         msg: "Please try again later.",
