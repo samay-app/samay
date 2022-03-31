@@ -25,9 +25,6 @@
     "url": "https://github.com/Kukkee/Kukkee/issues"
   },
   "homepage": "https://kukkee.com/",
-  "engines": {
-    "node": "16.x"
-  },
   "dependencies": {
     "@babel/core": "^7.12.10",
     "bcryptjs": "^2.4.3",
