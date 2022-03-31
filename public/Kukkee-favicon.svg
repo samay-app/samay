@@ -1,4 +1,17 @@
-<svg id="SvgjsSvg1001" width="288" height="288" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1002"></defs><g id="SvgjsG1008"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 2000 2000" viewBox="0 0 2000 2000" width="288" height="288"><path d="M78.11,901.22l279.48-549.8L659.34,738.3c11.84,15.18,30.03,24.06,49.28,24.06h582.75c19.26,0,37.44-8.88,49.28-24.06
-		l301.75-386.88l279.48,549.8l-921.89,781.38L78.11,901.22z" fill="#ffffff" class="color000 svgShape"></path><path d="M1631.24,467.36l212.55,418.13l-843.78,715.18L156.21,885.49l212.55-418.13l241.3,309.37
-		c23.69,30.37,60.05,48.12,98.56,48.12h582.75c38.51,0,74.88-17.75,98.56-48.12L1631.24,467.36 M1653.58,235.47l-362.21,464.39
-		H708.62L346.42,235.47L0,916.95l1000.01,847.59L2000,916.95L1653.58,235.47L1653.58,235.47z" fill="#ffffff" class="color000 svgShape"></path></svg></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#FFFFFF;stroke-width:115;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:100;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M672.5,929.5h-344c-141.9,0-257-115.1-257-257v-344c0-141.9,115.1-257,257-257h344c141.9,0,257,115.1,257,257
+	v344C929.5,814.4,814.4,929.5,672.5,929.5z"/>
+<circle class="st1" cx="662.5" cy="337.5" r="82.5"/>
+<circle class="st1" cx="337.5" cy="662.5" r="82.5"/>
+<circle class="st1" cx="662.5" cy="662.5" r="82.5"/>
+<circle class="st1" cx="337.5" cy="337.5" r="82.5"/>
+<path d="M571,639H428c-37.6,0-68-30.4-68-68V428c0-37.6,30.4-68,68-68h143c37.6,0,68,30.4,68,68v143C639,608.6,608.6,639,571,639z"
+	/>
+</svg>
