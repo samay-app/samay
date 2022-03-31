@@ -45,7 +45,7 @@ main {
 }
 
 .kukkee-brand {
-  color: #172b4d !important;
+  color: #000000 !important;
   font-family: "Manrope", sans-serif;
   font-weight: 700;
 }
@@ -57,7 +57,7 @@ main {
 }
 
 .kukkee-nav-link {
-  color: #172b4d !important;
+  color: #000000 !important;
   font-size: 1rem;
   font-weight: 600;
   font-family: "Manrope", sans-serif;
@@ -72,19 +72,19 @@ main {
 }
 
 .kukkee-nav-link:hover {
-  background-color: #deebff;
-  color: #0052cc !important;
+  background-color: #efefef;
+  color: #000000 !important;
 }
 
 .kukkee-nav-link.new {
-  background-color: #0052cc;
+  background-color: #000000;
   color: #fffefe !important;
   padding-right: 0.7rem !important;
   padding-left: 0.7rem !important;
 }
 
 .kukkee-nav-link.new:hover {
-  background-color: #003f9d !important;
+  box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
 }
 
 .kukkee-container {
@@ -128,7 +128,7 @@ main {
 }
 
 .footer-logo {
-  color: #172b4d !important;
+  color: #000000 !important;
   font-family: "Manrope", sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
@@ -147,7 +147,7 @@ main {
 .footer-col h6 {
   font-weight: 700;
   font-family: "Manrope", sans-serif;
-  color: #6f6f6f;
+  color: #000000;
   margin-left: 2.5rem !important;
 }
 
@@ -159,17 +159,17 @@ main {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   text-decoration: none;
-  color: #6f6f6f;
+  color: #000000;
 }
 
 .footer-col ul li a:hover {
-  color: #172b4d;
+  color: #000000;
 }
 
 .footer-left p {
   text-decoration: none;
   font-weight: 400 !important;
-  color: #6f6f6f;
+  color: #000000;
   display: block;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
@@ -240,7 +240,7 @@ a {
 .hero-title {
   font-weight: 700;
   font-size: 2.5rem;
-  color: #172b4d;
+  color: #000000;
   font-family: "Manrope", sans-serif;
   display: block;
   line-height: 3rem;
@@ -251,7 +251,7 @@ a {
   font-weight: 500;
   font-size: 1.3rem;
   font-family: "Manrope", sans-serif;
-  color: #6f6f6f;
+  color: #000000;
   display: block;
   margin-top: 1.5rem;
   line-height: 1.5rem;
@@ -262,7 +262,7 @@ a {
   font-weight: 600;
   font-size: 1.3rem;
   font-family: "Manrope", sans-serif;
-  color: #172b4d;
+  color: #000000;
   display: block;
   margin-top: 2.5rem;
   text-align: center;
@@ -339,7 +339,7 @@ a {
 }
 
 .kukkee-primary-button {
-  background-color: #0052cc !important;
+  background-color: #000000 !important;
   color: #fafafa !important;
   font-weight: 500 !important;
   font-size: 1rem !important;
@@ -399,7 +399,7 @@ a {
 
 .poll-timeslot-jumbo {
   background-color: #fefffe !important;
-  color: #172b4d;
+  color: #000000;
   padding-top: 0.5rem !important;
   padding-left: 0rem !important;
   padding-right: 1rem !important;
@@ -446,7 +446,7 @@ a {
 
 .kukkee-form-text {
   background-color: #fafafd !important;
-  color: #172b4d !important;
+  color: #000000 !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
   border-radius: 0.3rem !important;
@@ -465,7 +465,7 @@ a {
 .kukkee-form-text:focus {
   border: none !important;
   background-color: #fefffe !important;
-  outline: 0.14rem solid #0052cc !important;
+  outline: 0.14rem solid #000000 !important;
 }
 
 .kukkee-form-text.title {
@@ -482,7 +482,7 @@ a {
 
 .kukkee-form-label {
   font-weight: 400 !important;
-  color: #172b4d !important;
+  color: #000000 !important;
 }
 
 .form-control:focus {
@@ -491,7 +491,7 @@ a {
 }
 
 .kukkee-form-option {
-  background-color: #172b4d !important;
+  background-color: #000000 !important;
   color: #6c757d !important;
   border-top: none !important;
   border-left: none !important;
@@ -510,7 +510,7 @@ a {
 .tour-start-icon {
   width: 1.8rem;
   height: 1.8rem;
-  color: #172b4d;
+  color: #000000;
   margin: 0rem 0rem 0rem 0.5rem;
   cursor: pointer;
 }
@@ -533,7 +533,7 @@ a {
 }
 
 .rat-TimeSlot_component {
-  background-color: #172b4d !important;
+  background-color: #000000 !important;
   color: #fafafa !important;
 }
 
@@ -598,15 +598,15 @@ a {
 }
 
 .rat-AvailableTimes_interval {
-  color: #6f6f6f !important;
+  color: #000000 !important;
 }
 
 .rat-AvailableTimes_button {
-  fill: #6f6f6f !important;
+  fill: #000000 !important;
 }
 
 .rat-AvailableTimes_button:hover {
-  fill: #0052cc !important;
+  fill: #000000 !important;
   background-color: #deebff !important;
 }
 
@@ -619,7 +619,7 @@ a {
 }
 
 .rat-DayHeader_day {
-  color: #6f6f6f !important;
+  color: #000000 !important;
 }
 
 .rat-Week_allDayLabel {
@@ -627,7 +627,7 @@ a {
 }
 
 .rat-Ruler_inner {
-  color: #6f6f6f !important;
+  color: #000000 !important;
 }
 
 .rat-DayHeader_events {
@@ -694,8 +694,8 @@ a {
   padding-left: 0.6em !important;
   padding-right: 0.6em !important;
   padding-bottom: 0.6em !important;
-  background-color: #172b4d2e !important;
-  color: #172b4d !important;
+  background-color: #0000002e !important;
+  color: #000000 !important;
   transition: none !important;
 }
 
@@ -703,7 +703,7 @@ a {
   font-family: "Manrope", sans-serif;
   background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #6f6f6f;
+  color: #000000;
   padding: 2.5rem 2rem 2rem 2rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
@@ -713,12 +713,14 @@ a {
 .poll-info-location {
   font-size: 1rem;
   display: block;
+  color: #000000 !important;
 }
 
 .poll-info-username {
   font-size: 1rem;
   display: block;
   margin-top: 1rem;
+  color: #000000 !important;
 }
 
 .poll-location {
@@ -730,7 +732,7 @@ a {
   font-family: "Manrope", sans-serif;
   background-color: #fefffe !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #172b4d;
+  color: #000000;
   padding: 1rem !important;
   border-radius: 0.3rem !important;
   margin-bottom: 0rem !important;
@@ -738,12 +740,12 @@ a {
 }
 
 .votes-table-icon {
-  color: #172b4d;
+  color: #000000;
   margin-top: -0.2rem;
 }
 
 .votes-table-title {
-  color: #172b4d;
+  color: #000000;
   margin-left: 0.5rem;
 }
 
@@ -774,13 +776,14 @@ a {
   line-height: 3.5rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  color: #172b4d !important;
+  color: #000000 !important;
 }
 
 .poll-info-desc {
   font-size: 1.5rem;
   display: block;
   margin-bottom: 2rem;
+  color: #000000 !important;
   line-height: 1.8rem;
 }
 
@@ -872,7 +875,7 @@ a {
 
 .poll-table-participants {
   font-size: 1.1rem;
-  color: #6f6f6f;
+  color: #000000;
   font-weight: 600;
   border-top: 0 !important;
   vertical-align: middle !important;
@@ -882,7 +885,7 @@ a {
 
 .poll-table-total-participants {
   font-size: 0.8rem;
-  color: #6f6f6f;
+  color: #000000;
   font-weight: 600;
   border-top: 0 !important;
   vertical-align: middle !important;
@@ -898,7 +901,7 @@ a {
 
 .poll-table-top-row {
   background-color: #fefffe;
-  color: #6f6f6f;
+  color: #000000;
 }
 
 .slot-time {
@@ -918,7 +921,7 @@ a {
 }
 
 .slot-final-time {
-  background-color: #0052cc;
+  background-color: #000000;
   color: #fefffe;
 }
 
@@ -961,7 +964,7 @@ a {
 
 .mark-time-name {
   background-color: #fefffe !important;
-  color: #172b4d !important;
+  color: #000000 !important;
   outline: 0.05rem solid #e0e1e0 !important;
   border: none !important;
   border-radius: 0.3rem !important;
@@ -979,7 +982,7 @@ a {
 
 .mark-time-name:focus {
   border: none !important;
-  outline: 0.14rem solid #0052cc !important;
+  outline: 0.14rem solid #000000 !important;
 }
 
 .mark-time-name.logged-in {
@@ -1117,7 +1120,7 @@ a {
   font-size: 1.2rem;
   font-weight: 600 !important;
   border-top: 0 !important;
-  color: #6f6f6f !important;
+  color: #000000 !important;
   min-width: 9rem !important;
 }
 
@@ -1210,7 +1213,7 @@ a {
 
 .share-textbox {
   background-color: #fafafd !important;
-  color: #6f6f6f !important;
+  color: #000000 !important;
   border: 0.05rem solid #616161 !important;
   border-top-left-radius: 0.3rem !important;
   border-bottom-left-radius: 0.3rem !important;
@@ -1221,7 +1224,7 @@ a {
 
 .invite-textbox {
   background-color: #fafafa !important;
-  color: #6f6f6f !important;
+  color: #000000 !important;
   border: 0.1rem solid #6c757d !important;
   border-radius: 0.3rem !important;
   font-size: 0.8rem !important;
@@ -1237,11 +1240,11 @@ a {
 
 .copy-btn {
   font-size: 0.8rem !important;
-  border: 0.05rem solid #172b4d !important;
+  border: 0.05rem solid #000000 !important;
   color: #fefffe !important;
   border-top-right-radius: 0.3rem !important;
   border-bottom-right-radius: 0.3rem !important;
-  background-color: #0052cc !important;
+  background-color: #000000 !important;
   transition: none !important;
 }
 
@@ -1292,7 +1295,7 @@ a {
 .four-o-four {
   font-family: "Manrope", sans-serif;
   margin-top: 10rem !important;
-  color: #172b4d;
+  color: #000000;
 }
 
 .four-o-four h1 {
@@ -1326,25 +1329,25 @@ a {
 
 .inside-page {
   margin-top: 5rem !important;
-  color: #172b4d;
+  color: #000000;
 }
 
 .inside-page h1 {
-  color: #172b4d;
+  color: #000000;
   font-family: "Manrope", sans-serif;
   margin-bottom: 3rem !important;
   font-weight: 800;
 }
 
 .inside-page h2 {
-  color: #172b4d;
+  color: #000000;
   font-family: "Manrope", sans-serif;
   margin-top: 2rem !important;
   font-weight: 700;
 }
 
 .inside-page h3 {
-  color: #172b4d;
+  color: #000000;
   font-family: "Manrope", sans-serif;
   margin-top: 2rem !important;
   font-weight: 600;
@@ -1355,12 +1358,12 @@ a {
 }
 
 .inside-page a {
-  color: #6f6f6f;
+  color: #000000;
   text-decoration: underline !important;
 }
 
 .inside-page a:hover {
-  color: #172b4d;
+  color: #000000;
   text-decoration: underline !important;
 }
 
@@ -1417,7 +1420,7 @@ a {
 
 .kukkee-main-heading {
   font-family: "Manrope", sans-serif;
-  color: #172b4d;
+  color: #000000;
   font-size: 2rem;
   font-weight: 700 !important;
   padding-top: 2rem;
@@ -1439,7 +1442,7 @@ a {
 }
 
 .poll-type:focus {
-  outline: 0.14rem solid #0052cc !important;
+  outline: 0.14rem solid #000000 !important;
 }
 
 @media (min-width: 0) and (max-width: 576px) {
@@ -1521,7 +1524,7 @@ a {
 
 .auth-button {
   margin-top: 1rem;
-  background-color: #0052cc !important;
+  background-color: #000000 !important;
   color: #fafafa !important;
   font-weight: 500 !important;
   font-size: 0.9rem !important;
@@ -1561,7 +1564,7 @@ a {
 .kukkee-auth-secondary-jumbo {
   background-color: #fafafd !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #172b4d;
+  color: #000000;
   font-size: 0.9rem !important;
   padding-top: 0.8rem !important;
   padding-bottom: 0.8rem !important;
@@ -1573,12 +1576,12 @@ a {
 
 .kukkee-auth-secondary-jumbo a {
   text-decoration: underline !important;
-  color: #172b4d;
+  color: #000000;
   cursor: pointer;
 }
 
 .kukkee-auth-secondary-jumbo a:hover {
-  color: #0052cc !important;
+  color: #000000 !important;
 }
 
 .kukkee-container.dashboard {
@@ -1589,18 +1592,18 @@ a {
 
 .dashboard-polls-heading {
   font-size: 1.2rem !important;
-  color: #172b4d;
+  color: #000000;
   font-family: "Manrope", sans-serif !important;
   font-weight: 700;
 }
 
 .dashboard-polls-heading a {
-  color: #172b4d !important;
+  color: #000000 !important;
   text-decoration: underline;
 }
 
 .dashboard-polls-heading a:hover {
-  color: #0052cc !important;
+  color: #000000 !important;
 }
 
 .polls-dashboard-col {
@@ -1615,7 +1618,7 @@ a {
   margin-top: 1.5rem !important;
   background-color: #fffefe !important;
   border: 0.1rem solid #e0e1e0 !important;
-  color: #172b4d;
+  color: #000000;
 }
 
 .poll-card:hover {
@@ -1623,7 +1626,7 @@ a {
 }
 
 .poll-card:hover .title {
-  color: #0052cc;
+  color: #000000;
 }
 
 .poll-card-a {
