@@ -87,11 +87,6 @@ main {
   box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
 }
 
-.kukkee-container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
 .kukkee-footer {
   margin-top: 2rem !important;
   background-color: #fafafa !important;
@@ -1242,10 +1237,6 @@ a {
   color: #adadad;
 }
 
-.kukkee-button-spinner {
-  vertical-align: -0.2rem !important;
-}
-
 .four-o-four {
   font-family: "Manrope", sans-serif;
   margin-top: 10rem !important;
@@ -1372,18 +1363,6 @@ a {
   }
 }
 
-.kukkee-main-heading {
-  font-family: "Manrope", sans-serif;
-  color: #000000;
-  font-size: 2rem;
-  font-weight: 700 !important;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  margin-bottom: 1rem;
-  background-color: #fffefe;
-  border-bottom: #eaeaea solid 0.1rem;
-}
-
 .poll-type {
   background-color: #fafafd !important;
   color: #000000 !important;
@@ -1397,13 +1376,6 @@ a {
 
 .poll-type:focus {
   outline: 0.14rem solid #000000 !important;
-}
-
-@media (min-width: 0) and (max-width: 576px) {
-  .kukkee-main-heading {
-    font-size: 1.5rem;
-    padding-left: 1rem;
-  }
 }
 
 .mark-time-cell {
@@ -1453,65 +1425,4 @@ a {
 .mark-time-box-check.if-need-be {
   color: #ffbb00;
   pointer-events: none;
-}
-
-.kukkee-container.dashboard {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-top: 3rem !important;
-}
-
-.dashboard-polls-heading {
-  font-size: 1.2rem !important;
-  color: #000000;
-  font-family: "Manrope", sans-serif !important;
-  font-weight: 700;
-}
-
-.dashboard-polls-heading a {
-  color: #000000 !important;
-  text-decoration: underline;
-}
-
-.dashboard-polls-heading a:hover {
-  color: #000000 !important;
-}
-
-.polls-dashboard-col {
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-  padding-bottom: 1rem !important;
-}
-
-.poll-card {
-  font-family: "Manrope", sans-serif;
-  border-radius: 0.7rem !important;
-  margin-top: 1.5rem !important;
-  background-color: #fffefe !important;
-  border: 0.1rem solid #e0e1e0 !important;
-  color: #000000;
-}
-
-.poll-card:hover {
-  box-shadow: 0.2rem 0.2rem 0.2rem #e0e1e06e;
-}
-
-.poll-card:hover .title {
-  color: #000000;
-}
-
-.poll-card-a {
-  text-decoration: none !important;
-}
-
-@media (min-width: 576px) {
-  .poll-card {
-    width: 30rem !important;
-  }
-
-  .polls-dashboard-col {
-    padding-left: unset !important;
-    padding-right: unset !important;
-    padding-bottom: unset !important;
-  }
 }

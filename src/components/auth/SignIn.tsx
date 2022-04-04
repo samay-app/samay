@@ -150,7 +150,7 @@ const SignIn = (props: {
                       size="sm"
                       role="status"
                       aria-hidden="true"
-                      className="kukkee-button-spinner"
+                      className="form-button-spinner"
                     />
                   </>
                 )}
@@ -159,7 +159,7 @@ const SignIn = (props: {
           </Form>
         </Jumbotron>
         <Jumbotron className="auth-second-jumbo">
-          New to Kukkee?{" "}
+          New here?{" "}
           <Link href="/auth/signup">
             <a>Sign up</a>
           </Link>

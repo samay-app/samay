@@ -15,7 +15,7 @@ const NavBar = (): JSX.Element => {
       expand="lg"
       collapseOnSelect
     >
-      <Container className="kukkee-container">
+      <Container className="global-container">
         <Navbar.Brand href="/" className="kukkee-brand">
           <img
             alt="logo"

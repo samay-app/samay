@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Button,
-  Form,
-  Row,
-  Col,
-  Container,
-  Jumbotron,
-  Spinner,
-} from "react-bootstrap";
+import { Button, Form, Container, Jumbotron, Spinner } from "react-bootstrap";
 import Router from "next/router";
 import { signIn } from "next-auth/react";
 import ResponseMessage from "../ResponseMessage";
@@ -114,86 +106,77 @@ const SignUp = (): JSX.Element => {
   };
 
   return (
-    <Container className="auth-container">
-      <Row className="auth-row">
-        <Col className="jumbo-col">
-          <div className="auth-logo">
-            <img alt="logo" src="/logo.svg" className="d-inline-block" />
-            Kukkee
-          </div>
-          <Jumbotron className="auth-jumbo">
-            <Form>
-              <Form.Group as={Row} controlId="username">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Username
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text title text-sm"
-                  type="text"
-                  placeholder="Username"
-                  name="username"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row} controlId="email">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Email address
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text description text-sm"
-                  type="text"
-                  placeholder="Email address"
-                  name="email"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row} controlId="password">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Password
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text location text-sm"
-                  type="password"
-                  placeholder="•••••••••••••"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Button
-                  className="auth-button"
-                  onClick={handleSubmit}
-                  disabled={disabled}
-                  type="submit"
-                >
-                  {!disabled ? (
-                    `Sign up`
-                  ) : (
-                    <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className="kukkee-button-spinner"
-                      />
-                    </>
-                  )}
-                </Button>
-              </Form.Group>
-            </Form>
-          </Jumbotron>
-          <Jumbotron className="kukkee-auth-secondary-jumbo">
-            Have an account?{" "}
-            <a onClick={(): Promise<undefined> => signIn()} aria-hidden="true">
-              Sign in
-            </a>
-            .
-          </Jumbotron>
-          <ResponseMessage response={response} setResponse={setResponse} />
-        </Col>
-      </Row>
+    <Container className="auth-outer-container">
+      <div className="auth-inner-container">
+        <div className="auth-logo">
+          <img alt="logo" src="/logo.svg" />
+        </div>
+        <Jumbotron className="auth-first-jumbo">
+          <Form>
+            <Form.Group controlId="username">
+              <Form.Label className="form-label">Username</Form.Label>
+              <Form.Control
+                className="form-text"
+                type="text"
+                placeholder="Username"
+                name="username"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label className="form-label">Email address</Form.Label>
+              <Form.Control
+                className="form-text"
+                type="text"
+                placeholder="Email address"
+                name="email"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label className="form-label">Password</Form.Label>
+              <Form.Control
+                className="form-text "
+                type="password"
+                placeholder="•••••••••••••"
+                name="password"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Button
+                className="auth-button"
+                onClick={handleSubmit}
+                disabled={disabled}
+                type="submit"
+              >
+                {!disabled ? (
+                  `Sign up`
+                ) : (
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="form-button-spinner"
+                    />
+                  </>
+                )}
+              </Button>
+            </Form.Group>
+          </Form>
+        </Jumbotron>
+        <Jumbotron className="auth-second-jumbo">
+          Have an account?{" "}
+          <a onClick={(): Promise<undefined> => signIn()} aria-hidden="true">
+            Sign in
+          </a>
+          .
+        </Jumbotron>
+        <ResponseMessage response={response} setResponse={setResponse} />
+      </div>
     </Container>
   );
 };

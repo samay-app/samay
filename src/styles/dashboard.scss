@@ -1,0 +1,41 @@
+.dashboard-polls-heading {
+  font-size: 1.2rem;
+  color: #000000;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+
+  a {
+    color: #000000;
+    text-decoration: underline;
+
+    &:hover {
+      color: $brandColor;
+    }
+  }
+}
+
+.dashboard-poll-card {
+  font-family: "Manrope", sans-serif;
+  border-radius: 0.7rem;
+  margin-top: 1.5rem;
+  background-color: #fffefe;
+  border: 0.1rem solid #e0e1e0;
+  color: $brandColor;
+
+  &:hover {
+    box-shadow: 0.2rem 0.2rem 0.2rem #e0e1e06e;
+  }
+
+  a {
+    color: #000000;
+
+    &:hover {
+      color: #000000;
+      text-decoration: none;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: 30rem;
+  }
+}

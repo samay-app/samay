@@ -1,4 +1,4 @@
-import { Row, Col, Card, Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import { useSession, getSession } from "next-auth/react";
 import Router from "next/router";
 import { GetServerSideProps } from "next";
@@ -30,45 +30,43 @@ const Dashboard = (props: { polls: PollFromDB[] }): JSX.Element => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Layout>
-        <div className="kukkee-main-heading">
-          <Container className="kukkee-container">Dashboard</Container>
+        <div className="global-page-heading">
+          <Container className="global-container">Dashboard</Container>
         </div>
-        <Container className="kukkee-container dashboard">
-          <Row className="jumbo-row">
-            <Col className="jumbo-col-black polls-dashboard-col">
-              {polls.filter((poll) => poll.open).length > 0 && (
-                <span className="dashboard-polls-heading">Open polls</span>
-              )}
-              {polls.filter((poll) => poll.open).length > 0 &&
-                polls
-                  .filter((poll) => poll.open)
-                  .map((poll) => (
-                    <a
-                      className="poll-card-a"
-                      href={`/poll/${poll._id}`}
-                      key={poll._id}
-                    >
-                      <Card className="poll-card">
-                        <Card.Body>
-                          <Card.Title className="title">
-                            {poll.title}
-                          </Card.Title>
-                          <Card.Text>{poll.description}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </a>
-                  ))}
-              {polls.filter((poll) => poll.open).length === 0 && (
-                <span className="dashboard-polls-heading">
-                  You don't have any open polls.{" "}
-                  <Link href="/new">
-                    <a>Create one now!</a>
-                  </Link>
-                </span>
-              )}
-            </Col>
-          </Row>
-        </Container>
+        <div className="global-page-section">
+          <Container className="global-container">
+            {polls.filter((poll) => poll.open).length > 0 && (
+              <span className="dashboard-polls-heading">Open polls</span>
+            )}
+            {polls.filter((poll) => poll.open).length > 0 &&
+              polls
+                .filter((poll) => poll.open)
+                .map((poll) => (
+                  <Card className="dashboard-poll-card" key={poll._id}>
+                    <Card.Body>
+                      <Card.Title>{poll.title}</Card.Title>
+                      <Card.Text>
+                        <a
+                          className="stretched-link"
+                          href={`/poll/${poll._id}`}
+                        >
+                          {poll.description}
+                        </a>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                ))}
+            {polls.filter((poll) => poll.open).length === 0 && (
+              <span className="dashboard-polls-heading">
+                You don't have any open polls.{" "}
+                <Link href="/new">
+                  <a>Create one now</a>
+                </Link>
+                !
+              </span>
+            )}
+          </Container>
+        </div>
       </Layout>
     </>
   );

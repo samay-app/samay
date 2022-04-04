@@ -40,7 +40,39 @@ body {
   background: $brandColor;
 }
 
+.global-container {
+  padding-left: 0.5rem;
+  width: 95%;
+  padding-right: 0.5rem;
+
+  @include media-breakpoint-up(sm) {
+    width: 75rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.global-page-heading {
+  font-family: "Manrope", sans-serif;
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  background-color: #fffefe;
+  border-bottom: #eaeaea solid 0.1rem;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2rem;
+  }
+}
+
+.global-page-section {
+  margin-top: 3rem;
+}
+
 @import "./form.scss";
 @import "./auth.scss";
-
+@import "./dashboard.scss";
 @import "./index.scss";

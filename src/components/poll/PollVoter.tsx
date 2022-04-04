@@ -48,12 +48,12 @@ const PollVoter = (props: {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Layout>
-        <div className="kukkee-main-heading">
-          <Container className="kukkee-container">
+        <div className="global-page-heading">
+          <Container className="global-container">
             Mark your availablity
           </Container>
         </div>
-        <Container className="kukkee-container">
+        <Container className="global-container">
           <Row className="jumbo-row">
             <Col className="jumbo-col-black">
               <Jumbotron className="poll-info">

@@ -171,19 +171,17 @@ const New = (): JSX.Element => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Layout>
-        <div className="kukkee-main-heading">
-          <Container className="kukkee-container">New poll</Container>
+        <div className="global-page-heading">
+          <Container className="global-container">New poll</Container>
         </div>
-        <Container className="kukkee-container">
+        <Container className="global-container">
           <Row className="jumbo-row">
             <Col className="jumbo-col-black">
               <Jumbotron className="kukkee-new-poll-jumbo">
                 <Form.Group controlId="pollTitle">
-                  <Form.Label className="kukkee-form-label text-sm">
-                    Title
-                  </Form.Label>
+                  <Form.Label className="form-label text-sm">Title</Form.Label>
                   <Form.Control
-                    className="kukkee-form-text title text-sm"
+                    className="form-text title text-sm"
                     type="text"
                     placeholder="What's this about?"
                     name="pollTitle"
@@ -191,11 +189,11 @@ const New = (): JSX.Element => {
                   />
                 </Form.Group>
                 <Form.Group controlId="pollDescription">
-                  <Form.Label className="kukkee-form-label text-sm">
+                  <Form.Label className="form-label text-sm">
                     Description (optional)
                   </Form.Label>
                   <Form.Control
-                    className="kukkee-form-text description text-sm"
+                    className="form-text description text-sm"
                     type="text"
                     name="pollDescription"
                     placeholder="Tell your invitees more about this"
@@ -203,11 +201,11 @@ const New = (): JSX.Element => {
                   />
                 </Form.Group>
                 <Form.Group controlId="pollLocation">
-                  <Form.Label className="kukkee-form-label text-sm">
+                  <Form.Label className="form-label text-sm">
                     Location (optional)
                   </Form.Label>
                   <Form.Control
-                    className="kukkee-form-text location text-sm"
+                    className="form-text location text-sm"
                     type="text"
                     name="pollLocation"
                     placeholder="Where is this going to happen?"
@@ -215,7 +213,7 @@ const New = (): JSX.Element => {
                   />
                 </Form.Group>
                 <Form.Group controlId="pollType">
-                  <Form.Label className="kukkee-form-label text-sm">
+                  <Form.Label className="form-label text-sm">
                     Poll Type
                   </Form.Label>
                   <Form.Control
@@ -256,7 +254,7 @@ const New = (): JSX.Element => {
                       size="sm"
                       role="status"
                       aria-hidden="true"
-                      className="kukkee-button-spinner"
+                      className="form-button-spinner"
                     />
                   </>
                 )}

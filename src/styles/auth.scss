@@ -9,11 +9,7 @@
 }
 
 .auth-inner-container {
-  width: 90%;
-
-  @include media-breakpoint-up(sm) {
-    width: 22rem;
-  }
+  width: 22rem;
 }
 
 .auth-logo {
@@ -63,6 +59,7 @@
 
   &[disabled] {
     opacity: 0.4;
+    background-color: $brandColor !important;
     pointer-events: none;
   }
 }
@@ -79,7 +76,8 @@
   text-align: center;
   border-radius: 0.3rem;
 
-  a {
+  a,
+  a:not([href]):not([class]) {
     text-decoration: underline;
     color: #000000;
     cursor: pointer;

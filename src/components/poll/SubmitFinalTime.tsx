@@ -79,7 +79,7 @@ const SubmitFinalTime = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
-              className="kukkee-button-spinner"
+              className="form-button-spinner"
             />
           </>
         )}
