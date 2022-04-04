@@ -1,0 +1,37 @@
+.form-label {
+  font-weight: 400 !important;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  color: #000000 !important;
+}
+
+.form-text {
+  background-color: #fafafd;
+  color: #000000;
+  outline: 0.05rem solid #e0e1e0;
+  border: none;
+  border-radius: 0.3rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: none;
+  box-shadow: 0rem 0.05rem 0.1rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.75rem;
+}
+
+.form-text::placeholder {
+  color: #818181;
+  opacity: 1;
+}
+
+.form-text:focus {
+  border: none;
+  color: #000000;
+  background-color: #fefffe;
+  outline: 0.14rem solid $brandColor;
+}
+
+.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

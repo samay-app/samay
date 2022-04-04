@@ -118,7 +118,7 @@ const SignUp = (): JSX.Element => {
       <Row className="auth-row">
         <Col className="jumbo-col">
           <div className="auth-logo">
-            <img alt="logo" src="/Kukkee.svg" className="d-inline-block" />
+            <img alt="logo" src="/logo.svg" className="d-inline-block" />
             Kukkee
           </div>
           <Jumbotron className="auth-jumbo">

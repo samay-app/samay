@@ -1,8 +1,7 @@
-import "../src/styles/global.css";
-import "../src/styles/index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
+
+import "../src/styles/global.scss";
 
 const App = ({
   Component,

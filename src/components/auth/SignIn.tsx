@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { NextRouter } from "next/router";
-import {
-  Button,
-  Form,
-  Row,
-  Col,
-  Container,
-  Jumbotron,
-  Spinner,
-} from "react-bootstrap";
+import { Button, Form, Container, Jumbotron, Spinner } from "react-bootstrap";
 import { signIn, useSession, SignInResponse } from "next-auth/react";
 import Link from "next/link";
 import ResponseMessage from "../ResponseMessage";
@@ -107,81 +99,74 @@ const SignIn = (props: {
   };
 
   return (
-    <Container className="auth-container">
-      <Row className="auth-row">
-        <Col className="jumbo-col">
-          <div className="auth-logo">
-            <img alt="logo" src="/Kukkee.svg" className="d-inline-block" />
-            Kukkee
-          </div>
-          <Jumbotron className="auth-jumbo">
-            <Form>
-              <input
-                name="csrfToken"
+    <Container className="auth-outer-container">
+      <div className="auth-inner-container">
+        <div className="auth-logo">
+          <img alt="logo" src="/logo.svg" />
+        </div>
+        <Jumbotron className="auth-first-jumbo">
+          <Form>
+            <input
+              name="csrfToken"
+              onChange={handleChange}
+              type="hidden"
+              defaultValue={csrfToken}
+              hidden
+            />
+            <Form.Group controlId="username">
+              <Form.Label className="form-label">Username</Form.Label>
+              <Form.Control
+                className="form-text"
+                type="text"
+                placeholder="Username"
+                name="username"
                 onChange={handleChange}
-                type="hidden"
-                defaultValue={csrfToken}
-                hidden
               />
-              <Form.Group as={Row} controlId="username">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Username
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text title text-sm"
-                  type="text"
-                  placeholder="Username"
-                  name="username"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row} controlId="password">
-                <Form.Label className="kukkee-form-label text-sm">
-                  Password
-                </Form.Label>
-                <Form.Control
-                  className="kukkee-form-text location text-sm"
-                  type="password"
-                  placeholder="•••••••••••••"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Row}>
-                <Button
-                  className="auth-button"
-                  onClick={handleSubmit}
-                  disabled={disabled}
-                  type="submit"
-                >
-                  {!disabled ? (
-                    `Sign in`
-                  ) : (
-                    <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className="kukkee-button-spinner"
-                      />
-                    </>
-                  )}
-                </Button>
-              </Form.Group>
-            </Form>
-          </Jumbotron>
-          <Jumbotron className="kukkee-auth-secondary-jumbo">
-            New to Kukkee?{" "}
-            <Link href="/auth/signup">
-              <a>Sign up</a>
-            </Link>
-            .
-          </Jumbotron>
-          <ResponseMessage response={response} setResponse={setResponse} />
-        </Col>
-      </Row>
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label className="form-label">Password</Form.Label>
+              <Form.Control
+                className="form-text"
+                type="password"
+                placeholder="•••••••••••••"
+                name="password"
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Button
+                className="auth-button"
+                onClick={handleSubmit}
+                disabled={disabled}
+                type="submit"
+              >
+                {!disabled ? (
+                  `Sign in`
+                ) : (
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="kukkee-button-spinner"
+                    />
+                  </>
+                )}
+              </Button>
+            </Form.Group>
+          </Form>
+        </Jumbotron>
+        <Jumbotron className="auth-second-jumbo">
+          New to Kukkee?{" "}
+          <Link href="/auth/signup">
+            <a>Sign up</a>
+          </Link>
+          .
+        </Jumbotron>
+        <ResponseMessage response={response} setResponse={setResponse} />
+      </div>
     </Container>
   );
 };

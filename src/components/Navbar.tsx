@@ -19,7 +19,7 @@ const NavBar = (): JSX.Element => {
         <Navbar.Brand href="/" className="kukkee-brand">
           <img
             alt="logo"
-            src="/Kukkee.svg"
+            src="/logo.svg"
             className="kukkee-logo-icon d-inline-block align-top"
           />
           Kukkee

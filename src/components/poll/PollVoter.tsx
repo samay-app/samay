@@ -42,7 +42,7 @@ const PollVoter = (props: {
     <>
       <Head>
         <title>Mark your availablity | Kukkee</title>
-        <link rel="shortcut icon" href="/Kukkee-favicon.svg" />
+        <link rel="shortcut icon" href="/logo.svg" />
         <meta name="description" content="Kukkee" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
