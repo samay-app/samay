@@ -4,7 +4,7 @@
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
 [![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
 [![Try the live demo](https://shields.io/badge/style-live%20demo-black?&style=for-the-badge&label=Check%20out)](https://demo.kukkee.com/)
-[![Check out the docs](https://shields.io/badge/style-documentation-black?&style=for-the-badge&label=Check%20out)](https://docs.kukkee.com/)
+[![Check out the docs](https://shields.io/badge/style-docs-black?&style=for-the-badge&label=Check%20out)](https://docs.kukkee.com/)
 
 ### Bring people together at the right time while taking control of your data and branding.
 
