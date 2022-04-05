@@ -28,9 +28,6 @@ const NavBar = (): JSX.Element => {
                 <Link href="/">
                   <a className="navbar-link">Dashboard</a>
                 </Link>
-                <a className="navbar-link" href="/guide">
-                  Guide
-                </a>
               </>
             )}
             {!session && router.pathname !== "/auth/signup" && (
