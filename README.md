@@ -10,17 +10,24 @@
 
 --
 
-# Community
 
-Come say hello at our [chatroom](https://gitter.im/Kukkee/community) for discussions, voicing new ideas or getting help!
+# Website
+
+Learn more about Kukkee at our [website](https://www.kukkee.com).
 
 # Try live demo
 
 Experience Kukkee for yourself by getting access to a [hosted Kukkee deployment](https://demo.kukkee.com).
 
+# Community
+
+Come say hello at our [chatroom](https://gitter.im/Kukkee/community) for discussions, voicing new ideas or getting help!
+
 # Self-hosting
 
-We're happy that you've decided to get your own Kukkee up and running! This guide is divided into three sections: database, customization, and deployment.
+We're happy that you've decided to get your own Kukkee up and running!
+
+This guide is divided into three sections: database, customization, and deployment.
 
 ## Database
 
@@ -53,7 +60,9 @@ If you're planning to use Vercel to deploy your own Kukkee, you must add all IP 
 
 ## Deployment
 
-Kukkee is built with Next.js. Hence, you would need to deploy Kukkee to a platform that supports Next.js. For example, Vercel, AWS EC2 or a DigitalOcean Droplet.
+Kukkee is built with Next.js. Hence, you would need to deploy Kukkee to a platform that supports Next.js.
+
+For example, Vercel, AWS EC2 or a DigitalOcean Droplet.
 
 ### Vercel
 
