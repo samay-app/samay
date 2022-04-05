@@ -4,6 +4,8 @@ import { getSession, getCsrfToken } from "next-auth/react";
 import { GetServerSidePropsContext } from "next";
 import SignIn from "../../src/components/auth/SignIn";
 
+const NEXT_PUBLIC_BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME || "";
+
 export default function SignInPage(props: { csrfToken: string }): JSX.Element {
   const { csrfToken } = props;
 
@@ -12,7 +14,7 @@ export default function SignInPage(props: { csrfToken: string }): JSX.Element {
   return (
     <>
       <Head>
-        <title>Sign In | Kukkee</title>
+        <title>Sign In | {NEXT_PUBLIC_BRAND_NAME}</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

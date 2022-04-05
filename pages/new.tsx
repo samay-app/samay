@@ -10,6 +10,8 @@ import ResponseMessage from "../src/components/ResponseMessage";
 import { Time, Poll, PollType } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
+const NEXT_PUBLIC_BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME || "";
+
 // typings aren't available for react-available-times
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -156,7 +158,7 @@ const New = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>New poll | Kukkee</title>
+        <title>New poll | {NEXT_PUBLIC_BRAND_NAME}</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
