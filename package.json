@@ -1,8 +1,7 @@
 {
   "name": "kukkee",
-  "description": "Finding the best time for team meetings or hanging out with your friends has never been faster.",
+  "description": "Bring people together at the right time while taking control of your data and branding",
   "version": "1.0.0",
-  "private": false,
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
@@ -13,18 +12,7 @@
     "type": "git",
     "url": "https://github.com/Kukkee/Kukkee.git"
   },
-  "keywords": [
-    "kukkee",
-    "scheduler",
-    "meeting-scheduler",
-    "meetings",
-    "polls"
-  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Kukkee/Kukkee/issues"
-  },
-  "homepage": "https://kukkee.com/",
   "dependencies": {
     "@babel/core": "^7.12.10",
     "bcryptjs": "^2.4.3",
