@@ -8,13 +8,14 @@ import { isUserPresentInVotes } from "../../helpers";
 const SubmitTimes = (props: {
   newVote: Vote;
   pollID: string;
+  hidden: boolean;
   pollFromDB: PollFromDB;
   setResponse: Dispatch<{
     status: boolean;
     msg: string;
   }>;
 }): JSX.Element => {
-  const { newVote, pollID, pollFromDB, setResponse } = props;
+  const { newVote, pollID, hidden, pollFromDB, setResponse } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -94,9 +95,9 @@ const SubmitTimes = (props: {
   };
 
   return (
-    <div>
+    <div hidden={hidden}>
       <Button
-        className="kukkee-primary-button mark-options-btn"
+        className="global-primary-button"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}

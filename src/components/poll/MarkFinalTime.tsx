@@ -20,11 +20,11 @@ const MarkFinalTime = (props: {
     <tr>
       <td className="poll-table-choose-text">Final time</td>
       {times.map((time) => (
-        <td key={time.start} className="slot-checkbox-final-cell">
+        <td key={time.start} className="poll-slot-checkbox-final-cell">
           <Form.Check
             data-value={JSON.stringify(time)}
             type="radio"
-            className="slot-checkbox"
+            className="poll-slot-checkbox"
             name="finalTime"
             onChange={handleTimeChange}
           />

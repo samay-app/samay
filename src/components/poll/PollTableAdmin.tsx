@@ -22,19 +22,19 @@ const PollTableAdmin = (props: {
   const { pollFromDB, sortedTimes, setFinalTime } = props;
 
   return (
-    <div className="poll-info-div" id="poll-vote-table">
-      <Table responsive className="poll-table">
+    <div>
+      <Table responsive>
         <thead>
-          <tr className="poll-table-top-row">
-            <th className="participant-cell"> </th>
+          <tr>
+            <th className="poll-participant-cell"> </th>
             {sortedTimes.map((time) => (
               <th
                 key={time.start}
                 className={
                   time.start === pollFromDB.finalTime?.start &&
                   time.end === pollFromDB.finalTime?.end
-                    ? "slot-time slot-final-time"
-                    : "slot-time"
+                    ? "poll-slot-time poll-slot-final-time"
+                    : "poll-slot-time"
                 }
               >
                 <PollDateTime time={time} />
@@ -51,9 +51,9 @@ const PollTableAdmin = (props: {
               {pollFromDB.votes?.length} PARTICIPANTS
             </td>
             {sortedTimes.map((time: Time) => (
-              <td key={time.start} className="slot-total-votes">
-                <span className="total-yes-votes">
-                  <Check2 className="slot-check" />
+              <td key={time.start} className="poll-slot-total-votes">
+                <span className="poll-total-yes-votes">
+                  <Check2 className="poll-slot-check" />
                   {
                     pollFromDB.votes?.filter((vote: Vote) =>
                       isTimePresentInPollTimes(
@@ -65,8 +65,8 @@ const PollTableAdmin = (props: {
                     ).length
                   }
                 </span>
-                <span className="total-if-need-be-votes">
-                  <Check2Circle className="slot-check" />
+                <span className="poll-total-if-need-be-votes">
+                  <Check2Circle className="poll-slot-check" />
                   {
                     pollFromDB.votes?.filter((vote: Vote) =>
                       isTimePresentInPollTimes(
@@ -90,9 +90,9 @@ const PollTableAdmin = (props: {
                   className={slotCheckClassName(time, vote.times)}
                 >
                   {isTimeIfNeedBe(time, vote.times) ? (
-                    <Check2Circle className="slot-check" />
+                    <Check2Circle className="poll-slot-check" />
                   ) : (
-                    <Check2 className="slot-check" />
+                    <Check2 className="poll-slot-check" />
                   )}
                 </td>
               ))}

@@ -1,8 +1,8 @@
 .form-label {
-  font-weight: 400 !important;
+  font-weight: 400;
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
-  color: #000000 !important;
+  color: #000000;
 }
 
 .form-text {
@@ -16,7 +16,7 @@
   font-weight: 400;
   transition: none;
   box-shadow: 0rem 0.05rem 0.1rem rgba(0, 0, 0, 0.2);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
 }
 
 .form-text::placeholder {
@@ -38,4 +38,20 @@
 
 .form-button-spinner {
   vertical-align: -0.2rem;
+}
+
+.form-select {
+  background-color: #fafafd;
+  color: #000000;
+  border: none;
+  outline: 0.05rem solid #e0e1e0;
+  border-radius: 0.3rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  width: 8rem;
+
+  &:focus {
+    outline: 0.14rem solid $brandColor;
+    background-color: #fafafd;
+  }
 }

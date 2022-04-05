@@ -17,13 +17,13 @@ const PollTableVoter = (props: {
   const { loggedInUsername, sortedTimes, newVote, setNewVote } = props;
 
   return (
-    <div className="poll-info-div" id="poll-vote-table">
-      <Table responsive className="poll-table">
+    <div>
+      <Table responsive>
         <thead>
-          <tr className="poll-table-top-row">
-            <th className="participant-cell"> </th>
+          <tr>
+            <th className="poll-participant-cell"> </th>
             {sortedTimes.map((time) => (
-              <th key={time.start} className="slot-time">
+              <th key={time.start} className="poll-slot-time">
                 <PollDateTime time={time} />
               </th>
             ))}

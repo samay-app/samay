@@ -9,13 +9,11 @@ dayjs.extend(localizedFormat);
 const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
   const { poll } = props;
   return (
-    <div className="poll-info-content">
+    <div>
       <Badge
         pill
         variant={poll.open ? "success" : "secondary"}
-        className={
-          poll.open ? "kukkee-badge-poll-open" : "kukkee-badge-poll-closed"
-        }
+        className={poll.open ? "poll-badge-open" : "poll-badge-closed"}
       >
         {poll.open ? "Open" : "Closed"}
       </Badge>
@@ -24,13 +22,13 @@ const PollInfo = (props: { poll: PollFromDB }): JSX.Element => {
         <span className="poll-info-desc">{poll.description}</span>
       )}
       {poll.location && (
-        <span className="poll-info-location">
-          <GeoAltFill className="poll-location" />
+        <span className="poll-info-detail-title">
+          <GeoAltFill className="poll-info-icon" />
           {poll.location}
         </span>
       )}
-      <span className="poll-info-username">
-        <PersonCircle className="poll-location" />
+      <span className="poll-info-detail-title">
+        <PersonCircle className="poll-info-icon" />
         {poll.username}
       </span>
     </div>

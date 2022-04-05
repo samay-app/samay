@@ -13,10 +13,10 @@ export const isTimePresentInPollTimes = (
 export const slotCheckClassName = (time: Time, times: Time[]): string => {
   if (isTimePresentInPollTimes(time, times)) {
     if (times.find((currentTime) => currentTime.start === time.start)?.ifNeedBe)
-      return "slot-checked-if-need-be";
-    return "slot-checked";
+      return "poll-slot-checked-if-need-be";
+    return "poll-slot-checked";
   }
-  return "slot-unchecked";
+  return "poll-slot-unchecked";
 };
 
 export const isTimeIfNeedBe = (time: Time, times: Time[]): boolean => {

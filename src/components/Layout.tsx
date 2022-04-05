@@ -3,7 +3,7 @@ import NavBar from "./Navbar";
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
     <>
-      <div className="flex-wrapper">
+      <div className="global-flex-wrapper">
         <NavBar />
         <main>{children}</main>
       </div>

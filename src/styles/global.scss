@@ -40,6 +40,20 @@ body {
   background: $brandColor;
 }
 
+main {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafd;
+}
+
+.global-flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .global-container {
   padding-left: 0.5rem;
   width: 95%;
@@ -69,10 +83,69 @@ body {
 }
 
 .global-page-section {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-top: 3rem;
+  }
 }
 
+.global-toast {
+  max-width: 35rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  float: right;
+  font-family: "Inter", sans-serif;
+}
+
+.global-primary-button {
+  background-color: $brandColor;
+  color: #fafafa;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  box-shadow: none;
+  transition: none;
+  width: 100%;
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
+    background-color: $brandColor !important;
+  }
+
+  &[disabled] {
+    opacity: 0.4;
+    background-color: $brandColor !important;
+    pointer-events: none;
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: unset;
+    float: right;
+  }
+}
+
+.global-primary-button:hover {
+  box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+
+.global-primary-button[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@import "./navbar.scss";
+@import "./poll.scss";
+@import "./datetime.scss";
+@import "./new-poll.scss";
+@import "./rat.scss";
 @import "./form.scss";
 @import "./auth.scss";
 @import "./dashboard.scss";
-@import "./index.scss";

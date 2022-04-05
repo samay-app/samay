@@ -34,7 +34,6 @@
     "mongoose": "^6.2.4",
     "next": "^12.1.0",
     "next-auth": "^4.3.1",
-    "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-available-times": "^1.4.0",
     "react-bootstrap": "^1.4.0",

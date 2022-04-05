@@ -1,0 +1,99 @@
+// need to overwrite react-available-times's styles hence !important is required
+
+.rat-TimeSlot_component {
+  background-color: #000000 !important;
+  color: #fafafa !important;
+}
+
+.rat-TimeSlot_handle {
+  color: #fafafa !important;
+}
+
+.rat-TimeSlot_title {
+  font-weight: 600 !important;
+  color: #fafafa !important;
+  padding: 0.5rem 0 0 0 !important;
+  font-size: 0.6rem !important;
+  line-height: 0.6rem !important;
+  text-align: center !important;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 0.8rem !important;
+  }
+}
+
+.rat-AvailableTimes_toolbar {
+  padding-top: 1rem !important;
+  padding-bottom: 1.5rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.rat-AvailableTimes_interval {
+  color: #000000 !important;
+  flex-basis: 8rem !important;
+}
+
+.rat-DayHeader_day {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+}
+
+.rat-Ruler_inner {
+  font-size: 0.8rem !important;
+}
+
+.rat-AvailableTimes_button {
+  fill: #000000 !important;
+
+  &:hover {
+    fill: #000000 !important;
+    background-color: #efefef !important;
+  }
+}
+
+.rat-Ruler_component {
+  background-color: #fefffe !important;
+}
+
+.rat-AvailableTimes_home {
+  display: none !important;
+}
+
+.rat-DayHeader_day {
+  color: #000000 !important;
+}
+
+.rat-Week_allDayLabel {
+  display: none !important;
+}
+
+.rat-Ruler_inner {
+  color: #000000 !important;
+}
+
+.rat-DayHeader_events {
+  display: none !important;
+}
+
+.rat-TimeSlot_delete {
+  line-height: normal !important;
+  font-size: 1rem !important;
+}
+
+.rat-Week_days {
+  background-color: #fefffe !important;
+}
+
+.rat-Week_lines {
+  background-color: #fefffe !important;
+}
+
+.rat-Day_component {
+  border-left: 1px solid #e0e1e0 !important;
+}
+
+.rat-Day_mouseTarget {
+  cursor: pointer !important;
+  height: 75rem !important;
+}

@@ -6,8 +6,7 @@ const SignUpPage = (): JSX.Element => {
     <>
       <Head>
         <title>Sign Up | Kukkee</title>
-        <link rel="shortcut icon" href="/logo.svg" />
-        <meta name="description" content="Kukkee" />
+        <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>

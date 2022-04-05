@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { Col, Row, Container, Jumbotron } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import Layout from "../Layout";
@@ -32,8 +32,7 @@ const PollVoter = (props: {
     <>
       <Head>
         <title>Finalise time | Kukkee</title>
-        <link rel="shortcut icon" href="/logo.svg" />
-        <meta name="description" content="Kukkee" />
+        <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -41,43 +40,33 @@ const PollVoter = (props: {
         <div className="global-page-heading">
           <Container className="global-container">Finalise time</Container>
         </div>
-        <Container className="global-container">
-          <Row className="jumbo-row">
-            <Col className="jumbo-col-black">
-              <Jumbotron className="poll-info">
-                <Row>
-                  <Col sm>
-                    <DeletePoll pollID={pollID} setResponse={setResponse} />
-                    <PollInfo poll={pollFromDB} />
-                    <CopyText
-                      pollTitle={pollFromDB.title}
-                      pollID={pollID}
-                      finalTime={pollFromDB.finalTime}
-                    />
-                  </Col>
-                </Row>
-              </Jumbotron>
-            </Col>
-          </Row>
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
-                <PollTableAdmin
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                  setFinalTime={setFinalTime}
-                />
-              </Jumbotron>
-              {pollFromDB.open && (
-                <SubmitFinalTime
-                  finalTime={finalTime}
-                  pollID={pollID}
-                  setResponse={setResponse}
-                />
-              )}
-            </Col>
-          </Row>
-        </Container>
+        <div className="global-page-section">
+          <Container className="global-container">
+            <Jumbotron className="poll-info-jumbo">
+              <DeletePoll pollID={pollID} setResponse={setResponse} />
+              <PollInfo poll={pollFromDB} />
+              <CopyText
+                pollTitle={pollFromDB.title}
+                pollID={pollID}
+                finalTime={pollFromDB.finalTime}
+              />
+            </Jumbotron>
+            <Jumbotron className="poll-table-jumbo first">
+              <PollTableAdmin
+                pollFromDB={pollFromDB}
+                sortedTimes={sortedTimes}
+                setFinalTime={setFinalTime}
+              />
+            </Jumbotron>
+            {pollFromDB.open && (
+              <SubmitFinalTime
+                finalTime={finalTime}
+                pollID={pollID}
+                setResponse={setResponse}
+              />
+            )}
+          </Container>
+        </div>
         <ResponseMessage response={response} setResponse={setResponse} />
       </Layout>
     </>

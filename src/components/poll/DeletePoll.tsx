@@ -44,7 +44,11 @@ const DeletePoll = (props: {
   };
 
   return (
-    <span onClick={handleDelete} className="delete-icon" aria-hidden="true">
+    <span
+      onClick={handleDelete}
+      className="poll-delete-icon"
+      aria-hidden="true"
+    >
       <Trash />
     </span>
   );

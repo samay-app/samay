@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { Col, Row, Container, Jumbotron } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import Layout from "../Layout";
@@ -42,8 +42,7 @@ const PollVoter = (props: {
     <>
       <Head>
         <title>Mark your availablity | Kukkee</title>
-        <link rel="shortcut icon" href="/logo.svg" />
-        <meta name="description" content="Kukkee" />
+        <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -53,53 +52,43 @@ const PollVoter = (props: {
             Mark your availablity
           </Container>
         </div>
-        <Container className="global-container">
-          <Row className="jumbo-row">
-            <Col className="jumbo-col-black">
-              <Jumbotron className="poll-info">
-                <Row>
-                  <Col sm>
-                    <PollInfo poll={pollFromDB} />
-                  </Col>
-                </Row>
-              </Jumbotron>
-            </Col>
-          </Row>
-          <Row className="jumbo-row" hidden={hideMarkTimesTable}>
-            <Col className="jumbo-col">
-              <Jumbotron className="poll-table-jumbo">
-                <PollTableVoter
-                  loggedInUsername={loggedInUsername}
+        <div className="global-page-section">
+          <Container className="global-container">
+            <Jumbotron className="poll-info-jumbo">
+              <PollInfo poll={pollFromDB} />
+            </Jumbotron>
+            <Jumbotron
+              className="poll-table-jumbo first"
+              hidden={hideMarkTimesTable}
+            >
+              <PollTableVoter
+                loggedInUsername={loggedInUsername}
+                sortedTimes={sortedTimes}
+                newVote={newVote}
+                setNewVote={setNewVote}
+              />
+            </Jumbotron>
+            <SubmitTimes
+              newVote={newVote}
+              pollID={pollID}
+              hidden={hideMarkTimesTable}
+              pollFromDB={pollFromDB}
+              setResponse={setResponse}
+            />
+            {pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+              <Jumbotron
+                className={`poll-table-jumbo ${
+                  !pollFromDB.open ? "first" : "second"
+                }`}
+              >
+                <PollTableVotes
+                  pollFromDB={pollFromDB}
                   sortedTimes={sortedTimes}
-                  newVote={newVote}
-                  setNewVote={setNewVote}
                 />
               </Jumbotron>
-            </Col>
-          </Row>
-          <Row className="jumbo-row" hidden={hideMarkTimesTable}>
-            <Col className="jumbo-col">
-              <SubmitTimes
-                newVote={newVote}
-                pollID={pollID}
-                pollFromDB={pollFromDB}
-                setResponse={setResponse}
-              />
-            </Col>
-          </Row>
-          {pollFromDB.votes && pollFromDB.votes?.length > 0 && (
-            <Row className="jumbo-row">
-              <Col className="jumbo-col">
-                <Jumbotron className="poll-table-jumbo" id="all-votes-table">
-                  <PollTableVotes
-                    pollFromDB={pollFromDB}
-                    sortedTimes={sortedTimes}
-                  />
-                </Jumbotron>
-              </Col>
-            </Row>
-          )}
-        </Container>
+            )}
+          </Container>
+        </div>
         <ResponseMessage response={response} setResponse={setResponse} />
       </Layout>
     </>

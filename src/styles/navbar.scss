@@ -1,0 +1,71 @@
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #fffefe;
+  border-bottom: #eaeaea solid 0.1rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+
+  @include media-breakpoint-up(sm) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.navbar-logo {
+  width: $brandLogoWidth;
+  height: $brandLogoHeight;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.navbar-hamburger {
+  border: none;
+  padding: 0;
+  outline: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.navbar-link {
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Manrope", sans-serif;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.3rem;
+  margin-right: 0;
+  cursor: pointer;
+  margin-left: 0;
+  border-bottom: 0.1rem solid #e0e1e0;
+
+  @include media-breakpoint-up(sm) {
+    margin-left: 1rem;
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #fafafd;
+    color: $brandColor;
+    text-decoration: none;
+  }
+
+  &.new-poll {
+    background-color: $brandColor;
+    color: #fffefe;
+    padding-right: 0.7rem;
+    padding-left: 0.7rem;
+
+    &:hover {
+      box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+    }
+  }
+}

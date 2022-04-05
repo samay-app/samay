@@ -55,7 +55,7 @@ const MarkTimes = (props: {
         {username && <span>{username}</span>}
         {!username && (
           <Form.Control
-            className="mark-time-name"
+            className="poll-mark-time-name"
             type="text"
             placeholder="Your name"
             onChange={handleNameChange}
@@ -63,9 +63,9 @@ const MarkTimes = (props: {
         )}
       </td>
       {times.map((time) => (
-        <td key={time.start} className="mark-time-cell">
+        <td key={time.start} className="poll-mark-time-cell">
           <div
-            className={`mark-time-box ${
+            className={`poll-mark-time-box ${
               statusValues[timeBoxStatus[time.start]]
             }`}
             id={JSON.stringify(time)}
@@ -73,10 +73,10 @@ const MarkTimes = (props: {
             onClick={handleMarkTimeBoxClick}
           >
             {timeBoxStatus[time.start] === 1 && (
-              <Check2 className="mark-time-box-check yes" />
+              <Check2 className="poll-mark-time-box-check yes" />
             )}
             {timeBoxStatus[time.start] === 2 && (
-              <Check2Circle className="mark-time-box-check if-need-be" />
+              <Check2Circle className="poll-mark-time-box-check if-need-be" />
             )}
           </div>
         </td>

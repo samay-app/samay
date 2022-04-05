@@ -57,7 +57,7 @@ const CopyTextMain = (props: {
             type="text"
             readOnly
             defaultValue={textToCopy}
-            className="share-textbox"
+            className="poll-share-textbox"
           />
           <InputGroup.Append>
             <OverlayTrigger
@@ -66,7 +66,11 @@ const CopyTextMain = (props: {
               show={show}
               overlay={popover}
             >
-              <Button variant="light" onClick={handleCopy} className="copy-btn">
+              <Button
+                variant="light"
+                onClick={handleCopy}
+                className="poll-copy-btn"
+              >
                 <Files />
               </Button>
             </OverlayTrigger>

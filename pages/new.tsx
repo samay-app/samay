@@ -1,15 +1,7 @@
 import Router from "next/router";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import {
-  Form,
-  Row,
-  Col,
-  Container,
-  Jumbotron,
-  Button,
-  Spinner,
-} from "react-bootstrap";
+import { Form, Container, Jumbotron, Button, Spinner } from "react-bootstrap";
 import { format } from "url";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
@@ -165,8 +157,7 @@ const New = (): JSX.Element => {
     <>
       <Head>
         <title>New poll | Kukkee</title>
-        <link rel="shortcut icon" href="/logo.svg" />
-        <meta name="description" content="Kukkee" />
+        <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -174,95 +165,87 @@ const New = (): JSX.Element => {
         <div className="global-page-heading">
           <Container className="global-container">New poll</Container>
         </div>
-        <Container className="global-container">
-          <Row className="jumbo-row">
-            <Col className="jumbo-col-black">
-              <Jumbotron className="kukkee-new-poll-jumbo">
-                <Form.Group controlId="pollTitle">
-                  <Form.Label className="form-label text-sm">Title</Form.Label>
-                  <Form.Control
-                    className="form-text title text-sm"
-                    type="text"
-                    placeholder="What's this about?"
-                    name="pollTitle"
-                    onChange={handlePollDetailsChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId="pollDescription">
-                  <Form.Label className="form-label text-sm">
-                    Description (optional)
-                  </Form.Label>
-                  <Form.Control
-                    className="form-text description text-sm"
-                    type="text"
-                    name="pollDescription"
-                    placeholder="Tell your invitees more about this"
-                    onChange={handlePollDetailsChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId="pollLocation">
-                  <Form.Label className="form-label text-sm">
-                    Location (optional)
-                  </Form.Label>
-                  <Form.Control
-                    className="form-text location text-sm"
-                    type="text"
-                    name="pollLocation"
-                    placeholder="Where is this going to happen?"
-                    onChange={handlePollDetailsChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId="pollType">
-                  <Form.Label className="form-label text-sm">
-                    Poll Type
-                  </Form.Label>
-                  <Form.Control
-                    as="select"
-                    className="poll-type"
-                    name="pollType"
-                    onChange={handlePollTypeChange}
-                    defaultValue="protected"
-                  >
-                    <option value="protected">Protected</option>
-                    <option value="public">Public</option>
-                  </Form.Control>
-                </Form.Group>
-              </Jumbotron>
-            </Col>
-          </Row>
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <Jumbotron className="poll-timeslot-jumbo">
-                <AvailableTimes
-                  weekStartsOn="monday"
-                  onChange={onTimesChange}
-                  height="42rem"
+        <div className="global-page-section">
+          <Container className="global-container">
+            <Jumbotron className="new-poll-jumbo">
+              <Form.Group controlId="pollTitle">
+                <Form.Label className="form-label">Title</Form.Label>
+                <Form.Control
+                  className="form-text"
+                  type="text"
+                  placeholder="What's this about?"
+                  name="pollTitle"
+                  onChange={handlePollDetailsChange}
                 />
-              </Jumbotron>
-              <Button
-                className="kukkee-primary-button create-poll-btn"
-                onClick={handleSubmit}
-                disabled={disabled}
-              >
-                {!disabled ? (
-                  `Create poll`
-                ) : (
-                  <>
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                      className="form-button-spinner"
-                    />
-                  </>
-                )}
-              </Button>
-              <ResponseMessage response={response} setResponse={setResponse} />
-            </Col>
-          </Row>
-        </Container>
+              </Form.Group>
+              <Form.Group controlId="pollDescription">
+                <Form.Label className="form-label">
+                  Description (optional)
+                </Form.Label>
+                <Form.Control
+                  className="form-text"
+                  type="text"
+                  name="pollDescription"
+                  placeholder="Tell your invitees more about this"
+                  onChange={handlePollDetailsChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="pollLocation">
+                <Form.Label className="form-label">
+                  Location (optional)
+                </Form.Label>
+                <Form.Control
+                  className="form-text"
+                  type="text"
+                  name="pollLocation"
+                  placeholder="Where is this going to happen?"
+                  onChange={handlePollDetailsChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="pollType">
+                <Form.Label className="form-label">Poll Type</Form.Label>
+                <Form.Control
+                  as="select"
+                  className="form-select"
+                  name="pollType"
+                  onChange={handlePollTypeChange}
+                  defaultValue="protected"
+                >
+                  <option value="protected">Protected</option>
+                  <option value="public">Public</option>
+                </Form.Control>
+              </Form.Group>
+            </Jumbotron>
+            <Jumbotron className="new-poll-timeslot-jumbo">
+              <AvailableTimes
+                weekStartsOn="monday"
+                onChange={onTimesChange}
+                height="42rem"
+              />
+            </Jumbotron>
+            <Button
+              className="global-primary-button mb-3"
+              onClick={handleSubmit}
+              disabled={disabled}
+            >
+              {!disabled ? (
+                `Create poll`
+              ) : (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="form-button-spinner"
+                  />
+                </>
+              )}
+            </Button>
+            <ResponseMessage response={response} setResponse={setResponse} />
+          </Container>
+        </div>
       </Layout>
     </>
   );

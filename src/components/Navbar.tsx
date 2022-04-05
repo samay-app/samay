@@ -9,49 +9,39 @@ const NavBar = (): JSX.Element => {
   const { data: session } = useSession();
 
   return (
-    <Navbar
-      className="kukkee-navbar"
-      variant="light"
-      expand="lg"
-      collapseOnSelect
-    >
+    <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="global-container">
-        <Navbar.Brand href="/" className="kukkee-brand">
-          <img
-            alt="logo"
-            src="/logo.svg"
-            className="kukkee-logo-icon d-inline-block align-top"
-          />
-          Kukkee
+        <Navbar.Brand href="/">
+          <img alt="logo" src="/logo.svg" className="navbar-logo" />
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
-          className="kukkee-nav-hamburger"
+          className="navbar-hamburger"
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             {session && (
               <>
                 <Link href="/new">
-                  <a className="kukkee-nav-link nav-link new">+ New poll</a>
+                  <a className="navbar-link new-poll">+ New poll</a>
                 </Link>
                 <Link href="/">
-                  <a className="kukkee-nav-link nav-link">Dashboard</a>
+                  <a className="navbar-link">Dashboard</a>
                 </Link>
-                <a className="kukkee-nav-link nav-link" href="/guide">
+                <a className="navbar-link" href="/guide">
                   Guide
                 </a>
               </>
             )}
             {!session && router.pathname !== "/auth/signup" && (
               <Link href="/auth/signup">
-                <a className="kukkee-nav-link nav-link">Sign up</a>
+                <a className="navbar-link">Sign up</a>
               </Link>
             )}
             {!session && router.pathname !== "/auth/signin" && (
               <a
                 onClick={(): Promise<undefined> => signIn()}
-                className="kukkee-nav-link nav-link"
+                className="navbar-link"
                 aria-hidden="true"
               >
                 Sign in
@@ -62,7 +52,7 @@ const NavBar = (): JSX.Element => {
                 onClick={(): Promise<undefined> =>
                   signOut({ callbackUrl: "/auth/signin" })
                 }
-                className="kukkee-nav-link nav-link"
+                className="navbar-link"
                 aria-hidden="true"
               >
                 Sign out

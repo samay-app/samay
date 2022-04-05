@@ -13,7 +13,7 @@ const ResponseMessage = (props: {
       show={response.status}
       delay={3000}
       autohide
-      className="custom-toast"
+      className="global-toast"
     >
       <Toast.Body>{response.msg}</Toast.Body>
     </Toast>
