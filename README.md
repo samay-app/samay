@@ -8,7 +8,7 @@
   </a>
   <p>
     <b>
-      Kukkee — the free, open source and self-hostable Doodle alternative.
+      Kukkee — the free, open source and self-hostable Doodle alternative
     </b>
   </p>
   <p>
