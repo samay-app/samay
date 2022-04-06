@@ -6,11 +6,6 @@
 [![Try the live demo](https://shields.io/badge/style-live%20demo-black?&style=for-the-badge&label=Check%20out)](https://demo.kukkee.com/)
 [![Check out the docs](https://shields.io/badge/style-docs-black?&style=for-the-badge&label=Check%20out)](https://docs.kukkee.com/)
 
-### Bring people together at the right time while taking control of your data and branding.
-
---
-
-
 # Website
 
 Learn more about Kukkee at our [website](https://www.kukkee.com).
