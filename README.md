@@ -1,10 +1,29 @@
-[![Kukkee](./public/banner.png)](https://kukkee.com)
+<div align="center">
+  <a href="https://www.kukkee.com/">
+    <img
+      src="./public/favicon.svg"
+      alt="Kukkee Logo"
+      height="64"
+    />
+  </a>
+  <p>
+    <b>
+      Kukkee — the free, open source and self-hostable Doodle alternative.
+    </b>
+  </p>
+  <p>
 
 [![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
 [![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
 [![Try the live demo](https://shields.io/badge/style-live%20demo-black?&style=for-the-badge&label=Check%20out)](https://demo.kukkee.com/)
 [![Check out the docs](https://shields.io/badge/style-docs-black?&style=for-the-badge&label=Check%20out)](https://docs.kukkee.com/)
+
+  </p>
+  <br />
+</div>
+
+[![Kukkee](./public/banner.png)](https://kukkee.com)
 
 # Website
 
