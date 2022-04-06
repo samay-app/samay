@@ -1,4 +1,4 @@
-[![Kukkee](./public/readme-banner.png)](https://kukkee.com)
+[![Kukkee](./public/banner.png)](https://kukkee.com)
 
 [![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
 [![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
