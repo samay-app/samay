@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  kukkee:
+    build: .
+    restart: always
+    networks:
+      - kukkee
+    ports: 
+      - 3000:3000
+    environment:
+       NEXT_MONGODB_URI: mongodb://root:example@mongodb:27017/
+       NEXT_PUBLIC_BASE_URL: http://localhost:3000
+       NEXT_PUBLIC_BRAND_NAME: Kukkee 
+       NEXTAUTH_URL: http://localhost:3000
+       NEXTAUTH_SECRET: 6S7EbkHISQIVJHfPvhdcjn0P398Pb2rydlEHf1l6w1o=
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    networks:
+      - kukkee
+    #volumes: 
+    #  - /my/own/datadir:/data/db
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: root
+       MONGO_INITDB_ROOT_PASSWORD: example
+
+networks:
+  kukkee: 

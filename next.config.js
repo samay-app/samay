@@ -4,6 +4,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: ["./styles"],
   },
+  experimental: {
+    outputStandalone: true,
+  },
 };
 
 module.exports = nextConfig;
