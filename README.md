@@ -8,7 +8,7 @@
   </a>
   <p>
     <b>
-      Kukkee — group scheduling tool for professionals
+      Kukkee — professional group meeting scheduling tool
     </b>
   </p>
   <p>
