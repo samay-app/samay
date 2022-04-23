@@ -8,7 +8,7 @@
   </a>
   <p>
     <b>
-      Kukkee — the free, open source and self-hostable Doodle alternative
+      Kukkee — group scheduling tool for professionals
     </b>
   </p>
   <p>
@@ -32,6 +32,7 @@ Learn more about Kukkee at our [website](https://www.kukkee.com).
 # Try live demo
 
 Experience Kukkee for yourself at a [demo](https://demo.kukkee.com) hosted by us.
+
 > Note: the demo uses a free Atlas cluster and a hobby Vercel account, hence performance may vary.
 
 # Community
