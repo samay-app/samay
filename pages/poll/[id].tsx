@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Router from "next/router";
 import { GetServerSideProps } from "next";
+import { Col, Row, Container, Jumbotron } from "react-bootstrap";
+import { PeopleFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
-import { useSession, getSession } from "next-auth/react";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
-import PollVoter from "../../src/components/poll/PollVoter";
-import PollAdmin from "../../src/components/poll/PollAdmin";
-import { isUserPresentInVotes } from "../../src/helpers";
-import { TimeFromDB, PollFromDB } from "../../src/models/poll";
+import Layout from "../../src/components/Layout";
+import PollInfo from "../../src/components/poll/PollInfo";
+import PollTableVoter from "../../src/components/poll/PollTableVoter";
+import PollTableVotes from "../../src/components/poll/PollTableVotes";
+import SubmitTimes from "../../src/components/poll/SubmitTimes";
+import ResponseMessage from "../../src/components/ResponseMessage";
+import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
+import { decrypt } from "../../src/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -18,58 +23,92 @@ const Poll = (props: {
 }): JSX.Element => {
   const { pollFromDB, pollID } = props;
 
-  let isPollCreator = false;
-  let loggedInUsername = "";
-
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      if (pollFromDB.type === "protected") {
-        Router.push({
-          pathname: "/auth/signin",
-          query: { from: `/poll/${pollID}` },
-        });
-      }
-    },
-  });
+  if (typeof window !== "undefined") {
+    if (localStorage[pollID] === "creator") {
+      Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
+    }
+  }
 
   const sortedTimes: TimeFromDB[] = pollFromDB.times.sort(
     (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
   );
-
-  if (!session && pollFromDB.type === "protected") return <></>;
-
-  if (session) {
-    loggedInUsername = session.username ? session.username : "";
-    isPollCreator = session.username === pollFromDB.username;
-  }
-
-  let hideMarkTimesTable = true;
-
-  if (
-    pollFromDB.open &&
-    ((loggedInUsername !== "" &&
-      !isUserPresentInVotes(loggedInUsername, pollFromDB.votes)) ||
-      (pollFromDB.type === "public" && !loggedInUsername))
-  )
-    hideMarkTimesTable = false;
-
-  if (isPollCreator)
-    return (
-      <PollAdmin
-        pollFromDB={pollFromDB}
-        pollID={pollID}
-        sortedTimes={sortedTimes}
-      />
-    );
+  const [newVote, setNewVote] = useState<Vote>({
+    name: "",
+    times: [],
+  });
+  const [response, setResponse] = useState({
+    status: false,
+    msg: "",
+  });
   return (
-    <PollVoter
-      pollFromDB={pollFromDB}
-      pollID={pollID}
-      hideMarkTimesTable={hideMarkTimesTable}
-      loggedInUsername={loggedInUsername}
-      sortedTimes={sortedTimes}
-    />
+    <Layout>
+      <Container className="kukkee-container">
+        <Row className="jumbo-row">
+          <Col className="jumbo-col-black">
+            <Jumbotron className="poll-info">
+              <Row>
+                <Col sm>
+                  <PollInfo poll={pollFromDB} />
+                </Col>
+              </Row>
+            </Jumbotron>
+          </Col>
+        </Row>
+        {pollFromDB.open && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <Jumbotron className="poll-table-jumbo">
+                <PollTableVoter
+                  pollFromDB={pollFromDB}
+                  sortedTimes={sortedTimes}
+                  newVote={newVote}
+                  setNewVote={setNewVote}
+                />
+              </Jumbotron>
+            </Col>
+          </Row>
+        )}
+        {pollFromDB.open && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <SubmitTimes
+                newVote={newVote}
+                pollID={pollID}
+                pollFromDB={pollFromDB}
+                setResponse={setResponse}
+              />
+            </Col>
+          </Row>
+        )}
+        {pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <PeopleFill className="votes-table-icon" />
+              <span className="votes-table-title">Participants</span>
+              <Jumbotron className="poll-table-jumbo" id="all-votes-table-open">
+                <PollTableVotes
+                  pollFromDB={pollFromDB}
+                  sortedTimes={sortedTimes}
+                />
+              </Jumbotron>
+            </Col>
+          </Row>
+        )}
+        {!pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
+          <Row className="jumbo-row">
+            <Col className="jumbo-col">
+              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
+                <PollTableVotes
+                  pollFromDB={pollFromDB}
+                  sortedTimes={sortedTimes}
+                />
+              </Jumbotron>
+            </Col>
+          </Row>
+        )}
+      </Container>
+      <ResponseMessage response={response} setResponse={setResponse} />
+    </Layout>
   );
 };
 
@@ -78,23 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (context.params) {
     pollID = context.params.id;
   }
-  const {
-    headers: { cookie },
-  } = context.req;
-
-  const session = await getSession(context);
-
-  const getPollResponse = await getPoll(pollID, cookie);
-
-  if (getPollResponse.statusCode === 401) {
-    return {
-      redirect: {
-        destination: `/auth/signin?from=/poll/${pollID}`,
-        permanent: false,
-      },
-    };
-  }
-
+  const getPollResponse = await getPoll(pollID);
   const pollFromDB = getPollResponse.data;
 
   if (getPollResponse.statusCode === 404) {
@@ -107,7 +130,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { pollFromDB, pollID, session },
+    props: { pollFromDB, pollID }, // will be passed to the page component as props
   };
 };
 

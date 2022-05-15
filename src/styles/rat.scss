@@ -11,7 +11,7 @@
 
 .rat-TimeSlot_title {
   font-weight: 700 !important;
-  font-family: "Inter", sans-serif !important;
+  font-family: "Syne", sans-serif !important;
   color: #fafafa !important;
   padding: 0.5rem 0 0 0 !important;
   font-size: 0.6rem !important;
@@ -31,19 +31,19 @@
 }
 
 .rat-AvailableTimes_interval {
-  font-family: "Inter", sans-serif !important;
+  font-family: "Syne", sans-serif !important;
   color: #000000 !important;
   flex-basis: 8rem !important;
 }
 
 .rat-DayHeader_day {
   font-size: 0.8rem !important;
-  font-family: "Inter", sans-serif !important;
+  font-family: "Syne", sans-serif !important;
   font-weight: 600 !important;
 }
 
 .rat-Ruler_inner {
-  font-family: "Inter", sans-serif !important;
+  font-family: "Syne", sans-serif !important;
   font-size: 0.8rem !important;
 }
 
@@ -51,8 +51,8 @@
   fill: #000000 !important;
 
   &:hover {
-    fill: #000000 !important;
-    background-color: #efefef !important;
+    fill: #fff !important;
+    background-color: #000 !important;
   }
 }
 

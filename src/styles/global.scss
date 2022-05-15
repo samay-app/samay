@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap");
 
 @import "./variables.scss";
 
@@ -9,7 +8,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #fafafd;
+  background-color: #fefffe;
 }
 
 * {
@@ -44,7 +43,7 @@ main {
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #fafafd;
+  background-color: #fefffe;
 }
 
 .global-flex-wrapper {
@@ -66,22 +65,6 @@ main {
   }
 }
 
-.global-page-heading {
-  font-family: "Manrope", sans-serif;
-  color: #000000;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  margin-bottom: 1rem;
-  background-color: #fffefe;
-  border-bottom: #eaeaea solid 0.1rem;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 2rem;
-  }
-}
-
 .global-page-section {
   margin-top: 1.5rem;
 
@@ -97,32 +80,50 @@ main {
   right: 1rem;
   z-index: 9999;
   float: right;
-  font-family: "Inter", sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 .global-primary-button {
-  background-color: $brandColor;
-  color: #fafafa;
+  background-color: #fefffe;
+  color: #000000;
   font-weight: 500;
   font-size: 1rem;
-  font-family: "Inter", sans-serif;
-  border: none;
+  font-family: "Syne", sans-serif;
+  border: 0.1rem solid #000000;
   border-radius: 0.3rem;
   padding: 0.8rem 1.5rem 0.8rem 1.5rem;
-  box-shadow: none;
+  box-shadow: 0.2rem 0.2rem 0rem #000000 !important;
   transition: none;
   width: 100%;
+  top: -0.2rem;
+  left: -0.2rem;
+  position: relative;
 
   &:hover,
-  &:active,
   &:focus {
-    box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
-    background-color: $brandColor !important;
+    box-shadow: 0.2rem 0.2rem 0rem #000000 !important;
+    color: #000000 !important;
+    border: 0.1rem solid #000000 !important;
+    background-color: #fefffe !important;
+  }
+
+  &:active {
+    box-shadow: none !important;
+    color: #000000 !important;
+    border: 0.1rem solid #000000 !important;
+    background-color: #fefffe !important;
+    top: unset;
+    left: unset;
   }
 
   &[disabled] {
     opacity: 0.4;
-    background-color: $brandColor !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    border: 0.1rem solid #000000 !important;
+    background-color: #fefffe !important;
+    top: unset;
+    left: unset;
     pointer-events: none;
   }
 

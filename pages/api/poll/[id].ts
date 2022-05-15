@@ -1,17 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import KukkeePoll, { PollDoc } from "../../../src/models/poll";
+import KukkeePoll, { Vote, PollDoc } from "../../../src/models/poll";
+import { isTimePresentInPollTimes } from "../../../src/helpers";
 import connectToDatabase from "../../../src/utils/db";
 
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<NextApiResponse | void> => {
-  const session = await getSession({ req });
-
+): Promise<void> => {
   const {
     query: { id },
     method,
+    body,
   } = req;
 
   switch (method) {
@@ -21,16 +20,62 @@ export default async (
         const poll: PollDoc | null = await KukkeePoll.findOne({
           _id: id,
         }).lean();
-        if (!poll)
-          return res.status(404).json({ message: "Poll does not exist" });
-        if (poll.type === "protected" && !session)
-          return res.status(401).json({ message: "User not logged in" });
-        return res.status(200).json(poll);
+        if (!poll) {
+          res.status(404).json({ message: "Poll does not exist" });
+        } else {
+          res.status(200).json(poll);
+        }
       } catch (err) {
-        return res.status(404).json({ message: err.message });
+        res.status(404).json({ message: err.message });
       }
+      break;
+    case "PUT":
+      try {
+        await connectToDatabase();
+        const poll: PollDoc | null = await KukkeePoll.findOne({
+          _id: id,
+        });
+        if (poll) {
+          const vote: Vote = JSON.parse(body);
+          if (!poll.open) {
+            res.status(400).json({ message: "Poll closed" });
+          } else if (
+            !vote.times.every((time) =>
+              isTimePresentInPollTimes(time, poll.times)
+            )
+          ) {
+            res.status(400).json({ message: "Invalid times" });
+          } else {
+            const currentVotes: Vote[] | undefined = poll.votes;
+            let newVotes: Vote[] | undefined;
+
+            if (currentVotes && currentVotes?.length > 0) {
+              newVotes = currentVotes;
+              newVotes.push(vote);
+            } else {
+              newVotes = [
+                {
+                  name: vote.name,
+                  times: vote.times,
+                },
+              ];
+            }
+            const updatedPoll: PollDoc | null = await KukkeePoll.findOneAndUpdate(
+              { _id: id },
+              { votes: newVotes },
+              { new: true }
+            );
+            res.status(201).json(updatedPoll);
+          }
+        } else {
+          res.status(404).json({ message: "Poll does not exist" });
+        }
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+      break;
     default:
-      res.setHeader("Allow", ["GET"]);
-      return res.status(405).end(`Method ${method} Not Allowed`);
+      res.setHeader("Allow", ["GET", "PUT"]);
+      res.status(405).end(`Method ${method} Not Allowed`);
   }
 };

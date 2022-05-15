@@ -17,23 +17,18 @@ const httpMethod = async (
 };
 
 const getPoll = (
-  pollID: string | string[] | null | undefined,
-  cookie = ""
+  pollID: string | string[] | null | undefined
 ): Promise<HttpResponse> => {
   const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}`;
   const requestOptions: RequestInit = {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      cookie,
-    },
   };
   return httpMethod(endpoint, requestOptions);
 };
 
 const createPoll = (pollArgs: { poll: Poll }): Promise<HttpResponse> => {
   const { poll } = pollArgs;
-  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/admin/poll/create`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/create`;
   const requestOptions: RequestInit = {
     method: "POST",
     body: JSON.stringify(poll),
@@ -46,7 +41,7 @@ const markTimes = (voteArgs: {
   pollID: string;
 }): Promise<HttpResponse> => {
   const { newVote, pollID } = voteArgs;
-  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/voter/poll/${pollID}`;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}`;
   const requestOptions: RequestInit = {
     method: "PUT",
     body: JSON.stringify(newVote),
@@ -57,9 +52,10 @@ const markTimes = (voteArgs: {
 const markFinalTime = (voteArgs: {
   finalTime: { finalTime: Time | undefined; open: boolean };
   pollID: string;
+  secret: string;
 }): Promise<HttpResponse> => {
-  const { finalTime, pollID } = voteArgs;
-  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/admin/poll/${pollID}`;
+  const { finalTime, pollID, secret } = voteArgs;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
     method: "PUT",
     body: JSON.stringify(finalTime),
@@ -67,46 +63,16 @@ const markFinalTime = (voteArgs: {
   return httpMethod(endpoint, requestOptions);
 };
 
-const getPolls = (cookie = ""): Promise<HttpResponse> => {
-  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/admin/poll/getAll`;
-  const requestOptions: RequestInit = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      cookie,
-    },
-  };
-  return httpMethod(endpoint, requestOptions);
-};
-
-const deletePoll = (deleteArgs: { pollID: string }): Promise<HttpResponse> => {
-  const { pollID } = deleteArgs;
-  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/admin/poll/${pollID}`;
+const deletePoll = (deleteArgs: {
+  pollID: string;
+  secret: string;
+}): Promise<HttpResponse> => {
+  const { pollID, secret } = deleteArgs;
+  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/poll/${pollID}/${secret}`;
   const requestOptions: RequestInit = {
     method: "DELETE",
   };
   return httpMethod(endpoint, requestOptions);
 };
 
-const signupUser = (newUser: {
-  username: string;
-  email: string;
-  password: string;
-}): Promise<HttpResponse> => {
-  const endpoint = `${NEXT_PUBLIC_BASE_URL}/api/auth/signup`;
-  const requestOptions: RequestInit = {
-    method: "POST",
-    body: JSON.stringify(newUser),
-  };
-  return httpMethod(endpoint, requestOptions);
-};
-
-export {
-  getPoll,
-  createPoll,
-  markTimes,
-  markFinalTime,
-  deletePoll,
-  signupUser,
-  getPolls,
-};
+export { getPoll, createPoll, markTimes, markFinalTime, deletePoll };

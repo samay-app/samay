@@ -1,13 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useRouter } from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 const NavBar = (): JSX.Element => {
-  const router = useRouter();
-
-  const { data: session } = useSession();
-
   return (
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="global-container">
@@ -20,41 +14,21 @@ const NavBar = (): JSX.Element => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            {session && (
-              <>
-                <Link href="/new">
-                  <a className="navbar-link new-poll">+ New poll</a>
-                </Link>
-                <Link href="/">
-                  <a className="navbar-link">Dashboard</a>
-                </Link>
-              </>
-            )}
-            {!session && router.pathname !== "/auth/signup" && (
-              <Link href="/auth/signup">
-                <a className="navbar-link">Sign up</a>
-              </Link>
-            )}
-            {!session && router.pathname !== "/auth/signin" && (
-              <a
-                onClick={(): Promise<undefined> => signIn()}
-                className="navbar-link"
-                aria-hidden="true"
-              >
-                Sign in
-              </a>
-            )}
-            {session && (
-              <a
-                onClick={(): Promise<undefined> =>
-                  signOut({ callbackUrl: "/auth/signin" })
-                }
-                className="navbar-link"
-                aria-hidden="true"
-              >
-                Sign out
-              </a>
-            )}
+            <Link href="/">
+              <a className="navbar-link">+ New poll</a>
+            </Link>
+            <Link href="/">
+              <a className="navbar-link">Your polls</a>
+            </Link>
+            <Link href="/">
+              <a className="navbar-link">How-to</a>
+            </Link>
+            <Link href="/">
+              <a className="navbar-link">GitHub</a>
+            </Link>
+            <Link href="/">
+              <a className="navbar-link">Privacy</a>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

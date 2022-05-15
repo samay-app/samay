@@ -1,8 +1,7 @@
 .navbar {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #fffefe;
-  border-bottom: #eaeaea solid 0.1rem;
+  background-color: #fefffe;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
 
@@ -36,9 +35,9 @@
   color: #000000;
   font-size: 1rem;
   font-weight: 600;
-  font-family: "Manrope", sans-serif;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  font-family: "Syne", sans-serif;
+  padding-right: 0.7rem;
+  padding-left: 0.7rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 0.3rem;
@@ -53,19 +52,8 @@
   }
 
   &:hover {
-    background-color: #ededed;
-    color: $brandColor;
+    background-color: #000000;
+    color: #ffffff;
     text-decoration: none;
-  }
-
-  &.new-poll {
-    background-color: $brandColor;
-    color: #fffefe;
-    padding-right: 0.7rem;
-    padding-left: 0.7rem;
-
-    &:hover {
-      box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
-    }
   }
 }

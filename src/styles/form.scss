@@ -1,21 +1,19 @@
 .form-label {
   font-weight: 400;
-  font-family: "Inter", sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: 0.875rem;
   color: #000000;
 }
 
 .form-text {
-  background-color: #fafafd;
+  background-color: #fefffe;
   color: #000000;
-  outline: 0.05rem solid #e0e1e0;
-  border: none;
+  border: 0.1rem solid #000000;
   border-radius: 0.3rem;
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
+  font-family: "Syne", sans-serif;
+  font-size: 1rem;
   font-weight: 400;
   transition: none;
-  box-shadow: 0rem 0.05rem 0.1rem rgba(0, 0, 0, 0.2);
   margin-bottom: 1rem;
 }
 
@@ -25,10 +23,9 @@
 }
 
 .form-text:focus {
-  border: none;
   color: #000000;
   background-color: #fefffe;
-  outline: 0.14rem solid $brandColor;
+  border: 0.1rem solid #000000;
 }
 
 .form-control:focus {
@@ -41,17 +38,17 @@
 }
 
 .form-select {
-  background-color: #fafafd;
+  background-color: #000000;
   color: #000000;
   border: none;
   outline: 0.05rem solid #e0e1e0;
   border-radius: 0.3rem;
-  font-family: "Inter", sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: 0.9rem;
   width: 8rem;
 
   &:focus {
     outline: 0.14rem solid $brandColor;
-    background-color: #fafafd;
+    background-color: #000000;
   }
 }

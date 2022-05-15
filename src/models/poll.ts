@@ -14,25 +14,22 @@ export interface TimeFromDB {
 }
 
 export interface Vote {
-  username: string;
+  name: string;
   times: Time[];
 }
 
 export interface VoteFromDB {
   _id: string;
-  username: string;
+  name: string;
   times: TimeFromDB[];
 }
 
-export type PollType = "public" | "protected";
-
 export interface Poll {
-  title: string;
+  title?: string;
   description?: string;
   open?: boolean;
-  username: string;
+  secret: string;
   location?: string;
-  type: PollType;
   times: Time[];
   finalTime?: Time;
   votes?: Vote[];
@@ -40,12 +37,11 @@ export interface Poll {
 
 export interface PollFromDB {
   _id: string;
-  title: string;
+  title?: string;
   description?: string;
   open?: boolean;
-  username: string;
+  secret: string;
   location?: string;
-  type: PollType;
   times: TimeFromDB[];
   finalTime?: TimeFromDB;
   votes?: VoteFromDB[];
@@ -55,12 +51,11 @@ export interface PollFromDB {
 }
 
 export interface PollDoc extends Document {
-  title: string;
+  title?: string;
   description?: string;
   open?: boolean;
-  username: string;
+  secret: string;
   location?: string;
-  type: PollType;
   times: Time[];
   finalTime?: Time;
   votes?: Vote[];
@@ -68,12 +63,11 @@ export interface PollDoc extends Document {
 
 const PollSchema: Schema = new Schema(
   {
-    title: { type: String, required: true },
+    title: { type: String },
     description: { type: String },
     open: { type: Boolean, default: true },
-    username: { type: String, required: true },
+    secret: { type: String, required: true },
     location: { type: String },
-    type: { type: String, required: true },
     times: {
       type: [{ start: Number, end: Number }],
       required: true,
@@ -81,7 +75,7 @@ const PollSchema: Schema = new Schema(
     finalTime: { type: { start: Number, end: Number } },
     votes: [
       {
-        username: String,
+        name: String,
         times: [{ start: Number, end: Number, ifNeedBe: Boolean }],
       },
     ],
@@ -93,7 +87,6 @@ const KukkeePoll: Model<PollDoc> =
   mongoose.models.Poll || model("Poll", PollSchema);
 
 export interface HttpResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   statusCode: number;
 }
