@@ -69,7 +69,7 @@ main {
   margin-top: 1.5rem;
 
   @include media-breakpoint-up(sm) {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }
 
@@ -91,7 +91,8 @@ main {
   font-family: "Syne", sans-serif;
   border: 0.1rem solid #000000;
   border-radius: 0.3rem;
-  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  margin-top: 1rem;
+  padding: 0.35rem 1.2rem 0.35rem 1.2rem;
   box-shadow: 0.2rem 0.2rem 0rem #000000 !important;
   transition: none;
   width: 100%;

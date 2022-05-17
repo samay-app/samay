@@ -146,6 +146,13 @@ const Home = (): JSX.Element => {
       <Layout>
         <div className="global-page-section">
           <Container className="global-container">
+            <Jumbotron className="new-poll-timeslot-jumbo">
+              <AvailableTimes
+                weekStartsOn="monday"
+                onChange={onTimesChange}
+                height="42rem"
+              />
+            </Jumbotron>
             <Jumbotron className="new-poll-jumbo">
               <Row>
                 <Col sm>
@@ -176,35 +183,30 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
+                <Col sm>
+                  <Button
+                    className="global-primary-button mb-3"
+                    onClick={handleSubmit}
+                    disabled={disabled}
+                  >
+                    {!disabled ? (
+                      `Create`
+                    ) : (
+                      <>
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                          className="form-button-spinner"
+                        />
+                      </>
+                    )}
+                  </Button>
+                </Col>
               </Row>
             </Jumbotron>
-            <Jumbotron className="new-poll-timeslot-jumbo">
-              <AvailableTimes
-                weekStartsOn="monday"
-                onChange={onTimesChange}
-                height="42rem"
-              />
-            </Jumbotron>
-            <Button
-              className="global-primary-button mb-3"
-              onClick={handleSubmit}
-              disabled={disabled}
-            >
-              {!disabled ? (
-                `Create`
-              ) : (
-                <>
-                  <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                    className="form-button-spinner"
-                  />
-                </>
-              )}
-            </Button>
             <ResponseMessage response={response} setResponse={setResponse} />
           </Container>
         </div>

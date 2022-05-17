@@ -32,28 +32,25 @@
 }
 
 .navbar-link {
-  color: #000000;
+  color: #818181;
   font-size: 1rem;
   font-weight: 600;
   font-family: "Syne", sans-serif;
-  padding-right: 0.7rem;
-  padding-left: 0.7rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 0.3rem;
-  margin-right: 0;
   cursor: pointer;
-  margin-left: 0;
   border-bottom: 0.1rem solid #e0e1e0;
 
   @include media-breakpoint-up(sm) {
-    margin-left: 1rem;
+    margin-left: 2rem;
     border-bottom: none;
   }
 
   &:hover {
-    background-color: #000000;
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
   }
 }

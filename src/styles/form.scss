@@ -6,15 +6,16 @@
 }
 
 .form-text {
-  background-color: #fefffe;
+  background-color: #f3f2f2;
   color: #000000;
-  border: 0.1rem solid #000000;
+  border: 0.1rem solid #f3f2f2;
   border-radius: 0.3rem;
   font-family: "Syne", sans-serif;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   transition: none;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .form-text::placeholder {
@@ -24,7 +25,7 @@
 
 .form-text:focus {
   color: #000000;
-  background-color: #fefffe;
+  background-color: #f3f2f2;
   border: 0.1rem solid #000000;
 }
 
