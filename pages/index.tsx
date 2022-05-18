@@ -183,7 +183,7 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
-                <Col sm>
+                <Col sm="auto">
                   <Button
                     className="global-primary-button mb-3"
                     onClick={handleSubmit}
