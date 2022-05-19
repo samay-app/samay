@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { Time, Vote, VoteFromDB } from "../models/poll";
+import { Time, VoteFromDB } from "../models/poll";
 
 export const isTimePresentInPollTimes = (
   timeToSearch: Time,
@@ -28,12 +28,30 @@ export const isTimeIfNeedBe = (time: Time, times: Time[]): boolean => {
   return false;
 };
 
+export const slotTimeClassName = (
+  time: Time,
+  voteTimes: Time[],
+  finalTime?: Time
+): string => {
+  if (time.start === finalTime?.start && time.end === finalTime?.end)
+    return "slot-time slot-final-time";
+
+  if (isTimePresentInPollTimes(time, voteTimes)) {
+    if (
+      voteTimes.find((currentTime) => currentTime.start === time.start)
+        ?.ifNeedBe
+    )
+      return "slot-time slot-if-need-be-time";
+    return "slot-time slot-normal-time";
+  }
+  return "slot-time";
+};
+
 export const isUserPresentInVotes = (
   userToSearch: string,
-  votes: Vote[] | VoteFromDB[] | undefined
+  votes: VoteFromDB[]
 ): boolean => {
-  if (!votes) return false;
-  return votes.some((vote) => vote.username === userToSearch);
+  return votes.some((vote) => vote.name === userToSearch);
 };
 
 const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || "";

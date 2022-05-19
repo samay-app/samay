@@ -6,7 +6,7 @@
 }
 
 .form-text {
-  background-color: #fefffe;
+  background-color: #f2f2f2;
   color: #000000;
   border: 0.15rem solid #fefffe;
   border-radius: 0.5rem;
@@ -15,8 +15,12 @@
   font-weight: 500;
   transition: none;
   margin-bottom: 1rem;
-  margin-top: 1rem;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  margin-top: 0;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 }
 
 .form-text::placeholder {
@@ -24,9 +28,15 @@
   opacity: 1;
 }
 
+.form-text:hover {
+  color: #000000;
+  background-color: #eeeeee;
+  border: 0.15rem solid #fefffe;
+}
+
 .form-text:focus {
   color: #000000;
-  background-color: #fefffe;
+  background-color: #eeeeee;
   border: 0.15rem solid #000000;
 }
 
@@ -50,7 +60,7 @@
   width: 8rem;
 
   &:focus {
-    outline: 0.14rem solid $brandColor;
+    outline: 0.14rem solid #000000;
     background-color: #000000;
   }
 }

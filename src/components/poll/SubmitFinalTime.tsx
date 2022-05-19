@@ -3,16 +3,18 @@ import { useState, Dispatch } from "react";
 import Router from "next/router";
 import { markFinalTime } from "../../utils/api/server";
 import { Time } from "../../models/poll";
+import { encrypt } from "../../helpers";
 
 const SubmitFinalTime = (props: {
   finalTime: Time | undefined;
   pollID: string;
+  secret: string;
   setResponse: Dispatch<{
     status: boolean;
     msg: string;
   }>;
 }): JSX.Element => {
-  const { finalTime, pollID, setResponse } = props;
+  const { finalTime, pollID, secret, setResponse } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -29,6 +31,7 @@ const SubmitFinalTime = (props: {
             open: false,
           },
           pollID,
+          secret: encrypt(secret),
         };
         const submitFinalTimeResponse = await markFinalTime(voterArgs);
         if (submitFinalTimeResponse.statusCode === 201) {
@@ -64,7 +67,7 @@ const SubmitFinalTime = (props: {
   return (
     <div>
       <Button
-        className="global-primary-button mb-3"
+        className="global-primary-button mb-5"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
@@ -79,7 +82,7 @@ const SubmitFinalTime = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
-              className="form-button-spinner"
+              className="kukkee-button-spinner"
             />
           </>
         )}

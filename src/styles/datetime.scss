@@ -26,7 +26,7 @@
   display: block;
   text-align: center;
   margin-bottom: -0.2em;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 1rem;
@@ -36,7 +36,7 @@
 .datetime-time-2 {
   display: block;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 1rem;

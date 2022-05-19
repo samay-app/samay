@@ -1,25 +1,26 @@
 .poll-info-jumbo {
   font-family: "Syne", sans-serif;
   background-color: #fefffe;
-  border: 0.1rem solid #e0e1e0;
   color: #000000;
   margin-top: 1rem;
-  margin-bottom: 0;
-  border-radius: 0.3rem;
-  padding: 1.5rem 1rem 1rem 1rem;
+  margin-bottom: 1.7rem;
+  border-radius: 0.5rem;
+  padding: 1rem 1rem 1rem 1rem;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 
   @include media-breakpoint-up(sm) {
     width: unset;
-    padding: 2.5rem 2rem 2rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
   }
 }
 
 .poll-table-jumbo {
+  font-family: "Syne", sans-serif;
   background-color: #fefffe;
-  border: 0.1rem solid #e0e1e0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   color: #000000;
   padding: 1rem;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   margin-bottom: 1rem;
 
   &.first {
@@ -35,14 +36,29 @@
   }
 }
 
+.poll-vote-recorded-jumbo {
+  font-family: "Syne", sans-serif;
+  background-color: #fefffe;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1rem 1rem 1rem;
+
+  @include media-breakpoint-up(sm) {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+}
+
 .poll-badge-open {
   font-size: 0.6rem;
   padding-top: 0.6em;
   padding-left: 0.6em;
   padding-right: 0.6em;
   padding-bottom: 0.6em;
-  background-color: #4bcc001f;
-  color: #4bcc00;
+  background-color: #d0fae4;
+  color: #065f46;
   transition: none;
   font-size: 0.5rem;
 
@@ -158,16 +174,17 @@
 }
 
 .poll-total-yes-votes {
-  color: #4bcc00;
+  color: #065f46;
 }
 
 .poll-slot-final-time {
-  background-color: $brandColor;
+  background-color: #000000;
+  border-radius: 0.5rem;
   color: #fefffe;
 }
 
 .poll-slot-checked {
-  background-color: #4bcc001f;
+  background-color: #d0fae4;
   text-align: center;
   border-top: 0.5rem solid #fefffe !important;
   border-left: 0.5rem solid #fefffe !important;
@@ -175,7 +192,7 @@
 }
 
 .poll-slot-checked-if-need-be {
-  background-color: #ffbb001f;
+  background-color: #d0edfa;
   text-align: center;
   border-top: 0.5rem solid #fefffe !important;
   border-left: 0.5rem solid #fefffe !important;
@@ -202,13 +219,13 @@
 .poll-slot-checked .poll-slot-check {
   width: 2rem;
   height: 2rem;
-  color: #4bcc00;
+  color: #065f46;
 }
 
 .poll-slot-checked-if-need-be .poll-slot-check {
   width: 2rem;
   height: 2rem;
-  color: #ffbb00;
+  color: #06105f;
 }
 
 .poll-slot-unchecked .poll-slot-check {
@@ -216,7 +233,7 @@
 }
 
 .poll-total-if-need-be-votes {
-  color: #ffbb00;
+  color: #06105f;
   margin-left: 0rem;
   display: block;
 
@@ -244,7 +261,11 @@
 .poll-delete-icon {
   float: right;
   cursor: pointer;
-  color: #ff0000;
+  color: #000000;
+
+  :hover {
+    color: #ff0000;
+  }
 }
 
 .poll-shareinvite-content {
@@ -262,16 +283,14 @@
 }
 
 .poll-mark-time-name {
-  background-color: #fefffe;
+  background-color: #f2f2f2;
   color: #000000;
-  outline: 0.05rem solid #e0e1e0;
-  border: none;
-  border-radius: 0.3rem;
+  border: 0.15rem solid #fefffe;
+  border-radius: 0.5rem;
   font-family: "Syne", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   transition: none;
-  box-shadow: 0rem 0.05rem 0.1rem rgba(0, 0, 0, 0.2);
 }
 
 .poll-mark-time-name::placeholder {
@@ -279,10 +298,16 @@
   opacity: 1;
 }
 
+.poll-mark-time-name:hover {
+  color: #000000;
+  background-color: #eeeeee;
+  border: 0.15rem solid #fefffe;
+}
+
 .poll-mark-time-name:focus {
   color: #000000;
-  border: none;
-  outline: 0.14rem solid $brandColor;
+  background-color: #eeeeee;
+  border: 0.15rem solid #000000;
 }
 
 .poll-mark-time-name.logged-in {
@@ -320,22 +345,24 @@
 .poll-slot-checkbox input[type="radio"] {
   width: 1.5rem;
   height: 1.5rem;
-  accent-color: $brandColor;
+  accent-color: #000000;
 }
 
 .poll-share-textbox {
-  background-color: #000000 !important;
+  background-color: #f2f2f2 !important;
   color: #000000;
-  border: 0.05rem solid #e0e1e0;
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
-  font-size: 0.7rem;
+  border: none !important;
+  border-radius: 0.5rem;
+  font-family: "Syne", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  transition: none;
   max-width: 24rem;
   text-overflow: ellipsis;
 
   &:focus {
     color: #000000;
-    border: 0.05rem solid #e0e1e0;
+    border: none !important;
   }
 
   @include media-breakpoint-up(sm) {
@@ -345,20 +372,20 @@
 
 .poll-copy-btn {
   font-size: 0.7rem;
-  border: 0.05rem solid $brandColor;
+  border: none;
   color: #ffffff;
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
-  background-color: $brandColor;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background-color: #000000;
   transition: none;
 
   &:hover,
   &:active,
   &:focus {
     box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
-    background-color: $brandColor !important;
+    background-color: #000000 !important;
     color: #ffffff !important;
-    border: 0.05rem solid $brandColor !important;
+    border: none !important;
   }
 
   @include media-breakpoint-up(sm) {
@@ -378,7 +405,7 @@
   width: 2rem;
   height: 2rem;
   margin: 0 auto;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
   align-items: center;
   display: flex;
   cursor: pointer;
@@ -392,25 +419,25 @@
 }
 
 .poll-mark-time-box.no {
-  border: 0.1rem solid #b6b6b6;
+  border: 0.15rem solid #b6b6b6;
 }
 
 .poll-mark-time-box.yes {
-  border: 0.1rem solid #4bcc00;
-  background-color: #4bcc001f;
+  border: 0.15rem solid #065f46;
+  background-color: #d0fae4;
 }
 
 .poll-mark-time-box-check.yes {
-  color: #4bcc00;
+  color: #065f46;
   pointer-events: none;
 }
 
 .poll-mark-time-box.if-need-be {
-  border: 0.1rem solid #ffbb00;
-  background-color: #ffbb001f;
+  border: 0.15rem solid #06105f;
+  background-color: #d0edfa;
 }
 
 .poll-mark-time-box-check.if-need-be {
-  color: #ffbb00;
+  color: #06105f;
   pointer-events: none;
 }

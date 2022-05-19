@@ -14,19 +14,17 @@ import { Time } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
-const CopyTextMain = (props: {
+const CopyLink = (props: {
   pollURL: string;
   pollTitle: string;
   finalTime: Time | undefined;
 }): JSX.Element => {
   const { pollURL, pollTitle, finalTime } = props;
 
-  const finalPollTitle = pollTitle || "Untitled";
-
   let textToCopy: string;
 
   if (finalTime) {
-    textToCopy = `"${finalPollTitle}": ${dayjs(finalTime?.start).format(
+    textToCopy = `"${pollTitle}": ${dayjs(finalTime?.start).format(
       "ddd"
     )}, ${dayjs(finalTime?.start).format("MMM")} ${dayjs(
       finalTime?.start
@@ -59,7 +57,7 @@ const CopyTextMain = (props: {
             type="text"
             readOnly
             defaultValue={textToCopy}
-            className="poll-share-textbox"
+            className="share-textbox"
           />
           <InputGroup.Append>
             <OverlayTrigger
@@ -68,11 +66,7 @@ const CopyTextMain = (props: {
               show={show}
               overlay={popover}
             >
-              <Button
-                variant="light"
-                onClick={handleCopy}
-                className="poll-copy-btn"
-              >
+              <Button variant="light" onClick={handleCopy} className="copy-btn">
                 <Files />
               </Button>
             </OverlayTrigger>
@@ -83,4 +77,4 @@ const CopyTextMain = (props: {
   );
 };
 
-export default CopyTextMain;
+export default CopyLink;

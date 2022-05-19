@@ -9,7 +9,7 @@
     text-decoration: underline;
 
     &:hover {
-      color: $brandColor;
+      color: #000000;
     }
   }
 }
@@ -20,7 +20,7 @@
   margin-top: 1.5rem;
   background-color: #fefffe;
   border: 0.1rem solid #e0e1e0;
-  color: $brandColor;
+  color: #000000;
 
   &:hover {
     box-shadow: 0.2rem 0.2rem 0.2rem #e0e1e06e;

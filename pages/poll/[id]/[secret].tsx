@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { Col, Row, Container, Jumbotron } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../../src/utils/api/server";
@@ -11,6 +12,7 @@ import SubmitFinalTime from "../../../src/components/poll/SubmitFinalTime";
 import DeletePoll from "../../../src/components/poll/DeletePoll";
 import ResponseMessage from "../../../src/components/ResponseMessage";
 import { Time, TimeFromDB, PollFromDB } from "../../../src/models/poll";
+import CopyText from "../../../src/components/copyText";
 import { decrypt } from "../../../src/helpers";
 
 dayjs.extend(localizedFormat);
@@ -30,31 +32,29 @@ const Poll = (props: {
     msg: "",
   });
   return (
-    <Layout>
-      <Container className="kukkee-container">
-        <Row className="jumbo-row">
-          <Col className="jumbo-col-black">
-            <Jumbotron className="poll-info">
-              <Row>
-                <Col sm>
-                  <DeletePoll
-                    pollID={pollID}
-                    secret={secret}
-                    setResponse={setResponse}
-                  />
-                  <PollInfo poll={pollFromDB} />
-                  <ShareInvite
-                    pollTitle={pollFromDB.title}
-                    pollID={pollID}
-                    finalTime={pollFromDB.finalTime}
-                  />
-                </Col>
-              </Row>
+    <>
+      <Head>
+        <title>Finalise time | Kukkee</title>
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Layout>
+        <div className="global-page-section">
+          <Container className="global-container">
+            <Jumbotron className="poll-info-jumbo">
+              <DeletePoll
+                pollID={pollID}
+                secret={secret}
+                setResponse={setResponse}
+              />
+              <PollInfo poll={pollFromDB} showFinalTime={false} />
+              <CopyText
+                pollTitle={pollFromDB.title}
+                pollID={pollID}
+                finalTime={pollFromDB.finalTime}
+              />
             </Jumbotron>
-          </Col>
-        </Row>
-        <Row className="jumbo-row">
-          <Col className="jumbo-col">
             <Jumbotron className="poll-table-jumbo" id="all-votes-table">
               <PollTableAdmin
                 pollFromDB={pollFromDB}
@@ -70,11 +70,11 @@ const Poll = (props: {
                 setResponse={setResponse}
               />
             )}
-          </Col>
-        </Row>
-      </Container>
-      <ResponseMessage response={response} setResponse={setResponse} />
-    </Layout>
+          </Container>
+          <ResponseMessage response={response} setResponse={setResponse} />
+        </div>
+      </Layout>
+    </>
   );
 };
 

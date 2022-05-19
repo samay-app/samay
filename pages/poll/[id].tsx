@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import Router from "next/router";
+import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { Col, Row, Container, Jumbotron } from "react-bootstrap";
-import { PeopleFill } from "react-bootstrap-icons";
+import { Container, Jumbotron } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
 import Layout from "../../src/components/Layout";
 import PollInfo from "../../src/components/poll/PollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
-import PollTableVotes from "../../src/components/poll/PollTableVotes";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
@@ -23,9 +22,15 @@ const Poll = (props: {
 }): JSX.Element => {
   const { pollFromDB, pollID } = props;
 
+  let hasAlreadyVoted = false;
+
   if (typeof window !== "undefined") {
     if (localStorage[pollID] === "creator") {
       Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
+    }
+
+    if (localStorage[pollID] === "voter") {
+      hasAlreadyVoted = true;
     }
   }
 
@@ -41,22 +46,20 @@ const Poll = (props: {
     msg: "",
   });
   return (
-    <Layout>
-      <Container className="kukkee-container">
-        <Row className="jumbo-row">
-          <Col className="jumbo-col-black">
-            <Jumbotron className="poll-info">
-              <Row>
-                <Col sm>
-                  <PollInfo poll={pollFromDB} />
-                </Col>
-              </Row>
+    <>
+      <Head>
+        <title>Mark your availablity | Kukkee</title>
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Layout>
+        <div className="global-page-section">
+          <Container className="global-container">
+            <Jumbotron className="poll-info-jumbo">
+              <PollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} />
             </Jumbotron>
-          </Col>
-        </Row>
-        {pollFromDB.open && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
+            {pollFromDB.open && !hasAlreadyVoted && (
               <Jumbotron className="poll-table-jumbo">
                 <PollTableVoter
                   pollFromDB={pollFromDB}
@@ -65,50 +68,25 @@ const Poll = (props: {
                   setNewVote={setNewVote}
                 />
               </Jumbotron>
-            </Col>
-          </Row>
-        )}
-        {pollFromDB.open && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
+            )}
+            {pollFromDB.open && hasAlreadyVoted && (
+              <Jumbotron className="poll-vote-recorded-jumbo">
+                Your vote has been successfully recorded.
+              </Jumbotron>
+            )}
+            {pollFromDB.open && !hasAlreadyVoted && (
               <SubmitTimes
                 newVote={newVote}
                 pollID={pollID}
                 pollFromDB={pollFromDB}
                 setResponse={setResponse}
               />
-            </Col>
-          </Row>
-        )}
-        {pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <PeopleFill className="votes-table-icon" />
-              <span className="votes-table-title">Participants</span>
-              <Jumbotron className="poll-table-jumbo" id="all-votes-table-open">
-                <PollTableVotes
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                />
-              </Jumbotron>
-            </Col>
-          </Row>
-        )}
-        {!pollFromDB.open && pollFromDB.votes && pollFromDB.votes?.length > 0 && (
-          <Row className="jumbo-row">
-            <Col className="jumbo-col">
-              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
-                <PollTableVotes
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                />
-              </Jumbotron>
-            </Col>
-          </Row>
-        )}
-      </Container>
-      <ResponseMessage response={response} setResponse={setResponse} />
-    </Layout>
+            )}
+          </Container>
+          <ResponseMessage response={response} setResponse={setResponse} />
+        </div>
+      </Layout>
+    </>
   );
 };
 

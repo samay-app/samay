@@ -18,8 +18,8 @@
   text-align: center;
 
   img {
-    width: $brandLogoWidth;
-    height: $brandLogoHeight;
+    width: auto;
+    height: 2rem;
   }
 }
 
@@ -38,7 +38,7 @@
 
 .auth-button {
   margin-top: 1rem;
-  background-color: $brandColor;
+  background-color: #000000;
   color: #fafafa;
   font-weight: 500;
   font-size: 0.9rem;
@@ -54,12 +54,12 @@
   &:active,
   &:focus {
     box-shadow: 0rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2) !important;
-    background-color: $brandColor !important;
+    background-color: #000000 !important;
   }
 
   &[disabled] {
     opacity: 0.4;
-    background-color: $brandColor !important;
+    background-color: #000000 !important;
     pointer-events: none;
   }
 }
@@ -83,7 +83,7 @@
     cursor: pointer;
 
     &:hover {
-      color: $brandColor;
+      color: #000000;
     }
   }
 }

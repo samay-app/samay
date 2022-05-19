@@ -8,14 +8,13 @@ import { isUserPresentInVotes } from "../../helpers";
 const SubmitTimes = (props: {
   newVote: Vote;
   pollID: string;
-  hidden: boolean;
   pollFromDB: PollFromDB;
   setResponse: Dispatch<{
     status: boolean;
     msg: string;
   }>;
 }): JSX.Element => {
-  const { newVote, pollID, hidden, pollFromDB, setResponse } = props;
+  const { newVote, pollID, pollFromDB, setResponse } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -24,7 +23,7 @@ const SubmitTimes = (props: {
   ): Promise<void> => {
     e.preventDefault();
 
-    if (!newVote.username) {
+    if (!newVote.name) {
       setResponse({
         status: true,
         msg: "Please enter your name.",
@@ -34,11 +33,11 @@ const SubmitTimes = (props: {
 
     if (
       pollFromDB.votes &&
-      isUserPresentInVotes(newVote.username, pollFromDB.votes)
+      isUserPresentInVotes(newVote.name, pollFromDB.votes)
     ) {
       setResponse({
         status: true,
-        msg: "You cannot vote more than once.",
+        msg: "An invitee with the same name has voted before.",
       });
       return;
     }
@@ -60,21 +59,20 @@ const SubmitTimes = (props: {
       };
       submitTimeResponse = await markTimes(voterArgs);
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
-        setResponse({
-          status: true,
-          msg: "Your vote has been successfully recorded.",
-        });
+        if (typeof window !== "undefined") {
+          localStorage.setItem(pollID, "voter");
+        }
         Router.reload();
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {
         setResponse({
           status: true,
-          msg: "Poll has been deleted.",
+          msg: "Sorry, poll has been deleted.",
         });
         Router.push("/");
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 400) {
         setResponse({
           status: true,
-          msg: "Poll has been closed.",
+          msg: "Sorry, poll has been closed.",
         });
         Router.reload();
       } else {
@@ -95,9 +93,9 @@ const SubmitTimes = (props: {
   };
 
   return (
-    <div hidden={hidden}>
+    <div>
       <Button
-        className="global-primary-button"
+        className="global-primary-button mb-5"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
@@ -112,7 +110,7 @@ const SubmitTimes = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
-              className="form-button-spinner"
+              className="kukkee-button-spinner"
             />
           </>
         )}

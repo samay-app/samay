@@ -1,15 +1,14 @@
 import { Form } from "react-bootstrap";
 import { Dispatch, useState } from "react";
 import { Check2, Check2Circle } from "react-bootstrap-icons";
-import { TimeFromDB, Vote } from "../../models/poll";
+import { Time, Vote } from "../../models/poll";
 
 const MarkTimes = (props: {
-  username: string;
-  times: TimeFromDB[];
+  times: Time[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { username, times, newVote, setNewVote } = props;
+  const { times, newVote, setNewVote } = props;
 
   const [timeBoxStatus, setTimeBoxStatus] = useState<Record<number, number>>(
     times.reduce((obj, cur) => ({ ...obj, [cur.start]: 0 }), {})
@@ -19,7 +18,7 @@ const MarkTimes = (props: {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    setNewVote({ username: value, times: newVote.times });
+    setNewVote({ name: value, times: newVote.times });
   };
 
   const handleMarkTimeBoxClick = (e: React.MouseEvent<HTMLElement>): void => {
@@ -35,32 +34,30 @@ const MarkTimes = (props: {
       // yes
       newTimes = newTimes.filter((item) => item.start !== time.start);
       newTimes.push(time);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ name: newVote.name, times: newTimes });
     } else if (newTimeBoxStatus === 2) {
       // if-need-be
       newTimes = newTimes.filter((item) => item.start !== time.start);
       time.ifNeedBe = true;
       newTimes.push(time);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ name: newVote.name, times: newTimes });
     } else {
       // no
       newTimes = newTimes.filter((item) => item.start !== time.start);
-      setNewVote({ username: newVote.username, times: newTimes });
+      setNewVote({ name: newVote.name, times: newTimes });
     }
   };
 
   return (
     <tr>
       <td className="poll-table-choose-textbox">
-        {username && <span>{username}</span>}
-        {!username && (
-          <Form.Control
-            className="poll-mark-time-name"
-            type="text"
-            placeholder="Your name"
-            onChange={handleNameChange}
-          />
-        )}
+        <Form.Control
+          className="poll-mark-time-name"
+          type="text"
+          placeholder="Your name"
+          onChange={handleNameChange}
+          autoFocus
+        />
       </td>
       {times.map((time) => (
         <td key={time.start} className="poll-mark-time-cell">

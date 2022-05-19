@@ -4,17 +4,17 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import MarkTimes from "./MarkTimes";
 import PollDateTime from "./PollDateTime";
-import { TimeFromDB, Vote } from "../../models/poll";
+import { Time, PollFromDB, Vote } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
 const PollTableVoter = (props: {
-  loggedInUsername: string;
-  sortedTimes: TimeFromDB[];
+  pollFromDB: PollFromDB;
+  sortedTimes: Time[];
   newVote: Vote;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { loggedInUsername, sortedTimes, newVote, setNewVote } = props;
+  const { pollFromDB, sortedTimes, newVote, setNewVote } = props;
 
   return (
     <div>
@@ -30,12 +30,13 @@ const PollTableVoter = (props: {
           </tr>
         </thead>
         <tbody>
-          <MarkTimes
-            username={loggedInUsername}
-            times={sortedTimes}
-            newVote={newVote}
-            setNewVote={setNewVote}
-          />
+          {pollFromDB.open && (
+            <MarkTimes
+              times={sortedTimes}
+              newVote={newVote}
+              setNewVote={setNewVote}
+            />
+          )}
         </tbody>
       </Table>
     </div>

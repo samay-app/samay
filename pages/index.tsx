@@ -113,10 +113,6 @@ const Home = (): JSX.Element => {
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
           localStorage.setItem(`${createPollResponse.data._id}`, "creator");
-
-          if (localStorage.heroShowed !== "true") {
-            localStorage.setItem("heroShowed", "true");
-          }
         }
         Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
       } else {
@@ -185,7 +181,7 @@ const Home = (): JSX.Element => {
                 </Col>
                 <Col sm="auto">
                   <Button
-                    className="global-primary-button mb-3"
+                    className="global-primary-button"
                     onClick={handleSubmit}
                     disabled={disabled}
                   >

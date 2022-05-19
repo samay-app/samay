@@ -82,8 +82,8 @@ const PollTableAdmin = (props: {
             ))}
           </tr>
           {pollFromDB.votes?.map((vote: Vote, idx: number) => (
-            <tr key={`${idx}-${vote.username}`}>
-              <td className="poll-table-participants">{vote.username}</td>
+            <tr key={`${idx}-${vote.name}`}>
+              <td className="poll-table-participants">{vote.name}</td>
               {sortedTimes.map((time: Time) => (
                 <td
                   key={time.start}
