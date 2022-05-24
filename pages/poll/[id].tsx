@@ -25,11 +25,11 @@ const Poll = (props: {
   let hasAlreadyVoted = false;
 
   if (typeof window !== "undefined") {
-    if (localStorage[pollID] === "creator") {
+    if (localStorage[`${pollID}-${pollFromDB.title}`] === "creator") {
       Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
     }
 
-    if (localStorage[pollID] === "voter") {
+    if (localStorage[`${pollID}-${pollFromDB.title}`] === "voter") {
       hasAlreadyVoted = true;
     }
   }

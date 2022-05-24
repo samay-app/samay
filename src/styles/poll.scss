@@ -58,7 +58,7 @@
   padding-right: 0.6em;
   padding-bottom: 0.6em;
   background-color: #d0fae4;
-  color: #065f46;
+  color: #000000;
   transition: none;
   font-size: 0.5rem;
 
@@ -174,12 +174,11 @@
 }
 
 .poll-total-yes-votes {
-  color: #065f46;
+  color: #000000;
 }
 
 .poll-slot-final-time {
   background-color: #000000;
-  border-radius: 0.5rem;
   color: #fefffe;
 }
 
@@ -192,7 +191,7 @@
 }
 
 .poll-slot-checked-if-need-be {
-  background-color: #d0edfa;
+  background-color: #d0effa;
   text-align: center;
   border-top: 0.5rem solid #fefffe !important;
   border-left: 0.5rem solid #fefffe !important;
@@ -219,13 +218,13 @@
 .poll-slot-checked .poll-slot-check {
   width: 2rem;
   height: 2rem;
-  color: #065f46;
+  color: #000000;
 }
 
 .poll-slot-checked-if-need-be .poll-slot-check {
   width: 2rem;
   height: 2rem;
-  color: #06105f;
+  color: #000000;
 }
 
 .poll-slot-unchecked .poll-slot-check {
@@ -233,7 +232,7 @@
 }
 
 .poll-total-if-need-be-votes {
-  color: #06105f;
+  color: #000000;
   margin-left: 0rem;
   display: block;
 
@@ -423,21 +422,21 @@
 }
 
 .poll-mark-time-box.yes {
-  border: 0.15rem solid #065f46;
+  border: 0.15rem solid #000000;
   background-color: #d0fae4;
 }
 
 .poll-mark-time-box-check.yes {
-  color: #065f46;
+  color: #000000;
   pointer-events: none;
 }
 
 .poll-mark-time-box.if-need-be {
-  border: 0.15rem solid #06105f;
-  background-color: #d0edfa;
+  border: 0.15rem solid #000000;
+  background-color: #d0effa;
 }
 
 .poll-mark-time-box-check.if-need-be {
-  color: #06105f;
+  color: #000000;
   pointer-events: none;
 }

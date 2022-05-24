@@ -17,16 +17,16 @@ const NavBar = (): JSX.Element => {
             <Link href="/">
               <a className="navbar-link">+ New poll</a>
             </Link>
-            <Link href="/">
-              <a className="navbar-link">Your polls</a>
+            <Link href="/recent-polls">
+              <a className="navbar-link">Recent polls</a>
             </Link>
-            <Link href="/">
+            <Link href="/how-to">
               <a className="navbar-link">How-to</a>
             </Link>
-            <Link href="/">
+            <Link href="https://github.com/AnandBaburajan/Kukkee">
               <a className="navbar-link">GitHub</a>
             </Link>
-            <Link href="/">
+            <Link href="/privacy">
               <a className="navbar-link">Privacy</a>
             </Link>
           </Nav>

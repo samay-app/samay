@@ -45,6 +45,7 @@ const Poll = (props: {
             <Jumbotron className="poll-info-jumbo">
               <DeletePoll
                 pollID={pollID}
+                pollTitle={pollFromDB.title || ""}
                 secret={secret}
                 setResponse={setResponse}
               />

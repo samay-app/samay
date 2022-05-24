@@ -6,13 +6,14 @@ import { encrypt } from "../../helpers";
 
 const DeletePoll = (props: {
   pollID: string;
+  pollTitle: string;
   secret: string;
   setResponse: Dispatch<{
     status: boolean;
     msg: string;
   }>;
 }): JSX.Element => {
-  const { pollID, secret, setResponse } = props;
+  const { pollID, pollTitle, secret, setResponse } = props;
 
   const handleDelete = async (
     e: React.MouseEvent<HTMLInputElement>
@@ -30,7 +31,10 @@ const DeletePoll = (props: {
           status: true,
           msg: "Your poll been successfully deleted.",
         });
-        Router.push("/");
+        if (typeof window !== "undefined") {
+          localStorage.removeItem(`${pollID}-${pollTitle}`);
+        }
+        Router.push("/recent-polls");
       } else {
         setResponse({
           status: true,

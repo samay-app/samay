@@ -1,4 +1,4 @@
-.dashboard-polls-heading {
+.your-polls-polls-heading {
   font-size: 1.2rem;
   color: #000000;
   font-family: "Syne", sans-serif;
@@ -14,16 +14,16 @@
   }
 }
 
-.dashboard-poll-card {
+.your-polls-poll-card {
   font-family: "Syne", sans-serif;
-  border-radius: 0.7rem;
+  border-radius: 0.5rem;
   margin-top: 1.5rem;
   background-color: #fefffe;
-  border: 0.1rem solid #e0e1e0;
+  border: 0.15rem solid #fefffe;
   color: #000000;
 
   &:hover {
-    box-shadow: 0.2rem 0.2rem 0.2rem #e0e1e06e;
+    border: 0.15rem solid #000000;
   }
 
   a {

@@ -60,7 +60,7 @@ const SubmitTimes = (props: {
       submitTimeResponse = await markTimes(voterArgs);
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          localStorage.setItem(pollID, "voter");
+          localStorage.setItem(`${pollID}-${pollFromDB.title}`, "voter");
         }
         Router.reload();
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {

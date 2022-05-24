@@ -112,7 +112,10 @@ const Home = (): JSX.Element => {
 
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          localStorage.setItem(`${createPollResponse.data._id}`, "creator");
+          localStorage.setItem(
+            `${createPollResponse.data._id}-${pollTitle}`,
+            "creator"
+          );
         }
         Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
       } else {
@@ -134,10 +137,35 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee</title>
+        <title>Kukkee | Fast meeting polls</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="google-site-verification"
+          content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
+        />
+        <meta name="title" content="Kukkee | Fast meeting polls" />
+        <meta
+          name="description"
+          content="Bring people together at the right time with Kukkee — the free and open source tool for fast meeting polls."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kukkee.com" />
+        <meta property="og:title" content="Kukkee | Fast meeting polls" />
+        <meta
+          property="og:description"
+          content="Bring people together at the right time with Kukkee — the free and open source tool for fast meeting polls."
+        />
+        <meta property="og:image" content="/banner.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://kukkee.com" />
+        <meta property="twitter:title" content="Kukkee | Fast meeting polls" />
+        <meta
+          property="twitter:description"
+          content="Bring people together at the right time with Kukkee — the free and open source tool for fast meeting polls."
+        />
+        <meta property="twitter:image" content="/banner.png" />
       </Head>
       <Layout>
         <div className="global-page-section">
@@ -157,7 +185,6 @@ const Home = (): JSX.Element => {
                     type="text"
                     placeholder="Title (optional)"
                     name="pollTitle"
-                    autoFocus
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
