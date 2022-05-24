@@ -8,36 +8,20 @@
   </a>
   <p>
     <b>
-      Kukkee — professional group meeting scheduling tool
+      Kukkee — meeting poll tool.
     </b>
   </p>
   <p>
 
 [![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
-[![Chat on Gitter](https://img.shields.io/badge/chat--on-gitter-brightgreen?color=%23000000&style=for-the-badge&logo=gitter)](https://gitter.im/Kukkee/community)
 [![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
-[![Try the live demo](https://shields.io/badge/style-live%20demo-black?&style=for-the-badge&label=Check%20out)](https://demo.kukkee.com/)
-[![Check out the docs](https://shields.io/badge/style-docs-black?&style=for-the-badge&label=Check%20out)](https://docs.kukkee.com/)
+[![Create a poll](https://shields.io/badge/style-Now-black?&style=for-the-badge&label=Create%20a%20poll)](https://kukkee.com/)
 
   </p>
   <br />
 </div>
 
 [![Kukkee](./public/banner.png)](https://kukkee.com)
-
-# Website
-
-Learn more about Kukkee at our [website](https://www.kukkee.com).
-
-# Try live demo
-
-Experience Kukkee for yourself at a [demo](https://demo.kukkee.com) hosted by us.
-
-> Note: the demo uses a free Atlas cluster and a hobby Vercel account, hence performance may vary.
-
-# Community
-
-Come say hello at our [chatroom](https://gitter.im/Kukkee/community) for discussions, voicing new ideas or getting help!
 
 # Self-hosting
 
@@ -96,7 +80,7 @@ We're thrilled that you'd like to contribute to Kukkee!
 
 ## Issues and PRs
 
-If you have suggestions for how this project could be improved, or want to report a bug, open an issue! We'd love all and any contributions. If you have questions, too, we'd love to hear them. [Join our community](https://gitter.im/Kukkee/community) on Gitter or [start a new discussion](https://github.com/Kukkee/Kukkee/discussions/new) on GitHub!
+If you have suggestions for how this project could be improved, or want to report a bug, open an issue! We'd love all and any contributions. If you have questions, too, we'd love to hear them. [Start a new discussion](https://github.com/Kukkee/Kukkee/discussions/new) on GitHub!
 
 We'd also love PRs. If you're thinking of a large PR, please open up an issue first to discuss your proposed changes with a project maintainer!
 
@@ -184,4 +168,4 @@ Special thanks to these amazing projects which help power Kukkee:
 
 ## License
 
-Kukkee is distributed under the [MIT License](https://github.com/Kukkee/Kukkee/blob/main/LICENSE).
+Kukkee is distributed under the [MIT License](https://github.com/AnandBaburajan/Kukkee/blob/main/LICENSE).

@@ -32,25 +32,25 @@ const RecentPolls = (): JSX.Element => {
           name="google-site-verification"
           content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
         />
-        <meta name="title" content="Kukkee | Fast meeting polls" />
+        <meta name="title" content="Kukkee | Meeting polls" />
         <meta
           name="description"
-          content="Bring people together at the right time with Kukkee — the free and open source tool for fast meeting polls."
+          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee | Fast meeting polls" />
+        <meta property="og:title" content="Kukkee | Meeting polls" />
         <meta
           property="og:description"
-          content="Bring people together at the right time with Kukkee — the free and open source tool for fast meeting polls."
+          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee | Fast meeting polls" />
+        <meta property="twitter:title" content="Kukkee | Meeting polls" />
         <meta
           property="twitter:description"
-          content="Bring people together at the right time with Kukkee — the free and open source tool for fast meeting polls."
+          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
