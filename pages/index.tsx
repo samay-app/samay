@@ -137,7 +137,7 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee | Meeting polls</title>
+        <title>Kukkee | Meeting poll tool</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
