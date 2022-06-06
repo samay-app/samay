@@ -27,52 +27,39 @@
 
 We're happy that you've decided to get your own Kukkee up and running!
 
+## Docker
+
+Coming soon!
+
+## Manual
+
 This guide is divided into three sections: database, customization, and deployment.
 
-## Database
+### Database
 
 Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
 
-### MongoDB Atlas
+#### MongoDB Atlas
 
 In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free.
 If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
-## Customization
-
-1. Fork this repo to your own GitHub account and then clone it.
-
-   ```sh
-   git clone https://github.com/<your-username>/Kukkee.git
-   ```
-
-2. Go to the project folder
-
-   ```sh
-   cd Kukkee
-   ```
-
-3. To change the logo, replace `/public/logo.svg` with your own logo.
-
-4. To change the favicon, replace `/public/favicon.svg` with your own favicon.
-
-5. To change the logo height, logo width and brand color, edit `src/styles/variables.scss`
-
-## Deployment
+### Deployment
 
 Kukkee is built with Next.js. Hence, you would need to deploy Kukkee to a platform that supports Next.js.
 
 For example, Vercel, AWS EC2 or a DigitalOcean Droplet.
 
-### Vercel
+#### Vercel
 
 In case you don't have a platform already, you can get started with Vercel for free.
 
-1. Go to https://vercel.com/dashboard
-2. Create a new project
-3. Import your forked git repository
-4. Set the environment variables (according to the instructions in .env.example)
-5. Deploy
+1. Fork this repo to your own GitHub account and then clone it.
+2. Go to https://vercel.com/dashboard
+3. Create a new project
+4. Import your forked git repository
+5. Set the environment variables (according to the instructions in .env.example)
+6. Deploy
 
 # Contributing
 
