@@ -153,7 +153,7 @@ Here are a few things you can do that will increase the likelihood of your PR be
 
 "WIP" PRs are also welcome to get feedback early on, or if there is something blocking you.
 
-## Acknowledgements
+# Acknowledgements
 
 Special thanks to these amazing projects which help power Kukkee:
 
@@ -166,6 +166,6 @@ Special thanks to these amazing projects which help power Kukkee:
 - [MongoDB Atlas](https://www.mongodb.com)
 - [Mongoose](https://mongoosejs.com)
 
-## License
+# License
 
 Kukkee is distributed under the [MIT License](https://github.com/AnandBaburajan/Kukkee/blob/main/LICENSE).

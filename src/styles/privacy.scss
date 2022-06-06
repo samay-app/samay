@@ -1,7 +1,6 @@
 .privacy-jumbo {
   font-family: "Syne", sans-serif;
   background-color: #fefffe;
-  color: #000000;
   margin-top: 1rem;
   margin-bottom: 1.7rem;
   border-radius: 0.5rem;
@@ -13,8 +12,25 @@
     padding: 2rem 2rem 2rem 2rem;
   }
 
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #383838;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 1.2rem;
+    }
+  }
+
   a {
     color: #000000;
     text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #000000;
+    font-weight: 700;
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "kukkee",
-  "description": "Bring people together at the right time with Kukkee — the free and open source meeting poll tool.",
+  "description": "Free and open source meeting poll tool. Bring people together, at the right time!",
   "version": "1.0.0",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",

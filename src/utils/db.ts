@@ -1,7 +1,6 @@
 import { connect, ConnectionOptions } from "mongoose";
 
-const NEXT_MONGODB_URI =
-  process.env.NEXT_MONGODB_URI || "mongodb://localhost:27017/polls";
+const { NEXT_MONGODB_URI } = process.env;
 
 const options: ConnectionOptions = {
   useUnifiedTopology: true,

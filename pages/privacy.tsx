@@ -14,25 +14,25 @@ const Privacy = (): JSX.Element => {
           name="google-site-verification"
           content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
         />
-        <meta name="title" content="Kukkee | Meeting polls" />
+        <meta name="title" content="Kukkee | Meeting poll tool" />
         <meta
           name="description"
-          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
+          content="Free and open source meeting poll tool. Bring people together, at the right time!"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee | Meeting polls" />
+        <meta property="og:title" content="Kukkee | Meeting poll tool" />
         <meta
           property="og:description"
-          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
+          content="Free and open source meeting poll tool. Bring people together, at the right time!"
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee | Meeting polls" />
+        <meta property="twitter:title" content="Kukkee | Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
+          content="Free and open source meeting poll tool. Bring people together, at the right time!"
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
@@ -147,24 +147,23 @@ const Privacy = (): JSX.Element => {
                 essential cookies), certain parts of our website's user
                 experience would deteriorate.
               </p>
-              <h2>Children's Privacy</h2>
+              <h2>Children's privacy</h2>
               <p>
-                The Service does not address anyone under the age of 13.
-                Personally identifiable information is not knowingly collected
-                from children under 13. If discovered that a child under 13 has
-                provided the Service with personal information, such information
-                will be immediately deleted from the servers. If you are a
-                parent or guardian and you are aware that your child has
-                provided the Service with personal information, please contact
-                us using the details below so that this information can be
-                removed.
+                We do not address anyone under the age of 13. Personally
+                identifiable information is not knowingly collected from
+                children under 13. If discovered that a child under 13 has
+                provided us with personal information, such information will be
+                immediately deleted from the servers. If you are a parent or
+                guardian and you are aware that your child has provided us with
+                personal information, please contact us using the details below
+                so that this information can be removed.
               </p>
-              <h2>Changes to This Privacy Policy</h2>
+              <h2>Changes to this privacy policy</h2>
               <p>
-                This Privacy Policy may be updated from time to time. Thus, you
+                This privacy policy may be updated from time to time. Thus, you
                 are advised to review this page periodically for any changes.
               </p>
-              <h2>Contact Us</h2>
+              <h2>Contact us</h2>
               <p>
                 If you have any questions or suggestions about this Privacy
                 Policy, do not hesitate to contact us at{" "}

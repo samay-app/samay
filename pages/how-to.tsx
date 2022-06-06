@@ -3,6 +3,8 @@ import { ArrowRight, Check2, Check2Circle } from "react-bootstrap-icons";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
+import peopleIllustration from "../public/people.svg";
 import Layout from "../src/components/Layout";
 
 const HowTo = (): JSX.Element => {
@@ -17,25 +19,25 @@ const HowTo = (): JSX.Element => {
           name="google-site-verification"
           content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
         />
-        <meta name="title" content="Kukkee | Meeting polls" />
+        <meta name="title" content="Kukkee | Meeting poll tool" />
         <meta
           name="description"
-          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
+          content="Free and open source meeting poll tool. Bring people together, at the right time!"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee | Meeting polls" />
+        <meta property="og:title" content="Kukkee | Meeting poll tool" />
         <meta
           property="og:description"
-          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
+          content="Free and open source meeting poll tool. Bring people together, at the right time!"
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee | Meeting polls" />
+        <meta property="twitter:title" content="Kukkee | Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Bring people together at the right time with Kukkee — the free and open source meeting poll tool."
+          content="Free and open source meeting poll tool. Bring people together, at the right time!"
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
@@ -49,11 +51,9 @@ const HowTo = (): JSX.Element => {
           </span>
         </Container>
         <Container className="how-to-container illustration">
-          <img
-            src="/people.svg"
-            alt="illustration"
-            className="how-to-illustration"
-          />
+          <span className="how-to-illustration">
+            <Image src={peopleIllustration} alt="illustration" />
+          </span>
         </Container>
         <Container className="how-to-container">
           <span className="how-to-features title">
