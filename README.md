@@ -33,7 +33,7 @@ Coming soon!
 
 ## Manual
 
-This guide is divided into three sections: database, customization, and deployment.
+The manual guide is divided into two sections: database and deployment.
 
 ### Database
 
