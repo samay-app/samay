@@ -1,5 +1,5 @@
 import { Button, Container, CardGroup, Card } from "react-bootstrap";
-import { ArrowRight, Check2, Check2Circle } from "react-bootstrap-icons";
+import { Check2, Check2Circle } from "react-bootstrap-icons";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -60,8 +60,7 @@ const HowTo = (): JSX.Element => {
             Never ask “what time works for you all?” again
           </span>
           <span className="how-to-features desc">
-            Create a poll <ArrowRight /> Share the poll <ArrowRight /> Book the
-            meeting
+            Free. Fast. No ads. No login. No tracking.
           </span>
           <CardGroup className="how-to-card-group">
             <Card className="how-to-card">
@@ -71,8 +70,8 @@ const HowTo = (): JSX.Element => {
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
                   Quickly create a meeting poll by choosing the time slots based
-                  on your availablity, and enter the title, description and
-                  location optionally. No ads, no login required.
+                  on your availablity, and optionally enter the title,
+                  description and location.
                 </Card.Text>
               </Card.Body>
             </Card>

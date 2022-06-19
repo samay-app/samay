@@ -25,7 +25,7 @@
 
 # Self-hosting
 
-We're happy that you've decided to get your own Kukkee up and running!
+I'm happy that you've decided to get your own Kukkee up and running!
 
 ## Docker
 
@@ -63,13 +63,13 @@ In case you don't have a platform already, you can get started with Vercel for f
 
 # Contributing
 
-We're thrilled that you'd like to contribute to Kukkee!
+I'm thrilled that you'd like to contribute to Kukkee!
 
 ## Issues and PRs
 
-If you have suggestions for how this project could be improved, or want to report a bug, open an issue! We'd love all and any contributions. If you have questions, too, we'd love to hear them. [Start a new discussion](https://github.com/Kukkee/Kukkee/discussions/new) on GitHub!
+If you have suggestions for how this project could be improved, or want to report a bug, open an issue! I'd love all and any contributions. If you have questions, too, I'd love to hear them. [Start a new discussion](https://github.com/Kukkee/Kukkee/discussions/new) on GitHub!
 
-We'd also love PRs. If you're thinking of a large PR, please open up an issue first to discuss your proposed changes with a project maintainer!
+I'd also love PRs. If you're thinking of a large PR, please open up an issue first to discuss your proposed changes with a project maintainer!
 
 ## Development
 

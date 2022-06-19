@@ -1,10 +1,12 @@
 import { Badge } from "react-bootstrap";
-import { CalendarCheck, GeoAltFill } from "react-bootstrap-icons";
+import { CalendarCheck, GeoAltFill, Globe } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import timezone from "dayjs/plugin/timezone";
 import { PollFromDB } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
+dayjs.extend(timezone);
 
 const PollInfo = (props: {
   poll: PollFromDB;
@@ -31,6 +33,10 @@ const PollInfo = (props: {
           {poll.location}
         </span>
       )}
+      <span className="poll-info-detail-title">
+        <Globe className="poll-info-icon" />
+        Times are shown in: {dayjs.tz.guess()} timezone
+      </span>
       {showFinalTime && (
         <span className="poll-info-detail-title">
           <CalendarCheck className="poll-info-icon" />
