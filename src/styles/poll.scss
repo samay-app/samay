@@ -91,6 +91,9 @@
   font-size: 1.8rem;
   line-height: 1.8rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @include media-breakpoint-up(sm) {
     font-size: 2.8rem;
@@ -106,6 +109,9 @@
   margin-top: 0.5rem;
   margin-bottom: 1.4rem;
   line-height: 1.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.5rem;
@@ -250,7 +256,10 @@
   border-top: 0 !important;
   vertical-align: middle !important;
   width: 5rem;
-  min-width: 8.3rem;
+  max-width: 8.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.1rem !important;
