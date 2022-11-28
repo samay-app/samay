@@ -54,6 +54,7 @@ const MarkTimes = (props: {
         <Form.Control
           className="poll-mark-time-name"
           type="text"
+          maxLength={30}
           placeholder="Your name"
           onChange={handleNameChange}
           autoFocus
