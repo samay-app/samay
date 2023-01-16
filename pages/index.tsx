@@ -183,6 +183,7 @@ const Home = (): JSX.Element => {
                   <Form.Control
                     className="form-text"
                     type="text"
+                    maxLength={30}
                     placeholder="Title (optional)"
                     name="pollTitle"
                     onChange={handlePollDetailsChange}
@@ -193,6 +194,7 @@ const Home = (): JSX.Element => {
                     className="form-text"
                     type="text"
                     name="pollDescription"
+                    maxLength={50}
                     placeholder="Description (optional)"
                     onChange={handlePollDetailsChange}
                   />
@@ -202,6 +204,7 @@ const Home = (): JSX.Element => {
                     className="form-text"
                     type="text"
                     name="pollLocation"
+                    maxLength={20}
                     placeholder="Location (optional)"
                     onChange={handlePollDetailsChange}
                   />
