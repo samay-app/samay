@@ -25,8 +25,6 @@
 
 # Self-hosting
 
-I'm happy that you've decided to get your own Kukkee up and running!
-
 ## Docker
 
 Coming soon!
@@ -46,9 +44,7 @@ If you're planning to use Vercel to deploy your own Kukkee, you must add all IP 
 
 ### Deployment
 
-Kukkee is built with Next.js. Hence, you would need to deploy Kukkee to a platform that supports Next.js.
-
-For example, Vercel, AWS EC2 or a DigitalOcean Droplet.
+Kukkee is built with Next.j, hence you would need to deploy Kukkee to a platform that supports Next.js (Vercel, AWS EC2, DigitalOcean Droplet, etc).
 
 #### Vercel
 
@@ -62,8 +58,6 @@ In case you don't have a platform already, you can get started with Vercel for f
 6. Deploy
 
 # Contributing
-
-I'm thrilled that you'd like to contribute to Kukkee!
 
 ## Issues and PRs
 
@@ -146,7 +140,6 @@ Special thanks to these amazing projects which help power Kukkee:
 
 - [react-available-times](https://github.com/trotzig/react-available-times)
 - [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
 - [Vercel](https://vercel.com)
 - [Day.js](https://day.js.org)
 - [Bootstrap](https://getbootstrap.com)
