@@ -138,13 +138,14 @@ Here are a few things you can do that will increase the likelihood of your PR be
 
 Special thanks to these amazing projects which help power Kukkee:
 
-- [react-available-times](https://github.com/trotzig/react-available-times)
-- [Next.js](https://nextjs.org)
-- [Vercel](https://vercel.com)
-- [Day.js](https://day.js.org)
-- [Bootstrap](https://getbootstrap.com)
-- [MongoDB Atlas](https://www.mongodb.com)
-- [Mongoose](https://mongoosejs.com)
+- React-available-times
+- React
+- Next.js
+- Day.js
+- Bootstrap
+- MongoDB
+- Mongoose
+- Cal Sans
 
 # License
 

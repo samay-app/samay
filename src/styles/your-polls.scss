@@ -1,7 +1,8 @@
 .your-polls-polls-heading {
   font-size: 1.2rem;
-  color: #000000;
-  font-family: "Syne", sans-serif;
+  color: #565656;
+  letter-spacing: 0.02rem;
+  font-family: "Cal Sans";
   font-weight: 700;
 
   a {
@@ -15,15 +16,16 @@
 }
 
 .your-polls-poll-card {
-  font-family: "Syne", sans-serif;
+  font-family: "Cal Sans";
   border-radius: 0.5rem;
   margin-top: 1.5rem;
+  letter-spacing: 0.02rem;
   background-color: #fefffe;
-  border: 0.15rem solid #fefffe;
+  border: 0.13rem solid #fefffe;
   color: #000000;
 
   &:hover {
-    border: 0.15rem solid #000000;
+    border: 0.13rem solid #e1e1e1;
   }
 
   a {
@@ -37,5 +39,13 @@
 
   @include media-breakpoint-up(sm) {
     width: 30rem;
+  }
+
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  .stretched-link {
+    font-size: 1rem;
   }
 }

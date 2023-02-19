@@ -35,10 +35,6 @@ const SubmitFinalTime = (props: {
         };
         const submitFinalTimeResponse = await markFinalTime(voterArgs);
         if (submitFinalTimeResponse.statusCode === 201) {
-          setResponse({
-            status: true,
-            msg: "Time has been finalised and the poll has been closed",
-          });
           Router.reload();
         } else {
           setDisabled(false);

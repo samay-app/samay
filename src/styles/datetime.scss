@@ -5,7 +5,7 @@
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: -0.2em;
-  color: #4f4f4f;
+  color: #8c8c8c;
 }
 
 .datetime-day {
@@ -19,16 +19,18 @@
   display: block;
   text-align: center;
   font-size: 1.2rem;
+  letter-spacing: 0.02rem;
   font-weight: 500;
   margin-bottom: 0.4em;
-  color: #4f4f4f;
+  color: #8c8c8c;
 }
 
 .datetime-time-1 {
   display: block;
   text-align: center;
   margin-bottom: -0.2em;
-  font-size: 0.5rem;
+  letter-spacing: 0.03rem;
+  font-size: 0.7rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 1rem;
@@ -38,7 +40,8 @@
 .datetime-time-2 {
   display: block;
   text-align: center;
-  font-size: 0.5rem;
+  letter-spacing: 0.03rem;
+  font-size: 0.7rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 1rem;

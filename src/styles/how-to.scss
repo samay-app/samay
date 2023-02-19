@@ -14,7 +14,8 @@
 // ..................................................................../
 
 .how-to-container {
-  margin-bottom: 5rem;
+  margin-top: 7rem;
+  margin-bottom: 2rem;
   padding-left: 0.5rem;
   width: 95%;
   padding-right: 0.5rem;
@@ -25,23 +26,11 @@
     padding-right: 0;
   }
 
-  &.hero {
-    margin-top: 1rem;
-    margin-bottom: 0;
-
-    @include media-breakpoint-up(sm) {
-      margin-top: 5rem;
-    }
-  }
-
-  &.illustration {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
   &.cta {
     margin-bottom: 3rem;
     text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -88,7 +77,7 @@
   color: #000000;
   font-size: 1rem;
   font-weight: 600;
-  font-family: "Syne", sans-serif;
+  font-family: "Cal Sans";
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   padding-top: 0.5rem;
@@ -113,128 +102,18 @@
 }
 
 //
-// Hero
-// ..................................................................../
-
-.how-to-hero-title {
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: "Syne", sans-serif;
-  color: #000000;
-  line-height: 2.3rem;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-  text-align: center;
-  display: block;
-
-  &.dark {
-    color: #fefeff;
-  }
-
-  @include media-breakpoint-up(sm) {
-    font-size: 3.3rem;
-    line-height: 3.5rem;
-  }
-}
-
-.how-to-hero-desc {
-  font-size: 1.2rem;
-  font-weight: 500;
-  font-family: "Syne", sans-serif;
-  color: #000000;
-  line-height: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  margin-top: 1.5rem;
-  text-align: center;
-  display: block;
-
-  &.dark {
-    color: #fefeff;
-
-    a {
-      color: #fefeff;
-    }
-  }
-
-  @include media-breakpoint-up(sm) {
-    font-size: 1.7rem;
-    margin-top: 2rem;
-  }
-}
-
-.how-to-hero-cta {
-  font-size: 1.1rem;
-  font-family: "Syne", sans-serif;
-  font-weight: 600;
-  color: #000000;
-  margin-top: 1.9rem;
-  text-align: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: center;
-  display: block;
-
-  &.dark {
-    color: #fefeff;
-  }
-
-  @include media-breakpoint-up(sm) {
-    font-size: 1.3rem;
-    margin-top: 3rem;
-  }
-}
-
-.how-to-primary-btn {
-  background-color: #000000;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 1rem;
-  font-family: "Syne", sans-serif;
-  border-radius: 0.5rem;
-  border: none;
-  padding: 0.35rem 1.2rem 0.35rem 1.2rem;
-
-  &:hover {
-    color: #ffffff !important;
-    box-shadow: none !important;
-    border: none !important;
-    background-color: #424242 !important;
-  }
-
-  &:active,
-  &:focus {
-    color: #ffffff !important;
-    border: none !important;
-    box-shadow: none !important;
-    background-color: #000000 !important;
-  }
-}
-
-.how-to-illustration {
-  padding: 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-
-  @include media-breakpoint-up(sm) {
-    width: 60%;
-  }
-}
-
-//
-// Features
+// Page
 // ..................................................................../
 
 .how-to-features {
   &.title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #000000;
-    font-family: "Syne", sans-serif;
+    font-family: "Cal Sans";
     font-weight: 700;
-    line-height: 2.5rem;
+    line-height: 2rem;
     padding-right: 0.5rem;
+    letter-spacing: 0.05rem;
     padding-left: 0.5rem;
     display: block;
     text-align: center;
@@ -248,10 +127,11 @@
   }
 
   &.desc {
-    font-size: 1.2rem;
-    color: #000000;
-    font-family: "Syne", sans-serif;
+    font-size: 1rem;
+    color: #565656;
+    font-family: "Cal Sans";
     font-weight: 500;
+    letter-spacing: 0.05rem;
     display: block;
     text-align: center;
     padding-left: 0.5rem;
@@ -260,6 +140,7 @@
     margin-top: 1rem;
 
     @include media-breakpoint-up(sm) {
+      margin-top: 0;
       font-size: 1.5rem;
     }
   }
@@ -280,61 +161,62 @@
   border: none;
   border-radius: 0.1rem;
 
-  &.icon {
-    color: #000000;
-    width: 1.5rem;
-    height: 1.5rem;
+  &.icon-yes {
+    color: #49de80;
+    font-size: 1rem;
     padding: 0;
+    margin-top: -0.1rem;
+  }
+
+  &.icon-if-need-be {
+    color: #fcd34d;
+    font-size: 1rem;
+    padding: 0;
+    margin-top: -0.1rem;
   }
 
   &.title {
-    font-family: "Syne", sans-serif;
+    font-family: "Cal Sans";
     font-size: 1.2rem;
+    letter-spacing: 0.05rem;
     font-weight: 700;
     color: #000000;
   }
 
   &.desc {
-    font-family: "Syne", sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-
-    @include media-breakpoint-up(sm) {
-      font-size: 1.2rem;
-    }
-  }
-
-  &.footer {
-    font-family: "Syne", sans-serif;
+    font-family: "Inter";
     font-weight: 400;
     font-size: 0.9rem;
-    padding-top: 0;
-    background-color: #fefeff;
-    border: none;
-    display: inline-block;
 
-    a {
-      text-decoration: underline;
-      color: #000000;
+    @include media-breakpoint-up(sm) {
+      font-size: 1rem;
     }
   }
 }
 
-//
-// Footer
-// ..................................................................../
-
-.how-to-footer-logo {
-  color: #000000;
-  font-family: "Syne", sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.how-to-copyright {
-  float: right;
+.how-to-primary-btn {
+  background-color: #000000;
+  color: #ffffff;
   font-weight: 500;
-  font-size: 0.9rem;
-  margin-top: 0.1rem;
+  font-size: 1rem;
+  font-family: "Cal Sans";
+  letter-spacing: 0.01rem;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.35rem 1.2rem 0.35rem 1.2rem;
+
+  &:hover {
+    color: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: #424242 !important;
+  }
+
+  &:active,
+  &:focus {
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #000000 !important;
+  }
 }

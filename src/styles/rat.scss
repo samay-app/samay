@@ -2,17 +2,17 @@
 
 .rat-TimeSlot_component {
   background-color: #000000 !important;
-  color: #fafafa !important;
+  color: #f9fafa !important;
 }
 
 .rat-TimeSlot_handle {
-  color: #fafafa !important;
+  color: #f9fafa !important;
 }
 
 .rat-TimeSlot_title {
   font-weight: 700 !important;
-  font-family: "Syne", sans-serif !important;
-  color: #fafafa !important;
+  font-family: "Inter" !important;
+  color: #f9fafa !important;
   padding: 0.5rem 0 0 0 !important;
   font-size: 0.6rem !important;
   line-height: 0.6rem !important;
@@ -31,19 +31,22 @@
 }
 
 .rat-AvailableTimes_interval {
-  font-family: "Syne", sans-serif !important;
+  font-family: "Inter" !important;
   color: #000000 !important;
+  letter-spacing: 0.05rem;
+  margin-top: 0.3rem;
+  font-size: 0.9rem !important;
   flex-basis: 8rem !important;
 }
 
 .rat-DayHeader_day {
   font-size: 0.8rem !important;
-  font-family: "Syne", sans-serif !important;
+  font-family: "Inter" !important;
   font-weight: 600 !important;
 }
 
 .rat-Ruler_inner {
-  font-family: "Syne", sans-serif !important;
+  font-family: "Inter" !important;
   font-size: 0.8rem !important;
 }
 

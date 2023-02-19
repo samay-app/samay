@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 import { Dispatch, useState } from "react";
-import { Check2, Check2Circle } from "react-bootstrap-icons";
+import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import { Time, Vote } from "../../models/poll";
 
 const MarkTimes = (props: {
@@ -63,18 +63,17 @@ const MarkTimes = (props: {
       {times.map((time) => (
         <td key={time.start} className="poll-mark-time-cell">
           <div
-            className={`poll-mark-time-box ${
-              statusValues[timeBoxStatus[time.start]]
-            }`}
+            className={`poll-mark-time-box ${statusValues[timeBoxStatus[time.start]]
+              }`}
             id={JSON.stringify(time)}
             aria-hidden="true"
             onClick={handleMarkTimeBoxClick}
           >
             {timeBoxStatus[time.start] === 1 && (
-              <Check2 className="poll-mark-time-box-check yes" />
+              <CheckCircleFill className="poll-mark-time-box-check yes" />
             )}
             {timeBoxStatus[time.start] === 2 && (
-              <Check2Circle className="poll-mark-time-box-check if-need-be" />
+              <CircleFill className="poll-mark-time-box-check if-need-be" />
             )}
           </div>
         </td>

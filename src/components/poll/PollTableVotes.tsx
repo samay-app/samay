@@ -1,5 +1,5 @@
 import { Table } from "react-bootstrap";
-import { Check2, Check2Circle } from "react-bootstrap-icons";
+import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import PollDateTime from "./PollDateTime";
@@ -24,7 +24,7 @@ const PollTableVotes = (props: {
                 key={time.start}
                 className={
                   time.start === pollFromDB.finalTime?.start &&
-                  time.end === pollFromDB.finalTime?.end
+                    time.end === pollFromDB.finalTime?.end
                     ? "slot-time slot-final-time"
                     : "slot-time"
                 }
@@ -44,9 +44,9 @@ const PollTableVotes = (props: {
                   className={slotCheckClassName(time, vote.times)}
                 >
                   {isTimeIfNeedBe(time, vote.times) ? (
-                    <Check2Circle className="slot-check" />
+                    <CircleFill className="slot-check" />
                   ) : (
-                    <Check2 className="slot-check" />
+                    <CheckCircleFill className="slot-check" />
                   )}
                 </td>
               ))}

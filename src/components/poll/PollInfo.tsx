@@ -1,9 +1,10 @@
 import { Badge } from "react-bootstrap";
-import { CalendarCheck, GeoAltFill, Globe } from "react-bootstrap-icons";
+import { CalendarCheck, GeoAltFill, Globe, ShareFill } from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import timezone from "dayjs/plugin/timezone";
 import { PollFromDB } from "../../models/poll";
+import CopyText from "../../../src/components/copyText";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(timezone);
@@ -11,8 +12,9 @@ dayjs.extend(timezone);
 const PollInfo = (props: {
   poll: PollFromDB;
   showFinalTime: boolean;
+  showCopyBox: boolean;
 }): JSX.Element => {
-  const { poll, showFinalTime } = props;
+  const { poll, showFinalTime, showCopyBox } = props;
   return (
     <div>
       <Badge
@@ -37,6 +39,26 @@ const PollInfo = (props: {
         <Globe className="poll-info-icon" />
         Times are shown in: {dayjs.tz.guess()} timezone
       </span>
+      {showCopyBox && (<>
+        <span className="poll-info-detail-title copy-text-mobile">
+          <ShareFill className="poll-info-icon" />
+          <CopyText
+            pollTitle={poll.title}
+            pollID={poll._id}
+            pollLocation={poll.location}
+            finalTime={poll.finalTime}
+          />
+        </span></>)}
+      {showCopyBox && (<>
+        <span className="poll-info-detail-title copy-text-desktop">
+          <ShareFill className="poll-info-icon" />
+          Share this <CopyText
+            pollTitle={poll.title}
+            pollID={poll._id}
+            pollLocation={poll.location}
+            finalTime={poll.finalTime}
+          /> with the participants
+        </span></>)}
       {showFinalTime && (
         <span className="poll-info-detail-title">
           <CalendarCheck className="poll-info-icon" />

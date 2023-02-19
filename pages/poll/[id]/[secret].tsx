@@ -12,7 +12,6 @@ import SubmitFinalTime from "../../../src/components/poll/SubmitFinalTime";
 import DeletePoll from "../../../src/components/poll/DeletePoll";
 import ResponseMessage from "../../../src/components/ResponseMessage";
 import { Time, TimeFromDB, PollFromDB } from "../../../src/models/poll";
-import CopyText from "../../../src/components/copyText";
 import { decrypt } from "../../../src/helpers";
 
 dayjs.extend(localizedFormat);
@@ -34,7 +33,7 @@ const Poll = (props: {
   return (
     <>
       <Head>
-        <title>Finalise time | Kukkee</title>
+        <title>Kukkee — Finalise time</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,28 +48,24 @@ const Poll = (props: {
                 secret={secret}
                 setResponse={setResponse}
               />
-              <PollInfo poll={pollFromDB} showFinalTime={false} />
-              <CopyText
-                pollTitle={pollFromDB.title}
-                pollID={pollID}
-                finalTime={pollFromDB.finalTime}
-              />
+              <PollInfo poll={pollFromDB} showFinalTime={false} showCopyBox={true} />
             </Jumbotron>
-            <Jumbotron className="poll-table-jumbo" id="all-votes-table">
-              <PollTableAdmin
-                pollFromDB={pollFromDB}
-                sortedTimes={sortedTimes}
-                setFinalTime={setFinalTime}
-              />
-            </Jumbotron>
-            {pollFromDB.open && (
-              <SubmitFinalTime
-                finalTime={finalTime}
-                pollID={pollID}
-                secret={secret}
-                setResponse={setResponse}
-              />
-            )}
+            {pollFromDB.votes?.length > 0 && (<>
+              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
+                <PollTableAdmin
+                  pollFromDB={pollFromDB}
+                  sortedTimes={sortedTimes}
+                  setFinalTime={setFinalTime}
+                />
+              </Jumbotron>
+              {pollFromDB.open && (
+                <SubmitFinalTime
+                  finalTime={finalTime}
+                  pollID={pollID}
+                  secret={secret}
+                  setResponse={setResponse}
+                />
+              )}</>)}
           </Container>
           <ResponseMessage response={response} setResponse={setResponse} />
         </div>

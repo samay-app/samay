@@ -48,7 +48,7 @@ const Poll = (props: {
   return (
     <>
       <Head>
-        <title>Mark your availablity | Kukkee</title>
+        <title>Kukkee — Mark your availablity</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,7 +57,7 @@ const Poll = (props: {
         <div className="global-page-section">
           <Container className="global-container">
             <Jumbotron className="poll-info-jumbo">
-              <PollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} />
+              <PollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} showCopyBox={false} />
             </Jumbotron>
             {pollFromDB.open && !hasAlreadyVoted && (
               <Jumbotron className="poll-table-jumbo">
@@ -70,7 +70,7 @@ const Poll = (props: {
               </Jumbotron>
             )}
             {pollFromDB.open && hasAlreadyVoted && (
-              <Jumbotron className="poll-vote-recorded-jumbo">
+              <Jumbotron className="poll-message">
                 Your vote has been successfully recorded.
               </Jumbotron>
             )}

@@ -1,5 +1,5 @@
 import { Button, Container, CardGroup, Card } from "react-bootstrap";
-import { Check2, Check2Circle } from "react-bootstrap-icons";
+import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -11,7 +11,7 @@ const HowTo = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee | How-to</title>
+        <title>Kukkee — How-to</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,45 +19,32 @@ const HowTo = (): JSX.Element => {
           name="google-site-verification"
           content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
         />
-        <meta name="title" content="Kukkee | Meeting poll tool" />
+        <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee | Meeting poll tool" />
+        <meta property="og:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee | Meeting poll tool" />
+        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
       <Layout>
-        <Container className="how-to-container hero">
-          <span className="how-to-hero-title">
-            Bring people together, at the right time
-          </span>
-          <span className="how-to-hero-desc">
-            The free and open source meeting poll tool
-          </span>
-        </Container>
-        <Container className="how-to-container illustration">
-          <span className="how-to-illustration">
-            <Image src={peopleIllustration} alt="illustration" />
-          </span>
-        </Container>
         <Container className="how-to-container">
           <span className="how-to-features title">
-            Never ask “what time works for you all?” again
+            Kukkee — free and open source meeting poll tool
           </span>
           <span className="how-to-features desc">
             Free. Fast. No ads. No login. No tracking.
@@ -85,7 +72,7 @@ const HowTo = (): JSX.Element => {
                 <Card.Text className="how-to-card desc">
                   Copy and share the poll link with the participants to let them
                   mark their availability using
-                  <Check2 /> (yes) or <Check2Circle /> (if need be) votes. No
+                  &nbsp;<CheckCircleFill className="how-to-card icon-yes" /> (yes) or <CircleFill className="how-to-card icon-if-need-be" /> (if need be) votes. No
                   login required. No time zone confusion since Kukkee
                   automatically shows participants times in their local time
                   zone.
@@ -110,7 +97,7 @@ const HowTo = (): JSX.Element => {
         </Container>
         <Container className="how-to-container cta">
           <Link href="/" passHref>
-            <Button className="how-to-primary-btn">Create a poll now</Button>
+            <Button className="how-to-primary-btn">Create a poll</Button>
           </Link>
         </Container>
       </Layout>

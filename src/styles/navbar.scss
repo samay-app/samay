@@ -1,6 +1,6 @@
 .navbar {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
   background-color: #fefffe;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   padding-right: 0.5rem;
@@ -14,9 +14,15 @@
 
 .navbar-logo {
   width: auto;
-  height: 2rem;
+  height: 1.5rem;
   display: inline-block;
-  vertical-align: top;
+  margin-top: -0.2rem;
+}
+
+.navbar-logo-text {
+  font-family: "Cal Sans";
+  margin-left: 0.4rem;
+  font-size: 1.3rem;
 }
 
 .navbar-hamburger {
@@ -34,9 +40,10 @@
 
 .navbar-link {
   color: #818181;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: "Syne", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: "Cal Sans";
+  letter-spacing: 0.03rem;
   margin-right: 0rem;
   margin-left: 0rem;
   padding-top: 0.5rem;
@@ -44,6 +51,10 @@
   border-radius: 0.3rem;
   cursor: pointer;
   border-bottom: 0.1rem solid #e0e1e0;
+
+  &.active {
+    color: #000000;
+  }
 
   @include media-breakpoint-up(sm) {
     margin-left: 2rem;
@@ -53,5 +64,18 @@
   &:hover {
     color: #000000;
     text-decoration: none;
+  }
+
+  &:last-of-type {
+    border-bottom: 0rem solid #e0e1e0;
+  }
+}
+
+.navbar-link-icon {
+  margin-top: -0.14rem;
+  margin-right: 0.1rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-top: -0.27rem;
   }
 }

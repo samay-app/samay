@@ -1,6 +1,6 @@
 {
   "name": "kukkee",
-  "description": "Free and open source meeting poll tool. Bring people together, at the right time!",
+  "description": "Free and open source meeting poll tool",
   "version": "1.0.0",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
@@ -15,7 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.10",
+    "@fontsource/inter": "^4.5.15",
     "bootstrap": "^4.5.3",
+    "cal-sans": "^1.0.1",
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.9.7",
     "mongoose": "^6.4.6",

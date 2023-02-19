@@ -6,7 +6,7 @@ const Privacy = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee | Privacy</title>
+        <title>Kukkee — Privacy Policy</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,25 +14,25 @@ const Privacy = (): JSX.Element => {
           name="google-site-verification"
           content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
         />
-        <meta name="title" content="Kukkee | Meeting poll tool" />
+        <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee | Meeting poll tool" />
+        <meta property="og:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee | Meeting poll tool" />
+        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
@@ -41,12 +41,14 @@ const Privacy = (): JSX.Element => {
           <Container className="global-container">
             <Jumbotron className="privacy-jumbo">
               <h1>Privacy Policy</h1>
-              <p>Last updated: May 24, 2022</p>
+              <p>Last updated: Feb 18, 2023</p>
+              <hr></hr>
+              <br></br>
               <p>
                 Hello! Welcome to Kukkee. Here's how we protect your data and
                 respect your privacy.
               </p>
-              <h2>Our role in your privacy </h2>
+              <h3>Our role in your privacy </h3>
               <p>
                 If you are creating a poll on Kukkee or voting on a poll, or
                 just visiting our website, this policy applies to you.
@@ -64,19 +66,19 @@ const Privacy = (): JSX.Element => {
                   </li>
                 </ul>
               </p>
-              <h2>What data we collect</h2>
+              <h3>What data we collect</h3>
               <p>
-                Information about events and your availability for the those
+                Information about events and your availability for those
                 events which you enter in a poll.
               </p>
-              <h2>How and why we use your data</h2>
+              <h3>How and why we use your data</h3>
               <p>
                 Data protection law means that we can only use your data for
                 certain reasons and where we have a legal basis to do so. We use
                 the data solely to ensure the functionality of Kukkee — which is
                 to help you quickly find the best time for meetings.
               </p>
-              <h2>Your rights</h2>
+              <h3>Your rights</h3>
               <p>
                 <ul>
                   <li>
@@ -117,25 +119,25 @@ const Privacy = (): JSX.Element => {
                   </li>
                 </ul>
               </p>
-              <h2>Where do we store the data?</h2>
+              <h3>Where do we store the data?</h3>
               <p>
                 We use MongoDB's{" "}
                 <a href="https://www.mongodb.com/legal/privacy-policy">Atlas</a>{" "}
                 cloud database service to store all the events and your
                 availability information.
               </p>
-              <h2>How long do we store your data?</h2>
+              <h3>How long do we store your data?</h3>
               <p>
                 We will delete every poll 1 month after the event associated
                 with the poll is over.
               </p>
-              <h2>Cookies</h2>
+              <h3>Cookies</h3>
               <p>
                 We use cookies. Unless you adjust your browser settings to
-                refuse cookies, we (and these third parties) will issue cookies
+                refuse cookies, we will issue cookies
                 when you interact with Kukkee. These are 'persistent' cookies
                 which do not delete themselves and help us recognise you when
-                you return so we can provide a tailored service without asking
+                you return so we can help you manage your polls without asking
                 you to create an account.
               </p>
               <h3>How can I block cookies?</h3>
@@ -147,7 +149,7 @@ const Privacy = (): JSX.Element => {
                 essential cookies), certain parts of our website's user
                 experience would deteriorate.
               </p>
-              <h2>Children's privacy</h2>
+              <h3>Children's privacy</h3>
               <p>
                 We do not address anyone under the age of 13. Personally
                 identifiable information is not knowingly collected from
@@ -158,17 +160,18 @@ const Privacy = (): JSX.Element => {
                 personal information, please contact us using the details below
                 so that this information can be removed.
               </p>
-              <h2>Changes to this privacy policy</h2>
+              <h3>Changes to this privacy policy</h3>
               <p>
                 This privacy policy may be updated from time to time. Thus, you
                 are advised to review this page periodically for any changes.
               </p>
-              <h2>Contact us</h2>
+              <h3>Contact us</h3>
               <p>
                 If you have any questions or suggestions about this Privacy
                 Policy, do not hesitate to contact us at{" "}
                 <a href="mailto:anand@kukkee.com">anand@kukkee.com</a>.
               </p>
+              <br></br>
               <p>
                 This privacy notice is based on an open-sourced design from{" "}
                 <a href="https://juro.com/">Juro</a> and{" "}

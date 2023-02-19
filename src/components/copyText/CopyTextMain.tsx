@@ -17,11 +17,13 @@ dayjs.extend(localizedFormat);
 const CopyTextMain = (props: {
   pollURL: string;
   pollTitle: string;
+  pollLocation: string;
   finalTime: Time | undefined;
 }): JSX.Element => {
-  const { pollURL, pollTitle, finalTime } = props;
+  const { pollURL, pollTitle, pollLocation, finalTime } = props;
 
   const finalPollTitle = pollTitle || "Untitled";
+  const finalPollLocation = pollLocation ? `at ${pollLocation}` : "";
 
   let textToCopy: string;
 
@@ -32,7 +34,7 @@ const CopyTextMain = (props: {
       finalTime?.start
     ).format("DD")}, ${dayjs(finalTime?.start).format("LT")} - ${dayjs(
       finalTime?.end
-    ).format("LT")}`;
+    ).format("LT")} ${finalPollLocation}`;
   } else {
     textToCopy = pollURL;
   }

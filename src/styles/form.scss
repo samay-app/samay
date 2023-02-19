@@ -1,16 +1,16 @@
 .form-label {
   font-weight: 400;
-  font-family: "Syne", sans-serif;
+  font-family: "Inter";
   font-size: 0.875rem;
   color: #000000;
 }
 
 .form-text {
-  background-color: #f2f2f2;
+  background-color: #f9fafa;
   color: #000000;
-  border: 0.15rem solid #fefffe;
+  border: 0.13rem solid #fff;
   border-radius: 0.5rem;
-  font-family: "Syne", sans-serif;
+  font-family: "Inter";
   font-size: 1rem;
   font-weight: 500;
   transition: none;
@@ -28,16 +28,10 @@
   opacity: 1;
 }
 
-.form-text:hover {
-  color: #000000;
-  background-color: #eeeeee;
-  border: 0.15rem solid #fefffe;
-}
-
 .form-text:focus {
   color: #000000;
-  background-color: #eeeeee;
-  border: 0.15rem solid #000000;
+  background-color: #f9fafa;
+  border: 0.13rem solid #e1e1e1;
 }
 
 .form-control:focus {
@@ -55,7 +49,7 @@
   border: none;
   outline: 0.05rem solid #e0e1e0;
   border-radius: 0.3rem;
-  font-family: "Syne", sans-serif;
+  font-family: "Inter";
   font-size: 0.9rem;
   width: 8rem;
 

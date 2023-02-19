@@ -78,10 +78,10 @@ const Home = (): JSX.Element => {
   ): Promise<void> => {
     e.preventDefault();
 
-    if (!pollTimes || (pollTimes && pollTimes?.length === 0)) {
+    if (!pollTimes || (pollTimes && pollTimes?.length < 2)) {
       setResponse({
         status: true,
-        msg: "Please select at least one time slot for invitees.",
+        msg: "Please select at least two time slots for invitees.",
       });
       return;
     }
@@ -94,12 +94,13 @@ const Home = (): JSX.Element => {
     }
 
     const secret = nanoid(10);
+    const encryptedSecret = encrypt(secret);
 
     const poll: Poll = {
       title: pollTitle,
       description: pollDescription,
       location: pollLocation,
-      secret: encrypt(secret),
+      secret: encryptedSecret,
       times: pollTimes,
     };
 
@@ -113,7 +114,7 @@ const Home = (): JSX.Element => {
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
           localStorage.setItem(
-            `${createPollResponse.data._id}-${pollTitle}`,
+            `${createPollResponse.data._id}-${encryptedSecret}-${pollTitle}`,
             "creator"
           );
         }
@@ -137,7 +138,7 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee | Meeting poll tool</title>
+        <title>Kukkee — Meeting poll tool</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -145,25 +146,25 @@ const Home = (): JSX.Element => {
           name="google-site-verification"
           content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
         />
-        <meta name="title" content="Kukkee | Meeting poll tool" />
+        <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee | Meeting poll tool" />
+        <meta property="og:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee | Meeting poll tool" />
+        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Free and open source meeting poll tool. Bring people together, at the right time!"
+          content="Free and open source meeting poll tool"
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
@@ -204,7 +205,7 @@ const Home = (): JSX.Element => {
                     className="form-text"
                     type="text"
                     name="pollLocation"
-                    maxLength={20}
+                    maxLength={40}
                     placeholder="Location (optional)"
                     onChange={handlePollDetailsChange}
                   />
