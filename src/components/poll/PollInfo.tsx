@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import timezone from "dayjs/plugin/timezone";
 import { PollFromDB } from "../../models/poll";
-import CopyText from "../../../src/components/copyText";
+import CopyText from "../copyText";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(timezone);

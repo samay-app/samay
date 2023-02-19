@@ -55,7 +55,7 @@ const PollTableAdmin = (props: {
               <td key={time.start} className="poll-slot-total-votes">
                 {pollFromDB.votes?.filter((vote: Vote) =>
                   isTimePresentInPollTimes(time, vote.times)
-                ).length != 0 && (
+                ).length !== 0 && (
                   <span>
                     <PersonFill className="poll-total-votes-icon" />
                     {

@@ -27,29 +27,27 @@ const NavBar = (): JSX.Element => {
           <Nav className="ml-auto">
             <Link href="/">
               <a
-                className={
-                  `navbar-link` + (router.pathname === "/" ? ` active` : ``)
-                }
+                className={`navbar-link ${
+                  router.pathname === "/" ? ` active` : ``
+                }`}
               >
                 <PencilSquare className="navbar-link-icon" /> New poll
               </a>
             </Link>
             <Link href="/recent-polls">
               <a
-                className={
-                  `navbar-link` +
-                  (router.pathname === "/recent-polls" ? ` active` : ``)
-                }
+                className={`navbar-link ${
+                  router.pathname === "/recent-polls" ? ` active` : ``
+                }`}
               >
                 <Grid className="navbar-link-icon" /> Recent polls
               </a>
             </Link>
             <Link href="/how-to">
               <a
-                className={
-                  `navbar-link` +
-                  (router.pathname === "/how-to" ? ` active` : ``)
-                }
+                className={`navbar-link ${
+                  router.pathname === "/how-to" ? ` active` : ``
+                }`}
               >
                 <QuestionCircle className="navbar-link-icon" /> How-to
               </a>
@@ -61,10 +59,9 @@ const NavBar = (): JSX.Element => {
             </Link>
             <Link href="/privacy">
               <a
-                className={
-                  `navbar-link` +
-                  (router.pathname === "/privacy" ? ` active` : ``)
-                }
+                className={`navbar-link ${
+                  router.pathname === "/privacy" ? ` active` : ``
+                }`}
               >
                 <FileEarmarkLock className="navbar-link-icon" /> Privacy
               </a>
