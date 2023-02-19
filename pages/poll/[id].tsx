@@ -57,7 +57,11 @@ const Poll = (props: {
         <div className="global-page-section">
           <Container className="global-container">
             <Jumbotron className="poll-info-jumbo">
-              <PollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} showCopyBox={false} />
+              <PollInfo
+                poll={pollFromDB}
+                showFinalTime={!pollFromDB.open}
+                showCopyBox={false}
+              />
             </Jumbotron>
             {pollFromDB.open && !hasAlreadyVoted && (
               <Jumbotron className="poll-table-jumbo">

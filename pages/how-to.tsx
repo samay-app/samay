@@ -3,8 +3,6 @@ import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
-import peopleIllustration from "../public/people.svg";
 import Layout from "../src/components/Layout";
 
 const HowTo = (): JSX.Element => {
@@ -47,7 +45,7 @@ const HowTo = (): JSX.Element => {
             Kukkee — free and open source meeting poll tool
           </span>
           <span className="how-to-features desc">
-            Free. Fast. No ads. No login. No tracking.
+            Free. Fast. Simple. No ads. No login.
           </span>
           <CardGroup className="how-to-card-group">
             <Card className="how-to-card">
@@ -71,11 +69,12 @@ const HowTo = (): JSX.Element => {
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
                   Copy and share the poll link with the participants to let them
-                  mark their availability using
-                  &nbsp;<CheckCircleFill className="how-to-card icon-yes" /> (yes) or <CircleFill className="how-to-card icon-if-need-be" /> (if need be) votes. No
-                  login required. No time zone confusion since Kukkee
-                  automatically shows participants times in their local time
-                  zone.
+                  mark their availability using &nbsp;
+                  <CheckCircleFill className="how-to-card icon-yes" /> (yes) or{" "}
+                  <CircleFill className="how-to-card icon-if-need-be" /> (if
+                  need be) votes. No login required. No time zone confusion
+                  since Kukkee automatically shows participants times in their
+                  local time zone.
                 </Card.Text>
               </Card.Body>
             </Card>

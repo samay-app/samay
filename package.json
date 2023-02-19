@@ -1,7 +1,7 @@
 {
   "name": "kukkee",
   "description": "Free and open source meeting poll tool",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",

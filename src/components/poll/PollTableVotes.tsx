@@ -24,7 +24,7 @@ const PollTableVotes = (props: {
                 key={time.start}
                 className={
                   time.start === pollFromDB.finalTime?.start &&
-                    time.end === pollFromDB.finalTime?.end
+                  time.end === pollFromDB.finalTime?.end
                     ? "slot-time slot-final-time"
                     : "slot-time"
                 }

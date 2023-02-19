@@ -17,8 +17,9 @@ const RecentPolls = (): JSX.Element => {
     }
   }
 
-  const votedPollsClassName = `global-container ${createdPolls.length > 0 ? "mt-5" : ""
-    }`;
+  const votedPollsClassName = `global-container ${
+    createdPolls.length > 0 ? "mt-5" : ""
+  }`;
 
   return (
     <>

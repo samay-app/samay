@@ -48,24 +48,27 @@ const Poll = (props: {
                 secret={secret}
                 setResponse={setResponse}
               />
-              <PollInfo poll={pollFromDB} showFinalTime={false} showCopyBox={true} />
+              <PollInfo poll={pollFromDB} showFinalTime={false} showCopyBox />
             </Jumbotron>
-            {pollFromDB.votes?.length > 0 && (<>
-              <Jumbotron className="poll-table-jumbo" id="all-votes-table">
-                <PollTableAdmin
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                  setFinalTime={setFinalTime}
-                />
-              </Jumbotron>
-              {pollFromDB.open && (
-                <SubmitFinalTime
-                  finalTime={finalTime}
-                  pollID={pollID}
-                  secret={secret}
-                  setResponse={setResponse}
-                />
-              )}</>)}
+            {pollFromDB.votes?.length > 0 && (
+              <>
+                <Jumbotron className="poll-table-jumbo" id="all-votes-table">
+                  <PollTableAdmin
+                    pollFromDB={pollFromDB}
+                    sortedTimes={sortedTimes}
+                    setFinalTime={setFinalTime}
+                  />
+                </Jumbotron>
+                {pollFromDB.open && (
+                  <SubmitFinalTime
+                    finalTime={finalTime}
+                    pollID={pollID}
+                    secret={secret}
+                    setResponse={setResponse}
+                  />
+                )}
+              </>
+            )}
           </Container>
           <ResponseMessage response={response} setResponse={setResponse} />
         </div>

@@ -63,8 +63,9 @@ const MarkTimes = (props: {
       {times.map((time) => (
         <td key={time.start} className="poll-mark-time-cell">
           <div
-            className={`poll-mark-time-box ${statusValues[timeBoxStatus[time.start]]
-              }`}
+            className={`poll-mark-time-box ${
+              statusValues[timeBoxStatus[time.start]]
+            }`}
             id={JSON.stringify(time)}
             aria-hidden="true"
             onClick={handleMarkTimeBoxClick}

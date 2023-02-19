@@ -1,5 +1,10 @@
 import { Badge } from "react-bootstrap";
-import { CalendarCheck, GeoAltFill, Globe, ShareFill } from "react-bootstrap-icons";
+import {
+  CalendarCheck,
+  GeoAltFill,
+  Globe,
+  ShareFill,
+} from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import timezone from "dayjs/plugin/timezone";
@@ -39,26 +44,34 @@ const PollInfo = (props: {
         <Globe className="poll-info-icon" />
         Times are shown in: {dayjs.tz.guess()} timezone
       </span>
-      {showCopyBox && (<>
-        <span className="poll-info-detail-title copy-text-mobile">
-          <ShareFill className="poll-info-icon" />
-          <CopyText
-            pollTitle={poll.title}
-            pollID={poll._id}
-            pollLocation={poll.location}
-            finalTime={poll.finalTime}
-          />
-        </span></>)}
-      {showCopyBox && (<>
-        <span className="poll-info-detail-title copy-text-desktop">
-          <ShareFill className="poll-info-icon" />
-          Share this <CopyText
-            pollTitle={poll.title}
-            pollID={poll._id}
-            pollLocation={poll.location}
-            finalTime={poll.finalTime}
-          /> with the participants
-        </span></>)}
+      {showCopyBox && (
+        <>
+          <span className="poll-info-detail-title copy-text-mobile">
+            <ShareFill className="poll-info-icon" />
+            <CopyText
+              pollTitle={poll.title}
+              pollID={poll._id}
+              pollLocation={poll.location}
+              finalTime={poll.finalTime}
+            />
+          </span>
+        </>
+      )}
+      {showCopyBox && (
+        <>
+          <span className="poll-info-detail-title copy-text-desktop">
+            <ShareFill className="poll-info-icon" />
+            Share this{" "}
+            <CopyText
+              pollTitle={poll.title}
+              pollID={poll._id}
+              pollLocation={poll.location}
+              finalTime={poll.finalTime}
+            />{" "}
+            with the participants
+          </span>
+        </>
+      )}
       {showFinalTime && (
         <span className="poll-info-detail-title">
           <CalendarCheck className="poll-info-icon" />

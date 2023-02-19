@@ -42,8 +42,8 @@ const Privacy = (): JSX.Element => {
             <Jumbotron className="privacy-jumbo">
               <h1>Privacy Policy</h1>
               <p>Last updated: Feb 18, 2023</p>
-              <hr></hr>
-              <br></br>
+              <hr />
+              <br />
               <p>
                 Hello! Welcome to Kukkee. Here's how we protect your data and
                 respect your privacy.
@@ -68,8 +68,8 @@ const Privacy = (): JSX.Element => {
               </p>
               <h3>What data we collect</h3>
               <p>
-                Information about events and your availability for those
-                events which you enter in a poll.
+                Information about events and your availability for those events
+                which you enter in a poll.
               </p>
               <h3>How and why we use your data</h3>
               <p>
@@ -134,11 +134,11 @@ const Privacy = (): JSX.Element => {
               <h3>Cookies</h3>
               <p>
                 We use cookies. Unless you adjust your browser settings to
-                refuse cookies, we will issue cookies
-                when you interact with Kukkee. These are 'persistent' cookies
-                which do not delete themselves and help us recognise you when
-                you return so we can help you manage your polls without asking
-                you to create an account.
+                refuse cookies, we will issue cookies when you interact with
+                Kukkee. These are 'persistent' cookies which do not delete
+                themselves and help us recognise you when you return so we can
+                help you manage your polls without asking you to create an
+                account.
               </p>
               <h3>How can I block cookies?</h3>
               <p>
@@ -171,7 +171,7 @@ const Privacy = (): JSX.Element => {
                 Policy, do not hesitate to contact us at{" "}
                 <a href="mailto:anand@kukkee.com">anand@kukkee.com</a>.
               </p>
-              <br></br>
+              <br />
               <p>
                 This privacy notice is based on an open-sourced design from{" "}
                 <a href="https://juro.com/">Juro</a> and{" "}

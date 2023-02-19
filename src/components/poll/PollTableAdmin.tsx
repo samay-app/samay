@@ -32,7 +32,7 @@ const PollTableAdmin = (props: {
                 key={time.start}
                 className={
                   time.start === pollFromDB.finalTime?.start &&
-                    time.end === pollFromDB.finalTime?.end
+                  time.end === pollFromDB.finalTime?.end
                     ? "poll-slot-time poll-slot-final-time"
                     : "poll-slot-time"
                 }
@@ -48,29 +48,23 @@ const PollTableAdmin = (props: {
           )}
           <tr>
             <td className="poll-table-total-participants">
-              {pollFromDB.votes?.length} {pollFromDB.votes?.length === 1 ? "PARTICIPANT" : "PARTICIPANTS"}
+              {pollFromDB.votes?.length}{" "}
+              {pollFromDB.votes?.length === 1 ? "PARTICIPANT" : "PARTICIPANTS"}
             </td>
             {sortedTimes.map((time: Time) => (
               <td key={time.start} className="poll-slot-total-votes">
-                {
-                  pollFromDB.votes?.filter((vote: Vote) =>
-                    isTimePresentInPollTimes(
-                      time,
-                      vote.times
-                    )
-                  ).length != 0
-                  && (
-                    <span>
-                      <PersonFill className="poll-total-votes-icon" />
-                      {
-                        pollFromDB.votes?.filter((vote: Vote) =>
-                          isTimePresentInPollTimes(
-                            time,
-                            vote.times
-                          )
-                        ).length
-                      }
-                    </span>)}
+                {pollFromDB.votes?.filter((vote: Vote) =>
+                  isTimePresentInPollTimes(time, vote.times)
+                ).length != 0 && (
+                  <span>
+                    <PersonFill className="poll-total-votes-icon" />
+                    {
+                      pollFromDB.votes?.filter((vote: Vote) =>
+                        isTimePresentInPollTimes(time, vote.times)
+                      ).length
+                    }
+                  </span>
+                )}
               </td>
             ))}
           </tr>
