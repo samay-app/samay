@@ -9,23 +9,23 @@ const RecentPolls = (): JSX.Element => {
   let votedPolls = [];
 
   if (typeof window !== "undefined") {
-    let createdPollsFromLS = localStorage.getItem("kukkeeCreatedPolls");
+    const createdPollsFromLS = localStorage.getItem("kukkeeCreatedPolls");
 
     if (createdPollsFromLS) {
-      createdPollsFromLS = JSON.parse(createdPollsFromLS);
+      const createdPollsFromLSJSON = JSON.parse(createdPollsFromLS);
 
-      for (let i = 0; i < createdPollsFromLS.polls.length; i += 1) {
-        createdPolls.push(createdPollsFromLS.polls[i]);
+      for (let i = 0; i < createdPollsFromLSJSON.polls.length; i += 1) {
+        createdPolls.push(createdPollsFromLSJSON.polls[i]);
       }
     }
 
     let votedPollsFromLS = localStorage.getItem("kukkeeVotedPolls");
 
     if (votedPollsFromLS) {
-      votedPollsFromLS = JSON.parse(votedPollsFromLS);
+      const votedPollsFromLSJSON = JSON.parse(votedPollsFromLS);
 
-      for (let i = 0; i < votedPollsFromLS.polls.length; i += 1) {
-        votedPolls.push(votedPollsFromLS.polls[i]);
+      for (let i = 0; i < votedPollsFromLSJSON.polls.length; i += 1) {
+        votedPolls.push(votedPollsFromLSJSON.polls[i]);
       }
     }
   }

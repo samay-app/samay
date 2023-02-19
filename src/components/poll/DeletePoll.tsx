@@ -32,13 +32,13 @@ const DeletePoll = (props: {
           msg: "Your poll been successfully deleted.",
         });
         if (typeof window !== "undefined") {
-          let kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
+          const kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
 
           if (kukkeeCreatedPolls) {
-            kukkeeCreatedPolls = JSON.parse(kukkeeCreatedPolls);
+            const kukkeeCreatedPollsJSON = JSON.parse(kukkeeCreatedPolls);
 
             let newKukkeeCreatedPolls = {
-              polls: kukkeeCreatedPolls.polls.filter(
+              polls: kukkeeCreatedPollsJSON.polls.filter(
                 (poll) => Object.keys(poll)[0] !== `${pollID}-${pollTitle}`
               ),
             };

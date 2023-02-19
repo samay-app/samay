@@ -113,7 +113,7 @@ const Home = (): JSX.Element => {
 
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          let kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
+          const kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
 
           if (!kukkeeCreatedPolls) {
             const initKukkeeCreatedPolls = {
@@ -129,15 +129,15 @@ const Home = (): JSX.Element => {
               JSON.stringify(initKukkeeCreatedPolls)
             );
           } else {
-            kukkeeCreatedPolls = JSON.parse(kukkeeCreatedPolls);
+            let kukkeeCreatedPollsJSON = JSON.parse(kukkeeCreatedPolls);
 
-            kukkeeCreatedPolls.polls.push({
+            kukkeeCreatedPollsJSON.polls.push({
               [`${createPollResponse.data._id}-${pollTitle}`]: `${encryptedSecret}`,
             });
 
             localStorage.setItem(
               "kukkeeCreatedPolls",
-              JSON.stringify(kukkeeCreatedPolls)
+              JSON.stringify(kukkeeCreatedPollsJSON)
             );
           }
         }

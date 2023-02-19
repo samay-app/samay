@@ -60,7 +60,7 @@ const SubmitTimes = (props: {
       submitTimeResponse = await markTimes(voterArgs);
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          let votedPolls = localStorage.getItem("kukkeeVotedPolls");
+          const votedPolls = localStorage.getItem("kukkeeVotedPolls");
 
           if (!votedPolls) {
             const initKukkeePolls = {
@@ -76,15 +76,15 @@ const SubmitTimes = (props: {
               JSON.stringify(initKukkeePolls)
             );
           } else {
-            votedPolls = JSON.parse(votedPolls);
+            const votedPollsJSON = JSON.parse(votedPolls);
 
-            votedPolls.polls.push({
+            votedPollsJSON.polls.push({
               [`${pollID}`]: `${pollFromDB.title}`,
             });
 
             localStorage.setItem(
               "kukkeeVotedPolls",
-              JSON.stringify(votedPolls)
+              JSON.stringify(votedPollsJSON)
             );
           }
         }
