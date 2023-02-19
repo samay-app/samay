@@ -8,7 +8,7 @@
   </a>
   <p>
     <b>
-      Kukkee — meeting poll tool.
+      Kukkee — meeting poll tool
     </b>
   </p>
   <p>
@@ -20,8 +20,6 @@
   </p>
   <br />
 </div>
-
-[![Kukkee](./public/banner.png)](https://kukkee.com)
 
 # Self-hosting
 
@@ -44,7 +42,7 @@ If you're planning to use Vercel to deploy your own Kukkee, you must add all IP 
 
 ### Deployment
 
-Kukkee is built with Next.j, hence you would need to deploy Kukkee to a platform that supports Next.js (Vercel, AWS EC2, DigitalOcean Droplet, etc).
+Kukkee is built with Next.js, hence you would need to deploy Kukkee to a platform that supports Next.js (Vercel, AWS EC2, DigitalOcean Droplet, etc).
 
 #### Vercel
 
