@@ -14,8 +14,8 @@ const RecentPolls = (): JSX.Element => {
     if (createdPollsFromLS) {
       createdPollsFromLS = JSON.parse(createdPollsFromLS);
 
-      for (let i = 0; i < createdPollsFromLS["polls"].length; i += 1) {
-        createdPolls.push(createdPollsFromLS["polls"][i]);
+      for (let i = 0; i < createdPollsFromLS.polls.length; i += 1) {
+        createdPolls.push(createdPollsFromLS.polls[i]);
       }
     }
 
@@ -24,8 +24,8 @@ const RecentPolls = (): JSX.Element => {
     if (votedPollsFromLS) {
       votedPollsFromLS = JSON.parse(votedPollsFromLS);
 
-      for (let i = 0; i < votedPollsFromLS["polls"].length; i += 1) {
-        votedPolls.push(votedPollsFromLS["polls"][i]);
+      for (let i = 0; i < votedPollsFromLS.polls.length; i += 1) {
+        votedPolls.push(votedPollsFromLS.polls[i]);
       }
     }
   }

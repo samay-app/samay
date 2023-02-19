@@ -131,7 +131,7 @@ const Home = (): JSX.Element => {
           } else {
             kukkeeCreatedPolls = JSON.parse(kukkeeCreatedPolls);
 
-            kukkeeCreatedPolls["polls"].push({
+            kukkeeCreatedPolls.polls.push({
               [`${createPollResponse.data._id}-${pollTitle}`]: `${encryptedSecret}`,
             });
 

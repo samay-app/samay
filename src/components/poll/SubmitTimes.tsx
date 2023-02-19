@@ -78,7 +78,7 @@ const SubmitTimes = (props: {
           } else {
             votedPolls = JSON.parse(votedPolls);
 
-            votedPolls["polls"].push({
+            votedPolls.polls.push({
               [`${pollID}`]: `${pollFromDB.title}`,
             });
 

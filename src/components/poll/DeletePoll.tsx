@@ -38,7 +38,7 @@ const DeletePoll = (props: {
             kukkeeCreatedPolls = JSON.parse(kukkeeCreatedPolls);
 
             let newKukkeeCreatedPolls = {
-              polls: kukkeeCreatedPolls["polls"].filter(
+              polls: kukkeeCreatedPolls.polls.filter(
                 (poll) => Object.keys(poll)[0] !== `${pollID}-${pollTitle}`
               ),
             };
