@@ -32,7 +32,22 @@ const DeletePoll = (props: {
           msg: "Your poll been successfully deleted.",
         });
         if (typeof window !== "undefined") {
-          localStorage.removeItem(`${pollID}-${pollTitle}`);
+          let kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
+
+          if (kukkeeCreatedPolls) {
+            kukkeeCreatedPolls = JSON.parse(kukkeeCreatedPolls);
+
+            let newKukkeeCreatedPolls = {
+              polls: kukkeeCreatedPolls["polls"].filter(
+                (poll) => Object.keys(poll)[0] !== `${pollID}-${pollTitle}`
+              ),
+            };
+
+            localStorage.setItem(
+              "kukkeeCreatedPolls",
+              JSON.stringify(newKukkeeCreatedPolls)
+            );
+          }
         }
         Router.push("/recent-polls");
       } else {

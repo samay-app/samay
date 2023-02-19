@@ -12,7 +12,7 @@ import PollTableVoter from "../../src/components/poll/PollTableVoter";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
 import ResponseMessage from "../../src/components/ResponseMessage";
 import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
-import { decrypt } from "../../src/helpers";
+import { encrypt, decrypt } from "../../src/helpers";
 
 dayjs.extend(localizedFormat);
 
@@ -25,12 +25,37 @@ const Poll = (props: {
   let hasAlreadyVoted = false;
 
   if (typeof window !== "undefined") {
-    if (localStorage[`${pollID}-${pollFromDB.title}`] === "creator") {
-      Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
+    let createdPollsFromLS = JSON.parse(
+      localStorage.getItem("kukkeeCreatedPolls")
+    );
+
+    if (createdPollsFromLS) {
+      const lSKeyForPoll = `${pollID}-${
+        pollFromDB.title ? pollFromDB.title : ""
+      }`;
+
+      for (let i = 0; i < createdPollsFromLS["polls"].length; i += 1) {
+        let poll = createdPollsFromLS["polls"][i];
+
+        if (
+          Object.keys(poll)[0] === lSKeyForPoll &&
+          poll[Object.keys(poll)[0]] === pollFromDB.secret
+        ) {
+          Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
+        }
+      }
     }
 
-    if (localStorage[`${pollID}-${pollFromDB.title}`] === "voter") {
-      hasAlreadyVoted = true;
+    let votedPollsFromLS = JSON.parse(localStorage.getItem("kukkeeVotedPolls"));
+
+    if (votedPollsFromLS) {
+      for (let i = 0; i < votedPollsFromLS["polls"].length; i += 1) {
+        let poll = votedPollsFromLS["polls"][i];
+
+        if (Object.keys(poll)[0] === pollID) {
+          hasAlreadyVoted = true;
+        }
+      }
     }
   }
 

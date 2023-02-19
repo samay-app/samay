@@ -113,10 +113,33 @@ const Home = (): JSX.Element => {
 
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          localStorage.setItem(
-            `${createPollResponse.data._id}-${encryptedSecret}-${pollTitle}`,
-            "creator"
-          );
+          let kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
+
+          if (!kukkeeCreatedPolls) {
+            const initKukkeeCreatedPolls = {
+              polls: [
+                {
+                  [`${createPollResponse.data._id}-${pollTitle}`]: `${encryptedSecret}`,
+                },
+              ],
+            };
+
+            localStorage.setItem(
+              "kukkeeCreatedPolls",
+              JSON.stringify(initKukkeeCreatedPolls)
+            );
+          } else {
+            kukkeeCreatedPolls = JSON.parse(kukkeeCreatedPolls);
+
+            kukkeeCreatedPolls["polls"].push({
+              [`${createPollResponse.data._id}-${pollTitle}`]: `${encryptedSecret}`,
+            });
+
+            localStorage.setItem(
+              "kukkeeCreatedPolls",
+              JSON.stringify(kukkeeCreatedPolls)
+            );
+          }
         }
         Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
       } else {

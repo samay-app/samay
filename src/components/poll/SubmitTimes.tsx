@@ -60,7 +60,33 @@ const SubmitTimes = (props: {
       submitTimeResponse = await markTimes(voterArgs);
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          localStorage.setItem(`${pollID}-${pollFromDB.title}`, "voter");
+          let votedPolls = localStorage.getItem("kukkeeVotedPolls");
+
+          if (!votedPolls) {
+            const initKukkeePolls = {
+              polls: [
+                {
+                  [`${pollID}`]: `${pollFromDB.title}`,
+                },
+              ],
+            };
+
+            localStorage.setItem(
+              "kukkeeVotedPolls",
+              JSON.stringify(initKukkeePolls)
+            );
+          } else {
+            votedPolls = JSON.parse(votedPolls);
+
+            votedPolls["polls"].push({
+              [`${pollID}`]: `${pollFromDB.title}`,
+            });
+
+            localStorage.setItem(
+              "kukkeeVotedPolls",
+              JSON.stringify(votedPolls)
+            );
+          }
         }
         Router.reload();
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {

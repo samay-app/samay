@@ -1,6 +1,7 @@
 import { Card, Container } from "react-bootstrap";
 import Head from "next/head";
 import Link from "next/link";
+import { decrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 
 const RecentPolls = (): JSX.Element => {
@@ -8,11 +9,23 @@ const RecentPolls = (): JSX.Element => {
   let votedPolls = [];
 
   if (typeof window !== "undefined") {
-    for (let i = 0; i < localStorage.length; i += 1) {
-      if (localStorage.getItem(localStorage.key(i)) === "creator") {
-        createdPolls.push(localStorage.key(i));
-      } else if (localStorage.getItem(localStorage.key(i)) === "voter") {
-        votedPolls.push(localStorage.key(i));
+    let createdPollsFromLS = localStorage.getItem("kukkeeCreatedPolls");
+
+    if (createdPollsFromLS) {
+      createdPollsFromLS = JSON.parse(createdPollsFromLS);
+
+      for (let i = 0; i < createdPollsFromLS["polls"].length; i += 1) {
+        createdPolls.push(createdPollsFromLS["polls"][i]);
+      }
+    }
+
+    let votedPollsFromLS = localStorage.getItem("kukkeeVotedPolls");
+
+    if (votedPollsFromLS) {
+      votedPollsFromLS = JSON.parse(votedPollsFromLS);
+
+      for (let i = 0; i < votedPollsFromLS["polls"].length; i += 1) {
+        votedPolls.push(votedPollsFromLS["polls"][i]);
       }
     }
   }
@@ -60,14 +73,19 @@ const RecentPolls = (): JSX.Element => {
             <Container className="global-container">
               <span className="your-polls-polls-heading">Created polls</span>
               {createdPolls.map((poll) => (
-                <Card className="your-polls-poll-card" key={poll}>
+                <Card
+                  className="your-polls-poll-card"
+                  key={Object.keys(poll)[0]}
+                >
                   <Card.Body>
                     <Card.Title>
                       <a
                         className="stretched-link"
-                        href={`/poll/${poll.split("-")[0]}`}
+                        href={`/poll/${
+                          Object.keys(poll)[0].split("-")[0]
+                        }/${decrypt(poll[Object.keys(poll)[0]])}`}
                       >
-                        {poll.split("-")[1] || "Untitled"}
+                        {Object.keys(poll)[0].split("-")[1] || "Untitled"}
                       </a>
                     </Card.Title>
                   </Card.Body>
@@ -79,14 +97,17 @@ const RecentPolls = (): JSX.Element => {
             <Container className={votedPollsClassName}>
               <span className="your-polls-polls-heading">Voted polls</span>
               {votedPolls.map((poll) => (
-                <Card className="your-polls-poll-card" key={poll}>
+                <Card
+                  className="your-polls-poll-card"
+                  key={Object.keys(poll)[0]}
+                >
                   <Card.Body>
                     <Card.Title>
                       <a
                         className="stretched-link"
-                        href={`/poll/${poll.split("-")[0]}`}
+                        href={`/poll/${Object.keys(poll)[0].split("-")[0]}`}
                       >
-                        {poll.split("-")[1] || "Untitled"}
+                        {poll[Object.keys(poll)[0]] || "Untitled"}
                       </a>
                     </Card.Title>
                   </Card.Body>
