@@ -23,28 +23,20 @@
 
 # Self-hosting
 
-## Docker
-
-Coming soon!
-
-## Manual
-
-The manual guide is divided into two sections: database and deployment.
-
-### Database
+## Database
 
 Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
 
-#### MongoDB Atlas
+### MongoDB Atlas
 
 In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free.
 If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
-### Deployment
+## Deployment
 
 Kukkee is built with Next.js, hence you would need to deploy Kukkee to a platform that supports Next.js (Vercel, AWS EC2, DigitalOcean Droplet, etc).
 
-#### Vercel
+### Vercel
 
 In case you don't have a platform already, you can get started with Vercel for free.
 
