@@ -8,7 +8,7 @@
   </a>
   <p>
     <b>
-      Kukkee — meeting poll tool
+      Kukkee — free and open source meeting poll tool
     </b>
   </p>
   <p>
@@ -20,6 +20,10 @@
   </p>
   <br/>
 </div>
+
+Kukkee is a free, open source, fast and simple meeting poll tool. Quickly create a meeting poll by choosing the time slots based on your availablity, and optionally enter the title, description and location. Copy and share the poll link with the participants to let them mark their availability using "yes" or "if need be" votes. No login required. No time zone confusion since Kukkee automatically shows participants times in their local time zone. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
+
+<img src="./public/banner.png">
 
 ## Suggestions, questions or issues
 
