@@ -1,4 +1,5 @@
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Button } from "react-bootstrap";
+import { Grid } from "react-bootstrap-icons";
 import Head from "next/head";
 import Link from "next/link";
 import { decrypt } from "../src/helpers";
@@ -116,14 +117,17 @@ const RecentPolls = (): JSX.Element => {
             </Container>
           )}
           {createdPolls.length === 0 && votedPolls.length === 0 && (
-            <Container className="global-container">
-              <span className="your-polls-polls-heading">
-                Looks like you don't have any polls. <br />
-                <Link href="/">
-                  <a>Create one now</a>
-                </Link>
-                !
+            <Container className="no-polls-container">
+              <Grid className="icon" />
+              <span className="first-line">No recent polls</span>
+              <span className="second-line">
+                Looks like you haven't created or voted on any polls
               </span>
+              <Link href="/" passHref>
+                <Button className="global-small-primary-btn">
+                  Create a poll
+                </Button>
+              </Link>
             </Container>
           )}
         </div>

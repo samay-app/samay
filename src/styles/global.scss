@@ -4,7 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #f9fafa;
+  background-color: #ffffff;
 }
 
 * {
@@ -29,12 +29,12 @@ body {
 
 ::-moz-selection {
   color: #f9fafa;
-  background: #000000;
+  background: #101827;
 }
 
 ::selection {
   color: #f9fafa;
-  background: #000000;
+  background: #101827;
 }
 
 main {
@@ -81,23 +81,23 @@ main {
 }
 
 .global-primary-button {
-  background-color: #000000;
+  background-color: #101827;
   color: #ffffff;
   font-weight: 500;
   font-size: 1rem;
   font-family: "Cal Sans";
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.09rem;
   border-radius: 0.5rem;
-  margin-top: 0.15rem;
+  margin-top: 0.05rem;
   border: none;
-  padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+  padding: 0.4rem 1.2rem 0.4rem 1.2rem;
   width: 100%;
 
   &:hover {
     color: #ffffff !important;
     box-shadow: none !important;
     border: none !important;
-    background-color: #424242 !important;
+    background-color: #353535 !important;
   }
 
   &:active,
@@ -105,7 +105,7 @@ main {
     color: #ffffff !important;
     border: none !important;
     box-shadow: none !important;
-    background-color: #000000 !important;
+    background-color: #101827 !important;
   }
 
   &[disabled] {
@@ -113,7 +113,7 @@ main {
     box-shadow: none !important;
     color: #ffffff !important;
     border: none !important;
-    background-color: #000000 !important;
+    background-color: #101827 !important;
     pointer-events: none;
   }
 
@@ -130,6 +130,33 @@ main {
 .global-primary-button[disabled] {
   opacity: 0.4;
   pointer-events: none;
+}
+
+.global-small-primary-btn {
+  background-color: #101827;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: "Cal Sans";
+  letter-spacing: 0.09rem;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.35rem 1.2rem 0.35rem 1.2rem;
+
+  &:hover {
+    color: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: #424242 !important;
+  }
+
+  &:active,
+  &:focus {
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #101827 !important;
+  }
 }
 
 @import "./navbar.scss";

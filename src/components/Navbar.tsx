@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import {
-  PencilSquare,
-  FileEarmarkLock,
+  PlusCircle,
+  Lock,
   Grid,
   Github,
   QuestionCircle,
@@ -31,7 +31,7 @@ const NavBar = (): JSX.Element => {
                   router.pathname === "/" ? ` active` : ``
                 }`}
               >
-                <PencilSquare className="navbar-link-icon" /> New poll
+                <PlusCircle className="navbar-link-icon" /> New poll
               </a>
             </Link>
             <Link href="/recent-polls">
@@ -63,7 +63,7 @@ const NavBar = (): JSX.Element => {
                   router.pathname === "/privacy" ? ` active` : ``
                 }`}
               >
-                <FileEarmarkLock className="navbar-link-icon" /> Privacy
+                <Lock className="navbar-link-icon" /> Privacy
               </a>
             </Link>
           </Nav>

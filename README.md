@@ -21,11 +21,11 @@
   <br/>
 </div>
 
-Kukkee is a free, open source, fast and simple meeting poll tool. Quickly create a meeting poll by choosing the time slots based on your availablity, and optionally enter the title, description and location. Copy and share the poll link with the participants to let them mark their availability using "yes" or "if need be" votes. No login required. No time zone confusion since Kukkee automatically shows participants times in their local time zone. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
+Kukkee is a free, open source, fast and simple meeting poll tool. Quickly create a meeting poll by choosing the time slots based on your availablity. Copy and share the poll link with the participants to let them mark their availability. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
 
 <img src="./public/banner.png">
 
-## Suggestions, questions or issues
+## Get in touch
 
 If you have suggestions for how Kukkee could be improved, please add your thoughts on a relevant discussion [here](https://github.com/Kukkee/Kukkee/discussions/) or start a new discussion. If you have any questions, I'd love to hear them too! If you want to report an issue, check if the issue is already opened [here](https://github.com/AnandBaburajan/Kukkee/issues) otherwise open a new one.
 

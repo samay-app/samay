@@ -1,10 +1,11 @@
 .poll-info-jumbo {
   font-family: "Cal Sans";
   background-color: #fefffe;
-  color: #000000;
+  color: #101827;
   margin-top: 1rem;
   margin-bottom: 1.7rem;
   border-radius: 0.5rem;
+  border: 0.09rem solid #e5e7eb;
   padding: 1rem;
 
   @include media-breakpoint-up(sm) {
@@ -15,10 +16,11 @@
 
 .poll-table-jumbo {
   background-color: #fefffe;
-  color: #000000;
+  color: #101827;
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  border: 0.09rem solid #e5e7eb;
 
   @include media-breakpoint-up(sm) {
     padding: 4rem;
@@ -40,7 +42,7 @@
 .poll-message {
   font-family: "Inter";
   background-color: #fefffe;
-  color: #000000;
+  color: #101827;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   padding: 1rem 1rem 1rem 1rem;
@@ -76,8 +78,8 @@
   padding-left: 0.6em;
   padding-right: 0.6em;
   padding-bottom: 0.6em;
-  background-color: #0000002e;
-  color: #000000;
+  background-color: #1018272e;
+  color: #101827;
   transition: none;
   font-size: 0.5rem;
   letter-spacing: 0.02rem;
@@ -91,7 +93,7 @@
   display: block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  color: #000000;
+  color: #101827;
   letter-spacing: 0.02rem;
   font-size: 1.8rem;
   line-height: 1.8rem;
@@ -127,10 +129,10 @@
 }
 
 .poll-info-detail-title {
+  font-family: "Inter";
   font-size: 0.7rem;
   display: block;
   font-weight: 500;
-  letter-spacing: 0.04rem;
   color: #5e5e5e;
   margin-top: 1rem;
 
@@ -197,7 +199,7 @@
 }
 
 .poll-slot-final-time {
-  background-color: #000000;
+  background-color: #101827;
   color: #fefffe;
 }
 
@@ -251,7 +253,7 @@
 .poll-table-participants {
   font-size: 0.8rem !important;
   font-family: "Cal Sans";
-  color: #000000;
+  color: #101827;
   font-weight: 600;
   border-top: 0 !important;
   vertical-align: middle !important;
@@ -268,7 +270,7 @@
 
 .poll-delete-icon {
   float: right;
-  color: #000000;
+  color: #101827;
 
   svg {
     cursor: pointer;
@@ -280,25 +282,26 @@
 }
 
 .poll-mark-time-name {
-  background-color: #f9fafa;
-  color: #000000;
-  border: 0.13rem solid #fff;
+  background-color: #ffffff;
+  color: #101827;
+  border: 0.09rem solid #e5e7eb;
   border-radius: 0.5rem;
   font-family: "Inter";
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 500;
   transition: none;
 }
 
-.poll-mark-time-name::placeholder {
-  color: #818181;
-  opacity: 1;
+.poll-mark-time-name:hover {
+  color: #101827;
+  background-color: #ffffff;
+  border: 0.09rem solid #b7b9bd;
 }
 
 .poll-mark-time-name:focus {
-  color: #000000;
-  background-color: #f9fafa;
-  border: 0.13rem solid #e1e1e1;
+  color: #101827;
+  background-color: #ffffff;
+  border: 0.1rem solid #101827;
 }
 
 .poll-mark-time-name.logged-in {
@@ -311,7 +314,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   border-top: 0 !important;
-  color: #000000;
+  color: #101827;
   min-width: 9rem;
 }
 
@@ -336,7 +339,7 @@
 .poll-slot-checkbox input[type="radio"] {
   width: 1.5rem;
   height: 1.5rem;
-  accent-color: #000000;
+  accent-color: #101827;
 }
 
 .copy-text-desktop {
@@ -401,13 +404,13 @@
   color: #ffffff;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  background-color: #000000;
+  background-color: #101827;
   transition: none;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: #000000 !important;
+    background-color: #101827 !important;
     color: #ffffff !important;
     border: none !important;
   }

@@ -96,7 +96,7 @@ const HowTo = (): JSX.Element => {
         </Container>
         <Container className="how-to-container cta">
           <Link href="/" passHref>
-            <Button className="how-to-primary-btn">Create a poll</Button>
+            <Button className="global-small-primary-btn">Create a poll</Button>
           </Link>
         </Container>
       </Layout>

@@ -1,7 +1,7 @@
 // need to overwrite react-available-times's styles hence !important is required
 
 .rat-TimeSlot_component {
-  background-color: #000000 !important;
+  background-color: #101827 !important;
   color: #f9fafa !important;
 }
 
@@ -32,7 +32,7 @@
 
 .rat-AvailableTimes_interval {
   font-family: "Inter" !important;
-  color: #000000 !important;
+  color: #101827 !important;
   letter-spacing: 0.05rem;
   margin-top: 0.3rem;
   font-size: 0.9rem !important;
@@ -51,11 +51,10 @@
 }
 
 .rat-AvailableTimes_button {
-  fill: #000000 !important;
+  fill: #101827 !important;
 
   &:hover {
-    fill: #ffffff !important;
-    background-color: #000000 !important;
+    background-color: #e5e7eb !important;
   }
 }
 
@@ -68,7 +67,7 @@
 }
 
 .rat-DayHeader_day {
-  color: #000000 !important;
+  color: #101827 !important;
 }
 
 .rat-Week_allDayLabel {
@@ -76,7 +75,7 @@
 }
 
 .rat-Ruler_inner {
-  color: #000000 !important;
+  color: #101827 !important;
 }
 
 .rat-DayHeader_events {

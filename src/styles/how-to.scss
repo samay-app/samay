@@ -35,80 +35,13 @@
 }
 
 //
-// Nav
-// ..................................................................../
-
-.how-to-navbar {
-  margin-top: 0;
-  padding-right: 0;
-  padding-left: 0;
-
-  @include media-breakpoint-up(sm) {
-    margin-top: 1.5rem;
-  }
-}
-
-.how-to-how-to-logo {
-  width: auto;
-  height: 1.5em;
-  margin-right: 0.4em;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.how-to-navbar-nav {
-  margin-left: auto;
-}
-
-.how-to-navbar-hamburger {
-  border: none;
-  padding: 0;
-  outline: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    border: none;
-    outline: none;
-  }
-}
-
-.how-to-navbar-link {
-  color: #000000;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: "Cal Sans";
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-radius: 0.3rem;
-  margin-right: 0;
-  margin-left: 0;
-  border-bottom: 0.1rem solid #e0e1e0;
-  text-decoration: none;
-  border-radius: 0;
-
-  @include media-breakpoint-up(sm) {
-    margin-left: 1rem;
-    border-bottom: 0.1rem solid #fefeff;
-  }
-
-  &:hover {
-    border-bottom: 0.1rem solid #000000;
-    color: #000000;
-    text-decoration: none;
-  }
-}
-
-//
 // Page
 // ..................................................................../
 
 .how-to-features {
   &.title {
     font-size: 1.6rem;
-    color: #000000;
+    color: #101827;
     font-family: "Cal Sans";
     font-weight: 700;
     line-height: 2rem;
@@ -157,7 +90,7 @@
 }
 
 .how-to-card {
-  background-color: #fefeff;
+  background-color: #f9fafb;
   border: none;
   border-radius: 0.1rem;
 
@@ -180,7 +113,7 @@
     font-size: 1.2rem;
     letter-spacing: 0.05rem;
     font-weight: 700;
-    color: #000000;
+    color: #101827;
   }
 
   &.desc {
@@ -191,32 +124,5 @@
     @include media-breakpoint-up(sm) {
       font-size: 1rem;
     }
-  }
-}
-
-.how-to-primary-btn {
-  background-color: #000000;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 1rem;
-  font-family: "Cal Sans";
-  letter-spacing: 0.01rem;
-  border-radius: 0.5rem;
-  border: none;
-  padding: 0.35rem 1.2rem 0.35rem 1.2rem;
-
-  &:hover {
-    color: #ffffff !important;
-    box-shadow: none !important;
-    border: none !important;
-    background-color: #424242 !important;
-  }
-
-  &:active,
-  &:focus {
-    color: #ffffff !important;
-    border: none !important;
-    box-shadow: none !important;
-    background-color: #000000 !important;
   }
 }

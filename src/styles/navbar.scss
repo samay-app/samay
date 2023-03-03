@@ -1,10 +1,10 @@
 .navbar {
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  background-color: #fefffe;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #f9fafb;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
+  border-bottom: 0.1rem solid #f2f4f6;
 
   @include media-breakpoint-up(sm) {
     padding-right: 0;
@@ -16,13 +16,14 @@
   width: auto;
   height: 1.5rem;
   display: inline-block;
-  margin-top: -0.2rem;
+  margin-top: -0.23rem;
 }
 
 .navbar-logo-text {
   font-family: "Cal Sans";
-  margin-left: 0.4rem;
-  font-size: 1.3rem;
+  margin-left: 0.3rem;
+  font-size: 1.2rem;
+  color: #101827;
 }
 
 .navbar-hamburger {
@@ -39,31 +40,36 @@
 }
 
 .navbar-link {
-  color: #818181;
-  font-size: 0.9rem;
+  color: #3b414a;
+  font-size: 0.85rem;
   font-weight: 500;
-  font-family: "Cal Sans";
+  font-family: "Inter";
   letter-spacing: 0.03rem;
   margin-right: 0rem;
   margin-left: 0rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  border-radius: 0.3rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  border-radius: 0.5rem;
+  transition: 0.3s;
   cursor: pointer;
-  border-bottom: 0.1rem solid #e0e1e0;
-
-  &.active {
-    color: #000000;
-  }
 
   @include media-breakpoint-up(sm) {
-    margin-left: 2rem;
+    margin-left: 0.3rem;
     border-bottom: none;
   }
 
-  &:hover {
-    color: #000000;
+  &.active {
     text-decoration: none;
+    color: #3b414a;
+    background-color: #e5e7eb;
+  }
+
+  &:hover:not(.active) {
+    text-decoration: none;
+    color: #000000;
+    background-color: #f3f4f6;
   }
 
   &:last-of-type {
@@ -72,10 +78,12 @@
 }
 
 .navbar-link-icon {
-  margin-top: -0.14rem;
+  margin-top: -0.15rem;
   margin-right: 0.1rem;
+  font-size: 0.9rem;
+  color: #4b5563;
 
   @include media-breakpoint-up(sm) {
-    margin-top: -0.27rem;
+    margin-top: -0.15rem;
   }
 }
