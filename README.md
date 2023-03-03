@@ -18,25 +18,29 @@
 [![Create a poll](https://shields.io/badge/style-Now-black?&style=for-the-badge&label=Create%20a%20poll)](https://kukkee.com/)
 
   </p>
-  <br />
+  <br/>
 </div>
 
-# Self-hosting
+## Suggestions, questions or issues
 
-## Database
+If you have suggestions for how Kukkee could be improved, please add your thoughts on a relevant discussion [here](https://github.com/Kukkee/Kukkee/discussions/) or start a new discussion. If you have any questions, I'd love to hear them too! If you want to report an issue, check if the issue is already opened [here](https://github.com/AnandBaburajan/Kukkee/issues) otherwise open a new one.
+
+## Self-hosting
+
+### Database
 
 Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
 
-### MongoDB Atlas
+#### MongoDB Atlas
 
 In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free.
 If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
-## Deployment
+### Deployment
 
 Kukkee is built with Next.js, hence you would need to deploy Kukkee to a platform that supports Next.js (Vercel, AWS EC2, DigitalOcean Droplet, etc).
 
-### Vercel
+#### Vercel
 
 In case you don't have a platform already, you can get started with Vercel for free.
 
@@ -47,15 +51,9 @@ In case you don't have a platform already, you can get started with Vercel for f
 5. Set the environment variables (according to the instructions in .env.example)
 6. Deploy
 
-# Contributing
+## Contributing
 
-## Issues and PRs
-
-If you have suggestions for how this project could be improved, or want to report a bug, open an issue! I'd love all and any contributions. If you have questions, too, I'd love to hear them. [Start a new discussion](https://github.com/Kukkee/Kukkee/discussions/new) on GitHub!
-
-I'd also love PRs. If you're thinking of a large PR, please open up an issue first to discuss your proposed changes with a project maintainer!
-
-## Development
+### Development
 
 First, make sure you have [Node.js](https://nodejs.org/en/) and [MongoDB](https://www.mongodb.com/docs/manual/installation/#mongodb-installation-tutorials) installed. Then, to develop locally:
 
@@ -97,34 +95,15 @@ First, make sure you have [Node.js](https://nodejs.org/en/) and [MongoDB](https:
    npm run dev
    ```
 
-## Building
+### Building
 
-You can build the project with:
+Please make sure that you can make a full production build before opening a PR. You can build the project with:
 
 ```bash
 npm run build
 ```
 
-Please be sure that you can make a full production build before pushing code.
-
-## Submitting a pull request
-
-1. Fork and clone the repository.
-2. Configure and install the dependencies.
-3. Make sure the tests and linters pass on your machine.
-4. Create a new branch.
-5. Make your change, add tests, and make sure the tests still pass.
-6. Push to your fork and open a pull request against the `main` branch.
-7. Pat your self on the back and wait for your pull request to be reviewed and merged.
-
-Here are a few things you can do that will increase the likelihood of your PR being accepted:
-
-- Keep your changes as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
-- Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
-
-"WIP" PRs are also welcome to get feedback early on, or if there is something blocking you.
-
-# Acknowledgements
+## Acknowledgements
 
 Special thanks to these amazing projects which help power Kukkee:
 
@@ -137,6 +116,6 @@ Special thanks to these amazing projects which help power Kukkee:
 - Mongoose
 - Cal Sans
 
-# License
+## License
 
 Kukkee is distributed under the [MIT License](https://github.com/AnandBaburajan/Kukkee/blob/main/LICENSE).
