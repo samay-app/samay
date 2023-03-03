@@ -9,6 +9,8 @@ const RecentPolls = (): JSX.Element => {
   let createdPolls = [];
   let votedPolls = [];
 
+  let pageSection = <></>;
+
   if (typeof window !== "undefined") {
     const createdPollsFromLS = localStorage.getItem("kukkeeCreatedPolls");
 
@@ -29,49 +31,16 @@ const RecentPolls = (): JSX.Element => {
         votedPolls.push(votedPollsFromLSJSON.polls[i]);
       }
     }
-  }
 
-  const votedPollsClassName = `global-container ${
-    createdPolls.length > 0 ? "mt-5" : ""
-  }`;
+    const votedPollsClassName = `poll-container ${
+      createdPolls.length > 0 ? "mt-5" : ""
+    }`;
 
-  return (
-    <>
-      <Head>
-        <title>Kukkee — Recent polls</title>
-        <link rel="shortcut icon" href="/favicon.svg" />
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="google-site-verification"
-          content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
-        />
-        <meta name="title" content="Kukkee — Meeting poll tool" />
-        <meta
-          name="description"
-          content="Free and open source meeting poll tool"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee — Meeting poll tool" />
-        <meta
-          property="og:description"
-          content="Free and open source meeting poll tool"
-        />
-        <meta property="og:image" content="/banner.png" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
-        <meta
-          property="twitter:description"
-          content="Free and open source meeting poll tool"
-        />
-        <meta property="twitter:image" content="/banner.png" />
-      </Head>
-      <Layout>
+    if (createdPolls.length || votedPolls.length) {
+      pageSection = (
         <div className="global-page-section">
           {createdPolls.length > 0 && (
-            <Container className="global-container">
+            <Container className="poll-container">
               <span className="your-polls-polls-heading">Created polls</span>
               {createdPolls.map((poll) => (
                 <Card
@@ -116,22 +85,62 @@ const RecentPolls = (): JSX.Element => {
               ))}
             </Container>
           )}
-          {createdPolls.length === 0 && votedPolls.length === 0 && (
-            <Container className="no-polls-container">
-              <Grid className="icon" />
-              <span className="first-line">No recent polls</span>
-              <span className="second-line">
-                Looks like you haven't created or voted on any polls
-              </span>
-              <Link href="/" passHref>
-                <Button className="global-small-primary-btn">
-                  Create a poll
-                </Button>
-              </Link>
-            </Container>
-          )}
         </div>
-      </Layout>
+      );
+    } else {
+      pageSection = (
+        <div className="global-page-section">
+          <Container className="no-poll-container">
+            <Grid className="icon" />
+            <span className="first-line">No recent polls</span>
+            <span className="second-line">
+              Looks like you haven't created or voted on any polls
+            </span>
+            <Link href="/" passHref>
+              <Button className="global-small-primary-btn">
+                Create a poll
+              </Button>
+            </Link>
+          </Container>
+        </div>
+      );
+    }
+  }
+
+  return (
+    <>
+      <Head>
+        <title>Kukkee — Recent polls</title>
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="google-site-verification"
+          content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
+        />
+        <meta name="title" content="Kukkee — Meeting poll tool" />
+        <meta
+          name="description"
+          content="Free and open source meeting poll tool"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kukkee.com" />
+        <meta property="og:title" content="Kukkee — Meeting poll tool" />
+        <meta
+          property="og:description"
+          content="Free and open source meeting poll tool"
+        />
+        <meta property="og:image" content="/banner.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://kukkee.com" />
+        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
+        <meta
+          property="twitter:description"
+          content="Free and open source meeting poll tool"
+        />
+        <meta property="twitter:image" content="/banner.png" />
+      </Head>
+      <Layout>{pageSection}</Layout>
     </>
   );
 };

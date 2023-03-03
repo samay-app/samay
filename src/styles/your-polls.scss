@@ -1,3 +1,55 @@
+.no-poll-container {
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+  width: 95%;
+  padding-right: 0.5rem;
+  text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    width: 100rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .icon {
+    font-size: 4rem;
+    background-color: #e5e7eb;
+    border-radius: 1.5rem;
+    padding: 1rem;
+  }
+
+  .first-line {
+    display: block;
+    font-family: "Cal Sans";
+    font-size: 2rem;
+    color: #101827;
+    margin-top: 2rem;
+  }
+
+  .second-line {
+    display: block;
+    font-family: "Inter";
+    font-size: 1rem;
+    color: #636466;
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.poll-container {
+  padding-left: 0.5rem;
+  width: 95%;
+  padding-right: 0.5rem;
+  margin-top: 7rem;
+
+  @include media-breakpoint-up(sm) {
+    width: 75rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .your-polls-polls-heading {
   font-size: 1.2rem;
   color: #565656;
@@ -47,44 +99,5 @@
 
   .stretched-link {
     font-size: 1rem;
-  }
-}
-
-.no-polls-container {
-  margin-top: 7rem;
-  margin-bottom: 2rem;
-  padding-left: 0.5rem;
-  width: 95%;
-  padding-right: 0.5rem;
-  text-align: center;
-
-  @include media-breakpoint-up(sm) {
-    width: 100rem;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .icon {
-    font-size: 4rem;
-    background-color: #e5e7eb;
-    border-radius: 1.5rem;
-    padding: 1rem;
-  }
-
-  .first-line {
-    display: block;
-    font-family: "Cal Sans";
-    font-size: 2rem;
-    color: #101827;
-    margin-top: 2rem;
-  }
-
-  .second-line {
-    display: block;
-    font-family: "Inter";
-    font-size: 1rem;
-    color: #636466;
-    margin-top: 0.5rem;
-    margin-bottom: 3rem;
   }
 }
