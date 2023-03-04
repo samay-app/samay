@@ -52,7 +52,6 @@
   padding-left: 0.7rem;
   padding-right: 0.7rem;
   border-radius: 0.5rem;
-  transition: 0.3s;
   cursor: pointer;
 
   @include media-breakpoint-up(sm) {
@@ -60,16 +59,10 @@
     border-bottom: none;
   }
 
-  &.active {
+  &:hover {
     text-decoration: none;
     color: #3b414a;
     background-color: #e5e7eb;
-  }
-
-  &:hover:not(.active) {
-    text-decoration: none;
-    color: #000000;
-    background-color: #f3f4f6;
   }
 
   &:last-of-type {

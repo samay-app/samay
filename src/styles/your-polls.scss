@@ -73,12 +73,12 @@
   border-radius: 0.5rem;
   margin-top: 1.5rem;
   letter-spacing: 0.02rem;
-  background-color: #f9fafb;
   color: #101827;
-  border: 0.1rem solid #f9fafb;
+  border: 0.1rem solid #e5e7ed;
 
   &:hover {
-    border: 0.1rem solid #101827;
+    background-color: #f9fafb;
+    border: 0.1rem solid #e5e7ed;
   }
 
   a {
@@ -88,10 +88,6 @@
       color: #101827;
       text-decoration: none;
     }
-  }
-
-  @include media-breakpoint-up(sm) {
-    width: 30rem;
   }
 
   &:last-of-type {

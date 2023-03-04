@@ -1,6 +1,5 @@
 import Router from "next/router";
 import Head from "next/head";
-import dynamic from "next/dynamic";
 import {
   Row,
   Col,
@@ -16,14 +15,8 @@ import Layout from "../src/components/Layout";
 import { encrypt } from "../src/helpers";
 import ResponseMessage from "../src/components/ResponseMessage";
 import { Time, Poll } from "../src/models/poll";
+import KukkeeRBC from "../src/components/KukkeeRBC";
 import { createPoll } from "../src/utils/api/server";
-
-// typings aren't available for react-available-times
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const AvailableTimes: any = dynamic(() => import("react-available-times"), {
-  ssr: false,
-});
 
 const Home = (): JSX.Element => {
   const [pollDetails, setPollDetails] = useState<{
@@ -38,7 +31,7 @@ const Home = (): JSX.Element => {
 
   const { pollTitle, pollLocation, pollDescription } = pollDetails;
 
-  const [pollTimes, setTimes] = useState<Time[]>();
+  const [pollTimes, setTimes] = useState<Time[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const [response, setResponse] = useState({
@@ -55,16 +48,6 @@ const Home = (): JSX.Element => {
       ...pollDetails,
       [name]: value,
     });
-  };
-
-  const onTimesChange = (selections: { start: Date; end: Date }[]): void => {
-    const newTimes: Time[] = selections.map(
-      (time): Time => ({
-        start: time.start.getTime(),
-        end: time.end.getTime(),
-      })
-    );
-    setTimes(newTimes);
   };
 
   const areTimesValid = (times: Time[] | undefined): boolean => {
@@ -195,11 +178,7 @@ const Home = (): JSX.Element => {
         <div className="global-page-section">
           <Container className="global-container">
             <Jumbotron className="new-poll-timeslot-jumbo">
-              <AvailableTimes
-                weekStartsOn="monday"
-                onChange={onTimesChange}
-                height="42rem"
-              />
+              <KukkeeRBC pollTimes={pollTimes} setTimes={setTimes} />
             </Jumbotron>
             <Jumbotron className="new-poll-jumbo">
               <Row>
@@ -208,7 +187,7 @@ const Home = (): JSX.Element => {
                     className="form-text"
                     type="text"
                     maxLength={30}
-                    placeholder="Title (optional)"
+                    placeholder="Title"
                     name="pollTitle"
                     onChange={handlePollDetailsChange}
                   />
@@ -219,7 +198,7 @@ const Home = (): JSX.Element => {
                     type="text"
                     name="pollDescription"
                     maxLength={50}
-                    placeholder="Description (optional)"
+                    placeholder="Description"
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
@@ -229,7 +208,7 @@ const Home = (): JSX.Element => {
                     type="text"
                     name="pollLocation"
                     maxLength={40}
-                    placeholder="Location (optional)"
+                    placeholder="Location"
                     onChange={handlePollDetailsChange}
                   />
                 </Col>

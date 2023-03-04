@@ -12,10 +12,11 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.8rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
   background: #c9c9c9;
 }
 
@@ -90,7 +91,7 @@ main {
   border-radius: 0.5rem;
   margin-top: 0.05rem;
   border: none;
-  padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+  padding: 0.35rem 1rem 0.35rem 1rem;
   width: 100%;
 
   &:hover {
@@ -168,3 +169,5 @@ main {
 @import "./privacy.scss";
 @import "./your-polls.scss";
 @import "./how-to.scss";
+@import "react-big-calendar/lib/css/react-big-calendar.css";
+@import "./kukkee-rbc.scss";
