@@ -76,10 +76,6 @@
   color: #101827;
   border: 0.1rem solid #e5e7ed;
 
-  &:hover {
-    background-color: #f9fafb;
-    border: 0.1rem solid #e5e7ed;
-  }
 
   a {
     color: #101827;
@@ -96,5 +92,71 @@
 
   .stretched-link {
     font-size: 1rem;
+  }
+}
+
+.poll-name {
+  vertical-align: middle;
+}
+
+.card-options {
+  float: right;
+}
+
+.option-button {
+  background-color: #ffffff;
+  padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+  border: 0.09rem solid #e5e7ed;
+  margin-left: 0.5rem;
+  transition: none !important;
+
+  &:hover {
+    box-shadow: none !important;
+    border: 0.09rem solid #000000 !important;
+    background-color: #f6f6f6 !important;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+    border: 0.09rem solid #e5e7ed !important;
+    background-color: #ffffff !important;
+  }
+
+  .icon {
+    color: #000000;
+    margin-top: -0.3rem;
+    font-size: 0.8rem;
+  }
+}
+
+.trash-button {
+  background-color: #ffffff;
+  padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+  border: 0.09rem solid #e5e7ed;
+  margin-left: 0.5rem;
+  transition: none !important;
+
+  &:hover {
+    box-shadow: none !important;
+    border: 0.09rem solid #ff0000 !important;
+    background-color: #f6f6f6 !important;
+  }
+
+  &:hover .icon {
+    color: #ff0000;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+    border: 0.09rem solid #e5e7ed !important;
+    background-color: #ffffff !important;
+  }
+
+  .icon {
+    color: #000000;
+    margin-top: -0.3rem;
+    font-size: 0.8rem;
   }
 }

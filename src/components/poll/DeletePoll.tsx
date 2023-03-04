@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import { Dispatch } from "react";
 import Router from "next/router";
@@ -29,7 +30,7 @@ const DeletePoll = (props: {
       if (deletePollResponse && deletePollResponse.statusCode === 200) {
         setResponse({
           status: true,
-          msg: "Your poll been successfully deleted.",
+          msg: "Your poll has been successfully deleted.",
         });
         if (typeof window !== "undefined") {
           const kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
@@ -66,13 +67,9 @@ const DeletePoll = (props: {
   };
 
   return (
-    <span
-      onClick={handleDelete}
-      className="poll-delete-icon"
-      aria-hidden="true"
-    >
-      <Trash />
-    </span>
+    <Button className="trash-button" onClick={handleDelete}>
+      <Trash className="icon" />
+    </Button>
   );
 };
 

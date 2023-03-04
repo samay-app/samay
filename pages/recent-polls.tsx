@@ -1,15 +1,47 @@
 import { Card, Container, Button } from "react-bootstrap";
-import { Grid } from "react-bootstrap-icons";
+import { Grid, BoxArrowUpRight, Trash } from "react-bootstrap-icons";
+import Router from "next/router";
+import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { decrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
+import ResponseMessage from "../src/components/ResponseMessage";
+import DeletePoll from "../src/components/poll/DeletePoll";
 
 const RecentPolls = (): JSX.Element => {
   let createdPolls = [];
   let votedPolls = [];
 
   let pageSection = <></>;
+
+  const [response, setResponse] = useState({
+    status: false,
+    msg: "",
+  });
+
+  const deleteVotedPoll = (pollID) => {
+    if (typeof window !== "undefined") {
+      const allVotedPolls = localStorage.getItem("kukkeeVotedPolls");
+
+      if (allVotedPolls) {
+        const kukkeeVotedPollsJSON = JSON.parse(allVotedPolls);
+
+        let newKukkeeVotedPolls = {
+          polls: kukkeeVotedPollsJSON.polls.filter(
+            (poll) => Object.keys(poll)[0] !== `${pollID}`
+          ),
+        };
+
+        localStorage.setItem(
+          "kukkeeVotedPolls",
+          JSON.stringify(newKukkeeVotedPolls)
+        );
+
+        Router.reload();
+      }
+    }
+  };
 
   if (typeof window !== "undefined") {
     const createdPollsFromLS = localStorage.getItem("kukkeeCreatedPolls");
@@ -49,14 +81,35 @@ const RecentPolls = (): JSX.Element => {
                 >
                   <Card.Body>
                     <Card.Title>
-                      <a
-                        className="stretched-link"
-                        href={`/poll/${
-                          Object.keys(poll)[0].split("-")[0]
-                        }/${decrypt(poll[Object.keys(poll)[0]])}`}
-                      >
-                        {Object.keys(poll)[0].split("-")[1] || "Untitled"}
-                      </a>
+                      <span className="poll-name">
+                        <a
+                          href={`/poll/${
+                            Object.keys(poll)[0].split("-")[0]
+                          }/${decrypt(poll[Object.keys(poll)[0]])}`}
+                        >
+                          {Object.keys(poll)[0].split("-")[1] || "Untitled"}
+                        </a>
+                      </span>
+                      <div className="card-options">
+                        <Button
+                          className="option-button"
+                          onClick={() =>
+                            Router.push(
+                              `/poll/${
+                                Object.keys(poll)[0].split("-")[0]
+                              }/${decrypt(poll[Object.keys(poll)[0]])}`
+                            )
+                          }
+                        >
+                          <BoxArrowUpRight className="icon" />
+                        </Button>
+                        <DeletePoll
+                          pollID={Object.keys(poll)[0].split("-")[0]}
+                          pollTitle={Object.keys(poll)[0].split("-")[1] || ""}
+                          secret={decrypt(poll[Object.keys(poll)[0]])}
+                          setResponse={setResponse}
+                        />
+                      </div>
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -73,18 +126,38 @@ const RecentPolls = (): JSX.Element => {
                 >
                   <Card.Body>
                     <Card.Title>
-                      <a
-                        className="stretched-link"
-                        href={`/poll/${Object.keys(poll)[0].split("-")[0]}`}
-                      >
-                        {poll[Object.keys(poll)[0]] || "Untitled"}
-                      </a>
+                      <span className="poll-name">
+                        <a href={`/poll/${Object.keys(poll)[0].split("-")[0]}`}>
+                          {Object.keys(poll)[0].split("-")[1] || "Untitled"}
+                        </a>
+                      </span>
+                      <div className="card-options">
+                        <Button
+                          className="option-button"
+                          onClick={() =>
+                            Router.push(
+                              `/poll/${Object.keys(poll)[0].split("-")[0]}`
+                            )
+                          }
+                        >
+                          <BoxArrowUpRight className="icon" />
+                        </Button>
+                        <Button
+                          className="trash-button"
+                          onClick={() =>
+                            deleteVotedPoll(Object.keys(poll)[0].split("-")[0])
+                          }
+                        >
+                          <Trash className="icon" />
+                        </Button>
+                      </div>
                     </Card.Title>
                   </Card.Body>
                 </Card>
               ))}
             </Container>
           )}
+          <ResponseMessage response={response} setResponse={setResponse} />
         </div>
       );
     } else {
@@ -102,6 +175,7 @@ const RecentPolls = (): JSX.Element => {
               </Button>
             </Link>
           </Container>
+          <ResponseMessage response={response} setResponse={setResponse} />
         </div>
       );
     }

@@ -268,17 +268,8 @@
   }
 }
 
-.poll-delete-icon {
+.delete-poll-on-creator-page {
   float: right;
-  color: #101827;
-
-  svg {
-    cursor: pointer;
-  }
-
-  :hover {
-    color: #ff0000;
-  }
 }
 
 .poll-mark-time-name {
