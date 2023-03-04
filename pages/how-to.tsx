@@ -55,7 +55,7 @@ const HowTo = (): JSX.Element => {
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
                   Quickly create a meeting poll by choosing the time slots based
-                  on your availablity, and optionally enter the title,
+                  on your availability, and optionally enter the title,
                   description and location.
                 </Card.Text>
               </Card.Body>

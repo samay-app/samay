@@ -41,10 +41,11 @@
   padding-left: 0.5rem;
   width: 95%;
   padding-right: 0.5rem;
-  margin-top: 7rem;
+  margin-top: 2rem;
 
   @include media-breakpoint-up(sm) {
     width: 75rem;
+    margin-top: 7rem;
     padding-left: 0;
     padding-right: 0;
   }
