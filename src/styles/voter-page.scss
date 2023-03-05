@@ -10,9 +10,14 @@
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   margin: auto;
-  width: 50%;
+  width: 100%;
   padding: 1.5rem;
-  margin-top: 6rem;
+  margin-top: 0rem;
+
+  @include media-breakpoint-up(sm) {
+    width: 50%;
+    margin-top: 6rem;
+  }
 
   &.closed {
     border-bottom: 0.09rem solid #e3e3e3;
@@ -25,11 +30,15 @@
   background-color: #ffffff;
   border: 0.09rem solid #e3e3e3;
   margin: auto;
-  width: 50%;
+  width: 100%;
   padding-top: 0.8rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   padding-bottom: 0.5rem;
+
+  @include media-breakpoint-up(sm) {
+    width: 50%;
+  }
 }
 
 .voter-page-final-container {
@@ -38,23 +47,39 @@
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   margin: auto;
-  width: 50%;
+  width: 100%;
   padding: 1.5rem;
+
+  @include media-breakpoint-up(sm) {
+    width: 50%;
+  }
 }
 
 .voter-page-powered-container {
   margin: auto;
-  width: 50%;
+  width: 100%;
   padding: 1.5rem;
+  text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    width: 50%;
+  }
 
   a {
-    float: right;
     font-size: 0.7rem;
     color: #acaaaa;
     font-family: "Inter";
     text-decoration: none;
-    margin-right: -1.5rem;
-
+    margin-right: 0rem;
+    margin-top: 0rem;
+    float: none;
+  
+    @include media-breakpoint-up(sm) {
+      margin-right: -1.5rem;
+      margin-top: -1rem;
+      float: right;
+    }
+  
     &:hover {
       color: #929292;
       text-decoration: none;
@@ -162,7 +187,13 @@
   font-size: 0.9rem;
   font-weight: 400;
   transition: none;
-  width: 30%;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 0rem;
+    width: 30%;
+  }
 }
 
 .voter-page-poll-mark-time-name.form-control {
@@ -192,5 +223,9 @@
 
 .voter-page-vote-recorded {
   font-family: "Inter";
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 0.9rem;
+  }
 }

@@ -50,7 +50,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: normal;
     background-color: #fefffe !important;
+
+    @include media-breakpoint-up(sm) {
+        white-space: nowrap;
+    }
 }
 
 .rbc-slot-selection {
