@@ -1,5 +1,5 @@
 import { Button, Spinner } from "react-bootstrap";
-import { useState, Dispatch } from "react";
+import { useState } from "react";
 import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import toastOptions from "../../helpers/toastOptions";

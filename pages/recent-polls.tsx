@@ -20,7 +20,7 @@ const RemoveVotedPollModal = (props: {
   return (
     <Modal
       {...props}
-      size="md"
+      dialogClassName="modal-60w"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >

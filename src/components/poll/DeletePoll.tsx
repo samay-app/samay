@@ -14,7 +14,7 @@ const DeleteModal = (props: { show; onHide; handleDelete }): JSX.Element => {
   return (
     <Modal
       {...props}
-      size="md"
+      dialogClassName="modal-60w"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
