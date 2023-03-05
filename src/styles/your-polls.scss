@@ -160,3 +160,74 @@
     font-size: 0.8rem;
   }
 }
+
+.modal-title {
+  font-family: "Cal Sans";
+  font-size: 1.4rem;
+  letter-spacing: 0.03rem;
+  color: #101827;
+}
+
+.modal-body {
+  font-family: "Inter";
+  font-size: 1rem;
+  color: #555555;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-footer {
+  border-top: 0;
+}
+
+.modal-footer .btn {
+  background-color: #101827;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-family: "Inter";
+  border-radius: 0.5rem;
+  margin-top: 0.05rem;
+  border: none;
+  padding: 0.35rem 1rem 0.35rem 1rem;
+  width: 100%;
+
+  &:hover {
+    color: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: #d90000 !important;
+  }
+
+  &:active,
+  &:focus {
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #101827 !important;
+  }
+
+  &[disabled] {
+    opacity: 1 !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    border: none !important;
+    background-color: #101827 !important;
+    pointer-events: none;
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: unset;
+    float: right;
+  }
+}
+
+.modal-header .close {
+  &:focus {
+    outline: 0;
+    border: 0px solid #fff;
+    outline: none;
+  }
+}

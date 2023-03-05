@@ -61,6 +61,7 @@ const Poll = (props: {
           poll[Object.keys(poll)[0]] === pollFromDB.secret
         ) {
           Router.push(`/poll/${pollID}/${decrypt(pollFromDB.secret)}`);
+          return <></>;
         }
       }
     }

@@ -1,4 +1,5 @@
 import { Card, Container, Button } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 import { Grid, BoxArrowUpRight, Trash } from "react-bootstrap-icons";
 import Router from "next/router";
 import { useState } from "react";
@@ -8,6 +9,38 @@ import { decrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
 import ResponseMessage from "../src/components/ResponseMessage";
 import DeletePoll from "../src/components/poll/DeletePoll";
+
+const RemoveVotedPollModal = (props: {
+  deleteVotedPoll;
+  poll;
+}): JSX.Element => {
+  const { deleteVotedPoll, poll } = props;
+
+  return (
+    <Modal
+      {...props}
+      size="md"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Remove poll
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Are you sure you want to remove this poll?</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          onClick={() => deleteVotedPoll(Object.keys(poll)[0].split("-")[0])}
+        >
+          Remove
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
 
 const RecentPolls = (): JSX.Element => {
   let createdPolls = [];
@@ -19,6 +52,8 @@ const RecentPolls = (): JSX.Element => {
     status: false,
     msg: "",
   });
+
+  const [modalShow, setModalShow] = useState(false);
 
   const deleteVotedPoll = (pollID) => {
     if (typeof window !== "undefined") {
@@ -144,12 +179,16 @@ const RecentPolls = (): JSX.Element => {
                         </Button>
                         <Button
                           className="trash-button"
-                          onClick={() =>
-                            deleteVotedPoll(Object.keys(poll)[0].split("-")[0])
-                          }
+                          onClick={() => setModalShow(true)}
                         >
                           <Trash className="icon" />
                         </Button>
+                        <RemoveVotedPollModal
+                          show={modalShow}
+                          onHide={() => setModalShow(false)}
+                          deleteVotedPoll={deleteVotedPoll}
+                          poll={poll}
+                        />
                       </div>
                     </Card.Title>
                   </Card.Body>

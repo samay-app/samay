@@ -1,9 +1,35 @@
 import { Button } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 import { Trash } from "react-bootstrap-icons";
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
 import Router from "next/router";
 import { deletePoll } from "../../utils/api/server";
 import { encrypt } from "../../helpers";
+
+const DeleteModal = (props: { handleDelete }): JSX.Element => {
+  const { handleDelete } = props;
+
+  return (
+    <Modal
+      {...props}
+      size="md"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Delete poll
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Are you sure you want to delete this poll?</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={handleDelete}>Delete</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
 
 const DeletePoll = (props: {
   pollID: string;
@@ -15,6 +41,7 @@ const DeletePoll = (props: {
   }>;
 }): JSX.Element => {
   const { pollID, pollTitle, secret, setResponse } = props;
+  const [modalShow, setModalShow] = useState(false);
 
   const handleDelete = async (
     e: React.MouseEvent<HTMLInputElement>
@@ -67,9 +94,16 @@ const DeletePoll = (props: {
   };
 
   return (
-    <Button className="trash-button" onClick={handleDelete}>
-      <Trash className="icon" />
-    </Button>
+    <>
+      <Button className="trash-button" onClick={() => setModalShow(true)}>
+        <Trash className="icon" />
+      </Button>
+      <DeleteModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        handleDelete={handleDelete}
+      />
+    </>
   );
 };
 
