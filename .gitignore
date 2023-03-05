@@ -57,3 +57,5 @@ typings/
 next-env.d.ts
 
 .env
+
+.DS_Store

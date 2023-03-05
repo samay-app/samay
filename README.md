@@ -21,13 +21,19 @@
   <br/>
 </div>
 
-Kukkee is a free, open source and fast meeting poll tool. Quickly create a meeting poll by choosing the time slots based on your availability. Copy and share the poll link with the participants to let them mark their availability. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
-
-<img src="./public/banner.png">
-
 ## Get in touch
 
 If you have suggestions for how Kukkee could be improved, please add your thoughts on a relevant discussion [here](https://github.com/Kukkee/Kukkee/discussions/) or start a new discussion. If you have any questions, I'd love to hear them too! If you want to report an issue, check if the issue is already opened [here](https://github.com/AnandBaburajan/Kukkee/issues) otherwise open a new one.
+
+## Problem
+
+After my GSoC '20 at LiberTEM, I approached my mentors to know if I can have a video call with them. They said yes, and one of them sent me a link to a meeting poll created using a proprietary online service -- it had surprisingly bad UI and was covered with advertisements. I searched for good, ad-free, free and open source meeting poll tool, but didn't find any good ones at that time. So I got started, and now Kukkee has been used to schedule 2k+ meetings and has 250+ on GitHub.
+
+## What is Kukkee?
+
+Kukkee is a free, open source and fast meeting poll tool. It's built on top of Next.js and uses MongoDB as its data source. Quickly create a meeting poll by choosing the time slots based on your availability. Copy and share the poll link with the participants to let them mark their availability. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
+
+<img src="./public/banner.png">
 
 ## Self-hosting
 
@@ -37,8 +43,7 @@ Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
 
 #### MongoDB Atlas
 
-In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free.
-If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
+In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free. If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
 ### Deployment
 
@@ -107,17 +112,38 @@ Please make sure that you can make a full production build before opening a PR. 
 npm run build
 ```
 
+## FOSS Hack 3.0
+
+Kukkee took part in FOSS Hack 3.0. Here are the updates:
+
+### What was the initial stage of the project?
+
+Coming soon.
+
+### What stage is it in now?
+
+Coming soon.
+
+### How did you get there?
+
+Coming soon.
+
+### What is working/not working?
+
+Coming soon.
+
 ## Acknowledgements
 
 Special thanks to these amazing projects which help power Kukkee:
 
-- React-available-times
+- React-big-calendar
 - React
 - Next.js
 - Day.js
 - Bootstrap
 - MongoDB
 - Mongoose
+- Inter
 - Cal Sans
 
 ## License
