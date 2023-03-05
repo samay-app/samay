@@ -1,6 +1,8 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState, Dispatch } from "react";
 import Router from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import { toastOptions } from "../../helpers/toastOptions";
 import { markFinalTime } from "../../utils/api/server";
 import { Time } from "../../models/poll";
 import { encrypt } from "../../helpers";
@@ -9,12 +11,8 @@ const SubmitFinalTime = (props: {
   finalTime: Time | undefined;
   pollID: string;
   secret: string;
-  setResponse: Dispatch<{
-    status: boolean;
-    msg: string;
-  }>;
 }): JSX.Element => {
-  const { finalTime, pollID, secret, setResponse } = props;
+  const { finalTime, pollID, secret } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -38,30 +36,21 @@ const SubmitFinalTime = (props: {
           Router.reload();
         } else {
           setDisabled(false);
-          setResponse({
-            status: true,
-            msg: "Please try again later.",
-          });
+          toast.info("Please try again later", toastOptions);
           Router.reload();
         }
       } catch (err) {
         setDisabled(false);
-        setResponse({
-          status: true,
-          msg: "Please try again later.",
-        });
+        toast.info("Please try again later", toastOptions);
         Router.reload();
       }
     } else {
-      setResponse({
-        status: true,
-        msg: "Please choose the final time.",
-      });
+      toast.error("Please choose the final time", toastOptions);
     }
   };
 
   return (
-    <div>
+    <>
       <Button
         className="global-primary-button mb-5"
         type="submit"
@@ -83,7 +72,8 @@ const SubmitFinalTime = (props: {
           </>
         )}
       </Button>
-    </div>
+      <ToastContainer />
+    </>
   );
 };
 

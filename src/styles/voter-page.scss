@@ -42,6 +42,26 @@
   padding: 1.5rem;
 }
 
+.voter-page-powered-container {
+  margin: auto;
+  width: 50%;
+  padding: 1.5rem;
+
+  a {
+    float: right;
+    font-size: 0.7rem;
+    color: #acaaaa;
+    font-family: "Inter";
+    text-decoration: none;
+    margin-right: -1.5rem;
+
+    &:hover {
+      color: #929292;
+      text-decoration: none;
+    }
+  }
+}
+
 .voter-page-poll-badge-open {
   font-size: 0.6rem;
   padding-top: 0.6em;

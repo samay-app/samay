@@ -1,12 +1,14 @@
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import { ToastContainer, toast } from "react-toastify";
 import { Trash } from "react-bootstrap-icons";
-import { Dispatch, useState } from "react";
+import { useState } from "react";
 import Router from "next/router";
+import { toastOptions } from "../../helpers/toastOptions";
 import { deletePoll } from "../../utils/api/server";
 import { encrypt } from "../../helpers";
 
-const DeleteModal = (props: { handleDelete }): JSX.Element => {
+const DeleteModal = (props: { show; onHide; handleDelete }): JSX.Element => {
   const { handleDelete } = props;
 
   return (
@@ -35,12 +37,8 @@ const DeletePoll = (props: {
   pollID: string;
   pollTitle: string;
   secret: string;
-  setResponse: Dispatch<{
-    status: boolean;
-    msg: string;
-  }>;
 }): JSX.Element => {
-  const { pollID, pollTitle, secret, setResponse } = props;
+  const { pollID, pollTitle, secret } = props;
   const [modalShow, setModalShow] = useState(false);
 
   const handleDelete = async (
@@ -55,10 +53,6 @@ const DeletePoll = (props: {
       };
       deletePollResponse = await deletePoll(deleteArgs);
       if (deletePollResponse && deletePollResponse.statusCode === 200) {
-        setResponse({
-          status: true,
-          msg: "Your poll has been successfully deleted.",
-        });
         if (typeof window !== "undefined") {
           const kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
 
@@ -79,17 +73,11 @@ const DeletePoll = (props: {
         }
         Router.push("/recent-polls");
       } else {
-        setResponse({
-          status: true,
-          msg: "Please try again later.",
-        });
+        toast.info("Please try again later", toastOptions);
         Router.reload();
       }
     } catch (err) {
-      setResponse({
-        status: true,
-        msg: "Please try again later.",
-      });
+      toast.info("Please try again later", toastOptions);
     }
   };
 
@@ -103,6 +91,7 @@ const DeletePoll = (props: {
         onHide={() => setModalShow(false)}
         handleDelete={handleDelete}
       />
+      <ToastContainer />
     </>
   );
 };

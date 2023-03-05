@@ -44,6 +44,16 @@ const PollInfo = (props: {
         <Globe className="poll-info-icon" />
         Times are shown in: {dayjs.tz.guess()} timezone
       </span>
+      {!poll.open && showFinalTime && (
+        <span className="poll-info-detail-title">
+          <CalendarCheck className="poll-info-icon" />
+          {dayjs(poll.finalTime?.start).format("ddd")},{" "}
+          {dayjs(poll.finalTime?.start).format("MMM")}{" "}
+          {dayjs(poll.finalTime?.start).format("DD")},{" "}
+          {dayjs(poll.finalTime?.start).format("LT")} -{" "}
+          {dayjs(poll.finalTime?.end).format("LT")}
+        </span>
+      )}
       {showCopyBox && (
         <>
           <span className="poll-info-detail-title copy-text-mobile">
@@ -71,16 +81,6 @@ const PollInfo = (props: {
             with the participants
           </span>
         </>
-      )}
-      {showFinalTime && (
-        <span className="poll-info-detail-title">
-          <CalendarCheck className="poll-info-icon" />
-          {dayjs(poll.finalTime?.start).format("ddd")},{" "}
-          {dayjs(poll.finalTime?.start).format("MMM")}{" "}
-          {dayjs(poll.finalTime?.start).format("DD")},{" "}
-          {dayjs(poll.finalTime?.start).format("LT")} -{" "}
-          {dayjs(poll.finalTime?.end).format("LT")}
-        </span>
       )}
     </div>
   );

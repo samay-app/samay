@@ -1,6 +1,8 @@
 import { Button, Spinner } from "react-bootstrap";
 import { useState, Dispatch } from "react";
 import Router from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import { toastOptions } from "../../helpers/toastOptions";
 import { markTimes } from "../../utils/api/server";
 import { Vote, PollFromDB } from "../../models/poll";
 import { isUserPresentInVotes } from "../../helpers";
@@ -9,12 +11,8 @@ const SubmitTimes = (props: {
   newVote: Vote;
   pollID: string;
   pollFromDB: PollFromDB;
-  setResponse: Dispatch<{
-    status: boolean;
-    msg: string;
-  }>;
 }): JSX.Element => {
-  const { newVote, pollID, pollFromDB, setResponse } = props;
+  const { newVote, pollID, pollFromDB } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -24,10 +22,7 @@ const SubmitTimes = (props: {
     e.preventDefault();
 
     if (!newVote.name) {
-      setResponse({
-        status: true,
-        msg: "Please enter your name.",
-      });
+      toast.error("Please enter your name", toastOptions);
       return;
     }
 
@@ -35,18 +30,17 @@ const SubmitTimes = (props: {
       pollFromDB.votes &&
       isUserPresentInVotes(newVote.name, pollFromDB.votes)
     ) {
-      setResponse({
-        status: true,
-        msg: "An invitee with the same name has voted before.",
-      });
+      toast.error(
+        "An invitee with the same name has voted before - please choose a different name",
+        toastOptions
+      );
+
       return;
     }
 
     if (newVote.times.length === 0) {
-      setResponse({
-        status: true,
-        msg: "Please select at least one available time slot.",
-      });
+      toast.error("Please select at least one time slot", toastOptions);
+
       return;
     }
 
@@ -90,56 +84,47 @@ const SubmitTimes = (props: {
         }
         Router.reload();
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {
-        setResponse({
-          status: true,
-          msg: "Sorry, poll has been deleted.",
-        });
+        toast.error("The poll has been deleted by the creator", toastOptions);
         Router.push("/");
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 400) {
-        setResponse({
-          status: true,
-          msg: "Sorry, poll has been closed.",
-        });
+        toast.error("The poll has been closed by the creator", toastOptions);
         Router.reload();
       } else {
         setDisabled(false);
-        setResponse({
-          status: true,
-          msg: "Please try again later.",
-        });
+        toast.info("Please try again later", toastOptions);
         Router.reload();
       }
     } catch (err) {
       setDisabled(false);
-      setResponse({
-        status: true,
-        msg: "Please try again later.",
-      });
+      toast.info("Please try again later", toastOptions);
     }
   };
 
   return (
-    <Button
-      className="global-primary-button mb-5"
-      type="submit"
-      disabled={disabled}
-      onClick={handleSubmit}
-    >
-      {!disabled ? (
-        `Mark your availability`
-      ) : (
-        <>
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-            className="kukkee-button-spinner"
-          />
-        </>
-      )}
-    </Button>
+    <>
+      <Button
+        className="global-primary-button mb-5"
+        type="submit"
+        disabled={disabled}
+        onClick={handleSubmit}
+      >
+        {!disabled ? (
+          `Mark your availability`
+        ) : (
+          <>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              className="kukkee-button-spinner"
+            />
+          </>
+        )}
+      </Button>
+      <ToastContainer />
+    </>
   );
 };
 

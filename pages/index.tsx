@@ -11,9 +11,10 @@ import {
 } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { toastOptions } from "../src/helpers/toastOptions";
 import Layout from "../src/components/Layout";
 import { encrypt } from "../src/helpers";
-import ResponseMessage from "../src/components/ResponseMessage";
 import { Time, Poll } from "../src/models/poll";
 import KukkeeRBC from "../src/components/KukkeeRBC";
 import { createPoll } from "../src/utils/api/server";
@@ -34,11 +35,6 @@ const Home = (): JSX.Element => {
   const [pollTimes, setTimes] = useState<Time[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
 
-  const [response, setResponse] = useState({
-    status: false,
-    msg: "",
-  });
-
   const handlePollDetailsChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
@@ -50,29 +46,13 @@ const Home = (): JSX.Element => {
     });
   };
 
-  const areTimesValid = (times: Time[] | undefined): boolean => {
-    if (!times) return false;
-    if (times.some((time: Time) => time.start < Date.now())) return false;
-    return true;
-  };
-
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
 
     if (!pollTimes || (pollTimes && pollTimes?.length < 2)) {
-      setResponse({
-        status: true,
-        msg: "Please select at least two time slots for invitees.",
-      });
-      return;
-    }
-    if (!areTimesValid(pollTimes)) {
-      setResponse({
-        status: true,
-        msg: "Chosen time slots must not be in the past.",
-      });
+      toast.error("Please select at least two time slots", toastOptions);
       return;
     }
 
@@ -127,17 +107,14 @@ const Home = (): JSX.Element => {
         Router.push(`/poll/${createPollResponse.data._id}/${secret}`);
       } else {
         setDisabled(false);
-        setResponse({
-          status: true,
-          msg: "Poll creation failed, please try again later.",
-        });
+        toast.error(
+          "Poll creation failed, please try again later",
+          toastOptions
+        );
       }
     } catch (err) {
       setDisabled(false);
-      setResponse({
-        status: true,
-        msg: "Poll creation failed, please try again later.",
-      });
+      toast.error("Poll creation failed, please try again later", toastOptions);
     }
   };
 
@@ -236,7 +213,7 @@ const Home = (): JSX.Element => {
                 </Col>
               </Row>
             </Jumbotron>
-            <ResponseMessage response={response} setResponse={setResponse} />
+            <ToastContainer />
           </Container>
         </div>
       </Layout>

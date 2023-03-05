@@ -7,10 +7,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { decrypt } from "../src/helpers";
 import Layout from "../src/components/Layout";
-import ResponseMessage from "../src/components/ResponseMessage";
 import DeletePoll from "../src/components/poll/DeletePoll";
 
 const RemoveVotedPollModal = (props: {
+  show;
+  onHide;
   deleteVotedPoll;
   poll;
 }): JSX.Element => {
@@ -47,11 +48,6 @@ const RecentPolls = (): JSX.Element => {
   let votedPolls = [];
 
   let pageSection = <></>;
-
-  const [response, setResponse] = useState({
-    status: false,
-    msg: "",
-  });
 
   const [modalShow, setModalShow] = useState(false);
 
@@ -142,7 +138,6 @@ const RecentPolls = (): JSX.Element => {
                           pollID={Object.keys(poll)[0].split("-")[0]}
                           pollTitle={Object.keys(poll)[0].split("-")[1] || ""}
                           secret={decrypt(poll[Object.keys(poll)[0]])}
-                          setResponse={setResponse}
                         />
                       </div>
                     </Card.Title>
@@ -196,7 +191,6 @@ const RecentPolls = (): JSX.Element => {
               ))}
             </Container>
           )}
-          <ResponseMessage response={response} setResponse={setResponse} />
         </div>
       );
     } else {
@@ -214,7 +208,6 @@ const RecentPolls = (): JSX.Element => {
               </Button>
             </Link>
           </Container>
-          <ResponseMessage response={response} setResponse={setResponse} />
         </div>
       );
     }

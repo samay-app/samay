@@ -6,11 +6,9 @@ import { Form } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
-import Layout from "../../src/components/Layout";
 import VoterPollInfo from "../../src/components/poll/VoterPollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
-import ResponseMessage from "../../src/components/ResponseMessage";
 import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers";
 
@@ -37,11 +35,6 @@ const Poll = (props: {
     const { value } = e.target;
     setNewVote({ name: value, times: newVote.times });
   };
-
-  const [response, setResponse] = useState({
-    status: false,
-    msg: "",
-  });
 
   if (typeof window !== "undefined") {
     let createdPollsFromLS = JSON.parse(
@@ -74,11 +67,16 @@ const Poll = (props: {
 
         if (Object.keys(poll)[0] === pollID && pollFromDB.open) {
           pageSection = (
-            <div className="voter-page-final-container">
-              <span className="voter-page-vote-recorded">
-                Your vote has been successfully recorded.
-              </span>
-            </div>
+            <>
+              <div className="voter-page-final-container">
+                <span className="voter-page-vote-recorded">
+                  Your vote has been successfully recorded.
+                </span>
+              </div>
+              <div className="voter-page-powered-container">
+                <a href="http://kukkee.com">Powered by Kukkee.com</a>
+              </div>
+            </>
           );
           break;
         } else if (pollFromDB.open) {
@@ -105,8 +103,11 @@ const Poll = (props: {
                   newVote={newVote}
                   pollID={pollID}
                   pollFromDB={pollFromDB}
-                  setResponse={setResponse}
                 />
+              </div>
+
+              <div className="voter-page-powered-container">
+                <a href="http://kukkee.com">Powered by Kukkee.com</a>
               </div>
             </>
           );
@@ -136,8 +137,10 @@ const Poll = (props: {
               newVote={newVote}
               pollID={pollID}
               pollFromDB={pollFromDB}
-              setResponse={setResponse}
             />
+          </div>
+          <div className="voter-page-powered-container">
+            <a href="http://kukkee.com">Powered by Kukkee.com</a>
           </div>
         </>
       );
@@ -162,7 +165,6 @@ const Poll = (props: {
             <VoterPollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} />
           </div>
           {pageSection}
-          <ResponseMessage response={response} setResponse={setResponse} />
         </main>
       </div>
     </>

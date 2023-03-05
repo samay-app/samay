@@ -72,13 +72,8 @@ main {
   }
 }
 
-.global-toast {
-  max-width: 35rem;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 9999;
-  float: right;
+.Toastify__toast-body{
+  font-size: 0.8rem;
   font-family: "Inter";
 }
 
@@ -172,4 +167,5 @@ main {
 @import "./how-to.scss";
 @import "./voter-page.scss";
 @import "react-big-calendar/lib/css/react-big-calendar.css";
+@import "react-toastify/dist/ReactToastify.css";
 @import "./kukkee-rbc.scss";

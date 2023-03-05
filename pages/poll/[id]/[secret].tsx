@@ -10,7 +10,6 @@ import PollInfo from "../../../src/components/poll/PollInfo";
 import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
 import SubmitFinalTime from "../../../src/components/poll/SubmitFinalTime";
 import DeletePoll from "../../../src/components/poll/DeletePoll";
-import ResponseMessage from "../../../src/components/ResponseMessage";
 import { Time, TimeFromDB, PollFromDB } from "../../../src/models/poll";
 import { decrypt } from "../../../src/helpers";
 
@@ -26,10 +25,7 @@ const Poll = (props: {
     (a: TimeFromDB, b: TimeFromDB) => a.start - b.start
   );
   const [finalTime, setFinalTime] = useState<Time | undefined>();
-  const [response, setResponse] = useState({
-    status: false,
-    msg: "",
-  });
+
   return (
     <>
       <Head>
@@ -47,10 +43,9 @@ const Poll = (props: {
                   pollID={pollID}
                   pollTitle={pollFromDB.title || ""}
                   secret={secret}
-                  setResponse={setResponse}
                 />
               </span>
-              <PollInfo poll={pollFromDB} showFinalTime={false} showCopyBox />
+              <PollInfo poll={pollFromDB} showFinalTime showCopyBox />
             </Jumbotron>
             {pollFromDB.votes?.length > 0 && (
               <>
@@ -66,13 +61,11 @@ const Poll = (props: {
                     finalTime={finalTime}
                     pollID={pollID}
                     secret={secret}
-                    setResponse={setResponse}
                   />
                 )}
               </>
             )}
           </Container>
-          <ResponseMessage response={response} setResponse={setResponse} />
         </div>
       </Layout>
     </>
