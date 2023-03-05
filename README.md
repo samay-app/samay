@@ -27,7 +27,7 @@ If you have suggestions for how Kukkee could be improved, please add your though
 
 ## Problem
 
-After my GSoC '20 at LiberTEM, I approached my mentors to know if I can have a video call with them. They said yes, and one of them sent me a link to a meeting poll created using a proprietary online service -- it had surprisingly bad UI and was covered with advertisements. I searched for good, ad-free, free and open source meeting poll tool, but didn't find any good ones at that time. So I got started, and now Kukkee has been used to schedule 2k+ meetings and has 250+ on GitHub.
+After my GSoC '20 at LiberTEM, I approached my mentors to know if I can have a video call with them. They said yes, and one of them sent me a link to a meeting poll created using a proprietary online service -- it had surprisingly bad UI and was covered with advertisements. I searched for good, ad-free, free and open source meeting poll tool, but didn't find any good ones at that time. So I got started, and now Kukkee has been used to schedule 2k+ meetings and has 250+ stars on GitHub.
 
 ## What is Kukkee?
 
