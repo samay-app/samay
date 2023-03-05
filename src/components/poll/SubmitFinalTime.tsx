@@ -2,7 +2,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { useState, Dispatch } from "react";
 import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
-import { toastOptions } from "../../helpers/toastOptions";
+import toastOptions from "../../helpers/toastOptions";
 import { markFinalTime } from "../../utils/api/server";
 import { Time } from "../../models/poll";
 import { encrypt } from "../../helpers";

@@ -12,7 +12,7 @@ import {
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { toastOptions } from "../src/helpers/toastOptions";
+import toastOptions from "../src/helpers/toastOptions";
 import Layout from "../src/components/Layout";
 import { encrypt } from "../src/helpers";
 import { Time, Poll } from "../src/models/poll";

@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Trash } from "react-bootstrap-icons";
 import { useState } from "react";
 import Router from "next/router";
-import { toastOptions } from "../../helpers/toastOptions";
+import toastOptions from "../../helpers/toastOptions";
 import { deletePoll } from "../../utils/api/server";
 import { encrypt } from "../../helpers";
 
