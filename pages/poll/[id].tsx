@@ -41,7 +41,7 @@ const Poll = (props: {
       localStorage.getItem("kukkeeCreatedPolls")
     );
 
-    if (createdPollsFromLS) {
+    if (createdPollsFromLS && createdPollsFromLS.polls.length) {
       const lSKeyForPoll = `${pollID}-${
         pollFromDB.title ? pollFromDB.title : ""
       }`;
@@ -61,7 +61,7 @@ const Poll = (props: {
 
     let votedPollsFromLS = JSON.parse(localStorage.getItem("kukkeeVotedPolls"));
 
-    if (votedPollsFromLS.polls.length) {
+    if (votedPollsFromLS && votedPollsFromLS.polls.length) {
       for (let i = 0; i < votedPollsFromLS.polls.length; i += 1) {
         let poll = votedPollsFromLS.polls[i];
 
