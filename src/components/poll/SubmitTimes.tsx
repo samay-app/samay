@@ -119,29 +119,27 @@ const SubmitTimes = (props: {
   };
 
   return (
-    <div>
-      <Button
-        className="global-primary-button mb-5"
-        type="submit"
-        disabled={disabled}
-        onClick={handleSubmit}
-      >
-        {!disabled ? (
-          `Mark your availability`
-        ) : (
-          <>
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              className="kukkee-button-spinner"
-            />
-          </>
-        )}
-      </Button>
-    </div>
+    <Button
+      className="global-primary-button mb-5"
+      type="submit"
+      disabled={disabled}
+      onClick={handleSubmit}
+    >
+      {!disabled ? (
+        `Mark your availability`
+      ) : (
+        <>
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+            className="kukkee-button-spinner"
+          />
+        </>
+      )}
+    </Button>
   );
 };
 

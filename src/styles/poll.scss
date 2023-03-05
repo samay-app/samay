@@ -111,7 +111,7 @@
 .poll-info-desc {
   display: block;
   font-weight: 500;
-  color: #484848;
+  color: #565656;
   font-size: 0.9rem;
   letter-spacing: 0.02rem;
   margin-top: 0.5rem;
@@ -153,7 +153,6 @@
 }
 
 .poll-slot-time {
-  font-family: "Cal Sans";
   border-top: 0 !important;
   border-bottom: 0 !important;
   min-width: 4.5rem;
@@ -307,13 +306,6 @@
   border-top: 0 !important;
   color: #101827;
   min-width: 9rem;
-}
-
-.poll-table-choose-textbox {
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-top: 0 !important;
-  min-width: 8.3rem;
 }
 
 .poll-slot-checkbox {

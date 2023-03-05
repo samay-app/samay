@@ -1,4 +1,3 @@
-import { Form } from "react-bootstrap";
 import { Dispatch, useState } from "react";
 import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import { Time, Vote } from "../../models/poll";
@@ -15,11 +14,6 @@ const MarkTimes = (props: {
   );
 
   const statusValues = ["no", "yes", "if-need-be"];
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
-    setNewVote({ name: value, times: newVote.times });
-  };
 
   const handleMarkTimeBoxClick = (e: React.MouseEvent<HTMLElement>): void => {
     if (e.target !== e.currentTarget) return;
@@ -50,16 +44,6 @@ const MarkTimes = (props: {
 
   return (
     <tr>
-      <td className="poll-table-choose-textbox">
-        <Form.Control
-          className="poll-mark-time-name"
-          type="text"
-          maxLength={30}
-          placeholder="Your name"
-          onChange={handleNameChange}
-          autoFocus
-        />
-      </td>
       {times.map((time) => (
         <td key={time.start} className="poll-mark-time-cell">
           <div

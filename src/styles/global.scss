@@ -25,6 +25,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
+  border-radius: 0.5rem;
   background: #e4e4e4;
 }
 
@@ -169,5 +170,6 @@ main {
 @import "./privacy.scss";
 @import "./your-polls.scss";
 @import "./how-to.scss";
+@import "./voter-page.scss";
 @import "react-big-calendar/lib/css/react-big-calendar.css";
 @import "./kukkee-rbc.scss";

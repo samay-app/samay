@@ -21,7 +21,6 @@ const PollTableVoter = (props: {
       <Table responsive>
         <thead>
           <tr>
-            <th className="poll-participant-cell"> </th>
             {sortedTimes.map((time) => (
               <th key={time.start} className="poll-slot-time">
                 <PollDateTime time={time} />

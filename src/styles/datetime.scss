@@ -1,6 +1,7 @@
 .datetime-weekday {
   display: block;
   text-align: center;
+  font-family: "Cal Sans";
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 500;
@@ -11,6 +12,7 @@
 .datetime-day {
   display: block;
   text-align: center;
+  font-family: "Cal Sans";
   font-size: 2rem;
   margin-bottom: -0.2em;
 }
@@ -19,6 +21,7 @@
   display: block;
   text-align: center;
   font-size: 1.2rem;
+  font-family: "Cal Sans";
   letter-spacing: 0.02rem;
   font-weight: 500;
   margin-bottom: 0.4em;
@@ -26,6 +29,7 @@
 }
 
 .datetime-time-1 {
+  font-family: "Inter";
   display: block;
   text-align: center;
   margin-bottom: -0.2em;
@@ -38,6 +42,7 @@
 }
 
 .datetime-time-2 {
+  font-family: "Inter";
   display: block;
   text-align: center;
   letter-spacing: 0.03rem;
