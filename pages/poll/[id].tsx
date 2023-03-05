@@ -67,7 +67,7 @@ const Poll = (props: {
 
     let votedPollsFromLS = JSON.parse(localStorage.getItem("kukkeeVotedPolls"));
 
-    if (votedPollsFromLS) {
+    if (votedPollsFromLS.polls.length) {
       for (let i = 0; i < votedPollsFromLS.polls.length; i += 1) {
         let poll = votedPollsFromLS.polls[i];
 
@@ -80,66 +80,70 @@ const Poll = (props: {
             </div>
           );
           break;
-        } else if (pollFromDB.open) {
-          pageSection = (
-            <>
-              <div className="voter-page-main-container">
-                <PollTableVoter
-                  pollFromDB={pollFromDB}
-                  sortedTimes={sortedTimes}
-                  newVote={newVote}
-                  setNewVote={setNewVote}
-                />
-              </div>
-              <div className="voter-page-final-container">
-                <Form.Control
-                  className="voter-page-poll-mark-time-name"
-                  type="text"
-                  maxLength={30}
-                  placeholder="Your name"
-                  onChange={handleNameChange}
-                  autoFocus
-                />
-                <SubmitTimes
-                  newVote={newVote}
-                  pollID={pollID}
-                  pollFromDB={pollFromDB}
-                  setResponse={setResponse}
-                />
-              </div>
-            </>
-          );
+        } else {
+          if (pollFromDB.open) {
+            pageSection = (
+              <>
+                <div className="voter-page-main-container">
+                  <PollTableVoter
+                    pollFromDB={pollFromDB}
+                    sortedTimes={sortedTimes}
+                    newVote={newVote}
+                    setNewVote={setNewVote}
+                  />
+                </div>
+                <div className="voter-page-final-container">
+                  <Form.Control
+                    className="voter-page-poll-mark-time-name"
+                    type="text"
+                    maxLength={30}
+                    placeholder="Your name"
+                    onChange={handleNameChange}
+                    autoFocus
+                  />
+                  <SubmitTimes
+                    newVote={newVote}
+                    pollID={pollID}
+                    pollFromDB={pollFromDB}
+                    setResponse={setResponse}
+                  />
+                </div>
+              </>
+            );
+          }
         }
       }
-    } else if (pollFromDB.open) {
-      pageSection = (
-        <>
-          <div className="voter-page-main-container">
-            <PollTableVoter
-              pollFromDB={pollFromDB}
-              sortedTimes={sortedTimes}
-              newVote={newVote}
-              setNewVote={setNewVote}
-            />
-          </div>
-          <div className="voter-page-final-container">
-            <Form.Control
-              className="voter-page-poll-mark-time-name"
-              type="text"
-              maxLength={30}
-              placeholder="Your name"
-              onChange={handleNameChange}
-              autoFocus
-            />
-            <SubmitTimes
-              newVote={newVote}
-              pollID={pollID}
-              pollFromDB={pollFromDB}
-              setResponse={setResponse}
-            />
-          </div>
-        </>
-      );
+    } else {
+      if (pollFromDB.open) {
+        pageSection = (
+          <>
+            <div className="voter-page-main-container">
+              <PollTableVoter
+                pollFromDB={pollFromDB}
+                sortedTimes={sortedTimes}
+                newVote={newVote}
+                setNewVote={setNewVote}
+              />
+            </div>
+            <div className="voter-page-final-container">
+              <Form.Control
+                className="voter-page-poll-mark-time-name"
+                type="text"
+                maxLength={30}
+                placeholder="Your name"
+                onChange={handleNameChange}
+                autoFocus
+              />
+              <SubmitTimes
+                newVote={newVote}
+                pollID={pollID}
+                pollFromDB={pollFromDB}
+                setResponse={setResponse}
+              />
+            </div>
+          </>
+        );
+      }
     }
   }
 
