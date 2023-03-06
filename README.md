@@ -21,29 +21,17 @@
   <br/>
 </div>
 
+Kukkee is a fast, free and open source meeting poll tool. Quickly create a meeting poll by choosing the time slots based on your availability. Copy and share the poll link with the participants to let them mark their availability. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
+
+## Motivation
+
+After my GSoC '20 at LiberTEM, I wanted to have a video call with my mentors. They said yes, and since the next step was to find a suitable and common time, one of them sent me a link to a meeting poll created using a proprietary online service. It had surprisingly bad UX and was covered with advertisements. I searched for good, free and open source meeting poll tools, but didn't find any. So I decided to fix that problem.
+
 ## Get in touch
 
 If you have suggestions for how Kukkee could be improved, please add your thoughts on a relevant discussion [here](https://github.com/Kukkee/Kukkee/discussions/) or start a new discussion. If you have any questions, I'd love to hear them too! If you want to report an issue, check if the issue is already opened [here](https://github.com/AnandBaburajan/Kukkee/issues) otherwise open a new one.
 
-## Problem
-
-After my GSoC '20 at LiberTEM, I approached my mentors to know if I can have a video call with them. They said yes, and one of them sent me a link to a meeting poll created using a proprietary online service -- it had surprisingly bad UI and was covered with advertisements. I searched for good, ad-free, free and open source meeting poll tool, but didn't find any good ones at that time. So I got started, and now Kukkee has been used to schedule 2k+ meetings and has 250+ stars on GitHub.
-
-## What is Kukkee?
-
-Kukkee is a free, open source and fast meeting poll tool. It's built on top of Next.js and uses MongoDB as its data source. Quickly create a meeting poll by choosing the time slots based on your availability. Copy and share the poll link with the participants to let them mark their availability. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
-
-<img src="./public/banner.png">
-
 ## Self-hosting
-
-### Database
-
-Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
-
-#### MongoDB Atlas
-
-In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free. If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
 ### Deployment
 
@@ -59,6 +47,14 @@ In case you don't have a platform already, you can get started with Vercel for f
 4. Import your forked git repository
 5. Set the environment variables (according to the instructions in .env.example)
 6. Deploy
+
+### Database
+
+Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
+
+#### MongoDB Atlas
+
+In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free. If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
 ## Contributing
 
@@ -104,33 +100,31 @@ First, make sure you have [Node.js](https://nodejs.org/en/) and [MongoDB](https:
    npm run dev
    ```
 
-### Building
+8. Please make sure that you can make a full production build before opening a PR. You can build the project with:
 
-Please make sure that you can make a full production build before opening a PR. You can build the project with:
-
-```bash
-npm run build
-```
+   ```sh
+   npm run build
+   ```
 
 ## FOSS Hack 3.0
 
-Kukkee took part in FOSS Hack 3.0. Here are the updates:
+Kukkee took part in FOSS Hack 3.0. Here's the summary:
 
-### What was the initial stage of the project?
+1. What was the stage of the project (before FOSS Hack 3.0)?
 
-Coming soon.
+   > Kukkee did its job well as a fast, free and open source meeting poll tool. It has been used to schedule 2K+ meetings and interestingly enough, it was used in FOSS Hack 3.0 by a volunteer to schedule talk review sessions. But it's UI and UX were bad and there were many possible usability improvements which could have been made.
 
-### What stage is it in now?
+2. What stage is it in now (after FOSS Hack 3.0)?
 
-Coming soon.
+   > Now the UI/UX is much better and I feel like now it actually is a joy to use.
 
-### How did you get there?
+3. How did you get there?
 
-Coming soon.
+   > I explored a lot about the scheduling industry, talk to competitors, looked into the feedback I had gotten from users, and made a plan on what to improve. I switched to a different and modern calendar component called react-big-calendar, and spent a lot of time styling it. Now users can select timeslots properly on mobile -- earlier only 1 hour slots could be selected. Users can also have timeslots overlapping with each other. The voter's page has been revamped to look much cleaner and distraction-free. The recent polls page was improved by reducing whitespace and adding open/delete buttons. I improved some other minor things like using a better toast for error/success messages and asking for confirmation before deletion.
 
-### What is working/not working?
+4. What is working/not working?
 
-Coming soon.
+   > Every feature available in Kukkee right now works well and there are no issues, but if you find any, please open an issue!
 
 ## Acknowledgements
 
