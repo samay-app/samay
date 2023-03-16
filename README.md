@@ -33,28 +33,24 @@ If you have suggestions for how Kukkee could be improved, please add your though
 
 ## Self-hosting
 
-### Deployment
+### Docker
 
-Kukkee is built with Next.js, hence you would need to deploy Kukkee to a platform that supports Next.js (Vercel, AWS EC2, DigitalOcean Droplet, etc).
+Coming soon!
 
-#### Vercel
+### Vercel and MongoDB Atlas
 
-In case you don't have a platform already, you can get started with Vercel for free.
+Kukkee is built with MongoDB and Next.js, so for a quick and free setup, you can use a free MongoDB Atlas cluster and Vercel's hobby plan.
 
-1. Fork this repo to your own GitHub account and then clone it.
+You can get started with MongoDB Atlas for free [here](https://www.mongodb.com/basics/mongodb-atlas-tutorial). Make sure to add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
+
+You can get started with Vercel's hobby plan for free:
+
+1. Fork this repo to your own GitHub account
 2. Go to https://vercel.com/dashboard
 3. Create a new project
-4. Import your forked git repository
+4. Import your forked repository
 5. Set the environment variables (according to the instructions in .env.example)
 6. Deploy
-
-### Database
-
-Kukkee uses MongoDB, hence you would need a MongoDB server hosted somewhere.
-
-#### MongoDB Atlas
-
-In case you don't have a hosted MongoDB server, you can [get started with MongoDB Atlas](https://www.mongodb.com/basics/mongodb-atlas-tutorial) for free. If you're planning to use Vercel to deploy your own Kukkee, you must add all IP addresses (0.0.0.0/0) to the IP access list of your Atlas cluster since it is not possible to determine the IP addresses of Vercel deployments.
 
 ## Contributing
 
