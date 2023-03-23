@@ -14,7 +14,7 @@
   <p>
 
 [![License](https://img.shields.io/github/license/Kukkee/Kukkee?color=%23000000&style=for-the-badge)](https://github.com/Kukkee/Kukkee/blob/main/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/Kukkee/Kukkee?color=%23000000&&style=for-the-badge)](https://github.com/Kukkee/Kukkee/graphs/contributors)
+[![Polls created: 2500+](https://shields.io/badge/style-2500+-black?&style=for-the-badge&label=Polls%20created)](https://kukkee.com/)
 [![Create a poll](https://shields.io/badge/style-Now-black?&style=for-the-badge&label=Create%20a%20poll)](https://kukkee.com/)
 
   </p>
