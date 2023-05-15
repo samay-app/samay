@@ -102,29 +102,11 @@ First, make sure you have [Node.js](https://nodejs.org/en/) and [MongoDB](https:
    npm run build
    ```
 
-## FOSS Hack 3.0
-
-Kukkee took part in FOSS Hack 3.0. Here's the summary:
-
-1. What was the stage of the project (before FOSS Hack 3.0)?
-
-   > Kukkee did its job well as a fast, free and open source meeting poll tool. It has been used to schedule 2K+ meetings and interestingly enough, it was used in FOSS Hack 3.0 by a volunteer to schedule talk review sessions. But it's UI and UX were bad and there were many possible usability improvements which could have been made.
-
-2. What stage is it in now (after FOSS Hack 3.0)?
-
-   > Now the UI/UX is much better and I feel like now it actually is a joy to use.
-
-3. How did you get there?
-
-   > I explored a lot about the scheduling industry, talk to competitors, looked into the feedback I had gotten from users, and made a plan on what to improve. I switched to a different and modern calendar component called react-big-calendar, and spent a lot of time styling it. Now users can select timeslots properly on mobile -- earlier only 1 hour slots could be selected. Users can also have timeslots overlapping with each other. The voter's page has been revamped to look much cleaner and distraction-free. The recent polls page was improved by reducing whitespace and adding open/delete buttons. I improved some other minor things like using a better toast for error/success messages and asking for confirmation before deletion.
-
-4. What is working/not working?
-
-   > Every feature available in Kukkee right now works well and there are no issues, but if you find any, please open an issue!
-
 ## Acknowledgements
 
-Special thanks to these amazing projects which help power Kukkee:
+Thanks to FOSS United for selecting Kukkee as one of the [winning projects](https://forum.fossunited.org/t/foss-hack-3-0-results/1882) at FOSS Hack 3.0.
+
+Thanks to these amazing projects which help power Kukkee:
 
 - React-big-calendar
 - React
