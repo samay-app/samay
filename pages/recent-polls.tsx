@@ -220,10 +220,6 @@ const RecentPolls = (): JSX.Element => {
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="google-site-verification"
-          content="4g7sVHEgHkqmu_q066ocloQj3YI8pOz7IHC8ibisQHk"
-        />
         <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"

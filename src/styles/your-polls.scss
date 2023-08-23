@@ -110,17 +110,12 @@
   margin-left: 0.5rem;
   transition: none !important;
 
-  &:hover {
-    box-shadow: none !important;
-    border: 0.09rem solid #000000 !important;
-    background-color: #f6f6f6 !important;
-  }
-
+  &:hover,
   &:active,
   &:focus {
     box-shadow: none !important;
-    border: 0.09rem solid #e5e7ed !important;
-    background-color: #ffffff !important;
+    border: 0.09rem solid #e3e3e3 !important;
+    background-color: #e3e3e3 !important;
   }
 
   .icon {
@@ -137,26 +132,17 @@
   margin-left: 0.5rem;
   transition: none !important;
 
-  &:hover {
-    box-shadow: none !important;
-    border: 0.09rem solid #ff0000 !important;
-    background-color: #f6f6f6 !important;
-  }
-
-  &:hover .icon {
-    color: #ff0000;
-  }
-
+  &:hover,
   &:active,
   &:focus {
     box-shadow: none !important;
-    border: 0.09rem solid #e5e7ed !important;
-    background-color: #ffffff !important;
+    border: 0.09rem solid #ff4848 !important;
+    background-color: #ff4848 !important;
   }
 
   .icon {
     color: #000000;
-    margin-top: -0.3rem;
+    margin-top: -0.25rem;
     font-size: 0.8rem;
   }
 }
@@ -194,19 +180,13 @@
   padding: 0.35rem 1rem 0.35rem 1rem;
   width: 100%;
 
-  &:hover {
-    color: #ffffff !important;
-    box-shadow: none !important;
-    border: none !important;
-    background-color: #d90000 !important;
-  }
-
+  &:hover,
   &:active,
   &:focus {
     color: #ffffff !important;
     border: none !important;
     box-shadow: none !important;
-    background-color: #101827 !important;
+    background-color: #ff4848 !important;
   }
 
   &[disabled] {
@@ -230,4 +210,7 @@
     border: 0px solid #fff;
     outline: none;
   }
+  
+  padding: unset;
+  margin: unset;
 }
