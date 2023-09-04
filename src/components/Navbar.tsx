@@ -16,8 +16,7 @@ const NavBar = (): JSX.Element => {
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="global-container">
         <Navbar.Brand href="/">
-          <img alt="logo" src="/favicon.svg" className="navbar-logo" />
-          <span className="navbar-logo-text">kukkee</span>
+          <img alt="logo" src="/logo.svg" className="navbar-logo" />
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
