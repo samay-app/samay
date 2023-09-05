@@ -223,14 +223,14 @@ const RecentPolls = (): JSX.Element => {
         <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"
-          content="Free and open source meeting poll tool"
+          content="Manage your recently created or voted polls on Kukkee - a fast, free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
         <meta property="og:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Free and open source meeting poll tool"
+          content="Manage your recently created or voted polls on Kukkee - a fast, free and open source meeting poll tool."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -238,7 +238,7 @@ const RecentPolls = (): JSX.Element => {
         <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Free and open source meeting poll tool"
+          content="Manage your recently created or voted polls on Kukkee - a fast, free and open source meeting poll tool."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
