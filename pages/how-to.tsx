@@ -12,6 +12,7 @@ const HowTo = (): JSX.Element => {
         <title>Kukkee — How-to</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
+        <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
