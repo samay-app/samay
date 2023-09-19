@@ -30,6 +30,7 @@ export interface Poll {
   open?: boolean;
   secret: string;
   location?: string;
+  type? : string;
   times: Time[];
   finalTime?: Time;
   votes?: Vote[];
@@ -42,6 +43,7 @@ export interface PollFromDB {
   open?: boolean;
   secret: string;
   location?: string;
+  type?: string;
   times: TimeFromDB[];
   finalTime?: TimeFromDB;
   votes?: VoteFromDB[];
@@ -56,6 +58,7 @@ export interface PollDoc extends Document {
   open?: boolean;
   secret: string;
   location?: string;
+  type?: string;
   times: Time[];
   finalTime?: Time;
   votes?: Vote[];
@@ -68,6 +71,7 @@ const PollSchema: Schema = new Schema(
     open: { type: Boolean, default: true },
     secret: { type: String, required: true },
     location: { type: String },
+    type: {type: String, default: "Group-poll"},
     times: {
       type: [{ start: Number, end: Number }],
       required: true,

@@ -4,15 +4,16 @@ import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import toastOptions from "../../helpers/toastOptions";
 import { markFinalTime } from "../../utils/api/server";
-import { Time } from "../../models/poll";
+import { Time, PollFromDB } from "../../models/poll";
 import { encrypt } from "../../helpers";
 
 const SubmitFinalTime = (props: {
   finalTime: Time | undefined;
   pollID: string;
   secret: string;
+  poll: PollFromDB;
 }): JSX.Element => {
-  const { finalTime, pollID, secret } = props;
+  const { finalTime, pollID, secret, poll} = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -20,7 +21,7 @@ const SubmitFinalTime = (props: {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (finalTime) {
+    if (finalTime && poll.type === "Group-poll") {
       setDisabled(true);
       try {
         const voterArgs = {
@@ -44,8 +45,13 @@ const SubmitFinalTime = (props: {
         toast.info("Please try again later", toastOptions);
         Router.reload();
       }
-    } else {
+    }else if (poll.type === "Group-poll") {
       toast.error("Please choose the final time", toastOptions);
+    }
+    else{
+      setDisabled(true);
+      
+
     }
   };
 

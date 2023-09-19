@@ -1,13 +1,14 @@
 import { Dispatch, useState } from "react";
 import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
-import { Time, Vote } from "../../models/poll";
+import { Time, Vote, PollFromDB } from "../../models/poll";
 
 const MarkTimes = (props: {
   times: Time[];
   newVote: Vote;
+  poll: PollFromDB;
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
-  const { times, newVote, setNewVote } = props;
+  const { times, newVote, poll, setNewVote } = props;
 
   const [timeBoxStatus, setTimeBoxStatus] = useState<Record<number, number>>(
     times.reduce((obj, cur) => ({ ...obj, [cur.start]: 0 }), {})

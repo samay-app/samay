@@ -24,13 +24,15 @@ const Home = (): JSX.Element => {
     pollTitle: string;
     pollLocation: string;
     pollDescription: string;
+    pollType: string;
   }>({
     pollTitle: "",
     pollLocation: "",
     pollDescription: "",
+    pollType: "Group-poll",
   });
 
-  const { pollTitle, pollLocation, pollDescription } = pollDetails;
+  const { pollTitle, pollLocation, pollDescription, pollType } = pollDetails;
 
   const [pollTimes, setTimes] = useState<Time[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -63,6 +65,7 @@ const Home = (): JSX.Element => {
       title: pollTitle,
       description: pollDescription,
       location: pollLocation,
+      type: pollType,
       secret: encryptedSecret,
       times: pollTimes,
     };
@@ -193,6 +196,19 @@ const Home = (): JSX.Element => {
                     placeholder="Location"
                     onChange={handlePollDetailsChange}
                   />
+                </Col>
+                <Col sm>
+                <Form.Group>
+                <Form.Control as="select"
+                className="form-text"
+                name="pollType"
+                defaultValue="Group-poll"
+                onChange={handlePollDetailsChange}
+                >
+                  <option value="Group-poll" selected>Group-poll</option>
+                  <option>One-on-one</option>
+                  </Form.Control>
+                </Form.Group>
                 </Col>
                 <Col sm="auto">
                   <Button
