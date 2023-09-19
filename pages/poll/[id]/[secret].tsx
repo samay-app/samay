@@ -61,6 +61,7 @@ const Poll = (props: {
                     finalTime={finalTime}
                     pollID={pollID}
                     secret={secret}
+                    poll={pollFromDB}
                   />
                 )}
               </>

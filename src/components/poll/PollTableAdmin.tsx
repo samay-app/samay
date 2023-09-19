@@ -43,7 +43,7 @@ const PollTableAdmin = (props: {
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open && (
+          {pollFromDB.open && pollFromDB.type === "Group-poll" && (
             <MarkFinalTime times={sortedTimes} setFinalTime={setFinalTime} />
           )}
           <tr>
