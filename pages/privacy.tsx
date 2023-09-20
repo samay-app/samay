@@ -14,14 +14,14 @@ const Privacy = (): JSX.Element => {
         <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"
-          content="Here's how Kukkee - a fast, free and open source meeting poll tool, respects your privacy."
+          content="Here's how Kukkee - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
         <meta property="og:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Here's how Kukkee - a fast, free and open source meeting poll tool, respects your privacy."
+          content="Here's how Kukkee - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -29,7 +29,7 @@ const Privacy = (): JSX.Element => {
         <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Here's how Kukkee - a fast, free and open source meeting poll tool, respects your privacy."
+          content="Here's how Kukkee - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>

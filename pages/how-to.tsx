@@ -17,14 +17,14 @@ const HowTo = (): JSX.Element => {
         <meta name="title" content="Kukkee — Meeting poll tool" />
         <meta
           name="description"
-          content="Here's how to get started with Kukkee - a fast, free and open source meeting poll tool."
+          content="Here's how to get started with Kukkee - a free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kukkee.com" />
         <meta property="og:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Here's how to get started with Kukkee - a fast, free and open source meeting poll tool."
+          content="Here's how to get started with Kukkee - a free and open source meeting poll tool."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -32,7 +32,7 @@ const HowTo = (): JSX.Element => {
         <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Here's how to get started with Kukkee - a fast, free and open source meeting poll tool."
+          content="Here's how to get started with Kukkee - a free and open source meeting poll tool."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
@@ -42,7 +42,8 @@ const HowTo = (): JSX.Element => {
             Kukkee — free and open source meeting poll tool
           </span>
           <span className="how-to-features desc">
-            Free. Fast. Simple. No ads. No login.
+            Quickly find the perfect time which works for everyone without the
+            back-and-forth texts/emails!
           </span>
           <CardGroup className="how-to-card-group">
             <Card className="how-to-card">
