@@ -42,7 +42,7 @@ const HowTo = (): JSX.Element => {
             Kukkee — free and open source meeting poll tool
           </span>
           <span className="how-to-features desc">
-            Quickly find the perfect time which works for everyone without the
+            Quickly find a time which works for everyone without the
             back-and-forth texts/emails!
           </span>
           <CardGroup className="how-to-card-group">

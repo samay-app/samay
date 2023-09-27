@@ -21,7 +21,13 @@
   <br/>
 </div>
 
-Kukkee is a free and open source meeting poll tool to quickly find the perfect time which works for everyone without the back-and-forth texts/emails! Quickly create a meeting poll by choosing the time slots based on your availability. Copy and share the poll link with the participants to let them mark their availability. Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting! Create a poll now at [Kukkee.com](https://kukkee.com/)!
+Kukkee is a free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
+
+- Create a meeting poll by choosing the time slots based on your availability.
+- Copy and share the poll link with the participants to let them mark their availability.
+- Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting!
+
+Create a poll now at [Kukkee.com](https://kukkee.com/)!
 
 ## Motivation
 
