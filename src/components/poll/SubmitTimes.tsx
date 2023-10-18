@@ -52,22 +52,49 @@ const SubmitTimes = (props: {
         pollID,
       };
       submitTimeResponse = await markTimes(voterArgs);
+      let time = JSON.stringify(newVote.times[0]);
+
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
           const votedPolls = localStorage.getItem("samayVotedPolls");
 
           if (!votedPolls) {
-            const initSamayPolls = {
-              polls: [
-                {
-                  [`${pollID}`]: `${pollFromDB.title}`,
-                },
-              ],
-            };
+            if (pollFromDB.type === "One-on-one") {
+              const initKukkeePolls = {
+                polls: [
+                  {
+                    [`${pollID}`]: `${pollFromDB.title}#${time}`,
+                  },
+                ],
+              };
+
+              localStorage.setItem(
+                "kukkeeVotedPolls",
+                JSON.stringify(initKukkeePolls)
+              );
+            } else {
+              const initKukkeePolls = {
+                polls: [
+                  {
+                    [`${pollID}`]: `${pollFromDB.title}`,
+                  },
+                ],
+              };
+              localStorage.setItem(
+                "kukkeeVotedPolls",
+                JSON.stringify(initKukkeePolls)
+              );
+            }
+          } else if (pollFromDB.type === "One-on-one") {
+            const votedPollsJSON = JSON.parse(votedPolls);
+
+            votedPollsJSON.polls.push({
+              [`${pollID}`]: `${pollFromDB.title}#${time}`,
+            });
 
             localStorage.setItem(
-              "samayVotedPolls",
-              JSON.stringify(initSamayPolls)
+              "kukkeeVotedPolls",
+              JSON.stringify(votedPollsJSON)
             );
           } else {
             const votedPollsJSON = JSON.parse(votedPolls);
@@ -77,7 +104,7 @@ const SubmitTimes = (props: {
             });
 
             localStorage.setItem(
-              "samayVotedPolls",
+              "kukkeeVotedPolls",
               JSON.stringify(votedPollsJSON)
             );
           }

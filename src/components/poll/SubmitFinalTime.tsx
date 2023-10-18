@@ -13,7 +13,7 @@ const SubmitFinalTime = (props: {
   secret: string;
   poll: PollFromDB;
 }): JSX.Element => {
-  const { finalTime, pollID, secret, poll} = props;
+  const { finalTime, pollID, secret, poll } = props;
 
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -45,42 +45,41 @@ const SubmitFinalTime = (props: {
         toast.info("Please try again later", toastOptions);
         Router.reload();
       }
-    }else if (poll.type === "Group-poll") {
+    } else if (poll.type === "Group-poll") {
       toast.error("Please choose the final time", toastOptions);
-    }
-    else{
+    } else {
       setDisabled(true);
-      
-
     }
   };
-
-  return (
-    <>
-      <Button
-        className="global-primary-button submit-final-time-button"
-        type="submit"
-        disabled={disabled}
-        onClick={handleSubmit}
-      >
-        {!disabled ? (
-          `Finalise time`
-        ) : (
-          <>
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              className="samay-button-spinner"
-            />
-          </>
-        )}
-      </Button>
-      <ToastContainer />
-    </>
-  );
+  if (poll.type === "Group-poll") {
+    return (
+      <>
+        <Button
+          className="global-primary-button submit-final-time-button"
+          type="submit"
+          disabled={disabled}
+          onClick={handleSubmit}
+        >
+          {!disabled ? (
+            `Finalise time`
+          ) : (
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="samay-button-spinner"
+              />
+            </>
+          )}
+        </Button>
+        <ToastContainer />
+      </>
+    );
+  }
+  return <ToastContainer />;
 };
 
 export default SubmitFinalTime;

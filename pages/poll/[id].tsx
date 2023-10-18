@@ -32,7 +32,9 @@ const Poll = (props: {
     times: [],
   });
 
-  let showVoteRecorded = false;
+  let showVoteRecordedGroup = false;
+  let showVoteRecordedOneOnOne = false;
+  let votedTimeOneOnOne = null;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -70,7 +72,15 @@ const Poll = (props: {
 
         if (Object.keys(poll)[0] === pollID && pollFromDB.open) {
           pageSection = <></>;
-          showVoteRecorded = true;
+
+          if (poll.type === "group") {
+            showVoteRecordedGroup = true;
+          } else {
+            votedTimeOneOnOne = JSON.parse(
+              Object.values(votedPollsFromLS.polls[i])[0].split("#")[1]
+            );
+            showVoteRecordedOneOnOne = true;
+          }
           break;
         } else if (pollFromDB.open) {
           pageSection = (
@@ -148,7 +158,9 @@ const Poll = (props: {
               <VoterPollInfo
                 poll={pollFromDB}
                 showFinalTime={!pollFromDB.open}
-                showVoteRecorded={showVoteRecorded}
+                showVoteRecordedGroup={showVoteRecordedGroup}
+                showVoteRecordedOneOnOne={showVoteRecordedOneOnOne}
+                votedTimeOneOnOne={votedTimeOneOnOne}
               />
             </Jumbotron>
             {pageSection}

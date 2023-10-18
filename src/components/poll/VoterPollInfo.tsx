@@ -8,7 +8,7 @@ import {
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import timezone from "dayjs/plugin/timezone";
-import { PollFromDB } from "../../models/poll";
+import { PollFromDB, Time } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(timezone);
@@ -16,9 +16,17 @@ dayjs.extend(timezone);
 const PollInfo = (props: {
   poll: PollFromDB;
   showFinalTime: boolean;
-  showVoteRecorded: boolean;
+  showVoteRecordedGroup: boolean;
+  showVoteRecordedOneOnOne: boolean;
+  votedTimeOneOnOne: Time;
 }): JSX.Element => {
-  const { poll, showFinalTime, showVoteRecorded } = props;
+  const {
+    poll,
+    showFinalTime,
+    showVoteRecordedGroup,
+    showVoteRecordedOneOnOne,
+    votedTimeOneOnOne,
+  } = props;
 
   return (
     <div>
@@ -70,10 +78,22 @@ const PollInfo = (props: {
           {dayjs(poll.finalTime?.end).format("LT")}
         </span>
       )}
-      {showVoteRecorded && !showFinalTime && (
+      {showVoteRecordedGroup && !showFinalTime && (
         <span className="voter-page-vote-recorded">
           <CheckCircleFill className="poll-vote-recorded-icon" />
           Your vote has been successfully recorded.
+        </span>
+      )}
+      {showVoteRecordedOneOnOne && votedTimeOneOnOne && !showFinalTime && (
+        <span className="voter-page-vote-recorded">
+          <CheckCircleFill className="poll-vote-recorded-icon" />
+          Your vote for the time [{dayjs(votedTimeOneOnOne.start).format(
+            "LT"
+          )}{" "}
+          - {dayjs(votedTimeOneOnOne.end).format("LT")}] on{" "}
+          {dayjs(votedTimeOneOnOne.start).format("DD")}{" "}
+          {dayjs(votedTimeOneOnOne.start).format("MMM")} has been successfully
+          recorded.
         </span>
       )}
     </div>
