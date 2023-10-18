@@ -52,36 +52,68 @@ const SubmitTimes = (props: {
         pollID,
       };
       submitTimeResponse = await markTimes(voterArgs);
+      let time = JSON.stringify(newVote.times[0]);
+      // console.log(time)
+
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
           const votedPolls = localStorage.getItem("kukkeeVotedPolls");
 
           if (!votedPolls) {
-            const initKukkeePolls = {
-              polls: [
-                {
-                  [`${pollID}`]: `${pollFromDB.title}`,
-                },
-              ],
-            };
+            if (pollFromDB.type === "One-on-one"){
+              const initKukkeePolls = {
+                polls: [
+                  {
+                    [`${pollID}`]: `${pollFromDB.title}#${time}`,
+                  },
+                ],
+              };
 
-            localStorage.setItem(
-              "kukkeeVotedPolls",
-              JSON.stringify(initKukkeePolls)
-            );
+              localStorage.setItem(
+                "kukkeeVotedPolls",
+                JSON.stringify(initKukkeePolls)
+              );
+              }
+              else{
+                const initKukkeePolls = {
+                  polls: [
+                    {
+                      [`${pollID}`]: `${pollFromDB.title}`,
+                    },
+                  ],
+                };
+                localStorage.setItem(
+                  "kukkeeVotedPolls",
+                  JSON.stringify(initKukkeePolls)
+                );
+              }
           } else {
-            const votedPollsJSON = JSON.parse(votedPolls);
+            if (pollFromDB.type === "One-on-one"){
+              const votedPollsJSON = JSON.parse(votedPolls);
 
-            votedPollsJSON.polls.push({
-              [`${pollID}`]: `${pollFromDB.title}`,
-            });
+              votedPollsJSON.polls.push({
+                [`${pollID}`]: `${pollFromDB.title}#${time}`,
+              });
 
-            localStorage.setItem(
-              "kukkeeVotedPolls",
-              JSON.stringify(votedPollsJSON)
-            );
+              localStorage.setItem(
+                "kukkeeVotedPolls",
+                JSON.stringify(votedPollsJSON)
+              );
+            }
+            else{
+              const votedPollsJSON = JSON.parse(votedPolls);
+
+              votedPollsJSON.polls.push({
+                [`${pollID}`]: `${pollFromDB.title}`,
+              });
+
+              localStorage.setItem(
+                "kukkeeVotedPolls",
+                JSON.stringify(votedPollsJSON)
+              );
           }
         }
+      }
         Router.reload();
       } else if (submitTimeResponse && submitTimeResponse.statusCode === 404) {
         toast.error("The poll has been deleted by the creator", toastOptions);

@@ -50,37 +50,39 @@ const SubmitFinalTime = (props: {
     }
     else{
       setDisabled(true);
-      
-
     }
   };
-
-  return (
-    <>
-      <Button
-        className="global-primary-button mb-5"
-        type="submit"
-        disabled={disabled}
-        onClick={handleSubmit}
-      >
-        {!disabled ? (
-          `Finalise time`
-        ) : (
-          <>
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              className="kukkee-button-spinner"
-            />
-          </>
-        )}
-      </Button>
+  if (poll.type === "Group-poll"){
+    return (
+      <>
+        <Button
+          className="global-primary-button mb-5"
+          type="submit"
+          disabled={disabled}
+          onClick={handleSubmit}
+        >
+          {!disabled ? (
+            `Finalise time`
+          ) : (
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="kukkee-button-spinner"
+              />
+            </>
+          )}
+        </Button>
+        <ToastContainer />
+      </>
+    );
+  }else
+    return(
       <ToastContainer />
-    </>
-  );
+    );
 };
 
 export default SubmitFinalTime;

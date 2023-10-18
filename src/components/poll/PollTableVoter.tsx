@@ -14,7 +14,7 @@ const PollTableVoter = (props: {
   pollFromDB: PollFromDB;
   sortedTimes: Time[];
   newVote: Vote;
-  setNewVote: Dispatch<Vote>;yy
+  setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
   const { pollFromDB, sortedTimes, newVote, setNewVote } = props;
 
