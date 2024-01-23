@@ -367,6 +367,27 @@
   accent-color: #101827;
 }
 
+.poll-slot-checkbox-one-on-one {
+  width: 1.5rem;
+  margin: 0 auto;
+}
+
+.poll-slot-checkbox-one-on-one input[type="radio"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  appearance: none;
+  border-radius: 50%;
+  background-clip: content-box;
+  border: 0.15rem solid #b6b6b6;
+  background-color: white;
+}
+
+.poll-slot-checkbox-one-on-one input[type="radio"]:checked {
+  background-color:#49de80;
+  padding: 4px;
+  border: 0.15rem solid #49de80;
+}
+
 .copy-text-desktop {
   display: none;
 
