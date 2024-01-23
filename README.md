@@ -27,7 +27,7 @@ Samay is a free and open source meeting poll tool. Quickly find a time which wor
 - Copy and share the poll link with the participants to let them mark their availability.
 - Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting!
 
-Create a poll now at [Samay.com](https://samay.app/)!
+Create a poll now at [Samay.app](https://samay.app/)!
 
 ## Motivation
 

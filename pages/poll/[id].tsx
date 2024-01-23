@@ -74,7 +74,7 @@ const Poll = (props: {
                 </span>
               </div>
               <div className="voter-page-powered-container">
-                <a href="http://samay.app">Powered by Samay.com</a>
+                <a href="http://samay.app">Powered by Samay.app</a>
               </div>
             </>
           );
@@ -107,7 +107,7 @@ const Poll = (props: {
               </div>
 
               <div className="voter-page-powered-container">
-                <a href="http://samay.app">Powered by Samay.com</a>
+                <a href="http://samay.app">Powered by Samay.app</a>
               </div>
             </>
           );
@@ -140,7 +140,7 @@ const Poll = (props: {
             />
           </div>
           <div className="voter-page-powered-container">
-            <a href="http://samay.app">Powered by Samay.com</a>
+            <a href="http://samay.app">Powered by Samay.app</a>
           </div>
         </>
       );
