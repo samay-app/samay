@@ -18,9 +18,10 @@ const CopyTextMain = (props: {
   pollURL: string;
   pollTitle: string;
   pollLocation: string;
+  pollType: string;
   finalTime: Time | undefined;
 }): JSX.Element => {
-  const { pollURL, pollTitle, pollLocation, finalTime } = props;
+  const { pollURL, pollTitle, pollLocation, pollType, finalTime } = props;
 
   const finalPollTitle = pollTitle || "Untitled";
   const finalPollLocation = pollLocation ? `at ${pollLocation}` : "";

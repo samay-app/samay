@@ -24,6 +24,13 @@ const PollInfo = (props: {
     <div>
       <Badge
         pill
+        variant="secondary"
+        className="poll-badge-polltype"
+      >
+        {poll.type ==="Group-poll" ? "Group-poll" : "One-on-one"}
+      </Badge>
+      <Badge
+        pill
         variant={poll.open ? "success" : "secondary"}
         className={poll.open ? "poll-badge-open" : "poll-badge-closed"}
       >
@@ -62,6 +69,7 @@ const PollInfo = (props: {
               pollTitle={poll.title}
               pollID={poll._id}
               pollLocation={poll.location}
+              pollType={poll.type}
               finalTime={poll.finalTime}
             />
           </span>
@@ -76,6 +84,7 @@ const PollInfo = (props: {
               pollTitle={poll.title}
               pollID={poll._id}
               pollLocation={poll.location}
+              pollType={poll.type}
               finalTime={poll.finalTime}
             />{" "}
             with the participants

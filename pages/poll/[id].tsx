@@ -66,18 +66,38 @@ const Poll = (props: {
         let poll = votedPollsFromLS.polls[i];
 
         if (Object.keys(poll)[0] === pollID && pollFromDB.open) {
-          pageSection = (
-            <>
-              <div className="voter-page-final-container">
-                <span className="voter-page-vote-recorded">
-                  Your vote has been successfully recorded.
-                </span>
-              </div>
-              <div className="voter-page-powered-container">
-                <a href="http://kukkee.com">Powered by Kukkee.com</a>
-              </div>
-            </>
-          );
+          if (poll.type === "Group-poll"){
+            pageSection = (
+              <>
+                <div className="voter-page-final-container">
+                  <span className="voter-page-vote-recorded">
+                    Your vote has been successfully recorded.
+                  </span>
+                </div>
+                <div className="voter-page-powered-container">
+                  <a href="http://kukkee.com">Powered by Kukkee.com</a>
+                </div>
+              </>
+            );
+          }else{
+              let votedTitleTime = Object.values(votedPollsFromLS.polls[i])[0]; 
+              let votedTitleTimeList = votedTitleTime.split("#");
+              let votedTime = votedTitleTimeList[1];
+              votedTime = JSON.parse(votedTime);
+
+            pageSection = (
+              <>
+                <div className="voter-page-final-container">
+                  <span className="voter-page-vote-recorded">
+                    Your vote for the time [{dayjs(votedTime.start).format("LT")} - {dayjs(votedTime.end).format("LT")}] on {dayjs(votedTime.start).format("DD")} {dayjs(votedTime.start).format("MMM")} has been successfully recorded.
+                  </span>
+                </div>
+                <div className="voter-page-powered-container">
+                  <a href="http://kukkee.com">Powered by Kukkee.com</a>
+                </div>
+              </>
+            );
+          }
           break;
         } else if (pollFromDB.open) {
           pageSection = (

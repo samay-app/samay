@@ -9,9 +9,10 @@ const CopyText = (props: {
   pollID: string;
   pollTitle: string;
   pollLocation: string;
+  pollType: string;
   finalTime: Time | undefined;
 }): JSX.Element => {
-  const { pollID, pollTitle, pollLocation, finalTime } = props;
+  const { pollID, pollTitle, pollLocation, pollType, finalTime } = props;
   const pollURL = `${NEXT_PUBLIC_BASE_URL}/poll/${pollID}`;
 
   return (
@@ -25,6 +26,7 @@ const CopyText = (props: {
           pollURL={pollURL}
           pollTitle={pollTitle}
           pollLocation={pollLocation}
+          pollType={pollType}
           finalTime={finalTime}
         />
       </Form>
