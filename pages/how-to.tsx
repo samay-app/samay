@@ -9,37 +9,37 @@ const HowTo = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee — How-to</title>
+        <title>Samay — How-to</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Kukkee — Meeting poll tool" />
+        <meta name="title" content="Samay — Meeting poll tool" />
         <meta
           name="description"
-          content="Here's how to get started with Kukkee - a free and open source meeting poll tool."
+          content="Here's how to get started with Samay - a free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee — Meeting poll tool" />
+        <meta property="og:url" content="https://samay.app" />
+        <meta property="og:title" content="Samay — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Here's how to get started with Kukkee - a free and open source meeting poll tool."
+          content="Here's how to get started with Samay - a free and open source meeting poll tool."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
+        <meta property="twitter:url" content="https://samay.app" />
+        <meta property="twitter:title" content="Samay — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Here's how to get started with Kukkee - a free and open source meeting poll tool."
+          content="Here's how to get started with Samay - a free and open source meeting poll tool."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
       <Layout>
         <Container className="how-to-container">
           <span className="how-to-features title">
-            Kukkee — free and open source meeting poll tool
+            Samay — free and open source meeting poll tool
           </span>
           <span className="how-to-features desc">
             Quickly find a time which works for everyone without the
@@ -71,7 +71,7 @@ const HowTo = (): JSX.Element => {
                   <CheckCircleFill className="how-to-card icon-yes" /> (yes) or{" "}
                   <CircleFill className="how-to-card icon-if-need-be" /> (if
                   need be) votes. No login required. No time zone confusion
-                  since Kukkee automatically shows participants times in their
+                  since Samay automatically shows participants times in their
                   local time zone.
                 </Card.Text>
               </Card.Body>

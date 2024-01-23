@@ -16,7 +16,8 @@ const NavBar = (): JSX.Element => {
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="global-container">
         <Navbar.Brand href="/">
-          <img alt="logo" src="/logo.svg" className="navbar-logo" />
+          <img alt="logo" src="/favicon.svg" className="navbar-logo" />
+          <span className="navbar-logo-text">samay</span>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
@@ -51,7 +52,7 @@ const NavBar = (): JSX.Element => {
                 <QuestionCircle className="navbar-link-icon" /> How-to
               </a>
             </Link>
-            <Link href="https://github.com/AnandBaburajan/Kukkee">
+            <Link href="https://github.com/samayapp/samay">
               <a className="navbar-link">
                 <Github className="navbar-link-icon" /> GitHub
               </a>

@@ -16,7 +16,7 @@ import toastOptions from "../src/helpers/toastOptions";
 import Layout from "../src/components/Layout";
 import { encrypt } from "../src/helpers";
 import { Time, Poll } from "../src/models/poll";
-import KukkeeRBC from "../src/components/KukkeeRBC";
+import SamayRBC from "../src/components/SamayRBC";
 import { createPoll } from "../src/utils/api/server";
 
 const Home = (): JSX.Element => {
@@ -76,10 +76,10 @@ const Home = (): JSX.Element => {
 
       if (createPollResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          const kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
+          const samayCreatedPolls = localStorage.getItem("samayCreatedPolls");
 
-          if (!kukkeeCreatedPolls) {
-            const initKukkeeCreatedPolls = {
+          if (!samayCreatedPolls) {
+            const initSamayCreatedPolls = {
               polls: [
                 {
                   [`${createPollResponse.data._id}-${pollTitle}`]: `${encryptedSecret}`,
@@ -88,19 +88,19 @@ const Home = (): JSX.Element => {
             };
 
             localStorage.setItem(
-              "kukkeeCreatedPolls",
-              JSON.stringify(initKukkeeCreatedPolls)
+              "samayCreatedPolls",
+              JSON.stringify(initSamayCreatedPolls)
             );
           } else {
-            let kukkeeCreatedPollsJSON = JSON.parse(kukkeeCreatedPolls);
+            let samayCreatedPollsJSON = JSON.parse(samayCreatedPolls);
 
-            kukkeeCreatedPollsJSON.polls.push({
+            samayCreatedPollsJSON.polls.push({
               [`${createPollResponse.data._id}-${pollTitle}`]: `${encryptedSecret}`,
             });
 
             localStorage.setItem(
-              "kukkeeCreatedPolls",
-              JSON.stringify(kukkeeCreatedPollsJSON)
+              "samayCreatedPolls",
+              JSON.stringify(samayCreatedPollsJSON)
             );
           }
         }
@@ -121,26 +121,26 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee — Meeting poll tool</title>
+        <title>Samay — Meeting poll tool</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Kukkee — Meeting poll tool" />
+        <meta name="title" content="Samay — Meeting poll tool" />
         <meta
           name="description"
           content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee — Meeting poll tool" />
+        <meta property="og:url" content="https://samay.app" />
+        <meta property="og:title" content="Samay — Meeting poll tool" />
         <meta
           property="og:description"
           content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
+        <meta property="twitter:url" content="https://samay.app" />
+        <meta property="twitter:title" content="Samay — Meeting poll tool" />
         <meta
           property="twitter:description"
           content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
@@ -151,7 +151,7 @@ const Home = (): JSX.Element => {
         <div className="global-page-section">
           <Container className="global-container">
             <Jumbotron className="new-poll-timeslot-jumbo">
-              <KukkeeRBC pollTimes={pollTimes} setTimes={setTimes} />
+              <SamayRBC pollTimes={pollTimes} setTimes={setTimes} />
             </Jumbotron>
             <Jumbotron className="new-poll-jumbo">
               <Row>

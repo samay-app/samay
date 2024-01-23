@@ -53,20 +53,20 @@ const RecentPolls = (): JSX.Element => {
 
   const deleteVotedPoll = (pollID) => {
     if (typeof window !== "undefined") {
-      const allVotedPolls = localStorage.getItem("kukkeeVotedPolls");
+      const allVotedPolls = localStorage.getItem("samayVotedPolls");
 
       if (allVotedPolls) {
-        const kukkeeVotedPollsJSON = JSON.parse(allVotedPolls);
+        const samayVotedPollsJSON = JSON.parse(allVotedPolls);
 
-        let newKukkeeVotedPolls = {
-          polls: kukkeeVotedPollsJSON.polls.filter(
+        let newSamayVotedPolls = {
+          polls: samayVotedPollsJSON.polls.filter(
             (poll) => Object.keys(poll)[0] !== `${pollID}`
           ),
         };
 
         localStorage.setItem(
-          "kukkeeVotedPolls",
-          JSON.stringify(newKukkeeVotedPolls)
+          "samayVotedPolls",
+          JSON.stringify(newSamayVotedPolls)
         );
 
         Router.reload();
@@ -75,7 +75,7 @@ const RecentPolls = (): JSX.Element => {
   };
 
   if (typeof window !== "undefined") {
-    const createdPollsFromLS = localStorage.getItem("kukkeeCreatedPolls");
+    const createdPollsFromLS = localStorage.getItem("samayCreatedPolls");
 
     if (createdPollsFromLS) {
       const createdPollsFromLSJSON = JSON.parse(createdPollsFromLS);
@@ -85,7 +85,7 @@ const RecentPolls = (): JSX.Element => {
       }
     }
 
-    let votedPollsFromLS = localStorage.getItem("kukkeeVotedPolls");
+    let votedPollsFromLS = localStorage.getItem("samayVotedPolls");
 
     if (votedPollsFromLS) {
       const votedPollsFromLSJSON = JSON.parse(votedPollsFromLS);
@@ -216,30 +216,30 @@ const RecentPolls = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee — Recent polls</title>
+        <title>Samay — Recent polls</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Kukkee — Meeting poll tool" />
+        <meta name="title" content="Samay — Meeting poll tool" />
         <meta
           name="description"
-          content="Manage your recently created or voted polls on Kukkee - a free and open source meeting poll tool."
+          content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee — Meeting poll tool" />
+        <meta property="og:url" content="https://samay.app" />
+        <meta property="og:title" content="Samay — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Manage your recently created or voted polls on Kukkee - a free and open source meeting poll tool."
+          content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
+        <meta property="twitter:url" content="https://samay.app" />
+        <meta property="twitter:title" content="Samay — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Manage your recently created or voted polls on Kukkee - a free and open source meeting poll tool."
+          content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
