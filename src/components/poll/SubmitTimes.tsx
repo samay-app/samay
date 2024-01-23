@@ -54,10 +54,10 @@ const SubmitTimes = (props: {
       submitTimeResponse = await markTimes(voterArgs);
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
-          const votedPolls = localStorage.getItem("kukkeeVotedPolls");
+          const votedPolls = localStorage.getItem("samayVotedPolls");
 
           if (!votedPolls) {
-            const initKukkeePolls = {
+            const initSamayPolls = {
               polls: [
                 {
                   [`${pollID}`]: `${pollFromDB.title}`,
@@ -66,8 +66,8 @@ const SubmitTimes = (props: {
             };
 
             localStorage.setItem(
-              "kukkeeVotedPolls",
-              JSON.stringify(initKukkeePolls)
+              "samayVotedPolls",
+              JSON.stringify(initSamayPolls)
             );
           } else {
             const votedPollsJSON = JSON.parse(votedPolls);
@@ -77,7 +77,7 @@ const SubmitTimes = (props: {
             });
 
             localStorage.setItem(
-              "kukkeeVotedPolls",
+              "samayVotedPolls",
               JSON.stringify(votedPollsJSON)
             );
           }
@@ -118,7 +118,7 @@ const SubmitTimes = (props: {
               size="sm"
               role="status"
               aria-hidden="true"
-              className="kukkee-button-spinner"
+              className="samay-button-spinner"
             />
           </>
         )}

@@ -1,6 +1,6 @@
 ## Contributing
 
-Hi there! We're thrilled that you'd like to contribute to Kukkee!
+Hi there! We're thrilled that you'd like to contribute to Samay!
 
 ## Issues and PRs
 

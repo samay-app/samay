@@ -54,20 +54,20 @@ const DeletePoll = (props: {
       deletePollResponse = await deletePoll(deleteArgs);
       if (deletePollResponse && deletePollResponse.statusCode === 200) {
         if (typeof window !== "undefined") {
-          const kukkeeCreatedPolls = localStorage.getItem("kukkeeCreatedPolls");
+          const samayCreatedPolls = localStorage.getItem("samayCreatedPolls");
 
-          if (kukkeeCreatedPolls) {
-            const kukkeeCreatedPollsJSON = JSON.parse(kukkeeCreatedPolls);
+          if (samayCreatedPolls) {
+            const samayCreatedPollsJSON = JSON.parse(samayCreatedPolls);
 
-            let newKukkeeCreatedPolls = {
-              polls: kukkeeCreatedPollsJSON.polls.filter(
+            let newSamayCreatedPolls = {
+              polls: samayCreatedPollsJSON.polls.filter(
                 (poll) => Object.keys(poll)[0] !== `${pollID}-${pollTitle}`
               ),
             };
 
             localStorage.setItem(
-              "kukkeeCreatedPolls",
-              JSON.stringify(newKukkeeCreatedPolls)
+              "samayCreatedPolls",
+              JSON.stringify(newSamayCreatedPolls)
             );
           }
         }

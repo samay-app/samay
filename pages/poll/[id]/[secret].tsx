@@ -29,7 +29,7 @@ const Poll = (props: {
   return (
     <>
       <Head>
-        <title>Kukkee — Finalise time</title>
+        <title>Samay — Finalise time</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

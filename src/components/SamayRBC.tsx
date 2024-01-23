@@ -4,7 +4,7 @@ import { Time } from "../models/poll";
 
 const localizer = dayjsLocalizer(dayjs);
 
-const KukkeeRBC = (props: { pollTimes; setTimes }): JSX.Element => {
+const SamayRBC = (props: { pollTimes; setTimes }): JSX.Element => {
   const { pollTimes, setTimes } = props;
 
   const onTimesChange = ({ start, end }): void => {
@@ -41,4 +41,4 @@ const KukkeeRBC = (props: { pollTimes; setTimes }): JSX.Element => {
   );
 };
 
-export default KukkeeRBC;
+export default SamayRBC;

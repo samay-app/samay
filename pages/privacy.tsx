@@ -6,30 +6,30 @@ const Privacy = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Kukkee — Privacy Policy</title>
+        <title>Samay — Privacy Policy</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Kukkee — Meeting poll tool" />
+        <meta name="title" content="Samay — Meeting poll tool" />
         <meta
           name="description"
-          content="Here's how Kukkee - a free and open source meeting poll tool, respects your privacy."
+          content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kukkee.com" />
-        <meta property="og:title" content="Kukkee — Meeting poll tool" />
+        <meta property="og:url" content="https://samay.app" />
+        <meta property="og:title" content="Samay — Meeting poll tool" />
         <meta
           property="og:description"
-          content="Here's how Kukkee - a free and open source meeting poll tool, respects your privacy."
+          content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://kukkee.com" />
-        <meta property="twitter:title" content="Kukkee — Meeting poll tool" />
+        <meta property="twitter:url" content="https://samay.app" />
+        <meta property="twitter:title" content="Samay — Meeting poll tool" />
         <meta
           property="twitter:description"
-          content="Here's how Kukkee - a free and open source meeting poll tool, respects your privacy."
+          content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
@@ -42,12 +42,12 @@ const Privacy = (): JSX.Element => {
               <hr />
               <br />
               <p>
-                Hello! Welcome to Kukkee. Here's how we protect your data and
+                Hello! Welcome to Samay. Here's how we protect your data and
                 respect your privacy.
               </p>
               <h3>Our role in your privacy </h3>
               <p>
-                If you are creating a poll on Kukkee or voting on a poll, or
+                If you are creating a poll on Samay or voting on a poll, or
                 just visiting our website, this policy applies to you.
               </p>
               <h3>Your responsibilities</h3>
@@ -72,7 +72,7 @@ const Privacy = (): JSX.Element => {
               <p>
                 Data protection law means that we can only use your data for
                 certain reasons and where we have a legal basis to do so. We use
-                the data solely to ensure the functionality of Kukkee — which is
+                the data solely to ensure the functionality of Samay — which is
                 to help you quickly find the best time for meetings.
               </p>
               <h3>Your rights</h3>
@@ -90,7 +90,7 @@ const Privacy = (): JSX.Element => {
                     setting on your browser allowing you to refuse cookies. You
                     can also delete cookies through your browser settings. If
                     you turn off cookies, you can continue to use the website
-                    and browse its pages, but Kukkee's user experience would
+                    and browse its pages, but Samay's user experience would
                     deteriorate.
                   </li>
                   <li>
@@ -132,7 +132,7 @@ const Privacy = (): JSX.Element => {
               <p>
                 We use cookies. Unless you adjust your browser settings to
                 refuse cookies, we will issue cookies when you interact with
-                Kukkee. These are 'persistent' cookies which do not delete
+                Samay. These are 'persistent' cookies which do not delete
                 themselves and help us recognise you when you return so we can
                 help you manage your polls without asking you to create an
                 account.
