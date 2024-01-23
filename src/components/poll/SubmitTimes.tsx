@@ -53,7 +53,6 @@ const SubmitTimes = (props: {
       };
       submitTimeResponse = await markTimes(voterArgs);
       let time = JSON.stringify(newVote.times[0]);
-      // console.log(time)
 
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
