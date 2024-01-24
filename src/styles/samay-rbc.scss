@@ -124,3 +124,9 @@
         background-color: #fefffe;
     }
 }
+.rbc-toolbar {
+    justify-content: flex-start;
+    @include media-breakpoint-up(sm) {
+        justify-content: initial;
+    }
+  }

@@ -5,9 +5,12 @@
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 5rem;
   border-radius: 0.5rem;
   border: 0.09rem solid #e5e7eb;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 2rem;
+}
 }
 
 .new-poll-timeslot-jumbo {

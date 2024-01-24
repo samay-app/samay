@@ -30,12 +30,16 @@
   border: none;
   padding: 0;
   outline: none;
+  display: none;
 
   &:hover,
   &:active,
   &:focus {
     border: none;
     outline: none;
+  }
+  @include media-breakpoint-up(lg) {
+    display: unset;
   }
 }
 
@@ -78,5 +82,12 @@
 
   @include media-breakpoint-up(sm) {
     margin-top: -0.15rem;
+  }
+}
+
+.rbc-toolbar-label {
+  display: none;
+  @include media-breakpoint-up(sm) {
+    display: unset;
   }
 }
