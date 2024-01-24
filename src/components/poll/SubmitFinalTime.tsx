@@ -52,7 +52,7 @@ const SubmitFinalTime = (props: {
   return (
     <>
       <Button
-        className="global-primary-button mb-5"
+        className="global-primary-button submit-final-time-button"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
