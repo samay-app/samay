@@ -118,7 +118,7 @@ const RecentPolls = (): JSX.Element => {
                             Object.keys(poll)[0].split("-")[0]
                           }/${decrypt(poll[Object.keys(poll)[0]])}`}
                         >
-                          {Object.keys(poll)[0].split("-")[1] || "Untitled"}
+                          {Object.keys(poll)[0].split("-").slice(1).join("-") || "Untitled"}
                         </a>
                       </span>
                       <div className="card-options">
@@ -136,7 +136,7 @@ const RecentPolls = (): JSX.Element => {
                         </Button>
                         <DeletePoll
                           pollID={Object.keys(poll)[0].split("-")[0]}
-                          pollTitle={Object.keys(poll)[0].split("-")[1] || ""}
+                          pollTitle={Object.keys(poll)[0].split("-").slice(1).join("-") || ""}
                           secret={decrypt(poll[Object.keys(poll)[0]])}
                         />
                       </div>
@@ -158,7 +158,7 @@ const RecentPolls = (): JSX.Element => {
                     <Card.Title>
                       <span className="poll-name">
                         <a href={`/poll/${Object.keys(poll)[0].split("-")[0]}`}>
-                          {Object.keys(poll)[0].split("-")[1] || "Untitled"}
+                          {Object.keys(poll)[0].split("-").slice(1).join("-") || "Untitled"}
                         </a>
                       </span>
                       <div className="card-options">

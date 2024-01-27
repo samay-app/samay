@@ -84,10 +84,3 @@
     margin-top: -0.15rem;
   }
 }
-
-.rbc-toolbar-label {
-  display: none;
-  @include media-breakpoint-up(sm) {
-    display: unset;
-  }
-}

@@ -52,7 +52,7 @@ const DeletePoll = (props: {
         secret: encrypt(secret),
       };
       deletePollResponse = await deletePoll(deleteArgs);
-      if (deletePollResponse && deletePollResponse.statusCode === 200) {
+      if (deletePollResponse && (deletePollResponse.statusCode === 200 || deletePollResponse.statusCode === 404)) {
         if (typeof window !== "undefined") {
           const samayCreatedPolls = localStorage.getItem("samayCreatedPolls");
 
