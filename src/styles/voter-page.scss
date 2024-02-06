@@ -2,21 +2,33 @@
   background-color: #f3f4f6;
 }
 
-.voter-page-info-container {
-  background-color: #ffffff;
-  border-top: 0.09rem solid #e3e3e3;
-  border-left: 0.09rem solid #e3e3e3;
-  border-right: 0.09rem solid #e3e3e3;
+.voter-poll-info-jumbo {
+  font-family: "Cal Sans";
+  background-color: #fefffe;
+  margin-top: 1rem;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 0.09rem solid #e5e7eb;
+  padding: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    width: unset;
+    padding: 1rem;
+  }
+}
+
+.voter-page-info-container {
+  background-color: #fefffe;
   margin: auto;
   width: 100%;
-  padding: 1.5rem;
   margin-top: 0rem;
 
   @include media-breakpoint-up(sm) {
-    width: 50%;
-    margin-top: 6rem;
+    width: unset;
+    margin-top: 1rem;
+    margin-left: 1.5rem;
   }
 
   &.closed {
@@ -27,31 +39,27 @@
 }
 
 .voter-page-main-container {
-  background-color: #ffffff;
-  border: 0.09rem solid #e3e3e3;
-  margin: auto;
-  width: 100%;
-  padding-top: 0.8rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-bottom: 0.5rem;
+  background-color: #fefffe;
+  border: 0.09rem solid #e5e7eb;
+  padding: 1rem;
 
   @include media-breakpoint-up(sm) {
-    width: 50%;
+    width: 100%;
+    overflow: auto;
+    padding: 4rem;
   }
 }
 
 .voter-page-final-container {
-  background-color: #ffffff;
-  border: 0.09rem solid #e3e3e3;
+  background-color: #fefffe;
+  margin: auto;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  margin: auto;
-  width: 100%;
-  padding: 1.5rem;
+  border: 0.09rem solid #e5e7eb;
+  padding: 1rem;
 
   @include media-breakpoint-up(sm) {
-    width: 50%;
+    width: unset;
   }
 }
 
@@ -224,6 +232,7 @@
 .voter-page-vote-recorded {
   font-family: "Inter";
   font-size: 0.8rem;
+  padding-left: 1.6rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 0.9rem;
