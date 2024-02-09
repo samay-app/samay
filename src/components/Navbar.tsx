@@ -52,7 +52,7 @@ const NavBar = (): JSX.Element => {
                 <QuestionCircle className="navbar-link-icon" /> How-to
               </a>
             </Link>
-            <Link href="https://github.com/samayapp/samay">
+            <Link href="https://github.com/samay-app/samay">
               <a className="navbar-link">
                 <Github className="navbar-link-icon" /> GitHub
               </a>
