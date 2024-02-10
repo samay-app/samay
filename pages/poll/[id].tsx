@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Router from "next/router";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { Form } from "react-bootstrap";
+import { Container, Jumbotron, Form } from "react-bootstrap";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../src/utils/api/server";
 import VoterPollInfo from "../../src/components/poll/VoterPollInfo";
 import PollTableVoter from "../../src/components/poll/PollTableVoter";
 import SubmitTimes from "../../src/components/poll/SubmitTimes";
+import Layout from "../../src/components/Layout";
 import { TimeFromDB, Vote, PollFromDB } from "../../src/models/poll";
 import { decrypt } from "../../src/helpers";
 
@@ -73,9 +74,6 @@ const Poll = (props: {
                   Your vote has been successfully recorded.
                 </span>
               </div>
-              <div className="voter-page-powered-container">
-                <a href="http://samay.app">Powered by Samay.app</a>
-              </div>
             </>
           );
           break;
@@ -104,10 +102,6 @@ const Poll = (props: {
                   pollID={pollID}
                   pollFromDB={pollFromDB}
                 />
-              </div>
-
-              <div className="voter-page-powered-container">
-                <a href="http://samay.app">Powered by Samay.app</a>
               </div>
             </>
           );
@@ -139,9 +133,6 @@ const Poll = (props: {
               pollFromDB={pollFromDB}
             />
           </div>
-          <div className="voter-page-powered-container">
-            <a href="http://samay.app">Powered by Samay.app</a>
-          </div>
         </>
       );
     }
@@ -155,18 +146,22 @@ const Poll = (props: {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="global-flex-wrapper">
-        <main className="voter-page-main">
+      <Layout>
+        <div className="global-page-section">
+          <Container className="global-container">
+          <Jumbotron className="voter-poll-info-jumbo mb-0">
           <div
             className={`voter-page-info-container ${
               pollFromDB.open ? "" : "closed"
             }`}
           >
             <VoterPollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} />
-          </div>
-          {pageSection}
-        </main>
-      </div>
+            </div>
+            </Jumbotron>
+            {pageSection}
+          </Container>
+        </div>
+      </Layout>
     </>
   );
 };

@@ -103,7 +103,7 @@ const SubmitTimes = (props: {
   return (
     <>
       <Button
-        className="global-primary-button mb-5"
+        className="global-primary-button"
         type="submit"
         disabled={disabled}
         onClick={handleSubmit}
