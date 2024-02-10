@@ -43,7 +43,7 @@
   border: 0.09rem solid #e5e7eb;
   padding: 1rem;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(lg) {
     width: 100%;
     overflow: auto;
     padding: 4rem;
