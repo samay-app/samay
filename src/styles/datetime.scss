@@ -3,29 +3,41 @@
   text-align: center;
   font-family: "Cal Sans";
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 500;
   margin-bottom: -0.2em;
   color: #8c8c8c;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1rem;
+  }
 }
 
 .datetime-day {
   display: block;
   text-align: center;
   font-family: "Cal Sans";
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: -0.2em;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2rem;
+  }
 }
 
 .datetime-mon {
   display: block;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-family: "Cal Sans";
   letter-spacing: 0.02rem;
   font-weight: 500;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.8em;
   color: #8c8c8c;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1.2rem;
+  }
 }
 
 .datetime-time-1 {
@@ -51,4 +63,38 @@
   @include media-breakpoint-up(sm) {
     font-size: 1rem;
   }
+}
+
+.datetime-time-sep-voter {
+  position: absolute;
+  font-size: 1.2rem;
+  top: 4.8rem;
+  left: -0.6rem;
+  font-weight: 300;
+  color: #c4c4c4;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2rem;
+    top: 6.4rem;
+    left: 0.8rem;
+  }
+}
+
+.datetime-time-sep-admin {
+  position: absolute;
+  font-size: 1.2rem;
+  top: 4.85rem;
+  left: -0.6rem;
+  font-weight: 300;
+  color: #c4c4c4;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2rem;
+    top: 6.4rem;
+    left: -0.2rem;
+  }
+}
+
+.datetime-component {
+  position: relative;
 }
