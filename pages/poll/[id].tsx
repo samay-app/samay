@@ -32,6 +32,8 @@ const Poll = (props: {
     times: [],
   });
 
+  let showVoteRecorded = false;
+
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setNewVote({ name: value, times: newVote.times });
@@ -67,15 +69,8 @@ const Poll = (props: {
         let poll = votedPollsFromLS.polls[i];
 
         if (Object.keys(poll)[0] === pollID && pollFromDB.open) {
-          pageSection = (
-            <>
-              <div className="voter-page-final-container">
-                <span className="voter-page-vote-recorded">
-                  Your vote has been successfully recorded.
-                </span>
-              </div>
-            </>
-          );
+          pageSection = <></>;
+          showVoteRecorded = true;
           break;
         } else if (pollFromDB.open) {
           pageSection = (
@@ -149,14 +144,12 @@ const Poll = (props: {
       <Layout>
         <div className="global-page-section">
           <Container className="global-container">
-          <Jumbotron className="voter-poll-info-jumbo mb-0">
-          <div
-            className={`voter-page-info-container ${
-              pollFromDB.open ? "" : "closed"
-            }`}
-          >
-            <VoterPollInfo poll={pollFromDB} showFinalTime={!pollFromDB.open} />
-            </div>
+            <Jumbotron className="poll-info-jumbo">
+              <VoterPollInfo
+                poll={pollFromDB}
+                showFinalTime={!pollFromDB.open}
+                showVoteRecorded={showVoteRecorded}
+              />
             </Jumbotron>
             {pageSection}
           </Container>

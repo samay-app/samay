@@ -1,6 +1,7 @@
 .navbar {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  height: 2.5rem;
   background-color: #f9fafb;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
@@ -12,18 +13,25 @@
   }
 }
 
+.navbar-brand {
+  padding: 0 !important;
+  font-size: unset !important;
+}
+
 .navbar-logo {
   width: auto;
-  height: 1.5rem;
+  height: 1.4rem;
   display: inline-block;
-  margin-top: -0.23rem;
+  margin-top: -0.15rem;
 }
 
 .navbar-logo-text {
   font-family: "Cal Sans";
   margin-left: 0.3rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #101827;
+  display: inline-block;
+  margin-top: -0.4rem;
 }
 
 .navbar-hamburger {
@@ -51,15 +59,15 @@
   letter-spacing: 0.03rem;
   margin-right: 0rem;
   margin-left: 0rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.7rem;
-  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
 
   @include media-breakpoint-up(sm) {
-    margin-left: 0.3rem;
+    margin-left: 0.9rem;
     border-bottom: none;
   }
 

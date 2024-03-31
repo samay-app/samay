@@ -112,11 +112,11 @@
   display: block;
   font-weight: 500;
   color: #565656;
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 0.02rem;
   margin-top: 0.5rem;
   margin-bottom: 1.4rem;
-  line-height: 1.3rem;
+  line-height: 1.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,6 +135,19 @@
   font-weight: 500;
   color: #5e5e5e;
   margin-top: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1rem;
+  }
+}
+
+.poll-info-detail-title-share {
+  font-family: "Inter";
+  font-size: 0.7rem;
+  display: block;
+  font-weight: 500;
+  color: #000;
+  margin-top: 2rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 1rem;
@@ -198,8 +211,7 @@
 }
 
 .poll-slot-final-time {
-  background-color: #101827;
-  color: #fefffe;
+  border-top: 0.2rem solid #49de80 !important;
 }
 
 .poll-slot-checked {
@@ -221,14 +233,16 @@
 .poll-slot-unchecked {
   border-top: 0.5rem solid #fefffe !important;
   border-left: 0.5rem solid #fefffe !important;
-  background-image: linear-gradient(135deg,
-      #fefffe 30%,
-      #e0e0e0 30%,
-      #e0e0e0 50%,
-      #fefffe 50%,
-      #fefffe 80%,
-      #e0e0e0 80%,
-      #e0e0e0 100%);
+  background-image: linear-gradient(
+    135deg,
+    #fefffe 30%,
+    #e0e0e0 30%,
+    #e0e0e0 50%,
+    #fefffe 50%,
+    #fefffe 80%,
+    #e0e0e0 80%,
+    #e0e0e0 100%
+  );
   background-size: 7.07px 7.07px;
   width: 7rem;
 }
@@ -455,4 +469,3 @@
 .submit-final-time-button {
   margin-bottom: 6rem;
 }
-

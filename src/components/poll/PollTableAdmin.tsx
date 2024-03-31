@@ -37,7 +37,7 @@ const PollTableAdmin = (props: {
                     : "poll-slot-time"
                 }
               >
-                <PollDateTime time={time} />
+                <PollDateTime time={time} type="admin" />
               </th>
             ))}
           </tr>

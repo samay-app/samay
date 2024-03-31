@@ -15,7 +15,7 @@ const NavBar = (): JSX.Element => {
   return (
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="global-container">
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" className="navbar-brand">
           <img alt="logo" src="/favicon.svg" className="navbar-logo" />
           <span className="navbar-logo-text">samay</span>
         </Navbar.Brand>

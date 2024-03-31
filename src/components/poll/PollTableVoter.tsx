@@ -23,7 +23,7 @@ const PollTableVoter = (props: {
           <tr>
             {sortedTimes.map((time) => (
               <th key={time.start} className="poll-slot-time">
-                <PollDateTime time={time} />
+                <PollDateTime time={time} type="voter" />
               </th>
             ))}
           </tr>

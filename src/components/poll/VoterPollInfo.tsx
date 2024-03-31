@@ -1,5 +1,10 @@
 import { Badge } from "react-bootstrap";
-import { CalendarCheck, GeoAltFill, Globe } from "react-bootstrap-icons";
+import {
+  CalendarCheck,
+  CheckCircleFill,
+  GeoAltFill,
+  Globe,
+} from "react-bootstrap-icons";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import timezone from "dayjs/plugin/timezone";
@@ -11,48 +16,48 @@ dayjs.extend(timezone);
 const PollInfo = (props: {
   poll: PollFromDB;
   showFinalTime: boolean;
+  showVoteRecorded: boolean;
 }): JSX.Element => {
-  const { poll, showFinalTime } = props;
+  const { poll, showFinalTime, showVoteRecorded } = props;
+
   return (
     <div>
       <Badge
         pill
         variant={poll.open ? "success" : "secondary"}
-        className={
-          poll.open
-            ? "voter-page-poll-badge-open"
-            : "voter-page-poll-badge-closed"
-        }
+        className={poll.open ? "poll-badge-open" : "poll-badge-closed"}
       >
         {poll.open ? "Open" : "Closed"}
       </Badge>
-      {poll.title && (
-        <span className="voter-page-poll-info-title">{poll.title}</span>
-      )}
-      {!poll.title && (
-        <span className="voter-page-poll-info-title">Untitled</span>
-      )}
+      {poll.title && <span className="poll-info-title">{poll.title}</span>}
+      {!poll.title && <span className="poll-info-title">Untitled</span>}
       {poll.description && (
-        <span className="voter-page-poll-info-desc">{poll.description}</span>
+        <span className="poll-info-desc">{poll.description}</span>
       )}
       {poll.location && (
-        <span className="voter-page-poll-info-detail-title">
-          <GeoAltFill className="voter-page-poll-info-icon" />
+        <span className="poll-info-detail-title">
+          <GeoAltFill className="poll-info-icon" />
           {poll.location}
         </span>
       )}
-      <span className="voter-page-poll-info-detail-title">
-        <Globe className="voter-page-poll-info-icon" />
+      <span className="poll-info-detail-title">
+        <Globe className="poll-info-icon" />
         Times are shown in: {dayjs.tz.guess()} timezone
       </span>
       {showFinalTime && (
-        <span className="voter-page-poll-info-detail-title">
-          <CalendarCheck className="voter-page-poll-info-icon" />
+        <span className="poll-info-final-time">
+          <CalendarCheck className="poll-info-final-time-decided-icon" />
           {dayjs(poll.finalTime?.start).format("ddd")},{" "}
           {dayjs(poll.finalTime?.start).format("MMM")}{" "}
           {dayjs(poll.finalTime?.start).format("DD")},{" "}
           {dayjs(poll.finalTime?.start).format("LT")} -{" "}
           {dayjs(poll.finalTime?.end).format("LT")}
+        </span>
+      )}
+      {showVoteRecorded && !showFinalTime && (
+        <span className="voter-page-vote-recorded">
+          <CheckCircleFill className="poll-vote-recorded-icon" />
+          Your vote has been successfully recorded.
         </span>
       )}
     </div>

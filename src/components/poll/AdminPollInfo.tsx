@@ -14,7 +14,7 @@ import CopyText from "../copyText";
 dayjs.extend(localizedFormat);
 dayjs.extend(timezone);
 
-const PollInfo = (props: {
+const AdminPollInfo = (props: {
   poll: PollFromDB;
   showFinalTime: boolean;
   showCopyBox: boolean;
@@ -45,8 +45,8 @@ const PollInfo = (props: {
         Times are shown in: {dayjs.tz.guess()} timezone
       </span>
       {!poll.open && showFinalTime && (
-        <span className="poll-info-detail-title">
-          <CalendarCheck className="poll-info-icon" />
+        <span className="poll-info-final-time">
+          <CalendarCheck className="poll-info-final-time-decided-icon" />
           {dayjs(poll.finalTime?.start).format("ddd")},{" "}
           {dayjs(poll.finalTime?.start).format("MMM")}{" "}
           {dayjs(poll.finalTime?.start).format("DD")},{" "}
@@ -56,7 +56,7 @@ const PollInfo = (props: {
       )}
       {showCopyBox && (
         <>
-          <span className="poll-info-detail-title copy-text-mobile">
+          <span className="poll-info-detail-title-share copy-text-mobile">
             <ShareFill className="poll-info-icon" />
             <CopyText
               pollTitle={poll.title}
@@ -69,7 +69,7 @@ const PollInfo = (props: {
       )}
       {showCopyBox && (
         <>
-          <span className="poll-info-detail-title copy-text-desktop">
+          <span className="poll-info-detail-title-share copy-text-desktop">
             <ShareFill className="poll-info-icon" />
             Share this{" "}
             <CopyText
@@ -86,4 +86,4 @@ const PollInfo = (props: {
   );
 };
 
-export default PollInfo;
+export default AdminPollInfo;

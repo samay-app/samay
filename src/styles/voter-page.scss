@@ -2,46 +2,11 @@
   background-color: #f3f4f6;
 }
 
-.voter-poll-info-jumbo {
-  font-family: "Cal Sans";
-  background-color: #fefffe;
-  margin-top: 1rem;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border: 0.09rem solid #e5e7eb;
-  padding: 1rem;
-
-  @include media-breakpoint-up(sm) {
-    width: unset;
-    padding: 1rem;
-  }
-}
-
-.voter-page-info-container {
-  background-color: #fefffe;
-  margin: auto;
-  width: 100%;
-  margin-top: 0rem;
-
-  @include media-breakpoint-up(sm) {
-    width: unset;
-    margin-top: 1rem;
-    margin-left: 1.5rem;
-  }
-
-  &.closed {
-    border-bottom: 0.09rem solid #e3e3e3;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-  }
-}
-
 .voter-page-main-container {
   background-color: #fefffe;
   border: 0.09rem solid #e5e7eb;
   padding: 1rem;
+  border-radius: 0.5rem;
 
   @include media-breakpoint-up(lg) {
     width: 100%;
@@ -52,138 +17,13 @@
 
 .voter-page-final-container {
   background-color: #fefffe;
-  margin: auto;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  border: 0.09rem solid #e5e7eb;
-  padding: 1rem;
+  margin-top: 1rem;
 
   @include media-breakpoint-up(sm) {
     width: unset;
+    display: flex;
+    justify-content: flex-end;
   }
-}
-
-.voter-page-powered-container {
-  margin: auto;
-  width: 100%;
-  padding: 1.5rem;
-  text-align: center;
-
-  @include media-breakpoint-up(sm) {
-    width: 50%;
-  }
-
-  a {
-    font-size: 0.7rem;
-    color: #acaaaa;
-    font-family: "Inter";
-    text-decoration: none;
-    margin-right: 0rem;
-    margin-top: 0rem;
-    float: none;
-  
-    @include media-breakpoint-up(sm) {
-      margin-right: -1.5rem;
-      margin-top: -1rem;
-      float: right;
-    }
-  
-    &:hover {
-      color: #929292;
-      text-decoration: none;
-    }
-  }
-}
-
-.voter-page-poll-badge-open {
-  font-size: 0.6rem;
-  padding-top: 0.6em;
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  padding-bottom: 0.6em;
-  background-color: #f0fdf4;
-  color: #49de80;
-  transition: none;
-  font-size: 0.5rem;
-  letter-spacing: 0.02rem;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 0.6rem;
-  }
-}
-
-.voter-page-poll-badge-closed {
-  font-size: 0.6rem;
-  padding-top: 0.6em;
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  padding-bottom: 0.6em;
-  background-color: #1018272e;
-  color: #101827;
-  transition: none;
-  font-size: 0.5rem;
-  letter-spacing: 0.02rem;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 0.6rem;
-  }
-}
-
-.voter-page-poll-info-title {
-  display: block;
-  font-family: "Cal Sans";
-  margin-top: 0.5rem;
-  color: #101827;
-  letter-spacing: 0.02rem;
-  font-size: 1.8rem;
-  line-height: 1.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 1.9rem;
-    line-height: 3.5rem;
-  }
-}
-
-.voter-page-poll-info-desc {
-  display: block;
-  font-family: "Cal Sans";
-  font-weight: 500;
-  color: #565656;
-  font-size: 0.9rem;
-  letter-spacing: 0.02rem;
-  margin-bottom: 1.4rem;
-  line-height: 1.3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-}
-
-.voter-page-poll-info-detail-title {
-  font-family: "Inter";
-  font-size: 0.7rem;
-  display: block;
-  font-weight: 500;
-  color: #757575;
-  margin-top: 0.6rem;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 0.9rem;
-  }
-}
-
-.voter-page-poll-info-icon {
-  margin-top: -0.2rem;
-  margin-right: 0.5rem;
 }
 
 .voter-page-poll-mark-time-name {
@@ -196,11 +36,14 @@
   font-weight: 400;
   transition: none;
   width: 100%;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 
   @include media-breakpoint-up(sm) {
     margin-bottom: 0rem;
-    width: 30%;
+    margin-right: 1rem;
+    width: 20%;
+    margin-top: 0rem;
   }
 }
 
@@ -225,16 +68,40 @@
   outline: none;
 }
 
-.voter-page-submit-button {
-  display: inline-block;
-}
-
 .voter-page-vote-recorded {
   font-family: "Inter";
-  font-size: 0.8rem;
-  padding-left: 1.6rem;
+  font-size: 0.7rem;
+  display: block;
+  font-weight: 500;
+  color: #000;
+  margin-top: 2rem;
 
   @include media-breakpoint-up(sm) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
+}
+
+.poll-vote-recorded-icon {
+  margin-top: -0.2rem;
+  margin-right: 0.5rem;
+  color: #49de80;
+}
+
+.poll-info-final-time {
+  font-family: "Inter";
+  font-size: 0.7rem;
+  display: block;
+  font-weight: 500;
+  color: #000;
+  margin-top: 2rem;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1rem;
+  }
+}
+
+.poll-info-final-time-decided-icon {
+  margin-top: -0.2rem;
+  margin-right: 0.5rem;
+  color: #000;
 }

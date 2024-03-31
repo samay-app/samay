@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { getPoll } from "../../../src/utils/api/server";
 import Layout from "../../../src/components/Layout";
-import PollInfo from "../../../src/components/poll/PollInfo";
+import AdminPollInfo from "../../../src/components/poll/AdminPollInfo";
 import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
 import SubmitFinalTime from "../../../src/components/poll/SubmitFinalTime";
 import DeletePoll from "../../../src/components/poll/DeletePoll";
@@ -45,7 +45,7 @@ const Poll = (props: {
                   secret={secret}
                 />
               </span>
-              <PollInfo poll={pollFromDB} showFinalTime showCopyBox />
+              <AdminPollInfo poll={pollFromDB} showFinalTime showCopyBox />
             </Jumbotron>
             {pollFromDB.votes?.length > 0 && (
               <>
