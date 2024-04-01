@@ -121,18 +121,24 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Samay — Meeting poll tool</title>
+        <title>Samay — find a time which works for everyone</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Samay — Meeting poll tool" />
+        <meta
+          name="title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           name="description"
           content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
-        <meta property="og:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="og:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="og:description"
           content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
@@ -140,7 +146,10 @@ const Home = (): JSX.Element => {
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://samay.app" />
-        <meta property="twitter:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="twitter:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="twitter:description"
           content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"

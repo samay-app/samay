@@ -16,7 +16,7 @@
   transition: none;
   margin-bottom: 1rem;
   margin-top: 0;
-  transition: none;
+  transition: 0.2s;
 
   @include media-breakpoint-up(sm) {
     margin-bottom: 0;

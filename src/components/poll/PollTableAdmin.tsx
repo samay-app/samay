@@ -48,7 +48,8 @@ const PollTableAdmin = (props: {
           )}
           <tr>
             <td className="poll-table-total-participants">
-              {pollFromDB.votes?.length}{" "}
+              {pollFromDB.votes?.length}
+              &nbsp; &nbsp;
               {pollFromDB.votes?.length === 1 ? "PARTICIPANT" : "PARTICIPANTS"}
             </td>
             {sortedTimes.map((time: Time) => (

@@ -108,6 +108,10 @@
   }
 }
 
+.poll-info-title-no-desc {
+  margin-bottom: 1.5rem;
+}
+
 .poll-info-desc {
   display: block;
   font-weight: 500;
@@ -134,7 +138,7 @@
   display: block;
   font-weight: 500;
   color: #5e5e5e;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 
   @include media-breakpoint-up(sm) {
     font-size: 1rem;
@@ -203,7 +207,7 @@
 .poll-total-votes-icon {
   margin-top: -0.1rem;
   margin-right: 0.2rem;
-  color: #8c8c8c;
+  color: #c4c4c4;
 
   @include media-breakpoint-up(sm) {
     margin-top: -0.2rem;

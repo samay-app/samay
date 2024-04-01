@@ -6,6 +6,10 @@ import Link from "next/link";
 import Layout from "../src/components/Layout";
 
 const HowTo = (): JSX.Element => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("samayNewVisitor", JSON.stringify(false));
+  }
+
   return (
     <>
       <Head>
@@ -14,14 +18,20 @@ const HowTo = (): JSX.Element => {
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Samay — Meeting poll tool" />
+        <meta
+          name="title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           name="description"
           content="Here's how to get started with Samay - a free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
-        <meta property="og:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="og:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="og:description"
           content="Here's how to get started with Samay - a free and open source meeting poll tool."
@@ -29,7 +39,10 @@ const HowTo = (): JSX.Element => {
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://samay.app" />
-        <meta property="twitter:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="twitter:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="twitter:description"
           content="Here's how to get started with Samay - a free and open source meeting poll tool."
@@ -42,8 +55,8 @@ const HowTo = (): JSX.Element => {
             Samay — free and open source meeting poll tool
           </span>
           <span className="how-to-features desc">
-            Find a time which works for everyone without the
-            back-and-forth texts/emails!
+            Find a time which works for everyone without the back-and-forth
+            texts/emails!
           </span>
           <CardGroup className="how-to-card-group">
             <Card className="how-to-card">

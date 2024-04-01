@@ -58,15 +58,6 @@
   letter-spacing: 0.02rem;
   font-family: "Cal Sans";
   font-weight: 700;
-
-  a {
-    color: #101827;
-    text-decoration: underline;
-
-    &:hover {
-      color: #101827;
-    }
-  }
 }
 
 .your-polls-poll-card {
@@ -76,14 +67,17 @@
   letter-spacing: 0.02rem;
   color: #101827;
   border: 0.1rem solid #e5e7ed;
-
+  transition: 0.2s !important;
 
   a {
     color: #101827;
+    text-decoration: none !important;
+    text-decoration-color: #101827 !important;
 
     &:hover {
       color: #101827;
-      text-decoration: none;
+      text-decoration: none !important;
+      text-decoration-color: #101827 !important;
     }
   }
 
@@ -94,10 +88,14 @@
   .stretched-link {
     font-size: 1rem;
   }
-}
 
-.poll-name {
-  vertical-align: middle;
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+    border: 0.09rem solid #f9f9f9 !important;
+    background-color: #f9f9f9 !important;
+  }
 }
 
 .card-options {
@@ -127,18 +125,20 @@
 }
 
 .trash-button {
-  background-color: #ffffff;
-  padding: 0.3rem 0.8rem 0.3rem 0.8rem;
-  border: 0.09rem solid #e5e7ed;
+  background-color: transparent;
+  padding: 0.3rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
   margin-left: 0.5rem;
-  transition: none !important;
+  transition: 0.2s !important;
 
   &:hover,
   &:active,
   &:focus {
     box-shadow: none !important;
-    border: 0.09rem solid #e3e3e3 !important;
-    background-color: #e3e3e3 !important;
+    border: none;
+    background-color: #eaeaea !important;
   }
 
   .icon {
@@ -211,7 +211,7 @@
     border: 0px solid #fff;
     outline: none;
   }
-  
+
   padding: unset;
   margin: unset;
 }

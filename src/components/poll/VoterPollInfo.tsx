@@ -29,8 +29,24 @@ const PollInfo = (props: {
       >
         {poll.open ? "Open" : "Closed"}
       </Badge>
-      {poll.title && <span className="poll-info-title">{poll.title}</span>}
-      {!poll.title && <span className="poll-info-title">Untitled</span>}
+      {poll.title && (
+        <span
+          className={`poll-info-title ${
+            poll.description ? "" : "poll-info-title-no-desc"
+          }`}
+        >
+          {poll.title}
+        </span>
+      )}
+      {!poll.title && (
+        <span
+          className={`poll-info-title ${
+            poll.description ? "" : "poll-info-title-no-desc"
+          }`}
+        >
+          Untitled
+        </span>
+      )}
       {poll.description && (
         <span className="poll-info-desc">{poll.description}</span>
       )}

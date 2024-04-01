@@ -52,7 +52,11 @@ const DeletePoll = (props: {
         secret: encrypt(secret),
       };
       deletePollResponse = await deletePoll(deleteArgs);
-      if (deletePollResponse && (deletePollResponse.statusCode === 200 || deletePollResponse.statusCode === 404)) {
+      if (
+        deletePollResponse &&
+        (deletePollResponse.statusCode === 200 ||
+          deletePollResponse.statusCode === 404)
+      ) {
         if (typeof window !== "undefined") {
           const samayCreatedPolls = localStorage.getItem("samayCreatedPolls");
 
@@ -83,7 +87,14 @@ const DeletePoll = (props: {
 
   return (
     <>
-      <Button className="trash-button" onClick={() => setModalShow(true)}>
+      <Button
+        className="trash-button"
+        onClick={(e) => {
+          e.stopPropagation;
+          e.preventDefault();
+          setModalShow(true);
+        }}
+      >
         <Trash className="icon" />
       </Button>
       <DeleteModal

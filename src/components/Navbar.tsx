@@ -8,9 +8,18 @@ import {
 } from "react-bootstrap-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const NavBar = (): JSX.Element => {
   const router = useRouter();
+
+  const [samayNewVisitor, setSamayNewVisitor] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSamayNewVisitor(!localStorage.getItem("samayNewVisitor"));
+    }
+  }, [setSamayNewVisitor]);
 
   return (
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
@@ -45,11 +54,17 @@ const NavBar = (): JSX.Element => {
             </Link>
             <Link href="/how-to">
               <a
-                className={`navbar-link ${
-                  router.pathname === "/how-to" ? ` active` : ``
-                }`}
+                className={`navbar-link how-to-link ${
+                  samayNewVisitor ? "how-to-link-new-visitor" : ""
+                } ${router.pathname === "/how-to" ? ` active` : ``}`}
               >
-                <QuestionCircle className="navbar-link-icon" /> How-to
+                <QuestionCircle
+                  className={`navbar-link-icon ${
+                    samayNewVisitor ? "how-to-link-new-visitor" : ""
+                  }`}
+                />{" "}
+                How-to
+                {samayNewVisitor && <span className="beacon" />}
               </a>
             </Link>
             <Link href="https://github.com/samay-app/samay">

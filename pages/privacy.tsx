@@ -11,14 +11,20 @@ const Privacy = (): JSX.Element => {
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Samay — Meeting poll tool" />
+        <meta
+          name="title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           name="description"
           content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
-        <meta property="og:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="og:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="og:description"
           content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
@@ -26,7 +32,10 @@ const Privacy = (): JSX.Element => {
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://samay.app" />
-        <meta property="twitter:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="twitter:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="twitter:description"
           content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
@@ -47,8 +56,8 @@ const Privacy = (): JSX.Element => {
               </p>
               <h3>Our role in your privacy </h3>
               <p>
-                If you are creating a poll on Samay or voting on a poll, or
-                just visiting our website, this policy applies to you.
+                If you are creating a poll on Samay or voting on a poll, or just
+                visiting our website, this policy applies to you.
               </p>
               <h3>Your responsibilities</h3>
               <p>

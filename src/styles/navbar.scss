@@ -2,10 +2,10 @@
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
   height: 2.5rem;
-  background-color: #f9fafb;
+  background-color: #fafafa;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-  border-bottom: 0.1rem solid #f2f4f6;
+  border-bottom: 0.1rem solid #e5e7eb;
 
   @include media-breakpoint-up(sm) {
     padding-right: 0;
@@ -65,6 +65,7 @@
   padding-right: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  transition: 0.2s;
 
   @include media-breakpoint-up(sm) {
     margin-left: 0.9rem;
@@ -75,6 +76,10 @@
     text-decoration: none;
     color: #3b414a;
     background-color: #e5e7eb;
+
+    .how-to-link-new-visitor {
+      color: #3b414a;
+    }
   }
 
   &:last-of-type {
@@ -91,4 +96,50 @@
   @include media-breakpoint-up(sm) {
     margin-top: -0.15rem;
   }
+}
+
+.beacon {
+  background-color: #16a2b8;
+  border-radius: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  display: block;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.beacon::before {
+  background-color: #16a2b8;
+  content: "";
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  width: 0.7rem;
+  height: 0.7rem;
+  opacity: 1;
+  border-radius: 50%;
+  position: absolute;
+  animation: burst-animation 1.5s infinite;
+  animation-fill-mode: forwards;
+  z-index: 0;
+}
+
+@keyframes burst-animation {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.how-to-link {
+  position: relative;
+}
+
+.how-to-link-new-visitor {
+  color: #16a2b8;
 }

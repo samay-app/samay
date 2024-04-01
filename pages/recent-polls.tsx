@@ -33,9 +33,7 @@ const RemoveVotedPollModal = (props: {
         <p>Are you sure you want to remove this poll?</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          onClick={() => deleteVotedPoll(Object.keys(poll)[0].split("-")[0])}
-        >
+        <Button onClick={() => deleteVotedPoll(Object.keys(poll)[0])}>
           Remove
         </Button>
       </Modal.Footer>
@@ -106,43 +104,33 @@ const RecentPolls = (): JSX.Element => {
             <Container className="poll-container">
               <span className="your-polls-polls-heading">Created polls</span>
               {createdPolls.map((poll) => (
-                <Card
-                  className="your-polls-poll-card"
+                <a
                   key={Object.keys(poll)[0]}
+                  href={`/poll/${Object.keys(poll)[0].split("-")[0]}/${decrypt(
+                    poll[Object.keys(poll)[0]]
+                  )}`}
                 >
-                  <Card.Body>
-                    <Card.Title>
-                      <span className="poll-name">
-                        <a
-                          href={`/poll/${
-                            Object.keys(poll)[0].split("-")[0]
-                          }/${decrypt(poll[Object.keys(poll)[0]])}`}
-                        >
-                          {Object.keys(poll)[0].split("-").slice(1).join("-") || "Untitled"}
-                        </a>
-                      </span>
-                      <div className="card-options">
-                        <Button
-                          className="option-button"
-                          onClick={() =>
-                            Router.push(
-                              `/poll/${
-                                Object.keys(poll)[0].split("-")[0]
-                              }/${decrypt(poll[Object.keys(poll)[0]])}`
-                            )
-                          }
-                        >
-                          <BoxArrowUpRight className="icon" />
-                        </Button>
-                        <DeletePoll
-                          pollID={Object.keys(poll)[0].split("-")[0]}
-                          pollTitle={Object.keys(poll)[0].split("-").slice(1).join("-") || ""}
-                          secret={decrypt(poll[Object.keys(poll)[0]])}
-                        />
-                      </div>
-                    </Card.Title>
-                  </Card.Body>
-                </Card>
+                  <Card className="your-polls-poll-card">
+                    <Card.Body>
+                      <Card.Title>
+                        {Object.keys(poll)[0].split("-").slice(1).join("-") ||
+                          "Untitled"}
+                        <div className="card-options">
+                          <DeletePoll
+                            pollID={Object.keys(poll)[0].split("-")[0]}
+                            pollTitle={
+                              Object.keys(poll)[0]
+                                .split("-")
+                                .slice(1)
+                                .join("-") || ""
+                            }
+                            secret={decrypt(poll[Object.keys(poll)[0]])}
+                          />
+                        </div>
+                      </Card.Title>
+                    </Card.Body>
+                  </Card>
+                </a>
               ))}
             </Container>
           )}
@@ -150,44 +138,36 @@ const RecentPolls = (): JSX.Element => {
             <Container className={votedPollsClassName}>
               <span className="your-polls-polls-heading">Voted polls</span>
               {votedPolls.map((poll) => (
-                <Card
-                  className="your-polls-poll-card"
+                <a
                   key={Object.keys(poll)[0]}
+                  href={`/poll/${Object.keys(poll)[0]}`}
                 >
-                  <Card.Body>
-                    <Card.Title>
-                      <span className="poll-name">
-                        <a href={`/poll/${Object.keys(poll)[0].split("-")[0]}`}>
-                          {Object.keys(poll)[0].split("-").slice(1).join("-") || "Untitled"}
-                        </a>
-                      </span>
-                      <div className="card-options">
-                        <Button
-                          className="option-button"
-                          onClick={() =>
-                            Router.push(
-                              `/poll/${Object.keys(poll)[0].split("-")[0]}`
-                            )
-                          }
-                        >
-                          <BoxArrowUpRight className="icon" />
-                        </Button>
-                        <Button
-                          className="trash-button"
-                          onClick={() => setModalShow(true)}
-                        >
-                          <Trash className="icon" />
-                        </Button>
-                        <RemoveVotedPollModal
-                          show={modalShow}
-                          onHide={() => setModalShow(false)}
-                          deleteVotedPoll={deleteVotedPoll}
-                          poll={poll}
-                        />
-                      </div>
-                    </Card.Title>
-                  </Card.Body>
-                </Card>
+                  <Card className="your-polls-poll-card">
+                    <Card.Body>
+                      <Card.Title>
+                        {Object.values(poll)[0] || "Untitled"}
+                        <div className="card-options">
+                          <Button
+                            className="trash-button"
+                            onClick={(e) => {
+                              e.stopPropagation;
+                              e.preventDefault();
+                              setModalShow(true);
+                            }}
+                          >
+                            <Trash className="icon" />
+                          </Button>
+                          <RemoveVotedPollModal
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                            deleteVotedPoll={deleteVotedPoll}
+                            poll={poll}
+                          />
+                        </div>
+                      </Card.Title>
+                    </Card.Body>
+                  </Card>
+                </a>
               ))}
             </Container>
           )}
@@ -221,14 +201,20 @@ const RecentPolls = (): JSX.Element => {
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content="Samay — Meeting poll tool" />
+        <meta
+          name="title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           name="description"
           content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
-        <meta property="og:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="og:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="og:description"
           content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
@@ -236,7 +222,10 @@ const RecentPolls = (): JSX.Element => {
         <meta property="og:image" content="/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://samay.app" />
-        <meta property="twitter:title" content="Samay — Meeting poll tool" />
+        <meta
+          property="twitter:title"
+          content="Samay — find a time which works for everyone"
+        />
         <meta
           property="twitter:description"
           content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."

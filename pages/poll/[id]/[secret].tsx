@@ -38,13 +38,6 @@ const Poll = (props: {
         <div className="global-page-section">
           <Container className="global-container">
             <Jumbotron className="poll-info-jumbo">
-              <span className="delete-poll-on-creator-page">
-                <DeletePoll
-                  pollID={pollID}
-                  pollTitle={pollFromDB.title || ""}
-                  secret={secret}
-                />
-              </span>
               <AdminPollInfo poll={pollFromDB} showFinalTime showCopyBox />
             </Jumbotron>
             {pollFromDB.votes?.length > 0 && (
