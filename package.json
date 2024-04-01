@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.10",
-    "@fontsource/inter": "^4.5.15",
+    "@fontsource/inter": "^5.0.17",
     "bootstrap": "^4.5.3",
     "cal-sans": "^1.0.1",
     "copy-to-clipboard": "^3.3.1",

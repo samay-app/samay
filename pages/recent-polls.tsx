@@ -196,7 +196,7 @@ const RecentPolls = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Samay — Recent polls</title>
+        <title>Samay — recent polls</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />

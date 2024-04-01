@@ -13,7 +13,7 @@ const HowTo = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Samay — How-to</title>
+        <title>Samay — how-to</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="robots" content="noindex" />

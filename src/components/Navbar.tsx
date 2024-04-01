@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import LogoSVG from "./LogoSVG";
 
 const NavBar = (): JSX.Element => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const NavBar = (): JSX.Element => {
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
       <Container className="global-container">
         <Navbar.Brand href="/" className="navbar-brand">
-          <img alt="logo" src="/favicon.svg" className="navbar-logo" />
+          <LogoSVG className="navbar-logo" />
           <span className="navbar-logo-text">samay</span>
         </Navbar.Brand>
         <Navbar.Toggle

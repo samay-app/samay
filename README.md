@@ -21,6 +21,10 @@
   <br/>
 </div>
 
+<img src="./public/banner.png" alt="Samay banner"/>
+
+<br/>
+
 Samay is a free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
 
 - Create a meeting poll by choosing the time slots based on your availability.

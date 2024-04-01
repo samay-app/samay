@@ -101,8 +101,8 @@
 .beacon {
   background-color: #16a2b8;
   border-radius: 50%;
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.35rem;
+  height: 0.35rem;
   display: block;
   z-index: 1;
   position: absolute;
@@ -113,10 +113,10 @@
 .beacon::before {
   background-color: #16a2b8;
   content: "";
-  top: calc(50% - 5px);
-  left: calc(50% - 5px);
-  width: 0.7rem;
-  height: 0.7rem;
+  top: calc(50% - 0.25rem);
+  left: calc(50% - 0.25rem);
+  width: 0.5rem;
+  height: 0.5rem;
   opacity: 1;
   border-radius: 50%;
   position: absolute;
