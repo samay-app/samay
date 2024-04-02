@@ -30,12 +30,17 @@ const PollInfo = (props: {
 
   return (
     <div>
-      <Badge
-        pill
-        variant={poll.open ? "success" : "secondary"}
-        className={poll.open ? "poll-badge-open" : "poll-badge-closed"}
-      >
-        {poll.open ? "Open" : "Closed"}
+      {(!poll.type || poll.type === "group") && (
+        <Badge
+          pill
+          variant={poll.open ? "success" : "secondary"}
+          className={poll.open ? "poll-badge-open" : "poll-badge-closed"}
+        >
+          {poll.open ? "Open" : "Closed"}
+        </Badge>
+      )}
+      <Badge pill variant="secondary" className="poll-badge-polltype">
+        {!poll.type || poll.type === "group" ? "Group" : "One-on-one"}
       </Badge>
       {poll.title && (
         <span

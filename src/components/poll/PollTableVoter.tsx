@@ -19,10 +19,10 @@ const PollTableVoter = (props: {
   const { pollFromDB, sortedTimes, newVote, setNewVote } = props;
 
   let availableTimes = [];
-  let VotedTimes = pollFromDB.votes.map((vote) => vote.times[0]);
+  let votedTimes = pollFromDB.votes.map((vote) => vote.times[0]);
 
   pollFromDB.times.map((time) => {
-    if (!isTimePresentInPollTimes(time, VotedTimes)) {
+    if (!isTimePresentInPollTimes(time, votedTimes)) {
       availableTimes.push(time);
     }
   });
@@ -32,7 +32,7 @@ const PollTableVoter = (props: {
       <Table responsive>
         <thead>
           <tr>
-            {pollFromDB.type === "group" &&
+            {(!pollFromDB.type || pollFromDB.type === "group") &&
               sortedTimes.map((time) => (
                 <th key={time.start} className="poll-slot-time">
                   <PollDateTime time={time} type="voter" />
@@ -41,20 +41,21 @@ const PollTableVoter = (props: {
             {pollFromDB.type === "oneonone" &&
               availableTimes.map((time) => (
                 <th key={time.start} className="poll-slot-time">
-                  <PollDateTime time={time} />
+                  <PollDateTime time={time} type="voter" />
                 </th>
               ))}
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open && pollFromDB.type === "group" && (
-            <MarkTimes
-              times={sortedTimes}
-              newVote={newVote}
-              poll={pollFromDB}
-              setNewVote={setNewVote}
-            />
-          )}
+          {pollFromDB.open &&
+            (!pollFromDB.type || pollFromDB.type === "group") && (
+              <MarkTimes
+                times={sortedTimes}
+                newVote={newVote}
+                poll={pollFromDB}
+                setNewVote={setNewVote}
+              />
+            )}
           {pollFromDB.open && pollFromDB.type === "oneonone" && (
             <MarkTimesOneOnOne
               times={sortedTimes}

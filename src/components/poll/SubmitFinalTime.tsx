@@ -21,7 +21,7 @@ const SubmitFinalTime = (props: {
     e: React.MouseEvent<HTMLInputElement>
   ): Promise<void> => {
     e.preventDefault();
-    if (finalTime && poll.type === "group") {
+    if (finalTime && (!poll.type || poll.type === "group")) {
       setDisabled(true);
       try {
         const voterArgs = {
@@ -45,13 +45,14 @@ const SubmitFinalTime = (props: {
         toast.info("Please try again later", toastOptions);
         Router.reload();
       }
-    } else if (poll.type === "group") {
+    } else if (!poll.type || poll.type === "group") {
       toast.error("Please choose the final time", toastOptions);
     } else {
       setDisabled(true);
     }
   };
-  if (poll.type === "group") {
+
+  if (!poll.type || poll.type === "group") {
     return (
       <>
         <Button

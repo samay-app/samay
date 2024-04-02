@@ -56,60 +56,58 @@
 }
 
 .poll-badge-open {
-  display: inline;
-  font-size: 0.8rem;
-  padding-top: 0.2em;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
-  padding-bottom: 0.2em;
+  font-size: 0.6rem;
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  padding-bottom: 0.6em;
   background-color: #f0fdf4;
   color: #49de80;
+  border: 0.01rem solid #49de80;
   transition: none;
+  font-size: 0.5rem;
   letter-spacing: 0.02rem;
+  margin-right: 0.5rem;
 
   @include media-breakpoint-up(sm) {
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    font-size: 0.6rem;
   }
 }
 
 .poll-badge-closed {
-  display: inline;
-  font-size: 0.8rem;
-  padding-top: 0.2em;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
-  padding-bottom: 0.2em;
+  font-size: 0.6rem;
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  padding-bottom: 0.6em;
   background-color: #1018272e;
+  border: 0.01rem solid #1018272e;
   color: #101827;
   transition: none;
+  font-size: 0.5rem;
   letter-spacing: 0.02rem;
+  margin-right: 0.5rem;
 
   @include media-breakpoint-up(sm) {
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    font-size: 0.6rem;
   }
 }
 
 .poll-badge-polltype {
-  display: inline;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   padding-top: 0.6em;
+  padding-left: 0.6em;
   padding-right: 0.6em;
   padding-bottom: 0.6em;
+  background-color: transparent;
+  border: 0.01rem solid #101827;
+  color: #101827;
   transition: none;
-  letter-spacing: 0.06rem;
-
-  background-color: #fefffe;
-  color: #565656;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.9rem;
-  border: 0.09rem solid #e5e7eb;
+  font-size: 0.5rem;
+  letter-spacing: 0.02rem;
 
   @include media-breakpoint-up(sm) {
-    width: 12%;
+    font-size: 0.6rem;
   }
 }
 

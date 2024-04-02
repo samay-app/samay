@@ -43,9 +43,10 @@ const PollTableAdmin = (props: {
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open && pollFromDB.type === "group" && (
-            <MarkFinalTime times={sortedTimes} setFinalTime={setFinalTime} />
-          )}
+          {pollFromDB.open &&
+            (!pollFromDB.type || pollFromDB.type === "group") && (
+              <MarkFinalTime times={sortedTimes} setFinalTime={setFinalTime} />
+            )}
           <tr>
             <td className="poll-table-total-participants">
               {pollFromDB.votes?.length}

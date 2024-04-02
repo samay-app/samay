@@ -72,12 +72,11 @@ const Poll = (props: {
 
         if (Object.keys(poll)[0] === pollID && pollFromDB.open) {
           pageSection = <></>;
-
-          if (poll.type === "group") {
+          if (!pollFromDB.type || pollFromDB.type === "group") {
             showVoteRecordedGroup = true;
           } else {
             votedTimeOneOnOne = JSON.parse(
-              Object.values(votedPollsFromLS.polls[i])[0].split("#")[1]
+              Object.values(poll)[0].split("#")[1]
             );
             showVoteRecordedOneOnOne = true;
           }
@@ -146,7 +145,7 @@ const Poll = (props: {
   return (
     <>
       <Head>
-        <title>Samay — Mark your availability</title>
+        <title>Samay — mark your availability</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

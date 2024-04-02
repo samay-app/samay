@@ -9,7 +9,6 @@ import Layout from "../../../src/components/Layout";
 import AdminPollInfo from "../../../src/components/poll/AdminPollInfo";
 import PollTableAdmin from "../../../src/components/poll/PollTableAdmin";
 import SubmitFinalTime from "../../../src/components/poll/SubmitFinalTime";
-import DeletePoll from "../../../src/components/poll/DeletePoll";
 import { Time, TimeFromDB, PollFromDB } from "../../../src/models/poll";
 import { decrypt } from "../../../src/helpers";
 
@@ -29,7 +28,7 @@ const Poll = (props: {
   return (
     <>
       <Head>
-        <title>Samay — Finalise time</title>
+        <title>Samay — finalise time</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -99,7 +99,7 @@
 }
 
 .beacon {
-  background-color: #16a2b8;
+  background-color: #ff5f1f;
   border-radius: 50%;
   width: 0.35rem;
   height: 0.35rem;
@@ -111,7 +111,7 @@
 }
 
 .beacon::before {
-  background-color: #16a2b8;
+  background-color: #ff5f1f;
   content: "";
   top: calc(50% - 0.25rem);
   left: calc(50% - 0.25rem);
@@ -141,5 +141,5 @@
 }
 
 .how-to-link-new-visitor {
-  color: #16a2b8;
+  color: #ff5f1f;
 }

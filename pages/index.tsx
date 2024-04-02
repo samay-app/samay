@@ -24,15 +24,15 @@ const Home = (): JSX.Element => {
     pollTitle: string;
     pollLocation: string;
     pollDescription: string;
-    pollType: string;
   }>({
     pollTitle: "",
     pollLocation: "",
     pollDescription: "",
-    pollType: "group",
   });
 
-  const { pollTitle, pollLocation, pollDescription, pollType } = pollDetails;
+  const [pollType, setPollType] = useState("group");
+
+  const { pollTitle, pollLocation, pollDescription } = pollDetails;
 
   const [pollTimes, setTimes] = useState<Time[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -46,6 +46,12 @@ const Home = (): JSX.Element => {
       ...pollDetails,
       [name]: value,
     });
+  };
+
+  const handlePollTypeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setPollType(e.target.value);
   };
 
   const handleSubmit = async (
@@ -204,7 +210,7 @@ const Home = (): JSX.Element => {
                       className="form-select"
                       name="pollType"
                       defaultValue="group"
-                      onChange={handlePollDetailsChange}
+                      onChange={handlePollTypeChange}
                     >
                       <option value="group">Group poll</option>
                       <option value="oneonone">One-on-one poll</option>

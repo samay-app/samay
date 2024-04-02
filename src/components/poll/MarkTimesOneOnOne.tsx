@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { Dispatch, useState } from "react";
+import { Dispatch } from "react";
 import { Time, Vote, PollFromDB } from "../../models/poll";
 import { isTimePresentInPollTimes } from "../../helpers";
 
@@ -26,11 +26,9 @@ const MarkTimesOneOnOne = (props: {
     if (e.target !== e.currentTarget) return;
     const { dataset, checked } = e.target;
     const time: Time = dataset.value ? JSON.parse(dataset.value) : {};
-    let newTimes = newVote.times;
+    let newTimes = [];
 
-    // const time: Time = dataset.value ? JSON.parse(dataset.value) : {};
     if (checked) {
-      newTimes = newTimes.filter((item) => item.start !== time.start);
       newTimes.push(time);
       setNewVote({ name: newVote.name, times: newTimes });
     }

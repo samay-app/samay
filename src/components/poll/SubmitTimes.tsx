@@ -60,7 +60,7 @@ const SubmitTimes = (props: {
 
           if (!votedPolls) {
             if (pollFromDB.type === "oneonone") {
-              const initKukkeePolls = {
+              const initSamayPolls = {
                 polls: [
                   {
                     [`${pollID}`]: `${pollFromDB.title}#${time}`,
@@ -69,11 +69,11 @@ const SubmitTimes = (props: {
               };
 
               localStorage.setItem(
-                "kukkeeVotedPolls",
-                JSON.stringify(initKukkeePolls)
+                "samayVotedPolls",
+                JSON.stringify(initSamayPolls)
               );
             } else {
-              const initKukkeePolls = {
+              const initSamayPolls = {
                 polls: [
                   {
                     [`${pollID}`]: `${pollFromDB.title}`,
@@ -81,8 +81,8 @@ const SubmitTimes = (props: {
                 ],
               };
               localStorage.setItem(
-                "kukkeeVotedPolls",
-                JSON.stringify(initKukkeePolls)
+                "samayVotedPolls",
+                JSON.stringify(initSamayPolls)
               );
             }
           } else if (pollFromDB.type === "oneonone") {
@@ -93,7 +93,7 @@ const SubmitTimes = (props: {
             });
 
             localStorage.setItem(
-              "kukkeeVotedPolls",
+              "samayVotedPolls",
               JSON.stringify(votedPollsJSON)
             );
           } else {
@@ -104,7 +104,7 @@ const SubmitTimes = (props: {
             });
 
             localStorage.setItem(
-              "kukkeeVotedPolls",
+              "samayVotedPolls",
               JSON.stringify(votedPollsJSON)
             );
           }
