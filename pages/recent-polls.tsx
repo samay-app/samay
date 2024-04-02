@@ -145,9 +145,10 @@ const RecentPolls = (): JSX.Element => {
                   <Card className="your-polls-poll-card">
                     <Card.Body>
                       <Card.Title>
-                        {Object.values(poll)[0].includes("#{") &&
-                          (Object.values(poll)[0].split("#{")[0] || "Untitled")}
-                        {!Object.values(poll)[0].includes("#{") &&
+                        {(Object.values(poll)[0] as string).includes("#{") &&
+                          ((Object.values(poll)[0] as string).split("#{")[0] ||
+                            "Untitled")}
+                        {!(Object.values(poll)[0] as string).includes("#{") &&
                           (Object.values(poll)[0] || "Untitled")}
                         <div className="card-options">
                           <Button

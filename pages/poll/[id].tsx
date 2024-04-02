@@ -76,7 +76,7 @@ const Poll = (props: {
             showVoteRecordedGroup = true;
           } else {
             votedTimeOneOnOne = JSON.parse(
-              Object.values(poll)[0].split("#")[1]
+              (Object.values(poll)[0] as string).split("#")[1]
             );
             showVoteRecordedOneOnOne = true;
           }
