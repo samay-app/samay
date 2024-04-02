@@ -36,7 +36,7 @@ const HowTo = (): JSX.Element => {
           property="og:description"
           content="Here's how to get started with Samay - a free and open source meeting poll tool."
         />
-        <meta property="og:image" content="/banner.png" />
+        <meta property="og:image" content="https://samay.app/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://samay.app" />
         <meta
@@ -47,7 +47,7 @@ const HowTo = (): JSX.Element => {
           property="twitter:description"
           content="Here's how to get started with Samay - a free and open source meeting poll tool."
         />
-        <meta property="twitter:image" content="/banner.png" />
+        <meta property="twitter:image" content="https://samay.app/banner.png" />
       </Head>
       <Layout>
         <Container className="how-to-container">

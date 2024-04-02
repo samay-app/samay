@@ -29,7 +29,7 @@ const Privacy = (): JSX.Element => {
           property="og:description"
           content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
         />
-        <meta property="og:image" content="/banner.png" />
+        <meta property="og:image" content="https://samay.app/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://samay.app" />
         <meta
@@ -40,7 +40,7 @@ const Privacy = (): JSX.Element => {
           property="twitter:description"
           content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
         />
-        <meta property="twitter:image" content="/banner.png" />
+        <meta property="twitter:image" content="https://samay.app/banner.png" />
       </Head>
       <Layout>
         <div className="global-page-section">
