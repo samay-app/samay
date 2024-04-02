@@ -13,7 +13,7 @@
   p {
     font-size: 0.8rem;
     color: #383838;
-    margin-top: 1.5rem;
+    margin-top: 0rem;
     font-family: "Inter";
 
     @include media-breakpoint-up(sm) {
@@ -39,13 +39,13 @@
 
   h3 {
     color: #101827;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     letter-spacing: 0.02rem;
     font-family: "Cal Sans";
     font-size: 1rem;
 
     @include media-breakpoint-up(sm) {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   }
 }
