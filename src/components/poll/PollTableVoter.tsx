@@ -19,34 +19,35 @@ const PollTableVoter = (props: {
   const { pollFromDB, sortedTimes, newVote, setNewVote } = props;
 
   let availableTimes = [];
-  let VotedTimes = pollFromDB.votes.map((vote)=> vote.times[0]);
+  let VotedTimes = pollFromDB.votes.map((vote) => vote.times[0]);
 
   pollFromDB.times.map((time) => {
     if (!isTimePresentInPollTimes(time, VotedTimes)) {
-        availableTimes.push(time)
+      availableTimes.push(time);
     }
-  }
-  );
+  });
 
   return (
     <div>
       <Table responsive>
         <thead>
           <tr>
-            {pollFromDB.type === "Group-poll" && (sortedTimes.map((time) => (
-              <th key={time.start} className="poll-slot-time">
-                <PollDateTime time={time} type="voter" />
-              </th>
-            )))}
-            {pollFromDB.type === "One-on-one" && (availableTimes.map((time) => (
-              <th key={time.start} className="poll-slot-time">
-                <PollDateTime time={time} />
-              </th>
-            )))}
+            {pollFromDB.type === "group" &&
+              sortedTimes.map((time) => (
+                <th key={time.start} className="poll-slot-time">
+                  <PollDateTime time={time} type="voter" />
+                </th>
+              ))}
+            {pollFromDB.type === "oneonone" &&
+              availableTimes.map((time) => (
+                <th key={time.start} className="poll-slot-time">
+                  <PollDateTime time={time} />
+                </th>
+              ))}
           </tr>
         </thead>
         <tbody>
-          {pollFromDB.open && pollFromDB.type === "Group-poll" && (
+          {pollFromDB.open && pollFromDB.type === "group" && (
             <MarkTimes
               times={sortedTimes}
               newVote={newVote}
@@ -54,7 +55,7 @@ const PollTableVoter = (props: {
               setNewVote={setNewVote}
             />
           )}
-          {pollFromDB.open && pollFromDB.type === "One-on-one" && (
+          {pollFromDB.open && pollFromDB.type === "oneonone" && (
             <MarkTimesOneOnOne
               times={sortedTimes}
               newVote={newVote}

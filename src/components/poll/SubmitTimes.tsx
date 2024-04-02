@@ -59,7 +59,7 @@ const SubmitTimes = (props: {
           const votedPolls = localStorage.getItem("samayVotedPolls");
 
           if (!votedPolls) {
-            if (pollFromDB.type === "One-on-one") {
+            if (pollFromDB.type === "oneonone") {
               const initKukkeePolls = {
                 polls: [
                   {
@@ -85,7 +85,7 @@ const SubmitTimes = (props: {
                 JSON.stringify(initKukkeePolls)
               );
             }
-          } else if (pollFromDB.type === "One-on-one") {
+          } else if (pollFromDB.type === "oneonone") {
             const votedPollsJSON = JSON.parse(votedPolls);
 
             votedPollsJSON.polls.push({

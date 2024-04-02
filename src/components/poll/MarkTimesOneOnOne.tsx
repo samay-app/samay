@@ -10,18 +10,19 @@ const MarkTimesOneOnOne = (props: {
   setNewVote: Dispatch<Vote>;
 }): JSX.Element => {
   const { times, newVote, poll, setNewVote } = props;
-  
+
   let availableTimes = [];
-  let VotedTimes = poll.votes.map((vote)=> vote.times[0]);
+  let VotedTimes = poll.votes.map((vote) => vote.times[0]);
 
   poll.times.map((time) => {
     if (!isTimePresentInPollTimes(time, VotedTimes)) {
-        availableTimes.push(time)
+      availableTimes.push(time);
     }
-  }
-  );
+  });
 
-  const handleMarkTimeRadioButton= (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleMarkTimeRadioButton = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     if (e.target !== e.currentTarget) return;
     const { dataset, checked } = e.target;
     const time: Time = dataset.value ? JSON.parse(dataset.value) : {};
@@ -51,6 +52,5 @@ const MarkTimesOneOnOne = (props: {
     </tr>
   );
 };
-
 
 export default MarkTimesOneOnOne;

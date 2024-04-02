@@ -22,12 +22,8 @@ const AdminPollInfo = (props: {
   const { poll, showFinalTime, showCopyBox } = props;
   return (
     <div>
-      <Badge
-        pill
-        variant="secondary"
-        className="poll-badge-polltype"
-      >
-        {poll.type ==="Group-poll" ? "Group-poll" : "One-on-one"}
+      <Badge pill variant="secondary" className="poll-badge-polltype">
+        {poll.type === "group" ? "group" : "oneonone"}
       </Badge>
       <Badge
         pill

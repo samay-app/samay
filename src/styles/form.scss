@@ -51,17 +51,48 @@
 }
 
 .form-select {
-  background-color: #101827;
+  background-color: #ffffff;
   color: #101827;
-  border: none;
-  outline: 0.05rem solid #e0e1e0;
-  border-radius: 0.3rem;
+  border: 0.09rem solid #e5e7eb;
+  border-radius: 0.5rem;
   font-family: "Inter";
   font-size: 0.9rem;
-  width: 8rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  transition: 0.2s;
+  padding-left: 0.5rem !important;
 
-  &:focus {
-    outline: 0.14rem solid #101827;
-    background-color: #101827;
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+
+.form-select:hover {
+  color: #101827;
+  background-color: #ffffff;
+  border: 0.09rem solid #b7b9bd;
+}
+
+.form-select:focus {
+  color: #101827;
+  background-color: #ffffff;
+  border: 0.1rem solid #101827;
+}
+
+.form-group {
+  margin-bottom: 0 !important;
+}
+
+.samay-form-col {
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    padding-right: 0rem;
+    &.first-of-type {
+      padding-left: 2rem;
+    }
   }
 }

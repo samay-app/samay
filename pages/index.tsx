@@ -29,7 +29,7 @@ const Home = (): JSX.Element => {
     pollTitle: "",
     pollLocation: "",
     pollDescription: "",
-    pollType: "Group-poll",
+    pollType: "group",
   });
 
   const { pollTitle, pollLocation, pollDescription, pollType } = pollDetails;
@@ -167,7 +167,7 @@ const Home = (): JSX.Element => {
             </Jumbotron>
             <Jumbotron className="new-poll-jumbo">
               <Row>
-                <Col sm>
+                <Col sm className="samay-form-col">
                   <Form.Control
                     className="form-text"
                     type="text"
@@ -177,7 +177,7 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
-                <Col sm>
+                <Col sm className="samay-form-col">
                   <Form.Control
                     className="form-text"
                     type="text"
@@ -187,7 +187,7 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
-                <Col sm>
+                <Col sm className="samay-form-col">
                   <Form.Control
                     className="form-text"
                     type="text"
@@ -197,18 +197,19 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
-                <Col sm>
-                <Form.Group>
-                <Form.Control as="select"
-                className="form-text"
-                name="pollType"
-                defaultValue="Group-poll"
-                onChange={handlePollDetailsChange}
-                >
-                  <option value="Group-poll" selected>Group-poll</option>
-                  <option>One-on-one</option>
-                  </Form.Control>
-                </Form.Group>
+                <Col sm className="samay-form-col">
+                  <Form.Group className="form-group">
+                    <Form.Control
+                      as="select"
+                      className="form-select"
+                      name="pollType"
+                      defaultValue="group"
+                      onChange={handlePollDetailsChange}
+                    >
+                      <option value="group">Group poll</option>
+                      <option value="oneonone">One-on-one poll</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
                 <Col sm="auto">
                   <Button
