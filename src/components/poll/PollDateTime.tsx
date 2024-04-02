@@ -35,7 +35,10 @@ const PollDateTime = (props: {
         <span className="datetime-mon">{dayjs(time.start).format("MMM")}</span>
       </>
     );
-  } else if (!isDayAndMonthSame(time, times[index + 1])) {
+  } else if (
+    index + 1 >= times.length ||
+    !isDayAndMonthSame(time, times[index + 1])
+  ) {
     topComponent = <div className="datetime-same-last-line" />;
   } else {
     topComponent = <div className="datetime-same-middle-line" />;
