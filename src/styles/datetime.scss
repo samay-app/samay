@@ -98,23 +98,25 @@
 
 .datetime-same-middle-line {
   border-top: 0.2rem solid #c4c4c4 !important;
-  padding-bottom: 2.5rem;
+  height: 1.5rem;
+  margin-bottom: 1rem;
 
   @include media-breakpoint-up(sm) {
-    padding-bottom: 3.5rem;
+    height: 2rem;
+    margin-bottom: 2rem;
   }
 }
 
 .datetime-same-last-line {
   border-top: 0.2rem solid #c4c4c4 !important;
   border-right: 0.2rem solid #c4c4c4 !important;
-  margin-bottom: 1.7rem;
+  height: 1.5rem;
   margin-right: 2.5rem;
-  height: 1rem;
+  margin-bottom: 1rem;
 
   @include media-breakpoint-up(sm) {
-    margin-bottom: 1.675rem;
-    margin-right: 3.5rem;
     height: 2rem;
+    margin-right: 3.5rem;
+    margin-bottom: 2rem;
   }
 }
