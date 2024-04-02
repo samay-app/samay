@@ -33,15 +33,25 @@ const PollTableVoter = (props: {
         <thead>
           <tr>
             {(!pollFromDB.type || pollFromDB.type === "group") &&
-              sortedTimes.map((time) => (
+              sortedTimes.map((time, i) => (
                 <th key={time.start} className="poll-slot-time">
-                  <PollDateTime time={time} type="voter" />
+                  <PollDateTime
+                    time={time}
+                    type="voter"
+                    index={i}
+                    times={sortedTimes}
+                  />
                 </th>
               ))}
             {pollFromDB.type === "oneonone" &&
-              availableTimes.map((time) => (
+              availableTimes.map((time, i) => (
                 <th key={time.start} className="poll-slot-time">
-                  <PollDateTime time={time} type="voter" />
+                  <PollDateTime
+                    time={time}
+                    type="voter"
+                    index={i}
+                    times={availableTimes}
+                  />
                 </th>
               ))}
           </tr>

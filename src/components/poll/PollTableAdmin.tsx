@@ -27,17 +27,14 @@ const PollTableAdmin = (props: {
         <thead>
           <tr>
             <th className="poll-participant-cell"> </th>
-            {sortedTimes.map((time) => (
-              <th
-                key={time.start}
-                className={
-                  time.start === pollFromDB.finalTime?.start &&
-                  time.end === pollFromDB.finalTime?.end
-                    ? "poll-slot-time poll-slot-final-time"
-                    : "poll-slot-time"
-                }
-              >
-                <PollDateTime time={time} type="admin" />
+            {sortedTimes.map((time, i) => (
+              <th key={time.start} className="poll-slot-time">
+                <PollDateTime
+                  time={time}
+                  type="admin"
+                  index={i}
+                  times={sortedTimes}
+                />
               </th>
             ))}
           </tr>

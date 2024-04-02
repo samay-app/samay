@@ -1,5 +1,9 @@
 import crypto from "crypto";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import { Time, VoteFromDB } from "../models/poll";
+
+dayjs.extend(localizedFormat);
 
 export const isTimePresentInPollTimes = (
   timeToSearch: Time,
@@ -78,4 +82,19 @@ export const decrypt = (text: string): string => {
   let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);
   return decrypted.toString();
+};
+
+export const isDayAndMonthSame = (
+  firstTime: Time,
+  secondTime: Time
+): boolean => {
+  if (
+    dayjs(firstTime.start).format("D") ===
+      dayjs(secondTime.start).format("D") &&
+    dayjs(firstTime.start).format("MMM") ===
+      dayjs(secondTime.start).format("MMM")
+  ) {
+    return true;
+  }
+  return false;
 };

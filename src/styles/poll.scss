@@ -195,6 +195,8 @@
   border-top: 0 !important;
   border-bottom: 0 !important;
   min-width: 5rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 
   @include media-breakpoint-up(sm) {
     min-width: 7rem;
@@ -234,10 +236,6 @@
   @include media-breakpoint-up(sm) {
     margin-top: -0.2rem;
   }
-}
-
-.poll-slot-final-time {
-  border-top: 0.2rem solid #49de80 !important;
 }
 
 .poll-slot-checked {

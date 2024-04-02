@@ -68,7 +68,7 @@
 .datetime-time-sep-voter {
   font-size: 1.2rem;
   font-weight: 300;
-  color: #c4c4c4;
+  color: #d7d7d7;
   margin-left: -0.7rem;
 
   @include media-breakpoint-up(sm) {
@@ -80,7 +80,7 @@
 .datetime-time-sep-admin {
   font-size: 1.2rem;
   font-weight: 300;
-  color: #c4c4c4;
+  color: #d7d7d7;
   margin-left: -0.7rem;
 
   @include media-breakpoint-up(sm) {
@@ -94,4 +94,27 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.datetime-same-middle-line {
+  border-top: 0.2rem solid #c4c4c4 !important;
+  padding-bottom: 2.5rem;
+
+  @include media-breakpoint-up(sm) {
+    padding-bottom: 3.5rem;
+  }
+}
+
+.datetime-same-last-line {
+  border-top: 0.2rem solid #c4c4c4 !important;
+  border-right: 0.2rem solid #c4c4c4 !important;
+  margin-bottom: 1.7rem;
+  margin-right: 2.5rem;
+  height: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 1.675rem;
+    margin-right: 3.5rem;
+    height: 2rem;
+  }
 }
