@@ -25,7 +25,7 @@
 
 <br/>
 
-Samay is a free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
+Samay (previously known as Kukkee) is a free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
 
 > #### Create a poll
 >
