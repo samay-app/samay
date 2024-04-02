@@ -30,6 +30,8 @@ const Home = (): JSX.Element => {
     pollDescription: "",
   });
 
+  const [pollType, setPollType] = useState("group");
+
   const { pollTitle, pollLocation, pollDescription } = pollDetails;
 
   const [pollTimes, setTimes] = useState<Time[]>([]);
@@ -44,6 +46,12 @@ const Home = (): JSX.Element => {
       ...pollDetails,
       [name]: value,
     });
+  };
+
+  const handlePollTypeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setPollType(e.target.value);
   };
 
   const handleSubmit = async (
@@ -63,6 +71,7 @@ const Home = (): JSX.Element => {
       title: pollTitle,
       description: pollDescription,
       location: pollLocation,
+      type: pollType,
       secret: encryptedSecret,
       times: pollTimes,
     };
@@ -164,7 +173,7 @@ const Home = (): JSX.Element => {
             </Jumbotron>
             <Jumbotron className="new-poll-jumbo">
               <Row>
-                <Col sm>
+                <Col sm className="samay-form-col">
                   <Form.Control
                     className="form-text"
                     type="text"
@@ -174,7 +183,7 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
-                <Col sm>
+                <Col sm className="samay-form-col">
                   <Form.Control
                     className="form-text"
                     type="text"
@@ -184,7 +193,7 @@ const Home = (): JSX.Element => {
                     onChange={handlePollDetailsChange}
                   />
                 </Col>
-                <Col sm>
+                <Col sm className="samay-form-col">
                   <Form.Control
                     className="form-text"
                     type="text"
@@ -193,6 +202,20 @@ const Home = (): JSX.Element => {
                     placeholder="Location"
                     onChange={handlePollDetailsChange}
                   />
+                </Col>
+                <Col sm className="samay-form-col">
+                  <Form.Group className="form-group">
+                    <Form.Control
+                      as="select"
+                      className="form-select"
+                      name="pollType"
+                      defaultValue="group"
+                      onChange={handlePollTypeChange}
+                    >
+                      <option value="group">Group poll</option>
+                      <option value="oneonone">One-on-one poll</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
                 <Col sm="auto">
                   <Button

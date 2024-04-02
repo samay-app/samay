@@ -47,7 +47,7 @@ const Privacy = (): JSX.Element => {
           <Container className="global-container">
             <Jumbotron className="privacy-jumbo">
               <h1>Privacy Policy</h1>
-              <p>Last updated: Feb 18, 2023</p>
+              <p>Last updated: Apr 2, 2024</p>
               <hr />
               <br />
               <p>
@@ -127,15 +127,13 @@ const Privacy = (): JSX.Element => {
               </p>
               <h3>Where do we store the data?</h3>
               <p>
-                We use MongoDB's{" "}
-                <a href="https://www.mongodb.com/legal/privacy-policy">Atlas</a>{" "}
-                cloud database service to store all the events and your
-                availability information.
+                We use MongoDB's Atlas cloud database service to store all the
+                events and your availability information.
               </p>
               <h3>How long do we store your data?</h3>
               <p>
-                We will delete every poll 1 month after the event associated
-                with the poll is over.
+                We will keep your polls indefinitely. You have the option to
+                delete your polls from the recent polls page.
               </p>
               <h3>Cookies</h3>
               <p>

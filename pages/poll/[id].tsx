@@ -32,7 +32,9 @@ const Poll = (props: {
     times: [],
   });
 
-  let showVoteRecorded = false;
+  let showVoteRecordedGroup = false;
+  let showVoteRecordedOneOnOne = false;
+  let votedTimeOneOnOne = null;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -70,7 +72,14 @@ const Poll = (props: {
 
         if (Object.keys(poll)[0] === pollID && pollFromDB.open) {
           pageSection = <></>;
-          showVoteRecorded = true;
+          if (!pollFromDB.type || pollFromDB.type === "group") {
+            showVoteRecordedGroup = true;
+          } else {
+            votedTimeOneOnOne = JSON.parse(
+              Object.values(poll)[0].split("#")[1]
+            );
+            showVoteRecordedOneOnOne = true;
+          }
           break;
         } else if (pollFromDB.open) {
           pageSection = (
@@ -136,7 +145,7 @@ const Poll = (props: {
   return (
     <>
       <Head>
-        <title>Samay — Mark your availability</title>
+        <title>Samay — mark your availability</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -148,7 +157,9 @@ const Poll = (props: {
               <VoterPollInfo
                 poll={pollFromDB}
                 showFinalTime={!pollFromDB.open}
-                showVoteRecorded={showVoteRecorded}
+                showVoteRecordedGroup={showVoteRecordedGroup}
+                showVoteRecordedOneOnOne={showVoteRecordedOneOnOne}
+                votedTimeOneOnOne={votedTimeOneOnOne}
               />
             </Jumbotron>
             {pageSection}

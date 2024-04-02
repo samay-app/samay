@@ -65,9 +65,15 @@ const HowTo = (): JSX.Element => {
                   1. Create a poll
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
-                  Quickly create a meeting poll by choosing the time slots based
-                  on your availability, and optionally enter the title,
-                  description and location.
+                  Select the time slots (click and drag) based on your
+                  availability, and optionally enter the title, description and
+                  location.
+                  <br />
+                  <br />
+                  The default poll type is "group" — to find a common time which
+                  works for everyone. If you want to have one-on-one meetings
+                  (parent-teacher meetings for example), select the "one-on-one"
+                  poll type.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -80,12 +86,20 @@ const HowTo = (): JSX.Element => {
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
                   Copy and share the poll link with the participants to let them
-                  mark their availability using &nbsp;
-                  <CheckCircleFill className="how-to-card icon-yes" /> (yes) or{" "}
-                  <CircleFill className="how-to-card icon-if-need-be" /> (if
-                  need be) votes. No login required. No time zone confusion
-                  since Samay automatically shows participants times in their
-                  local time zone.
+                  mark their availability.
+                  <br />
+                  <br />
+                  In group polls, participants can either vote [yes]{" "}
+                  <CheckCircleFill className="how-to-card icon-yes" /> or [if
+                  need be]{" "}
+                  <CircleFill className="how-to-card icon-if-need-be" />. In
+                  one-on-one polls, participants can select their one preferred
+                  time.
+                  <br />
+                  <br />
+                  No login required. No time zone confusion since Samay
+                  automatically shows participants times in their local time
+                  zone.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -97,9 +111,14 @@ const HowTo = (): JSX.Element => {
                   3. Book the meeting
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
-                  Find the most popular times and see who's free with "yes"
-                  votes - or who can be - with "if need be" votes, and book the
-                  meeting!
+                  In group polls, find the most popular times and see who's free
+                  with [yes] votes - or who can be - with [if need be] votes,
+                  book the meeting and share the final time with the
+                  participants!
+                  <br />
+                  <br />
+                  In one-on-one polls, find who has chosen which time slot for a
+                  one-on-one with you!
                 </Card.Text>
               </Card.Body>
             </Card>

@@ -1,6 +1,6 @@
 import { Card, Container, Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import { Grid, BoxArrowUpRight, Trash } from "react-bootstrap-icons";
+import { Grid, Trash } from "react-bootstrap-icons";
 import Router from "next/router";
 import { useState } from "react";
 import Head from "next/head";
@@ -145,7 +145,10 @@ const RecentPolls = (): JSX.Element => {
                   <Card className="your-polls-poll-card">
                     <Card.Body>
                       <Card.Title>
-                        {Object.values(poll)[0] || "Untitled"}
+                        {Object.values(poll)[0].includes("#{") &&
+                          (Object.values(poll)[0].split("#{")[0] || "Untitled")}
+                        {!Object.values(poll)[0].includes("#{") &&
+                          (Object.values(poll)[0] || "Untitled")}
                         <div className="card-options">
                           <Button
                             className="trash-button"

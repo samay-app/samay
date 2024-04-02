@@ -52,22 +52,49 @@ const SubmitTimes = (props: {
         pollID,
       };
       submitTimeResponse = await markTimes(voterArgs);
+      let time = JSON.stringify(newVote.times[0]);
+
       if (submitTimeResponse && submitTimeResponse.statusCode === 201) {
         if (typeof window !== "undefined") {
           const votedPolls = localStorage.getItem("samayVotedPolls");
 
           if (!votedPolls) {
-            const initSamayPolls = {
-              polls: [
-                {
-                  [`${pollID}`]: `${pollFromDB.title}`,
-                },
-              ],
-            };
+            if (pollFromDB.type === "oneonone") {
+              const initSamayPolls = {
+                polls: [
+                  {
+                    [`${pollID}`]: `${pollFromDB.title}#${time}`,
+                  },
+                ],
+              };
+
+              localStorage.setItem(
+                "samayVotedPolls",
+                JSON.stringify(initSamayPolls)
+              );
+            } else {
+              const initSamayPolls = {
+                polls: [
+                  {
+                    [`${pollID}`]: `${pollFromDB.title}`,
+                  },
+                ],
+              };
+              localStorage.setItem(
+                "samayVotedPolls",
+                JSON.stringify(initSamayPolls)
+              );
+            }
+          } else if (pollFromDB.type === "oneonone") {
+            const votedPollsJSON = JSON.parse(votedPolls);
+
+            votedPollsJSON.polls.push({
+              [`${pollID}`]: `${pollFromDB.title}#${time}`,
+            });
 
             localStorage.setItem(
               "samayVotedPolls",
-              JSON.stringify(initSamayPolls)
+              JSON.stringify(votedPollsJSON)
             );
           } else {
             const votedPollsJSON = JSON.parse(votedPolls);
