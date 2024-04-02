@@ -27,9 +27,17 @@
 
 Samay is a free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
 
-- Create a meeting poll by choosing the time slots based on your availability.
-- Copy and share the poll link with the participants to let them mark their availability.
-- Find the most popular times and see who's free with "yes" votes - or who can be - with "if need be" votes, and book the meeting!
+> #### Create a poll
+>
+> Select the time slots (click and drag) based on your availability, and optionally enter the title, description and location. The default poll type is "group" — to find a common time which works for everyone. If you want to have one-on-one meetings (parent-teacher meetings for example), select the "one-on-one" poll type.
+>
+> #### Share the poll
+>
+> Copy and share the poll link with the participants to let them mark their availability. In group polls, participants can either vote [yes] or [if need be] . In one-on-one polls, participants can select their one preferred time. No login required. No time zone confusion since Samay automatically shows participants times in their local time zone.
+>
+> #### Book the meeting
+>
+> In group polls, find the most popular times and see who's free with [yes] votes - or who can be - with [if need be] votes, book the meeting and share the final time with the participants! In one-on-one polls, find who has chosen which time slot for a one-on-one with you!
 
 Create a poll now at [Samay.app](https://samay.app/)!
 
