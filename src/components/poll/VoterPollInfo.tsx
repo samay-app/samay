@@ -92,12 +92,12 @@ const PollInfo = (props: {
       {showVoteRecordedOneOnOne && votedTimeOneOnOne && !showFinalTime && (
         <span className="voter-page-vote-recorded">
           <CheckCircleFill className="poll-vote-recorded-icon" />
-          Your vote for the time [{dayjs(votedTimeOneOnOne.start).format(
+          Your vote for the time {dayjs(votedTimeOneOnOne.start).format(
             "LT"
-          )}{" "}
-          - {dayjs(votedTimeOneOnOne.end).format("LT")}] on{" "}
-          {dayjs(votedTimeOneOnOne.start).format("DD")}{" "}
-          {dayjs(votedTimeOneOnOne.start).format("MMM")} has been successfully
+          )} - {dayjs(votedTimeOneOnOne.end).format("LT")},{" "}
+          {dayjs(votedTimeOneOnOne.start).format("ddd")},{" "}
+          {dayjs(votedTimeOneOnOne.start).format("MMM")}{" "}
+          {dayjs(votedTimeOneOnOne.start).format("DD")}, has been successfully
           recorded.
         </span>
       )}

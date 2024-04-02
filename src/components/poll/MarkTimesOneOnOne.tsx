@@ -42,7 +42,6 @@ const MarkTimesOneOnOne = (props: {
             data-value={JSON.stringify(time)}
             type="radio"
             className="poll-slot-checkbox-one-on-one"
-            name="oneononevote"
             onChange={handleMarkTimeRadioButton}
           />
         </td>
