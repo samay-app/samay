@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
 import { Time, Vote, PollFromDB } from "../../models/poll";
 import { isTimePresentInPollTimes } from "../../helpers";
 
@@ -12,6 +12,7 @@ const MarkTimesOneOnOne = (props: {
   const { times, newVote, poll, setNewVote } = props;
 
   let availableTimes = [];
+
   let VotedTimes = poll.votes.map((vote) => vote.times[0]);
 
   poll.times.map((time) => {
@@ -19,6 +20,8 @@ const MarkTimesOneOnOne = (props: {
       availableTimes.push(time);
     }
   });
+
+  const [radioButtonChecked, setRadioButtonChecked] = useState("");
 
   const handleMarkTimeRadioButton = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -29,6 +32,7 @@ const MarkTimesOneOnOne = (props: {
     let newTimes = [];
 
     if (checked) {
+      setRadioButtonChecked(JSON.stringify(time));
       newTimes.push(time);
       setNewVote({ name: newVote.name, times: newTimes });
     }
@@ -43,6 +47,8 @@ const MarkTimesOneOnOne = (props: {
             type="radio"
             className="poll-slot-checkbox-one-on-one"
             onChange={handleMarkTimeRadioButton}
+            id={JSON.stringify(time)}
+            checked={radioButtonChecked === JSON.stringify(time)}
           />
         </td>
       ))}
