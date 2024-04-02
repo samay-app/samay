@@ -16,7 +16,12 @@ export const isTimePresentInPollTimes = (
 
 export const slotCheckClassName = (time: Time, times: Time[]): string => {
   if (isTimePresentInPollTimes(time, times)) {
-    if (times.find((currentTime) => currentTime.start === time.start)?.ifNeedBe)
+    if (
+      times.find(
+        (currentTime) =>
+          currentTime.start === time.start && currentTime.end === time.end
+      )?.ifNeedBe
+    )
       return "poll-slot-checked-if-need-be";
     return "poll-slot-checked";
   }
@@ -25,7 +30,12 @@ export const slotCheckClassName = (time: Time, times: Time[]): string => {
 
 export const isTimeIfNeedBe = (time: Time, times: Time[]): boolean => {
   if (isTimePresentInPollTimes(time, times)) {
-    if (times.find((currentTime) => currentTime.start === time.start)?.ifNeedBe)
+    if (
+      times.find(
+        (currentTime) =>
+          currentTime.start === time.start && currentTime.end === time.end
+      )?.ifNeedBe
+    )
       return true;
     return false;
   }
@@ -42,8 +52,10 @@ export const slotTimeClassName = (
 
   if (isTimePresentInPollTimes(time, voteTimes)) {
     if (
-      voteTimes.find((currentTime) => currentTime.start === time.start)
-        ?.ifNeedBe
+      voteTimes.find(
+        (currentTime) =>
+          currentTime.start === time.start && currentTime.end === time.end
+      )?.ifNeedBe
     )
       return "slot-time slot-if-need-be-time";
     return "slot-time slot-normal-time";

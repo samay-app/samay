@@ -28,7 +28,7 @@ const PollTableAdmin = (props: {
           <tr>
             <th className="poll-participant-cell"> </th>
             {sortedTimes.map((time, i) => (
-              <th key={time.start} className="poll-slot-time">
+              <th key={JSON.stringify(time)} className="poll-slot-time">
                 <PollDateTime
                   time={time}
                   type="admin"
@@ -51,7 +51,7 @@ const PollTableAdmin = (props: {
               {pollFromDB.votes?.length === 1 ? "PARTICIPANT" : "PARTICIPANTS"}
             </td>
             {sortedTimes.map((time: Time) => (
-              <td key={time.start} className="poll-slot-total-votes">
+              <td key={JSON.stringify(time)} className="poll-slot-total-votes">
                 {pollFromDB.votes?.filter((vote: Vote) =>
                   isTimePresentInPollTimes(time, vote.times)
                 ).length !== 0 && (
@@ -72,7 +72,7 @@ const PollTableAdmin = (props: {
               <td className="poll-table-participants">{vote.name}</td>
               {sortedTimes.map((time: Time) => (
                 <td
-                  key={time.start}
+                  key={JSON.stringify(time)}
                   className={slotCheckClassName(time, vote.times)}
                 >
                   {isTimeIfNeedBe(time, vote.times) ? (

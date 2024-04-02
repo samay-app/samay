@@ -41,7 +41,10 @@ const MarkTimesOneOnOne = (props: {
   return (
     <tr>
       {availableTimes.map((time) => (
-        <td key={time.start} className="poll-slot-checkbox-final-cell">
+        <td
+          key={JSON.stringify(time)}
+          className="poll-slot-checkbox-final-cell"
+        >
           <Form.Check
             data-value={JSON.stringify(time)}
             type="radio"
