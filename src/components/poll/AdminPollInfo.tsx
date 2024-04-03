@@ -79,13 +79,7 @@ const AdminPollInfo = (props: {
         <>
           <span className="poll-info-detail-title-share copy-text-mobile">
             <ShareFill className="poll-info-icon" />
-            <CopyText
-              pollTitle={poll.title}
-              pollID={poll._id}
-              pollLocation={poll.location}
-              pollType={poll.type}
-              finalTime={poll.finalTime}
-            />
+            <CopyText poll={poll} />
           </span>
         </>
       )}
@@ -93,15 +87,7 @@ const AdminPollInfo = (props: {
         <>
           <span className="poll-info-detail-title-share copy-text-desktop">
             <ShareFill className="poll-info-icon" />
-            Share this{" "}
-            <CopyText
-              pollTitle={poll.title}
-              pollID={poll._id}
-              pollLocation={poll.location}
-              pollType={poll.type}
-              finalTime={poll.finalTime}
-            />{" "}
-            with the participants
+            Share this <CopyText poll={poll} /> with the participants
           </span>
         </>
       )}

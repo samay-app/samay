@@ -1,19 +1,9 @@
 import { Form } from "react-bootstrap";
-import { Time } from "../../models/poll";
+import { PollFromDB } from "../../models/poll";
 import CopyTextMain from "./CopyTextMain";
 
-const NEXT_PUBLIC_BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
-const CopyText = (props: {
-  pollID: string;
-  pollTitle: string;
-  pollLocation: string;
-  pollType: string;
-  finalTime: Time | undefined;
-}): JSX.Element => {
-  const { pollID, pollTitle, pollLocation, pollType, finalTime } = props;
-  const pollURL = `${NEXT_PUBLIC_BASE_URL}/poll/${pollID}`;
+const CopyText = (props: { poll: PollFromDB }): JSX.Element => {
+  const { poll } = props;
 
   return (
     <div className="poll-shareinvite-content">
@@ -22,13 +12,7 @@ const CopyText = (props: {
           e.preventDefault();
         }}
       >
-        <CopyTextMain
-          pollURL={pollURL}
-          pollTitle={pollTitle}
-          pollLocation={pollLocation}
-          pollType={pollType}
-          finalTime={finalTime}
-        />
+        <CopyTextMain poll={poll} />
       </Form>
     </div>
   );

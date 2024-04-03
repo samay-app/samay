@@ -10,18 +10,20 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import copy from "copy-to-clipboard";
 import { useState } from "react";
-import { Time } from "../../models/poll";
+import { PollFromDB } from "../../models/poll";
 
 dayjs.extend(localizedFormat);
 
-const CopyTextMain = (props: {
-  pollURL: string;
-  pollTitle: string;
-  pollLocation: string;
-  pollType: string;
-  finalTime: Time | undefined;
-}): JSX.Element => {
-  const { pollURL, pollTitle, pollLocation, pollType, finalTime } = props;
+const NEXT_PUBLIC_BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+const CopyTextMain = (props: { poll: PollFromDB }): JSX.Element => {
+  const { poll } = props;
+
+  const pollTitle = poll.title;
+  const pollURL = `${NEXT_PUBLIC_BASE_URL}/poll/${poll._id}`;
+  const pollLocation = poll.location;
+  const { finalTime } = poll;
 
   const finalPollTitle = pollTitle || "Untitled";
   const finalPollLocation = pollLocation ? `at ${pollLocation}` : "";
