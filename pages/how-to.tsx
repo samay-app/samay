@@ -89,12 +89,12 @@ const HowTo = (): JSX.Element => {
                   mark their availability.
                   <br />
                   <br />
-                  In group polls, participants can either vote [yes]{" "}
-                  <CheckCircleFill className="how-to-card icon-yes" /> or [if
-                  need be]{" "}
-                  <CircleFill className="how-to-card icon-if-need-be" />. In
-                  one-on-one polls, participants can select their one preferred
-                  time.
+                  In group polls, participants can either vote{" "}
+                  <CheckCircleFill className="how-to-card icon-yes" /> [yes] by
+                  clicking once or [if need be]{" "}
+                  <CircleFill className="how-to-card icon-if-need-be" /> by
+                  clicking twice. In one-on-one polls, participants can select
+                  their one preferred time.
                   <br />
                   <br />
                   No login required. No time zone confusion since Samay

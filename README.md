@@ -33,7 +33,7 @@ Samay (previously known as Kukkee) is a free and open source meeting poll tool. 
 >
 > #### Share the poll
 >
-> Copy and share the poll link with the participants to let them mark their availability. In group polls, participants can either vote [yes] or [if need be] . In one-on-one polls, participants can select their one preferred time. No login required. No time zone confusion since Samay automatically shows participants times in their local time zone.
+> Copy and share the poll link with the participants to let them mark their availability. In group polls, participants can either vote [yes] by clicking once or [if need be] by clicking twice. In one-on-one polls, participants can select their one preferred time. No login required. No time zone confusion since Samay automatically shows participants times in their local time zone.
 >
 > #### Book the meeting
 >
