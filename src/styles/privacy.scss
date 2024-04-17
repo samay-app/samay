@@ -3,11 +3,11 @@
   margin-top: 1rem;
   margin-bottom: 5rem;
   border-radius: 0.5rem;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
 
   @include media-breakpoint-up(sm) {
     width: unset;
-    padding: 5rem 5rem 5rem 5rem;
+    padding: 5rem 10rem 5rem 10rem;
   }
 
   p {

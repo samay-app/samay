@@ -13,6 +13,20 @@
   }
 }
 
+.navbar-container {
+  padding-left: 0.5rem;
+  width: 95%;
+  padding-right: 0.5rem;
+  justify-content: center !important;
+
+  @include media-breakpoint-up(sm) {
+    width: 75rem;
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: space-between !important;
+  }
+}
+
 .navbar-brand {
   padding: 0 !important;
   font-size: unset !important;
@@ -89,7 +103,7 @@
 
 .navbar-link-icon {
   margin-top: -0.15rem;
-  margin-right: 0.1rem;
+  margin-right: 0.2rem;
   font-size: 0.9rem;
   color: #4b5563;
 

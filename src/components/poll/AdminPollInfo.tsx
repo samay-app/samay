@@ -32,7 +32,7 @@ const AdminPollInfo = (props: {
         </Badge>
       )}
       <Badge pill variant="secondary" className="poll-badge-polltype">
-        {!poll.type || poll.type === "group" ? "Group" : "One-on-one"}
+        {!poll.type || poll.type === "group" ? "Group poll" : "One-on-one poll"}
       </Badge>
       {poll.title && (
         <span

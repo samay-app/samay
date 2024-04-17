@@ -3,12 +3,15 @@ import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Layout from "../src/components/Layout";
 
 const HowTo = (): JSX.Element => {
   if (typeof window !== "undefined") {
     localStorage.setItem("samayNewVisitor", JSON.stringify(false));
   }
+
+  const router = useRouter();
 
   return (
     <>
@@ -62,60 +65,20 @@ const HowTo = (): JSX.Element => {
             <Card className="how-to-card">
               <Card.Body>
                 <Card.Title className="how-to-card title">
-                  1. Create a poll
+                  How to vote
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
-                  Select the time slots (click and drag) based on your
-                  availability, and optionally enter the title, description and
-                  location. No login required.
-                  <br />
-                  <br />
-                  The default poll type is "group" — to find a common time which
-                  works for everyone. If you want to have one-on-one meetings
-                  (parent-teacher meetings for example), select the "one-on-one"
-                  poll type.
+                  In group polls, you can either vote{" "}
+                  <CheckCircleFill className="how-to-card icon-yes" /> [yes] by
+                  clicking once or [if need be]{" "}
+                  <CircleFill className="how-to-card icon-if-need-be" /> by
+                  clicking twice. Clicking again would remove the vote. In
+                  one-on-one polls, you can select your one preferred time. No
+                  login required.
                 </Card.Text>
               </Card.Body>
             </Card>
           </CardGroup>
-          <CardGroup className="how-to-card-group">
-            <Card className="how-to-card">
-              <Card.Body>
-                <Card.Title className="how-to-card title">
-                  2. Share the poll
-                </Card.Title>
-                <Card.Text className="how-to-card desc">
-                  Copy and share the poll link with the participants to let them
-                  mark their availability. No time zone confusion since Samay
-                  automatically shows participants times in their local time
-                  zone.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </CardGroup>
-          <CardGroup className="how-to-card-group">
-            <Card className="how-to-card">
-              <Card.Body>
-                <Card.Title className="how-to-card title">
-                  3. Book the meeting
-                </Card.Title>
-                <Card.Text className="how-to-card desc">
-                  In group polls, find the most popular times and see who's free
-                  with <CheckCircleFill className="how-to-card icon-yes" />{" "}
-                  [yes] votes or who can be with{" "}
-                  <CircleFill className="how-to-card icon-if-need-be" /> [if
-                  need be] votes, book the meeting and share the final time with
-                  the participants! In one-on-one polls, find who has chosen
-                  which time slot for a one-on-one with you!
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </CardGroup>
-        </Container>
-        <Container className="how-to-container cta">
-          <Link href="/" passHref>
-            <Button className="global-small-primary-btn">Create a poll</Button>
-          </Link>
         </Container>
       </Layout>
     </>

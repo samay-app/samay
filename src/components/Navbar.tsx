@@ -5,6 +5,7 @@ import {
   Grid,
   Github,
   QuestionCircle,
+  Heart,
 } from "react-bootstrap-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -24,7 +25,7 @@ const NavBar = (): JSX.Element => {
 
   return (
     <Navbar className="navbar" variant="light" expand="lg" collapseOnSelect>
-      <Container className="global-container">
+      <Container className="navbar-container">
         <Navbar.Brand href="/" className="navbar-brand">
           <LogoSVG className="navbar-logo" />
           <span className="navbar-logo-text">samay</span>
@@ -36,50 +37,65 @@ const NavBar = (): JSX.Element => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Link href="/">
-              <a
-                className={`navbar-link ${
-                  router.pathname === "/" ? ` active` : ``
-                }`}
-              >
+              <a className="navbar-link">
                 <PlusCircle className="navbar-link-icon" /> New poll
               </a>
             </Link>
             <Link href="/recent-polls">
-              <a
-                className={`navbar-link ${
-                  router.pathname === "/recent-polls" ? ` active` : ``
-                }`}
-              >
+              <a className="navbar-link">
                 <Grid className="navbar-link-icon" /> Recent polls
               </a>
             </Link>
-            <Link href="/how-to">
-              <a
-                className={`navbar-link how-to-link ${
-                  samayNewVisitor ? "how-to-link-new-visitor" : ""
-                } ${router.pathname === "/how-to" ? ` active` : ``}`}
-              >
-                <QuestionCircle
-                  className={`navbar-link-icon ${
-                    samayNewVisitor ? "how-to-link-new-visitor" : ""
-                  }`}
-                />{" "}
-                How-to
-                {samayNewVisitor && <span className="beacon" />}
-              </a>
-            </Link>
+            {router.pathname.match(/\//g).length === 2 ? (
+              <>
+                <Link href="/how-to-vote">
+                  <a
+                    className={`navbar-link how-to-link ${
+                      samayNewVisitor ? "how-to-link-new-visitor" : ""
+                    }`}
+                  >
+                    <QuestionCircle
+                      className={`navbar-link-icon ${
+                        samayNewVisitor ? "how-to-link-new-visitor" : ""
+                      }`}
+                    />{" "}
+                    How-to
+                    {samayNewVisitor && <span className="beacon" />}
+                  </a>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/how-to">
+                  <a
+                    className={`navbar-link how-to-link ${
+                      samayNewVisitor ? "how-to-link-new-visitor" : ""
+                    }`}
+                  >
+                    <QuestionCircle
+                      className={`navbar-link-icon ${
+                        samayNewVisitor ? "how-to-link-new-visitor" : ""
+                      }`}
+                    />{" "}
+                    How-to
+                    {samayNewVisitor && <span className="beacon" />}
+                  </a>
+                </Link>
+              </>
+            )}
             <Link href="https://github.com/samay-app/samay">
               <a className="navbar-link">
                 <Github className="navbar-link-icon" /> GitHub
               </a>
             </Link>
             <Link href="/privacy">
-              <a
-                className={`navbar-link ${
-                  router.pathname === "/privacy" ? ` active` : ``
-                }`}
-              >
+              <a className="navbar-link">
                 <Lock className="navbar-link-icon" /> Privacy
+              </a>
+            </Link>
+            <Link href="https://www.buymeacoffee.com/anandbaburajan">
+              <a className="navbar-link">
+                <Heart className="navbar-link-icon" /> Buy me a coffee
               </a>
             </Link>
           </Nav>
