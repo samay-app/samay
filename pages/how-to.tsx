@@ -1,8 +1,7 @@
-import { Button, Container, CardGroup, Card } from "react-bootstrap";
-import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
-import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { Button, Card, CardGroup, Container } from "react-bootstrap";
+import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import Layout from "../src/components/Layout";
 
 const HowTo = (): JSX.Element => {
@@ -101,12 +100,13 @@ const HowTo = (): JSX.Element => {
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
                   In group polls, find the most popular times and see who's free
-                  with <CheckCircleFill className="how-to-card icon-yes" />{" "}
-                  [yes] votes or who can be with{" "}
-                  <CircleFill className="how-to-card icon-if-need-be" /> [if
-                  need be] votes, book the meeting and share the final time with
-                  the participants! In one-on-one polls, find who has chosen
-                  which time slot for a one-on-one with you!
+                  with "yes" [
+                  <CheckCircleFill className="how-to-card icon-yes" />] votes or
+                  who can be with "if need be" [
+                  <CircleFill className="how-to-card icon-if-need-be" />] votes,
+                  book the meeting and share the final time with the
+                  participants! In one-on-one polls, find who has chosen which
+                  time slot for a one-on-one with you!
                 </Card.Text>
               </Card.Body>
             </Card>

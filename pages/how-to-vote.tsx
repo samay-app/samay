@@ -1,9 +1,7 @@
-import { Button, Container, CardGroup, Card } from "react-bootstrap";
-import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
-import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { Card, CardGroup, Container } from "react-bootstrap";
+import { CheckCircleFill, CircleFill } from "react-bootstrap-icons";
 import Layout from "../src/components/Layout";
 
 const HowTo = (): JSX.Element => {
@@ -68,13 +66,18 @@ const HowTo = (): JSX.Element => {
                   How to vote
                 </Card.Title>
                 <Card.Text className="how-to-card desc">
-                  In group polls, you can either vote{" "}
-                  <CheckCircleFill className="how-to-card icon-yes" /> [yes] by
-                  clicking once or [if need be]{" "}
-                  <CircleFill className="how-to-card icon-if-need-be" /> by
-                  clicking twice. Clicking again would remove the vote. In
-                  one-on-one polls, you can select your one preferred time. No
-                  login required.
+                  In group polls, select all time slots you're available at. You
+                  can vote "yes" [
+                  <CheckCircleFill className="how-to-card icon-yes" />] by
+                  clicking a slot once or "if need be" [
+                  <CircleFill className="how-to-card icon-if-need-be" />] by
+                  clicking twice. Clicking again would remove the vote.
+                  <br />
+                  <br />
+                  In one-on-one polls, you can select your one preferred time.
+                  <br />
+                  <br />
+                  No login required.
                 </Card.Text>
               </Card.Body>
             </Card>
