@@ -47,7 +47,7 @@ After my GSoC '20 at LiberTEM, I wanted to have a video call with my mentors. Th
 
 ## Get in touch
 
-If you have suggestions for how Samay could be improved, please add your thoughts on a relevant discussion [here](https://github.com/samayapp/samay/discussions/) or start a new discussion. If you have any questions, I'd love to hear them too! If you want to report an issue, check if the issue is already opened [here](https://github.com/samayapp/samay/issues) otherwise open a new one.
+If you have suggestions for how Samay could be improved or want to report an issue, check if a corresponding GitHub issue is already opened [here](https://github.com/samay-app/samay/issues), otherwise open a new issue.
 
 ## Self-hosting
 
