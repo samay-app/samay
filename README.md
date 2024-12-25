@@ -8,7 +8,7 @@
   </a>
   <p>
     <b>
-      Samay — free and open source meeting poll tool
+      Samay — free and open source group scheduling tool
     </b>
   </p>
   <p>
@@ -25,11 +25,11 @@
 
 <br/>
 
-Samay (previously known as Kukkee) is a free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
+Samay is a free and open source group scheduling tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!
 
 > #### Create a poll
 >
-> Select the time slots (click and drag) based on your availability, and optionally enter the title, description and location. The default poll type is "group" — to find a common time which works for everyone. If you want to have one-on-one meetings (parent-teacher meetings for example), select the "one-on-one" poll type.
+> Select times you're free (click and drag), and optionally enter the title, description and location. The default poll type is "group" — to find a common time which works for everyone. If you want to have one-on-one meetings (parent-teacher meetings for example), select the "one-on-one" poll type.
 >
 > #### Share the poll
 >
@@ -43,7 +43,7 @@ Create a poll now at [Samay.app](https://samay.app/)!
 
 ## Motivation
 
-After my GSoC '20 at LiberTEM, I wanted to have a video call with my mentors. They said yes, and since the next step was to find a suitable and common time, one of them sent me a link to a meeting poll created using a proprietary online service. It had surprisingly bad UX and was covered with advertisements. I searched for good, free and open source meeting poll tools, but didn't find any. So I decided to fix that problem.
+After my GSoC '20 at LiberTEM, I wanted to have a video call with my mentors. They said yes, and since the next step was to find a suitable and common time, one of them sent me a link to a meeting poll created using a proprietary online service. It had surprisingly bad UX and was covered with advertisements. I searched for good, free and open source group scheduling tools, but didn't find any. So I decided to fix that problem.
 
 ## Get in touch
 

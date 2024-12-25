@@ -25,7 +25,7 @@ const HowTo = (): JSX.Element => {
         />
         <meta
           name="description"
-          content="Here's how to get started with Samay - a free and open source meeting poll tool."
+          content="Here's how to get started with Samay - a free and open source group scheduling tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
@@ -35,7 +35,7 @@ const HowTo = (): JSX.Element => {
         />
         <meta
           property="og:description"
-          content="Here's how to get started with Samay - a free and open source meeting poll tool."
+          content="Here's how to get started with Samay - a free and open source group scheduling tool."
         />
         <meta property="og:image" content="https://samay.app/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -46,14 +46,14 @@ const HowTo = (): JSX.Element => {
         />
         <meta
           property="twitter:description"
-          content="Here's how to get started with Samay - a free and open source meeting poll tool."
+          content="Here's how to get started with Samay - a free and open source group scheduling tool."
         />
         <meta property="twitter:image" content="https://samay.app/banner.png" />
       </Head>
       <Layout>
         <Container className="how-to-container">
           <span className="how-to-features title">
-            Samay — free and open source meeting poll tool
+            Samay — free and open source group scheduling tool
           </span>
           <span className="how-to-features desc">
             Find a time which works for everyone without the back-and-forth

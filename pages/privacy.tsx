@@ -17,7 +17,7 @@ const Privacy = (): JSX.Element => {
         />
         <meta
           name="description"
-          content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
+          content="Here's how Samay - a free and open source group scheduling tool, respects your privacy."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
@@ -27,7 +27,7 @@ const Privacy = (): JSX.Element => {
         />
         <meta
           property="og:description"
-          content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
+          content="Here's how Samay - a free and open source group scheduling tool, respects your privacy."
         />
         <meta property="og:image" content="https://samay.app/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -38,7 +38,7 @@ const Privacy = (): JSX.Element => {
         />
         <meta
           property="twitter:description"
-          content="Here's how Samay - a free and open source meeting poll tool, respects your privacy."
+          content="Here's how Samay - a free and open source group scheduling tool, respects your privacy."
         />
         <meta property="twitter:image" content="https://samay.app/banner.png" />
       </Head>

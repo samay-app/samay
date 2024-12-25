@@ -1,6 +1,6 @@
 {
   "name": "samay",
-  "description": "Free and open source meeting poll tool",
+  "description": "Free and open source group scheduling tool",
   "version": "2.0.0",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",

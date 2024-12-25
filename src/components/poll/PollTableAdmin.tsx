@@ -1,16 +1,16 @@
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import { Dispatch } from "react";
 import { Table } from "react-bootstrap";
 import { CheckCircleFill, CircleFill, PersonFill } from "react-bootstrap-icons";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-import MarkFinalTime from "./MarkFinalTime";
-import PollDateTime from "./PollDateTime";
-import { Time, PollFromDB, Vote } from "../../models/poll";
 import {
+  isTimeIfNeedBe,
   isTimePresentInPollTimes,
   slotCheckClassName,
-  isTimeIfNeedBe,
 } from "../../helpers";
+import { PollFromDB, Time, Vote } from "../../models/poll";
+import MarkFinalTime from "./MarkFinalTime";
+import PollDateTime from "./PollDateTime";
 
 dayjs.extend(localizedFormat);
 
@@ -46,9 +46,13 @@ const PollTableAdmin = (props: {
             )}
           <tr>
             <td className="poll-table-total-participants">
-              {pollFromDB.votes?.length}
+              {pollFromDB.type === "group"
+                ? pollFromDB.votes?.length + 1
+                : pollFromDB.votes?.length}
               &nbsp; &nbsp;
-              {pollFromDB.votes?.length === 1 ? "PARTICIPANT" : "PARTICIPANTS"}
+              {pollFromDB.type === "oneonone" && pollFromDB.votes?.length === 1
+                ? "PARTICIPANT"
+                : "PARTICIPANTS"}
             </td>
             {sortedTimes.map((time: Time) => (
               <td key={JSON.stringify(time)} className="poll-slot-total-votes">
@@ -57,11 +61,13 @@ const PollTableAdmin = (props: {
                 ).length !== 0 && (
                   <span>
                     <PersonFill className="poll-total-votes-icon" />
-                    {
-                      pollFromDB.votes?.filter((vote: Vote) =>
-                        isTimePresentInPollTimes(time, vote.times)
-                      ).length
-                    }
+                    {pollFromDB.type === "group"
+                      ? pollFromDB.votes?.filter((vote: Vote) =>
+                          isTimePresentInPollTimes(time, vote.times)
+                        ).length + 1
+                      : pollFromDB.votes?.filter((vote: Vote) =>
+                          isTimePresentInPollTimes(time, vote.times)
+                        ).length}
                   </span>
                 )}
               </td>
@@ -84,6 +90,16 @@ const PollTableAdmin = (props: {
               ))}
             </tr>
           ))}
+          {pollFromDB.type === "group" && (
+            <tr>
+              <td className="poll-table-participants">You</td>
+              {sortedTimes.map((time: Time) => (
+                <td key={JSON.stringify(time)} className="poll-slot-checked">
+                  <CheckCircleFill className="poll-slot-check" />
+                </td>
+              ))}
+            </tr>
+          )}
         </tbody>
       </Table>
     </div>

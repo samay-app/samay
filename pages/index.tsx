@@ -1,22 +1,22 @@
-import Router from "next/router";
+import { nanoid } from "nanoid";
 import Head from "next/head";
+import Router from "next/router";
+import { useState } from "react";
 import {
-  Row,
-  Col,
-  Form,
-  Container,
-  Jumbotron,
   Button,
+  Col,
+  Container,
+  Form,
+  Jumbotron,
+  Row,
   Spinner,
 } from "react-bootstrap";
-import { nanoid } from "nanoid";
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import toastOptions from "../src/helpers/toastOptions";
 import Layout from "../src/components/Layout";
-import { encrypt } from "../src/helpers";
-import { Time, Poll } from "../src/models/poll";
 import SamayRBC from "../src/components/SamayRBC";
+import { encrypt } from "../src/helpers";
+import toastOptions from "../src/helpers/toastOptions";
+import { Poll, Time } from "../src/models/poll";
 import { createPoll } from "../src/utils/api/server";
 
 const Home = (): JSX.Element => {
@@ -140,7 +140,7 @@ const Home = (): JSX.Element => {
         />
         <meta
           name="description"
-          content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
+          content="Free and open source group scheduling tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
@@ -150,7 +150,7 @@ const Home = (): JSX.Element => {
         />
         <meta
           property="og:description"
-          content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
+          content="Free and open source group scheduling tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
         />
         <meta property="og:image" content="https://samay.app/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -161,7 +161,7 @@ const Home = (): JSX.Element => {
         />
         <meta
           property="twitter:description"
-          content="Free and open source meeting poll tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
+          content="Free and open source group scheduling tool. Quickly find a time which works for everyone without the back-and-forth texts/emails!"
         />
         <meta property="twitter:image" content="https://samay.app/banner.png" />
       </Head>

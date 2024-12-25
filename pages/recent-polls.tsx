@@ -1,13 +1,13 @@
-import { Card, Container, Button } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
-import { Grid, Trash } from "react-bootstrap-icons";
-import Router from "next/router";
-import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { decrypt } from "../src/helpers";
+import Router from "next/router";
+import { useState } from "react";
+import { Button, Card, Container } from "react-bootstrap";
+import { Grid, Trash } from "react-bootstrap-icons";
+import Modal from "react-bootstrap/Modal";
 import Layout from "../src/components/Layout";
 import DeletePoll from "../src/components/poll/DeletePoll";
+import { decrypt } from "../src/helpers";
 
 const RemoveVotedPollModal = (props: {
   show;
@@ -103,7 +103,7 @@ const RecentPolls = (): JSX.Element => {
           {createdPolls.length > 0 && (
             <Container className="poll-container">
               <span className="your-polls-polls-heading">Created polls</span>
-              {createdPolls.map((poll) => (
+              {createdPolls.toReversed().map((poll) => (
                 <a
                   key={Object.keys(poll)[0]}
                   href={`/poll/${Object.keys(poll)[0].split("-")[0]}/${decrypt(
@@ -137,7 +137,7 @@ const RecentPolls = (): JSX.Element => {
           {votedPolls.length > 0 && (
             <Container className={votedPollsClassName}>
               <span className="your-polls-polls-heading">Voted polls</span>
-              {votedPolls.map((poll) => (
+              {votedPolls.toReversed().map((poll) => (
                 <a
                   key={Object.keys(poll)[0]}
                   href={`/poll/${Object.keys(poll)[0]}`}
@@ -211,7 +211,7 @@ const RecentPolls = (): JSX.Element => {
         />
         <meta
           name="description"
-          content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
+          content="Manage your recently created or voted polls on Samay - a free and open source group scheduling tool."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://samay.app" />
@@ -221,7 +221,7 @@ const RecentPolls = (): JSX.Element => {
         />
         <meta
           property="og:description"
-          content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
+          content="Manage your recently created or voted polls on Samay - a free and open source group scheduling tool."
         />
         <meta property="og:image" content="https://samay.app/banner.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -232,7 +232,7 @@ const RecentPolls = (): JSX.Element => {
         />
         <meta
           property="twitter:description"
-          content="Manage your recently created or voted polls on Samay - a free and open source meeting poll tool."
+          content="Manage your recently created or voted polls on Samay - a free and open source group scheduling tool."
         />
         <meta property="twitter:image" content="https://samay.app/banner.png" />
       </Head>
