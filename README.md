@@ -13,7 +13,7 @@
   </p>
   <p>
 
-[![License](https://img.shields.io/github/license/samayapp/samay?color=%23000000&style=for-the-badge)](https://github.com/samayapp/samay/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/anandbaburajan/samay?color=%23000000&style=for-the-badge)](https://github.com/anandbaburajan/samay/blob/main/LICENSE)
 [![Polls created: 2500+](https://shields.io/badge/style-2500+-black?&style=for-the-badge&label=Polls%20created)](https://samay.app/)
 [![Create a poll](https://shields.io/badge/style-Now-black?&style=for-the-badge&label=Create%20a%20poll)](https://samay.app/)
 
@@ -47,7 +47,7 @@ After my GSoC '20 at LiberTEM, I wanted to have a video call with my mentors. Th
 
 ## Get in touch
 
-If you have suggestions for how Samay could be improved or want to report an issue, check if a corresponding GitHub issue is already opened [here](https://github.com/samay-app/samay/issues), otherwise open a new issue.
+If you have suggestions for how Samay could be improved or want to report an issue, check if a corresponding GitHub issue is already opened [here](https://github.com/anandbaburajan/samay/issues), otherwise open a new issue.
 
 ## Self-hosting
 
@@ -138,4 +138,4 @@ Thanks to these amazing projects which help power Samay:
 
 ## License
 
-Samay is distributed under the [MIT License](https://github.com/samayapp/samay/blob/main/LICENSE).
+Samay is distributed under the [MIT License](https://github.com/anandbaburajan/samay/blob/main/LICENSE).
